@@ -8,6 +8,20 @@ on:
 jobs:
   verify:
     runs-on: ubuntu-latest
+    # Disposable PostgreSQL 17 for the store-backed conformance and report-source suites (the local equivalent is the
+    # sprint-v-pg17 container). Under CI those suites fail rather than skip without it. Each test creates and drops
+    # its own database and installs the knowledge component itself; the guards accept loopback targets only.
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres" --health-interval 5s --health-timeout 5s --health-retries 20
+    env:
+      KNOWLEDGE_DB_CONTRACT_ADMIN_DSN: postgresql://postgres:postgres@127.0.0.1:5432/postgres
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4

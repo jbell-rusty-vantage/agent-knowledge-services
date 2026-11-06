@@ -1,3 +1,4 @@
+import { fileURLToPath } from "node:url";
 import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
@@ -30,7 +31,9 @@ describe("WI-05 proof-driver guards", () => {
     } finally {
       rmSync(outside, { recursive: true, force: true });
     }
-    // Inside the workspace but another repository (this one).
-    expect(() => requireBksRoot(join(bellLabsRoot(), "platform"))).toThrow(/not the biotech-knowledge-services/);
+    // Inside the workspace but another repository: this Knowledge Services checkout, which exists in every layout
+    // (the BellLabs workspace locally, a lone clone in CI).
+    const thisRepository = fileURLToPath(new URL("../../../../", import.meta.url));
+    expect(() => requireBksRoot(thisRepository)).toThrow(/not the biotech-knowledge-services/);
   });
 });
