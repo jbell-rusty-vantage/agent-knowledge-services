@@ -242,6 +242,34 @@
   },
   {
     "type": "dependency",
+    "from": "apps/verification-executor/src/knowledge-operation/capture-bridge.ts",
+    "to": "packages/knowledge-operation-protocol/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-operation-protocol",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/verification-executor/src/knowledge-operation/capture-bridge.ts",
+    "to": "packages/research-core/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-research-core",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
     "from": "apps/verification-executor/src/knowledge/checkpoints-custody.ts",
     "to": "packages/application/dist/index.d.ts",
     "unresolvedTo": "@aiengineer/knowledge-application",
@@ -669,6 +697,20 @@
   },
   {
     "type": "dependency",
+    "from": "apps/verification-executor/src/reviewer-grant.ts",
+    "to": "packages/bindings/aiengineer-postgres/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-binding-aiengineer-postgres",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
     "from": "apps/verification-executor/src/store-custody-postgres.ts",
     "to": "packages/core/dist/index.d.ts",
     "unresolvedTo": "@aiengineer/knowledge-core",
@@ -1027,6 +1069,7 @@
     "unresolvedTo": "@aiengineer/knowledge-application",
     "dependencyTypes": [
       "undetermined",
+      "type-only",
       "import"
     ],
     "rule": {
@@ -1069,6 +1112,7 @@
     "unresolvedTo": "@aiengineer/knowledge-persistence",
     "dependencyTypes": [
       "undetermined",
+      "type-only",
       "import"
     ],
     "rule": {
@@ -1338,6 +1382,7 @@
     "unresolvedTo": "@aiengineer/knowledge-application",
     "dependencyTypes": [
       "undetermined",
+      "type-only",
       "import"
     ],
     "rule": {
