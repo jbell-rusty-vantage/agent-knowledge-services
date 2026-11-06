@@ -127,28 +127,28 @@ describe("operation catalog parity", async () => {
       }, {});
     // SV-17 retired the verification chain, report, recovery and content-link operations.
     for (const transport of ["api", "mcp"] as const)
-      expect(states("local", transport)).toEqual({ "server only": 81, "executor only": 33 });
-    expect(states("local", "cli")).toEqual({ "server only": 81, "executor only": 24, "local profile": 9 });
+      expect(states("local", transport)).toEqual({ "server only": 81, "executor only": 34 });
+    expect(states("local", "cli")).toEqual({ "server only": 81, "executor only": 25, "local profile": 9 });
     expect(states("server", "api")).toEqual({
       executable: 47,
       "executable when composed": 17,
       "declared (fails closed)": 9,
       excluded: 8,
-      "executor only": 33,
+      "executor only": 34,
     });
     expect(states("server", "mcp")).toEqual({
       executable: 28,
       "executable when composed": 14,
       "declared (fails closed)": 8,
       excluded: 31,
-      "executor only": 33,
+      "executor only": 34,
     });
     expect(states("server", "cli")).toEqual({
       executable: 31,
       "executable when composed": 14,
       "declared (fails closed)": 10,
       excluded: 26,
-      "executor only": 33,
+      "executor only": 34,
     });
   });
 
@@ -157,7 +157,7 @@ describe("operation catalog parity", async () => {
       const state = localProfileState(operation);
       return { ...total, [state]: (total[state] ?? 0) + 1 };
     }, {});
-    expect(counts).toEqual({ "server only": 105, offline: 8, "capture provider": 1 });
+    expect(counts).toEqual({ "server only": 106, offline: 8, "capture provider": 1 });
     const verification = {
       captureMediaKind: () => "text" as const,
       create: (() => {
@@ -281,7 +281,13 @@ describe("operation catalog parity", async () => {
     );
     const rows = operationCatalog.filter((operation) => operation.executor?.ks);
     expect(rows.map((row) => [row.executor!.mcp, row.executor!.ks]).sort()).toEqual(local.sort());
-    expect(rows.map((row) => row.executor!.mcp).sort()).toEqual([...executorVerifyTools].sort());
+    // Every executor verify tool has a local ks command except the server-only custody tools, which have neither a
+    // ks nor an executor cli binding.
+    const serverOnly = operationCatalog
+      .filter((operation) => operation.admission === "executor" && !operation.executor?.ks && !operation.executor?.cli)
+      .flatMap((row) => (row.executor ? [row.executor.mcp] : []));
+    expect(serverOnly).toEqual(["verify_capture_fragment"]);
+    expect([...rows.map((row) => row.executor!.mcp), ...serverOnly].sort()).toEqual([...executorVerifyTools].sort());
     for (const row of rows) {
       expect(row.admission, row.id).toBe("executor");
       expect(localProfileState(row), row.id).not.toBe("server only");

@@ -864,6 +864,13 @@ const executorVerify: readonly CatalogOperation[] = (
     executor: { mcp: name!, ks: ks! },
   };
 });
+// Executor tools that need durable artifact custody. They run in the executor's serve mode only: the file-backed local
+// profile cannot hold that custody, so they have no `ks` command. verify_capture_fragment preserves the capture,
+// representation and provenance artifacts it exports (report-source capture).
+const SERVER_ONLY_CUSTODY = "needs durable artifact custody; executor serve mode only, no local `ks` command";
+const executorServerOnlyVerify: readonly CatalogOperation[] = [
+  executorOperation("verify", "mutation", "verify_capture_fragment", undefined, SERVER_ONLY_CUSTODY),
+];
 
 export type Profile = "server" | "local";
 export type TransportState =
@@ -900,6 +907,7 @@ export const operationCatalog: readonly CatalogOperation[] = [
   ...system,
   ...executorKnowledge,
   ...executorVerify,
+  ...executorServerOnlyVerify,
 ];
 
 /** Concrete requests for the declared kinds' API routes, used to prove they fail closed. */
