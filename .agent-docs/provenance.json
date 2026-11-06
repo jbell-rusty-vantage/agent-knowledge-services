@@ -78,7 +78,7 @@
     "knowledge/schema-read-and-ingestion.md": "cc71667e4ef95f5b48fd07262f2862c5d12ee467c6fd5351eea88ddf43f83eae",
     "knowledge/service-boundaries.md": "0808c7493ad1a10a50c0c9a35d646bca63e40f93f960d1ac096857b91a4349c5",
     "knowledge/verification-and-admission.md": "4c1db3747f2ea71021a8f9c6e3bf7854037f72210004f638d111d7955a45c5de",
-    "package.json": "7e4636b4b8e8119295aa2ccb202a6d3a6e32f7887892a8d5f651e83dc5c520ac",
+    "package.json": "90734ccc3029cfd98f0bb98e3ebbb8d98f343aa521d2c1da6f6ba907017456fa",
     "packages/core/src/runtime/ledger.ts": "534f1080cc15289c9da28a251a795fb4ecac9836a28f177c629b46e90e1b2473",
     "packages/knowledge-db/src/db-read/read-executor.ts": "47923c5fbaf4fa8c5cc3c7632d350a38f7981346341052c1b6091a1588e950e9",
     "packages/knowledge-db/src/ingestion/executor.ts": "5c1c3128e529650a24f77ebe19ce6b155b2d81a619d5bb01a7b73a2170a40aa7",

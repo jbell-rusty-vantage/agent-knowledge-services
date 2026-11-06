@@ -43,7 +43,7 @@
     "prove:governed-indexing": "tsx scripts/prove-governed-indexing.ts",
     "prove:hnsw-local": "tsx scripts/prove-local-hnsw.ts",
     "prove:canonical-retrieval-api": "tsx scripts/prove-canonical-retrieval-api.ts",
-    "test": "turbo run test --concurrency=1 -- --maxWorkers=2",
+    "test": "turbo run test --concurrency=1 --continue -- --maxWorkers=2",
     "test:live:gateway": "tsx --env-file=.env scripts/live-gateway-embeddings.ts",
     "test:live:judge": "tsx --env-file=.env scripts/live-gateway-judge.ts",
     "test:live:gate1": "tsx --env-file=.env scripts/live-gate1.ts",
