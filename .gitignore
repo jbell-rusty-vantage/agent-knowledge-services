@@ -87,3 +87,6 @@ internal_hidden_docs/
 *.tgz
 !vendor/aiengineer-database-contract-0.6.0.tgz
 packages/persistence/vendor/
+
+# Local scratch, evidence and history archives (never tracked)
+.scratch/

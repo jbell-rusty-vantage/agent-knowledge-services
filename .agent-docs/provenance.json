@@ -27,7 +27,7 @@
   "inputs": {
     ".agent-docs/config.json": "67e7da2b0d4c5354ea9110a0ae237fd3865f7fc126e96900041b28ab952eddd1",
     "GLOSSARY.md": "6be4b3ddf0a0d05214a8e4f4e085324df2a062797c876544230c0c836558766b",
-    "README.md": "c46e41bdae1db387a47131aa27f28813702aae9e675f2879d7fd72f1a54ff995",
+    "README.md": "d3ba8059bdcb83ba8ab3275a86b6acaf98110b522982b443984b8f395ce07df2",
     "apps/verification-executor/examples/CAPABILITIES-ACQUISITION.md": "3f25e13d4dde93ccf36233c67ef5c62b240374061e4b5cb4d8a39dca8117c6cf",
     "apps/verification-executor/src/knowledge/operations.ts": "7ff9b823bc7a20f42b4c4f504a598407532eaf2d6ad348d33371c45c9457e4fb",
     "apps/worker/src/worker.ts": "edeb4b1bdaa3d4f7e1ede35adb7d59bde8b7f53a74faefcf522df2d92027236c",
@@ -86,7 +86,7 @@
   },
   "knowledge": {
     "inputs": {
-      "README.md": "c46e41bdae1db387a47131aa27f28813702aae9e675f2879d7fd72f1a54ff995",
+      "README.md": "d3ba8059bdcb83ba8ab3275a86b6acaf98110b522982b443984b8f395ce07df2",
       "apps/api/src/index.ts": "0b1d6a69e00074de3d4bb83ea6dadc97606921e97d0af12a95ab6ba8140e5612",
       "apps/cli/src/commands.ts": "d2fc34a103a6a439a2f76210437c7306fd99a032f68ca7f4242e60b19aa3c7e2",
       "apps/cli/src/ks-commands.ts": "e72d3c45fafd939334a88ccae64b23ba67e017f130461ede95239d0f2a715d72",

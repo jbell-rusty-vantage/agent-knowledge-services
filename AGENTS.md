@@ -8,6 +8,8 @@ Sprint V agents: [start here for repositories, database roles and claim order](.
 
 Before editing, run `git status --short`, `git branch --show-current`, and `git worktree list` here. Preserve dirty work; `.git/maintenance/jobs/` worktrees are not the primary source. Edit registered sources and build this repository only. Deeper guides: [README map](README.md#documentation-map), [code map](docs/agents/CODE-MAP.md).
 
+GitHub: public [`jbell-rusty-vantage/agent-knowledge-services`](https://github.com/jbell-rusty-vantage/agent-knowledge-services), `main` only. History starts at the 2026-11-06 clean-slate baseline, so commit IDs and `Overton77/ai-engineer-knowledge-services` links in older documents do not resolve here ([repository history](docs/REPOSITORY-HISTORY.md)).
+
 ---
 
 ## Engineering planning and delivery

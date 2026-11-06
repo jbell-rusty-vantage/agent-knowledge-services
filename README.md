@@ -8,6 +8,8 @@ This repository is the knowledge-services half of the AI Engineer flywheel: rese
 
 AI Engineer product context: [vision](../../aiengineer/ai-engineer-meta/docs/product/00-vision.md) and [north-star path](../../aiengineer/ai-engineer-meta/docs/product/11-north-star-path.md). Official knowledge comes from the research / ingestion flywheel into a proprietary KB. Surfaces are designed **MCP, Agent Skill, CLI, and A2A first**. This product context does not transfer product/user API ownership to the platform repository.
 
+Repository: public [`jbell-rusty-vantage/agent-knowledge-services`](https://github.com/jbell-rusty-vantage/agent-knowledge-services), `main` only; history starts at the 2026-11-06 clean-slate baseline ([repository history](docs/REPOSITORY-HISTORY.md)).
+
 Working-copy explanations of observed behavior live in [`knowledge/`](knowledge/index.md). Start there when you need a concept, not a file dump.
 
 For the implemented architecture after 5P, read [current state](docs/architecture/current-state.md) and [technology stack](docs/architecture/technology-stack.md). The [accepted cleanup layout](docs/operations/package-cleanup/FINAL-LAYOUT.md) describes the target; executor folds, `ks jev`, and canonical skill consolidation remain separate work.
