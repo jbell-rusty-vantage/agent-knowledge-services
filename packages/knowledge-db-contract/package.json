@@ -17,7 +17,7 @@
   "scripts": {
     "build": "tsup src/index.ts src/cli.ts --format esm && tsc --emitDeclarationOnly --rootDir src --outDir dist",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run",
+    "test": "vitest run --no-file-parallelism",
     "manifest": "tsx src/cli.ts manifest"
   },
   "dependencies": {

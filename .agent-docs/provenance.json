@@ -369,7 +369,7 @@
       "packages/jev/src/provider.ts": "a2965b5ef89c3b7ca90615a7e7d71554718f89688c9ffc32f4c8d986f7fc4e44",
       "packages/jev/src/service.test.ts": "77f60b36cc88b889d3934639a3d3a7f6f26c82a13d4ce04fa5628b740c12a0b7",
       "packages/jev/src/service.ts": "a129b812cb94d125c3657872e388d0b1afd7d83a5b60f269d02a593f56d3334d",
-      "packages/knowledge-db-contract/package.json": "6352ff1700b9469c646198e7c20866269a6c01fb48e45e78c7d39bacbe27edf0",
+      "packages/knowledge-db-contract/package.json": "dfb58af18d3e24b5b1af4cb3b9072418bfbc9255a8c0239738fc242e856c9631",
       "packages/knowledge-db-contract/src/installer.integration.test.ts": "997d04623ee245928e5a298e5ced4d135f9535a510ba838b73c3e0b7d4fe38b0",
       "packages/knowledge-db-contract/src/installer.ts": "6ff8d19c7e4b2c0fd6f9d7123b35e759cf974c205a5a1ff5dcf148fd5896c338",
       "packages/knowledge-db/package.json": "5a984e29f33722894e5296dd49c9bd2d0be2e3062476fbb8db11ccda452d2a02",
