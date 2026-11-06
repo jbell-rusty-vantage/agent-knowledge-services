@@ -59,7 +59,9 @@ function validateAt(schema: JsonSchema, value: unknown, path: string, issues: Sc
   if (Array.isArray(value)) {
     const items = schema.items;
     if (items && typeof items === "object")
-      value.forEach((item, index) => validateAt(items as JsonSchema, item, `${path}[${index}]`, issues));
+      value.forEach((item, index) => {
+        validateAt(items as JsonSchema, item, `${path}[${index}]`, issues);
+      });
     if (typeof schema.maxItems === "number" && value.length > schema.maxItems)
       issues.push({ path, message: `must have ≤ ${schema.maxItems} items` });
     return;

@@ -4,7 +4,7 @@ import type {
   VerificationBenchmarkPublicationManifest,
 } from "@aiengineer/knowledge-contracts";
 import {
-  VerificationBenchmarkReadError,
+  type VerificationBenchmarkReadError,
   VerificationBenchmarkReadService,
   type VerifiedBenchmarkPublicationReadPort,
 } from "./verification-benchmark-reads.js";

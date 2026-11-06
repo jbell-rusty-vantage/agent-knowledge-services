@@ -74,8 +74,11 @@ function assertPublicValue(value: unknown, path = "$", seen = new Set<object>())
   if (value === null || typeof value !== "object") return;
   if (seen.has(value)) throw new Error(`PUBLIC_MANIFEST_CYCLE:${path}`);
   seen.add(value);
-  if (Array.isArray(value)) value.forEach((item, index) => assertPublicValue(item, `${path}[${index}]`, seen));
-  else
+  if (Array.isArray(value)) {
+    value.forEach((item, index) => {
+      assertPublicValue(item, `${path}[${index}]`, seen);
+    });
+  } else
     for (const [key, item] of Object.entries(value)) {
       if (isPrivateFieldName(key)) throw new Error(`PUBLIC_MANIFEST_PRIVATE_FIELD:${path}.${key}`);
       assertPublicValue(item, `${path}.${key}`, seen);

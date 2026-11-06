@@ -16,7 +16,7 @@ import { VerificationExecutor, loadExecutorConfig } from "../../executor.js";
 import { createKnowledgeServices, defaultUseClassesFile, type KnowledgeServices } from "../../knowledge/context.js";
 import { createSourceDiscoveryHost } from "../../knowledge/source-discovery-host.js";
 import { knowledgeOperations } from "../../knowledge/operations.js";
-import { captureFragment, createCaptureCustodyReader, readCaptureProvenance } from "../capture-bridge.js";
+import { type captureFragment, createCaptureCustodyReader, readCaptureProvenance } from "../capture-bridge.js";
 
 export async function openCapturedSourceFixture(scope: AuthScope, evidenceRoot: string) {
   const databaseUrl = disposableDatabaseUrl(),

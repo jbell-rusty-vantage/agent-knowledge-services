@@ -1,4 +1,4 @@
-import { KnowledgeIntegrationService, type WorkerClaim } from "@aiengineer/knowledge-application";
+import type { KnowledgeIntegrationService, WorkerClaim } from "@aiengineer/knowledge-application";
 import type { JsonValue } from "@aiengineer/knowledge-contracts";
 import { CanonicalActivityError, retryableActivityFailure } from "./activity-registry.js";
 

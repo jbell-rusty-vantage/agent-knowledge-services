@@ -4,10 +4,10 @@ import { resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { KnowledgeClient, KnowledgeClientError } from "@aiengineer/knowledge-client";
-import {
-  type CaptureSourceRequest,
-  type VerificationCaptureTerminalResource,
-  type VerificationProfileCaptureAccepted,
+import type {
+  CaptureSourceRequest,
+  VerificationCaptureTerminalResource,
+  VerificationProfileCaptureAccepted,
 } from "@aiengineer/knowledge-contracts";
 import {
   loadDiagnosticsOfflineCatalog,

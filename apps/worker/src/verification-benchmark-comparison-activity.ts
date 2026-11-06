@@ -6,16 +6,16 @@ import {
   type OperationContext,
   type VerificationBenchmarkComparisonPublication,
 } from "@aiengineer/knowledge-contracts";
-import {
-  type PreparedVerificationBenchmarkComparison,
-  type RegisteredBenchmarkComparisonPublicationBuilder,
-  type VerificationBenchmarkComparisonApplicationService,
+import type {
+  PreparedVerificationBenchmarkComparison,
+  RegisteredBenchmarkComparisonPublicationBuilder,
+  VerificationBenchmarkComparisonApplicationService,
 } from "@aiengineer/knowledge-application";
-import {
-  type DurableVerificationBenchmarkComparison,
-  type OperationsRepository,
-  type PostgresVerificationBenchmarkComparisonStore,
-  type VerificationBenchmarkComparisonIdentity,
+import type {
+  DurableVerificationBenchmarkComparison,
+  OperationsRepository,
+  PostgresVerificationBenchmarkComparisonStore,
+  VerificationBenchmarkComparisonIdentity,
 } from "@aiengineer/knowledge-persistence";
 import { deterministicUuid } from "@aiengineer/knowledge-core";
 import { digestCanonicalJson } from "@aiengineer/knowledge-verification";

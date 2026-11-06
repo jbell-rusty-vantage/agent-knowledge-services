@@ -11,9 +11,9 @@ import {
   type TrustedArtifactResolver,
 } from "@aiengineer/knowledge-verification";
 import { deepFreeze } from "@aiengineer/knowledge-core";
-import {
+import type {
   StructuredExtractionProfileAdmission,
-  type PreparedStructuredExtraction,
+  PreparedStructuredExtraction,
 } from "./verification-structured-extraction-profile.js";
 import {
   VerificationProviderTransportResponseSchema,

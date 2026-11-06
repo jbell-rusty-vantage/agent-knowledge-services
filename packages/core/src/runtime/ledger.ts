@@ -119,7 +119,7 @@ export class InMemoryOperationLedger {
     } satisfies OperationRecord;
     this.#operations.set(context.operationId, operation);
     this.#idempotency.set(`${context.tenantId}:${idempotencyKey}`, context.operationId);
-    stepNames.forEach((name, ordinal) =>
+    stepNames.forEach((name, ordinal) => {
       this.#steps.set(`${context.operationId}:${ordinal}`, {
         id: deterministicUuid("step", `${context.operationId}:${ordinal}:${name}`),
         operationId: context.operationId,
@@ -127,8 +127,8 @@ export class InMemoryOperationLedger {
         ordinal,
         state: "pending",
         attempts: 0,
-      }),
-    );
+      });
+    });
     this.#append(context.operationId, "operation.created", {
       inputDigest,
     } as JsonValue);

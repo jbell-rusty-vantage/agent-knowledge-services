@@ -673,7 +673,9 @@ export function validateExtractionCandidate(
       return;
     }
     if (Array.isArray(value)) {
-      value.forEach((item, index) => visitUnknown(item, `${path}/${index}`, depth + 1));
+      value.forEach((item, index) => {
+        visitUnknown(item, `${path}/${index}`, depth + 1);
+      });
       return;
     }
     if (isPlainObject(value)) {
@@ -738,7 +740,9 @@ export function validateExtractionCandidate(
           path,
           detail: "Array violates admitted item bounds.",
         });
-      value.forEach((item, index) => visit(node.items, item, `${path}/${index}`));
+      value.forEach((item, index) => {
+        visit(node.items, item, `${path}/${index}`);
+      });
       return;
     }
     if (!nodeMatches(node, value)) {

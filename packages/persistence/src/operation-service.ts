@@ -20,7 +20,7 @@ import {
 } from "@aiengineer/knowledge-contracts";
 import { sha256Digest } from "@aiengineer/knowledge-core";
 import { deterministicUuid } from "@aiengineer/knowledge-core";
-import { PostgresCanonicalRepository } from "./postgres.js";
+import type { PostgresCanonicalRepository } from "./postgres.js";
 import type { CanonicalOperationRecord, CanonicalStep } from "./types.js";
 
 interface DurableOperationRequest {

@@ -31,9 +31,9 @@ import {
   structuredExtractionExecutionTransformationSignature,
   structuredExtractionProviderCallDigest,
 } from "./verification-structured-extraction-publication.js";
-import {
+import type {
   StructuredExtractionCapturedReplayService,
-  type StructuredExtractionReplayResult,
+  StructuredExtractionReplayResult,
 } from "./verification-structured-extraction-replay.js";
 import {
   VerificationStructuredExtractionProducerProfileSchema,

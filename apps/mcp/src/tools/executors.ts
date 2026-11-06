@@ -39,7 +39,7 @@ import {
 } from "@aiengineer/knowledge-contracts";
 import { z } from "zod";
 import type { CallToolResult } from "@modelcontextprotocol/sdk/types.js";
-import { MCP_TOOL_CATALOG, VERIFICATION_MCP_TOOL_NAMES, type McpToolName } from "../catalog.js";
+import type { MCP_TOOL_CATALOG, VERIFICATION_MCP_TOOL_NAMES, McpToolName } from "../catalog.js";
 import { McpReadContextSchema } from "./definition.js";
 import { inProcessRead, readToolResult, toolError } from "./errors.js";
 

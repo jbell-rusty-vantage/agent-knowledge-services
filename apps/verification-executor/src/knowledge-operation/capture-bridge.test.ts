@@ -8,6 +8,12 @@ import { captureFile } from "../capture.js";
 import { FilesystemStore, type CaptureRecord } from "../store.js";
 import { captureFragment, createCaptureCustodyReader, readCaptureProvenance } from "./capture-bridge.js";
 
+/** Removes a test root, refusing any path outside the OS temp directory. */
+async function removeTempRoot(root: string): Promise<void> {
+  if (!resolve(root).startsWith(resolve(tmpdir()) + sep)) throw new Error("TEST_CLEANUP_PATH_DENIED");
+  await rm(root, { recursive: true, force: true });
+}
+
 it("maps actual capture identities, reconstructs exact bytes, and refuses digest/scope/selector drift", async () => {
   const root = await mkdtemp(join(tmpdir(), "ks-capture-bridge-"));
   // Unit backing double only; the real storage fixture supplies the integration proof.
@@ -90,7 +96,6 @@ it("maps actual capture identities, reconstructs exact bytes, and refuses digest
     await expect(reader.get({ ...scope, tenant: "another" }, first.fragment.capture)).rejects.toThrow("SCOPE_MISMATCH");
     await expect(reader.get(scope, { ...first.fragment.capture, digest: undefined } as never)).rejects.toThrow();
   } finally {
-    if (!resolve(root).startsWith(resolve(tmpdir()) + sep)) throw new Error("TEST_CLEANUP_PATH_DENIED");
-    await rm(root, { recursive: true, force: true });
+    await removeTempRoot(root);
   }
 });

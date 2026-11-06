@@ -3,9 +3,9 @@ import { VerificationArtifactHandleSchema, type VerificationArtifactHandle } fro
 import { deepFreeze } from "@aiengineer/knowledge-core";
 import { canonicalizeJson, sha256Digest, validateExtractionCandidate } from "@aiengineer/knowledge-verification";
 import type { PreparedStructuredExtraction } from "./verification-structured-extraction-profile.js";
-import {
+import type {
   StructuredExtractionCapturedReplayService,
-  type StructuredExtractionReplayResult,
+  StructuredExtractionReplayResult,
 } from "./verification-structured-extraction-replay.js";
 
 const encoder = new TextEncoder();

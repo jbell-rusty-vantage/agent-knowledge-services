@@ -1,5 +1,5 @@
 import type { LocalOperation } from "@aiengineer/knowledge-host/local";
-import { CLI_COMMANDS, resolveCommand, type CliCommand } from "./commands.js";
+import { type CLI_COMMANDS, resolveCommand, type CliCommand } from "./commands.js";
 
 /**
  * The `ks` command names (Unit 5C). Every command runs under exactly one profile, chosen by the command and

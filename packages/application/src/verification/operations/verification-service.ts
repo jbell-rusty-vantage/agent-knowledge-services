@@ -37,13 +37,13 @@ import {
   type ExtractionNormalizationRule,
 } from "@aiengineer/knowledge-verification";
 import { z } from "zod";
-import {
+import type {
   VerificationAdmissionService,
-  type AdmittedExtractionEvidence,
-  type ProjectionAdmissionReceipt,
-  type VerificationAdmissionRepositoryPort,
+  AdmittedExtractionEvidence,
+  ProjectionAdmissionReceipt,
+  VerificationAdmissionRepositoryPort,
 } from "../admission/verification-admission.js";
-import { type KnowledgeOperationPort } from "../../operations/surface.js";
+import type { KnowledgeOperationPort } from "../../operations/surface.js";
 
 export const VERIFICATION_SERVICE_REQUEST_VERSION = "verification-service-request.v1" as const;
 export const verificationServiceOperationKinds = Object.freeze([

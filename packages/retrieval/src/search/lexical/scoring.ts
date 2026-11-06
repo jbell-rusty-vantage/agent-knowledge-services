@@ -44,7 +44,9 @@ export function trigramScore(a: string, b: string): number {
   const aa = grams(a),
     bb = grams(b),
     counts = new Map<string, number>();
-  aa.forEach((x) => counts.set(x, (counts.get(x) ?? 0) + 1));
+  aa.forEach((x) => {
+    counts.set(x, (counts.get(x) ?? 0) + 1);
+  });
   let overlap = 0;
   for (const x of bb) {
     const count = counts.get(x) ?? 0;

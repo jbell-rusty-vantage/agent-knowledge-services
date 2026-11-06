@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 import { ContentLinkOperationSchema, type ContentLinkOperation } from "@aiengineer/knowledge-contracts";
 import { sha256Digest } from "@aiengineer/knowledge-core";
 import type { KnowledgeSqlClient } from "../../ports.js";
-import { ContentSourceReader } from "./sources.js";
+import type { ContentSourceReader } from "./sources.js";
 import type { AuthenticatedContentEvidence } from "./types.js";
 import {
   applyPreparedContentOperation,

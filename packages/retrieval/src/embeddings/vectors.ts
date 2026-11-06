@@ -13,7 +13,9 @@ export function validateVector(vector: readonly number[], dimensions: number): v
 
 export function vectorDigest(vector: readonly number[]): `sha256:${string}` {
   const bytes = Buffer.allocUnsafe(vector.length * 8);
-  vector.forEach((value, index) => bytes.writeDoubleBE(value, index * 8));
+  vector.forEach((value, index) => {
+    bytes.writeDoubleBE(value, index * 8);
+  });
   return `sha256:${createHash("sha256").update(bytes).digest("hex")}`;
 }
 

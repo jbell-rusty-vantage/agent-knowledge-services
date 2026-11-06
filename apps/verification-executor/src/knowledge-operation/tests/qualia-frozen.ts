@@ -110,7 +110,9 @@ export async function hydrateQualiaFrozenReport(input: {
       else if (block.type === "list") block.items.forEach(collect);
       else if (block.type === "table") {
         block.header.forEach(collect);
-        block.rows.forEach((row) => row.forEach(collect));
+        block.rows.forEach((row) => {
+          row.forEach(collect);
+        });
         collect(block.caption ?? []);
       }
     }

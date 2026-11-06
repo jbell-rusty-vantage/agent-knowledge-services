@@ -8,7 +8,7 @@ import { deepFreeze } from "@aiengineer/knowledge-core";
 import { canonicalizeJson, digestCanonicalJson, sha256Digest } from "@aiengineer/knowledge-verification";
 import type { PostgresCanonicalRepository, TenantSqlClient } from "./postgres.js";
 import type { LeasedStep } from "./types.js";
-import { type VerificationProviderResponseCapture } from "./verification-provider-response-capture.js";
+import type { VerificationProviderResponseCapture } from "./verification-provider-response-capture.js";
 
 const DigestSchema = z.string().regex(/^sha256:[a-f0-9]{64}$/u);
 const CanonicalUuidSchema = z.uuid().refine((value) => value === value.toLowerCase(), "UUID must be lower case");

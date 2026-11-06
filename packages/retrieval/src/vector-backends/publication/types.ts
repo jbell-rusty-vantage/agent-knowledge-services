@@ -1,4 +1,4 @@
-import { CANONICAL_EMBEDDING_DIMENSIONS } from "../types.js";
+import type { CANONICAL_EMBEDDING_DIMENSIONS } from "../types.js";
 import type { ActivePublicationPointer, PublicationEvent, PublicationState } from "../spaces/version.js";
 
 export type Digest = `sha256:${string}`;

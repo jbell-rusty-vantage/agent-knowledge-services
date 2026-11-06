@@ -6,7 +6,7 @@ import {
   type OperationContext,
   type VerificationBenchmarkPublicationManifest,
 } from "@aiengineer/knowledge-contracts";
-import {
+import type {
   RegisteredBenchmarkPublicationBuilder,
   RegisteredDiagnosticsOfflineBenchmark,
 } from "@aiengineer/knowledge-application";
@@ -15,10 +15,10 @@ import {
   runVerificationBenchmark,
   type VerificationBenchmarkRun,
 } from "@aiengineer/knowledge-evaluation";
-import {
+import type {
   PostgresVerificationBenchmarkPublisher,
   PostgresVerificationBenchmarkRunStore,
-  type OperationsRepository,
+  OperationsRepository,
 } from "@aiengineer/knowledge-persistence";
 import { deterministicUuid } from "@aiengineer/knowledge-core";
 import { z } from "zod";
