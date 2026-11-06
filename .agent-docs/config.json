@@ -1,0 +1,637 @@
+{
+  "version": 1,
+  "id": "ai-engineer-knowledge-services",
+  "purpose": "Knowledge preparation, retrieval, evidence, evaluation, publication, and verification; API, MCP, CLI, durable workers, and parser boundaries.",
+  "lifecycle": "Active service repository; see deployment docs for rollout state.",
+  "budgetBytes": 12288,
+  "rules": [
+    "Transport handlers share packages/application. Cross-repository consumers use published HTTP/client, CLI, or MCP contracts; do not import internal algorithm packages.",
+    "API, MCP, and workers call packages/application in process; MCP has no API client. Out-of-process callers use KnowledgeClient HTTP. Local CLI demo/attestation stays application-direct.",
+    "Verification execution and policy admission are separate. Semantic judgment cannot override a deterministic failure. Preserve immutable captures, selectors, provenance, and tenant isolation.",
+    "Mission Control dispatches verification and classifies retry/cancellation; Knowledge Services owns algorithms, policy admission, and durable knowledge execution.",
+    "Shared Supabase migrations and generated database types are owned by ai-engineer-db-contract; consume its pinned contract. Do not create another migration/type authority.",
+    "Search explicit source paths first. Do not recursively enumerate artifacts, outputs, runs, receipts, caches, dependencies, or private notes. Read an individual artifact only when the task calls for it.",
+    "Knowledge schema/read/ingest live in packages/knowledge-db and the verification-executor knowledge surfaces. Retrieval read ops are skipped; ingestion does not write knowledge_service.operation. The K01 knowledge.read_intent (native contract knowledge-read-intent/v1) is a different contract from the bounded knowledge-read-intent.v1 and records every served read in knowledge_verification.operation; see knowledge/schema-read-and-ingestion.md."
+  ],
+  "commands": [
+    "corepack pnpm verify",
+    "Gates: tools/quality/README.md",
+    "corepack pnpm test:maintenance && corepack pnpm test:context"
+  ],
+  "docs": [
+    {
+      "path": "docs/specs/belllabs-knowledge-platform/README.md",
+      "task": "Final BellLabs platform specification, ADRs, verification, domain skills and Linear implementation plan",
+      "status": "accepted",
+      "navigation": false
+    },
+    {
+      "path": "docs/agents/issue-tracker.md",
+      "task": "Matt Pocock planning skills, Linear publication and issue ownership",
+      "status": "accepted",
+      "navigation": false
+    },
+    {
+      "path": "docs/agents/domain.md",
+      "task": "Domain glossary and architecture authority for engineering skills",
+      "status": "accepted",
+      "navigation": false
+    },
+    {
+      "path": "GLOSSARY.md",
+      "task": "Shared platform, verification, capability and product vocabulary",
+      "status": "accepted",
+      "navigation": false
+    },
+    {
+      "path": "docs/operations/package-cleanup/NEXT-PACKAGE-CLEANUP.md",
+      "task": "Current handoff and experiment milestone",
+      "status": "reference"
+    },
+    {
+      "path": "docs/operations/package-cleanup/UNIT-5-SLICES.md",
+      "task": "Remaining cleanup: 5D folds, Jev and executor retirement",
+      "status": "proposed",
+      "modules": [
+        "verification-executor",
+        "host",
+        "application",
+        "knowledge-db",
+        "cli",
+        "mcp",
+        "api"
+      ],
+      "navigation": false
+    },
+    {
+      "path": "docs/operations/package-cleanup/UNIT-4-APPLICATION-ORDER-AND-CATALOG.md",
+      "task": "Unit 4 folders, names, catalog",
+      "status": "reference",
+      "modules": [
+        "application",
+        "api",
+        "mcp",
+        "cli",
+        "sources",
+        "client",
+        "parser"
+      ],
+      "navigation": false
+    },
+    {
+      "path": "docs/operations/package-cleanup/FINAL-LAYOUT.md",
+      "task": "Accepted cleanup layout and sequence",
+      "status": "accepted"
+    },
+    {
+      "path": "docs/operations/package-cleanup/README.md",
+      "task": "Cleanup index and archive",
+      "status": "reference",
+      "navigation": false
+    },
+    {
+      "path": "docs/operations/code-quality-and-delivery-process.md",
+      "task": "Module review and delivery workflow",
+      "status": "proposed",
+      "navigation": false
+    },
+    {
+      "path": "docs/operations/internal-fallbacks-and-application-order.md",
+      "task": "Internal fallbacks and application folder order",
+      "status": "proposed",
+      "modules": [
+        "sources",
+        "application",
+        "preparation",
+        "skill-knowledge-ingest",
+        "api",
+        "mcp",
+        "cli",
+        "worker",
+        "verification-executor",
+        "docling"
+      ],
+      "navigation": false
+    },
+    {
+      "path": "docs/operations/reviews/acquisition.md",
+      "task": "Acquisition HTTP, upload, and sealed-byte inspection review record",
+      "status": "accepted",
+      "modules": [
+        "sources",
+        "worker"
+      ],
+      "navigation": false
+    },
+    {
+      "path": "docs/operations/reviews/conversion.md",
+      "task": "Conversion route (text, Docling, gated Unstructured) and receipt review record",
+      "status": "reference",
+      "modules": [
+        "preparation",
+        "worker"
+      ],
+      "navigation": false
+    },
+    {
+      "path": "docs/operations/reviews/retrieval.md",
+      "task": "Retrieval package review record",
+      "status": "reference",
+      "modules": [
+        "retrieval"
+      ],
+      "navigation": false
+    },
+    {
+      "path": "docs/operations/reviews/vector-backends.md",
+      "task": "Vector-backends package review record",
+      "status": "reference",
+      "modules": [
+        "retrieval"
+      ],
+      "navigation": false
+    },
+    {
+      "path": "docs/operations/reviews/projections.md",
+      "task": "Projections package review record",
+      "status": "reference",
+      "modules": [
+        "retrieval"
+      ],
+      "navigation": false
+    },
+    {
+      "path": "docs/operations/reviews/embeddings.md",
+      "task": "Embeddings package review record",
+      "status": "reference",
+      "modules": [
+        "retrieval"
+      ],
+      "navigation": false
+    },
+    {
+      "path": "docs/operations/reviews/policy.md",
+      "task": "Policy package review record, including selection eligibility",
+      "status": "reference",
+      "modules": [
+        "policy"
+      ],
+      "navigation": false
+    },
+    {
+      "path": "docs/operations/reviews/db-read.md",
+      "task": "Bounded read executor and space manifest review record",
+      "status": "reference",
+      "modules": [
+        "knowledge-db"
+      ],
+      "navigation": false
+    },
+    {
+      "path": "docs/operations/conversion-and-chunking.md",
+      "task": "Conversion route and admitted chunk profiles; vendor MCP import; no session-local splitters",
+      "status": "proposed",
+      "modules": [
+        "preparation",
+        "application",
+        "docling"
+      ],
+      "navigation": false
+    },
+    {
+      "path": "knowledge/service-boundaries.md",
+      "task": "Choose a transport and the owning module",
+      "status": "reference",
+      "modules": [
+        "application",
+        "api",
+        "mcp",
+        "cli",
+        "verification-executor",
+        "persistence"
+      ]
+    },
+    {
+      "path": "knowledge/schema-read-and-ingestion.md",
+      "task": "Read a bounded knowledge snapshot or apply evidence-backed changes",
+      "status": "reference",
+      "modules": [
+        "knowledge-db",
+        "verification-executor"
+      ]
+    },
+    {
+      "path": "knowledge/preparation-and-publication.md",
+      "task": "Prepare source material and publish a retrieval version",
+      "status": "reference",
+      "modules": [
+        "application",
+        "knowledge-db",
+        "persistence",
+        "retrieval",
+        "policy"
+      ]
+    },
+    {
+      "path": "knowledge/retrieval-and-evidence.md",
+      "task": "Retrieve supported results and replay citations",
+      "status": "reference",
+      "modules": [
+        "retrieval",
+        "contracts",
+        "api",
+        "persistence",
+        "policy"
+      ]
+    },
+    {
+      "path": "knowledge/verification-and-admission.md",
+      "task": "Verify claims and admit exact downstream effects",
+      "status": "reference",
+      "modules": [
+        "verification",
+        "knowledge-db",
+        "application",
+        "policy",
+        "verification-executor",
+        "persistence"
+      ]
+    },
+    {
+      "path": "knowledge/durable-execution-and-recovery.md",
+      "task": "Understand fenced worker execution and bounded recovery",
+      "status": "reference",
+      "modules": [
+        "worker",
+        "core",
+        "persistence",
+        "application",
+        "verification-executor"
+      ]
+    },
+    {
+      "path": "README.md",
+      "task": "Service boundaries, startup, and transferable use of HTTP/MCP/CLI/skills",
+      "modules": [
+        "api",
+        "cli",
+        "mcp",
+        "worker",
+        "verification-executor",
+        "application",
+        "knowledge-db"
+      ],
+      "navigation": false
+    },
+    {
+      "path": "docs/architecture/0001-runtime-and-deployment.md",
+      "task": "Runtime, transport, and deployment changes",
+      "modules": [
+        "api",
+        "mcp",
+        "worker",
+        "host",
+        "docling"
+      ],
+      "status": "accepted"
+    },
+    {
+      "path": "docs/architecture/0002-deterministic-preparation.md",
+      "task": "Preparation pipeline",
+      "modules": [
+        "sources",
+        "preparation",
+        "retrieval",
+        "application",
+        "core"
+      ],
+      "status": "accepted"
+    },
+    {
+      "path": "docs/architecture/0003-embedding-retrieval-evaluation.md",
+      "task": "Embedding, retrieval, evaluation",
+      "modules": [
+        "retrieval",
+        "evaluation",
+        "policy",
+        "core",
+        "testkit"
+      ],
+      "status": "accepted"
+    },
+    {
+      "path": "docs/architecture/0004-transport-call-graph.md",
+      "task": "In-process servers call application; out-of-process callers use KnowledgeClient HTTP",
+      "status": "accepted",
+      "modules": [
+        "api",
+        "mcp",
+        "cli",
+        "client",
+        "application",
+        "worker",
+        "persistence"
+      ]
+    },
+    {
+      "path": "docs/architecture/transport-call-graph-refactor-snapshot-20260916.md",
+      "task": "Dated snapshot of later transport-call-graph refactors; will go stale",
+      "status": "reference",
+      "modules": [
+        "api",
+        "mcp",
+        "cli",
+        "client",
+        "application"
+      ],
+      "navigation": false
+    },
+    {
+      "path": "docs/verification/README.md",
+      "task": "Verification behavior and invariants",
+      "modules": [
+        "verification",
+        "verification-deterministic",
+        "verification-canonical",
+        "verification-decimal",
+        "verification-evidence-selection",
+        "verification-extraction",
+        "verification-provenance",
+        "verification-report",
+        "verification-authority",
+        "verification-semantic",
+        "verification-providers",
+        "application",
+        "policy"
+      ]
+    },
+    {
+      "path": "docs/verification/INTEGRATION-GUIDE.md",
+      "task": "Cross-service verification integration",
+      "modules": [
+        "api",
+        "mcp",
+        "cli",
+        "client",
+        "contracts"
+      ]
+    },
+    {
+      "path": "docs/verification/OPERATOR-RUNBOOK.md",
+      "task": "Verification recovery and operator actions",
+      "modules": [
+        "worker",
+        "persistence"
+      ],
+      "navigation": false
+    },
+    {
+      "path": "docs/verification/DEPLOYMENT.md",
+      "task": "Verification deployment and rollback",
+      "modules": [
+        "api",
+        "worker",
+        "parser",
+        "docling"
+      ],
+      "navigation": false
+    },
+    {
+      "path": "docs/operations/runbooks.md",
+      "task": "Worker restart, leases, callbacks, incidents",
+      "modules": [
+        "core",
+        "worker",
+        "persistence"
+      ],
+      "navigation": false
+    },
+    {
+      "path": "docs/security.md",
+      "task": "Authentication, capability admission, parser isolation",
+      "modules": [
+        "host",
+        "policy",
+        "parser",
+        "verification-providers"
+      ]
+    },
+    {
+      "path": "docs/operations/reviews/verification.md",
+      "task": "Verification package quality review and executable media locator examples",
+      "status": "reference",
+      "modules": [
+        "verification",
+        "verification-evidence-selection",
+        "verification-deterministic",
+        "verification-extraction",
+        "skill-knowledge-verification"
+      ],
+      "navigation": false
+    },
+    {
+      "path": "docs/operations/reviews/verification-executor.md",
+      "task": "Verification executor intent, skill, example and consumer pin review",
+      "status": "reference",
+      "modules": [
+        "verification-executor",
+        "skill-verification-executor"
+      ],
+      "navigation": false
+    },
+    {
+      "path": "packages/verification/CAPABILITIES.md",
+      "task": "Verification library capability matrix: selectors, deterministic diversity, semantic scope, linked to examples",
+      "status": "reference",
+      "modules": [
+        "verification"
+      ],
+      "navigation": false
+    },
+    {
+      "path": "apps/verification-executor/examples/CAPABILITIES-ACQUISITION.md",
+      "task": "Executor acquisition, capture catalog, intent-expressible selectors and public-surface limits",
+      "status": "reference",
+      "modules": [
+        "verification-executor"
+      ],
+      "navigation": false
+    },
+    {
+      "path": "docs/architecture/modules/jev.md",
+      "task": "Jev processes, API, MCP, CLI and research",
+      "status": "reference",
+      "modules": [
+        "jev",
+        "jev-service",
+        "application",
+        "contracts",
+        "client",
+        "skill-jev-system-one"
+      ],
+      "navigation": false
+    },
+    {
+      "path": "knowledge/execution-profiles-and-transports.md",
+      "task": "Choose server, local or remote CLI execution",
+      "status": "reference",
+      "modules": [
+        "host",
+        "application",
+        "api",
+        "mcp",
+        "cli",
+        "verification-executor"
+      ]
+    },
+    {
+      "path": "knowledge/capture-conversion-and-custody.md",
+      "task": "Acquire source bytes and preserve conversion custody",
+      "status": "reference",
+      "modules": [
+        "sources",
+        "preparation",
+        "parser",
+        "docling",
+        "persistence"
+      ]
+    },
+    {
+      "path": "knowledge/evaluation-and-publication-gates.md",
+      "task": "Evaluate, admit publication and verify rollback",
+      "status": "reference",
+      "modules": [
+        "evaluation",
+        "retrieval",
+        "persistence",
+        "policy"
+      ]
+    },
+    {
+      "path": "knowledge/jev-decisions-and-workers.md",
+      "task": "Closed-choice decisions and Jev worker lifecycle",
+      "status": "reference",
+      "modules": [
+        "jev",
+        "jev-service"
+      ]
+    },
+    {
+      "path": "knowledge/agent-skills-and-consumer-readiness.md",
+      "task": "Skill selection, packaging and DeepAgents readiness",
+      "status": "reference",
+      "modules": [
+        "verification-executor",
+        "cli"
+      ]
+    },
+    {
+      "path": "docs/architecture/current-state.md",
+      "task": "Current implementation, ownership and remaining cleanup",
+      "status": "reference",
+      "modules": [
+        "application",
+        "host",
+        "api",
+        "mcp",
+        "worker",
+        "verification-executor",
+        "jev-service"
+      ]
+    },
+    {
+      "path": "docs/architecture/technology-stack.md",
+      "task": "Pinned technology stack and runtime definitions",
+      "status": "reference",
+      "modules": [
+        "host",
+        "contracts",
+        "persistence",
+        "parser",
+        "docling"
+      ],
+      "navigation": false
+    },
+    {
+      "path": "docs/operations/agent-maintenance.md",
+      "task": "Git-driven maintenance, provider setup and test evidence",
+      "status": "reference",
+      "modules": [
+        "agent-maintenance"
+      ],
+      "navigation": false
+    }
+  ],
+  "watch": [
+    "package.json",
+    "apps/worker/src/worker.ts",
+    "packages/core/src/runtime/ledger.ts",
+    "packages/knowledge-db/src/db-read/read-executor.ts",
+    "packages/knowledge-db/src/ingestion/executor.ts",
+    "apps/verification-executor/src/knowledge/operations.ts"
+  ],
+  "decisions": [
+    "A knowledge-read retrieval operation is accepted in the intent schema but skipped as RETRIEVAL_UNAVAILABLE; catalog query retrieval.hybrid_search is pending an embedding.",
+    "Ingestion records orchestration.operation_intent/receipt and does not write a knowledge_service.operation row or outbox.",
+    "The database-contract pin is the vendored 0.4.16 tarball, not an unpinned sibling checkout. Cloud deployment of its schema additions is not verified by this map.",
+    "Accepted ADR 0004: in-process KS servers call application; out-of-process callers use KnowledgeClient HTTP. Since Unit 3 every MCP tool runs in process (no API client); API/MCP parity is enforced by apps/mcp/src/tests/api-mcp-parity.test.ts."
+  ],
+  "ciWorkflow": ".github/workflows/agent-docs.yml",
+  "codeMap": ".agent-docs/modules.json",
+  "knowledge": {
+    "root": "knowledge",
+    "routes": [
+      {
+        "task": "Ownership, profiles and caller contracts",
+        "concepts": [
+          "service-boundaries",
+          "execution-profiles-and-transports"
+        ]
+      },
+      {
+        "task": "Capture, convert and prepare faithful content",
+        "concepts": [
+          "capture-conversion-and-custody",
+          "preparation-and-publication"
+        ]
+      },
+      {
+        "task": "Schema, bounded reads and canonical ingestion",
+        "concepts": [
+          "schema-read-and-ingestion"
+        ]
+      },
+      {
+        "task": "Retrieve evidence, evaluate and publish",
+        "concepts": [
+          "retrieval-and-evidence",
+          "evaluation-and-publication-gates"
+        ]
+      },
+      {
+        "task": "Verify claims and policy admission",
+        "concepts": [
+          "verification-and-admission"
+        ]
+      },
+      {
+        "task": "Leases, retries, cancellation and recovery",
+        "concepts": [
+          "durable-execution-and-recovery"
+        ]
+      },
+      {
+        "task": "Jev decisions and workers",
+        "concepts": [
+          "jev-decisions-and-workers"
+        ]
+      },
+      {
+        "task": "Agent skills and consumer readiness",
+        "concepts": [
+          "agent-skills-and-consumer-readiness"
+        ]
+      }
+    ]
+  }
+}

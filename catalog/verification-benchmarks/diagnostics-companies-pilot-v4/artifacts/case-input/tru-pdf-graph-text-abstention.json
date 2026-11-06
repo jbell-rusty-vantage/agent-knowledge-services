@@ -1,0 +1,9 @@
+{
+  "schemaVersion": "verification-benchmark-case-input.v1",
+  "sourceDatasetManifestDigest": "sha256:b625b311493f8c366ef43bf4047bf61f38d510fe7f3c340f50bca42de737dfe6",
+  "sourceCaseDigest": "sha256:88bde5ed928e608c9bc823e07704d465f66ce06aa0b9795a3777c89e6bf45d9a",
+  "caseId": "tru-pdf-graph-text-abstention",
+  "assertion": "Return the exact plotted graph value when no admitted text or geometry selector identifies it.",
+  "evidence": [],
+  "intendedUse": "immutable_case_input; provider transmission requires a separately authenticated derived-input grant"
+}

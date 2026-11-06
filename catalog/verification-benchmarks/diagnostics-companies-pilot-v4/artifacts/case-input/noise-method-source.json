@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "verification-benchmark-case-input.v1",
+  "sourceDatasetManifestDigest": "sha256:b625b311493f8c366ef43bf4047bf61f38d510fe7f3c340f50bca42de737dfe6",
+  "sourceCaseDigest": "sha256:de8ee80ae49e3ab23fdb93f7dd7cc61425821f021d3730c8f5966212a3a5b995",
+  "caseId": "noise-method-source",
+  "assertion": "The paper describes a noise barometer as a measurement of biological age.",
+  "evidence": [
+    {
+      "fragmentId": "sha256:3948989bb045b9a2826f45acbb9f6c0a12462e82ac49d76be3f4f0131c0ff0af",
+      "captureId": "85d9b0d4-34b8-5720-ab3c-012c57b68b1b",
+      "sourceKey": "paper-noise",
+      "sourceClass": "publication",
+      "projectionArtifactId": "d1381f18-1073-5580-a9a9-e708017a7333",
+      "projectionDigest": "sha256:81a6d64be46c8af928412cc0216a2e51b0883dd94b72f52e258685ac0071827c",
+      "transformationArtifactId": "23041b41-2b62-5e80-a320-90429bdf007c",
+      "selector": {
+        "kind": "html",
+        "domPath": "2/11/3/1/1/1/3/2/2/1/0/1/17"
+      },
+      "selectedContentDigest": "sha256:0aa438675b8832b8db1669522e7d30187386867cce961a4387ed172f07870747",
+      "excerpt": "Here, we reveal the capacities and limitations of DNAme clocks of all generations, by expanding the n=1 experimental to a more systematic examination of clock performance on many different DNAme array datasets of healthy controls and patients with various diseases. Additionally, we show that even though EN regression models linearly predict age and risk of mortality from DNAme array data, the clocks are not based on any specific changes in DNA methylation with age, or dysregulation of such methylation, e.g., a change in SD of beta values. Lastly, we describe a conceptually different measurement (not a prediction) of persons’ biological age, which we term a noise barometer, reflecting the concept of pressure of aging and disease.",
+      "rights": "restricted internal preparation; not approved for provider upload or public redistribution",
+      "originalProviderUploadAuthorized": false
+    }
+  ],
+  "intendedUse": "immutable_case_input; provider transmission requires a separately authenticated derived-input grant"
+}

@@ -1,0 +1,10 @@
+{
+  "group": "knowledge-db",
+  "layout": "before",
+  "sourceCommit": "99aeaa61483cec0ba720f21bce25b659cb302aab",
+  "probeFile": "docs/operations/package-cleanup/workspace/evidence/unit1-knowledge-db-consumer-probe-before.ts",
+  "symbolCount": 211,
+  "exitCode": 0,
+  "stdout": "",
+  "stderr": ""
+}

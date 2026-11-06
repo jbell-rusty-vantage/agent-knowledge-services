@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "verification-benchmark-annotation-guidelines.v1",
+  "scope": "Assertion-level source support, authority, world correctness and policy are labeled separately.",
+  "instructions": [
+    "Preserve entity, number, date, unit, population, study, workflow-start, diagnosis and commercial-applicability qualifiers.",
+    "supported_by_source means source entailment only; it does not establish world truth.",
+    "First-party promotional superlatives and medical or causal claims require appropriate independent authority.",
+    "Annotators work independently and blinded to other annotations; an expert adjudicates after two human annotations."
+  ]
+}

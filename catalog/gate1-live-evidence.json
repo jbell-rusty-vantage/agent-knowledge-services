@@ -1,0 +1,88 @@
+{
+  "canonicalPublication": false,
+  "completedAt": "2026-09-04T03:31:22.034Z",
+  "conversion": {
+    "fallback": {
+      "attempts": [
+        {
+          "failureClass": "policy_denied",
+          "ordinal": 0,
+          "outcome": "failed",
+          "providerKey": "unstructured-transform",
+          "providerVersion": "configured-route-v1"
+        },
+        {
+          "ordinal": 1,
+          "outcome": "succeeded",
+          "providerKey": "admitted-local-fallback",
+          "providerVersion": "1.0.0"
+        }
+      ],
+      "fallbackUsed": true,
+      "outputDigests": [
+        "sha256:51c893ed6bc928f88ac05af50cf0978dfcce2e093aa51f256cf04e6199f0da94",
+        "sha256:afbe8f93936e9e55113155a7fd1cc94a1f411cb3835ade1d20a0fb0565681b55",
+        "sha256:afbe8f93936e9e55113155a7fd1cc94a1f411cb3835ade1d20a0fb0565681b55"
+      ],
+      "routingReceiptDigest": "sha256:1f217cdfab9b8c00b15fbf5c606052d730a7984a329a763f8049cb61452c4f0f",
+      "selectedProvider": "admitted-local-fallback",
+      "status": "passed"
+    },
+    "unstructured": {
+      "failureClass": "MANAGED_PROCESSING_DENIED",
+      "liveInvocation": false,
+      "status": "not_configured"
+    }
+  },
+  "exact": {
+    "adapter": "direct-http@1.0.0",
+    "artifactDigest": "sha256:da879dc174374fbb4803a231dc7efbe4efb42b584876db57b5f77c7dd1aac785",
+    "byteLength": 988338,
+    "checks": [
+      "artifact_sealed",
+      "response_body_hashed",
+      "redirects_revalidated",
+      "headers_redacted"
+    ],
+    "finalUrl": "https://docs.langchain.com/oss/python/langchain/overview",
+    "findings": [],
+    "officialUrl": "https://docs.langchain.com/oss/python/langchain/overview",
+    "status": "passed"
+  },
+  "firecrawl": {
+    "adapter": "firecrawl-scrape@v1",
+    "artifactDigests": [
+      "sha256:0b52e6cd83a4b8c0bba2e5de8f183a7a83aafeea3210e1ad5f1731037e1fe489",
+      "sha256:69be22507372f1416bb457e3503c371b2a17c695723d5f922c40759a4e984ba1",
+      "sha256:581517ead75aa88fc60fdbfe03682951a3bc24083a565353e09acc2640d5c165",
+      "sha256:48993f5bdf197e58feff4401435dfa44cc5ec5655a8eac1102ab984bd0a4f4a3"
+    ],
+    "byteLengths": [1377096, 15700, 213123, 1046527],
+    "checks": [
+      "target_ssrf",
+      "configured_endpoint",
+      "credential_redaction",
+      "bounded_response",
+      "provider_identity",
+      "artifact_digest"
+    ],
+    "findings": [],
+    "officialUrl": "https://docs.langchain.com/oss/python/langchain/overview",
+    "providerStatus": "200",
+    "representations": "3",
+    "status": "passed"
+  },
+  "receiptDigest": "sha256:cd3a94f4b79084567762d4463d507a84091160e3ef094dd7b9d31618ff1b1dbe",
+  "schemaVersion": "gate1-live-evidence/1.0.0",
+  "source": {
+    "fixture": "embedding-bundle-seed-2026-09-01",
+    "officialUrl": "https://docs.langchain.com/oss/python/langchain/overview",
+    "videoId": "kTnfJszFxCg"
+  },
+  "startedAt": "2026-09-04T03:31:18.710Z",
+  "storeClass": "internal_exploratory",
+  "supabaseStorage": {
+    "adapterVerifiedDeterministically": true,
+    "liveMutationPerformed": false
+  }
+}

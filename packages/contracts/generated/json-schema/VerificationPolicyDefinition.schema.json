@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "verification-policy.v1"
+    },
+    "policyVersion": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160
+    },
+    "definitionId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255
+    },
+    "literalExtraction": {
+      "type": "object",
+      "properties": {
+        "assertionIds": {
+          "minItems": 1,
+          "maxItems": 256,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255
+          }
+        },
+        "downstreamUses": {
+          "minItems": 1,
+          "maxItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "const": "knowledge_ingestion:claim.materialize"
+          }
+        }
+      },
+      "required": [
+        "assertionIds",
+        "downstreamUses"
+      ],
+      "additionalProperties": false
+    },
+    "criticalDownstreamUses": {
+      "maxItems": 32,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 120
+      }
+    },
+    "requireCrossFamilyForRisk": {
+      "maxItems": 4,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "low",
+          "medium",
+          "high",
+          "critical"
+        ]
+      }
+    },
+    "requireIndependentAuthorityForScopes": {
+      "maxItems": 8,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "source_summary",
+          "descriptive_fact",
+          "population_accuracy",
+          "clinical_utility",
+          "comparative_superiority",
+          "causal",
+          "product_validation",
+          "method_validation"
+        ]
+      }
+    },
+    "mixedEvidenceOutcome": {
+      "type": "string",
+      "enum": [
+        "review",
+        "abstain",
+        "fail"
+      ]
+    },
+    "unknownCriticalOutcome": {
+      "type": "string",
+      "enum": [
+        "review",
+        "abstain",
+        "fail"
+      ]
+    },
+    "authorityWithheldOutcome": {
+      "type": "string",
+      "enum": [
+        "review",
+        "abstain",
+        "fail"
+      ]
+    },
+    "reviewAvailable": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "policyVersion",
+    "definitionId",
+    "criticalDownstreamUses",
+    "requireCrossFamilyForRisk",
+    "requireIndependentAuthorityForScopes",
+    "mixedEvidenceOutcome",
+    "unknownCriticalOutcome",
+    "authorityWithheldOutcome",
+    "reviewAvailable"
+  ],
+  "additionalProperties": false
+}

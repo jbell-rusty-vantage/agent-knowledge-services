@@ -1,0 +1,308 @@
+{
+  "schemaVersion": "verification-benchmark-annotation-queue.v1",
+  "datasetManifestDigest": "sha256:b625b311493f8c366ef43bf4047bf61f38d510fe7f3c340f50bca42de737dfe6",
+  "humanGoldScoringEligible": false,
+  "requiredActions": [
+    {
+      "caseId": "tru-turnaround-about-source",
+      "humanAnnotation1": null,
+      "humanAnnotation2": null,
+      "expertAdjudication": null,
+      "status": "awaiting_human_annotations"
+    },
+    {
+      "caseId": "tru-turnaround-about-mutated",
+      "humanAnnotation1": null,
+      "humanAnnotation2": null,
+      "expertAdjudication": null,
+      "status": "awaiting_human_annotations"
+    },
+    {
+      "caseId": "tru-turnaround-product-source",
+      "humanAnnotation1": null,
+      "humanAnnotation2": null,
+      "expertAdjudication": null,
+      "status": "awaiting_human_annotations"
+    },
+    {
+      "caseId": "tru-turnaround-product-mutated",
+      "humanAnnotation1": null,
+      "humanAnnotation2": null,
+      "expertAdjudication": null,
+      "status": "awaiting_human_annotations"
+    },
+    {
+      "caseId": "tru-sample-source",
+      "humanAnnotation1": null,
+      "humanAnnotation2": null,
+      "expertAdjudication": null,
+      "status": "awaiting_human_annotations"
+    },
+    {
+      "caseId": "tru-sample-mutated",
+      "humanAnnotation1": null,
+      "humanAnnotation2": null,
+      "expertAdjudication": null,
+      "status": "awaiting_human_annotations"
+    },
+    {
+      "caseId": "tru-sites-source",
+      "humanAnnotation1": null,
+      "humanAnnotation2": null,
+      "expertAdjudication": null,
+      "status": "awaiting_human_annotations"
+    },
+    {
+      "caseId": "tru-sites-mutated",
+      "humanAnnotation1": null,
+      "humanAnnotation2": null,
+      "expertAdjudication": null,
+      "status": "awaiting_human_annotations"
+    },
+    {
+      "caseId": "tru-biomarkers-source",
+      "humanAnnotation1": null,
+      "humanAnnotation2": null,
+      "expertAdjudication": null,
+      "status": "awaiting_human_annotations"
+    },
+    {
+      "caseId": "tru-biomarkers-mutated",
+      "humanAnnotation1": null,
+      "humanAnnotation2": null,
+      "expertAdjudication": null,
+      "status": "awaiting_human_annotations"
+    },
+    {
+      "caseId": "tru-symphony-source",
+      "humanAnnotation1": null,
+      "humanAnnotation2": null,
+      "expertAdjudication": null,
+      "status": "awaiting_human_annotations"
+    },
+    {
+      "caseId": "tru-symphony-mutated",
+      "humanAnnotation1": null,
+      "humanAnnotation2": null,
+      "expertAdjudication": null,
+      "status": "awaiting_human_annotations"
+    },
+    {
+      "caseId": "tru-omic-source",
+      "humanAnnotation1": null,
+      "humanAnnotation2": null,
+      "expertAdjudication": null,
+      "status": "awaiting_human_annotations"
+    },
+    {
+      "caseId": "tru-omic-mutated",
+      "humanAnnotation1": null,
+      "humanAnnotation2": null,
+      "expertAdjudication": null,
+      "status": "awaiting_human_annotations"
+    },
+    {
+      "caseId": "tru-pace-source",
+      "humanAnnotation1": null,
+      "humanAnnotation2": null,
+      "expertAdjudication": null,
+      "status": "awaiting_human_annotations"
+    },
+    {
+      "caseId": "tru-pace-mutated",
+      "humanAnnotation1": null,
+      "humanAnnotation2": null,
+      "expertAdjudication": null,
+      "status": "awaiting_human_annotations"
+    },
+    {
+      "caseId": "gl-systems-source",
+      "humanAnnotation1": null,
+      "humanAnnotation2": null,
+      "expertAdjudication": null,
+      "status": "awaiting_human_annotations"
+    },
+    {
+      "caseId": "gl-systems-mutated",
+      "humanAnnotation1": null,
+      "humanAnnotation2": null,
+      "expertAdjudication": null,
+      "status": "awaiting_human_annotations"
+    },
+    {
+      "caseId": "gl-historical-wording-source",
+      "humanAnnotation1": null,
+      "humanAnnotation2": null,
+      "expertAdjudication": null,
+      "status": "awaiting_human_annotations"
+    },
+    {
+      "caseId": "gl-historical-wording-mutated",
+      "humanAnnotation1": null,
+      "humanAnnotation2": null,
+      "expertAdjudication": null,
+      "status": "awaiting_human_annotations"
+    },
+    {
+      "caseId": "gl-same-page-footer-source",
+      "humanAnnotation1": null,
+      "humanAnnotation2": null,
+      "expertAdjudication": null,
+      "status": "awaiting_human_annotations"
+    },
+    {
+      "caseId": "gl-same-page-footer-mutated",
+      "humanAnnotation1": null,
+      "humanAnnotation2": null,
+      "expertAdjudication": null,
+      "status": "awaiting_human_annotations"
+    },
+    {
+      "caseId": "gl-triplicate-source",
+      "humanAnnotation1": null,
+      "humanAnnotation2": null,
+      "expertAdjudication": null,
+      "status": "awaiting_human_annotations"
+    },
+    {
+      "caseId": "gl-triplicate-mutated",
+      "humanAnnotation1": null,
+      "humanAnnotation2": null,
+      "expertAdjudication": null,
+      "status": "awaiting_human_annotations"
+    },
+    {
+      "caseId": "gl-repeatability-source",
+      "humanAnnotation1": null,
+      "humanAnnotation2": null,
+      "expertAdjudication": null,
+      "status": "awaiting_human_annotations"
+    },
+    {
+      "caseId": "gl-repeatability-mutated",
+      "humanAnnotation1": null,
+      "humanAnnotation2": null,
+      "expertAdjudication": null,
+      "status": "awaiting_human_annotations"
+    },
+    {
+      "caseId": "gl-no-diagnosis-source",
+      "humanAnnotation1": null,
+      "humanAnnotation2": null,
+      "expertAdjudication": null,
+      "status": "awaiting_human_annotations"
+    },
+    {
+      "caseId": "gl-no-diagnosis-mutated",
+      "humanAnnotation1": null,
+      "humanAnnotation2": null,
+      "expertAdjudication": null,
+      "status": "awaiting_human_annotations"
+    },
+    {
+      "caseId": "gl-consultation-source",
+      "humanAnnotation1": null,
+      "humanAnnotation2": null,
+      "expertAdjudication": null,
+      "status": "awaiting_human_annotations"
+    },
+    {
+      "caseId": "gl-consultation-mutated",
+      "humanAnnotation1": null,
+      "humanAnnotation2": null,
+      "expertAdjudication": null,
+      "status": "awaiting_human_annotations"
+    },
+    {
+      "caseId": "gl-informational-source",
+      "humanAnnotation1": null,
+      "humanAnnotation2": null,
+      "expertAdjudication": null,
+      "status": "awaiting_human_annotations"
+    },
+    {
+      "caseId": "gl-informational-mutated",
+      "humanAnnotation1": null,
+      "humanAnnotation2": null,
+      "expertAdjudication": null,
+      "status": "awaiting_human_annotations"
+    },
+    {
+      "caseId": "pace-definition-source",
+      "humanAnnotation1": null,
+      "humanAnnotation2": null,
+      "expertAdjudication": null,
+      "status": "awaiting_human_annotations"
+    },
+    {
+      "caseId": "pace-definition-mutated",
+      "humanAnnotation1": null,
+      "humanAnnotation2": null,
+      "expertAdjudication": null,
+      "status": "awaiting_human_annotations"
+    },
+    {
+      "caseId": "pace-cohort-source",
+      "humanAnnotation1": null,
+      "humanAnnotation2": null,
+      "expertAdjudication": null,
+      "status": "awaiting_human_annotations"
+    },
+    {
+      "caseId": "pace-cohort-mutated",
+      "humanAnnotation1": null,
+      "humanAnnotation2": null,
+      "expertAdjudication": null,
+      "status": "awaiting_human_annotations"
+    },
+    {
+      "caseId": "noise-method-source",
+      "humanAnnotation1": null,
+      "humanAnnotation2": null,
+      "expertAdjudication": null,
+      "status": "awaiting_human_annotations"
+    },
+    {
+      "caseId": "noise-method-mutated",
+      "humanAnnotation1": null,
+      "humanAnnotation2": null,
+      "expertAdjudication": null,
+      "status": "awaiting_human_annotations"
+    },
+    {
+      "caseId": "gl-interested-comparison-source",
+      "humanAnnotation1": null,
+      "humanAnnotation2": null,
+      "expertAdjudication": null,
+      "status": "awaiting_human_annotations"
+    },
+    {
+      "caseId": "gl-interested-comparison-mutated",
+      "humanAnnotation1": null,
+      "humanAnnotation2": null,
+      "expertAdjudication": null,
+      "status": "awaiting_human_annotations"
+    },
+    {
+      "caseId": "tru-corrupted-locator",
+      "humanAnnotation1": null,
+      "humanAnnotation2": null,
+      "expertAdjudication": null,
+      "status": "awaiting_human_annotations"
+    },
+    {
+      "caseId": "tru-pdf-graph-text-abstention",
+      "humanAnnotation1": null,
+      "humanAnnotation2": null,
+      "expertAdjudication": null,
+      "status": "awaiting_human_annotations"
+    },
+    {
+      "caseId": "gl-same-page-superlative-source",
+      "humanAnnotation1": null,
+      "humanAnnotation2": null,
+      "expertAdjudication": null,
+      "status": "awaiting_human_annotations"
+    }
+  ]
+}

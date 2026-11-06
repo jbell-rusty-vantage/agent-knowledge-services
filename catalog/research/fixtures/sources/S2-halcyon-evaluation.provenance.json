@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "sv09-fixture-provenance.v1",
+  "synthetic": true,
+  "realWorld": false,
+  "author": "SV-09 helper C (Claude Opus 5.5 agent), Sprint V session 2026-10-25",
+  "authoredAt": "2026-10-25",
+  "acquisition": "none: hand-authored text, no web acquisition, no real product, vendor, study or person",
+  "license": "disposable engineering fixture; no third-party content",
+  "mediaType": "text/markdown; charset=utf-8",
+  "id": "S2",
+  "file": "sources/S2-halcyon-evaluation.md",
+  "description": "Synthetic independent benchmark note on Orion-7 v1.1.",
+  "planted": [
+    "contradiction side B: does not support function calling"
+  ],
+  "authorityFake": {
+    "verifiedOriginFamily": "halcyon-orion7-eval",
+    "doi": null,
+    "sourceKind": "benchmark_report",
+    "studyDesign": null,
+    "directness": "direct",
+    "freshness": "current",
+    "qualifiers": {
+      "softwareVersion": "1.1",
+      "runtime": null
+    }
+  },
+  "revisionFrontierFake": null
+}

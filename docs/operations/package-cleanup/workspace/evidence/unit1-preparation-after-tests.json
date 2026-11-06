@@ -1,0 +1,438 @@
+{
+  "schema": 1,
+  "layout": "after",
+  "group": "preparation",
+  "sourceCommit": "3bcecebc206fbdd1149bbe16babbf8495ce20c87",
+  "dirty": true,
+  "command": "node node_modules/vitest/vitest.mjs run --maxWorkers=2 --reporter=json",
+  "runs": [
+    {
+      "package": "preparation",
+      "exitCode": 0,
+      "counts": {
+        "passed": 83,
+        "failed": 0,
+        "skipped": 0,
+        "total": 83
+      },
+      "files": [
+        {
+          "file": "packages/preparation/examples/chunking/01-select-profiles-for-space.test.ts",
+          "originalFile": "packages/chunking/examples/01-select-profiles-for-space.test.ts",
+          "tests": [
+            {
+              "name": "example 01: select profiles for a space observes the node kinds of the sealed tree",
+              "status": "passed"
+            },
+            {
+              "name": "example 01: select profiles for a space selects nothing for a space the tree cannot feed",
+              "status": "passed"
+            },
+            {
+              "name": "example 01: select profiles for a space skips the table profile when the tree has no table",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/preparation/examples/chunking/02-chunk-and-reconstruct.test.ts",
+          "originalFile": "packages/chunking/examples/02-chunk-and-reconstruct.test.ts",
+          "tests": [
+            {
+              "name": "example 02: chunk and reconstruct omits repeated boilerplate instead of embedding it",
+              "status": "passed"
+            },
+            {
+              "name": "example 02: chunk and reconstruct prefixes the nearest heading and keeps the digest stable",
+              "status": "passed"
+            },
+            {
+              "name": "example 02: chunk and reconstruct replays every chunk from its spans",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/preparation/examples/chunking/03-qa-failure-next-profile.test.ts",
+          "originalFile": "packages/chunking/examples/03-qa-failure-next-profile.test.ts",
+          "tests": [
+            {
+              "name": "example 03: QA failure, next admitted profile accepts the next profile admitted for the same space and node kinds",
+              "status": "passed"
+            },
+            {
+              "name": "example 03: QA failure, next admitted profile fails the claims profile on a run-on turn",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/preparation/examples/conversion/examples.test.ts",
+          "originalFile": "packages/conversion/examples/examples.test.ts",
+          "tests": [
+            {
+              "name": "conversion examples covers text, Docling, inspect, fallback, import, and managed denial",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/preparation/examples/documents/01-build-nodes-and-verify-locators.test.ts",
+          "originalFile": "packages/documents/examples/01-build-nodes-and-verify-locators.test.ts",
+          "tests": [
+            {
+              "name": "example 01: build nodes and verify locators normalizes prose but keeps code layout",
+              "status": "passed"
+            },
+            {
+              "name": "example 01: build nodes and verify locators seals deterministic, frozen nodes",
+              "status": "passed"
+            },
+            {
+              "name": "example 01: build nodes and verify locators verifies every locator and reconstructs a span from the sealed text",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/preparation/examples/documents/02-reject-cycle-and-invalid-span.test.ts",
+          "originalFile": "packages/documents/examples/02-reject-cycle-and-invalid-span.test.ts",
+          "tests": [
+            {
+              "name": "example 02: reject a cycle and an invalid span fails the whole document on a structural cycle or unknown parent",
+              "status": "passed"
+            },
+            {
+              "name": "example 02: reject a cycle and an invalid span refuses spans outside the sealed text",
+              "status": "passed"
+            },
+            {
+              "name": "example 02: reject a cycle and an invalid span reports a node whose text was edited after sealing",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/preparation/src/chunking/chunker/chunk-document.test.ts",
+          "originalFile": "packages/chunking/src/chunker/chunk-document.test.ts",
+          "tests": [
+            {
+              "name": "chunkDocument breaks section chunks on heading boundaries and prefixes the nearest heading",
+              "status": "passed"
+            },
+            {
+              "name": "chunkDocument creates deterministic atomic, reconstructable chunks and removes boilerplate",
+              "status": "passed"
+            },
+            {
+              "name": "chunkDocument rejects a profile whose bounds cannot hold",
+              "status": "passed"
+            },
+            {
+              "name": "chunkDocument rejects a structural cycle",
+              "status": "passed"
+            },
+            {
+              "name": "chunkDocument rejects an orphaned node",
+              "status": "passed"
+            },
+            {
+              "name": "chunkDocument splits an oversized node so every chunk stays inside the profile maximum",
+              "status": "passed"
+            },
+            {
+              "name": "tokenize splits words, numbers and punctuation under unicode-word-punctuation-v1",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/preparation/src/chunking/profiles/registry.test.ts",
+          "originalFile": "packages/chunking/src/profiles/registry.test.ts",
+          "tests": [
+            {
+              "name": "chunk profile table binds every profile to the node kinds its strategy filters on",
+              "status": "passed"
+            },
+            {
+              "name": "chunk profile table is frozen",
+              "status": "passed"
+            },
+            {
+              "name": "chunk profile table is the chunk-profile-table.v1 contract instance",
+              "status": "passed"
+            },
+            {
+              "name": "ChunkProfileRegistry covers every vector space in the contract",
+              "status": "passed"
+            },
+            {
+              "name": "ChunkProfileRegistry gets a profile by name and version and rejects unknown ones",
+              "status": "passed"
+            },
+            {
+              "name": "ChunkProfileRegistry hands out frozen copies, not the arrays it was given",
+              "status": "passed"
+            },
+            {
+              "name": "ChunkProfileRegistry registers all admitted strategies in table order",
+              "status": "passed"
+            },
+            {
+              "name": "ChunkProfileRegistry rejects duplicate registration",
+              "status": "passed"
+            },
+            {
+              "name": "ChunkProfileRegistry rejects profiles whose bounds cannot hold",
+              "status": "passed"
+            },
+            {
+              "name": "ChunkProfileRegistry selects the admitted profiles for benchmark_intelligence",
+              "status": "passed"
+            },
+            {
+              "name": "ChunkProfileRegistry selects the admitted profiles for engineering_claims",
+              "status": "passed"
+            },
+            {
+              "name": "ChunkProfileRegistry selects the admitted profiles for entity_profiles",
+              "status": "passed"
+            },
+            {
+              "name": "ChunkProfileRegistry selects the admitted profiles for implementation_examples",
+              "status": "passed"
+            },
+            {
+              "name": "ChunkProfileRegistry selects the admitted profiles for model_capabilities",
+              "status": "passed"
+            },
+            {
+              "name": "ChunkProfileRegistry selects the admitted profiles for paper_case_study_knowledge",
+              "status": "passed"
+            },
+            {
+              "name": "ChunkProfileRegistry selects the admitted profiles for source_native_sections",
+              "status": "passed"
+            },
+            {
+              "name": "ChunkProfileRegistry selects the admitted profiles for tool_capabilities",
+              "status": "passed"
+            },
+            {
+              "name": "ChunkProfileRegistry skips the table profile when no table node was observed",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/preparation/src/chunking/qa/validate-chunks.test.ts",
+          "originalFile": "packages/chunking/src/qa/validate-chunks.test.ts",
+          "tests": [
+            {
+              "name": "reconstructChunk joins spans from the sealed nodes",
+              "status": "passed"
+            },
+            {
+              "name": "reconstructChunk throws for a missing node or an empty span",
+              "status": "passed"
+            },
+            {
+              "name": "validateChunks accepts chunks that replay from their spans inside the bounds",
+              "status": "passed"
+            },
+            {
+              "name": "validateChunks reports a reconstruction mismatch",
+              "status": "passed"
+            },
+            {
+              "name": "validateChunks reports adjacent chunks that duplicate each other",
+              "status": "passed"
+            },
+            {
+              "name": "validateChunks reports spans that point outside the sealed nodes",
+              "status": "passed"
+            },
+            {
+              "name": "validateChunks reports token-bound violations in both directions",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/preparation/src/conversion/conversion.test.ts",
+          "originalFile": "packages/conversion/src/conversion.test.ts",
+          "tests": [
+            {
+              "name": "conversion HTTP clients calls the bounded Docling Serve v1 multipart API and validates its output",
+              "status": "passed"
+            },
+            {
+              "name": "conversion HTTP clients configures Unstructured on-demand auth without placing keys in URLs or errors",
+              "status": "passed"
+            },
+            {
+              "name": "conversion HTTP clients rejects unsafe Docling URLs and oversized or invalid conversion results",
+              "status": "passed"
+            },
+            {
+              "name": "conversion media types does not treat Office Open XML as deterministic text",
+              "status": "passed"
+            },
+            {
+              "name": "conversion media types keeps markdown, VTT, and plain text exclusive to the text converter",
+              "status": "passed"
+            },
+            {
+              "name": "conversion media types treats HTML as deterministic first and a Docling fallback",
+              "status": "passed"
+            },
+            {
+              "name": "conversion router converts a PDF on Docling without an Unstructured key",
+              "status": "passed"
+            },
+            {
+              "name": "conversion router exhausts when no admitted converter remains",
+              "status": "passed"
+            },
+            {
+              "name": "conversion router never calls Docling or Unstructured for exclusive text",
+              "status": "passed"
+            },
+            {
+              "name": "conversion router never invokes Unstructured unless managed processing is allowed",
+              "status": "passed"
+            },
+            {
+              "name": "conversion router respects an admitted provider subset without changing policy order",
+              "status": "passed"
+            },
+            {
+              "name": "conversion router tries Docling before gated Unstructured",
+              "status": "passed"
+            },
+            {
+              "name": "conversion router tries the next admitted converter when fidelity asks for alternate_conversion",
+              "status": "passed"
+            },
+            {
+              "name": "deterministic conversion preserves transcript timestamps and seals all outputs",
+              "status": "passed"
+            },
+            {
+              "name": "deterministic conversion produces stable heading and code nodes",
+              "status": "passed"
+            },
+            {
+              "name": "deterministic conversion records only present ancestors when heading levels jump",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/preparation/src/conversion/verification-parser.test.ts",
+          "originalFile": "packages/conversion/src/verification-parser.test.ts",
+          "tests": [
+            {
+              "name": "verification parser pre-execution admission preserves a pre-create runtime error when there is no container to clean up",
+              "status": "passed"
+            },
+            {
+              "name": "verification parser pre-execution admission rejects mismatched input identity without requiring Docker",
+              "status": "passed"
+            },
+            {
+              "name": "verification parser pre-execution admission rejects mutable image names before a process can be started",
+              "status": "passed"
+            },
+            {
+              "name": "verification parser pre-execution admission rejects oversized and empty inputs before copying or starting a process",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/preparation/src/documents/identity/deterministic-uuid.test.ts",
+          "originalFile": "packages/documents/src/identity/deterministic-uuid.test.ts",
+          "tests": [
+            {
+              "name": "deterministicUuid changes with the value",
+              "status": "passed"
+            },
+            {
+              "name": "deterministicUuid derives the same version-5-shaped uuid from the same value",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/preparation/src/documents/locators/source-locator.test.ts",
+          "originalFile": "packages/documents/src/locators/source-locator.test.ts",
+          "tests": [
+            {
+              "name": "createSourceLocator binds the representation, node and quote digest to the supplied coordinates",
+              "status": "passed"
+            },
+            {
+              "name": "createSourceLocator rejects coordinates the contract does not admit",
+              "status": "passed"
+            },
+            {
+              "name": "locatorDigestValue hashes an absent locator and one with only undefined fields the same way",
+              "status": "passed"
+            },
+            {
+              "name": "reconstructNodeSpan rejects empty, negative and overlong spans",
+              "status": "passed"
+            },
+            {
+              "name": "reconstructNodeSpan slices the sealed text by offsets and defaults to the whole node",
+              "status": "passed"
+            },
+            {
+              "name": "verifyNodeLocators accepts nodes whose locators match their sealed text",
+              "status": "passed"
+            },
+            {
+              "name": "verifyNodeLocators reports edited text as a quote digest mismatch",
+              "status": "passed"
+            },
+            {
+              "name": "verifyNodeLocators reports every way a locator can drift from its node",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/preparation/src/documents/nodes/structural-document.test.ts",
+          "originalFile": "packages/documents/src/nodes/structural-document.test.ts",
+          "tests": [
+            {
+              "name": "assertAcyclic passes a tree and rejects a two-block cycle",
+              "status": "passed"
+            },
+            {
+              "name": "convertStructuralDocument changes the document digest when any block changes",
+              "status": "passed"
+            },
+            {
+              "name": "convertStructuralDocument derives node ids from the representation and local key only",
+              "status": "passed"
+            },
+            {
+              "name": "convertStructuralDocument produces stable immutable nodes and verified locators",
+              "status": "passed"
+            },
+            {
+              "name": "convertStructuralDocument rejects an unknown parent, a self parent, a cycle, a duplicate key and a duplicate sibling ordinal",
+              "status": "passed"
+            },
+            {
+              "name": "normalizeDocumentText collapses prose whitespace but keeps code and table layout",
+              "status": "passed"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

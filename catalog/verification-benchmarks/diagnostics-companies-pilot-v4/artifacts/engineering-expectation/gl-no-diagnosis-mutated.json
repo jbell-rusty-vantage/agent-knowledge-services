@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "verification-benchmark-engineering-expectation.v1",
+  "sourceDatasetManifestDigest": "sha256:b625b311493f8c366ef43bf4047bf61f38d510fe7f3c340f50bca42de737dfe6",
+  "sourceCaseDigest": "sha256:0272827e3c79e0365619a1e6fdcc835e0b2d93d22c8558acb99042a7aef69ffc",
+  "caseId": "gl-no-diagnosis-mutated",
+  "provenance": "agent_reviewed_engineering_expectation",
+  "humanAnnotationCount": 0,
+  "expertAdjudicated": false,
+  "humanGoldScoringEligible": false,
+  "legacyGoldArtifactColumnSemantics": "engineering expectation artifact only; does not establish human-gold eligibility",
+  "expectation": {
+    "label": "contradicted",
+    "labelStatus": "engineering_expectation",
+    "expectedPolicy": "fail",
+    "expectedLocatorValid": true,
+    "support": "contradicted",
+    "authority": "interested_party_only",
+    "worldCorrectness": "unknown",
+    "rationale": "Engineering expectation for negation_removal; human annotation and expert adjudication remain pending."
+  }
+}

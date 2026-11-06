@@ -1,0 +1,463 @@
+{
+ "census": {
+  "evaluator": {
+   "configDigest": "sha256:44504e7f977a9568e5d10df61c8fb30025d5e553c046bdc00d219a5acd9e9bff",
+   "deployment": null,
+   "family": "claude-haiku",
+   "kind": "model",
+   "methodVersion": "mc-deep-agents-evaluator.v1",
+   "model": "claude-haiku-5-5",
+   "promptDigest": "sha256:bf0de21b01422c58aab450db46401ba8d9d8889892e57218bf302dd4672219bc",
+   "provider": "anthropic",
+   "reviewerId": null,
+   "role": "auditor"
+  },
+  "explanations": [],
+  "limitations": [
+   "quote not found verbatim: a claim the body never makes"
+  ],
+  "method": {
+   "binding": "aiengineer-postgres",
+   "digest": "sha256:ab4eca1b8084cc53dae19a17cbbe2a2918a57ba29092c3c1af6f68219de963d7",
+   "id": "mc-deep-agents-auditor",
+   "kind": "method",
+   "tenant": "7f3e2d1c-0b9a-4876-9543-210fedcba987",
+   "version": "mc-deep-agents-evaluator.v1"
+  },
+  "occurrences": [
+   {
+    "assertion": {
+     "binding": "aiengineer-postgres",
+     "digest": "sha256:1dea7a9dff5193d43123f2c333912b5d9a4489cff9ed488ff32949dac579642c",
+     "id": "asr-mistral-7b",
+     "kind": "assertion",
+     "tenant": "7f3e2d1c-0b9a-4876-9543-210fedcba987",
+     "version": "research-core.assertion.v2"
+    },
+    "blockPath": "findings/p1",
+    "body": {
+     "binding": "aiengineer-postgres",
+     "digest": "sha256:52ef63920beee1faa73d45c5880ab09840cd44bdd2b5b2f4c97d7c12e1e943c0",
+     "id": "report-parity-r1-body",
+     "kind": "artifact",
+     "tenant": "7f3e2d1c-0b9a-4876-9543-210fedcba987",
+     "version": "artifact.v1"
+    },
+    "candidateAssertion": "Mistral 7B has 7 billion parameters",
+    "id": "aud-0-13",
+    "interrogative": false,
+    "negated": false,
+    "quoteDigest": "sha256:508dce969617e0ac6161b799a4cf3bd7612ac8a46a201c37602f8f0fb9954a53",
+    "schemaVersion": "research-core.discovered_occurrence.v1",
+    "span": {
+     "basis": "utf16-code-units-v1",
+     "end": 48,
+     "start": 13
+    }
+   },
+   {
+    "assertion": {
+     "binding": "aiengineer-postgres",
+     "digest": "sha256:dad04d3a4f362beaf6f5e83dbc8a5e20c6abe0ba5195bc100b606f228e4008a1",
+     "id": "asr-gemma-2-27b",
+     "kind": "assertion",
+     "tenant": "7f3e2d1c-0b9a-4876-9543-210fedcba987",
+     "version": "research-core.assertion.v2"
+    },
+    "blockPath": "findings/t1/r0/c1",
+    "body": {
+     "binding": "aiengineer-postgres",
+     "digest": "sha256:52ef63920beee1faa73d45c5880ab09840cd44bdd2b5b2f4c97d7c12e1e943c0",
+     "id": "report-parity-r1-body",
+     "kind": "artifact",
+     "tenant": "7f3e2d1c-0b9a-4876-9543-210fedcba987",
+     "version": "artifact.v1"
+    },
+    "candidateAssertion": "27 billion",
+    "id": "aud-1-128",
+    "interrogative": false,
+    "negated": false,
+    "quoteDigest": "sha256:6f7c5342cf61dfb4c58ba67692c2972ec11c21031256f538ad9d8a6dbddbea53",
+    "schemaVersion": "research-core.discovered_occurrence.v1",
+    "span": {
+     "basis": "utf16-code-units-v1",
+     "end": 138,
+     "start": 128
+    }
+   },
+   {
+    "assertion": {
+     "binding": "aiengineer-postgres",
+     "digest": "sha256:2fdc1d0516dd02cbd59c76bdc993697c37314e575a0f7a02d10c38ae3e20a67b",
+     "id": "asr-ratio",
+     "kind": "assertion",
+     "tenant": "7f3e2d1c-0b9a-4876-9543-210fedcba987",
+     "version": "research-core.assertion.v2"
+    },
+    "blockPath": "findings/l1/i0",
+    "body": {
+     "binding": "aiengineer-postgres",
+     "digest": "sha256:52ef63920beee1faa73d45c5880ab09840cd44bdd2b5b2f4c97d7c12e1e943c0",
+     "id": "report-parity-r1-body",
+     "kind": "artifact",
+     "tenant": "7f3e2d1c-0b9a-4876-9543-210fedcba987",
+     "version": "artifact.v1"
+    },
+    "candidateAssertion": "Gemma 2 27B is larger",
+    "id": "aud-2-57",
+    "interrogative": false,
+    "negated": false,
+    "quoteDigest": "sha256:e4c2e429024a11291961fb8acb248a770e76e38c1d7c8d2fe7c8a537d305744e",
+    "schemaVersion": "research-core.discovered_occurrence.v1",
+    "span": {
+     "basis": "utf16-code-units-v1",
+     "end": 78,
+     "start": 57
+    }
+   }
+  ],
+  "rationale": "every factual sentence of the body, quoted verbatim",
+  "rawResponse": null,
+  "recall": {
+   "label": "unmeasured",
+   "reason": "no calibration set for this auditor"
+  },
+  "unitExplanations": [],
+  "usage": {
+   "costUsd": "0.002",
+   "providerCalls": 1,
+   "tokens": 1200
+  }
+ },
+ "observations": [
+  {
+   "binding": "aiengineer-postgres",
+   "evaluator": {
+    "configDigest": "sha256:487fdd7e63a9ac7682b0b23d66bd67ed8031ee46c75e7c2f2964860c2f2d8579",
+    "deployment": null,
+    "family": "gpt-5.6",
+    "kind": "model",
+    "methodVersion": "mc-deep-agents-evaluator.v1",
+    "model": "gpt-5.6-terra",
+    "promptDigest": "sha256:2b664883074d612325e6a1a09f7e45504f3371c2acdd2c4abed3f20e61180ddc",
+    "provider": "openai",
+    "reviewerId": null,
+    "role": "judge"
+   },
+   "evidence": [
+    {
+     "binding": "aiengineer-postgres",
+     "digest": "sha256:7dbe60b890692a720b6f5c69c0f6088797ece97aae58701dcb3dba6ab55c21a2",
+     "id": "frag-mistral-7b",
+     "kind": "fragment",
+     "tenant": "7f3e2d1c-0b9a-4876-9543-210fedcba987",
+     "version": "research-core.fragment.v2"
+    }
+   ],
+   "id": "obs-judge-attribution-asr-mistral-7b",
+   "inputDigest": "sha256:e6b297969a226c2dd48f756d0f871aac454c6bac33c1aa07adcce2f5871409bb",
+   "limitations": [],
+   "method": {
+    "binding": "aiengineer-postgres",
+    "digest": "sha256:5575d53d367b84cab9afafc2fcd7f83f4669f18e95d5eb0169caa510169eeb04",
+    "id": "mc-deep-agents-judge",
+    "kind": "method",
+    "tenant": "7f3e2d1c-0b9a-4876-9543-210fedcba987",
+    "version": "mc-deep-agents-evaluator.v1"
+   },
+   "outcome": {
+    "attributedTo": null,
+    "expectedAttribution": null,
+    "result": "correct"
+   },
+   "property": "attribution",
+   "qualifiersDigest": null,
+   "rationale": "the fragment states it",
+   "rawResponse": null,
+   "recordedAt": "2026-10-28T12:00:00Z",
+   "schemaVersion": "research-core.observation.v2",
+   "target": {
+    "binding": "aiengineer-postgres",
+    "digest": "sha256:1dea7a9dff5193d43123f2c333912b5d9a4489cff9ed488ff32949dac579642c",
+    "id": "asr-mistral-7b",
+    "kind": "assertion",
+    "tenant": "7f3e2d1c-0b9a-4876-9543-210fedcba987",
+    "version": "research-core.assertion.v2"
+   },
+   "tenant": "7f3e2d1c-0b9a-4876-9543-210fedcba987",
+   "usage": {
+    "costUsd": "0.0044",
+    "providerCalls": 1,
+    "tokens": 1200
+   }
+  },
+  {
+   "binding": "aiengineer-postgres",
+   "evaluator": {
+    "configDigest": "sha256:487fdd7e63a9ac7682b0b23d66bd67ed8031ee46c75e7c2f2964860c2f2d8579",
+    "deployment": null,
+    "family": "gpt-5.6",
+    "kind": "model",
+    "methodVersion": "mc-deep-agents-evaluator.v1",
+    "model": "gpt-5.6-terra",
+    "promptDigest": "sha256:2b664883074d612325e6a1a09f7e45504f3371c2acdd2c4abed3f20e61180ddc",
+    "provider": "openai",
+    "reviewerId": null,
+    "role": "judge"
+   },
+   "evidence": [
+    {
+     "binding": "aiengineer-postgres",
+     "digest": "sha256:7dbe60b890692a720b6f5c69c0f6088797ece97aae58701dcb3dba6ab55c21a2",
+     "id": "frag-mistral-7b",
+     "kind": "fragment",
+     "tenant": "7f3e2d1c-0b9a-4876-9543-210fedcba987",
+     "version": "research-core.fragment.v2"
+    }
+   ],
+   "id": "obs-judge-support-ss-mistral-7b",
+   "inputDigest": "sha256:1be37d70fa57688365650d79f4aee577e6e612e411a94780b6087bbf58adf812",
+   "limitations": [],
+   "method": {
+    "binding": "aiengineer-postgres",
+    "digest": "sha256:5575d53d367b84cab9afafc2fcd7f83f4669f18e95d5eb0169caa510169eeb04",
+    "id": "mc-deep-agents-judge",
+    "kind": "method",
+    "tenant": "7f3e2d1c-0b9a-4876-9543-210fedcba987",
+    "version": "mc-deep-agents-evaluator.v1"
+   },
+   "outcome": {
+    "citedFragments": [
+     {
+      "binding": "aiengineer-postgres",
+      "digest": "sha256:7dbe60b890692a720b6f5c69c0f6088797ece97aae58701dcb3dba6ab55c21a2",
+      "id": "frag-mistral-7b",
+      "kind": "fragment",
+      "tenant": "7f3e2d1c-0b9a-4876-9543-210fedcba987",
+      "version": "research-core.fragment.v2"
+     }
+    ],
+    "contradictingFragments": [],
+    "premise": null,
+    "qualification": null,
+    "unsupportedFacets": [],
+    "verdict": "full_support"
+   },
+   "property": "support",
+   "qualifiersDigest": "sha256:c30b56a031585b26e6dd543ab07ecd2c9202419a2413daef6d4c741130760fa8",
+   "rationale": "the fragment states it",
+   "rawResponse": null,
+   "recordedAt": "2026-10-28T12:00:00Z",
+   "schemaVersion": "research-core.observation.v2",
+   "target": {
+    "binding": "aiengineer-postgres",
+    "digest": "sha256:865cf391b04870d2ed84e997e3ad51bd0b377f4719280fe55093bc992fe5c381",
+    "id": "ss-mistral-7b",
+    "kind": "support_set",
+    "tenant": "7f3e2d1c-0b9a-4876-9543-210fedcba987",
+    "version": "research-core.support_set.v2"
+   },
+   "tenant": "7f3e2d1c-0b9a-4876-9543-210fedcba987",
+   "usage": {
+    "costUsd": "0",
+    "providerCalls": 0,
+    "tokens": 0
+   }
+  },
+  {
+   "binding": "aiengineer-postgres",
+   "evaluator": {
+    "configDigest": "sha256:487fdd7e63a9ac7682b0b23d66bd67ed8031ee46c75e7c2f2964860c2f2d8579",
+    "deployment": null,
+    "family": "gpt-5.6",
+    "kind": "model",
+    "methodVersion": "mc-deep-agents-evaluator.v1",
+    "model": "gpt-5.6-terra",
+    "promptDigest": "sha256:2b664883074d612325e6a1a09f7e45504f3371c2acdd2c4abed3f20e61180ddc",
+    "provider": "openai",
+    "reviewerId": null,
+    "role": "judge"
+   },
+   "evidence": [
+    {
+     "binding": "aiengineer-postgres",
+     "digest": "sha256:20b7955e744fd96719b315e2ab6b08f4357a9dcb6728656d627eb3aaf1b59fd1",
+     "id": "frag-gemma-2-27b",
+     "kind": "fragment",
+     "tenant": "7f3e2d1c-0b9a-4876-9543-210fedcba987",
+     "version": "research-core.fragment.v2"
+    }
+   ],
+   "id": "obs-judge-attribution-asr-gemma-2-27b",
+   "inputDigest": "sha256:78e731b550ec8b3293b49bf2799735e2b88ade66c45717099d7190b6e916f915",
+   "limitations": [],
+   "method": {
+    "binding": "aiengineer-postgres",
+    "digest": "sha256:5575d53d367b84cab9afafc2fcd7f83f4669f18e95d5eb0169caa510169eeb04",
+    "id": "mc-deep-agents-judge",
+    "kind": "method",
+    "tenant": "7f3e2d1c-0b9a-4876-9543-210fedcba987",
+    "version": "mc-deep-agents-evaluator.v1"
+   },
+   "outcome": {
+    "attributedTo": null,
+    "expectedAttribution": null,
+    "result": "correct"
+   },
+   "property": "attribution",
+   "qualifiersDigest": null,
+   "rationale": "the fragment states it",
+   "rawResponse": null,
+   "recordedAt": "2026-10-28T12:00:00Z",
+   "schemaVersion": "research-core.observation.v2",
+   "target": {
+    "binding": "aiengineer-postgres",
+    "digest": "sha256:dad04d3a4f362beaf6f5e83dbc8a5e20c6abe0ba5195bc100b606f228e4008a1",
+    "id": "asr-gemma-2-27b",
+    "kind": "assertion",
+    "tenant": "7f3e2d1c-0b9a-4876-9543-210fedcba987",
+    "version": "research-core.assertion.v2"
+   },
+   "tenant": "7f3e2d1c-0b9a-4876-9543-210fedcba987",
+   "usage": {
+    "costUsd": "0",
+    "providerCalls": 0,
+    "tokens": 0
+   }
+  },
+  {
+   "binding": "aiengineer-postgres",
+   "evaluator": {
+    "configDigest": "sha256:487fdd7e63a9ac7682b0b23d66bd67ed8031ee46c75e7c2f2964860c2f2d8579",
+    "deployment": null,
+    "family": "gpt-5.6",
+    "kind": "model",
+    "methodVersion": "mc-deep-agents-evaluator.v1",
+    "model": "gpt-5.6-terra",
+    "promptDigest": "sha256:2b664883074d612325e6a1a09f7e45504f3371c2acdd2c4abed3f20e61180ddc",
+    "provider": "openai",
+    "reviewerId": null,
+    "role": "judge"
+   },
+   "evidence": [
+    {
+     "binding": "aiengineer-postgres",
+     "digest": "sha256:20b7955e744fd96719b315e2ab6b08f4357a9dcb6728656d627eb3aaf1b59fd1",
+     "id": "frag-gemma-2-27b",
+     "kind": "fragment",
+     "tenant": "7f3e2d1c-0b9a-4876-9543-210fedcba987",
+     "version": "research-core.fragment.v2"
+    }
+   ],
+   "id": "obs-judge-attribution-asr-ratio",
+   "inputDigest": "sha256:ce2796b09033fe8b9d9be6cf43daf31ffb2b24c5f9c436492980db80bdec1cbb",
+   "limitations": [],
+   "method": {
+    "binding": "aiengineer-postgres",
+    "digest": "sha256:5575d53d367b84cab9afafc2fcd7f83f4669f18e95d5eb0169caa510169eeb04",
+    "id": "mc-deep-agents-judge",
+    "kind": "method",
+    "tenant": "7f3e2d1c-0b9a-4876-9543-210fedcba987",
+    "version": "mc-deep-agents-evaluator.v1"
+   },
+   "outcome": {
+    "attributedTo": null,
+    "expectedAttribution": null,
+    "result": "correct"
+   },
+   "property": "attribution",
+   "qualifiersDigest": null,
+   "rationale": "the fragment states it",
+   "rawResponse": null,
+   "recordedAt": "2026-10-28T12:00:00Z",
+   "schemaVersion": "research-core.observation.v2",
+   "target": {
+    "binding": "aiengineer-postgres",
+    "digest": "sha256:2fdc1d0516dd02cbd59c76bdc993697c37314e575a0f7a02d10c38ae3e20a67b",
+    "id": "asr-ratio",
+    "kind": "assertion",
+    "tenant": "7f3e2d1c-0b9a-4876-9543-210fedcba987",
+    "version": "research-core.assertion.v2"
+   },
+   "tenant": "7f3e2d1c-0b9a-4876-9543-210fedcba987",
+   "usage": {
+    "costUsd": "0",
+    "providerCalls": 0,
+    "tokens": 0
+   }
+  },
+  {
+   "binding": "aiengineer-postgres",
+   "evaluator": {
+    "configDigest": "sha256:487fdd7e63a9ac7682b0b23d66bd67ed8031ee46c75e7c2f2964860c2f2d8579",
+    "deployment": null,
+    "family": "gpt-5.6",
+    "kind": "model",
+    "methodVersion": "mc-deep-agents-evaluator.v1",
+    "model": "gpt-5.6-terra",
+    "promptDigest": "sha256:2b664883074d612325e6a1a09f7e45504f3371c2acdd2c4abed3f20e61180ddc",
+    "provider": "openai",
+    "reviewerId": null,
+    "role": "judge"
+   },
+   "evidence": [
+    {
+     "binding": "aiengineer-postgres",
+     "digest": "sha256:20b7955e744fd96719b315e2ab6b08f4357a9dcb6728656d627eb3aaf1b59fd1",
+     "id": "frag-gemma-2-27b",
+     "kind": "fragment",
+     "tenant": "7f3e2d1c-0b9a-4876-9543-210fedcba987",
+     "version": "research-core.fragment.v2"
+    }
+   ],
+   "id": "obs-judge-support-ss-ratio",
+   "inputDigest": "sha256:0aa1314db14e7bbd5d3ea9ac3bdb6235fed375615d8ed4e97c77445cb14caed8",
+   "limitations": [],
+   "method": {
+    "binding": "aiengineer-postgres",
+    "digest": "sha256:5575d53d367b84cab9afafc2fcd7f83f4669f18e95d5eb0169caa510169eeb04",
+    "id": "mc-deep-agents-judge",
+    "kind": "method",
+    "tenant": "7f3e2d1c-0b9a-4876-9543-210fedcba987",
+    "version": "mc-deep-agents-evaluator.v1"
+   },
+   "outcome": {
+    "citedFragments": [
+     {
+      "binding": "aiengineer-postgres",
+      "digest": "sha256:20b7955e744fd96719b315e2ab6b08f4357a9dcb6728656d627eb3aaf1b59fd1",
+      "id": "frag-gemma-2-27b",
+      "kind": "fragment",
+      "tenant": "7f3e2d1c-0b9a-4876-9543-210fedcba987",
+      "version": "research-core.fragment.v2"
+     }
+    ],
+    "contradictingFragments": [],
+    "premise": null,
+    "qualification": "compares the largest models only",
+    "unsupportedFacets": [],
+    "verdict": "qualified_support"
+   },
+   "property": "support",
+   "qualifiersDigest": "sha256:9323e2214e5d91439dc984c1225afe738afda4a6b09d75fcefaff2808b1f5ae3",
+   "rationale": "the fragment states it",
+   "rawResponse": null,
+   "recordedAt": "2026-10-28T12:00:00Z",
+   "schemaVersion": "research-core.observation.v2",
+   "target": {
+    "binding": "aiengineer-postgres",
+    "digest": "sha256:9aeeab792ff9dc6ef128a09b723d145f579ee2a59037554143f2a18c4ffd468f",
+    "id": "ss-ratio",
+    "kind": "support_set",
+    "tenant": "7f3e2d1c-0b9a-4876-9543-210fedcba987",
+    "version": "research-core.support_set.v2"
+   },
+   "tenant": "7f3e2d1c-0b9a-4876-9543-210fedcba987",
+   "usage": {
+    "costUsd": "0",
+    "providerCalls": 0,
+    "tokens": 0
+   }
+  }
+ ]
+}

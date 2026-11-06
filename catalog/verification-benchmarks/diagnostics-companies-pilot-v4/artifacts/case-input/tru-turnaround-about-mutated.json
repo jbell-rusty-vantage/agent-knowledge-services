@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "verification-benchmark-case-input.v1",
+  "sourceDatasetManifestDigest": "sha256:b625b311493f8c366ef43bf4047bf61f38d510fe7f3c340f50bca42de737dfe6",
+  "sourceCaseDigest": "sha256:a072ab5f39c7d934ef0e1c001ee84f2a65cbb37a5b361b4cddcb69d9dbe73b97",
+  "caseId": "tru-turnaround-about-mutated",
+  "assertion": "Results are available within 24 hours after the laboratory receives the sample.",
+  "evidence": [
+    {
+      "fragmentId": "sha256:a383de6dbe16655a6d53a01f5e629d3a7deee916ca489b44bcd6cd35875b00f3",
+      "captureId": "67b3c277-5c66-5ef5-ace8-66aff1d3e736",
+      "sourceKey": "tru-about",
+      "sourceClass": "first_party",
+      "projectionArtifactId": "b4573767-03c2-55e9-a771-0385eeff5aa5",
+      "projectionDigest": "sha256:102c76510c12f523e3d67d8795ceb2b20c40e95f055c0038965e6da1e9cedbb4",
+      "transformationArtifactId": "37fc6dff-19ec-5292-aef3-b861b305a7ed",
+      "selector": {
+        "kind": "html",
+        "domPath": "1/0/2/5/0/0/0/2/0/2/2"
+      },
+      "selectedContentDigest": "sha256:442c2e1a7c9ac24dd696f11d4fe0da7afee7bb61457d9ce77f5e8b8e0c33b3d1",
+      "excerpt": "Results are available in your Provider Portal within 2–4 weeks from the date the lab receives the sample, including biological age, organ system–level ages, and aging speed, ready to review with your patient.",
+      "rights": "restricted internal preparation; not approved for provider upload or public redistribution",
+      "originalProviderUploadAuthorized": false
+    }
+  ],
+  "intendedUse": "immutable_case_input; provider transmission requires a separately authenticated derived-input grant"
+}

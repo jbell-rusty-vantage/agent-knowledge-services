@@ -1,0 +1,6 @@
+{
+  "_status": "incomplete_scaffold",
+  "notAdmissionGold": true,
+  "schemaNote": "Fixture §6 fault/invariant matrix case IDs (F/T/D/S/P/R/A/RC) are the later injection inventory. This file must later hold deterministic injection points, expected receipt/state, retry/recovery assertions, and case IDs. Do not invent injection payloads or expected receipts here. Case names live in OPENAI_FIXTURE.md §6.",
+  "cases": []
+}

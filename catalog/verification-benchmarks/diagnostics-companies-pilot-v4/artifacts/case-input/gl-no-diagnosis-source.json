@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "verification-benchmark-case-input.v1",
+  "sourceDatasetManifestDigest": "sha256:b625b311493f8c366ef43bf4047bf61f38d510fe7f3c340f50bca42de737dfe6",
+  "sourceCaseDigest": "sha256:b4677aa502ed013ca1221fb5b339ffd53730e0a8c0666285d01dd2d3f2c88ecd",
+  "caseId": "gl-no-diagnosis-source",
+  "assertion": "Generation Lab states that the report does not constitute diagnosis.",
+  "evidence": [
+    {
+      "fragmentId": "sha256:be7d8deb0c9a8a640843d3addbd0c241cdf2f7beec1d3d8fad7b24a2445cd6ff",
+      "captureId": "dc5210dc-7826-524e-ad73-27a3baf6c4ae",
+      "sourceKey": "gl-terms",
+      "sourceClass": "first_party",
+      "projectionArtifactId": "0d3a77f2-20eb-58e0-afac-b932bb55e172",
+      "projectionDigest": "sha256:f3c462cade3dde56db7d70f0e5141798cd18bde96f5cabc3b18923543a9ff896",
+      "transformationArtifactId": "3a281fe2-cd85-5cec-a90a-22a372d76d2d",
+      "selector": {
+        "kind": "html",
+        "domPath": "1/9/1/2/0/12"
+      },
+      "selectedContentDigest": "sha256:361bef9e89b2908bf5b5e1721686f53686399ae004fe42b5ae509d051a988a4c",
+      "excerpt": "Generation Lab does not practice medicine or provide medical advice. Nothing on the Platform — including the Report, any recommendations, provider matching, or communications — constitutes medical care, diagnosis, or treatment.",
+      "rights": "restricted internal preparation; not approved for provider upload or public redistribution",
+      "originalProviderUploadAuthorized": false
+    }
+  ],
+  "intendedUse": "immutable_case_input; provider transmission requires a separately authenticated derived-input grant"
+}

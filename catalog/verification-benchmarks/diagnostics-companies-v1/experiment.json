@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "verification-benchmark-experiment.v1",
+  "hypothesis": "Evidence-closed cascade and consensus strategies improve engineering-expectation agreement while preserving abstention and provenance.",
+  "primaryOutcome": "engineering_expectation_agreement (human-gold quality inference prohibited)",
+  "datasetManifestDigest": "sha256:e3529d2d27e3f473d4f6eb9da633b404c14c48f20b9db8c1d7a428220d538d9e",
+  "seed": 207197,
+  "replicas": 1,
+  "cachePolicy": "exact_request_only_with_cross_arm_attribution",
+  "providerRetryPolicy": "none",
+  "clusterUnit": "source_family",
+  "arms": [
+    "baseline",
+    "interfaze",
+    "cascade",
+    "consensus_abstention"
+  ],
+  "promotionEligible": false,
+  "experimentDefinitionDigest": "sha256:7134701b40570148f507f589f8c0c51413437883b6de8a500d24da5b1c1c7d05"
+}

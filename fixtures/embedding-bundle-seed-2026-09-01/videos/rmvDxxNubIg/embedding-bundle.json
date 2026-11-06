@@ -1,0 +1,320 @@
+{
+  "schema_version": "ai-engineer-embedding-bundle/0.1.0",
+  "store_class": "internal_exploratory",
+  "video_id": "rmvDxxNubIg",
+  "title": "No Vibes Allowed: Solving Hard Problems in Complex Codebases – Dex Horthy, HumanLayer",
+  "research_as_of": "2026-09-01",
+  "primary": {
+    "engineer": {
+      "slug": "dex-horthy",
+      "display_name": "Dex Horthy"
+    },
+    "organization": {
+      "slug": "humanlayer",
+      "display_name": "HumanLayer"
+    }
+  },
+  "selected_documents": [
+    {
+      "id": "doc-transcript",
+      "document_kind": "talk_transcript",
+      "title": "No Vibes Allowed: Solving Hard Problems in Complex Codebases",
+      "canonical_url": "https://www.youtube.com/watch?v=rmvDxxNubIg",
+      "source_role": "primary",
+      "publisher": "AI Engineer",
+      "source_class": "transcript",
+      "target_vector_spaces": [
+        "source_native_sections",
+        "engineering_claims"
+      ],
+      "text": "Hi everybody. How y'all doing?\n\nIt's exciting. I'm Dex. As they did in the great intro, I've been hacking on agents for a while. Our talk 12-Factor Agents at AI Engineer in June was one of the top talks of all time. I think top eight or something. One of the best ones from AI Engineer in June. May or may not have said something about context engineering.\n\nWhy am I here today? What am I here to talk about? I want to talk about one of my favorite talks from AI Engineer in June. And I know we all got the update from Yegor yesterday, but they wouldn't let me change my slides. So this is going to be about what Yegor talked about in June.\n\nBasically that they surveyed 100,000 developers across all company sizes and they found that most of the time you use AI for software engineering you're doing a lot of rework, a lot of codebase churn, and it doesn't really work well for complex tasks, brownfield codebases. And you can see in the chart basically you are shipping a lot more but a lot of it is just reworking the slop that you shipped last week.\n\nAnd then the other side, right, was that if you're doing greenfield, little Vercel dashboard, something like this, then it's going to work great. If you're going to go in a 10-year-old Java codebase, maybe not so much.\n\nAnd this matched my experience personally and talking to a lot of founders and great engineers: too much slop, tech debt factory. It's just not going to work for our codebase. Like maybe someday when the models get better. But that's what context engineering is all about: how can we get the most out of today's models? How do we manage our context window?\n\nSo we talked about this in August. I have to confess something. The first time I used Claude Code, I was not impressed. It was like, okay, this is a little bit better. I get it. I like the UX. But since then, we as a team figured something out. We were actually able to get 2 to 3x more throughput. And we were shipping so much that we had no choice but to change the way we collaborated. We rewired everything about how we build software. It was a team of three. It took eight weeks. It was really freaking hard. But now that we solved it, we're never going back.\n\nThis is the whole no-slop thing. I think we got somewhere with this. It went super viral on Hacker News in September. We have thousands of folks who have gone on to GitHub and grabbed our research-plan-implement prompt system.\n\nSo the goals here, which we kind of backed our way into: we need AI that can work well in brownfield codebases, that can solve complex problems. No slop, right? No more slop. And we had to maintain mental alignment. I'll talk a little bit more about what that means in a minute. And of course we want to spend as many tokens as possible. What we can offload meaningfully to the AI is really, really important. Super high leverage.\n\nThis is advanced context engineering for coding agents. I'll start with kind of framing this. The most naive way to use a coding agent is to ask it for something and then tell it why it's wrong and re-steer it and ask and ask and ask until you run out of context or you give up or you cry.\n\nWe can be a little bit smarter about this. Most people discover this pretty early on in their AI exploration: it might be better if you start a conversation and you're off track that you just start a new context window. You say, okay, we went down that path. Let's start again. Same prompt, same task, but this time we're going to go down this path and don't go over there because that doesn't work.\n\nSo how do you know when it's time to start over? If you see this, it's probably time to start over, right? This is what Claude says when you tell it it's screwing up.\n\nWe can be even smarter about this. We can do what I call intentional compaction. This is basically, whether you're on track or not, you can take your existing context window and ask the agent to compress it down into a markdown file. You can review this, you can tag it, and then when the new agent starts, it gets straight to work instead of having to do all that searching and codebase understanding and getting caught up.\n\nWhat goes into compaction? Well, the question is what takes up space in your context window. It's looking for files, it's understanding code flow, it's editing files, it's test and build output. And if you have one of those MCPs that's dumping JSON and a bunch of UUIDs into your context window, you know, God help you.\n\nSo what should we compact? I'll get more specifics here, but this is a really good compaction. This is exactly what we're working on: the exact files and line numbers that matter to the problem that we're solving.\n\nWhy are we so obsessed with context? Because LLMs are—I actually got roasted on YouTube for this one—and they're not pure functions because they're nondeterministic, but they are stateless. And the only way to get better performance out of an LLM is to put better tokens in and then you get better tokens out.\n\nAnd so every turn of the loop when Claude is picking the next tool, or any coding agent is picking the next, there could be hundreds of right next steps and hundreds of wrong next steps. But the only thing that influences what comes out next is what is in the conversation so far. So we're going to optimize this context window for correctness, completeness, size, and a little bit of trajectory.\n\nThe trajectory one is interesting because a lot of people say, well, I told the agent to do something and it did something wrong. So I corrected it and I yelled at it and then it did something wrong again and then I yelled at it. And then the LLM is looking at this conversation and says, okay, cool, I did something wrong, the human yelled at me, and then I did something wrong and the human yelled at me. So the next most likely token in this conversation is I better do something wrong so the human can yell at me again.\n\nSo be mindful of your trajectory. If you were going to invert this, the worst thing you can have is incorrect information, then missing information, and then just too much noise.\n\nIf you like equations, there's a dumb equation if you want to think about it this way. Geoff Huntley did a lot of research on coding agents. He put it really well: the more you use the context window, the worse outcomes you'll get.\n\nThis leads to a concept I'm calling—a very, very academic concept—called the dumb zone. So you have your context window. You have 168,000 tokens roughly. Some are reserved for output and compaction. This varies by model. But we'll use Claude Code as an example here. Around the 40% line is where you're going to start to see some diminishing returns depending on your task.\n\nIf you have too many MCPs in your coding agent, you are doing all your work in the dumb zone and you're never going to get good results. People talked about this. I'm not going to talk about that one. Your mileage may vary. 40% is like—it depends on how complex the task is, but this is kind of a good guideline.\n\nSo back to compaction, or as I will call it from now on, cleverly avoiding the dumb zone. We can do sub-agents. If you have a frontend sub-agent and a backend sub-agent and a QA sub-agent and a data scientist sub-agent: please stop. Sub-agents are not for anthropomorphizing roles. They are for controlling context.\n\nAnd so what you can do is if you want to go find how something works in a large codebase, you can steer the coding agent to do this if it supports sub-agents, or you can build your own sub-agent system. But basically you say, hey, go find how this works, and it can fork out a new context window that is going to go do all that reading and searching and finding and reading entire files and understanding the codebase and then just return a really, really succinct message back up to the parent agent of just like, hey, the file you want is here. Parent agent can read that one file and get straight to work.\n\nAnd so this is really powerful. If you wield these correctly, you can get good responses like this and then you can manage your context really, really well.\n\nWhat works even better than sub-agents, or like a layer on top of sub-agents, is a workflow I call frequent intentional compaction. We're going to talk about research-plan-implement in a minute, but the point is you're constantly keeping your context window small. You're building your entire workflow around context management.\n\nSo it comes in three phases: research, plan, implement. And we're going to try to stay in the smart zone the whole time.\n\nThe research is all about understanding how the system works, finding the right files, staying objective. Here's a prompt you can use to do research. Here's the output of a research prompt. These are all open source. You can go grab them and play with them yourself.\n\nPlanning: you're going to outline the exact steps. You're going to include file names and line snippets. You're going to be very explicit about how we're going to test things after every change. Here's a good planning prompt. Here's one of our plans. It's got actual code snippets in it.\n\nAnd then we're going to implement. And if you read one of these plans, you can see very easily how the dumbest model in the world is probably not going to screw this up. So we just go through and we run the plan and we keep the context low. As a planning prompt, like I said, it's the least exciting part of the process.\n\nI wanted to put this into practice. So, working for us, I do a podcast with my buddy Vaibhav, who's the CEO of a company called Boundary ML. And I said, hey, I'm going to try to one-shot a fix to your 300,000-line Rust codebase for a programming language.\n\nAnd the whole episode goes in, it's like an hour and a half. I'm not going to talk through it right now, but we built a bunch of research and then we threw them out because they were bad. And then we made a plan and we made a plan without research and with research and compared all the results. It's a fun time.\n\nBy that was Monday night. By Tuesday morning we were on the show and the CTO had seen the PR and didn't realize I was doing it as a bit for a podcast and basically was like, yeah, this looks good, we'll get it in the next release. I think he was a little confused. Here's the plan. But anyway, confirmed: works in brownfield codebases and no slop.\n\nBut I wanted to see if we could solve complex problems. So Vaibhav was still a little skeptical. I sat down, we sat down for like 7 hours on a Saturday and we shipped 35,000 lines of code to BAML. One of the PRs got merged like a week later. I will say some of this is codegen. You know, you update your behavior, all the golden files update and stuff, but we shipped a lot of code that day. He estimates it was about 1 to 2 weeks and 7 hours. And so cool, we can solve complex problems.\n\nThere are limits to this. I sat down with my buddy Blake. We tried to remove Hadoop dependencies from Parquet Java. If you know what Parquet Java is, I'm sorry for whatever happened to you to get you to this point in your career. It did not go well. Here's the plans, here's the research. At a certain point, we threw everything out and we actually went back to the whiteboard. We had to actually, once we had learned where all the foot guns were, we went back to okay, how is this actually going to fit together.\n\nAnd this brings me to a really interesting point that Jake's going to talk about later. Do not outsource the thinking. AI cannot replace thinking. It can only amplify the thinking you have done or the lack of thinking you have done.\n\nSo people ask, so Dex, this is spec-driven development, right? No, spec-driven development is broken. Not the idea, but the phrase. It's not well defined. This is Birgitta from ThoughtWorks. And a lot of people just say spec and they mean a more detailed prompt.\n\nDoes anyone remember this picture? Does anyone know what this is from? All right, that's a deep cut. There will never be a year of agents because of semantic diffusion. Martin Fowler said this in 2006. We come up with a good term with a good definition and then everybody gets excited and everybody starts meaning it to mean a hundred things to a hundred different people and it becomes useless.\n\nWe had an agent is a person, an agent is a microservice, an agent is a chatbot, an agent is a workflow. And thank you, Simon. We're back to the beginning. An agent is just tools in a loop.\n\nThis is happening to spec-driven dev. I used to have Sean's slide in the beginning of this talk, but it caused a bunch of people to focus on the wrong things. His thing of like, forget the code, it's like assembly now and you just focus on the markdown. Very cool idea, but people say spec-driven dev is writing a better prompt, a product requirements document. Sometimes it's using verifiable feedback loops and back pressure. Maybe it is treating the code like assembly like Sean taught us. But for a lot of people it's just using a bunch of markdown files while you're coding. Or my favorite, I just stumbled upon this last week: a spec is documentation for an open source library. So it's gone. Spec-driven dev is overhyped. It's useless now. It's semantically diffused.\n\nSo I want to talk about four things that actually work today. The tactical and practical steps that we found working internally and with a bunch of users. We do the research, we figure out how the system works.\n\nRemember Memento? This is the best movie on context engineering, as Peter says it. Guy wakes up, he has no memory. He has to read his own tattoos to figure out who he is and what he's up to. If you don't onboard your agents, they will make stuff up.\n\nAnd so, if this is your team, this is very simplified for most of you. Most of you have much bigger orgs than this. But let's say you want to do some work over here. One thing you could do is you could put onboarding into every repo. You put a bunch of context: here's the repo, here's how it works. This is a compression of all the context in the codebase that the agent can see ahead of time before actually getting to work.\n\nThis is challenging because sometimes it gets too long. As your codebase gets really big, you either have to make this longer or you have to leave information out. And so as you are reading through this, you're going to read the context of this big 5 million line monorepo and you're going to use all the smart zone just to learn how it works. And you're not going to be able to do any good tool calling in the dumb zone.\n\nSo you can shard this down the stack. You can do—they're just talking about progressive disclosure. You could split this up, right? You could just put a file in the root of every repo and then at every level you have additional context based on if you're working here, this is what you need to know. We don't document the files themselves because they're the source of truth. But then as your agent is working, you pull in the root context and then you pull in the subcontext. We won't talk about any specific—you could use CLAUDE.md for this, you can use hooks for this, whatever it is. But then you still have plenty of room in the smart zone because you're only pulling in what you need to know.\n\nThe problem with this is that it gets out of date. And so every time you ship a new feature, you need to kind of cache and validate and rebuild large parts of this internal documentation. And you could use a lot of AI and make it part of your process to update this.\n\nBut I want to ask a question: between the actual code, the function names, the comments, and the documentation, does anyone want to guess what is on the y-axis of this chart?\n\nSlop.\n\nSlop. It's actually the amount of lies you can find in any one part of your codebase.\n\nSo you could make a part of your process to update this, but you probably shouldn't, because you probably won't. What we prefer is on-demand compressed context. So if I'm building a feature that relates to SCM providers and Jira and Linear, I would just give it a little bit of steering. I would say, hey, we're going over in this part of the codebase over here. And a good research prompt or slash command might take you—or skill even—launch a bunch of sub-agents to take these vertical slices through the codebase and then build up a research document that is just a snapshot of the actually true, based on the code itself, parts of the codebase that matter. We are compressing truth.\n\nPlanning is leverage. Planning is about compression of intent. And in plan we're going to outline the exact steps. We take our research and our PRD or our bug ticket or our whatever it is and we create a plan and we create a plan file. So we're compacting again.\n\nAnd I want to pause to talk about mental alignment. Does anyone know what code review is for?\n\nMental alignment. Mental alignment is about making sure things are correct and stuff, but the most important thing is how do we keep everybody on the team on the same page about how the codebase is changing and why.\n\nAnd I can read a thousand lines of Golang every week. Sorry, I can't read a thousand. It's hard. I can do it. I don't want to. And as our team grows, all the code gets reviewed. We don't not read the code, but I, as a technical leader on the team, I can read the plans and I can keep up to date and that's enough. I can catch some problems early and I maintain understanding of how the system is evolving.\n\nMitchell had this really good post about how he's been putting his Amp threads on his pull requests so that you can see not just, hey, here's a wall of green text in GitHub, but here's the exact steps, here's the prompts, and hey, I ran the build at the end and it passed. This takes the reviewer on a journey in a way that a GitHub PR just can't. And as you're shipping more and more, two to three times as much code, it's really on you to find ways to keep your team on the same page and show them here's the steps I did and here's how we tested it manually.\n\nYour goal is leverage. So you want high confidence that the model will actually do the right thing. I can't read this plan and know what actually is going to happen and what code changes are going to happen. So we've over time iterated towards our plans include actual code snippets of what's going to change. So your goal is leverage. You want compression of intent and you want reliable execution.\n\nI don't know, I have a physics background. We like to draw lines through the center of peaks and curves. As your plans get longer, reliability goes up, readability goes down. There's a sweet spot for you and your team and your codebase. You should try to find it because when we review the research and the plans, if they're good, then we can get mental alignment.\n\nDon't outsource the thinking. I've said this before. This is not magic. There is no perfect prompt. You still will not work if you do not read the plan. So we built our entire process around you, the builder, are in back and forth with the agent reading the plans as they're created. And then if you need peer review, you can send it to someone and say, hey, does this plan look right? Is this the right approach? Is this the right order to look at these things?\n\nJake again wrote a really good blog post about like the thing that makes research-plan-implement valuable is you the human in the loop making sure it's correct.\n\nSo if you take one thing away from this talk it should be that a bad line of code is a bad line of code, and a bad part of a plan could be a hundred bad lines of code, and a bad line of research—like a misunderstanding of how the system works and where things are—your whole thing is going to be hosed. You're going to be sending the model off in the wrong direction.\n\nAnd so when we're working internally and with users, we're constantly trying to move human effort and focus to the highest leverage parts of this pipeline. Don't outsource the thinking. Watch out for tools that just spew out a bunch of markdown files just to make you feel good. I'm not going to name names here.\n\nSometimes this is overkill. And the way I like to think about this is like, yeah, you don't always need a full research-plan-implement. Sometimes you need more, sometimes you need less. If you're changing the color of a button, just talk to the agent and tell it what to do. If you're doing like a simple plan and a small feature, if you're doing medium features across multiple repos, then do one research, then build a plan. Basically, the hardest problem you can solve, the ceiling goes up the more of this context engineering compaction you're willing to do. And so if you're in the top right corner, you're probably going to have to do more.\n\nA lot of people ask me, how do I know how much context engineering to use? It takes reps. You will get it wrong. You have to get it wrong over and over and over again. Sometimes you'll go too big. Sometimes you go too small. Pick one tool and get some reps. I recommend against min-maxing across Claude and Codex and all these different tools.\n\nI'm not a big acronym guy. We said spec-driven dev was broken. Research-plan-implement I don't think will be the steps. The important part is compaction and context engineering and staying in the smart zone. But people are calling this RPI and there's nothing I can do about it. So just be wary. There is no perfect prompt. There is no silver bullet.\n\nIf you really want a hype word, you can call this harness engineering, which is part of context engineering, and it's how you integrate with the integration points on Codex, Claude, Cursor, whatever. How you customize your codebase.\n\nSo what's next? I think the coding agent stuff is actually going to be commoditized. People are going to learn how to do this and get better at it. And the hard part is going to be how do you adapt your team and your workflow and the SDLC to work in a world where 99% of your code is shipped by AI.\n\nAnd if you can't figure this out, you're hosed because there's kind of a rift growing where staff engineers don't adopt AI because it doesn't make them that much faster. And then junior mid-level engineers use a lot because it fills in skill gaps and then it also produces some slop. And then the senior engineers hate it more and more every week because they're cleaning up slop that was shipped by Cursor the week before.\n\nThis is not AI's fault. This is not the mid-level engineer's fault. Cultural change is really hard and it needs to come from the top if it's going to work. So if you're a technical leader at your company, pick one tool and get some reps.\n\nIf you want to help, we are hiring. We're building an agentic IDE to help teams of all sizes speedrun the journey to 99% AI-generated code. We'd love to talk if you want to work with us. Go hit our website, send us an email, come find me in the hallway.\n\nThank you all so much for your energy.\n",
+      "entity_slugs": [
+        "dex-horthy",
+        "humanlayer"
+      ]
+    },
+    {
+      "id": "doc-research-summary",
+      "document_kind": "research_summary",
+      "title": "Optimized research summary: context engineering for brownfield coding agents",
+      "canonical_url": "https://www.youtube.com/watch?v=rmvDxxNubIg",
+      "source_role": "primary",
+      "publisher": "AI Engineer",
+      "source_class": "transcript",
+      "target_vector_spaces": [
+        "engineering_claims"
+      ],
+      "text": "Dex Horthy argues that today's coding agents fail on brownfield and complex work mostly because teams dump noisy, incorrect, or overly long context into a stateless model—not because the models are too weak. He treats context engineering as the craft of putting better tokens in so better tokens come out, then shows a workflow built around frequent intentional compaction: compress progress into reviewed markdown, restart a fresh window, and keep utilization out of a 'dumb zone' that he places around 40% of a ~168k-token Claude Code window. Sub-agents exist to fork expensive search/read work and return a short pointer, not to play frontend/backend/QA roles. Research-plan-implement is one compaction cadence: research compresses codebase truth, the plan compresses intent with files, snippets, and tests, and implementation stays small. He reports HumanLayer's three-person team got 2–3x throughput after an eight-week collaboration rewrite, plus pairing anecdotes on BAML (a one-shot brownfield PR and 35k lines in 7 hours) and a failed Parquet Java Hadoop-removal attempt that sent them back to the whiteboard. The non-negotiable is human review at the highest-leverage artifacts: a bad research line can send the whole run the wrong way. Spec-driven development is dismissed as semantically diffused. The product close is HumanLayer's agentic IDE; surrounding context is the earlier 12-Factor Agents work and an official blog that restates the same compaction thesis.\n\nStrategy: {\"problem\": \"AI coding looks productive on greenfield work and small dashboards, but in established codebases it produces rework, churn, and slop that seniors then clean up.\", \"mechanism\": \"Treat the context window as the only runtime lever. Compact on purpose into reviewed markdown, use sub-agents only to isolate search context, and scale research-plan-implement effort with problem hardness while staying in the smart zone.\", \"human_loop\": \"Read research and plans before implementation. Move review effort upstream because a bad plan line can become a hundred bad lines of code.\", \"team_change\": \"Mental alignment is the real job of review when volume jumps 2–3x. Technical leaders must pick one tool, get reps, and drive cultural change from the top.\"}",
+      "entity_slugs": [
+        "dex-horthy",
+        "humanlayer"
+      ]
+    },
+    {
+      "id": "doc-homepage",
+      "document_kind": "official_homepage",
+      "title": "HumanLayer — multiplayer coding agent IDE and cloud",
+      "canonical_url": "https://humanlayer.dev/",
+      "source_role": "official",
+      "publisher": "HumanLayer",
+      "source_class": "web_page",
+      "target_vector_spaces": [
+        "source_native_sections"
+      ],
+      "text": "HumanLayer is a multiplayer coding agent IDE and cloud that works from a workstation to background agents. It brings agent sessions, plan artifacts, and code diffs together so teams can collaborate and ship. Official site positions the company as the team that brought context engineering, with companion material for No Vibes Allowed, RPI/QRSPI, and 12-Factor Agents. RPI research-plan-implement workflows are described as already open source. Contact: contact@humanlayer.dev. Cloud: https://cloud.humanlayer.com/",
+      "entity_slugs": [
+        "humanlayer"
+      ]
+    },
+    {
+      "id": "doc-blog-ace",
+      "document_kind": "official_blog",
+      "title": "Advanced Context Engineering for Coding Agents",
+      "canonical_url": "https://www.humanlayer.dev/blog/advanced-context-engineering",
+      "source_role": "official",
+      "publisher": "HumanLayer",
+      "source_class": "web_page",
+      "target_vector_spaces": [
+        "source_native_sections",
+        "engineering_claims"
+      ],
+      "text": "First-party HumanLayer blog (published 2025-08-29, author Dex) on getting coding agents to work in complex brownfield codebases. Cites Yegor's AI Engineer productivity talk (YouTube tbDDYKRFjhk) for rework/churn and greenfield-vs-brownfield findings, not a DOI. Introduces frequent intentional compaction, sub-agents as context control, and research-plan-implement. Reports BAML 300k LOC Rust pairing and a failed Parquet Java Hadoop-removal attempt. Emphasizes human review of research and plans as highest leverage.",
+      "entity_slugs": [
+        "dex-horthy",
+        "humanlayer"
+      ]
+    },
+    {
+      "id": "doc-repo-humanlayer",
+      "document_kind": "official_repository",
+      "title": "humanlayer/humanlayer",
+      "canonical_url": "https://github.com/humanlayer/humanlayer",
+      "source_role": "official",
+      "publisher": "GitHub / HumanLayer",
+      "source_class": "repository",
+      "target_vector_spaces": [
+        "source_native_sections"
+      ],
+      "text": "Official HumanLayer GitHub repository (https://github.com/humanlayer/humanlayer). Homepage listed as https://humanlayer.dev/code. Description: The best way to get AI coding agents to solve hard problems in complex codebases. Public README currently describes the tree as a public issues repo with deprecated application code and points rebuilds at humanlayer.com.",
+      "entity_slugs": [
+        "humanlayer"
+      ]
+    },
+    {
+      "id": "doc-repo-12fa",
+      "document_kind": "official_repository",
+      "title": "humanlayer/12-factor-agents",
+      "canonical_url": "https://github.com/humanlayer/12-factor-agents",
+      "source_role": "official",
+      "publisher": "GitHub / HumanLayer",
+      "source_class": "repository",
+      "target_vector_spaces": [
+        "source_native_sections"
+      ],
+      "text": "Official HumanLayer repository for 12-Factor Agents, the June 2025 AI Engineer talk Dex cites as prior context-engineering work. Description: principles for building LLM-powered software good enough for production customers. Linked from humanlayer.dev as the original context-engineering repo (April 2025). Surrounding context for this talk, not a second primary organization.",
+      "entity_slugs": [
+        "dex-horthy",
+        "humanlayer"
+      ]
+    },
+    {
+      "id": "doc-profile",
+      "document_kind": "entity_profile",
+      "title": "Dex Horthy and HumanLayer",
+      "canonical_url": "https://www.ycombinator.com/companies/humanlayer",
+      "source_role": "authoritative_secondary",
+      "publisher": "Y Combinator",
+      "source_class": "web_page",
+      "target_vector_spaces": [
+        "source_native_sections"
+      ],
+      "text": "Dexter Horthy (speaks as Dex Horthy) is Founder/CEO of HumanLayer, a YC Fall 2024 company founded in 2023. GitHub dexhorthy, X dexhorthy, LinkedIn dexterihorthy. HumanLayer official site https://humanlayer.dev/. GitHub org humanlayer.",
+      "entity_slugs": [
+        "dex-horthy",
+        "humanlayer"
+      ]
+    }
+  ],
+  "engineering_claims": [
+    {
+      "id": "claim-context-engineering",
+      "statement": "Context engineering is how you get the most out of today's models by managing the context window, rather than waiting for smarter models to fix brownfield failure.",
+      "claim_role": "attributed_speaker_assertion",
+      "problem": "Teams conclude coding agents cannot handle complex or brownfield work.",
+      "mechanism": "Better tokens in yield better tokens out because the model is stateless.",
+      "applicability": "Any coding-agent loop where the next tool call is chosen from conversation state.",
+      "limitations": "Does not claim a specific model or harness is sufficient by itself.",
+      "attribution": "Dex Horthy / HumanLayer, AI Engineer Code Summit 2025",
+      "locator_excerpt": "that's what context engineering is all about: how can we get the most out of today's models?",
+      "related_entities": [
+        "dex-horthy",
+        "humanlayer"
+      ]
+    },
+    {
+      "id": "claim-intentional-compaction",
+      "statement": "Intentional compaction—compressing the current window into a reviewed, tagged markdown file and starting a new agent—lets the next run skip rediscovery.",
+      "claim_role": "attributed_speaker_assertion",
+      "problem": "Naive re-steering fills the window with search, edits, logs, and MCP JSON until quality collapses.",
+      "mechanism": "Hand the next agent exact files, line numbers, and the current goal instead of the raw trajectory.",
+      "applicability": "Whether the current session is on track or not.",
+      "limitations": "Compaction quality still depends on human review of the markdown.",
+      "attribution": "Dex Horthy / HumanLayer, AI Engineer Code Summit 2025",
+      "locator_excerpt": "you can take your existing context window and ask the agent to compress it down into a markdown file",
+      "related_entities": [
+        "dex-horthy",
+        "humanlayer"
+      ]
+    },
+    {
+      "id": "claim-frequent-intentional-compaction",
+      "statement": "Frequent intentional compaction means building the entire workflow around keeping the window small and staying in the smart zone.",
+      "claim_role": "attributed_speaker_assertion",
+      "problem": "One-off compaction is not enough for hard brownfield work.",
+      "mechanism": "Research, then plan, then implement, compacting at each phase.",
+      "applicability": "Hard problems and multi-repo features; button-color changes do not need the full loop.",
+      "limitations": "RPI is a convenient cadence, not a sacred acronym; the durable idea is compaction.",
+      "attribution": "Dex Horthy / HumanLayer, AI Engineer Code Summit 2025",
+      "locator_excerpt": "a workflow I call frequent intentional compaction",
+      "related_entities": [
+        "dex-horthy",
+        "humanlayer"
+      ]
+    },
+    {
+      "id": "claim-brownfield",
+      "statement": "Coding agents work well on greenfield and small apps and poorly on complex brownfield tasks unless context is engineered; HumanLayer reports brownfield success on BAML and failure on Parquet Java Hadoop removal.",
+      "claim_role": "attributed_speaker_assertion",
+      "problem": "Rework and churn in established codebases, as Dex frames from Yegor's 100k-developer survey.",
+      "mechanism": "Objective research of the real files, plans with snippets and tests, then low-context implementation.",
+      "applicability": "Large existing systems (example: 300k-line Rust BAML).",
+      "limitations": "Some problems still require a whiteboard and an expert in the codebase; 35k-line BAML day included codegen/golden-file updates.",
+      "attribution": "Dex Horthy / HumanLayer, AI Engineer Code Summit 2025",
+      "locator_excerpt": "confirmed: works in brownfield codebases and no slop",
+      "related_entities": [
+        "dex-horthy",
+        "humanlayer"
+      ]
+    },
+    {
+      "id": "claim-subagents",
+      "statement": "Sub-agents are for controlling context, not for anthropomorphizing frontend/backend/QA/data-scientist roles.",
+      "claim_role": "attributed_speaker_assertion",
+      "problem": "Role-play sub-agents waste parent context and do not isolate search cost.",
+      "mechanism": "Fork a child window to read and search, then return a succinct locator so the parent reads one file and works.",
+      "applicability": "Large-codebase discovery when the harness supports sub-agents, or a custom equivalent.",
+      "limitations": "Getting a child to return a tight compaction is non-trivial.",
+      "attribution": "Dex Horthy / HumanLayer, AI Engineer Code Summit 2025",
+      "locator_excerpt": "Sub-agents are not for anthropomorphizing roles. They are for controlling context.",
+      "related_entities": [
+        "dex-horthy",
+        "humanlayer"
+      ]
+    },
+    {
+      "id": "claim-dumb-zone",
+      "statement": "Around 40% of a roughly 168k-token Claude Code window, diminishing returns start; too many MCPs put all work in the dumb zone.",
+      "claim_role": "attributed_speaker_assertion",
+      "problem": "Filled windows and noisy tool dumps degrade next-step selection.",
+      "mechanism": "Keep utilization in a smart zone; compact before the dumb zone.",
+      "applicability": "Guideline, task-dependent; reserved output/compaction tokens vary by model.",
+      "limitations": "Heuristic attributed in part to Geoff Huntley's observation that more context use yields worse outcomes.",
+      "attribution": "Dex Horthy / HumanLayer, AI Engineer Code Summit 2025",
+      "locator_excerpt": "Around the 40% line is where you're going to start to see some diminishing returns",
+      "related_entities": [
+        "dex-horthy",
+        "humanlayer"
+      ]
+    },
+    {
+      "id": "claim-trajectory",
+      "statement": "A conversation of error-then-yell trains the next tokens toward another error; optimize for correctness, completeness, size, and trajectory.",
+      "claim_role": "attributed_speaker_assertion",
+      "problem": "Re-steering by scolding the agent.",
+      "mechanism": "Restart or compact instead of accumulating a failure trajectory.",
+      "applicability": "Any multi-turn coding-agent session.",
+      "limitations": "Illustrative, not a measured RLHF result.",
+      "attribution": "Dex Horthy / HumanLayer, AI Engineer Code Summit 2025",
+      "locator_excerpt": "the next most likely token in this conversation is I better do something wrong",
+      "related_entities": [
+        "dex-horthy",
+        "humanlayer"
+      ]
+    },
+    {
+      "id": "claim-on-demand-context",
+      "statement": "Static repo onboarding docs rot and accumulate lies; prefer on-demand compressed context built from the code via steered research and sub-agent slices.",
+      "claim_role": "attributed_speaker_assertion",
+      "problem": "Root CLAUDE.md / progressive-disclosure files either blow the smart zone or go stale.",
+      "mechanism": "Launch research sub-agents through the relevant vertical and write a snapshot grounded in current code.",
+      "applicability": "Large monorepos and cross-cutting features (example: SCM providers plus Jira/Linear).",
+      "limitations": "Still requires steering about which part of the tree matters.",
+      "attribution": "Dex Horthy / HumanLayer, AI Engineer Code Summit 2025",
+      "locator_excerpt": "What we prefer is on-demand compressed context",
+      "related_entities": [
+        "dex-horthy",
+        "humanlayer"
+      ]
+    },
+    {
+      "id": "claim-human-leverage",
+      "statement": "Do not outsource the thinking: a bad research line can hose the run, a bad plan line can become a hundred bad lines, and AI only amplifies thinking already done.",
+      "claim_role": "attributed_speaker_assertion",
+      "problem": "Tools that spew markdown to feel productive, and treating RPI as a magic prompt.",
+      "mechanism": "Keep the builder in the loop reading plans as they are created; review research and plans before code.",
+      "applicability": "Any compaction workflow used for non-trivial changes.",
+      "limitations": "The Parquet Java attempt shows prompt-only compaction is not enough for some dependency problems.",
+      "attribution": "Dex Horthy / HumanLayer, AI Engineer Code Summit 2025",
+      "locator_excerpt": "Do not outsource the thinking. AI cannot replace thinking.",
+      "related_entities": [
+        "dex-horthy",
+        "humanlayer"
+      ]
+    },
+    {
+      "id": "claim-mental-alignment",
+      "statement": "Code review's most important job under high AI throughput is mental alignment; leaders can review plans with snippets instead of every line.",
+      "claim_role": "attributed_speaker_assertion",
+      "problem": "2–3x more code makes line-by-line review unsustainable.",
+      "mechanism": "Share research and plans, and optionally agent threads on PRs, so reviewers see steps, prompts, and tests.",
+      "applicability": "Small teams shipping much more AI-written code.",
+      "limitations": "Plans have a length sweet spot: longer is more reliable and less readable.",
+      "attribution": "Dex Horthy / HumanLayer, AI Engineer Code Summit 2025",
+      "locator_excerpt": "the most important thing is how do we keep everybody on the team on the same page",
+      "related_entities": [
+        "dex-horthy",
+        "humanlayer"
+      ]
+    },
+    {
+      "id": "claim-semantic-diffusion",
+      "statement": "Spec-driven development is broken as a phrase because of semantic diffusion; the useful work is compaction and staying in the smart zone, not the RPI label.",
+      "claim_role": "attributed_speaker_assertion",
+      "problem": "Spec now means a better prompt, a PRD, markdown-while-coding, or even library docs.",
+      "mechanism": "Drop the hype term and keep the tactical loop.",
+      "applicability": "Discourse and tooling marketing around specs and agents.",
+      "limitations": "Attributed to Martin Fowler 2006 on semantic diffusion and to Birgitta / ThoughtWorks on the phrase being ill-defined.",
+      "attribution": "Dex Horthy / HumanLayer, AI Engineer Code Summit 2025",
+      "locator_excerpt": "there will never be a year of agents because of semantic diffusion",
+      "related_entities": [
+        "dex-horthy",
+        "humanlayer"
+      ]
+    },
+    {
+      "id": "claim-culture",
+      "statement": "Coding agents will be commoditized; the hard part is adapting team workflow and SDLC, and that cultural change must come from technical leadership.",
+      "claim_role": "attributed_speaker_assertion",
+      "problem": "Staff skip AI, mid-levels ship slop, seniors resent cleanup.",
+      "mechanism": "Leaders pick one tool, get reps, and refuse tool min-maxing.",
+      "applicability": "Orgs aiming at very high AI-generated code share.",
+      "limitations": "Forward-looking; HumanLayer is selling the IDE that operationalizes this.",
+      "attribution": "Dex Horthy / HumanLayer, AI Engineer Code Summit 2025",
+      "locator_excerpt": "cultural change is really hard and it needs to come from the top if it's going to work",
+      "related_entities": [
+        "dex-horthy",
+        "humanlayer"
+      ]
+    }
+  ]
+}

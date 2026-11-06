@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "verification-benchmark-engineering-expectation.v1",
+  "sourceDatasetManifestDigest": "sha256:b625b311493f8c366ef43bf4047bf61f38d510fe7f3c340f50bca42de737dfe6",
+  "sourceCaseDigest": "sha256:cbe7feaf882365120aa475d0a7c175529d231a795129a125c3dc74bfce6c7411",
+  "caseId": "pace-cohort-source",
+  "provenance": "agent_reviewed_engineering_expectation",
+  "humanAnnotationCount": 0,
+  "expertAdjudicated": false,
+  "humanGoldScoringEligible": false,
+  "legacyGoldArtifactColumnSemantics": "engineering expectation artifact only; does not establish human-gold eligibility",
+  "expectation": {
+    "label": "supported_by_source",
+    "labelStatus": "engineering_expectation",
+    "expectedPolicy": "pass_with_warnings",
+    "expectedLocatorValid": true,
+    "support": "full",
+    "authority": "sufficient",
+    "worldCorrectness": "not_established",
+    "rationale": "The captured publication directly supports this bounded method or study statement; commercial applicability remains separate."
+  }
+}

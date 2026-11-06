@@ -1,0 +1,618 @@
+{
+  "project": {
+    "allocatedId": "8e031008-2a33-4f15-973c-6e769388cfd5",
+    "id": "8e031008-2a33-4f15-973c-6e769388cfd5",
+    "name": "BellLabs Knowledge Platform",
+    "url": "https://linear.app/overtonbell/project/belllabs-knowledge-platform-493e70ff8c2f",
+    "complete": true
+  },
+  "specification": {
+    "allocatedId": "4a1fd71c-5f3e-4ab2-bf9e-cca33da9ceed",
+    "id": "4a1fd71c-5f3e-4ab2-bf9e-cca33da9ceed",
+    "identifier": "OVE-87",
+    "title": "[KSP] Deliver the BellLabs Knowledge Platform specification",
+    "url": "https://linear.app/overtonbell/issue/OVE-87/ksp-deliver-the-belllabs-knowledge-platform-specification",
+    "complete": true
+  },
+  "documents": {
+    "VERIFICATION.md": {
+      "allocatedId": "052664e1-138a-4c33-bd56-bf15404a180c",
+      "id": "052664e1-138a-4c33-bd56-bf15404a180c",
+      "title": "Verification \u2014 evidence, assurance and native persistence",
+      "url": "https://linear.app/overtonbell/document/verification-evidence-assurance-and-native-persistence-9cbbd13cec0f",
+      "complete": true,
+      "sourceSha256": "e247e2134b36cd0f0ee0e80aec9ddf82dc04d250ee74ea803fc983a186dd0623"
+    },
+    "DOMAIN-SURFACES.md": {
+      "allocatedId": "163936b0-9794-4fd3-a004-b36bd64053f6",
+      "id": "163936b0-9794-4fd3-a004-b36bd64053f6",
+      "title": "Domain products \u2014 APIs, retrieval, skills and Jev",
+      "url": "https://linear.app/overtonbell/document/domain-products-apis-retrieval-skills-and-jev-a33702dba843",
+      "complete": true,
+      "sourceSha256": "9f5f3cb987e7849ec42e122a2fb83aac877603d20ae7374ff8b6ebbd6b5fca65"
+    },
+    "DELIVERY-CAPABILITIES.md": {
+      "allocatedId": "696a0711-6f28-4781-825f-abc161cb37d5",
+      "id": "696a0711-6f28-4781-825f-abc161cb37d5",
+      "title": "Delivery \u2014 capability catalogs, maintenance and deployments",
+      "url": "https://linear.app/overtonbell/document/delivery-capability-catalogs-maintenance-and-deployments-2b93f280cc79",
+      "complete": true,
+      "sourceSha256": "f98e93d53e045b7b92d85eef3145ff05a45cc5afda84d8856ebb700eb768cd14"
+    },
+    "ADRS.md": {
+      "allocatedId": "84f689c2-552b-4917-9861-0300b32822c4",
+      "id": "84f689c2-552b-4917-9861-0300b32822c4",
+      "title": "Architecture decisions \u2014 BellLabs Knowledge Platform",
+      "url": "https://linear.app/overtonbell/document/architecture-decisions-belllabs-knowledge-platform-32cbfe2aa63e",
+      "complete": true,
+      "sourceSha256": "7cffb917cf4daed4e2eb8c9a56d2526b4373037f4db8b630e250bc2bb170f441"
+    },
+    "PLAN.md": {
+      "allocatedId": "2bbfce00-7864-4c6b-94b9-8969ff3305eb",
+      "id": "2bbfce00-7864-4c6b-94b9-8969ff3305eb",
+      "title": "Implementation plan \u2014 dependencies and final acceptance",
+      "url": "https://linear.app/overtonbell/document/implementation-plan-dependencies-and-final-acceptance-f4a8e093841c",
+      "complete": true,
+      "sourceSha256": "cb44dba8281f1223682759f997e235c1457d66694b89385a17c5bab130d6def6"
+    },
+    "SPECIFICATION.md": {
+      "allocatedId": "ea77efe1-539b-42fc-9682-7f6bf1404df3",
+      "id": "ea77efe1-539b-42fc-9682-7f6bf1404df3",
+      "title": "Final specification \u2014 BellLabs Knowledge Platform",
+      "url": "https://linear.app/overtonbell/document/final-specification-belllabs-knowledge-platform-e3bfea9389c7",
+      "complete": true,
+      "sourceSha256": "6aab43264dfe2fadce5084bfa7263120b431ca267287498cf06dc73c984cbfae"
+    },
+    "CLARIFICATIONS.md": {
+      "allocatedId": "9cb3a23e-b58b-48f9-9626-9ef856b811e1",
+      "id": "9cb3a23e-b58b-48f9-9626-9ef856b811e1",
+      "title": "Decision interviews \u2014 schema, agents, corpus and clients",
+      "url": "https://linear.app/overtonbell/document/decision-interviews-schema-agents-corpus-and-clients-75c19be8b838",
+      "complete": true,
+      "sourceSha256": "19dec81d7b2088f617284055f01e6969345d8c739ce12c52113db2984db24e73"
+    },
+    "GRAPHQL-CLIENT.md": {
+      "allocatedId": "559e5d56-ddee-413b-8ff7-0863185dba5f",
+      "id": "559e5d56-ddee-413b-8ff7-0863185dba5f",
+      "title": "Biotech GraphQL \u2014 optimization, Fly and typed web/Expo client",
+      "url": "https://linear.app/overtonbell/document/biotech-graphql-optimization-fly-and-typed-webexpo-client-d049026540d8",
+      "complete": true,
+      "sourceSha256": "210ab3eba2361e5ee0fdfb68f23c14cd0f6d8e6bca5a090030b3be2b0fae1c3c"
+    },
+    "NATIVE-RETRIEVAL-INGESTION.md": {
+      "allocatedId": "bf315a7a-3fad-4d4a-9865-ff0f70b026cd",
+      "id": "bf315a7a-3fad-4d4a-9865-ff0f70b026cd",
+      "title": "Native agents \u2014 retrieval, ingestion and backend-specific GraphRAG",
+      "url": "https://linear.app/overtonbell/document/native-agents-retrieval-ingestion-and-backend-specific-graphrag-f16b1df066a4",
+      "complete": true,
+      "sourceSha256": "7b9a5eaad79152b83c887794c78d72537a4b3d3691889e2335cefb4f4c7f458e"
+    }
+  },
+  "milestones": {
+    "M1": {
+      "allocatedId": "faf81678-3399-4820-a270-9439e6890555",
+      "id": "faf81678-3399-4820-a270-9439e6890555",
+      "name": "M1 \u2014 Boundaries and native verification",
+      "complete": true
+    },
+    "M2": {
+      "allocatedId": "5f655bfe-cb77-4ad9-908f-6c12ef50f682",
+      "id": "5f655bfe-cb77-4ad9-908f-6c12ef50f682",
+      "name": "M2 \u2014 Verification assurance and optimization",
+      "complete": true
+    },
+    "M3": {
+      "allocatedId": "7af90aee-66d0-4a0f-a149-6e840fa16fbb",
+      "id": "7af90aee-66d0-4a0f-a149-6e840fa16fbb",
+      "name": "M3 \u2014 Product retrieval and domain procedures",
+      "complete": true
+    },
+    "M4": {
+      "allocatedId": "260df354-1a30-4b4d-880f-e5dd1633e89c",
+      "id": "260df354-1a30-4b4d-880f-e5dd1633e89c",
+      "name": "M4 \u2014 Complete domain distributions",
+      "complete": true
+    },
+    "M5": {
+      "allocatedId": "66294b73-6936-4e96-970f-10189e2d0abc",
+      "id": "66294b73-6936-4e96-970f-10189e2d0abc",
+      "name": "M5 \u2014 Release and maintenance readiness",
+      "complete": true
+    },
+    "M6": {
+      "allocatedId": "07f6f350-339e-4c11-a2d5-ee6988e0be57",
+      "id": "07f6f350-339e-4c11-a2d5-ee6988e0be57",
+      "name": "M6 \u2014 Final application acceptance",
+      "complete": true
+    },
+    "M7": {
+      "allocatedId": "884c46c4-dc49-40a0-bbd2-90daa7844d32",
+      "id": "884c46c4-dc49-40a0-bbd2-90daa7844d32",
+      "name": "M7 \u2014 Biotech GraphQL and typed application client",
+      "complete": true
+    }
+  },
+  "issues": {
+    "F01": {
+      "allocatedId": "0934de4d-5a60-4bc4-b9dd-81a0e3fbb5a8",
+      "id": "0934de4d-5a60-4bc4-b9dd-81a0e3fbb5a8",
+      "identifier": "OVE-88",
+      "title": "[KSP-F01] Describe and validate an application-bound knowledge installation",
+      "url": "https://linear.app/overtonbell/issue/OVE-88/ksp-f01-describe-and-validate-an-application-bound-knowledge",
+      "complete": true
+    },
+    "D01": {
+      "allocatedId": "ef441b16-8b1a-40ff-8edd-61257b80a52f",
+      "id": "ef441b16-8b1a-40ff-8edd-61257b80a52f",
+      "identifier": "OVE-89",
+      "title": "[KSP-D01] Reconcile a complete per-application capability assembly",
+      "url": "https://linear.app/overtonbell/issue/OVE-89/ksp-d01-reconcile-a-complete-per-application-capability-assembly",
+      "complete": true
+    },
+    "F02": {
+      "allocatedId": "5f8c4fbd-c76b-4639-90a8-9b7dd1f40739",
+      "id": "5f8c4fbd-c76b-4639-90a8-9b7dd1f40739",
+      "identifier": "OVE-90",
+      "title": "[KSP-F02] Authorize one scoped knowledge read for product and external consumers",
+      "url": "https://linear.app/overtonbell/issue/OVE-90/ksp-f02-authorize-one-scoped-knowledge-read-for-product-and-external",
+      "complete": true
+    },
+    "V01": {
+      "allocatedId": "e38481cc-1e69-41c9-86d6-b094ebc7f35c",
+      "id": "e38481cc-1e69-41c9-86d6-b094ebc7f35c",
+      "identifier": "OVE-91",
+      "title": "[KSP-V01] Verify a versioned claim with explicit obligations and support sets",
+      "url": "https://linear.app/overtonbell/issue/OVE-91/ksp-v01-verify-a-versioned-claim-with-explicit-obligations-and-support",
+      "complete": true
+    },
+    "D02": {
+      "allocatedId": "3b5722dd-590f-4488-b8b8-cf6ffa8f8dff",
+      "id": "3b5722dd-590f-4488-b8b8-cf6ffa8f8dff",
+      "identifier": "OVE-92",
+      "title": "[KSP-D02] Publish and materialize an exact app-scoped skill bundle",
+      "url": "https://linear.app/overtonbell/issue/OVE-92/ksp-d02-publish-and-materialize-an-exact-app-scoped-skill-bundle",
+      "complete": true
+    },
+    "V02": {
+      "allocatedId": "a6d80319-55e2-493c-a422-c3676ab002b8",
+      "id": "a6d80319-55e2-493c-a422-c3676ab002b8",
+      "identifier": "OVE-93",
+      "title": "[KSP-V02] Reject a report that omits material assertions or original obligations",
+      "url": "https://linear.app/overtonbell/issue/OVE-93/ksp-v02-reject-a-report-that-omits-material-assertions-or-original",
+      "complete": true
+    },
+    "V03": {
+      "allocatedId": "816e01b6-547f-433f-a4cd-86c253193d0c",
+      "id": "816e01b6-547f-433f-a4cd-86c253193d0c",
+      "identifier": "OVE-94",
+      "title": "[KSP-V03] Route verification through pinned education, engineering and science policies",
+      "url": "https://linear.app/overtonbell/issue/OVE-94/ksp-v03-route-verification-through-pinned-education-engineering-and",
+      "complete": true
+    },
+    "V04": {
+      "allocatedId": "e320c22f-dcbd-4eae-a5c3-da53e42498a0",
+      "id": "e320c22f-dcbd-4eae-a5c3-da53e42498a0",
+      "identifier": "OVE-95",
+      "title": "[KSP-V04] Persist standalone and mission-linked verification through one owned SQL component",
+      "url": "https://linear.app/overtonbell/issue/OVE-95/ksp-v04-persist-standalone-and-mission-linked-verification-through-one",
+      "complete": true
+    },
+    "R01": {
+      "allocatedId": "61b0dd64-86c8-4038-98a5-9bf8f1ab0072",
+      "id": "61b0dd64-86c8-4038-98a5-9bf8f1ab0072",
+      "identifier": "OVE-96",
+      "title": "[KSP-R01] Answer familiar AI Engineer questions through direct and Fast retrieval",
+      "url": "https://linear.app/overtonbell/issue/OVE-96/ksp-r01-answer-familiar-ai-engineer-questions-through-direct-and-fast",
+      "complete": true
+    },
+    "R02": {
+      "allocatedId": "de82de8c-4ee1-43c1-8b1b-717251f178ce",
+      "id": "de82de8c-4ee1-43c1-8b1b-717251f178ce",
+      "identifier": "OVE-97",
+      "title": "[KSP-R02] Answer familiar Biotech questions through bounded graph and evidence reads",
+      "url": "https://linear.app/overtonbell/issue/OVE-97/ksp-r02-answer-familiar-biotech-questions-through-bounded-graph-and",
+      "complete": true
+    },
+    "D05": {
+      "allocatedId": "665fe277-83ec-4858-9602-428db68f8428",
+      "id": "665fe277-83ec-4858-9602-428db68f8428",
+      "identifier": "OVE-98",
+      "title": "[KSP-D05] Capture provider and fallback results with truthful evidence contracts",
+      "url": "https://linear.app/overtonbell/issue/OVE-98/ksp-d05-capture-provider-and-fallback-results-with-truthful-evidence",
+      "complete": true
+    },
+    "V05": {
+      "allocatedId": "c8083574-d203-4d0a-8a8a-abd566190ec6",
+      "id": "c8083574-d203-4d0a-8a8a-abd566190ec6",
+      "identifier": "OVE-99",
+      "title": "[KSP-V05] Evaluate source authority, applicability and bounded counterevidence",
+      "url": "https://linear.app/overtonbell/issue/OVE-99/ksp-v05-evaluate-source-authority-applicability-and-bounded",
+      "complete": true
+    },
+    "V06": {
+      "allocatedId": "633724c3-1b44-4886-a4dd-5241ce845aaa",
+      "id": "633724c3-1b44-4886-a4dd-5241ce845aaa",
+      "identifier": "OVE-100",
+      "title": "[KSP-V06] Admit an exact verified knowledge effect into AI Engineer PostgreSQL",
+      "url": "https://linear.app/overtonbell/issue/OVE-100/ksp-v06-admit-an-exact-verified-knowledge-effect-into-ai-engineer",
+      "complete": true
+    },
+    "V07": {
+      "allocatedId": "2941b301-074e-476a-9a9f-fe3791c90e32",
+      "id": "2941b301-074e-476a-9a9f-fe3791c90e32",
+      "identifier": "OVE-101",
+      "title": "[KSP-V07] Admit a verified Biotech effect through a minimal versioned graph binding",
+      "url": "https://linear.app/overtonbell/issue/OVE-101/ksp-v07-admit-a-verified-biotech-effect-through-a-minimal-versioned",
+      "complete": true
+    },
+    "V10": {
+      "allocatedId": "44089d12-3ff2-4e46-be7d-8e71cf3c3686",
+      "id": "44089d12-3ff2-4e46-be7d-8e71cf3c3686",
+      "identifier": "OVE-102",
+      "title": "[KSP-V10] Reuse evidence-bound observations without inventing fresh verification",
+      "url": "https://linear.app/overtonbell/issue/OVE-102/ksp-v10-reuse-evidence-bound-observations-without-inventing-fresh",
+      "complete": true
+    },
+    "J01": {
+      "allocatedId": "c2415a2a-e138-446e-b598-91b51bf3e4ea",
+      "id": "c2415a2a-e138-446e-b598-91b51bf3e4ea",
+      "identifier": "OVE-103",
+      "title": "[KSP-J01] Use an AI Engineer Jev recipe in an executable domain procedure",
+      "url": "https://linear.app/overtonbell/issue/OVE-103/ksp-j01-use-an-ai-engineer-jev-recipe-in-an-executable-domain",
+      "complete": true
+    },
+    "J02": {
+      "allocatedId": "72b12a78-d350-4e15-8ce3-3a132ff61c92",
+      "id": "72b12a78-d350-4e15-8ce3-3a132ff61c92",
+      "identifier": "OVE-104",
+      "title": "[KSP-J02] Use a Biotech Jev recipe for scientific applicability triage",
+      "url": "https://linear.app/overtonbell/issue/OVE-104/ksp-j02-use-a-biotech-jev-recipe-for-scientific-applicability-triage",
+      "complete": true
+    },
+    "R03": {
+      "allocatedId": "f71cc127-df7c-4b8c-b301-559ddede3fab",
+      "id": "f71cc127-df7c-4b8c-b301-559ddede3fab",
+      "identifier": "OVE-105",
+      "title": "[KSP-R03] Explore unfamiliar questions with bounded schema slices",
+      "url": "https://linear.app/overtonbell/issue/OVE-105/ksp-r03-explore-unfamiliar-questions-with-bounded-schema-slices",
+      "complete": true
+    },
+    "X01": {
+      "allocatedId": "22ed2d46-9f6f-4742-81f4-dd2d407f5c9c",
+      "id": "22ed2d46-9f6f-4742-81f4-dd2d407f5c9c",
+      "identifier": "OVE-106",
+      "title": "[KSP-X01] Fold bounded database operations into canonical application surfaces",
+      "url": "https://linear.app/overtonbell/issue/OVE-106/ksp-x01-fold-bounded-database-operations-into-canonical-application",
+      "complete": true
+    },
+    "V08": {
+      "allocatedId": "c69bee4c-ab6c-4c22-b05d-843f6d4b8075",
+      "id": "c69bee4c-ab6c-4c22-b05d-843f6d4b8075",
+      "identifier": "OVE-107",
+      "title": "[KSP-V08] Recover cross-store result delivery and prevent stale official use",
+      "url": "https://linear.app/overtonbell/issue/OVE-107/ksp-v08-recover-cross-store-result-delivery-and-prevent-stale-official",
+      "complete": true
+    },
+    "V09": {
+      "allocatedId": "b66e09a9-cbeb-41f5-907e-abc4449cdf96",
+      "id": "b66e09a9-cbeb-41f5-907e-abc4449cdf96",
+      "identifier": "OVE-108",
+      "title": "[KSP-V09] Import independent labels and publish honest calibration state",
+      "url": "https://linear.app/overtonbell/issue/OVE-108/ksp-v09-import-independent-labels-and-publish-honest-calibration-state",
+      "complete": true
+    },
+    "V11": {
+      "allocatedId": "7fa912e0-4447-4af7-815f-35d5e266f377",
+      "id": "7fa912e0-4447-4af7-815f-35d5e266f377",
+      "identifier": "OVE-109",
+      "title": "[KSP-V11] Batch and schedule semantic checks within isolated budgets",
+      "url": "https://linear.app/overtonbell/issue/OVE-109/ksp-v11-batch-and-schedule-semantic-checks-within-isolated-budgets",
+      "complete": true
+    },
+    "C01": {
+      "allocatedId": "10f5b814-c798-4986-a688-0576ffa35e82",
+      "id": "10f5b814-c798-4986-a688-0576ffa35e82",
+      "identifier": "OVE-110",
+      "title": "[KSP-C01] Create and publish an evidence-bound AI Engineer learning artifact",
+      "url": "https://linear.app/overtonbell/issue/OVE-110/ksp-c01-create-and-publish-an-evidence-bound-ai-engineer-learning",
+      "complete": true
+    },
+    "C02": {
+      "allocatedId": "9af0a50c-c397-4786-b26e-e10afd8cbcd4",
+      "id": "9af0a50c-c397-4786-b26e-e10afd8cbcd4",
+      "identifier": "OVE-111",
+      "title": "[KSP-C02] Create and publish an evidence-bound Biotech research artifact",
+      "url": "https://linear.app/overtonbell/issue/OVE-111/ksp-c02-create-and-publish-an-evidence-bound-biotech-research-artifact",
+      "complete": true
+    },
+    "X03": {
+      "allocatedId": "a40ad35e-e210-499b-88b3-a7dfb15847f6",
+      "id": "a40ad35e-e210-499b-88b3-a7dfb15847f6",
+      "identifier": "OVE-112",
+      "title": "[KSP-X03] Expose Jev through the canonical CLI without replacing its queue implicitly",
+      "url": "https://linear.app/overtonbell/issue/OVE-112/ksp-x03-expose-jev-through-the-canonical-cli-without-replacing-its",
+      "complete": true
+    },
+    "V12": {
+      "allocatedId": "c4743543-9848-4983-94cd-698f07875151",
+      "id": "c4743543-9848-4983-94cd-698f07875151",
+      "identifier": "OVE-113",
+      "title": "[KSP-V12] Revalidate affected claims and uses after evidence or content revision",
+      "url": "https://linear.app/overtonbell/issue/OVE-113/ksp-v12-revalidate-affected-claims-and-uses-after-evidence-or-content",
+      "complete": true
+    },
+    "V14": {
+      "allocatedId": "c94d1c67-a063-48ba-a8cf-5207b694c365",
+      "id": "c94d1c67-a063-48ba-a8cf-5207b694c365",
+      "identifier": "OVE-114",
+      "title": "[KSP-V14] Expose equivalent verification admission and recovery across API MCP and CLI",
+      "url": "https://linear.app/overtonbell/issue/OVE-114/ksp-v14-expose-equivalent-verification-admission-and-recovery-across",
+      "complete": true
+    },
+    "P01": {
+      "allocatedId": "77c395c7-9c15-4a68-aaf8-54a17c48ee5d",
+      "id": "77c395c7-9c15-4a68-aaf8-54a17c48ee5d",
+      "identifier": "OVE-115",
+      "title": "[KSP-P01] Compose AI Engineer user state and knowledge into a product API",
+      "url": "https://linear.app/overtonbell/issue/OVE-115/ksp-p01-compose-ai-engineer-user-state-and-knowledge-into-a-product",
+      "complete": true
+    },
+    "P02": {
+      "allocatedId": "352e4049-ed5a-4777-87d9-b49447ba5f6a",
+      "id": "352e4049-ed5a-4777-87d9-b49447ba5f6a",
+      "identifier": "OVE-116",
+      "title": "[KSP-P02] Compose Biotech saved research and knowledge into a product API",
+      "url": "https://linear.app/overtonbell/issue/OVE-116/ksp-p02-compose-biotech-saved-research-and-knowledge-into-a-product",
+      "complete": true
+    },
+    "V13": {
+      "allocatedId": "e1cef4f9-05ce-4ed5-b58a-12b5de72c97f",
+      "id": "e1cef4f9-05ce-4ed5-b58a-12b5de72c97f",
+      "identifier": "OVE-117",
+      "title": "[KSP-V13] Qualify verification quality and full cost on paired domain evaluations",
+      "url": "https://linear.app/overtonbell/issue/OVE-117/ksp-v13-qualify-verification-quality-and-full-cost-on-paired-domain",
+      "complete": true
+    },
+    "A01": {
+      "allocatedId": "78481dac-5ef4-4547-8e24-a72767c66346",
+      "id": "78481dac-5ef4-4547-8e24-a72767c66346",
+      "identifier": "OVE-118",
+      "title": "[KSP-A01] Delegate a Research request to a durable mission and reconnect",
+      "url": "https://linear.app/overtonbell/issue/OVE-118/ksp-a01-delegate-a-research-request-to-a-durable-mission-and-reconnect",
+      "complete": true
+    },
+    "X02": {
+      "allocatedId": "0f6caf82-adfc-4002-9754-c49786962791",
+      "id": "0f6caf82-adfc-4002-9754-c49786962791",
+      "identifier": "OVE-119",
+      "title": "[KSP-X02] Unify verification hosts and transports while preserving sealed replay",
+      "url": "https://linear.app/overtonbell/issue/OVE-119/ksp-x02-unify-verification-hosts-and-transports-while-preserving",
+      "complete": true
+    },
+    "D03": {
+      "allocatedId": "707e3668-ed41-423e-80ea-8bb9bee32f9a",
+      "id": "707e3668-ed41-423e-80ea-8bb9bee32f9a",
+      "identifier": "OVE-120",
+      "title": "[KSP-D03] Install the complete AI Engineer domain skill and MCP assembly",
+      "url": "https://linear.app/overtonbell/issue/OVE-120/ksp-d03-install-the-complete-ai-engineer-domain-skill-and-mcp-assembly",
+      "complete": true
+    },
+    "D04": {
+      "allocatedId": "6562c206-ff25-4f09-bbbb-489d4c007a48",
+      "id": "6562c206-ff25-4f09-bbbb-489d4c007a48",
+      "identifier": "OVE-121",
+      "title": "[KSP-D04] Install the complete Biotech domain skill and MCP assembly",
+      "url": "https://linear.app/overtonbell/issue/OVE-121/ksp-d04-install-the-complete-biotech-domain-skill-and-mcp-assembly",
+      "complete": true
+    },
+    "P03": {
+      "allocatedId": "d7aaeae3-5bd3-4b17-96f7-4cc7045103a4",
+      "id": "d7aaeae3-5bd3-4b17-96f7-4cc7045103a4",
+      "identifier": "OVE-122",
+      "title": "[KSP-P03] Run the client-facing Deep Agent with both domain assemblies",
+      "url": "https://linear.app/overtonbell/issue/OVE-122/ksp-p03-run-the-client-facing-deep-agent-with-both-domain-assemblies",
+      "complete": true
+    },
+    "P04": {
+      "allocatedId": "a64a5a13-7c79-4988-af30-210f4f3fe1b5",
+      "id": "a64a5a13-7c79-4988-af30-210f4f3fe1b5",
+      "identifier": "OVE-123",
+      "title": "[KSP-P04] Accept scoped external-agent progress and artifact handshakes",
+      "url": "https://linear.app/overtonbell/issue/OVE-123/ksp-p04-accept-scoped-external-agent-progress-and-artifact-handshakes",
+      "complete": true
+    },
+    "D06": {
+      "allocatedId": "c3658225-6324-41a9-859f-61c31173995a",
+      "id": "c3658225-6324-41a9-859f-61c31173995a",
+      "identifier": "OVE-124",
+      "title": "[KSP-D06] Qualify external MCP, CLI and skill consumers for both applications",
+      "url": "https://linear.app/overtonbell/issue/OVE-124/ksp-d06-qualify-external-mcp-cli-and-skill-consumers-for-both",
+      "complete": true
+    },
+    "D07": {
+      "allocatedId": "630552b9-9dfb-4b1d-a497-abbd98fcf2d3",
+      "id": "630552b9-9dfb-4b1d-a497-abbd98fcf2d3",
+      "identifier": "OVE-125",
+      "title": "[KSP-D07] Upgrade a compatible application release with in-flight work",
+      "url": "https://linear.app/overtonbell/issue/OVE-125/ksp-d07-upgrade-a-compatible-application-release-with-in-flight-work",
+      "complete": true
+    },
+    "D08": {
+      "allocatedId": "6796511b-3635-4a29-a71d-7541ef4a2099",
+      "id": "6796511b-3635-4a29-a71d-7541ef4a2099",
+      "identifier": "OVE-126",
+      "title": "[KSP-D08] Route maintenance proposals through affected-domain compatibility checks",
+      "url": "https://linear.app/overtonbell/issue/OVE-126/ksp-d08-route-maintenance-proposals-through-affected-domain",
+      "complete": true
+    },
+    "D09": {
+      "allocatedId": "0e35ec95-c1a0-41b8-bfdd-9be178024eec",
+      "id": "0e35ec95-c1a0-41b8-bfdd-9be178024eec",
+      "identifier": "OVE-127",
+      "title": "[KSP-D09] Retire obsolete executor and capability versions after consumer migration",
+      "url": "https://linear.app/overtonbell/issue/OVE-127/ksp-d09-retire-obsolete-executor-and-capability-versions-after",
+      "complete": true
+    },
+    "D10": {
+      "allocatedId": "a27994a0-518e-4fa4-b4ba-7e93e2f3a35d",
+      "id": "a27994a0-518e-4fa4-b4ba-7e93e2f3a35d",
+      "identifier": "OVE-128",
+      "title": "[KSP-D10] Qualify both application installations before final workflows",
+      "url": "https://linear.app/overtonbell/issue/OVE-128/ksp-d10-qualify-both-application-installations-before-final-workflows",
+      "complete": true
+    },
+    "F99": {
+      "allocatedId": "9a186d5e-12bf-4d63-8af6-b4e31227c742",
+      "id": "9a186d5e-12bf-4d63-8af6-b4e31227c742",
+      "identifier": "OVE-129",
+      "title": "[KSP-F99] Run the final AI Engineer and Biotech application fixtures",
+      "url": "https://linear.app/overtonbell/issue/OVE-129/ksp-f99-run-the-final-ai-engineer-and-biotech-application-fixtures",
+      "complete": true
+    },
+    "G00": {
+      "allocatedId": "5651829b-8edf-4a42-9681-5614b38f9050",
+      "id": "5651829b-8edf-4a42-9681-5614b38f9050",
+      "identifier": "OVE-130",
+      "title": "[KSP-G00] Reconcile the deployed GraphQL service with schema and Fly configuration",
+      "url": "https://linear.app/overtonbell/issue/OVE-130/ksp-g00-reconcile-the-deployed-graphql-service-with-schema-and-fly",
+      "complete": true
+    },
+    "Q01": {
+      "allocatedId": "76d9ada3-6b83-4aaa-b640-dd80757e2a44",
+      "id": "76d9ada3-6b83-4aaa-b640-dd80757e2a44",
+      "identifier": "OVE-131",
+      "title": "[KSP-Q01] Interview and record the staged v2 schema adoption boundary",
+      "url": "https://linear.app/overtonbell/issue/OVE-131/ksp-q01-interview-and-record-the-staged-v2-schema-adoption-boundary",
+      "complete": true
+    },
+    "Q02": {
+      "allocatedId": "b6ab4e36-d13e-4f88-8afc-08c033b355a2",
+      "id": "b6ab4e36-d13e-4f88-8afc-08c033b355a2",
+      "identifier": "OVE-132",
+      "title": "[KSP-Q02] Interview and select native agent read and write artifact semantics",
+      "url": "https://linear.app/overtonbell/issue/OVE-132/ksp-q02-interview-and-select-native-agent-read-and-write-artifact",
+      "complete": true
+    },
+    "Q03": {
+      "allocatedId": "a27e8f51-94fd-469b-b139-9d70acab8c83",
+      "id": "a27e8f51-94fd-469b-b139-9d70acab8c83",
+      "identifier": "OVE-133",
+      "title": "[KSP-Q03] Interview and select the Biotech corpus embedding and GraphRAG contract",
+      "url": "https://linear.app/overtonbell/issue/OVE-133/ksp-q03-interview-and-select-the-biotech-corpus-embedding-and-graphrag",
+      "complete": true
+    },
+    "Q04": {
+      "allocatedId": "a699e49d-192e-41a4-99e3-0fc25ebca06c",
+      "id": "a699e49d-192e-41a4-99e3-0fc25ebca06c",
+      "identifier": "OVE-134",
+      "title": "[KSP-Q04] Interview and freeze first web and Expo operations and access rules",
+      "url": "https://linear.app/overtonbell/issue/OVE-134/ksp-q04-interview-and-freeze-first-web-and-expo-operations-and-access",
+      "complete": true
+    },
+    "G01": {
+      "allocatedId": "cde2432d-ec23-45dd-9cfb-661774cd71df",
+      "id": "cde2432d-ec23-45dd-9cfb-661774cd71df",
+      "identifier": "OVE-135",
+      "title": "[KSP-G01] Export a reviewed executable GraphQL read contract for one product slice",
+      "url": "https://linear.app/overtonbell/issue/OVE-135/ksp-g01-export-a-reviewed-executable-graphql-read-contract-for-one",
+      "complete": true
+    },
+    "G02": {
+      "allocatedId": "4ccfc9d5-e250-4492-b951-454b677503fc",
+      "id": "4ccfc9d5-e250-4492-b951-454b677503fc",
+      "identifier": "OVE-136",
+      "title": "[KSP-G02] Bound the first product GraphQL operations using actual schema semantics",
+      "url": "https://linear.app/overtonbell/issue/OVE-136/ksp-g02-bound-the-first-product-graphql-operations-using-actual-schema",
+      "complete": true
+    },
+    "N01": {
+      "allocatedId": "8d89dec8-bc3d-434f-9777-e6373e04d7e4",
+      "id": "8d89dec8-bc3d-434f-9777-e6373e04d7e4",
+      "identifier": "OVE-137",
+      "title": "[KSP-N01] Execute and retain a native agent read under the selected artifact contract",
+      "url": "https://linear.app/overtonbell/issue/OVE-137/ksp-n01-execute-and-retain-a-native-agent-read-under-the-selected",
+      "complete": true
+    },
+    "N02": {
+      "allocatedId": "fcbbfee2-66f5-4413-be01-11ac8e901556",
+      "id": "fcbbfee2-66f5-4413-be01-11ac8e901556",
+      "identifier": "OVE-138",
+      "title": "[KSP-N02] Make native ingestion snapshot preconditions and lost-response replay truthful",
+      "url": "https://linear.app/overtonbell/issue/OVE-138/ksp-n02-make-native-ingestion-snapshot-preconditions-and-lost-response",
+      "complete": true
+    },
+    "G03": {
+      "allocatedId": "fa416c3f-547f-4a97-b73a-23148253eff8",
+      "id": "fa416c3f-547f-4a97-b73a-23148253eff8",
+      "identifier": "OVE-139",
+      "title": "[KSP-G03] Serve an authorized product entity and evidence view through GraphQL",
+      "url": "https://linear.app/overtonbell/issue/OVE-139/ksp-g03-serve-an-authorized-product-entity-and-evidence-view-through",
+      "complete": true
+    },
+    "G04": {
+      "allocatedId": "bdcf4e6d-7948-48cd-b008-89200acd32d4",
+      "id": "bdcf4e6d-7948-48cd-b008-89200acd32d4",
+      "identifier": "OVE-140",
+      "title": "[KSP-G04] Ship a transport-neutral typed GraphQL client for the approved operations",
+      "url": "https://linear.app/overtonbell/issue/OVE-140/ksp-g04-ship-a-transport-neutral-typed-graphql-client-for-the-approved",
+      "complete": true
+    },
+    "G05": {
+      "allocatedId": "44be8f2d-538c-4a2f-8f9f-553c07f41101",
+      "id": "44be8f2d-538c-4a2f-8f9f-553c07f41101",
+      "identifier": "OVE-141",
+      "title": "[KSP-G05] Consume one entity and evidence page in web and Expo",
+      "url": "https://linear.app/overtonbell/issue/OVE-141/ksp-g05-consume-one-entity-and-evidence-page-in-web-and-expo",
+      "complete": true
+    },
+    "G06": {
+      "allocatedId": "3ccd733e-7134-44f9-b5f6-e7b755985946",
+      "id": "3ccd733e-7134-44f9-b5f6-e7b755985946",
+      "identifier": "OVE-142",
+      "title": "[KSP-G06] Optimize selected GraphQL reads against measured plans and indexes",
+      "url": "https://linear.app/overtonbell/issue/OVE-142/ksp-g06-optimize-selected-graphql-reads-against-measured-plans-and",
+      "complete": true
+    },
+    "N03": {
+      "allocatedId": "3949f18c-ebb7-46ed-9a59-d5e79002c53b",
+      "id": "3949f18c-ebb7-46ed-9a59-d5e79002c53b",
+      "identifier": "OVE-143",
+      "title": "[KSP-N03] Migrate and ingest one approved v2 entity assertion and evidence case",
+      "url": "https://linear.app/overtonbell/issue/OVE-143/ksp-n03-migrate-and-ingest-one-approved-v2-entity-assertion-and",
+      "complete": true
+    },
+    "N04": {
+      "allocatedId": "e5a244e7-b664-4fc9-a422-c7bd4313e3f2",
+      "id": "e5a244e7-b664-4fc9-a422-c7bd4313e3f2",
+      "identifier": "OVE-144",
+      "title": "[KSP-N04] Ingest one approved source into a versioned searchable corpus",
+      "url": "https://linear.app/overtonbell/issue/OVE-144/ksp-n04-ingest-one-approved-source-into-a-versioned-searchable-corpus",
+      "complete": true
+    },
+    "N05": {
+      "allocatedId": "4a6b921e-53bc-4d57-ba15-54e8ac023d42",
+      "id": "4a6b921e-53bc-4d57-ba15-54e8ac023d42",
+      "identifier": "OVE-145",
+      "title": "[KSP-N05] Retrieve scientific evidence through the selected native graph profile",
+      "url": "https://linear.app/overtonbell/issue/OVE-145/ksp-n05-retrieve-scientific-evidence-through-the-selected-native-graph",
+      "complete": true
+    },
+    "G08": {
+      "allocatedId": "c022978d-d096-42cd-a835-ddcb466e97a5",
+      "id": "c022978d-d096-42cd-a835-ddcb466e97a5",
+      "identifier": "OVE-146",
+      "title": "[KSP-G08] Report truthful GraphQL vector capability and qualified search availability",
+      "url": "https://linear.app/overtonbell/issue/OVE-146/ksp-g08-report-truthful-graphql-vector-capability-and-qualified-search",
+      "complete": true
+    },
+    "G07": {
+      "allocatedId": "e39f935f-f44e-46b1-bfda-03804687399d",
+      "id": "e39f935f-f44e-46b1-bfda-03804687399d",
+      "identifier": "OVE-147",
+      "title": "[KSP-G07] Qualify Fly capacity and compatible product API rollout",
+      "url": "https://linear.app/overtonbell/issue/OVE-147/ksp-g07-qualify-fly-capacity-and-compatible-product-api-rollout",
+      "complete": true
+    }
+  },
+  "dependencyCount": 283
+}

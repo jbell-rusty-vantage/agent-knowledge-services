@@ -1,0 +1,94 @@
+{
+  "schema": 1,
+  "unit": 3,
+  "branch": "refactor/ks-unit-3-application-and-mcp",
+  "base": "22cc4da",
+  "implementationHead": "a5310d15cfa75c158d24f98223e06b98aeb6e5e9",
+  "commits": {
+    "5df2b8c": "retrieval execution and knowledge reads in process",
+    "8babe9f": "verification use cases in process; MCP HTTP fallback retired; parity test",
+    "c6a7ea4": "MCP client shim and runtime dependency deleted; fetch-trap test",
+    "5631ed8": "review fixes: API unavailable reply, record-decision order, shared problem codes",
+    "a5310d1": "transport proofs compose MCP in process"
+  },
+  "environment": {
+    "node": "v24.18.0",
+    "pnpm": "10.34.5",
+    "os": "Windows 11"
+  },
+  "entryGate": {
+    "registeredReplay": "28 passed, 1 failed: SEALED_CHECKPOINT_MISSING:records/25-gl-repeatability-mutated-haiku_judge-failure.json",
+    "receiptSearch": "no copy found under the workspace (node_modules excluded)",
+    "decision": "continue Unit 3 under the same exact exception; Unit 3 does not touch benchmark replay"
+  },
+  "commands": {
+    "install": {
+      "command": "corepack pnpm install --frozen-lockfile",
+      "exit": 0
+    },
+    "typecheck": {
+      "command": "corepack pnpm exec turbo run typecheck --force --concurrency=2",
+      "exit": 0
+    },
+    "build": {
+      "command": "corepack pnpm exec turbo run build --force --concurrency=2",
+      "exit": 0
+    },
+    "test": {
+      "command": "corepack pnpm exec turbo run test --continue=always --concurrency=1 --force -- --maxWorkers=2",
+      "exit": 1,
+      "tasks": "36/37 successful, 0 cached",
+      "passed": 2888,
+      "skipped": 126,
+      "failed": 1,
+      "failures": [
+        "packages/application/src/verification/benchmark/verification-benchmark-registered-replay.test.ts :: registered benchmark replay replays all seven actual captured schema failures exactly once in memory (SEALED_CHECKPOINT_MISSING, retained exception)"
+      ],
+      "notes": "A first forced run (HEAD c6a7ea4) also failed acquisition on eight stale compiled dist/*.test.js files restored from an old Turbo cache entry (Units 1-2 known contamination). They were preserved under %TEMP%/ks-unit3-stale-acquisition-dist and removed; this run is the acceptance run. Skipped tests are integration tests without their database/providers and are not passing evidence."
+    },
+    "examples": {
+      "command": "corepack pnpm examples:verification",
+      "exit": 0,
+      "offline": "11 receipts, 0 providers, mechanical and extraction passed, policy review"
+    },
+    "skills": {
+      "command": "node skills/check.mjs",
+      "exit": 0,
+      "result": "12 skills, 6 Jev MCP tools, 9 Jev commands"
+    },
+    "sandboxPack": {
+      "command": "corepack pnpm --filter @aiengineer/knowledge-verification-executor pack:sandbox",
+      "exit": 0,
+      "tarballSha256": "ebf836152339abc2a544ee0998b720add5f581fc7c93f9557ad8e10264045f3c"
+    },
+    "installedSmoke": "fresh npm project under %TEMP%/ks-unit3-installed-smoke: install exit 0; knowledge-verify and knowledge --help exit 0 with content; installed offline example exit 0, 11 receipts, 0 providers, policy review",
+    "agentDocs": {
+      "command": "node .agent-docs/cli.mjs check --repo .",
+      "result": "clean; 336 selected inputs"
+    },
+    "proofScripts": "Touched proofs typechecked with a temporary strict tsconfig: no errors from Unit 3 changes; pre-existing proof type errors remain (proofs are outside verify)."
+  },
+  "inventory": {
+    "script": "unit3-inventory.mjs",
+    "before": "unit3-before.json",
+    "after": "unit3-after.json",
+    "compare": {
+      "missingTests": 0,
+      "changedOutcomes": 0,
+      "addedTests": 136,
+      "movedTestFiles": 9,
+      "renamedTests": 12,
+      "exportsRemoved": {
+        "application": 0,
+        "host": 0,
+        "persistence": 0
+      },
+      "cycles": 0,
+      "hostImportsApps": 0,
+      "applicationOrPersistenceImportHost": 0,
+      "mcpClientImports": 0,
+      "mcpDependsOnClient": false
+    }
+  },
+  "logs": "%TEMP%/ks-unit3-validation-final (diagnostic convenience; this record is the durable evidence)"
+}

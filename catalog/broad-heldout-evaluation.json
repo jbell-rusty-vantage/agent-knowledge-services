@@ -1,0 +1,247 @@
+{
+  "storeClass": "internal_exploratory",
+  "runKind": "deterministic_broad_evaluation",
+  "corpusVersion": "broad-heldout-v3.0.0",
+  "dataset": {
+    "id": "agentic-knowledge-reviewed-heldout",
+    "version": 3,
+    "manifestDigest": "sha256:46487a5d08d0720c085c5b2bb676028fc76c3a7044813c8cced404da0ae032ab",
+    "publicRequestManifestDigest": "sha256:af6959aedc14834fbdc7e031082d5f4b365349ac4f7207ab48ddc8e8423a521d",
+    "candidateManifestDigest": "sha256:cde7e540e00f05e4bebf9f163389c732bd2efc3f926d2693c7a66ae26d9d46fb",
+    "reviewArtifactDigest": "sha256:1988208b505406a9002c7369ff06b52399cebb6b99f8db3beb39ea1240adf469",
+    "reviewerIdentity": "codex-independent-reviewer:blind-corpus-review:2026-09-03:v4",
+    "caseCount": 96,
+    "recordCount": 84
+  },
+  "coverage": {
+    "partitions": {
+      "dev": 32,
+      "calibration": 32,
+      "heldout": 32
+    },
+    "partitionLeakageValid": true,
+    "partitionLeakageViolations": [],
+    "domains": {
+      "benchmark_intelligence": 12,
+      "engineering_claims": 12,
+      "entity_profiles": 12,
+      "implementation_examples": 12,
+      "model_capabilities": 12,
+      "paper_case_study_knowledge": 12,
+      "source_native_sections": 12,
+      "tool_capabilities": 12
+    },
+    "queryClasses": {
+      "adversarial": 3,
+      "code": 3,
+      "conceptual": 21,
+      "constraint": 12,
+      "contradiction": 3,
+      "exact": 18,
+      "filtered": 3,
+      "freshness_temporal": 6,
+      "mixed": 9,
+      "multi_hop": 9,
+      "negative_abstention": 9
+    },
+    "fixtureKinds": {
+      "adversarial": 3,
+      "real_bundle_grounded": 30,
+      "reviewed_negative": 9,
+      "synthetic_gap": 54
+    },
+    "sourceFamilyCount": 21,
+    "entityFamilyCount": 21,
+    "everyRequiredDomainPresent": true,
+    "everyRequiredQueryClassPresent": true
+  },
+  "experiment": {
+    "digest": "sha256:3a37ae110393251227d313f7b95f871082301aaf165974dad9844757d4d82ce2",
+    "arms": [
+      {
+        "id": "hybrid-control",
+        "control": true,
+        "configuration": {
+          "stages": {},
+          "applyPlannedFilters": true,
+          "useReranker": false
+        },
+        "metrics": {
+          "recallAtK": 1,
+          "precisionAtK": 0.338541666667,
+          "mrr": 0.868055555556,
+          "ndcgAtK": 0.89491221806,
+          "filterSatisfaction": 1,
+          "abstentionAccuracy": 1,
+          "citationCorrectness": 1,
+          "falseAcceptanceCount": 0,
+          "p95LatencyMs": 676.7723,
+          "totalCostMicros": 0
+        },
+        "outputManifestDigest": "sha256:f31f959dffad43c7b88c8f2f6c476626f68110a0750d243ec537c1cf65b18da9"
+      },
+      {
+        "id": "lexical-only",
+        "control": false,
+        "configuration": {
+          "stages": {
+            "semantic": false,
+            "graph": false,
+            "rerank": false
+          },
+          "applyPlannedFilters": true,
+          "useReranker": false
+        },
+        "metrics": {
+          "recallAtK": 1,
+          "precisionAtK": 0.338541666667,
+          "mrr": 0.873263888889,
+          "ndcgAtK": 0.903036486542,
+          "filterSatisfaction": 1,
+          "abstentionAccuracy": 1,
+          "citationCorrectness": 0.90625,
+          "falseAcceptanceCount": 0,
+          "p95LatencyMs": 624.4662999999998,
+          "totalCostMicros": 0
+        },
+        "outputManifestDigest": "sha256:86ca25e5173e722ad8cca51162a04fa5533a146c6fd307bc3826f04ad47ecff4"
+      },
+      {
+        "id": "vector-only",
+        "control": false,
+        "configuration": {
+          "stages": {
+            "exact": false,
+            "trigram": false,
+            "fts": false,
+            "graph": false,
+            "rerank": false
+          },
+          "applyPlannedFilters": true,
+          "useReranker": false
+        },
+        "metrics": {
+          "recallAtK": 0.671875,
+          "precisionAtK": 0.278211805556,
+          "mrr": 0.517795138889,
+          "ndcgAtK": 0.54993012969,
+          "filterSatisfaction": 0.916666666667,
+          "abstentionAccuracy": 0.697916666667,
+          "citationCorrectness": 0.947916666667,
+          "falseAcceptanceCount": 0,
+          "p95LatencyMs": 211.51350000000002,
+          "totalCostMicros": 0
+        },
+        "outputManifestDigest": "sha256:7dcd8ec75bf3de3fd3d7f80ec1fc863b19b0b1ec47e76624bbebd89dc22f6e85"
+      },
+      {
+        "id": "unfiltered-hybrid",
+        "control": false,
+        "configuration": {
+          "stages": {},
+          "applyPlannedFilters": false,
+          "useReranker": false
+        },
+        "metrics": {
+          "recallAtK": 1,
+          "precisionAtK": 0.315538194444,
+          "mrr": 0.84480406746,
+          "ndcgAtK": 0.876498571551,
+          "filterSatisfaction": 0.974262152778,
+          "abstentionAccuracy": 1,
+          "citationCorrectness": 1,
+          "falseAcceptanceCount": 24,
+          "p95LatencyMs": 917.9417000000003,
+          "totalCostMicros": 0
+        },
+        "outputManifestDigest": "sha256:56a5faa5243dce79de1075400f2c338e1304d0335f098528be42ea278f6b6dd7"
+      },
+      {
+        "id": "graph-hybrid",
+        "control": false,
+        "configuration": {
+          "stages": {
+            "graph": true
+          },
+          "applyPlannedFilters": true,
+          "useReranker": false
+        },
+        "metrics": {
+          "recallAtK": 1,
+          "precisionAtK": 0.338541666667,
+          "mrr": 0.868055555556,
+          "ndcgAtK": 0.89491221806,
+          "filterSatisfaction": 1,
+          "abstentionAccuracy": 1,
+          "citationCorrectness": 1,
+          "falseAcceptanceCount": 0,
+          "p95LatencyMs": 689.6600999999996,
+          "totalCostMicros": 0
+        },
+        "outputManifestDigest": "sha256:f7cd5a9a4f7bcd5f2950d05dbf3cded56d3d57277f3ea94397595dcd6ae8b9c3"
+      },
+      {
+        "id": "reranked-hybrid",
+        "control": false,
+        "configuration": {
+          "stages": {
+            "rerank": true
+          },
+          "applyPlannedFilters": true,
+          "useReranker": true
+        },
+        "metrics": {
+          "recallAtK": 1,
+          "precisionAtK": 0.338541666667,
+          "mrr": 0.871527777778,
+          "ndcgAtK": 0.897392848194,
+          "filterSatisfaction": 1,
+          "abstentionAccuracy": 1,
+          "citationCorrectness": 1,
+          "falseAcceptanceCount": 0,
+          "p95LatencyMs": 754.0499,
+          "totalCostMicros": 0
+        },
+        "outputManifestDigest": "sha256:b319f5c2bc0564168afdca6094ca706129a2c9af2331c9782efbc0aa7a66b2fe"
+      }
+    ]
+  },
+  "gates": {
+    "control": {
+      "gateId": "broad-heldout-gate-v3",
+      "reportDigest": "sha256:f31f959dffad43c7b88c8f2f6c476626f68110a0750d243ec537c1cf65b18da9",
+      "passed": true,
+      "hardFailures": [],
+      "qualityFailures": [],
+      "regressionFailures": [],
+      "digest": "sha256:f00c949c453320d4be5edb38bd6d5bbb0da557893b744c64a52977700b77f88e"
+    },
+    "regression": {
+      "gateId": "broad-heldout-gate-v3",
+      "reportDigest": "sha256:f31f959dffad43c7b88c8f2f6c476626f68110a0750d243ec537c1cf65b18da9",
+      "passed": true,
+      "hardFailures": [],
+      "qualityFailures": [],
+      "regressionFailures": [],
+      "digest": "sha256:f00c949c453320d4be5edb38bd6d5bbb0da557893b744c64a52977700b77f88e"
+    },
+    "rollback": {
+      "failedPublicationId": "publication:candidate-v3",
+      "restoredPublicationId": "publication:baseline-v1",
+      "restoredVectorSpaceVersionId": "vector-space:baseline-v1",
+      "observedActiveVectorSpaceVersionId": "vector-space:baseline-v1",
+      "verificationQueryCount": 32,
+      "verificationPassed": true,
+      "passed": true,
+      "digest": "sha256:4436d9f7a4686186bfca8c5d9f3a81e8454865a6e3d46b6dd96ab390f16194b0"
+    }
+  },
+  "falseAcceptanceAnalysis": {
+    "count": 0,
+    "caseIds": []
+  },
+  "telemetry": {
+    "deterministicEmbeddingCostMicros": 0,
+    "totalWallMs": 4315.546
+  }
+}

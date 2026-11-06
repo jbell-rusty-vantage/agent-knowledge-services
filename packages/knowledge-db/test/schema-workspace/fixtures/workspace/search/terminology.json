@@ -1,0 +1,4 @@
+{
+  "knowledge-head": { "definition": "Per-tenant monotonic sequence of sealed knowledge batches; every snapshot and intent cites it.", "ids": ["rel:temporal.knowledge_head", "dom:temporal-facts"] },
+  "two-clock": { "definition": "World time (valid_during) plus knowledge time (k_from/k_to).", "ids": ["dom:temporal-facts"] }
+}

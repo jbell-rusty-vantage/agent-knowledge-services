@@ -1,0 +1,37 @@
+{
+  "name": "@aiengineer/knowledge-contracts",
+  "version": "0.1.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist",
+    "generated"
+  ],
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./jev": {
+      "types": "./dist/jev.d.ts",
+      "import": "./dist/jev.js"
+    }
+  },
+  "scripts": {
+    "generate": "tsx scripts/generate-contract-artifacts.ts",
+    "build": "pnpm generate && tsup src/index.ts src/jev.ts --format esm && tsc --emitDeclarationOnly --rootDir src --outDir dist",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --passWithNoTests"
+  },
+  "dependencies": {
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "tsup": "catalog:",
+    "tsx": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}

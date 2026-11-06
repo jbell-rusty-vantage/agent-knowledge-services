@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "verification-benchmark-case-input.v1",
+  "sourceDatasetManifestDigest": "sha256:b625b311493f8c366ef43bf4047bf61f38d510fe7f3c340f50bca42de737dfe6",
+  "sourceCaseDigest": "sha256:6c3c6036cee6e2276976fef33bdb7eaf9d82e0c3b4da57a49c33bd6485835e4d",
+  "caseId": "tru-omic-source",
+  "assertion": "OMICmAge is described as a multi-omic-informed methylation clock.",
+  "evidence": [
+    {
+      "fragmentId": "sha256:764fa99b84c7d3e70c2cda338e8312a025f5eb0cf0362c61cdcca5157ba1c616",
+      "captureId": "67b3c277-5c66-5ef5-ace8-66aff1d3e736",
+      "sourceKey": "tru-about",
+      "sourceClass": "first_party",
+      "projectionArtifactId": "b4573767-03c2-55e9-a771-0385eeff5aa5",
+      "projectionDigest": "sha256:102c76510c12f523e3d67d8795ceb2b20c40e95f055c0038965e6da1e9cedbb4",
+      "transformationArtifactId": "37fc6dff-19ec-5292-aef3-b861b305a7ed",
+      "selector": {
+        "kind": "html",
+        "domPath": "1/0/2/2/0/0/0/1/0/0/0/1"
+      },
+      "selectedContentDigest": "sha256:1c1fce4ffcd6ebb8a9c12ffdf5e415f7bae215b93c1cbbd0f9031ca481878322",
+      "excerpt": "The OMICmAge™ algorithm is a multi-omic–informed methylation clock that quantifies biological age against chronological age.",
+      "rights": "restricted internal preparation; not approved for provider upload or public redistribution",
+      "originalProviderUploadAuthorized": false
+    }
+  ],
+  "intendedUse": "immutable_case_input; provider transmission requires a separately authenticated derived-input grant"
+}

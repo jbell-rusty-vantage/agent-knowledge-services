@@ -1,0 +1,3369 @@
+{
+  "schema": 1,
+  "layout": "before",
+  "sourceCommit": "82965b3c2087784297728bbaac42717a266cf23e",
+  "dirty": true,
+  "command": "node node_modules/vitest/vitest.mjs run --maxWorkers=2 --reporter=json",
+  "runs": [
+    {
+      "package": "domain",
+      "exitCode": 0,
+      "counts": {
+        "passed": 3,
+        "failed": 0,
+        "skipped": 0,
+        "total": 3
+      },
+      "files": [
+        {
+          "file": "packages/domain/src/domain.test.ts",
+          "originalFile": "packages/domain/src/domain.test.ts",
+          "tests": [
+            {
+              "name": "domain invariants allows only explicit state transitions with optimistic guards",
+              "status": "passed"
+            },
+            {
+              "name": "domain invariants canonicalizes objects and derives stable digests/idempotency keys",
+              "status": "passed"
+            },
+            {
+              "name": "domain invariants enforces append-only, idempotency, and authority boundaries",
+              "status": "passed"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "package": "runtime",
+      "exitCode": 0,
+      "counts": {
+        "passed": 17,
+        "failed": 0,
+        "skipped": 0,
+        "total": 17
+      },
+      "files": [
+        {
+          "file": "packages/runtime/src/artifacts-missing-object.test.ts",
+          "originalFile": "packages/runtime/src/artifacts-missing-object.test.ts",
+          "tests": [
+            {
+              "name": "Supabase structured missing objects does not turn a missing bucket, denied request or generic 400 into a cache miss",
+              "status": "passed"
+            },
+            {
+              "name": "Supabase structured missing objects recognizes the Storage NoSuchKey 404 carried by HTTP 400",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/runtime/src/eve-runtime-attestation.test.ts",
+          "originalFile": "packages/runtime/src/eve-runtime-attestation.test.ts",
+          "tests": [
+            {
+              "name": "Eve runtime attestation rejects a tampered signature, wrong key and expired header",
+              "status": "passed"
+            },
+            {
+              "name": "Eve runtime attestation rejects non-Ed25519 signing and verification keys",
+              "status": "passed"
+            },
+            {
+              "name": "Eve runtime attestation rejects noncanonical and duplicate-key encodings before authority verification",
+              "status": "passed"
+            },
+            {
+              "name": "Eve runtime attestation round-trips a canonical signed Eve lineage",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/runtime/src/runtime.test.ts",
+          "originalFile": "packages/runtime/src/runtime.test.ts",
+          "tests": [
+            {
+              "name": "in-memory durable primitives content-addresses and isolates artifacts",
+              "status": "passed"
+            },
+            {
+              "name": "in-memory durable primitives deduplicates operations and activity receipts",
+              "status": "passed"
+            },
+            {
+              "name": "in-memory durable primitives detects local artifact tampering on read and idempotent write",
+              "status": "passed"
+            },
+            {
+              "name": "in-memory durable primitives fails closed on missing collision metadata without an overwrite",
+              "status": "passed"
+            },
+            {
+              "name": "in-memory durable primitives reclaims expired leases",
+              "status": "passed"
+            },
+            {
+              "name": "in-memory durable primitives rejects operation identity reuse under another idempotency key",
+              "status": "passed"
+            },
+            {
+              "name": "in-memory durable primitives rejects Supabase path traversal, oversize content and remote digest mismatch",
+              "status": "passed"
+            },
+            {
+              "name": "in-memory durable primitives repairs stale local Storage metadata only when explicitly enabled",
+              "status": "passed"
+            },
+            {
+              "name": "in-memory durable primitives round-trips the local content-addressed implementation",
+              "status": "passed"
+            },
+            {
+              "name": "in-memory durable primitives uses private digest-addressed Supabase objects without exposing credentials",
+              "status": "passed"
+            },
+            {
+              "name": "in-memory durable primitives verifies local Storage's 400 duplicate response as an idempotent replay",
+              "status": "passed"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "package": "observability",
+      "exitCode": 0,
+      "counts": {
+        "passed": 2,
+        "failed": 0,
+        "skipped": 0,
+        "total": 2
+      },
+      "files": [
+        {
+          "file": "packages/observability/src/index.test.ts",
+          "originalFile": "packages/observability/src/index.test.ts",
+          "tests": [
+            {
+              "name": "observability detects publication drift deterministically",
+              "status": "passed"
+            },
+            {
+              "name": "observability reports SLO latency, error, degradation and cost",
+              "status": "passed"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "package": "conversion",
+      "exitCode": 0,
+      "counts": {
+        "passed": 21,
+        "failed": 0,
+        "skipped": 0,
+        "total": 21
+      },
+      "files": [
+        {
+          "file": "packages/conversion/examples/examples.test.ts",
+          "originalFile": "packages/conversion/examples/examples.test.ts",
+          "tests": [
+            {
+              "name": "conversion examples covers text, Docling, inspect, fallback, import, and managed denial",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/conversion/src/conversion.test.ts",
+          "originalFile": "packages/conversion/src/conversion.test.ts",
+          "tests": [
+            {
+              "name": "conversion HTTP clients calls the bounded Docling Serve v1 multipart API and validates its output",
+              "status": "passed"
+            },
+            {
+              "name": "conversion HTTP clients configures Unstructured on-demand auth without placing keys in URLs or errors",
+              "status": "passed"
+            },
+            {
+              "name": "conversion HTTP clients rejects unsafe Docling URLs and oversized or invalid conversion results",
+              "status": "passed"
+            },
+            {
+              "name": "conversion media types does not treat Office Open XML as deterministic text",
+              "status": "passed"
+            },
+            {
+              "name": "conversion media types keeps markdown, VTT, and plain text exclusive to the text converter",
+              "status": "passed"
+            },
+            {
+              "name": "conversion media types treats HTML as deterministic first and a Docling fallback",
+              "status": "passed"
+            },
+            {
+              "name": "conversion router converts a PDF on Docling without an Unstructured key",
+              "status": "passed"
+            },
+            {
+              "name": "conversion router exhausts when no admitted converter remains",
+              "status": "passed"
+            },
+            {
+              "name": "conversion router never calls Docling or Unstructured for exclusive text",
+              "status": "passed"
+            },
+            {
+              "name": "conversion router never invokes Unstructured unless managed processing is allowed",
+              "status": "passed"
+            },
+            {
+              "name": "conversion router respects an admitted provider subset without changing policy order",
+              "status": "passed"
+            },
+            {
+              "name": "conversion router tries Docling before gated Unstructured",
+              "status": "passed"
+            },
+            {
+              "name": "conversion router tries the next admitted converter when fidelity asks for alternate_conversion",
+              "status": "passed"
+            },
+            {
+              "name": "deterministic conversion preserves transcript timestamps and seals all outputs",
+              "status": "passed"
+            },
+            {
+              "name": "deterministic conversion produces stable heading and code nodes",
+              "status": "passed"
+            },
+            {
+              "name": "deterministic conversion records only present ancestors when heading levels jump",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/conversion/src/verification-parser.test.ts",
+          "originalFile": "packages/conversion/src/verification-parser.test.ts",
+          "tests": [
+            {
+              "name": "verification parser pre-execution admission preserves a pre-create runtime error when there is no container to clean up",
+              "status": "passed"
+            },
+            {
+              "name": "verification parser pre-execution admission rejects mismatched input identity without requiring Docker",
+              "status": "passed"
+            },
+            {
+              "name": "verification parser pre-execution admission rejects mutable image names before a process can be started",
+              "status": "passed"
+            },
+            {
+              "name": "verification parser pre-execution admission rejects oversized and empty inputs before copying or starting a process",
+              "status": "passed"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "package": "documents",
+      "exitCode": 0,
+      "counts": {
+        "passed": 22,
+        "failed": 0,
+        "skipped": 0,
+        "total": 22
+      },
+      "files": [
+        {
+          "file": "packages/documents/examples/01-build-nodes-and-verify-locators.test.ts",
+          "originalFile": "packages/documents/examples/01-build-nodes-and-verify-locators.test.ts",
+          "tests": [
+            {
+              "name": "example 01: build nodes and verify locators normalizes prose but keeps code layout",
+              "status": "passed"
+            },
+            {
+              "name": "example 01: build nodes and verify locators seals deterministic, frozen nodes",
+              "status": "passed"
+            },
+            {
+              "name": "example 01: build nodes and verify locators verifies every locator and reconstructs a span from the sealed text",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/documents/examples/02-reject-cycle-and-invalid-span.test.ts",
+          "originalFile": "packages/documents/examples/02-reject-cycle-and-invalid-span.test.ts",
+          "tests": [
+            {
+              "name": "example 02: reject a cycle and an invalid span fails the whole document on a structural cycle or unknown parent",
+              "status": "passed"
+            },
+            {
+              "name": "example 02: reject a cycle and an invalid span refuses spans outside the sealed text",
+              "status": "passed"
+            },
+            {
+              "name": "example 02: reject a cycle and an invalid span reports a node whose text was edited after sealing",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/documents/src/identity/deterministic-uuid.test.ts",
+          "originalFile": "packages/documents/src/identity/deterministic-uuid.test.ts",
+          "tests": [
+            {
+              "name": "deterministicUuid changes with the value",
+              "status": "passed"
+            },
+            {
+              "name": "deterministicUuid derives the same version-5-shaped uuid from the same value",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/documents/src/locators/source-locator.test.ts",
+          "originalFile": "packages/documents/src/locators/source-locator.test.ts",
+          "tests": [
+            {
+              "name": "createSourceLocator binds the representation, node and quote digest to the supplied coordinates",
+              "status": "passed"
+            },
+            {
+              "name": "createSourceLocator rejects coordinates the contract does not admit",
+              "status": "passed"
+            },
+            {
+              "name": "locatorDigestValue hashes an absent locator and one with only undefined fields the same way",
+              "status": "passed"
+            },
+            {
+              "name": "reconstructNodeSpan rejects empty, negative and overlong spans",
+              "status": "passed"
+            },
+            {
+              "name": "reconstructNodeSpan slices the sealed text by offsets and defaults to the whole node",
+              "status": "passed"
+            },
+            {
+              "name": "verifyNodeLocators accepts nodes whose locators match their sealed text",
+              "status": "passed"
+            },
+            {
+              "name": "verifyNodeLocators reports edited text as a quote digest mismatch",
+              "status": "passed"
+            },
+            {
+              "name": "verifyNodeLocators reports every way a locator can drift from its node",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/documents/src/nodes/structural-document.test.ts",
+          "originalFile": "packages/documents/src/nodes/structural-document.test.ts",
+          "tests": [
+            {
+              "name": "assertAcyclic passes a tree and rejects a two-block cycle",
+              "status": "passed"
+            },
+            {
+              "name": "convertStructuralDocument changes the document digest when any block changes",
+              "status": "passed"
+            },
+            {
+              "name": "convertStructuralDocument derives node ids from the representation and local key only",
+              "status": "passed"
+            },
+            {
+              "name": "convertStructuralDocument produces stable immutable nodes and verified locators",
+              "status": "passed"
+            },
+            {
+              "name": "convertStructuralDocument rejects an unknown parent, a self parent, a cycle, a duplicate key and a duplicate sibling ordinal",
+              "status": "passed"
+            },
+            {
+              "name": "normalizeDocumentText collapses prose whitespace but keeps code and table layout",
+              "status": "passed"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "package": "chunking",
+      "exitCode": 0,
+      "counts": {
+        "passed": 40,
+        "failed": 0,
+        "skipped": 0,
+        "total": 40
+      },
+      "files": [
+        {
+          "file": "packages/chunking/examples/01-select-profiles-for-space.test.ts",
+          "originalFile": "packages/chunking/examples/01-select-profiles-for-space.test.ts",
+          "tests": [
+            {
+              "name": "example 01: select profiles for a space observes the node kinds of the sealed tree",
+              "status": "passed"
+            },
+            {
+              "name": "example 01: select profiles for a space selects nothing for a space the tree cannot feed",
+              "status": "passed"
+            },
+            {
+              "name": "example 01: select profiles for a space skips the table profile when the tree has no table",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/chunking/examples/02-chunk-and-reconstruct.test.ts",
+          "originalFile": "packages/chunking/examples/02-chunk-and-reconstruct.test.ts",
+          "tests": [
+            {
+              "name": "example 02: chunk and reconstruct omits repeated boilerplate instead of embedding it",
+              "status": "passed"
+            },
+            {
+              "name": "example 02: chunk and reconstruct prefixes the nearest heading and keeps the digest stable",
+              "status": "passed"
+            },
+            {
+              "name": "example 02: chunk and reconstruct replays every chunk from its spans",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/chunking/examples/03-qa-failure-next-profile.test.ts",
+          "originalFile": "packages/chunking/examples/03-qa-failure-next-profile.test.ts",
+          "tests": [
+            {
+              "name": "example 03: QA failure, next admitted profile accepts the next profile admitted for the same space and node kinds",
+              "status": "passed"
+            },
+            {
+              "name": "example 03: QA failure, next admitted profile fails the claims profile on a run-on turn",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/chunking/src/chunker/chunk-document.test.ts",
+          "originalFile": "packages/chunking/src/chunker/chunk-document.test.ts",
+          "tests": [
+            {
+              "name": "chunkDocument breaks section chunks on heading boundaries and prefixes the nearest heading",
+              "status": "passed"
+            },
+            {
+              "name": "chunkDocument creates deterministic atomic, reconstructable chunks and removes boilerplate",
+              "status": "passed"
+            },
+            {
+              "name": "chunkDocument rejects a profile whose bounds cannot hold",
+              "status": "passed"
+            },
+            {
+              "name": "chunkDocument rejects a structural cycle",
+              "status": "passed"
+            },
+            {
+              "name": "chunkDocument rejects an orphaned node",
+              "status": "passed"
+            },
+            {
+              "name": "chunkDocument splits an oversized node so every chunk stays inside the profile maximum",
+              "status": "passed"
+            },
+            {
+              "name": "tokenize splits words, numbers and punctuation under unicode-word-punctuation-v1",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/chunking/src/profiles/registry.test.ts",
+          "originalFile": "packages/chunking/src/profiles/registry.test.ts",
+          "tests": [
+            {
+              "name": "chunk profile table binds every profile to the node kinds its strategy filters on",
+              "status": "passed"
+            },
+            {
+              "name": "chunk profile table is frozen",
+              "status": "passed"
+            },
+            {
+              "name": "chunk profile table is the chunk-profile-table.v1 contract instance",
+              "status": "passed"
+            },
+            {
+              "name": "ChunkProfileRegistry covers every vector space in the contract",
+              "status": "passed"
+            },
+            {
+              "name": "ChunkProfileRegistry gets a profile by name and version and rejects unknown ones",
+              "status": "passed"
+            },
+            {
+              "name": "ChunkProfileRegistry hands out frozen copies, not the arrays it was given",
+              "status": "passed"
+            },
+            {
+              "name": "ChunkProfileRegistry registers all admitted strategies in table order",
+              "status": "passed"
+            },
+            {
+              "name": "ChunkProfileRegistry rejects duplicate registration",
+              "status": "passed"
+            },
+            {
+              "name": "ChunkProfileRegistry rejects profiles whose bounds cannot hold",
+              "status": "passed"
+            },
+            {
+              "name": "ChunkProfileRegistry selects the admitted profiles for benchmark_intelligence",
+              "status": "passed"
+            },
+            {
+              "name": "ChunkProfileRegistry selects the admitted profiles for engineering_claims",
+              "status": "passed"
+            },
+            {
+              "name": "ChunkProfileRegistry selects the admitted profiles for entity_profiles",
+              "status": "passed"
+            },
+            {
+              "name": "ChunkProfileRegistry selects the admitted profiles for implementation_examples",
+              "status": "passed"
+            },
+            {
+              "name": "ChunkProfileRegistry selects the admitted profiles for model_capabilities",
+              "status": "passed"
+            },
+            {
+              "name": "ChunkProfileRegistry selects the admitted profiles for paper_case_study_knowledge",
+              "status": "passed"
+            },
+            {
+              "name": "ChunkProfileRegistry selects the admitted profiles for source_native_sections",
+              "status": "passed"
+            },
+            {
+              "name": "ChunkProfileRegistry selects the admitted profiles for tool_capabilities",
+              "status": "passed"
+            },
+            {
+              "name": "ChunkProfileRegistry skips the table profile when no table node was observed",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/chunking/src/qa/validate-chunks.test.ts",
+          "originalFile": "packages/chunking/src/qa/validate-chunks.test.ts",
+          "tests": [
+            {
+              "name": "reconstructChunk joins spans from the sealed nodes",
+              "status": "passed"
+            },
+            {
+              "name": "reconstructChunk throws for a missing node or an empty span",
+              "status": "passed"
+            },
+            {
+              "name": "validateChunks accepts chunks that replay from their spans inside the bounds",
+              "status": "passed"
+            },
+            {
+              "name": "validateChunks reports a reconstruction mismatch",
+              "status": "passed"
+            },
+            {
+              "name": "validateChunks reports adjacent chunks that duplicate each other",
+              "status": "passed"
+            },
+            {
+              "name": "validateChunks reports spans that point outside the sealed nodes",
+              "status": "passed"
+            },
+            {
+              "name": "validateChunks reports token-bound violations in both directions",
+              "status": "passed"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "package": "retrieval",
+      "exitCode": 0,
+      "counts": {
+        "passed": 57,
+        "failed": 0,
+        "skipped": 0,
+        "total": 57
+      },
+      "files": [
+        {
+          "file": "packages/retrieval/examples/01-plan-and-admission.test.ts",
+          "originalFile": "packages/retrieval/examples/01-plan-and-admission.test.ts",
+          "tests": [
+            {
+              "name": "example 01: plan and admission decomposes a compound query into more than one subquery",
+              "status": "passed"
+            },
+            {
+              "name": "example 01: plan and admission denies a filter field the policy never allowed with FILTER_NOT_ALLOWED",
+              "status": "passed"
+            },
+            {
+              "name": "example 01: plan and admission denies a space the policy never admitted with SPACE_NOT_ADMITTED",
+              "status": "passed"
+            },
+            {
+              "name": "example 01: plan and admission infers implementation_support for an API/compare question",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/retrieval/examples/02-fuse-channels.test.ts",
+          "originalFile": "packages/retrieval/examples/02-fuse-channels.test.ts",
+          "tests": [
+            {
+              "name": "example 02: fuse channels collects contributions from exact, trigram and semantic channels for r0",
+              "status": "passed"
+            },
+            {
+              "name": "example 02: fuse channels expands the verified graph edge to r0's neighbor",
+              "status": "passed"
+            },
+            {
+              "name": "example 02: fuse channels produces an identical digest for the same query twice",
+              "status": "passed"
+            },
+            {
+              "name": "example 02: fuse channels ranks the identifier-matching record first",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/retrieval/examples/03-abstain-and-omit.test.ts",
+          "originalFile": "packages/retrieval/examples/03-abstain-and-omit.test.ts",
+          "tests": [
+            {
+              "name": "example 03: abstain and omit recommends abstention with a coverage reason when nothing satisfies the query",
+              "status": "passed"
+            },
+            {
+              "name": "example 03: abstain and omit records tenant, promotion, visibility and retraction omissions by reason",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/retrieval/src/graph/expand.test.ts",
+          "originalFile": "packages/retrieval/src/graph/expand.test.ts",
+          "tests": [
+            {
+              "name": "expandVerifiedGraph expands a verified edge whose locator binds to an endpoint",
+              "status": "passed"
+            },
+            {
+              "name": "expandVerifiedGraph rejects an edge whose locatorDigest binds to neither endpoint",
+              "status": "passed"
+            },
+            {
+              "name": "expandVerifiedGraph stops expansion once seen reaches policy.maxGraphNodes",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/retrieval/src/lexical/scoring.test.ts",
+          "originalFile": "packages/retrieval/src/lexical/scoring.test.ts",
+          "tests": [
+            {
+              "name": "exactScore scores 0 when neither identifiers nor text match",
+              "status": "passed"
+            },
+            {
+              "name": "exactScore scores 0.95 for a text substring match without an identifier hit",
+              "status": "passed"
+            },
+            {
+              "name": "exactScore scores 1 for an exact identifier match",
+              "status": "passed"
+            },
+            {
+              "name": "ftsScore returns 0 for no tokens",
+              "status": "passed"
+            },
+            {
+              "name": "ftsScore returns the fraction of tokens covered by the text",
+              "status": "passed"
+            },
+            {
+              "name": "score keeps only positive scores and sorts by score desc, then id asc",
+              "status": "passed"
+            },
+            {
+              "name": "trigramScore is 0 when one side is empty and shares no trigram with the other",
+              "status": "passed"
+            },
+            {
+              "name": "trigramScore is 1 for identical strings",
+              "status": "passed"
+            },
+            {
+              "name": "trigramScore is symmetric",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/retrieval/src/plan/build-plan.test.ts",
+          "originalFile": "packages/retrieval/src/plan/build-plan.test.ts",
+          "tests": [
+            {
+              "name": "buildRetrievalPlan assigns the first subquery required and the rest supporting",
+              "status": "passed"
+            },
+            {
+              "name": "buildRetrievalPlan freezes graph.maxDepth at 1 even when the policy allows more (memo §7 item 2, unchanged)",
+              "status": "passed"
+            },
+            {
+              "name": "buildRetrievalPlan splits on versus/vs/then separators as well as ; and ?",
+              "status": "passed"
+            },
+            {
+              "name": "inferIntents falls back to decision_support when nothing matches",
+              "status": "passed"
+            },
+            {
+              "name": "inferIntents infers compare the best tool -> includes tool_selection",
+              "status": "passed"
+            },
+            {
+              "name": "inferIntents infers how do I implement this api -> includes implementation_support",
+              "status": "passed"
+            },
+            {
+              "name": "inferIntents infers what evidence supports this claim -> includes knowledge_evidence",
+              "status": "passed"
+            },
+            {
+              "name": "inferIntents infers which company built this -> includes entity_discovery",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/retrieval/src/rerank/fuse.test.ts",
+          "originalFile": "packages/retrieval/src/rerank/fuse.test.ts",
+          "tests": [
+            {
+              "name": "compareCandidate tie-break order: score, then assurance, then freshness, then id breaks a full tie by ascending record id",
+              "status": "passed"
+            },
+            {
+              "name": "compareCandidate tie-break order: score, then assurance, then freshness, then id breaks an equal score and assurance by fresher freshnessAt first",
+              "status": "passed"
+            },
+            {
+              "name": "compareCandidate tie-break order: score, then assurance, then freshness, then id breaks an equal score by localeCompare on the raw assurance string (not a severity order — an existing quirk kept as-is)",
+              "status": "passed"
+            },
+            {
+              "name": "compareCandidate tie-break order: score, then assurance, then freshness, then id ranks the higher score first",
+              "status": "passed"
+            },
+            {
+              "name": "rrfContribution defaults to weight 1 for a channel the policy does not mention",
+              "status": "passed"
+            },
+            {
+              "name": "rrfContribution uses the policy's channel weight when present",
+              "status": "passed"
+            },
+            {
+              "name": "sum adds up rrfContribution across contributions",
+              "status": "passed"
+            },
+            {
+              "name": "sum is 0 for no contributions",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/retrieval/src/retrieve.test.ts",
+          "originalFile": "packages/retrieval/src/retrieve.test.ts",
+          "tests": [
+            {
+              "name": "advanced retrieval abstains with reasoned coverage and rejects cross-tenant/unpromoted content",
+              "status": "passed"
+            },
+            {
+              "name": "advanced retrieval denies unauthorized visibility and rejects graph edges with unbound locators",
+              "status": "passed"
+            },
+            {
+              "name": "advanced retrieval falls back to fused results when reranking fails",
+              "status": "passed"
+            },
+            {
+              "name": "advanced retrieval fuses independent channels deterministically, verifies filters, expands graph and attaches context",
+              "status": "passed"
+            },
+            {
+              "name": "advanced retrieval supports every public domain plus faithful native sections",
+              "status": "passed"
+            },
+            {
+              "name": "advanced retrieval validates policy, decomposes intent, spaces, filters and limits",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/retrieval/src/semantic/cosine.test.ts",
+          "originalFile": "packages/retrieval/src/semantic/cosine.test.ts",
+          "tests": [
+            {
+              "name": "cosine is 0 when either vector has zero magnitude",
+              "status": "passed"
+            },
+            {
+              "name": "cosine is 1 for identical direction and 0 for orthogonal vectors",
+              "status": "passed"
+            },
+            {
+              "name": "cosine throws NON_FINITE_VECTOR when either vector holds a non-finite component",
+              "status": "passed"
+            },
+            {
+              "name": "cosine throws QUERY_VECTOR_DIMENSION_MISMATCH for mismatched lengths",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/retrieval/src/spaces/admission.test.ts",
+          "originalFile": "packages/retrieval/src/spaces/admission.test.ts",
+          "tests": [
+            {
+              "name": "ALL_SPACES is derived from VectorSpaceSchema.options, not a hand-written copy (P2-9)",
+              "status": "passed"
+            },
+            {
+              "name": "assertAdmittedSpaces passes silently when every requested space is admitted",
+              "status": "passed"
+            },
+            {
+              "name": "assertAdmittedSpaces throws SPACE_NOT_ADMITTED with the denied spaces listed, in order",
+              "status": "passed"
+            },
+            {
+              "name": "inferSpaces falls back to every admitted space when nothing matches",
+              "status": "passed"
+            },
+            {
+              "name": "inferSpaces infers spaces for \"benchmark scores\"",
+              "status": "passed"
+            },
+            {
+              "name": "inferSpaces infers spaces for \"implement the api\"",
+              "status": "passed"
+            },
+            {
+              "name": "inferSpaces infers spaces for \"read the paper\"",
+              "status": "passed"
+            },
+            {
+              "name": "inferSpaces infers spaces for \"which company built this\"",
+              "status": "passed"
+            },
+            {
+              "name": "inferSpaces infers spaces for \"which model is best\"",
+              "status": "passed"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "package": "projections",
+      "exitCode": 0,
+      "counts": {
+        "passed": 21,
+        "failed": 0,
+        "skipped": 0,
+        "total": 21
+      },
+      "files": [
+        {
+          "file": "packages/projections/examples/01-validate-and-build.test.ts",
+          "originalFile": "packages/projections/examples/01-validate-and-build.test.ts",
+          "tests": [
+            {
+              "name": "example 01: validate and build derives the same projectionId from the same evidence and text",
+              "status": "passed"
+            },
+            {
+              "name": "example 01: validate and build validates the evidence support set before building",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/projections/examples/02-source-native-fidelity.test.ts",
+          "originalFile": "packages/projections/examples/02-source-native-fidelity.test.ts",
+          "tests": [
+            {
+              "name": "example 02: source-native fidelity accepts faithful text that equals the ordered evidence",
+              "status": "passed"
+            },
+            {
+              "name": "example 02: source-native fidelity rejects derived assertions on a source-native section",
+              "status": "passed"
+            },
+            {
+              "name": "example 02: source-native fidelity rejects text that does not match the ordered evidence",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/projections/examples/03-classify-dispositions.test.ts",
+          "originalFile": "packages/projections/examples/03-classify-dispositions.test.ts",
+          "tests": [
+            {
+              "name": "example 03: classify dispositions classifies not_ingestible alone as no spaces",
+              "status": "passed"
+            },
+            {
+              "name": "example 03: classify dispositions maps admitted dispositions to their vector spaces",
+              "status": "passed"
+            },
+            {
+              "name": "example 03: classify dispositions refuses a canonical disposition with an unresolved identity",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/projections/src/classification/disposition-spaces.test.ts",
+          "originalFile": "packages/projections/src/classification/disposition-spaces.test.ts",
+          "tests": [
+            {
+              "name": "classifyProjectionSpaces rejects a proposal missing deduplication keys",
+              "status": "passed"
+            },
+            {
+              "name": "classifyProjectionSpaces rejects a proposal missing evidence locators",
+              "status": "passed"
+            },
+            {
+              "name": "classifyProjectionSpaces rejects an empty targetContractVersion",
+              "status": "passed"
+            },
+            {
+              "name": "classifyProjectionSpaces rejects an unknown disposition",
+              "status": "passed"
+            },
+            {
+              "name": "classifyProjectionSpaces rejects not_ingestible combined with another disposition",
+              "status": "passed"
+            },
+            {
+              "name": "classifyProjectionSpaces validates classification evidence and resolved canonical identities",
+              "status": "passed"
+            },
+            {
+              "name": "publicProjectionSpaces has exactly the seven public domains and excludes source_native_sections",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/projections/src/projection/create-projection.test.ts",
+          "originalFile": "packages/projections/src/projection/create-projection.test.ts",
+          "tests": [
+            {
+              "name": "createProjection builds deterministic contract-valid projections for every space",
+              "status": "passed"
+            },
+            {
+              "name": "createProjection produces a different projectionId when procedureVersionId changes but the text does not",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/projections/src/validation/evidence-support.test.ts",
+          "originalFile": "packages/projections/src/validation/evidence-support.test.ts",
+          "tests": [
+            {
+              "name": "validateEvidenceSupport rejects unsupported assertions and altered quoted evidence",
+              "status": "passed"
+            },
+            {
+              "name": "validateEvidenceSupport reports an empty quoted text",
+              "status": "passed"
+            },
+            {
+              "name": "validateEvidenceSupport reports duplicate evidence locator ids",
+              "status": "passed"
+            },
+            {
+              "name": "validateEvidenceSupport requires supported assertions for a derived space with zero assertions",
+              "status": "passed"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "package": "embeddings",
+      "exitCode": 0,
+      "counts": {
+        "passed": 20,
+        "failed": 0,
+        "skipped": 0,
+        "total": 20
+      },
+      "files": [
+        {
+          "file": "packages/embeddings/examples/01-deterministic-batch.test.ts",
+          "originalFile": "packages/embeddings/examples/01-deterministic-batch.test.ts",
+          "tests": [
+            {
+              "name": "example 01: deterministic batch keeps the caller's input order",
+              "status": "passed"
+            },
+            {
+              "name": "example 01: deterministic batch produces an identical output manifest digest across two runs",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/embeddings/examples/02-cache-and-retry.test.ts",
+          "originalFile": "packages/embeddings/examples/02-cache-and-retry.test.ts",
+          "tests": [
+            {
+              "name": "example 02: cache and retry retries the 503 once under the same idempotency key",
+              "status": "passed"
+            },
+            {
+              "name": "example 02: cache and retry serves the second call from the cache without another network call",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/embeddings/examples/03-reject-bad-output.test.ts",
+          "originalFile": "packages/embeddings/examples/03-reject-bad-output.test.ts",
+          "tests": [
+            {
+              "name": "example 03: reject bad output rejects reordered, partial, wrong-dimension and non-finite responses",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/embeddings/src/cache.test.ts",
+          "originalFile": "packages/embeddings/src/cache.test.ts",
+          "tests": [
+            {
+              "name": "MemoryEmbeddingCache returns undefined for a key it has not seen",
+              "status": "passed"
+            },
+            {
+              "name": "MemoryEmbeddingCache stores a frozen copy of the vector it was given, not the original array",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/embeddings/src/fake.test.ts",
+          "originalFile": "packages/embeddings/src/fake.test.ts",
+          "tests": [
+            {
+              "name": "DeterministicFakeEmbeddingAdapter rejects caller-supplied digest mismatches and duplicate projection identities",
+              "status": "passed"
+            },
+            {
+              "name": "DeterministicFakeEmbeddingAdapter returns stable ordered deterministic embeddings and manifests",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/embeddings/src/gateway.test.ts",
+          "originalFile": "packages/embeddings/src/gateway.test.ts",
+          "tests": [
+            {
+              "name": "createGatewayEmbeddingAdapterFromEnvironment accepts VERCEL_OIDC_TOKEN when AI_GATEWAY_API_KEY is absent",
+              "status": "passed"
+            },
+            {
+              "name": "createGatewayEmbeddingAdapterFromEnvironment throws AI_GATEWAY_CREDENTIAL_MISSING with neither env var set",
+              "status": "passed"
+            },
+            {
+              "name": "retryDelay falls back to capped exponential backoff when the header is absent or unparseable",
+              "status": "passed"
+            },
+            {
+              "name": "retryDelay honours a numeric retry-after header, capped at 10 seconds",
+              "status": "passed"
+            },
+            {
+              "name": "VercelAiGatewayEmbeddingAdapter discovers the configured model without exposing credentials",
+              "status": "passed"
+            },
+            {
+              "name": "VercelAiGatewayEmbeddingAdapter rejects reordered, partial and malformed output atomically",
+              "status": "passed"
+            },
+            {
+              "name": "VercelAiGatewayEmbeddingAdapter retries with one idempotency key, validates provider order, and caches per version",
+              "status": "passed"
+            },
+            {
+              "name": "VercelAiGatewayEmbeddingAdapter throws without retrying on a non-retryable status",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/embeddings/src/vectors.test.ts",
+          "originalFile": "packages/embeddings/src/vectors.test.ts",
+          "tests": [
+            {
+              "name": "cacheKey namespaces the cache key by vectorSpaceVersionId",
+              "status": "passed"
+            },
+            {
+              "name": "validateVector rejects wrong dimensions and non-finite values",
+              "status": "passed"
+            },
+            {
+              "name": "vectorDigest is stable for the same vector and differs for -0 versus 0",
+              "status": "passed"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "package": "vector-backends",
+      "exitCode": 0,
+      "counts": {
+        "passed": 38,
+        "failed": 0,
+        "skipped": 0,
+        "total": 38
+      },
+      "files": [
+        {
+          "file": "packages/vector-backends/examples/01-exact-search.test.ts",
+          "originalFile": "packages/vector-backends/examples/01-exact-search.test.ts",
+          "tests": [
+            {
+              "name": "example 01: exact search isolates by tenant, vector-space version and lifecycle, and orders deterministically",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/vector-backends/examples/02-publish-and-rollback.test.ts",
+          "originalFile": "packages/vector-backends/examples/02-publish-and-rollback.test.ts",
+          "tests": [
+            {
+              "name": "example 02: publish and rollback verifies publish, replays idempotently, and rolls back to an intact predecessor",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/vector-backends/examples/03-reconcile-drift.test.ts",
+          "originalFile": "packages/vector-backends/examples/03-reconcile-drift.test.ts",
+          "tests": [
+            {
+              "name": "example 03: reconcile drift classifies a manifest mismatch as security_critical",
+              "status": "passed"
+            },
+            {
+              "name": "example 03: reconcile drift classifies an evaluation regression as review_required",
+              "status": "passed"
+            },
+            {
+              "name": "example 03: reconcile drift classifies an orphan active pointer as security_critical",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/vector-backends/src/backends/in-memory-exact.test.ts",
+          "originalFile": "packages/vector-backends/src/backends/in-memory-exact.test.ts",
+          "tests": [
+            {
+              "name": "InMemoryExactCosineBackend is append-only and rejects invalid query vectors",
+              "status": "passed"
+            },
+            {
+              "name": "InMemoryExactCosineBackend performs deterministic exact cosine search with tenant, version, and lifecycle isolation",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/vector-backends/src/backends/postgres.test.ts",
+          "originalFile": "packages/vector-backends/src/backends/postgres.test.ts",
+          "tests": [
+            {
+              "name": "PostgresVectorSearchBackend calls the authoritative RPC and maps its typed result",
+              "status": "passed"
+            },
+            {
+              "name": "PostgresVectorSearchBackend surfaces database failures and rejects malformed responses",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/vector-backends/src/publication/coordinator.test.ts",
+          "originalFile": "packages/vector-backends/src/publication/coordinator.test.ts",
+          "tests": [
+            {
+              "name": "ExploratoryPublicationCoordinator leaves no partial state when verification fails",
+              "status": "passed"
+            },
+            {
+              "name": "ExploratoryPublicationCoordinator reconciles counts, manifests, format, index, authorization, evaluation, and sample search",
+              "status": "passed"
+            },
+            {
+              "name": "ExploratoryPublicationCoordinator rejects a reused event id across different publications for the same tenant",
+              "status": "passed"
+            },
+            {
+              "name": "ExploratoryPublicationCoordinator rejects a rollback target that belongs to another vectorStoreSpaceId",
+              "status": "passed"
+            },
+            {
+              "name": "ExploratoryPublicationCoordinator rejects an idempotent replay whose verified content differs, e.g. a different receipt",
+              "status": "passed"
+            },
+            {
+              "name": "ExploratoryPublicationCoordinator reports MISSING_ACTIVE_POINTER as review_required when no pointer exists",
+              "status": "passed"
+            },
+            {
+              "name": "ExploratoryPublicationCoordinator reports ORPHAN_ACTIVE_POINTER as security_critical when the pointer references a missing publication",
+              "status": "passed"
+            },
+            {
+              "name": "ExploratoryPublicationCoordinator rolls back by pointer switch without deleting versions and emits a reason-bearing event",
+              "status": "passed"
+            },
+            {
+              "name": "ExploratoryPublicationCoordinator treats a rollback to the already-active publication as a no-op returning the current pointer",
+              "status": "passed"
+            },
+            {
+              "name": "ExploratoryPublicationCoordinator verifies and atomically advances a versioned publication pointer",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/vector-backends/src/publication/verification.test.ts",
+          "originalFile": "packages/vector-backends/src/publication/verification.test.ts",
+          "tests": [
+            {
+              "name": "collectInspectionFindings checks candidate evidence only when the publication carries one, classifying digest drift security_critical and dependency revocation review_required",
+              "status": "passed"
+            },
+            {
+              "name": "collectInspectionFindings classifies a count mismatch as repairable",
+              "status": "passed"
+            },
+            {
+              "name": "collectInspectionFindings classifies a vector format change (dimensions or precision) as security_critical",
+              "status": "passed"
+            },
+            {
+              "name": "collectInspectionFindings classifies a version mismatch as security_critical",
+              "status": "passed"
+            },
+            {
+              "name": "collectInspectionFindings classifies an evaluation regression as review_required and a failed sample search as repairable",
+              "status": "passed"
+            },
+            {
+              "name": "collectInspectionFindings classifies an unready index as repairable and a failed authorization check as security_critical",
+              "status": "passed"
+            },
+            {
+              "name": "collectInspectionFindings names the mismatched manifest key and classifies it security_critical",
+              "status": "passed"
+            },
+            {
+              "name": "collectInspectionFindings reports no findings for a matching inspection",
+              "status": "passed"
+            },
+            {
+              "name": "verifyInspection checks candidateEvidenceDigest and requiredDependenciesEligible only when a candidate digest is requested",
+              "status": "passed"
+            },
+            {
+              "name": "verifyInspection does not include candidateEvidenceDigest or requiredDependenciesEligible in the returned digest's input",
+              "status": "passed"
+            },
+            {
+              "name": "verifyInspection returns a stable digest for a matching inspection, independent of call order",
+              "status": "passed"
+            },
+            {
+              "name": "verifyInspection throws PUBLICATION_VERIFICATION_FAILED joining every mismatch in check order",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/vector-backends/src/spaces/link.test.ts",
+          "originalFile": "packages/vector-backends/src/spaces/link.test.ts",
+          "tests": [
+            {
+              "name": "validateVectorItemEntityLink does not require canonicalId to equal chunkId for a non-chunk target",
+              "status": "passed"
+            },
+            {
+              "name": "validateVectorItemEntityLink flags a chunk target whose canonicalId does not equal lineage.chunkId",
+              "status": "passed"
+            },
+            {
+              "name": "validateVectorItemEntityLink is complete with no issues for a fully bound, admitted link",
+              "status": "passed"
+            },
+            {
+              "name": "validateVectorItemEntityLink rejects a digest that does not match the sha256 pattern",
+              "status": "passed"
+            },
+            {
+              "name": "validateVectorItemEntityLink reports a not_admitted admission as an issue, never throwing",
+              "status": "passed"
+            },
+            {
+              "name": "validateVectorItemEntityLink reports every empty identity field",
+              "status": "passed"
+            },
+            {
+              "name": "validateVectorItemEntityLink validates the admission digest when the link is admitted",
+              "status": "passed"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "package": "schema-workspace",
+      "exitCode": 0,
+      "counts": {
+        "passed": 14,
+        "failed": 0,
+        "skipped": 0,
+        "total": 14
+      },
+      "files": [
+        {
+          "file": "packages/schema-workspace/src/schema-workspace.test.ts",
+          "originalFile": "packages/schema-workspace/src/schema-workspace.test.ts",
+          "tests": [
+            {
+              "name": "getPage rejects unknown pages and path escapes",
+              "status": "passed"
+            },
+            {
+              "name": "getPage returns a page by id and by path, honouring the size cap",
+              "status": "passed"
+            },
+            {
+              "name": "head check loads the pinned contract head 20260916020200 and fails closed on a stale database head",
+              "status": "passed"
+            },
+            {
+              "name": "head check reports HEAD_MISMATCH unless stale is allowed",
+              "status": "passed"
+            },
+            {
+              "name": "loadWorkspace fails with WORKSPACE_MISSING for an empty directory",
+              "status": "passed"
+            },
+            {
+              "name": "loadWorkspace reads the machine layer and exposes the migration head",
+              "status": "passed"
+            },
+            {
+              "name": "materializeScope filters the full workspace by scope when no db-contract CLI is present",
+              "status": "passed"
+            },
+            {
+              "name": "materializeScope refuses unknown scopes",
+              "status": "passed"
+            },
+            {
+              "name": "resolveWorkspaceDir finds the pinned contract workspace or the explicit fallback, whichever exists first",
+              "status": "passed"
+            },
+            {
+              "name": "resolveWorkspaceDir prefers SCHEMA_WORKSPACE_DIR",
+              "status": "passed"
+            },
+            {
+              "name": "searchWorkspace filters by kind and domain and offers suggestions when nothing matches",
+              "status": "passed"
+            },
+            {
+              "name": "searchWorkspace finds terminology and token overlap",
+              "status": "passed"
+            },
+            {
+              "name": "searchWorkspace matches a qualified name exactly",
+              "status": "passed"
+            },
+            {
+              "name": "searchWorkspace ranks an exact alias above a name match above token overlap",
+              "status": "passed"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "package": "db-read",
+      "exitCode": 0,
+      "counts": {
+        "passed": 35,
+        "failed": 0,
+        "skipped": 12,
+        "total": 47
+      },
+      "files": [
+        {
+          "file": "packages/db-read/src/artifacts-reconciliation.integration.test.ts",
+          "originalFile": "packages/db-read/src/artifacts-reconciliation.integration.test.ts",
+          "tests": [
+            {
+              "name": "ArtifactLedger real Postgres and Supabase custody reconciliation cannot read or reconcile another tenant's registration",
+              "status": "skipped"
+            },
+            {
+              "name": "ArtifactLedger real Postgres and Supabase custody reconciliation fresh consumers reconcile uploaded bytes with original pending metadata",
+              "status": "skipped"
+            },
+            {
+              "name": "ArtifactLedger real Postgres and Supabase custody reconciliation recovers a lost successful HTTP upload acknowledgement by actual remote readback",
+              "status": "skipped"
+            },
+            {
+              "name": "ArtifactLedger real Postgres and Supabase custody reconciliation refuses to promote a registered object whose bytes never reached storage",
+              "status": "skipped"
+            },
+            {
+              "name": "ArtifactLedger real Postgres and Supabase custody reconciliation reuses uploaded bytes after database rollback under the original preassigned id",
+              "status": "skipped"
+            }
+          ]
+        },
+        {
+          "file": "packages/db-read/src/artifacts-reconciliation.test.ts",
+          "originalFile": "packages/db-read/src/artifacts-reconciliation.test.ts",
+          "tests": [
+            {
+              "name": "artifact custody reconciliation does not promote missing or tampered remote bytes",
+              "status": "passed"
+            },
+            {
+              "name": "artifact custody reconciliation local-only custody remains pending and preassigned identity cannot silently change",
+              "status": "passed"
+            },
+            {
+              "name": "artifact custody reconciliation promotes pending and failed registrations only after verified remote reads",
+              "status": "passed"
+            },
+            {
+              "name": "artifact custody reconciliation recovers upload acknowledgement loss after exact readback",
+              "status": "passed"
+            },
+            {
+              "name": "artifact custody reconciliation recovers upload-success database-failure under the preassigned identity",
+              "status": "passed"
+            },
+            {
+              "name": "artifact custody reconciliation reused pending metadata reaches available through idempotent put",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/db-read/src/db-read.test.ts",
+          "originalFile": "packages/db-read/src/db-read.test.ts",
+          "tests": [
+            {
+              "name": "assertSingleReadStatement admits one select or with-select",
+              "status": "passed"
+            },
+            {
+              "name": "assertSingleReadStatement rejects writes, multi-statements, non-select, and context mutators",
+              "status": "passed"
+            },
+            {
+              "name": "canonicalJson (RFC 8785) encodes numbers in shortest round-trip form and rejects non-finite",
+              "status": "passed"
+            },
+            {
+              "name": "canonicalJson (RFC 8785) sorts keys by code point, drops undefined, keeps array order, normalizes strings",
+              "status": "passed"
+            },
+            {
+              "name": "canonicalJson (RFC 8785) yields identical digests for semantically equal objects",
+              "status": "passed"
+            },
+            {
+              "name": "json-schema subset accepts valid params after defaults",
+              "status": "passed"
+            },
+            {
+              "name": "json-schema subset reports missing, extra, format, bound, and enum violations by path",
+              "status": "passed"
+            },
+            {
+              "name": "resolveReferences resolves row and value paths and reports unresolved ones",
+              "status": "passed"
+            },
+            {
+              "name": "uuidv7 produces valid, time-ordered identifiers",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/db-read/src/read-executor.integration.test.ts",
+          "originalFile": "packages/db-read/src/read-executor.integration.test.ts",
+          "tests": [
+            {
+              "name": "ReadExecutor against the disposable database (db-contract workspace) persists intent and snapshot as ledger artifacts with lineage",
+              "status": "skipped"
+            },
+            {
+              "name": "ReadExecutor against the disposable database (db-contract workspace) rejects bad parameters, unknown queries, and role escalation statically",
+              "status": "skipped"
+            },
+            {
+              "name": "ReadExecutor against the disposable database (db-contract workspace) reports the tenant head and the migration head",
+              "status": "skipped"
+            },
+            {
+              "name": "ReadExecutor against the disposable database (db-contract workspace) runs three catalog queries under their catalog roles with stable digests",
+              "status": "skipped"
+            },
+            {
+              "name": "ReadExecutor against the disposable database (db-contract workspace) serves guarded read-only SQL as pipeline_agent and enforces read-only at the database",
+              "status": "skipped"
+            }
+          ]
+        },
+        {
+          "file": "packages/db-read/src/snapshot.integration.test.ts",
+          "originalFile": "packages/db-read/src/snapshot.integration.test.ts",
+          "tests": [
+            {
+              "name": "P1.2 persisted repeatable snapshots on isolated Postgres rejects contradictory query clocks and unsupported historical current-state queries",
+              "status": "skipped"
+            },
+            {
+              "name": "P1.2 persisted repeatable snapshots on isolated Postgres T01/T02 pins one database snapshot while a second connection commits, then replays historical K",
+              "status": "skipped"
+            }
+          ]
+        },
+        {
+          "file": "packages/db-read/src/snapshot.test.ts",
+          "originalFile": "packages/db-read/src/snapshot.test.ts",
+          "tests": [
+            {
+              "name": "persisted snapshot admission accepts a complete empty result as evidence of absence",
+              "status": "passed"
+            },
+            {
+              "name": "persisted snapshot admission rejects changed heads, contradictory clocks and stale contracts",
+              "status": "passed"
+            },
+            {
+              "name": "persisted snapshot admission rejects omitted operations, forged rows, changed intent and foreign tenant",
+              "status": "passed"
+            },
+            {
+              "name": "persisted snapshot admission rejects required error outcomes even when their digest is valid",
+              "status": "passed"
+            },
+            {
+              "name": "persisted snapshot admission rejects required skipped outcomes even when their digest is valid",
+              "status": "passed"
+            },
+            {
+              "name": "persisted snapshot admission rejects required truncated outcomes even when their digest is valid",
+              "status": "passed"
+            },
+            {
+              "name": "persisted snapshot admission retains optional unavailable retrieval while rejecting it as a required preflight",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/db-read/src/space-manifest.test.ts",
+          "originalFile": "packages/db-read/src/space-manifest.test.ts",
+          "tests": [
+            {
+              "name": "buildSpaceManifest always reports budget as unavailable, never computed from a store quota",
+              "status": "passed"
+            },
+            {
+              "name": "buildSpaceManifest computes profileBindings and admittedNodeKinds correctly, and admits table-row-groups-v1 to exactly the two table spaces",
+              "status": "passed"
+            },
+            {
+              "name": "buildSpaceManifest deduplicates and sorts admittedNodeKinds across multiple bound profiles",
+              "status": "passed"
+            },
+            {
+              "name": "buildSpaceManifest includes every supplied space, in order, including one with no profile bindings",
+              "status": "passed"
+            },
+            {
+              "name": "buildSpaceManifest is deterministic for the same input",
+              "status": "passed"
+            },
+            {
+              "name": "buildSpaceManifest merges supplied live-row facts into the matching entry only",
+              "status": "passed"
+            },
+            {
+              "name": "buildSpaceManifest reports no bindings and no admitted node kinds for a space nothing binds",
+              "status": "passed"
+            },
+            {
+              "name": "readSpaceManifest is deterministic for the same input",
+              "status": "passed"
+            },
+            {
+              "name": "readSpaceManifest merges live rows from a stubbed runIntent into the right entries (storeClass, authorityClass, activePublication)",
+              "status": "passed"
+            },
+            {
+              "name": "readSpaceManifest ReadExecutor satisfies SpaceManifestReads structurally (compile-time proof; never instantiated)",
+              "status": "passed"
+            },
+            {
+              "name": "readSpaceManifest takes contract.migrationHead and atKnowledgeSeq from the port, not a literal",
+              "status": "passed"
+            },
+            {
+              "name": "readSpaceManifest with a catalog containing some of the five queries, only those appear in the read intent and only the remainder appear in unavailable",
+              "status": "passed"
+            },
+            {
+              "name": "readSpaceManifest with an empty catalog, issues no read intent, touches no head, and returns all five unavailable entries with unavailable budgets",
+              "status": "passed"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "package": "ingestion",
+      "exitCode": 0,
+      "counts": {
+        "passed": 362,
+        "failed": 0,
+        "skipped": 20,
+        "total": 382
+      },
+      "files": [
+        {
+          "file": "packages/ingestion/src/content-links/chunk-manifest.test.ts",
+          "originalFile": "packages/ingestion/src/content-links/chunk-manifest.test.ts",
+          "tests": [
+            {
+              "name": "retained chunk manifests reconstructs a full chunk manifest built from the worker's persisted text-digest nodes",
+              "status": "passed"
+            },
+            {
+              "name": "retained chunk manifests reconstructs the actual writer manifest including Unicode, partial node spans and contextual headings",
+              "status": "passed"
+            },
+            {
+              "name": "retained chunk manifests rejects changed chunk text digest after validating the original writer fixture",
+              "status": "passed"
+            },
+            {
+              "name": "retained chunk manifests rejects changed chunk text digest in a worker-persisted text-digest manifest",
+              "status": "passed"
+            },
+            {
+              "name": "retained chunk manifests rejects changed input node digest after validating the original writer fixture",
+              "status": "passed"
+            },
+            {
+              "name": "retained chunk manifests rejects changed input node digest in a worker-persisted text-digest manifest",
+              "status": "passed"
+            },
+            {
+              "name": "retained chunk manifests rejects changed locator after validating the original writer fixture",
+              "status": "passed"
+            },
+            {
+              "name": "retained chunk manifests rejects changed locator in a worker-persisted text-digest manifest",
+              "status": "passed"
+            },
+            {
+              "name": "retained chunk manifests rejects changed span offset after validating the original writer fixture",
+              "status": "passed"
+            },
+            {
+              "name": "retained chunk manifests rejects changed span offset in a worker-persisted text-digest manifest",
+              "status": "passed"
+            },
+            {
+              "name": "retained chunk manifests rejects foreign representation span after validating the original writer fixture",
+              "status": "passed"
+            },
+            {
+              "name": "retained chunk manifests rejects foreign representation span in a worker-persisted text-digest manifest",
+              "status": "passed"
+            },
+            {
+              "name": "retained chunk manifests rejects fractional span offset after validating the original writer fixture",
+              "status": "passed"
+            },
+            {
+              "name": "retained chunk manifests rejects fractional span offset in a worker-persisted text-digest manifest",
+              "status": "passed"
+            },
+            {
+              "name": "retained chunk manifests rejects missing chunk after validating the original writer fixture",
+              "status": "passed"
+            },
+            {
+              "name": "retained chunk manifests rejects missing chunk in a worker-persisted text-digest manifest",
+              "status": "passed"
+            },
+            {
+              "name": "retained chunk manifests rejects missing input node after validating the original writer fixture",
+              "status": "passed"
+            },
+            {
+              "name": "retained chunk manifests rejects missing input node in a worker-persisted text-digest manifest",
+              "status": "passed"
+            },
+            {
+              "name": "retained chunk manifests rejects missing output digest after validating the original writer fixture",
+              "status": "passed"
+            },
+            {
+              "name": "retained chunk manifests rejects missing output digest in a worker-persisted text-digest manifest",
+              "status": "passed"
+            },
+            {
+              "name": "retained chunk manifests rejects missing span after validating the original writer fixture",
+              "status": "passed"
+            },
+            {
+              "name": "retained chunk manifests rejects missing span in a worker-persisted text-digest manifest",
+              "status": "passed"
+            },
+            {
+              "name": "retained chunk manifests rejects noncontiguous chunk ordinals after validating the original writer fixture",
+              "status": "passed"
+            },
+            {
+              "name": "retained chunk manifests rejects noncontiguous chunk ordinals in a worker-persisted text-digest manifest",
+              "status": "passed"
+            },
+            {
+              "name": "retained chunk manifests rejects null span offset after validating the original writer fixture",
+              "status": "passed"
+            },
+            {
+              "name": "retained chunk manifests rejects null span offset in a worker-persisted text-digest manifest",
+              "status": "passed"
+            },
+            {
+              "name": "retained chunk manifests rejects oversized chunk census after validating the original writer fixture",
+              "status": "passed"
+            },
+            {
+              "name": "retained chunk manifests rejects oversized chunk census in a worker-persisted text-digest manifest",
+              "status": "passed"
+            },
+            {
+              "name": "retained chunk manifests rejects oversized node census after validating the original writer fixture",
+              "status": "passed"
+            },
+            {
+              "name": "retained chunk manifests rejects oversized node census in a worker-persisted text-digest manifest",
+              "status": "passed"
+            },
+            {
+              "name": "retained chunk manifests rejects set digest mismatch after validating the original writer fixture",
+              "status": "passed"
+            },
+            {
+              "name": "retained chunk manifests rejects set digest mismatch in a worker-persisted text-digest manifest",
+              "status": "passed"
+            },
+            {
+              "name": "retained chunk manifests rejects unadmitted procedure after validating the original writer fixture",
+              "status": "passed"
+            },
+            {
+              "name": "retained chunk manifests rejects unadmitted procedure in a worker-persisted text-digest manifest",
+              "status": "passed"
+            },
+            {
+              "name": "retained chunk manifests rejects unfinished chunk set after validating the original writer fixture",
+              "status": "passed"
+            },
+            {
+              "name": "retained chunk manifests rejects unfinished chunk set in a worker-persisted text-digest manifest",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/ingestion/src/content-links/evidence.test.ts",
+          "originalFile": "packages/ingestion/src/content-links/evidence.test.ts",
+          "tests": [
+            {
+              "name": "canonical provenance drift rejection accepts equivalent timestamp offsets and database numeric encodings",
+              "status": "passed"
+            },
+            {
+              "name": "canonical provenance drift rejection preserves exact fractional instants across timezone offsets",
+              "status": "passed"
+            },
+            {
+              "name": "canonical provenance drift rejection rejects capture acquisition time drift",
+              "status": "passed"
+            },
+            {
+              "name": "canonical provenance drift rejection rejects capture media type drift",
+              "status": "passed"
+            },
+            {
+              "name": "canonical provenance drift rejection rejects capture method drift",
+              "status": "passed"
+            },
+            {
+              "name": "canonical provenance drift rejection rejects capture method version drift",
+              "status": "passed"
+            },
+            {
+              "name": "canonical provenance drift rejection rejects evidence link authority drift",
+              "status": "passed"
+            },
+            {
+              "name": "canonical provenance drift rejection rejects invalid capture timestamp drift",
+              "status": "passed"
+            },
+            {
+              "name": "canonical provenance drift rejection rejects invalid run timestamp drift",
+              "status": "passed"
+            },
+            {
+              "name": "canonical provenance drift rejection rejects locator byte length drift",
+              "status": "passed"
+            },
+            {
+              "name": "canonical provenance drift rejection rejects locator media type drift",
+              "status": "passed"
+            },
+            {
+              "name": "canonical provenance drift rejection rejects locator normalization drift",
+              "status": "passed"
+            },
+            {
+              "name": "canonical provenance drift rejection rejects locator occurrence count drift",
+              "status": "passed"
+            },
+            {
+              "name": "canonical provenance drift rejection rejects locator parser lineage drift",
+              "status": "passed"
+            },
+            {
+              "name": "canonical provenance drift rejection rejects locator resolver drift",
+              "status": "passed"
+            },
+            {
+              "name": "canonical provenance drift rejection rejects missing original method alias drift",
+              "status": "passed"
+            },
+            {
+              "name": "canonical provenance drift rejection rejects original method alias drift",
+              "status": "passed"
+            },
+            {
+              "name": "canonical provenance drift rejection rejects run bundle drift",
+              "status": "passed"
+            },
+            {
+              "name": "canonical provenance drift rejection rejects run completion time drift",
+              "status": "passed"
+            },
+            {
+              "name": "canonical provenance drift rejection rejects run policy artifact drift",
+              "status": "passed"
+            },
+            {
+              "name": "canonical provenance drift rejection rejects run policy version drift",
+              "status": "passed"
+            },
+            {
+              "name": "canonical provenance drift rejection rejects run producer drift",
+              "status": "passed"
+            },
+            {
+              "name": "canonical provenance drift rejection rejects run result drift",
+              "status": "passed"
+            },
+            {
+              "name": "canonical provenance drift rejection rejects run start time drift",
+              "status": "passed"
+            },
+            {
+              "name": "canonical provenance drift rejection rejects run verifier drift",
+              "status": "passed"
+            },
+            {
+              "name": "canonical provenance drift rejection rejects source URI drift",
+              "status": "passed"
+            },
+            {
+              "name": "canonical provenance drift rejection rejects sub-millisecond capture drift",
+              "status": "passed"
+            },
+            {
+              "name": "canonical provenance drift rejection rejects sub-millisecond run drift",
+              "status": "passed"
+            },
+            {
+              "name": "canonical provenance drift rejection supports a canonical method without an alias context",
+              "status": "passed"
+            },
+            {
+              "name": "offline canonical content evidence reconciliation preserves exact Unicode selected bytes, qualification and authenticated bindings",
+              "status": "passed"
+            },
+            {
+              "name": "offline canonical content evidence reconciliation propagates rejected sealed artifact/selector validation",
+              "status": "passed"
+            },
+            {
+              "name": "offline canonical content evidence reconciliation rejects absent canonical joins before consulting sealed authority",
+              "status": "passed"
+            },
+            {
+              "name": "offline canonical content evidence reconciliation rejects ambiguous sealed edge drift",
+              "status": "passed"
+            },
+            {
+              "name": "offline canonical content evidence reconciliation rejects assessment authority drift",
+              "status": "passed"
+            },
+            {
+              "name": "offline canonical content evidence reconciliation rejects assessment digest drift",
+              "status": "passed"
+            },
+            {
+              "name": "offline canonical content evidence reconciliation rejects assessment properties drift",
+              "status": "passed"
+            },
+            {
+              "name": "offline canonical content evidence reconciliation rejects assessment rationale drift",
+              "status": "passed"
+            },
+            {
+              "name": "offline canonical content evidence reconciliation rejects assessment replay drift",
+              "status": "passed"
+            },
+            {
+              "name": "offline canonical content evidence reconciliation rejects assessment verdict drift",
+              "status": "passed"
+            },
+            {
+              "name": "offline canonical content evidence reconciliation rejects capture artifact drift",
+              "status": "passed"
+            },
+            {
+              "name": "offline canonical content evidence reconciliation rejects capture bytes drift",
+              "status": "passed"
+            },
+            {
+              "name": "offline canonical content evidence reconciliation rejects claim digest drift",
+              "status": "passed"
+            },
+            {
+              "name": "offline canonical content evidence reconciliation rejects claim key drift",
+              "status": "passed"
+            },
+            {
+              "name": "offline canonical content evidence reconciliation rejects claim producer drift",
+              "status": "passed"
+            },
+            {
+              "name": "offline canonical content evidence reconciliation rejects claim run drift",
+              "status": "passed"
+            },
+            {
+              "name": "offline canonical content evidence reconciliation rejects claim statement drift",
+              "status": "passed"
+            },
+            {
+              "name": "offline canonical content evidence reconciliation rejects claim type drift",
+              "status": "passed"
+            },
+            {
+              "name": "offline canonical content evidence reconciliation rejects manifest artifact drift",
+              "status": "passed"
+            },
+            {
+              "name": "offline canonical content evidence reconciliation rejects manifest digest drift",
+              "status": "passed"
+            },
+            {
+              "name": "offline canonical content evidence reconciliation rejects missing selected bytes drift",
+              "status": "passed"
+            },
+            {
+              "name": "offline canonical content evidence reconciliation rejects missing stored admission drift",
+              "status": "passed"
+            },
+            {
+              "name": "offline canonical content evidence reconciliation rejects policy pin drift",
+              "status": "passed"
+            },
+            {
+              "name": "offline canonical content evidence reconciliation rejects qualifier drop drift",
+              "status": "passed"
+            },
+            {
+              "name": "offline canonical content evidence reconciliation rejects representation drift",
+              "status": "passed"
+            },
+            {
+              "name": "offline canonical content evidence reconciliation rejects retracted claim drift",
+              "status": "passed"
+            },
+            {
+              "name": "offline canonical content evidence reconciliation rejects run manifest drift",
+              "status": "passed"
+            },
+            {
+              "name": "offline canonical content evidence reconciliation rejects run status drift",
+              "status": "passed"
+            },
+            {
+              "name": "offline canonical content evidence reconciliation rejects selected digest drift",
+              "status": "passed"
+            },
+            {
+              "name": "offline canonical content evidence reconciliation rejects selector digest drift",
+              "status": "passed"
+            },
+            {
+              "name": "offline canonical content evidence reconciliation rejects selector drift",
+              "status": "passed"
+            },
+            {
+              "name": "offline canonical content evidence reconciliation rejects stored provenance drift",
+              "status": "passed"
+            },
+            {
+              "name": "offline canonical content evidence reconciliation rejects tenant authority drift",
+              "status": "passed"
+            },
+            {
+              "name": "offline canonical content evidence reconciliation rejects unresolved locator drift",
+              "status": "passed"
+            },
+            {
+              "name": "offline canonical content evidence reconciliation rejects value drift",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/ingestion/src/content-links/executor.test.ts",
+          "originalFile": "packages/ingestion/src/content-links/executor.test.ts",
+          "tests": [
+            {
+              "name": "offline content executor application and recovery does not swallow an unrelated unique constraint failure",
+              "status": "passed"
+            },
+            {
+              "name": "offline content executor application and recovery does not turn unexpected internal failures into held admission",
+              "status": "passed"
+            },
+            {
+              "name": "offline content executor application and recovery does not write prepared effects after the batch head race is rejected",
+              "status": "passed"
+            },
+            {
+              "name": "offline content executor application and recovery expands a summary prerequisite without modifying immutable intent dependencies",
+              "status": "passed"
+            },
+            {
+              "name": "offline content executor application and recovery holds a rejected dependency closure and still applies an independent effect",
+              "status": "passed"
+            },
+            {
+              "name": "offline content executor application and recovery joins the winner only for the precise idempotency collision",
+              "status": "passed"
+            },
+            {
+              "name": "offline content executor application and recovery locks the head before preparing an all-held receipt without opening a batch",
+              "status": "passed"
+            },
+            {
+              "name": "offline content executor application and recovery locks the head before preparing an all-no_op receipt without opening a batch",
+              "status": "passed"
+            },
+            {
+              "name": "offline content executor application and recovery recovers a committed receipt after a lost acknowledgement",
+              "status": "passed"
+            },
+            {
+              "name": "offline content executor application and recovery rejects a stale locked head before ledger insertion or authentication",
+              "status": "passed"
+            },
+            {
+              "name": "offline content executor application and recovery rejects an inconsistent committed batch sequence",
+              "status": "passed"
+            },
+            {
+              "name": "offline content executor application and recovery requires canonical row reconciliation before returning success",
+              "status": "passed"
+            },
+            {
+              "name": "offline content executor application and recovery returns an authenticated duplicate before stale snapshot preflight",
+              "status": "passed"
+            },
+            {
+              "name": "offline content executor application and recovery shares the apply transaction client with canonical evidence authentication",
+              "status": "passed"
+            },
+            {
+              "name": "offline content executor application and recovery shares the plan transaction client with canonical evidence authentication",
+              "status": "passed"
+            },
+            {
+              "name": "offline content executor authority and preflight propagates snapshot integrity rejection",
+              "status": "passed"
+            },
+            {
+              "name": "offline content executor authority and preflight rejects an unsupported operation without fallback",
+              "status": "passed"
+            },
+            {
+              "name": "offline content executor authority and preflight rejects host attemptId drift before custody or database reads",
+              "status": "passed"
+            },
+            {
+              "name": "offline content executor authority and preflight rejects host missionId drift before custody or database reads",
+              "status": "passed"
+            },
+            {
+              "name": "offline content executor authority and preflight rejects host policy drift",
+              "status": "passed"
+            },
+            {
+              "name": "offline content executor authority and preflight rejects host tenantId drift before custody or database reads",
+              "status": "passed"
+            },
+            {
+              "name": "offline content executor authority and preflight rejects installed migrationHead mismatch",
+              "status": "passed"
+            },
+            {
+              "name": "offline content executor authority and preflight rejects installed workspaceFingerprint mismatch",
+              "status": "passed"
+            },
+            {
+              "name": "offline content executor authority and preflight rejects missing-inner snapshot custody",
+              "status": "passed"
+            },
+            {
+              "name": "offline content executor authority and preflight rejects stale head before preparing effects",
+              "status": "passed"
+            },
+            {
+              "name": "offline content executor authority and preflight rejects unavailable snapshot custody",
+              "status": "passed"
+            },
+            {
+              "name": "offline content executor authority and preflight rejects wrong-digest snapshot custody",
+              "status": "passed"
+            },
+            {
+              "name": "offline content executor authority and preflight requires actual attempt membership in the pinned tenant and mission",
+              "status": "passed"
+            },
+            {
+              "name": "offline content executor authority and preflight uses the authenticated inner snapshot digest, not its outer artifact digest",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/ingestion/src/content-links/ledger-review.test.ts",
+          "originalFile": "packages/ingestion/src/content-links/ledger-review.test.ts",
+          "tests": [
+            {
+              "name": "independent offline ledger review findings rejects a applied dependent of a final held prerequisite",
+              "status": "passed"
+            },
+            {
+              "name": "independent offline ledger review findings rejects a no_op dependent of a final held prerequisite",
+              "status": "passed"
+            },
+            {
+              "name": "independent offline ledger review findings rejects a noncanonical knowledge-head jump",
+              "status": "passed"
+            },
+            {
+              "name": "independent offline ledger review findings rejects canonical approval drift",
+              "status": "passed"
+            },
+            {
+              "name": "independent offline ledger review findings rejects canonical mission drift",
+              "status": "passed"
+            },
+            {
+              "name": "independent offline ledger review findings rejects canonical policy decision drift",
+              "status": "passed"
+            },
+            {
+              "name": "independent offline ledger review findings rejects canonical preconditions drift",
+              "status": "passed"
+            },
+            {
+              "name": "independent offline ledger review findings rejects canonical producer attempt drift",
+              "status": "passed"
+            },
+            {
+              "name": "independent offline ledger review findings rejects canonical receipt precondition drift",
+              "status": "passed"
+            },
+            {
+              "name": "independent offline ledger review findings rejects canonical schema version drift",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/ingestion/src/content-links/ledger.test.ts",
+          "originalFile": "packages/ingestion/src/content-links/ledger.test.ts",
+          "tests": [
+            {
+              "name": "content-link ledger custody does not escalate planned held to an applied effect",
+              "status": "passed"
+            },
+            {
+              "name": "content-link ledger custody does not escalate planned no_op to an applied effect",
+              "status": "passed"
+            },
+            {
+              "name": "content-link ledger custody fails closed when denyLineage prevents durable custody",
+              "status": "passed"
+            },
+            {
+              "name": "content-link ledger custody fails closed when pendingStorage prevents durable custody",
+              "status": "passed"
+            },
+            {
+              "name": "content-link ledger custody reconciles the original receipt after an uncertain committed acknowledgement without writing again",
+              "status": "passed"
+            },
+            {
+              "name": "content-link ledger custody records held with its exact outer outcome",
+              "status": "passed"
+            },
+            {
+              "name": "content-link ledger custody records no_op with its exact outer outcome",
+              "status": "passed"
+            },
+            {
+              "name": "content-link ledger custody refuses a caller digest that normalizes away original qualifiers",
+              "status": "passed"
+            },
+            {
+              "name": "content-link ledger custody refuses a receipt lookup from another tenant",
+              "status": "passed"
+            },
+            {
+              "name": "content-link ledger custody rejects altered immutable receipt bytes after a successful duplicate read",
+              "status": "passed"
+            },
+            {
+              "name": "content-link ledger custody rejects altered intent evidence after a successful duplicate read",
+              "status": "passed"
+            },
+            {
+              "name": "content-link ledger custody rejects changed original snapshot digest after a successful duplicate read",
+              "status": "passed"
+            },
+            {
+              "name": "content-link ledger custody rejects different row outcome after a successful duplicate read",
+              "status": "passed"
+            },
+            {
+              "name": "content-link ledger custody rejects lineage assigned to another receipt after a successful duplicate read",
+              "status": "passed"
+            },
+            {
+              "name": "content-link ledger custody rejects lost composite canonical row key after a successful duplicate read",
+              "status": "passed"
+            },
+            {
+              "name": "content-link ledger custody rejects lost original evidence manifest custody after a successful duplicate read",
+              "status": "passed"
+            },
+            {
+              "name": "content-link ledger custody rejects missing artifact lineage after a successful duplicate read",
+              "status": "passed"
+            },
+            {
+              "name": "content-link ledger custody rejects missing canonical effects after a successful duplicate read",
+              "status": "passed"
+            },
+            {
+              "name": "content-link ledger custody rejects missing full intent object after a successful duplicate read",
+              "status": "passed"
+            },
+            {
+              "name": "content-link ledger custody rejects missing plan object after a successful duplicate read",
+              "status": "passed"
+            },
+            {
+              "name": "content-link ledger custody rejects missing receipt object despite available metadata after a successful duplicate read",
+              "status": "passed"
+            },
+            {
+              "name": "content-link ledger custody rejects unavailable receipt storage after a successful duplicate read",
+              "status": "passed"
+            },
+            {
+              "name": "content-link ledger custody rejects wrong outer intent type after a successful duplicate read",
+              "status": "passed"
+            },
+            {
+              "name": "content-link ledger custody rejects wrong receipt artifact type after a successful duplicate read",
+              "status": "passed"
+            },
+            {
+              "name": "content-link ledger custody retains omitted summary dependencies in the intent while recording the derived dependency closure",
+              "status": "passed"
+            },
+            {
+              "name": "content-link ledger custody retains the exact full intent, composite affected refs and dependency artifact digests",
+              "status": "passed"
+            },
+            {
+              "name": "content-link ledger custody returns absent only for an unknown idempotency key",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/ingestion/src/content-links/operations.test.ts",
+          "originalFile": "packages/ingestion/src/content-links/operations.test.ts",
+          "tests": [
+            {
+              "name": "typed content operation admission accepts exact captured bytes carried through an authenticated faithful representation",
+              "status": "passed"
+            },
+            {
+              "name": "typed content operation admission allows only an admitted declared summary producer during read-only planning",
+              "status": "passed"
+            },
+            {
+              "name": "typed content operation admission binds prepared writes to their actual transaction client and requires a receipt",
+              "status": "passed"
+            },
+            {
+              "name": "typed content operation admission compares relationship intervals losslessly 0",
+              "status": "passed"
+            },
+            {
+              "name": "typed content operation admission compares relationship intervals losslessly 1",
+              "status": "passed"
+            },
+            {
+              "name": "typed content operation admission compares relationship intervals losslessly 2",
+              "status": "passed"
+            },
+            {
+              "name": "typed content operation admission compares relationship intervals losslessly 3",
+              "status": "passed"
+            },
+            {
+              "name": "typed content operation admission compares relationship intervals losslessly 4",
+              "status": "passed"
+            },
+            {
+              "name": "typed content operation admission compares relationship intervals losslessly 5",
+              "status": "passed"
+            },
+            {
+              "name": "typed content operation admission compares relationship intervals losslessly 6",
+              "status": "passed"
+            },
+            {
+              "name": "typed content operation admission does not accept invented summary prose or nonexistent summarize transformations",
+              "status": "passed"
+            },
+            {
+              "name": "typed content operation admission does not silently ignore unrelated evidence from another capture",
+              "status": "passed"
+            },
+            {
+              "name": "typed content operation admission does not treat null confidence as the explicitly verified numeric zero",
+              "status": "passed"
+            },
+            {
+              "name": "typed content operation admission holds confidence and source weights that canonical numeric columns would round",
+              "status": "passed"
+            },
+            {
+              "name": "typed content operation admission holds different bytes before mutation",
+              "status": "passed"
+            },
+            {
+              "name": "typed content operation admission holds missing entity binding before mutation",
+              "status": "passed"
+            },
+            {
+              "name": "typed content operation admission holds unknown policy before mutation",
+              "status": "passed"
+            },
+            {
+              "name": "typed content operation admission holds wrong representation before mutation",
+              "status": "passed"
+            },
+            {
+              "name": "typed content operation admission holds wrong selected digest before mutation",
+              "status": "passed"
+            },
+            {
+              "name": "typed content operation admission links already admitted canonical facts without a self-referential future claim ID effect",
+              "status": "passed"
+            },
+            {
+              "name": "typed content operation admission prepares chunk.claim.link without writing, then applies typed canonical rows",
+              "status": "passed"
+            },
+            {
+              "name": "typed content operation admission prepares chunk.entity.link without writing, then applies typed canonical rows",
+              "status": "passed"
+            },
+            {
+              "name": "typed content operation admission prepares chunk.relationship.link without writing, then applies typed canonical rows",
+              "status": "passed"
+            },
+            {
+              "name": "typed content operation admission prepares document.entity.link without writing, then applies typed canonical rows",
+              "status": "passed"
+            },
+            {
+              "name": "typed content operation admission prepares projection.target.link without writing, then applies typed canonical rows",
+              "status": "passed"
+            },
+            {
+              "name": "typed content operation admission prepares summary.materialize without writing, then applies typed canonical rows",
+              "status": "passed"
+            },
+            {
+              "name": "typed content operation admission prepares summary.source.link without writing, then applies typed canonical rows",
+              "status": "passed"
+            },
+            {
+              "name": "typed content operation admission preserves exactly representable four-decimal confidence 0",
+              "status": "passed"
+            },
+            {
+              "name": "typed content operation admission preserves exactly representable four-decimal confidence 0.0001",
+              "status": "passed"
+            },
+            {
+              "name": "typed content operation admission preserves exactly representable four-decimal confidence 0.1234",
+              "status": "passed"
+            },
+            {
+              "name": "typed content operation admission preserves exactly representable four-decimal confidence 0.9",
+              "status": "passed"
+            },
+            {
+              "name": "typed content operation admission preserves exactly representable four-decimal confidence 1",
+              "status": "passed"
+            },
+            {
+              "name": "typed content operation admission preserves higher precision for chunk confidence, whose canonical column is unconstrained numeric",
+              "status": "passed"
+            },
+            {
+              "name": "typed content operation admission reconciles exact immutable row effects and rejects arbitrary or substituted receipt keys",
+              "status": "passed"
+            },
+            {
+              "name": "typed content operation admission reconciles immutable summary content after legitimate lifecycle supersession",
+              "status": "passed"
+            },
+            {
+              "name": "typed content operation admission rejects dropped qualifiers and arbitrary caller intervals even with a matching effect",
+              "status": "passed"
+            },
+            {
+              "name": "typed content operation admission requires actual or explicitly ordered source bridges before creating projection targets",
+              "status": "passed"
+            },
+            {
+              "name": "typed content operation admission requires exact null for unbounded relationship endpoints",
+              "status": "passed"
+            },
+            {
+              "name": "typed content operation admission requires exact verified effects and intended use for stronger semantic verbs and confidence",
+              "status": "passed"
+            },
+            {
+              "name": "typed content operation admission requires relationship provenance, endpoint roles and exact canonical temporal interval",
+              "status": "passed"
+            },
+            {
+              "name": "typed content operation admission returns no_op for identical rows and holds changed attributes",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/ingestion/src/content-links/sources.test.ts",
+          "originalFile": "packages/ingestion/src/content-links/sources.test.ts",
+          "tests": [
+            {
+              "name": "canonical content sources accepts an accepted intermediate representation with successful capture lineage",
+              "status": "passed"
+            },
+            {
+              "name": "canonical content sources accepts byte-identical native capture lineage and rejects its false identity flag",
+              "status": "passed"
+            },
+            {
+              "name": "canonical content sources accepts exact capture artifact inputs and rejects an unrelated artifact",
+              "status": "passed"
+            },
+            {
+              "name": "canonical content sources accepts exactly 4096 lineage edges and rejects one extra edge across individually bounded branches",
+              "status": "passed"
+            },
+            {
+              "name": "canonical content sources does not reuse cached negative lineage across independent reader requests",
+              "status": "passed"
+            },
+            {
+              "name": "canonical content sources reconstructs actual writer nodes and complete multi-node Unicode source spans",
+              "status": "passed"
+            },
+            {
+              "name": "canonical content sources reconstructs nodes persisted by the worker's normalized-text digest mapping",
+              "status": "passed"
+            },
+            {
+              "name": "canonical content sources rejects a raw accepted label without independent review",
+              "status": "passed"
+            },
+            {
+              "name": "canonical content sources rejects an acyclic lineage exceeding the supported depth",
+              "status": "passed"
+            },
+            {
+              "name": "canonical content sources rejects an arbitrary stored and declared node digest even when both agree",
+              "status": "passed"
+            },
+            {
+              "name": "canonical content sources rejects another capture on the same version after validating the original source fixture",
+              "status": "passed"
+            },
+            {
+              "name": "canonical content sources rejects another capture on the same version with worker-persisted text digests",
+              "status": "passed"
+            },
+            {
+              "name": "canonical content sources rejects capture bytes missing despite available metadata after validating the original source fixture",
+              "status": "passed"
+            },
+            {
+              "name": "canonical content sources rejects capture bytes missing despite available metadata with worker-persisted text digests",
+              "status": "passed"
+            },
+            {
+              "name": "canonical content sources rejects cyclic representation lineage after validating the original source fixture",
+              "status": "passed"
+            },
+            {
+              "name": "canonical content sources rejects cyclic representation lineage with worker-persisted text digests",
+              "status": "passed"
+            },
+            {
+              "name": "canonical content sources rejects foreign document version after validating the original source fixture",
+              "status": "passed"
+            },
+            {
+              "name": "canonical content sources rejects foreign document version with worker-persisted text digests",
+              "status": "passed"
+            },
+            {
+              "name": "canonical content sources rejects inactive chunk after validating the original source fixture",
+              "status": "passed"
+            },
+            {
+              "name": "canonical content sources rejects inactive chunk with worker-persisted text digests",
+              "status": "passed"
+            },
+            {
+              "name": "canonical content sources rejects locator embedded node ID drift after validating the original source fixture",
+              "status": "passed"
+            },
+            {
+              "name": "canonical content sources rejects locator embedded node ID drift with worker-persisted text digests",
+              "status": "passed"
+            },
+            {
+              "name": "canonical content sources rejects locator embedded representation drift after validating the original source fixture",
+              "status": "passed"
+            },
+            {
+              "name": "canonical content sources rejects locator embedded representation drift with worker-persisted text digests",
+              "status": "passed"
+            },
+            {
+              "name": "canonical content sources rejects locator page drift after validating the original source fixture",
+              "status": "passed"
+            },
+            {
+              "name": "canonical content sources rejects locator page drift with worker-persisted text digests",
+              "status": "passed"
+            },
+            {
+              "name": "canonical content sources rejects locator quote digest drift after validating the original source fixture",
+              "status": "passed"
+            },
+            {
+              "name": "canonical content sources rejects locator quote digest drift with worker-persisted text digests",
+              "status": "passed"
+            },
+            {
+              "name": "canonical content sources rejects missing prior representation after validating the original source fixture",
+              "status": "passed"
+            },
+            {
+              "name": "canonical content sources rejects missing prior representation with worker-persisted text digests",
+              "status": "passed"
+            },
+            {
+              "name": "canonical content sources rejects missing successful transformation output after validating the original source fixture",
+              "status": "passed"
+            },
+            {
+              "name": "canonical content sources rejects missing successful transformation output with worker-persisted text digests",
+              "status": "passed"
+            },
+            {
+              "name": "canonical content sources rejects missing transformation input census after validating the original source fixture",
+              "status": "passed"
+            },
+            {
+              "name": "canonical content sources rejects missing transformation input census with worker-persisted text digests",
+              "status": "passed"
+            },
+            {
+              "name": "canonical content sources rejects node text drift after validating the original source fixture",
+              "status": "passed"
+            },
+            {
+              "name": "canonical content sources rejects node text drift with worker-persisted text digests",
+              "status": "passed"
+            },
+            {
+              "name": "canonical content sources rejects oversized transformation input census after validating the original source fixture",
+              "status": "passed"
+            },
+            {
+              "name": "canonical content sources rejects oversized transformation input census with worker-persisted text digests",
+              "status": "passed"
+            },
+            {
+              "name": "canonical content sources rejects representation bytes missing despite available metadata after validating the original source fixture",
+              "status": "passed"
+            },
+            {
+              "name": "canonical content sources rejects representation bytes missing despite available metadata with worker-persisted text digests",
+              "status": "passed"
+            },
+            {
+              "name": "canonical content sources rejects representation custody digest drift after validating the original source fixture",
+              "status": "passed"
+            },
+            {
+              "name": "canonical content sources rejects representation custody digest drift with worker-persisted text digests",
+              "status": "passed"
+            },
+            {
+              "name": "canonical content sources rejects retracted document after validating the original source fixture",
+              "status": "passed"
+            },
+            {
+              "name": "canonical content sources rejects retracted document with worker-persisted text digests",
+              "status": "passed"
+            },
+            {
+              "name": "canonical content sources rejects same-key foreign representation parent after validating the original source fixture",
+              "status": "passed"
+            },
+            {
+              "name": "canonical content sources rejects same-key foreign representation parent with worker-persisted text digests",
+              "status": "passed"
+            },
+            {
+              "name": "canonical content sources rejects selected span text digest drift after validating the original source fixture",
+              "status": "passed"
+            },
+            {
+              "name": "canonical content sources rejects selected span text digest drift with worker-persisted text digests",
+              "status": "passed"
+            },
+            {
+              "name": "canonical content sources rejects unaccepted representation after validating the original source fixture",
+              "status": "passed"
+            },
+            {
+              "name": "canonical content sources rejects unaccepted representation with worker-persisted text digests",
+              "status": "passed"
+            },
+            {
+              "name": "canonical content sources rejects undeclared source node after validating the original source fixture",
+              "status": "passed"
+            },
+            {
+              "name": "canonical content sources rejects undeclared source node with worker-persisted text digests",
+              "status": "passed"
+            },
+            {
+              "name": "canonical content sources treats empty text and JSON null as present custody bytes",
+              "status": "passed"
+            },
+            {
+              "name": "canonical content sources visits a shared six-layer DAG with linear work instead of expanding every path",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/ingestion/src/content-links/summary-preparation.test.ts",
+          "originalFile": "packages/ingestion/src/content-links/summary-preparation.test.ts",
+          "tests": [
+            {
+              "name": "authenticated deterministic summary preparation rejects caller acceptance and undeclared output fields at its strict proposal seam",
+              "status": "passed"
+            },
+            {
+              "name": "authenticated deterministic summary preparation rejects changed effect before uploading or marking a transformation complete",
+              "status": "passed"
+            },
+            {
+              "name": "authenticated deterministic summary preparation rejects changed policy before uploading or marking a transformation complete",
+              "status": "passed"
+            },
+            {
+              "name": "authenticated deterministic summary preparation rejects changed qualifiers before uploading or marking a transformation complete",
+              "status": "passed"
+            },
+            {
+              "name": "authenticated deterministic summary preparation rejects changed text before uploading or marking a transformation complete",
+              "status": "passed"
+            },
+            {
+              "name": "authenticated deterministic summary preparation rejects changed verdict before uploading or marking a transformation complete",
+              "status": "passed"
+            },
+            {
+              "name": "authenticated deterministic summary preparation rejects source lineage failure without creating a summary transformation",
+              "status": "passed"
+            },
+            {
+              "name": "authenticated deterministic summary preparation renders exact admitted Unicode and qualifiers, retains its receipt, and leaves review pending",
+              "status": "passed"
+            },
+            {
+              "name": "authenticated deterministic summary preparation replays stable receipt bytes despite the artifact store's reused flag",
+              "status": "passed"
+            },
+            {
+              "name": "authenticated deterministic summary preparation retains decomposed Unicode bytes in the output and JSON receipt without NFC normalization",
+              "status": "passed"
+            },
+            {
+              "name": "reports effective accepted review while the immutable output label remains pending",
+              "status": "passed"
+            },
+            {
+              "name": "reports latest defer on preparation replay",
+              "status": "passed"
+            },
+            {
+              "name": "reports latest quarantine on preparation replay",
+              "status": "passed"
+            },
+            {
+              "name": "reports latest reject on preparation replay",
+              "status": "passed"
+            },
+            {
+              "name": "reports latest request_changes on preparation replay",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/ingestion/src/reports/service.integration.test.ts",
+          "originalFile": "packages/ingestion/src/reports/service.integration.test.ts",
+          "tests": [
+            {
+              "name": "report registration on isolated PostgreSQL appends an ingestion receipt binding to a sealed report and reads it with assertion identity",
+              "status": "skipped"
+            },
+            {
+              "name": "report registration on isolated PostgreSQL registers under a non-default tenant and rejects cross-tenant reads",
+              "status": "skipped"
+            },
+            {
+              "name": "report registration on isolated PostgreSQL registers, seals, reads and replays exact revisions without implying admission",
+              "status": "skipped"
+            },
+            {
+              "name": "report registration on isolated PostgreSQL retains equal claim keys from separate runs and rejects mismatched manifest digests",
+              "status": "skipped"
+            },
+            {
+              "name": "report registration on isolated PostgreSQL rolls back registration when upload readback fails",
+              "status": "skipped"
+            },
+            {
+              "name": "report registration on isolated PostgreSQL seals a pending revision on retry only after artifact readback and availability confirmation",
+              "status": "skipped"
+            },
+            {
+              "name": "report registration on isolated PostgreSQL supports subsequent post-research assembly and stable section identity",
+              "status": "skipped"
+            }
+          ]
+        },
+        {
+          "file": "packages/ingestion/src/reports/structure.test.ts",
+          "originalFile": "packages/ingestion/src/reports/structure.test.ts",
+          "tests": [
+            {
+              "name": "report structure and exact rendition preserves decomposed Unicode and binds UTF-16 ranges after generated headings",
+              "status": "passed"
+            },
+            {
+              "name": "report structure and exact rendition rejects factual statements with no supporting claim binding",
+              "status": "passed"
+            },
+            {
+              "name": "report structure and exact rendition rejects unknown coverage sections and invalid text ranges",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/ingestion/src/tests/apply-support.test.ts",
+          "originalFile": "packages/ingestion/src/tests/apply-support.test.ts",
+          "tests": [
+            {
+              "name": "authoritative challenge source custody rejects a locator outside the claim's authenticated supporting evidence",
+              "status": "passed"
+            },
+            {
+              "name": "authoritative challenge source custody rejects an unauthorized intended use and an altered target effect before apply",
+              "status": "passed"
+            },
+            {
+              "name": "authoritative challenge source custody requires a locator supporting the admitted challenge while preserving its target relation",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/ingestion/src/tests/duplicate.test.ts",
+          "originalFile": "packages/ingestion/src/tests/duplicate.test.ts",
+          "tests": [
+            {
+              "name": "awaitWinnerReceipt fails DUPLICATE_PENDING naming the intent once the timeout elapses without a receipt",
+              "status": "passed"
+            },
+            {
+              "name": "awaitWinnerReceipt returns the winner's receipt as soon as the lookup yields it",
+              "status": "passed"
+            },
+            {
+              "name": "isIdempotencyKeyCollision ignores other unique violations, other SQLSTATEs, and non-object errors",
+              "status": "passed"
+            },
+            {
+              "name": "isIdempotencyKeyCollision recognises 23505 on operation_intent.idempotency_key",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/ingestion/src/tests/evidence-admission.test.ts",
+          "originalFile": "packages/ingestion/src/tests/evidence-admission.test.ts",
+          "tests": [
+            {
+              "name": "authoritative admission matrix admits a new subject only when its exact planned canonical identity was verified (F12)",
+              "status": "passed"
+            },
+            {
+              "name": "authoritative admission matrix allows hydrated claim materialization without caller inline text",
+              "status": "passed"
+            },
+            {
+              "name": "authoritative admission matrix holds a dependency chain transitively while admitting an independent closure",
+              "status": "passed"
+            },
+            {
+              "name": "authoritative admission matrix holds claim/new-entity links before materialization (F12)",
+              "status": "passed"
+            },
+            {
+              "name": "authoritative admission matrix holds materialized claim subjects when their creator is held, without creating an ordering cycle",
+              "status": "passed"
+            },
+            {
+              "name": "authoritative admission matrix permits evidence-free staging without canonical admission",
+              "status": "passed"
+            },
+            {
+              "name": "authoritative admission matrix rejects altered inline qualifiers (F05/F08)",
+              "status": "passed"
+            },
+            {
+              "name": "authoritative admission matrix rejects altered inline statement (F05/F08)",
+              "status": "passed"
+            },
+            {
+              "name": "authoritative admission matrix rejects altered inline verdict (F05/F08)",
+              "status": "passed"
+            },
+            {
+              "name": "authoritative admission matrix rejects boolean-only evidence without authenticated bytes",
+              "status": "passed"
+            },
+            {
+              "name": "authoritative admission matrix rejects empty evidence on an accepted effect (F01)",
+              "status": "passed"
+            },
+            {
+              "name": "authoritative admission matrix rejects legacy report publication even when its fixture evidence is eligible",
+              "status": "passed"
+            },
+            {
+              "name": "authoritative admission matrix rejects prose-only authorization of a normalized effect",
+              "status": "passed"
+            },
+            {
+              "name": "authoritative admission matrix requires complete verified report binding (F11)",
+              "status": "passed"
+            },
+            {
+              "name": "authoritative admission matrix requires exact run-qualified report references (F10)",
+              "status": "passed"
+            },
+            {
+              "name": "authoritative admission matrix requires policy intended use (F04)",
+              "status": "passed"
+            },
+            {
+              "name": "official claim status admission admits derived_verified claim.materialize and keeps the distinct verdict",
+              "status": "passed"
+            },
+            {
+              "name": "official claim status admission admits literal_extraction_verified claim.materialize and keeps the distinct verdict",
+              "status": "passed"
+            },
+            {
+              "name": "official claim status admission admits supported_with_qualification claim.materialize and keeps the distinct verdict",
+              "status": "passed"
+            },
+            {
+              "name": "official claim status admission leaves context_only unofficial",
+              "status": "passed"
+            },
+            {
+              "name": "official claim status admission leaves contradicted unofficial",
+              "status": "passed"
+            },
+            {
+              "name": "official claim status admission leaves held unofficial",
+              "status": "passed"
+            },
+            {
+              "name": "official claim status admission leaves rejected unofficial",
+              "status": "passed"
+            },
+            {
+              "name": "official claim status admission leaves retracted unofficial",
+              "status": "passed"
+            },
+            {
+              "name": "official claim status admission leaves unsupported unofficial",
+              "status": "passed"
+            },
+            {
+              "name": "official claim status admission promotes derived_verified",
+              "status": "passed"
+            },
+            {
+              "name": "official claim status admission promotes directly_supported",
+              "status": "passed"
+            },
+            {
+              "name": "official claim status admission promotes literal_extraction_verified",
+              "status": "passed"
+            },
+            {
+              "name": "official claim status admission promotes supported_with_qualification",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/ingestion/src/tests/executor.integration.test.ts",
+          "originalFile": "packages/ingestion/src/tests/executor.integration.test.ts",
+          "tests": [
+            {
+              "name": "IngestionExecutor against the disposable database (db-contract workspace) applies a two-proposal intent once and returns the same receipt on resubmission",
+              "status": "skipped"
+            },
+            {
+              "name": "IngestionExecutor against the disposable database (db-contract workspace) detects a stale expected head in the plan and in begin_batch",
+              "status": "skipped"
+            },
+            {
+              "name": "IngestionExecutor against the disposable database (db-contract workspace) plans deterministically without writing",
+              "status": "skipped"
+            },
+            {
+              "name": "IngestionExecutor against the disposable database (db-contract workspace) recovers a committed apply after response loss without another batch or rejected receipt",
+              "status": "skipped"
+            },
+            {
+              "name": "IngestionExecutor against the disposable database (db-contract workspace) refuses a disallowed unit before any transaction",
+              "status": "skipped"
+            },
+            {
+              "name": "IngestionExecutor against the disposable database (db-contract workspace) rejects missing, forged, incomplete and unavailable preflights before canonical writes",
+              "status": "skipped"
+            },
+            {
+              "name": "IngestionExecutor against the disposable database (db-contract workspace) returns the winner's receipt as duplicateOf when the same intent is applied in parallel",
+              "status": "skipped"
+            },
+            {
+              "name": "IngestionExecutor against the disposable database (db-contract workspace) reuses the existing same-unit price series key and closes the stale segment",
+              "status": "skipped"
+            },
+            {
+              "name": "IngestionExecutor against the disposable database (db-contract workspace) T03 preserves the winner when a conflicting write commits after planning",
+              "status": "skipped"
+            },
+            {
+              "name": "IngestionExecutor against the disposable database (db-contract workspace) T04 rebases proven-disjoint work only under explicit policy and records the actual head",
+              "status": "skipped"
+            }
+          ]
+        },
+        {
+          "file": "packages/ingestion/src/tests/plan.test.ts",
+          "originalFile": "packages/ingestion/src/tests/plan.test.ts",
+          "tests": [
+            {
+              "name": "applyRules stages, notes, and leaves unmatched proposals untouched",
+              "status": "passed"
+            },
+            {
+              "name": "plan determinism and identity excludes notes and idempotencyKey from the intent digest but changes the key when proposals change",
+              "status": "passed"
+            },
+            {
+              "name": "plan determinism and identity produces a byte-identical plan for the same intent and facts",
+              "status": "passed"
+            },
+            {
+              "name": "planner outcomes admits proposals, synthesizes entity.create for new subjects, and orders by dependency group",
+              "status": "passed"
+            },
+            {
+              "name": "planner outcomes applies rewrite rules and records them",
+              "status": "passed"
+            },
+            {
+              "name": "planner outcomes fails EVIDENCE_NOT_ELIGIBLE and SUBJECT_MERGED before any transaction",
+              "status": "passed"
+            },
+            {
+              "name": "planner outcomes marks identical current facts as no_op_duplicate",
+              "status": "passed"
+            },
+            {
+              "name": "planner outcomes rejects a disallowed unit with the allowed values",
+              "status": "passed"
+            },
+            {
+              "name": "planner outcomes routes a strong identity match to review and holds its dependents",
+              "status": "passed"
+            },
+            {
+              "name": "price.scope_key_is_unit reuses an existing same-unit series applies the built-in rewriter to a loaded rule authored with `missing`/`set`",
+              "status": "passed"
+            },
+            {
+              "name": "price.scope_key_is_unit reuses an existing same-unit series fills a missing scopeKey with the existing series key instead of the unit",
+              "status": "passed"
+            },
+            {
+              "name": "price.scope_key_is_unit reuses an existing same-unit series leaves a scopeKey that already names the existing series untouched, and defaults a new series to the unit",
+              "status": "passed"
+            },
+            {
+              "name": "price.scope_key_is_unit reuses an existing same-unit series rewrites a scopeKey that names a different key than the existing same-unit series",
+              "status": "passed"
+            },
+            {
+              "name": "rejects legacy report.publish before artifact or graph writes",
+              "status": "passed"
+            },
+            {
+              "name": "stale heads maps SQLSTATE 40001 from begin_batch to REBASE_REQUIRED and slot violations to VOCABULARY_VIOLATION",
+              "status": "passed"
+            },
+            {
+              "name": "stale heads rebases when the head moved but no touched slot changed",
+              "status": "passed"
+            },
+            {
+              "name": "stale heads returns REBASE_REQUIRED when a touched relationship changed, or whenever onStale=fail",
+              "status": "passed"
+            },
+            {
+              "name": "temporal helper input preservation keeps an explicit qualified price scope despite another same-unit series",
+              "status": "passed"
+            },
+            {
+              "name": "temporal helper input preservation rejects temporal relationship semantics the SQL helper cannot preserve",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/ingestion/src/tests/provenance.test.ts",
+          "originalFile": "packages/ingestion/src/tests/provenance.test.ts",
+          "tests": [
+            {
+              "name": "canonical claim status promotion does not write verified for context_only",
+              "status": "passed"
+            },
+            {
+              "name": "canonical claim status promotion does not write verified for contradicted",
+              "status": "passed"
+            },
+            {
+              "name": "canonical claim status promotion does not write verified for held",
+              "status": "passed"
+            },
+            {
+              "name": "canonical claim status promotion does not write verified for rejected",
+              "status": "passed"
+            },
+            {
+              "name": "canonical claim status promotion does not write verified for retracted",
+              "status": "passed"
+            },
+            {
+              "name": "canonical claim status promotion does not write verified for unsupported",
+              "status": "passed"
+            },
+            {
+              "name": "canonical claim status promotion writes verified for sealed derived_verified without rewriting the verdict",
+              "status": "passed"
+            },
+            {
+              "name": "canonical claim status promotion writes verified for sealed directly_supported without rewriting the verdict",
+              "status": "passed"
+            },
+            {
+              "name": "canonical claim status promotion writes verified for sealed literal_extraction_verified without rewriting the verdict",
+              "status": "passed"
+            },
+            {
+              "name": "canonical claim status promotion writes verified for sealed supported_with_qualification without rewriting the verdict",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/ingestion/src/tests/receipt-reconciliation.test.ts",
+          "originalFile": "packages/ingestion/src/tests/receipt-reconciliation.test.ts",
+          "tests": [
+            {
+              "name": "ingestion receipt reconciliation does not acknowledge a receipt with missing required plan bytes",
+              "status": "passed"
+            },
+            {
+              "name": "ingestion receipt reconciliation preserves pending status when a required artifact is local-only",
+              "status": "passed"
+            },
+            {
+              "name": "ingestion receipt reconciliation proves exact affected refs and every required artifact before reporting stored",
+              "status": "passed"
+            },
+            {
+              "name": "ingestion receipt reconciliation rejects a row whose affected refs do not match its immutable receipt",
+              "status": "passed"
+            },
+            {
+              "name": "ingestion receipt reconciliation rejects conflicting request identity even when the receipt artifact exists",
+              "status": "passed"
+            },
+            {
+              "name": "ingestion receipt reconciliation rejects dependency type substitution",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/ingestion/src/tests/records.test.ts",
+          "originalFile": "packages/ingestion/src/tests/records.test.ts",
+          "tests": [
+            {
+              "name": "bounded compatibility record admission does not promote derived_verified to a canonical verified record",
+              "status": "passed"
+            },
+            {
+              "name": "bounded compatibility record admission does not promote supported_with_qualification to a canonical verified record",
+              "status": "passed"
+            },
+            {
+              "name": "bounded compatibility record admission does not promote unsupported to a canonical verified record",
+              "status": "passed"
+            },
+            {
+              "name": "bounded compatibility record admission keys canonical content and provenance independently of proposal identifiers",
+              "status": "passed"
+            },
+            {
+              "name": "bounded compatibility record admission plans all four canonical rows and reconciles a duplicate",
+              "status": "passed"
+            },
+            {
+              "name": "bounded compatibility record admission rejects an unverified expression mutation",
+              "status": "passed"
+            },
+            {
+              "name": "bounded compatibility record admission rejects an unverified proposition mutation",
+              "status": "passed"
+            },
+            {
+              "name": "bounded compatibility record admission rejects an unverified qualifiers mutation",
+              "status": "passed"
+            },
+            {
+              "name": "bounded compatibility record admission rejects an unverified title mutation",
+              "status": "passed"
+            },
+            {
+              "name": "bounded compatibility record admission rejects arbitrary record types, scopes, assurance and corroboration",
+              "status": "passed"
+            },
+            {
+              "name": "bounded compatibility record admission rejects boolean and fixture-only admission without authoritative bytes",
+              "status": "passed"
+            },
+            {
+              "name": "bounded compatibility record admission requires the authenticated subject, intended use, and complete canonical claim",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/ingestion/test/current-schema.integration.test.ts",
+          "originalFile": "packages/ingestion/test/current-schema.integration.test.ts",
+          "tests": [
+            {
+              "name": "required isolated current-schema vertical path persists preparation, synthetic service admission, snapshot, claim, fact, event and replayable receipt",
+              "status": "skipped"
+            }
+          ]
+        },
+        {
+          "file": "packages/ingestion/test/temporal.integration.test.ts",
+          "originalFile": "packages/ingestion/test/temporal.integration.test.ts",
+          "tests": [
+            {
+              "name": "P1 temporal current-schema proof (explicit synthetic admission adapter) T05/T06/T08 corrects one legacy slot over a bounded interval and preserves K0 and adjacent evidence",
+              "status": "skipped"
+            },
+            {
+              "name": "P1 temporal current-schema proof (explicit synthetic admission adapter) T07 preserves actual day/month locator extents and rejects contradictions/relative bounds",
+              "status": "skipped"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "verification-semantic-judge.v1"
+    },
+    "assertionId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255
+    },
+    "verdict": {
+      "type": "string",
+      "enum": [
+        "directly_supported",
+        "supported_with_qualification",
+        "partially_supported",
+        "context_only",
+        "contradicted",
+        "not_supported",
+        "insufficient_evidence"
+      ]
+    },
+    "nliLabel": {
+      "type": "string",
+      "enum": [
+        "entailed",
+        "neutral",
+        "contradicted"
+      ]
+    },
+    "supportingFragmentIds": {
+      "maxItems": 16,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 255
+      }
+    },
+    "contradictingFragmentIds": {
+      "maxItems": 16,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 255
+      }
+    },
+    "unsupportedFacets": {
+      "maxItems": 32,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 160
+      }
+    },
+    "qualifiersPreserved": {
+      "type": "boolean"
+    },
+    "publicRationale": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 800
+    },
+    "rawProviderConfidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "assertionId",
+    "verdict",
+    "nliLabel",
+    "supportingFragmentIds",
+    "contradictingFragmentIds",
+    "unsupportedFacets",
+    "qualifiersPreserved",
+    "publicRationale"
+  ],
+  "additionalProperties": false
+}

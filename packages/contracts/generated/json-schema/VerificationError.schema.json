@@ -1,0 +1,138 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "contractVersion": {
+      "type": "string",
+      "const": "verification.v1"
+    },
+    "errorId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255
+    },
+    "operationId": {
+      "type": "string",
+      "format": "uuid",
+      "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "producer_contract_failure",
+        "capture_unavailable",
+        "capture_forbidden",
+        "capture_oversized",
+        "capture_drifted",
+        "locator_missing",
+        "locator_ambiguous",
+        "locator_invalid",
+        "parser_failure",
+        "conversion_failure",
+        "ocr_failure",
+        "extraction_schema_failure",
+        "extraction_value_failure",
+        "identity_missing",
+        "identity_ambiguous",
+        "identity_conflicted",
+        "metric_semantics_failure",
+        "unit_failure",
+        "period_failure",
+        "comparability_failure",
+        "computation_replay_failure",
+        "semantic_quality_failure",
+        "claim_decomposition_failure",
+        "judge_output_failure",
+        "provider_authentication_failure",
+        "provider_rate_limit",
+        "provider_timeout",
+        "provider_upstream_failure",
+        "harness_failure",
+        "persistence_failure",
+        "artifact_registration_failure",
+        "policy_rejection",
+        "human_review_timeout",
+        "cancelled"
+      ]
+    },
+    "stage": {
+      "type": "string",
+      "minLength": 1
+    },
+    "message": {
+      "type": "string",
+      "minLength": 1
+    },
+    "retryable": {
+      "type": "boolean"
+    },
+    "qualityFailure": {
+      "type": "boolean"
+    },
+    "artifactIds": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uuid",
+        "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+      }
+    },
+    "details": {
+      "type": "object",
+      "propertyNames": {
+        "type": "string"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/__schema0"
+      }
+    },
+    "occurredAt": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z|([+-](?:[01]\\d|2[0-3]):[0-5]\\d)))$"
+    }
+  },
+  "required": [
+    "contractVersion",
+    "errorId",
+    "operationId",
+    "category",
+    "stage",
+    "message",
+    "retryable",
+    "qualityFailure",
+    "artifactIds",
+    "details",
+    "occurredAt"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "__schema0": {
+      "anyOf": [
+        {
+          "type": [
+            "string",
+            "number",
+            "boolean",
+            "null"
+          ]
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/__schema0"
+          }
+        },
+        {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/__schema0"
+          }
+        }
+      ]
+    }
+  }
+}

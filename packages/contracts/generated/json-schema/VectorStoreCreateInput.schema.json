@@ -1,0 +1,143 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "knowledge.vector-store/v1"
+    },
+    "slug": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255
+    },
+    "purpose": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000
+    },
+    "storeClass": {
+      "type": "string",
+      "enum": [
+        "official_canonical",
+        "internal_exploratory",
+        "user_managed"
+      ]
+    },
+    "visibility": {
+      "type": "string",
+      "enum": [
+        "private",
+        "tenant",
+        "public"
+      ]
+    },
+    "quotaProfile": {
+      "type": "object",
+      "properties": {
+        "maximumDocuments": {
+          "type": "integer",
+          "exclusiveMinimum": 0,
+          "maximum": 10000000
+        },
+        "maximumBytes": {
+          "type": "integer",
+          "exclusiveMinimum": 0,
+          "maximum": 9007199254740991
+        },
+        "maximumSpaces": {
+          "type": "integer",
+          "exclusiveMinimum": 0,
+          "maximum": 100
+        }
+      },
+      "required": [
+        "maximumDocuments",
+        "maximumBytes",
+        "maximumSpaces"
+      ],
+      "additionalProperties": false
+    },
+    "retentionPolicy": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "mode": {
+              "type": "string",
+              "const": "indefinite"
+            }
+          },
+          "required": [
+            "mode"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "mode": {
+              "type": "string",
+              "const": "duration"
+            },
+            "days": {
+              "type": "integer",
+              "exclusiveMinimum": 0,
+              "maximum": 36500
+            }
+          },
+          "required": [
+            "mode",
+            "days"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "deletionPolicy": {
+      "type": "object",
+      "properties": {
+        "mode": {
+          "type": "string",
+          "enum": [
+            "tombstone_only",
+            "review_required"
+          ]
+        },
+        "minimumRetentionDays": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 36500
+        }
+      },
+      "required": [
+        "mode",
+        "minimumRetentionDays"
+      ],
+      "additionalProperties": false
+    },
+    "supersedesId": {
+      "type": "string",
+      "format": "uuid",
+      "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "slug",
+    "name",
+    "purpose",
+    "storeClass",
+    "visibility",
+    "quotaProfile",
+    "retentionPolicy",
+    "deletionPolicy"
+  ],
+  "additionalProperties": false
+}

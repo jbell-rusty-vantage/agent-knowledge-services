@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "benchmarkRunId": {
+      "type": "string",
+      "format": "uuid",
+      "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+    },
+    "evalRunIds": {
+      "minItems": 2,
+      "maxItems": 16,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uuid",
+        "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+      }
+    },
+    "manifestDigest": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "qualityClaims": {
+      "type": "object",
+      "properties": {
+        "humanGoldValidated": {
+          "type": "boolean",
+          "const": false
+        },
+        "sourceAuthorityAssessed": {
+          "type": "boolean",
+          "const": false
+        },
+        "calibrated": {
+          "type": "boolean",
+          "const": false
+        }
+      },
+      "required": [
+        "humanGoldValidated",
+        "sourceAuthorityAssessed",
+        "calibrated"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "benchmarkRunId",
+    "evalRunIds",
+    "manifestDigest",
+    "qualityClaims"
+  ],
+  "additionalProperties": false
+}

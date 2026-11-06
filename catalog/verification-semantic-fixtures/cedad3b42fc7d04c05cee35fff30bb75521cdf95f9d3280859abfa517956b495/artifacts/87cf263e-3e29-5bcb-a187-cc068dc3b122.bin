@@ -1,0 +1,1630 @@
+<!DOCTYPE html><!-- Last Published: Fri Sep 04 2026 21:11:19 GMT+0000 (Coordinated Universal Time) --><html data-wf-domain="www.trudiagnostic.com" data-wf-page="6a5a21407def63d6e6b2aee1" data-wf-site="6690e254f4f07d1a469bb330" lang="en" class="wf-loading w-mod-js wf-changaone-n4-loading wf-changaone-i4-loading wf-opensans-n3-loading wf-opensans-i3-loading wf-opensans-n4-loading wf-opensans-i4-loading wf-opensans-n6-loading wf-opensans-i6-loading wf-opensans-n7-loading wf-opensans-i7-loading wf-opensans-n8-loading wf-opensans-i8-loading wf-roboto-n3-loading wf-roboto-n4-loading wf-roboto-n5-loading wf-roboto-n6-loading wf-roboto-n7-loading w-mod-ix"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style rel="stylesheet" type="text/css">@charset "utf-8";
+
+.wf-force-outline-none[tabindex="-1"]:focus { outline: none; }</style><style rel="stylesheet" type="text/css">@charset "utf-8";
+
+@media (prefers-reduced-motion: reduce) {
+  #background-hero-video { display: none !important; }
+}
+
+.save-data #background-hero-video { display: none !important; }
+
+.hero-media { position: relative; min-height: 100svh; overflow: hidden; }
+
+.hero-bg, #background-hero-video { position: absolute; inset: 0px; width: 100%; height: 100%; object-fit: cover; }
+
+.is-hidden { display: none; }
+
+#heroPosterWrap { transition: opacity 0.15s; }
+
+@media (max-width: 991px) {
+  #background-hero-video { display: none !important; }
+}</style><style rel="stylesheet" type="text/css">@charset "utf-8";
+
+.inter_faq-panel { padding-top: 0px; transition: padding-top 0.3s, max-height 0.3s; overflow: hidden; max-height: 0px; }
+
+.inter_faq-item.active .inter_faq-panel { padding-top: 18px; }</style><style rel="stylesheet" type="text/css">@charset "utf-8";
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}
+
+[item-faq] .faq1_answer { max-height: 0px; overflow: hidden; transition: 0.4s; }
+
+[item-faq] .faq1_question.active .icon-embed-small { transform: rotate(180deg); }
+
+.text-size-regular a { text-decoration: underline; color: rgb(18, 17, 75); }
+
+body.no-scroll { overflow: hidden; }</style><style rel="stylesheet" type="text/css">@charset "utf-8";
+
+.item_faq-icon-title-wrap, .item_faq-icon { cursor: pointer; }
+
+.clocks_progress-bar .swiper-scrollbar-drag { background: rgb(112, 100, 221); }
+
+.faq-new_list.full { align-items: flex-start; }
+
+.item_faq-content { display: grid; grid-template-rows: 0fr; overflow: hidden; transition: grid-template-rows 0.3s; }
+
+.item_faq-content > div { overflow: hidden; min-height: 0px; }
+
+.item_faq.active .item_faq-content { grid-template-rows: 1fr; padding-top: 24px; }</style><style rel="stylesheet" type="text/css">@charset "utf-8";
+
+.item_faq-content { padding-top: 0px; transition: padding-top 0.3s, max-height 0.3s; overflow: hidden; max-height: 0px; }
+
+.item_faq.active .item_faq-content { padding-top: 24px; }</style><style rel="stylesheet" type="text/css">@charset "utf-8";
+
+html.dragging { pointer-events: none; cursor: grabbing; user-select: none; touch-action: none; }
+
+[ncf="mapstyleguide"], [ncf="mapinfo"] { display: none; }
+
+.mapboxgl-popup-content, .maplibregl-popup-content { padding: 0px !important; }
+
+.no-spaceing { padding: 0px !important; margin: 0px !important; width: 0px !important; height: 0px !important; }
+
+.leaflet-popup, .mapboxgl-popup-content, .maplibregl-popup-content { margin: 0px !important; background: transparent !important; box-shadow: none !important; bottom: 0px !important; }
+
+.leaflet-marker-icon { border-width: medium !important; border-style: none !important; border-color: currentcolor !important; border-image: none !important; }
+
+.leaflet-popup-content-wrapper { padding: 0px; }
+
+.leaflet-popup-content { width: auto !important; }
+
+.leaflet-popup-content-wrapper, .leaflet-popup-content, .leaflet-tooltip { margin: 0px !important; background: transparent !important; box-shadow: none !important; border-width: medium !important; border-style: none !important; border-color: currentcolor !important; border-image: none !important; outline: none !important; padding: 0px !important; }
+
+.leaflet-marker-icon img { width: inherit !important; }
+
+.leaflet-tooltip-bottom::before, .leaflet-popup-tip-container, .maplibregl-popup-tip, .mapboxgl-popup-tip { display: none !important; }</style><style rel="stylesheet" type="text/css">@charset "utf-8";
+
+body { -webkit-font-smoothing: antialiased; text-rendering: optimizelegibility; }
+
+[tabindex]:focus-visible, input[type="file"]:focus-visible { outline: rgb(77, 101, 255) solid 0.125rem; outline-offset: 0.125rem; }
+
+.inherit-color * { color: inherit; }
+
+.w-richtext > :not(div):first-child, .w-richtext > div:first-child > :first-child { margin-top: 0px !important; }
+
+.w-richtext > :last-child, .w-richtext ol li:last-child, .w-richtext ul li:last-child { margin-bottom: 0px !important; }
+
+.container-medium, .container-small, .container-large { margin-right: auto !important; margin-left: auto !important; }
+
+.text-style-3lines { display: -webkit-box; overflow: hidden; -webkit-line-clamp: 3; -webkit-box-orient: vertical; }
+
+.text-style-2lines { display: -webkit-box; overflow: hidden; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+
+.hide { display: none !important; }
+
+@media screen and (max-width: 991px) {
+  .hide, .hide-tablet { display: none !important; }
+}
+
+@media screen and (max-width: 767px) {
+  .hide-mobile-landscape { display: none !important; }
+}
+
+@media screen and (max-width: 479px) {
+  .hide-mobile { display: none !important; }
+}
+
+.margin-0 { margin: 0rem !important; }
+
+.padding-0 { padding: 0rem !important; }
+
+.spacing-clean { padding: 0rem !important; margin: 0rem !important; }
+
+.margin-top { margin-right: 0rem !important; margin-bottom: 0rem !important; margin-left: 0rem !important; }
+
+.padding-top { padding-right: 0rem !important; padding-bottom: 0rem !important; padding-left: 0rem !important; }
+
+.margin-right { margin-top: 0rem !important; margin-bottom: 0rem !important; margin-left: 0rem !important; }
+
+.padding-right { padding-top: 0rem !important; padding-bottom: 0rem !important; padding-left: 0rem !important; }
+
+.margin-bottom { margin-top: 0rem !important; margin-right: 0rem !important; margin-left: 0rem !important; }
+
+.padding-bottom { padding-top: 0rem !important; padding-right: 0rem !important; padding-left: 0rem !important; }
+
+.margin-left { margin-top: 0rem !important; margin-right: 0rem !important; margin-bottom: 0rem !important; }
+
+.padding-left { padding-top: 0rem !important; padding-right: 0rem !important; padding-bottom: 0rem !important; }
+
+.margin-horizontal { margin-top: 0rem !important; margin-bottom: 0rem !important; }
+
+.padding-horizontal { padding-top: 0rem !important; padding-bottom: 0rem !important; }
+
+.margin-vertical { margin-right: 0rem !important; margin-left: 0rem !important; }
+
+.padding-vertical { padding-right: 0rem !important; padding-left: 0rem !important; }
+
+.partners_slider.swiper { overflow: visible; }
+
+.inter_benefit_slider.swiper1 { overflow: visible; }
+
+.single-hero_content-richblock-2 figure { width: 100%; max-width: 842px; }
+
+.richtext-blue { padding: 16px; background-color: rgb(239, 242, 255); border-radius: 12px; }
+
+.cards-mrs_block-link:hover .cards-mrs_block-text-icon { transform: translateX(5px); }
+
+.stats_pag.mrs .swiper-pagination-bullet { background-color: rgb(26, 18, 110) !important; }
+
+.stats_pag.mrs .swiper-pagination-bullet-active { background-color: rgb(86, 53, 242) !important; }
+
+#app, #scores, #polygenic, #use, #table, #start { scroll-margin-top: 120px; }
+
+.sr-only { position: absolute !important; width: 1px !important; height: 1px !important; overflow: hidden !important; clip: rect(0px, 0px, 0px, 0px) !important; }
+
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, [tabindex]:focus-visible, input[type="file"]:focus-visible { outline: rgb(77, 101, 255) solid 0.125rem; outline-offset: 0.125rem; }
+
+.report-item-tabs-link.w--current .text-regular.tabs { color: rgb(86, 53, 242); }
+
+.skip-link { position: absolute; top: -40px; left: 0px; background: rgb(0, 0, 0); color: rgb(255, 255, 255); padding: 12px 16px; z-index: 9999; text-decoration: none; }
+
+.skip-link:focus { top: 0px; }
+
+.clocks_progress-bar.swiper-pagination-progressbar { position: relative; height: 4px; border-radius: 2px; overflow: hidden; background: transparent; }
+
+.clocks_progress-bar .swiper-pagination-progressbar-fill { background: linear-gradient(90deg, var(--Indigo-500, #5635F2) 0%, rgba(86, 53, 242, 0.00) 100%); border-radius: 2px; }
+
+.single-hero_content-richblock h2 { font-size: 32px !important; }
+
+.richtext-blue p { font-family: Switzer !important; }
+
+.richtext-blue { margin-bottom: 15px; }
+
+#step { scroll-margin-top: 90px; }
+
+#benefits { scroll-margin-top: 90px; }</style><style rel="stylesheet" type="text/css">@charset "utf-8";
+
+#truage_banner-btn { color: rgb(255, 255, 255); padding: 10px 20px; margin-left: 10px; background-color: rgb(86, 53, 242); border-radius: 0.5rem; }
+
+#truage_banner-btn:hover { box-shadow: rgba(0, 0, 0, 0.25) 4px 4px 8px; }
+
+@media (min-width: 320px) {
+  #truage_banner-btn { padding: 10px; margin-right: 10px; }
+}</style><style rel="stylesheet" type="text/css">@charset "utf-8";
+
+.header-v2_menu-item:hover .sub-menu { opacity: 1; visibility: visible; }
+
+.header-v2_menu { }
+
+.header-v2_menu:has(.header-v2_menu-item:hover) .header-v2_menu-item { opacity: 0.4; transition: opacity 0.2s; }
+
+.header-v2_menu-item:hover { opacity: 1 !important; }
+
+.header-v2_menu-item:hover .header-v2_menu-icon { transform: rotate(180deg); }
+
+.item-acc-mobile-menu_panel { max-height: 0px; overflow: hidden; }
+
+.item-acc-mobile-menu.active { background-color: rgb(239, 242, 255); }
+
+.item-acc-mobile-menu_head.active { color: rgb(86, 53, 242); }
+
+.item-acc-mobile-menu_head.active .item-acc-mobile-menu_arrow { transform: rotate(180deg); }
+
+.header-v2_burger.is-active .header-v2_burger-open { display: none; }
+
+.header-v2_burger.is-active .header-v2_burger-close { display: flex; }</style><style rel="stylesheet" type="text/css">@charset "utf-8";
+
+.different_slider { position: relative; overflow: hidden; cursor: ew-resize; user-select: none; }
+
+.different_slider-slide { position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; }
+
+.different_slider-slide:first-child { position: relative; }
+
+.different_slider-slide:nth-child(2) { overflow: hidden; width: 50%; }
+
+.different_slider-img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; pointer-events: none; -webkit-user-drag: none; }
+
+.different_slider-slide:nth-child(2) .different_slider-img { width: 640px; min-width: 100%; max-width: none; }
+
+@media (max-width: 767px) {
+  .different_slider-slide:nth-child(2) .different_slider-img { width: auto; }
+}
+
+.different_slider-divider { position: absolute; top: 0px; left: 50%; transform: translateX(-50%); width: 2px; height: 100%; background: linear-gradient(rgb(19, 51, 125) 0%, rgb(255, 255, 255) 13%, rgb(255, 255, 255) 43.5%, rgb(6, 21, 37) 50%, rgb(255, 255, 255) 56.5%, rgb(255, 255, 255) 87%, rgb(19, 51, 125) 100%); pointer-events: none; }
+
+.different_slider-handle { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }</style><style rel="stylesheet" type="text/css">@charset "utf-8";
+
+.results-v2_tab-link.w--current .results-v2_tab-head { background-color: rgb(26, 18, 110); }
+
+.results-v2_tab-link.w--current .results-v2_tab-head-title { color: rgb(255, 255, 255); }
+
+.results-v2_tab-link.w--current .results-v2_tab-head-text { color: rgb(211, 211, 255); }
+
+.results-v2_tab-link { position: relative; }
+
+.results-v2_tab-link::before { content: ""; width: 16px; height: 16px; background-image: url("https://cdn.prod.website-files.com/6690e254f4f07d1a469bb330/6a58f08b2dd3402e3c461712_Tab%20Fillet%20R%20(1).png"); background-position: center center; background-size: contain; background-repeat: no-repeat; position: absolute; bottom: 0px; left: 0px; transform: translateX(-100%); opacity: 0; }
+
+.results-v2_tab-link::after { content: ""; width: 16px; height: 16px; background-image: url("https://cdn.prod.website-files.com/6690e254f4f07d1a469bb330/6a58eee8f3b44749a7149556_Tab%20Fillet%20R.png"); background-position: center center; background-size: contain; background-repeat: no-repeat; position: absolute; bottom: 0px; right: 0px; transform: translateX(100%); opacity: 0; }
+
+.results-v2_tab-link:nth-child(1)::before { display: none; }
+
+.results-v2_tab-link:nth-child(4)::after { display: none; }
+
+.results-v2_tab-link.w--current::before { opacity: 1; }
+
+.results-v2_tab-link.w--current::after { opacity: 1; }
+
+.results-v2_tabs-content { border-top-left-radius: 0px; border-top-right-radius: 0px; }
+
+.results-v2_tabs:not(:has(.results-v2_tab-link:first-child.w--current)) .results-v2_tabs-content { border-top-left-radius: 16px; }
+
+.results-v2_tabs:not(:has(.results-v2_tab-link:last-child.w--current)) .results-v2_tabs-content { border-top-right-radius: 16px; }
+
+.item-results-mobile-v2.is-active { background-color: rgb(26, 18, 110); }
+
+.item-results-mobile-v2.is-active .item-results-mobile-v2_name { color: rgb(255, 255, 255); }
+
+.item-results-mobile-v2.is-active .item-results-mobile-v2_position { color: rgb(211, 211, 255); }
+
+.item-results-mobile-v2.is-active .item-results-v2-stats { border-color: rgb(255, 255, 255); }
+
+.item-results-mobile-v2.is-active .item-results-v2-stats_title { color: rgb(255, 255, 255); }
+
+.item-results-mobile-v2.is-active .item-results-v2-stats_value { color: rgb(211, 211, 255); }
+
+.item-results-mobile-v2.is-active .item-results-v2-stats_list-title { color: rgb(255, 255, 255); }
+
+.item-results-mobile-v2.is-active .item-results-v2-stats_list-value { color: rgb(211, 211, 255); }
+
+.item-results-mobile-v2.is-active .item-results-v2-stats_list-value.is-yellow { color: rgb(234, 254, 83); }
+
+.item-results-mobile-v2.is-active .item-results-v2_text { color: rgb(225, 228, 235); }
+
+.item-results-mobile-v2.is-active .item-results-v2-stats_value.is-yellow { color: rgb(234, 254, 83); }</style><style rel="stylesheet" type="text/css">@charset "utf-8";
+
+.section_faq-with-image .item-faq-v2_panel { overflow: hidden; max-height: 0px; }
+
+.section_faq-with-image .item-faq-v2_head.active .item-faq-v2_icon-vertical { height: 0px; }</style><style rel="stylesheet" type="text/css">@charset "utf-8";
+
+.table-choose_col { width: 13.24%; }
+
+.table-choose_col.is-second { width: 19.04%; }
+
+.table-choose_col.is-first { width: 14.58%; }</style><style rel="stylesheet" type="text/css">@charset "utf-8";
+
+.dynamic-banner-item p { text-align: center; }
+
+@media (max-width: 932px) and (orientation: landscape) {
+  .hero-abs-banner-container.hero-banner-z-index-bottom .hero-banner-title { font-size: 2rem !important; line-height: 2rem !important; }
+  .hero-abs-banner-container.hero-banner-z-index-bottom .hero-banner-subtitle { font-size: 1rem !important; }
+  .hero-abs-banner-container.hero-banner-z-index-top .hero_content { padding-top: 0px !important; }
+  .hero-abs-banner-container.hero-banner-z-index-top .glass-info-wrapper { display: none !important; }
+  .hero-abs-banner-container.hero-banner-z-index-bottom .personalized-test-button { padding: 1em !important; font-size: 1rem !important; font-weight: 500 !important; }
+  .hero-abs-banner-container.hero-banner-z-index-bottom h3.hero-banner-title { margin-top: 1rem; }
+  .hero-abs-banner-container.hero-banner-z-index-bottom .hero-banner-subtitle { margin-top: 0.5rem; margin-bottom: 0.5rem; }
+}
+
+body { -webkit-font-smoothing: antialiased; text-rendering: optimizelegibility; }
+
+[tabindex]:focus-visible, input[type="file"]:focus-visible { outline: rgb(77, 101, 255) solid 0.125rem; outline-offset: 0.125rem; }
+
+.inherit-color * { color: inherit; }
+
+.w-richtext > :not(div):first-child, .w-richtext > div:first-child > :first-child { margin-top: 0px !important; }
+
+.w-richtext > :last-child, .w-richtext ol li:last-child, .w-richtext ul li:last-child { margin-bottom: 0px !important; }
+
+.container-medium, .container-small, .container-large { margin-right: auto !important; margin-left: auto !important; }
+
+.text-style-3lines { display: -webkit-box; overflow: hidden; -webkit-line-clamp: 3; -webkit-box-orient: vertical; }
+
+.text-style-2lines { display: -webkit-box; overflow: hidden; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+
+.hide { display: none !important; }
+
+@media (max-width: 991px) {
+  .hide, .hide-tablet { display: none !important; }
+}
+
+@media (max-width: 767px) {
+  .hide-mobile-landscape { display: none !important; }
+}
+
+@media (max-width: 479px) {
+  .hide-mobile { display: none !important; }
+}
+
+.margin-0 { margin: 0px !important; }
+
+.padding-0 { padding: 0px !important; }
+
+.spacing-clean { padding: 0px !important; margin: 0px !important; }
+
+.margin-top { margin-right: 0px !important; margin-bottom: 0px !important; margin-left: 0px !important; }
+
+.margin-right { margin-top: 0px !important; margin-bottom: 0px !important; margin-left: 0px !important; }
+
+.margin-bottom { margin-top: 0px !important; margin-right: 0px !important; margin-left: 0px !important; }
+
+.margin-left { margin-top: 0px !important; margin-right: 0px !important; margin-bottom: 0px !important; }
+
+.padding-top { padding-right: 0px !important; padding-bottom: 0px !important; padding-left: 0px !important; }
+
+.padding-right { padding-top: 0px !important; padding-bottom: 0px !important; padding-left: 0px !important; }
+
+.padding-bottom { padding-top: 0px !important; padding-right: 0px !important; padding-left: 0px !important; }
+
+.padding-left { padding-top: 0px !important; padding-right: 0px !important; padding-bottom: 0px !important; }
+
+.margin-horizontal { margin-top: 0px !important; margin-bottom: 0px !important; }
+
+.margin-vertical { margin-right: 0px !important; margin-left: 0px !important; }
+
+.padding-horizontal { padding-top: 0px !important; padding-bottom: 0px !important; }
+
+.padding-vertical { padding-right: 0px !important; padding-left: 0px !important; }
+
+.card-left:hover ~ .card-center, .card-right:hover ~ .card-center { flex: 1 1 25%; }
+
+.card-content { opacity: 0; transform: translateY(100%); transition: opacity 0.3s, transform 0.3s; }
+
+.card:hover .card-content { opacity: 1; transform: translateY(0px); transition: opacity 0.3s 0.3s, transform 0.3s 0.3s; }
+
+.card:not(:hover) .card-content { opacity: 0; transform: translateY(100%); transition: opacity 0.3s, transform 0.3s; }
+
+.card-center:hover .card-content { opacity: 1; transform: translateY(0px); transition: opacity 0.3s 0.3s, transform 0.3s 0.3s; }
+
+.card-center .card-content { opacity: 0; transform: translateY(100%); transition: opacity 0.3s, transform 0.3s; }
+
+.card-center:not(:hover) .card-content { opacity: 1; transform: translateY(0px); transition: opacity 0.35s 0.3s, transform 0.35s 0.3s; }
+
+.card-center { flex: 1 1 100%; }
+
+.card:not(.card-center) { flex: 1 1 25%; }
+
+.hero_bg-video::before { content: ""; position: absolute; height: 100%; width: 100%; background: rgba(108, 88, 250, 0.1); }
+
+.below-fold { content-visibility: auto; contain-intrinsic-size: auto 1000px; }</style><link href="https://cdn.prod.website-files.com/" rel="preconnect" crossorigin="anonymous"><title>About TruAge</title><meta content="About TruAge" property="og:title"><meta content="About TruAge" name="twitter:title"><meta content="width=device-width, initial-scale=1" name="viewport"><meta content="S3Zn4wTV0DuLepYeVDpJ5Jmkj1Uh8nMePMamU92gIXw" name="google-site-verification"><link href="https://fonts.googleapis.com/" rel="preconnect"><link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin="anonymous"><script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-1P4D1DSRZW&amp;gtg_health=1"></script><script async="" src="https://s.pinimg.com/ct/core.js"></script><script async="" src="https://www.googletagmanager.com/gtm.js?id=GTM-5NZQZLP"></script><script async="" src="https://connect.facebook.net/en_US/fbevents.js"></script><script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Changa+One:400,400italic%7COpen+Sans:300,300italic,400,400italic,600,600italic,700,700italic,800,800italic%7CRoboto:300,400,500,600,700" media="all"><script type="text/javascript">WebFont.load({  google: {    families: ["Changa One:400,400italic","Open Sans:300,300italic,400,400italic,600,600italic,700,700italic,800,800italic","Roboto:300,400,500,600,700"]  }});</script><script type="text/javascript">!function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);</script><link href="https://cdn.prod.website-files.com/6690e254f4f07d1a469bb330/66e1d0b24907d0b380208454_favicon-32x32.png" rel="shortcut icon" type="image/x-icon"><link href="https://cdn.prod.website-files.com/6690e254f4f07d1a469bb330/66e1d00d5df768df9db42ac1_256x256.png" rel="apple-touch-icon"><script>(function(w,i,g){w[g]=w[g]||[];if(typeof w[g].push=='function')w[g].push.apply(w[g],Array.isArray(i)?i:[i]);})(window,['G-1P4D1DSRZW'],'google_tags_first_party');</script><script async="" src="https://www.trudiagnostic.com/9i1h7htkfq16NjY5MGUyNTRmNGYwN2QxYTQ2OWJiMzMw/KrX6apudSoV1SngXm6hQ9ChdhtE"></script><script type="text/javascript">window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('set', 'developer_id.dZGVlNj', true);gtag('set', 'developer_id.dYWYxNW', true);gtag('js', new Date());gtag('config', 'G-1P4D1DSRZW');</script><script type="text/javascript">!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.agent='plwebflow';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init', '2797827067101527');fbq('track', 'PageView');</script><!-- LCP: preload connections used during initial paint -->
+<link rel="dns-prefetch" href="https://cdn.prod.website-files.com/">
+<link rel="preconnect" href="https://cdn.prod.website-files.com/" crossorigin="">
+<link rel="dns-prefetch" href="https://www.googletagmanager.com/">
+<link rel="preconnect" href="https://www.googletagmanager.com/" crossorigin="">
+<!--<link rel="dns-prefetch" href="https://dev.visualwebsiteoptimizer.com">
+<link rel="preconnect" href="https://dev.visualwebsiteoptimizer.com" crossorigin>-->
+
+<!-- LCP hero poster (eager) -->
+<link rel="preload" as="image" href="https://cdn.prod.website-files.com/6690e254f4f07d1a469bb330/69091b40b880996acad3a09a_h265-720p-24fps-poster-00001-750.avif" fetchpriority="high" imagesrcset="https://cdn.prod.website-files.com/6690e254f4f07d1a469bb330/69091b40b880996acad3a09a_h265-720p-24fps-poster-00001-750.avif 750w" imagesizes="100vw">
+
+<!-- ABTF fonts only -->
+<link rel="preload" as="font" href="https://cdn.prod.website-files.com/6690e254f4f07d1a469bb330/69051224e7adf59e0dc3afc1_ClashDisplay-Regular.woff2" type="font/woff2" crossorigin="">
+<link rel="preload" as="font" href="https://cdn.prod.website-files.com/6690e254f4f07d1a469bb330/690511323eecd2c8edd2bcb9_roboto-v49-latin-regular.woff2" type="font/woff2" crossorigin="">
+
+<script>
+  if ('connection' in navigator && navigator.connection.saveData) {
+    document.documentElement.classList.add('save-data');
+  }
+</script>
+
+
+<!-- Klaviyo custom font killer (watch head only, cheaper than whole DOM) -->
+<script>
+(function nukeKlaviyoFonts(){
+  function kill(){ var s = document.getElementById('kl-custom-fonts'); if (s) s.remove(); }
+  kill();
+  new MutationObserver(kill).observe(document.head || document.documentElement, {childList:true,subtree:true});
+})();
+</script>
+
+<!-- Google Tag Manager (keep in head) -->
+<script>
+(function(w,d,s,l,i){
+  w[l]=w[l]||[];
+  w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
+  var f=d.getElementsByTagName(s)[0], j=d.createElement(s), dl=l!='dataLayer'?'&l='+l:'';
+  j.async=true; j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+  f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5NZQZLP');
+</script>
+
+<!-- Wellput/Tune: stub ONLY in head; real script loads in footer lazy block -->
+<script>
+!function () {
+  var q = window.tdl = window.tdl || [];
+  if (q.invoked) return;
+  q.invoked = true;
+  q.methods = ["init","identify","convert"];
+  q.factory = function(n){ return function(){ q.push([n].concat([].slice.call(arguments))); }; };
+  for (var i=0;i<q.methods.length;i++){ var m=q.methods[i]; q[m]=q.factory(m); }
+  // Do not inject tune.js here; footer lazy loader will load & then call:
+  // tdl.init("https://wellput.go2cloud.org"); tdl.identify();
+}();
+</script>
+
+<!-- VWO Async SmartCode (minimal changes: smaller tolerance + non-body hide) -->
+<!--<script>window._vis_opt_domain="trudiagnostic.com";</script>
+<link rel="preconnect" href="https://dev.visualwebsiteoptimizer.com" crossorigin>
+<script id="vwoCode">
+window._vwo_code || (function() {
+  var account_id=1126047, version=2.1, settings_tolerance=1200,
+      hide_element='.vwo-hide',
+      hide_element_style='opacity:0 !important;filter:alpha(opacity=0) !important;background:none !important;transition:none !important;',
+      f=false,w=window,d=document,v=d.querySelector('#vwoCode'),cK='_vwo_'+account_id+'_settings',cc={};
+  try{var c=JSON.parse(localStorage.getItem('_vwo_'+account_id+'_config'));cc=c&&typeof c==='object'?c:{}}catch(e){}
+  var stT=cc.stT==='session'?w.sessionStorage:w.localStorage;
+  code={
+    nonce:v&&v.nonce,
+    library_tolerance:function(){return typeof library_tolerance!=='undefined'?library_tolerance:undefined},
+    settings_tolerance:function(){return cc.sT||settings_tolerance},
+    hide_element_style:function(){return'{'+(cc.hES||hide_element_style)+'}'},
+    hide_element:function(){if(performance.getEntriesByName('first-contentful-paint')[0]){return''}return typeof cc.hE==='string'?cc.hE:hide_element},
+    getVersion:function(){return version},
+    finish:function(e){if(!f){f=true;var t=d.getElementById('_vis_opt_path_hides');if(t)t.parentNode.removeChild(t);if(e)(new Image).src='https://dev.visualwebsiteoptimizer.com/ee.gif?a='+account_id+e}},
+    finished:function(){return f},
+    addScript:function(e){var t=d.createElement('script');t.type='text/javascript';if(e.src){t.src=e.src}else{t.text=e.text}v&&t.setAttribute('nonce',v.nonce);d.getElementsByTagName('head')[0].appendChild(t)},
+    load:function(e,t){var n=this.getSettings(),i=d.createElement('script'),r=this;t=t||{};if(n){i.textContent=n;d.getElementsByTagName('head')[0].appendChild(i);if(!w.VWO||VWO.caE){stT.removeItem(cK);r.load(e)}}else{var o=new XMLHttpRequest;o.open('GET',e,true);o.withCredentials=!t.dSC;o.responseType=t.responseType||'text';o.onload=function(){if(t.onloadCb){return t.onloadCb(o,e)}if(o.status===200||o.status===304){_vwo_code.addScript({text:o.responseText})}else{_vwo_code.finish('&e=loading_failure:'+e)}};o.onerror=function(){if(t.onerrorCb){return t.onerrorCb(e)}_vwo_code.finish('&e=loading_failure:'+e)};o.send()}},
+    getSettings:function(){try{var e=stT.getItem(cK);if(!e){return}e=JSON.parse(e);if(Date.now()>e.e){stT.removeItem(cK);return}return e.s}catch(e){return}},
+    init:function(){ if(d.URL.indexOf('__vwo_disable__')>-1) return;
+      var e=this.settings_tolerance(); w._vwo_settings_timer=setTimeout(function(){_vwo_code.finish();stT.removeItem(cK)},e);
+      var t;if(this.hide_element()!=='body'){ t=d.createElement('style'); var n=this.hide_element(),i=n?n+this.hide_element_style():'',r=d.getElementsByTagName('head')[0];
+        t.setAttribute('id','_vis_opt_path_hides'); v&&t.setAttribute('nonce',v.nonce); t.setAttribute('type','text/css');
+        if(t.styleSheet)t.styleSheet.cssText=i; else t.appendChild(d.createTextNode(i)); r.appendChild(t);
+      } else { var r=d.getElementsByTagName('head')[0], i=d.createElement('div'); i.style.cssText='z-index:2147483647!important;position:fixed!important;left:0!important;top:0!important;width:100%!important;height:100%!important;background:white!important;display:block!important;'; i.id='_vis_opt_path_hides'; i.classList.add('_vis_hide_layer'); r.parentNode.insertBefore(i,r.nextSibling); }
+      var o=window._vis_opt_url||d.URL, s='https://dev.visualwebsiteoptimizer.com/j.php?a='+account_id+'&u='+encodeURIComponent(o)+'&vn='+version;
+      if(w.location.search.indexOf('_vwo_xhr')!==-1){ this.addScript({src:s}) } else { this.load(s+'&x=true') }
+    }
+  };
+  w._vwo_code=code; code.init();
+})();
+</script> -->
+
+<!-- begin Convert Experiences code-->
+<!--<script async type="text/javascript" src="//cdn-4.convertexperiments.com/v1/js/100413983-100415797.js?environment=production"></script>-->
+<!-- end Convert Experiences code -->
+
+
+<link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
+
+
+<script src="https://cdn.prod.website-files.com/6690e254f4f07d1a469bb330%2F64ede53a7f310eeba7cfb02b%2F68362233bcd3f660f99fb36d%2Fpreloading_script-0.0.3.js" type="text/javascript" data-ncf_api_key="aafb04d4-1aa0-476d-b841-2206d6267380" data-google_api_key="_" data-mapbox_api_key="_"></script><script type="module" src="https://cdn0.nocodeflow.net/preloader_v2.js"></script><script type="text/javascript" async="" src="https://googleads.g.doubleclick.net/pagead/viewthroughconversion/440173339/?random=1788573509179&amp;cv=11&amp;fst=1788573509179&amp;bg=ffffff&amp;guid=ON&amp;async=1&amp;en=gtag.config&amp;gtm=45g92e6921v9191731312za206zd9191731312xec&amp;gcd=13l3l3l3l1l1&amp;dma=0&amp;tag_exp=115938466~115938468~118012009~118897920~118897930~120213116~120385423~120469145~120469153&amp;u_w=1920&amp;u_h=1080&amp;url=https%3A%2F%2Fwww.trudiagnostic.com%2Fabout-truage&amp;ref=https%3A%2F%2Fwww.google.com%2F&amp;rcb=2&amp;frm=0&amp;tiba=About%20TruAge&amp;did=dZGVlNj%2CdYWYxNW&amp;gdid=dZGVlNj.dYWYxNW.dNzQzZD&amp;hn=www.googleadservices.com&amp;npa=0&amp;pscdl=noapi&amp;auid=4977054.1788573509&amp;uaa=x86&amp;uab=64&amp;uafvl=Chromium%3B152.0.7977.64%7CNot%253FA_Brand%3B24.0.0.0%7CGoogle%2520Chrome%3B152.0.7977.64&amp;uamb=0&amp;uam=&amp;uap=Linux&amp;uapv=&amp;uaw=0&amp;data=event%3Dgtag.config&amp;gap.gtb=1&amp;ept=9&amp;rfmt=3&amp;fmt=4"></script></head><body class="body-switzer"><div class="page-wrapper"><div class="global-styles w-embed">
+
+<a href="https://www.trudiagnostic.com/about-truage#main-content" class="skip-link">
+  Skip to main content
+</a></div><div class="nav-banner_wrapper position-sticky"><div class="dynamic-banner-collection w-dyn-list"><div role="list" class="dynamic-banner-list w-dyn-items"><div style="color:white;background-color:#1c0e67" role="listitem" class="dynamic-banner-item w-dyn-item"><div style="color:white" class="banner w-richtext"><p>🇺🇸 Labor Day: 20% off all tests—save up to $340. Ends Sept 8. </p><div class="w-embed"><a href="https://shop.trudiagnostic.com/products/truage-truhealth"><div id="truage_banner-btn">Use code LABORDAY26</div></a>
+
+</div></div></div></div></div><div class="header-v2-wrap"><div class="header-v2_mobile-overlay"></div><header class="header-v2"><div class="container-large new"><div class="header-v2_wrapper"><a href="https://www.trudiagnostic.com/" class="header-v2_logo w-inline-block"><img loading="lazy" src="https://cdn.prod.website-files.com/6690e254f4f07d1a469bb330/6a5f5e7fca61ea8cbdc251e3_logo%20(1).png" alt="" class="header-v2_logo-img is-desktop"><img loading="lazy" src="https://cdn.prod.website-files.com/6690e254f4f07d1a469bb330/6a5f9fd1ac7d6b6b1d92607a_Navigation%20Left.png" alt="" class="header-v2_logo-img is-mobile"></a><div class="header-v2_menu"><div class="header-v2_menu-item"><div class="header-v2_menu-head"><div class="header-v2_menu-text">Providers</div><div class="header-v2_menu-icon w-embed"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_13084_3019)">
+<path d="M11.5288 5.52864C11.7891 5.26829 12.2111 5.26829 12.4715 5.52864C12.7318 5.78899 12.7318 6.21099 12.4715 6.47134L8.47147 10.4713C8.21112 10.7317 7.78911 10.7317 7.52876 10.4713L3.52876 6.47134C3.26841 6.21099 3.26841 5.78899 3.52876 5.52864C3.78911 5.26829 4.21112 5.26829 4.47147 5.52864L8.00011 9.05728L11.5288 5.52864Z" fill="#1A126E"></path>
+</g>
+<defs>
+<clipPath id="clip0_13084_3019">
+<rect width="16" height="16" fill="white"></rect>
+</clipPath>
+</defs>
+</svg>
+</div></div><div class="sub-menu"><div class="container-large"><div class="sub-menu_wrapper"><div id="providers" class="sub-menu_inner"><div class="sub-menu_providers-image-wrap"><div class="sub-menu_providers-image"><img loading="lazy" src="https://cdn.prod.website-files.com/6690e254f4f07d1a469bb330/6a5f845eaec253e2c5440043_iMAGE.png" alt="" class="sub-menu_providers-img" width="3" height="3"><div class="sub-menu_providers-cta"><a data-wf--global-cta-yellow--variant="icon-2-height" href="https://www.trudiagnostic.com/become-a-provider" class="cta-yellow w-variant-ad064da4-6880-adb7-8250-ce2589625995 w-inline-block"><div class="text-regular blue cta w-variant-ad064da4-6880-adb7-8250-ce2589625995">Become a Provider</div><div class="cta-yellow-icon w-variant-ad064da4-6880-adb7-8250-ce2589625995 w-embed"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_11047_7388)">
+<path d="M2 16.2002V15C2 14.4477 2.44772 14 3 14C3.55229 14 4 14.4477 4 15V16.2002C4 17.0566 4.00035 17.6388 4.03711 18.0889C4.07293 18.5273 4.13809 18.7518 4.21778 18.9082C4.40951 19.2845 4.71555 19.5905 5.0918 19.7822C5.2482 19.8619 5.47272 19.9271 5.91113 19.9629C6.36117 19.9997 6.94342 20 7.79981 20H16.2002C17.0566 20 17.6388 19.9997 18.0889 19.9629C18.5273 19.9271 18.7518 19.8619 18.9082 19.7822C19.2845 19.5905 19.5905 19.2845 19.7822 18.9082C19.8619 18.7518 19.9271 18.5273 19.9629 18.0889C19.9997 17.6388 20 17.0566 20 16.2002V15C20 14.4477 20.4477 14 21 14C21.5523 14 22 14.4477 22 15V16.2002C22 17.0237 22.001 17.7016 21.9561 18.252C21.9101 18.814 21.8117 19.3311 21.5645 19.8164C21.181 20.5689 20.5689 21.181 19.8164 21.5645C19.3311 21.8117 18.814 21.9101 18.252 21.9561C17.7016 22.001 17.0237 22 16.2002 22H7.79981C6.97632 22 6.29843 22.001 5.74805 21.9561C5.18599 21.9101 4.6689 21.8117 4.1836 21.5645C3.43109 21.181 2.81902 20.5689 2.43555 19.8164C2.18827 19.3311 2.08988 18.814 2.04395 18.252C1.99898 17.7016 2 17.0237 2 16.2002ZM11 3C11 2.44772 11.4477 2 12 2C12.5523 2 13 2.44772 13 3V12.5859L16.293 9.29297C16.6835 8.90244 17.3165 8.90244 17.707 9.29297C18.0976 9.68349 18.0976 10.3165 17.707 10.707L12.707 15.707C12.3165 16.0976 11.6835 16.0976 11.293 15.707L6.29297 10.707C5.90245 10.3165 5.90245 9.68349 6.29297 9.29297C6.6835 8.90244 7.31651 8.90244 7.70703 9.29297L11 12.5859V3Z" fill="#1A126E"></path>
+</g>
+<defs>
+<clipPath id="clip0_11047_7388">
+<rect width="24" height="24" fill="white"></rect>
+</clipPath>
+</defs>
+</svg>
+</div><div class="cta-yellow-icon-v2 w-variant-ad064da4-6880-adb7-8250-ce2589625995 w-embed"><svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 7.33333C8 7.70152 7.70152 8 7.33333 8C6.96514 8 6.66667 7.70152 6.66667 7.33333V2.27604L1.13802 7.80469C0.877671 8.06504 0.455662 8.06504 0.195312 7.80469C-0.065037 7.54434 -0.065037 7.12233 0.195312 6.86198L5.72396 1.33333H0.666667C0.298477 1.33333 0 1.03486 0 0.666667C0 0.298477 0.298477 0 0.666667 0H7.33333C7.70152 0 8 0.298477 8 0.666667V7.33333Z" fill="#1A126E"></path>
+</svg>
+</div></a></div></div></div><div class="sub-menu_col"><div class="text-label-regular">Our Tests</div><div class="sub-menu_col-list"><div class="sub-menu_col-link"><a href="https://www.trudiagnostic.com/about-truage" aria-current="page" class="sub-menu_col-text w--current">About TruAge</a></div><div class="sub-menu_col-link"><a href="https://www.trudiagnostic.com/about-truhealth" class="sub-menu_col-text">About TruHealth</a></div></div></div><div class="sub-menu_col"><div class="text-label-regular">Resources</div><div class="sub-menu_col-list"><div class="sub-menu_col-link"><a href="https://www.trudiagnostic.com/case-studies" class="sub-menu_col-text">Clinical Case Studies</a></div><div class="sub-menu_col-link"><a href="https://www.trudiagnostic.com/report-education" class="sub-menu_col-text">Report Education</a></div><div class="sub-menu_col-link"><a href="https://www.trudiagnostic.com/interventional-studies" class="sub-menu_col-text">Intervention Tracking</a></div></div></div></div></div></div></div></div><div class="header-v2_menu-item"><div class="header-v2_menu-head"><div class="header-v2_menu-text">Individuals</div><div class="header-v2_menu-icon w-embed"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_13084_3019)">
+<path d="M11.5288 5.52864C11.7891 5.26829 12.2111 5.26829 12.4715 5.52864C12.7318 5.78899 12.7318 6.21099 12.4715 6.47134L8.47147 10.4713C8.21112 10.7317 7.78911 10.7317 7.52876 10.4713L3.52876 6.47134C3.26841 6.21099 3.26841 5.78899 3.52876 5.52864C3.78911 5.26829 4.21112 5.26829 4.47147 5.52864L8.00011 9.05728L11.5288 5.52864Z" fill="#1A126E"></path>
+</g>
+<defs>
+<clipPath id="clip0_13084_3019">
+<rect width="16" height="16" fill="white"></rect>
+</clipPath>
+</defs>
+</svg>
+</div></div><div class="sub-menu"><div class="container-large"><div class="sub-menu_wrapper"><div id="providers" class="sub-menu_inner"><div class="sub-menu_col none-left-padding"><div class="text-label-regular">Patients</div><div class="sub-menu_col-list"><div class="sub-menu_col-link"><a href="https://shop.trudiagnostic.com/collections/shopfront?_gl=1*179yyu7*_gcl_au*MTAzNzc0OTMwOS4xNzgzMDA4OTMwLjk2NTUwODAxLjE3ODY0NDgwMTUuMTc4NjQ0ODAxNS4xNDQzOTkwMTM5LjE3ODY0NDgwMTUuMTc4NjQ0ODAxNQ..*_ga*NTE4MjU0MTA4LjE3ODMwMDg5MzA.*_ga_1P4D1DSRZW*czE3ODY0NjUxMjMkbzQ4JGcxJHQxNzg2NDY1NDE2JGo1OSRsMCRoMCRkVnY0V2hVR200enFMcmprRzRqYU04VzN6Z3RLcDdvOWJ1QQ..*_ga_GY40ERMRF2*czE3ODY0NjUxMjMkbzQ4JGcxJHQxNzg2NDY1NDE1JGo2MCRsMCRoMA.." class="sub-menu_col-text">Shop All Tests</a></div></div></div><div class="sub-menu_products"><a href="https://shop.trudiagnostic.com/collections/shopfront/products/truage-truhealth" class="sub-menu_product w-inline-block"><img loading="lazy" src="https://cdn.prod.website-files.com/6690e254f4f07d1a469bb330/6a7b3c3f81d80e7d86c007ea_Product%20Image%20(3).png" alt="" class="sub-menu_product-img" width="0" height="0"><div class="sub-menu_product-title">TruHealth + TruAge</div></a><a href="https://shop.trudiagnostic.com/collections/shopfront/products/truhealth" class="sub-menu_product w-inline-block"><img loading="lazy" src="https://cdn.prod.website-files.com/6690e254f4f07d1a469bb330/6a7b3c51fc7c683ecdd83c2b_Product%20Image%20(1).png" alt="" class="sub-menu_product-img"><div class="sub-menu_product-title">TruHealth</div></a><a href="https://shop.trudiagnostic.com/collections/shopfront/products/truage-complete-epigenetic-collection" class="sub-menu_product w-inline-block"><img loading="lazy" src="https://cdn.prod.website-files.com/6690e254f4f07d1a469bb330/6a7b3c5ae10cbb980e0fafc7_Product%20Image%20(5).png" alt="" class="sub-menu_product-img" width="0" height="0"><div class="sub-menu_product-title">TruAge</div></a></div></div></div></div></div></div><div class="header-v2_menu-item"><div class="header-v2_menu-head"><div class="header-v2_menu-text">Partners</div><div class="header-v2_menu-icon w-embed"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_13084_3019)">
+<path d="M11.5288 5.52864C11.7891 5.26829 12.2111 5.26829 12.4715 5.52864C12.7318 5.78899 12.7318 6.21099 12.4715 6.47134L8.47147 10.4713C8.21112 10.7317 7.78911 10.7317 7.52876 10.4713L3.52876 6.47134C3.26841 6.21099 3.26841 5.78899 3.52876 5.52864C3.78911 5.26829 4.21112 5.26829 4.47147 5.52864L8.00011 9.05728L11.5288 5.52864Z" fill="#1A126E"></path>
+</g>
+<defs>
+<clipPath id="clip0_13084_3019">
+<rect width="16" height="16" fill="white"></rect>
+</clipPath>
+</defs>
+</svg>
+</div></div><div class="sub-menu"><div class="container-large"><div class="sub-menu_wrapper"><div id="providers" class="sub-menu_inner"><div class="sub-menu_col"><div class="text-label-regular">Our Services</div><div class="sub-menu_col-list"><div class="sub-menu_col-link"><a href="https://www.trudiagnostic.com/research-services" class="sub-menu_col-text">Research Services</a></div><div class="sub-menu_col-link"><a href="https://www.trudiagnostic.com/commercial-services" class="sub-menu_col-text">Commercial Services</a></div></div></div><div class="sub-menu_providers-image-wrap full"><div class="sub-menu_providers-image is-large full"><img loading="lazy" src="https://cdn.prod.website-files.com/6690e254f4f07d1a469bb330/6a5f8f4ecd08351b44556cd3_iMAGE%20(4).png" alt="" class="sub-menu_providers-img"><div class="sub-menu_providers-cta"><a data-wf--global-cta-yellow--variant="icon-2-height" href="https://www.trudiagnostic.com/work-with-us-hcp" class="cta-yellow w-variant-ad064da4-6880-adb7-8250-ce2589625995 w-inline-block"><div class="text-regular blue cta w-variant-ad064da4-6880-adb7-8250-ce2589625995">Work With Us</div><div class="cta-yellow-icon w-variant-ad064da4-6880-adb7-8250-ce2589625995 w-embed"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_11047_7388)">
+<path d="M2 16.2002V15C2 14.4477 2.44772 14 3 14C3.55229 14 4 14.4477 4 15V16.2002C4 17.0566 4.00035 17.6388 4.03711 18.0889C4.07293 18.5273 4.13809 18.7518 4.21778 18.9082C4.40951 19.2845 4.71555 19.5905 5.0918 19.7822C5.2482 19.8619 5.47272 19.9271 5.91113 19.9629C6.36117 19.9997 6.94342 20 7.79981 20H16.2002C17.0566 20 17.6388 19.9997 18.0889 19.9629C18.5273 19.9271 18.7518 19.8619 18.9082 19.7822C19.2845 19.5905 19.5905 19.2845 19.7822 18.9082C19.8619 18.7518 19.9271 18.5273 19.9629 18.0889C19.9997 17.6388 20 17.0566 20 16.2002V15C20 14.4477 20.4477 14 21 14C21.5523 14 22 14.4477 22 15V16.2002C22 17.0237 22.001 17.7016 21.9561 18.252C21.9101 18.814 21.8117 19.3311 21.5645 19.8164C21.181 20.5689 20.5689 21.181 19.8164 21.5645C19.3311 21.8117 18.814 21.9101 18.252 21.9561C17.7016 22.001 17.0237 22 16.2002 22H7.79981C6.97632 22 6.29843 22.001 5.74805 21.9561C5.18599 21.9101 4.6689 21.8117 4.1836 21.5645C3.43109 21.181 2.81902 20.5689 2.43555 19.8164C2.18827 19.3311 2.08988 18.814 2.04395 18.252C1.99898 17.7016 2 17.0237 2 16.2002ZM11 3C11 2.44772 11.4477 2 12 2C12.5523 2 13 2.44772 13 3V12.5859L16.293 9.29297C16.6835 8.90244 17.3165 8.90244 17.707 9.29297C18.0976 9.68349 18.0976 10.3165 17.707 10.707L12.707 15.707C12.3165 16.0976 11.6835 16.0976 11.293 15.707L6.29297 10.707C5.90245 10.3165 5.90245 9.68349 6.29297 9.29297C6.6835 8.90244 7.31651 8.90244 7.70703 9.29297L11 12.5859V3Z" fill="#1A126E"></path>
+</g>
+<defs>
+<clipPath id="clip0_11047_7388">
+<rect width="24" height="24" fill="white"></rect>
+</clipPath>
+</defs>
+</svg>
+</div><div class="cta-yellow-icon-v2 w-variant-ad064da4-6880-adb7-8250-ce2589625995 w-embed"><svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 7.33333C8 7.70152 7.70152 8 7.33333 8C6.96514 8 6.66667 7.70152 6.66667 7.33333V2.27604L1.13802 7.80469C0.877671 8.06504 0.455662 8.06504 0.195312 7.80469C-0.065037 7.54434 -0.065037 7.12233 0.195312 6.86198L5.72396 1.33333H0.666667C0.298477 1.33333 0 1.03486 0 0.666667C0 0.298477 0.298477 0 0.666667 0H7.33333C7.70152 0 8 0.298477 8 0.666667V7.33333Z" fill="#1A126E"></path>
+</svg>
+</div></a></div></div></div></div></div></div></div></div><div class="header-v2_menu-item"><div class="header-v2_menu-head"><div class="header-v2_menu-text">Our Science</div><div class="header-v2_menu-icon w-embed"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_13084_3019)">
+<path d="M11.5288 5.52864C11.7891 5.26829 12.2111 5.26829 12.4715 5.52864C12.7318 5.78899 12.7318 6.21099 12.4715 6.47134L8.47147 10.4713C8.21112 10.7317 7.78911 10.7317 7.52876 10.4713L3.52876 6.47134C3.26841 6.21099 3.26841 5.78899 3.52876 5.52864C3.78911 5.26829 4.21112 5.26829 4.47147 5.52864L8.00011 9.05728L11.5288 5.52864Z" fill="#1A126E"></path>
+</g>
+<defs>
+<clipPath id="clip0_13084_3019">
+<rect width="16" height="16" fill="white"></rect>
+</clipPath>
+</defs>
+</svg>
+</div></div><div class="sub-menu"><div class="container-large"><div class="sub-menu_wrapper"><div id="providers" class="sub-menu_inner"><div class="sub-menu_col"><div class="text-label-regular">Science</div><div class="sub-menu_col-list"><div class="sub-menu_col-link"><a href="https://www.trudiagnostic.com/lab-research" class="sub-menu_col-text">Our Laboratory</a></div><div class="sub-menu_col-link"><a href="https://www.trudiagnostic.com/epigenetics-101" class="sub-menu_col-text">What is epigenetics?</a></div><div class="sub-menu_col-link"><a href="https://www.trudiagnostic.com/our-array-platforms" class="sub-menu_col-text">Our Arrays</a></div><div class="sub-menu_col-link"><a href="https://www.trudiagnostic.com/interventional-trials" class="sub-menu_col-text">Intervention Tracking</a></div></div></div><div class="sub-menu_col"><div class="text-label-regular">Algorithms</div><div class="sub-menu_col-list"><div class="sub-menu_col-link"><a href="https://www.trudiagnostic.com/omicmage" class="sub-menu_col-text">OMICmAge</a></div><div class="sub-menu_col-link"><a href="https://www.trudiagnostic.com/symphony-age" class="sub-menu_col-text">SYMPHONYAge</a></div><div class="sub-menu_col-link"><a href="https://www.trudiagnostic.com/dunedin-pace" class="sub-menu_col-text">DunedinPACE</a></div></div></div><div class="sub-menu_providers-image-wrap"><div class="sub-menu_providers-image"><img loading="lazy" src="https://cdn.prod.website-files.com/6690e254f4f07d1a469bb330/6a5f9017aec253e2c55013fa_iMAGE%20(5).png" alt="" class="sub-menu_providers-img" width="3" height="3"><div class="sub-menu_providers-cta"><a data-wf--global-cta-yellow--variant="icon-2-height" href="https://www.trudiagnostic.com/our-publication" class="cta-yellow w-variant-ad064da4-6880-adb7-8250-ce2589625995 w-inline-block"><div class="text-regular blue cta w-variant-ad064da4-6880-adb7-8250-ce2589625995">Our Publications</div><div class="cta-yellow-icon w-variant-ad064da4-6880-adb7-8250-ce2589625995 w-embed"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_11047_7388)">
+<path d="M2 16.2002V15C2 14.4477 2.44772 14 3 14C3.55229 14 4 14.4477 4 15V16.2002C4 17.0566 4.00035 17.6388 4.03711 18.0889C4.07293 18.5273 4.13809 18.7518 4.21778 18.9082C4.40951 19.2845 4.71555 19.5905 5.0918 19.7822C5.2482 19.8619 5.47272 19.9271 5.91113 19.9629C6.36117 19.9997 6.94342 20 7.79981 20H16.2002C17.0566 20 17.6388 19.9997 18.0889 19.9629C18.5273 19.9271 18.7518 19.8619 18.9082 19.7822C19.2845 19.5905 19.5905 19.2845 19.7822 18.9082C19.8619 18.7518 19.9271 18.5273 19.9629 18.0889C19.9997 17.6388 20 17.0566 20 16.2002V15C20 14.4477 20.4477 14 21 14C21.5523 14 22 14.4477 22 15V16.2002C22 17.0237 22.001 17.7016 21.9561 18.252C21.9101 18.814 21.8117 19.3311 21.5645 19.8164C21.181 20.5689 20.5689 21.181 19.8164 21.5645C19.3311 21.8117 18.814 21.9101 18.252 21.9561C17.7016 22.001 17.0237 22 16.2002 22H7.79981C6.97632 22 6.29843 22.001 5.74805 21.9561C5.18599 21.9101 4.6689 21.8117 4.1836 21.5645C3.43109 21.181 2.81902 20.5689 2.43555 19.8164C2.18827 19.3311 2.08988 18.814 2.04395 18.252C1.99898 17.7016 2 17.0237 2 16.2002ZM11 3C11 2.44772 11.4477 2 12 2C12.5523 2 13 2.44772 13 3V12.5859L16.293 9.29297C16.6835 8.90244 17.3165 8.90244 17.707 9.29297C18.0976 9.68349 18.0976 10.3165 17.707 10.707L12.707 15.707C12.3165 16.0976 11.6835 16.0976 11.293 15.707L6.29297 10.707C5.90245 10.3165 5.90245 9.68349 6.29297 9.29297C6.6835 8.90244 7.31651 8.90244 7.70703 9.29297L11 12.5859V3Z" fill="#1A126E"></path>
+</g>
+<defs>
+<clipPath id="clip0_11047_7388">
+<rect width="24" height="24" fill="white"></rect>
+</clipPath>
+</defs>
+</svg>
+</div><div class="cta-yellow-icon-v2 w-variant-ad064da4-6880-adb7-8250-ce2589625995 w-embed"><svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 7.33333C8 7.70152 7.70152 8 7.33333 8C6.96514 8 6.66667 7.70152 6.66667 7.33333V2.27604L1.13802 7.80469C0.877671 8.06504 0.455662 8.06504 0.195312 7.80469C-0.065037 7.54434 -0.065037 7.12233 0.195312 6.86198L5.72396 1.33333H0.666667C0.298477 1.33333 0 1.03486 0 0.666667C0 0.298477 0.298477 0 0.666667 0H7.33333C7.70152 0 8 0.298477 8 0.666667V7.33333Z" fill="#1A126E"></path>
+</svg>
+</div></a></div></div></div></div></div></div></div></div></div><div class="header-v2_cta-wrap"><a href="https://shop.trudiagnostic.com/cart" class="w-inline-block"><div class="header-v2_cta-icon w-embed"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_14060_177)">
+<g clip-path="url(#clip1_14060_177)">
+<path d="M4.6665 14.0001C4.6665 13.2637 5.26346 12.6667 5.99984 12.6667C6.73622 12.6667 7.33317 13.2637 7.33317 14.0001C7.33317 14.7365 6.73622 15.3334 5.99984 15.3334C5.26346 15.3334 4.6665 14.7365 4.6665 14.0001ZM9.99984 14.0001C9.99984 13.2637 10.5968 12.6667 11.3332 12.6667C12.0696 12.6667 12.6665 13.2637 12.6665 14.0001C12.6665 14.7365 12.0696 15.3334 11.3332 15.3334C10.5968 15.3334 9.99984 14.7365 9.99984 14.0001ZM2.20426 0.666751C2.27605 0.666749 2.3673 0.666452 2.44775 0.67261C2.53659 0.67942 2.66027 0.696718 2.79281 0.757245C2.94551 0.827035 3.07812 0.933948 3.17822 1.06779L3.21924 1.12639L3.27002 1.21753C3.31398 1.30727 3.33755 1.39113 3.35205 1.45646C3.36955 1.53535 3.3816 1.62623 3.39176 1.69735L3.62549 3.33342H14.022C14.1206 3.33342 14.2376 3.3331 14.3384 3.34188C14.4317 3.35002 14.5662 3.36892 14.7069 3.43693L14.7674 3.46948L14.8416 3.51766C15.0096 3.63667 15.1378 3.80525 15.2069 4.00073C15.2691 4.1773 15.2626 4.33898 15.2518 4.4454C15.2416 4.54596 15.2195 4.66105 15.201 4.7579L14.3182 9.39071C14.2613 9.68955 14.212 9.94944 14.1548 10.1622C14.0954 10.383 14.0167 10.5986 13.8774 10.8009C13.667 11.1065 13.3752 11.348 13.0356 11.4975C12.8109 11.5964 12.5846 11.6334 12.3566 11.6505C12.1369 11.6669 11.8719 11.6667 11.5675 11.6667H5.86247C5.54267 11.6667 5.2652 11.6675 5.03564 11.6498C4.7978 11.6315 4.56189 11.5907 4.32926 11.4838C3.97899 11.3229 3.68243 11.0644 3.47575 10.739C3.33852 10.5229 3.2668 10.2945 3.21663 10.0613C3.16821 9.83618 3.1315 9.56114 3.08838 9.24422L2.38656 4.08993V4.08928L2.08838 2.00008H1.33317C0.964981 2.00008 0.666504 1.70161 0.666504 1.33342C0.666504 0.965227 0.964981 0.666751 1.33317 0.666751H2.20426ZM4.40934 9.06454C4.4552 9.40158 4.48487 9.61723 4.52002 9.78068C4.55343 9.93601 4.58232 9.99413 4.6014 10.0242C4.67029 10.1326 4.76916 10.2186 4.88591 10.2722C4.91825 10.2871 4.97948 10.3082 5.13786 10.3204C5.30457 10.3332 5.52227 10.3334 5.86247 10.3334H11.5675C11.8915 10.3334 12.0984 10.3329 12.257 10.321C12.4072 10.3098 12.4666 10.2908 12.4985 10.2768C12.6117 10.2269 12.709 10.1468 12.7791 10.045C12.7989 10.0163 12.8285 9.96133 12.8677 9.81584C12.909 9.6623 12.9477 9.45941 13.0083 9.14136L13.8612 4.66675H3.81104L4.40934 9.06454Z" fill="#5635F2"></path>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_14060_177">
+<rect width="16" height="16" fill="white"></rect>
+</clipPath>
+<clipPath id="clip1_14060_177">
+<rect width="16" height="16" fill="white"></rect>
+</clipPath>
+</defs>
+</svg>
+</div></a><a href="https://portal.trudiagnostic.com/sign-in" class="header-v2_login w-inline-block"><div class="header-v2_login-icon w-embed"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_13084_3084)">
+<path d="M7.99993 9.99998C10.5298 9.99998 12.8144 11.1044 14.485 12.8763C14.7374 13.1442 14.7248 13.5658 14.457 13.8183C14.1891 14.0708 13.7674 14.0582 13.5149 13.7903C12.0711 12.2591 10.1273 11.3333 7.99993 11.3333C5.87253 11.3333 3.92876 12.2591 2.48496 13.7903C2.23242 14.0582 1.8108 14.0708 1.5429 13.8183C1.27505 13.5658 1.26246 13.1442 1.5149 12.8763C3.18547 11.1044 5.47008 9.99998 7.99993 9.99998ZM10.3333 4.99998C10.3333 3.71132 9.28859 2.66665 7.99993 2.66665C6.71127 2.66665 5.6666 3.71132 5.6666 4.99998C5.6666 6.28864 6.71127 7.33331 7.99993 7.33331C9.28859 7.33331 10.3333 6.28864 10.3333 4.99998ZM11.6666 4.99998C11.6666 7.02502 10.025 8.66665 7.99993 8.66665C5.97489 8.66665 4.33326 7.02502 4.33326 4.99998C4.33326 2.97494 5.97489 1.33331 7.99993 1.33331C10.025 1.33331 11.6666 2.97494 11.6666 4.99998Z" fill="#5635F2"></path>
+</g>
+<defs>
+<clipPath id="clip0_13084_3084">
+<rect width="16" height="16" fill="white"></rect>
+</clipPath>
+</defs>
+</svg>
+</div><div class="header-v2_login-text">Log In</div></a><div class="header-v2_burger"><div class="header-v2_burger-open w-embed"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M14.0002 11.3333C14.3684 11.3333 14.6668 11.6318 14.6668 12C14.6668 12.3682 14.3684 12.6666 14.0002 12.6666H2.00016C1.63197 12.6666 1.3335 12.3682 1.3335 12C1.3335 11.6318 1.63197 11.3333 2.00016 11.3333H14.0002ZM14.0002 7.33331C14.3684 7.33331 14.6668 7.63179 14.6668 7.99998C14.6668 8.36817 14.3684 8.66665 14.0002 8.66665H2.00016C1.63197 8.66665 1.3335 8.36817 1.3335 7.99998C1.3335 7.63179 1.63197 7.33331 2.00016 7.33331H14.0002ZM14.0002 3.33331C14.3684 3.33331 14.6668 3.63179 14.6668 3.99998C14.6668 4.36817 14.3684 4.66665 14.0002 4.66665H2.00016C1.63197 4.66665 1.3335 4.36817 1.3335 3.99998C1.3335 3.63179 1.63197 3.33331 2.00016 3.33331H14.0002Z" fill="#5635F2"></path>
+</svg>
+</div><div class="header-v2_burger-close w-embed"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_13084_1411)">
+<path d="M11.5288 3.52864C11.7891 3.26829 12.2111 3.26829 12.4715 3.52864C12.7318 3.78899 12.7318 4.21099 12.4715 4.47134L8.94282 7.99999L12.4715 11.5286C12.7318 11.789 12.7318 12.211 12.4715 12.4713C12.2111 12.7317 11.7891 12.7317 11.5288 12.4713L8.00011 8.9427L4.47147 12.4713C4.21112 12.7317 3.78911 12.7317 3.52876 12.4713C3.26841 12.211 3.26841 11.789 3.52876 11.5286L7.0574 7.99999L3.52876 4.47134C3.26841 4.21099 3.26841 3.78899 3.52876 3.52864C3.78911 3.26829 4.21112 3.26829 4.47147 3.52864L8.00011 7.05728L11.5288 3.52864Z" fill="#5635F2"></path>
+</g>
+<defs>
+<clipPath id="clip0_13084_1411">
+<rect width="16" height="16" fill="white"></rect>
+</clipPath>
+</defs>
+</svg>
+</div></div></div></div><div class="header-v2_mobile-menu"><div class="header-v2_mobile-list"><div class="item-acc-mobile-menu active"><div class="item-acc-mobile-menu_head active" aria-controls="faq-panel-0" aria-expanded="true"><div class="item-acc-mobile-menu_title">Providers</div><div class="item-acc-mobile-menu_arrow w-embed"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g clip-path="url(#clip0_13084_1516)">
+    <path d="M11.5288 5.52864C11.7891 5.26829 12.2111 5.26829 12.4715 5.52864C12.7318 5.78899 12.7318 6.21099 12.4715 6.47134L8.47147 10.4713C8.21112 10.7317 7.78911 10.7317 7.52876 10.4713L3.52876 6.47134C3.26841 6.21099 3.26841 5.78899 3.52876 5.52864C3.78911 5.26829 4.21112 5.26829 4.47147 5.52864L8.00011 9.05728L11.5288 5.52864Z" fill="#1A126E"></path>
+  </g>
+  <defs>
+    <clipPath id="clip0_13084_1516">
+      <rect width="16" height="16" fill="currentColor"></rect>
+    </clipPath>
+  </defs>
+</svg></div></div><div class="item-acc-mobile-menu_panel active" id="faq-panel-0" style="max-height: 18px;"><div class="item-acc-mobile-menu_list"><a href="https://www.trudiagnostic.com/become-a-provider" class="item-acc-mobile-menu_link">Become a Provider</a><a href="https://www.trudiagnostic.com/about-truage" aria-current="page" class="item-acc-mobile-menu_link w--current">About TruAge</a><a href="https://www.trudiagnostic.com/about-truhealth" class="item-acc-mobile-menu_link">About TruHealth</a><a href="https://www.trudiagnostic.com/case-studies" class="item-acc-mobile-menu_link">Clinical Case Studies</a><a href="https://www.trudiagnostic.com/report-education" class="item-acc-mobile-menu_link">Report Education</a><a href="https://www.trudiagnostic.com/interventional-studies" class="sub-menu_col-text">Intervention Tracking</a></div></div></div><div class="item-acc-mobile-menu"><div class="item-acc-mobile-menu_head" aria-controls="faq-panel-1" aria-expanded="false"><div class="item-acc-mobile-menu_title">Individuals</div><div class="item-acc-mobile-menu_arrow w-embed"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g clip-path="url(#clip0_13084_1516)">
+    <path d="M11.5288 5.52864C11.7891 5.26829 12.2111 5.26829 12.4715 5.52864C12.7318 5.78899 12.7318 6.21099 12.4715 6.47134L8.47147 10.4713C8.21112 10.7317 7.78911 10.7317 7.52876 10.4713L3.52876 6.47134C3.26841 6.21099 3.26841 5.78899 3.52876 5.52864C3.78911 5.26829 4.21112 5.26829 4.47147 5.52864L8.00011 9.05728L11.5288 5.52864Z" fill="#1A126E"></path>
+  </g>
+  <defs>
+    <clipPath id="clip0_13084_1516">
+      <rect width="16" height="16" fill="currentColor"></rect>
+    </clipPath>
+  </defs>
+</svg></div></div><div class="item-acc-mobile-menu_panel" id="faq-panel-1"><div class="item-acc-mobile-menu_list"><a href="https://shop.trudiagnostic.com/collections/shopfront?_gl=1*179yyu7*_gcl_au*MTAzNzc0OTMwOS4xNzgzMDA4OTMwLjk2NTUwODAxLjE3ODY0NDgwMTUuMTc4NjQ0ODAxNS4xNDQzOTkwMTM5LjE3ODY0NDgwMTUuMTc4NjQ0ODAxNQ..*_ga*NTE4MjU0MTA4LjE3ODMwMDg5MzA.*_ga_1P4D1DSRZW*czE3ODY0NjUxMjMkbzQ4JGcxJHQxNzg2NDY1NDE2JGo1OSRsMCRoMCRkVnY0V2hVR200enFMcmprRzRqYU04VzN6Z3RLcDdvOWJ1QQ..*_ga_GY40ERMRF2*czE3ODY0NjUxMjMkbzQ4JGcxJHQxNzg2NDY1NDE1JGo2MCRsMCRoMA.." class="item-acc-mobile-menu_link">Shop All Tests</a><a href="https://shop.trudiagnostic.com/collections/shopfront/products/truage-truhealth" class="item-acc-mobile-menu_link">TruHealth + TruAge</a><a href="https://shop.trudiagnostic.com/collections/shopfront/products/truhealth" class="item-acc-mobile-menu_link">TruHealth</a><a href="https://shop.trudiagnostic.com/collections/shopfront/products/truage-complete-epigenetic-collection" class="item-acc-mobile-menu_link">TruAge</a></div></div></div><div class="item-acc-mobile-menu"><div class="item-acc-mobile-menu_head" aria-controls="faq-panel-2" aria-expanded="false"><div class="item-acc-mobile-menu_title">Partners</div><div class="item-acc-mobile-menu_arrow w-embed"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g clip-path="url(#clip0_13084_1516)">
+    <path d="M11.5288 5.52864C11.7891 5.26829 12.2111 5.26829 12.4715 5.52864C12.7318 5.78899 12.7318 6.21099 12.4715 6.47134L8.47147 10.4713C8.21112 10.7317 7.78911 10.7317 7.52876 10.4713L3.52876 6.47134C3.26841 6.21099 3.26841 5.78899 3.52876 5.52864C3.78911 5.26829 4.21112 5.26829 4.47147 5.52864L8.00011 9.05728L11.5288 5.52864Z" fill="#1A126E"></path>
+  </g>
+  <defs>
+    <clipPath id="clip0_13084_1516">
+      <rect width="16" height="16" fill="currentColor"></rect>
+    </clipPath>
+  </defs>
+</svg></div></div><div class="item-acc-mobile-menu_panel" id="faq-panel-2"><div class="item-acc-mobile-menu_list"><a href="https://www.trudiagnostic.com/research-services" class="item-acc-mobile-menu_link">Research Services</a><a href="https://www.trudiagnostic.com/commercial-services" class="item-acc-mobile-menu_link">Commercial Services</a><a href="https://www.trudiagnostic.com/work-with-us-hcp" class="item-acc-mobile-menu_link">Work With Us</a></div></div></div><div class="item-acc-mobile-menu"><div class="item-acc-mobile-menu_head" aria-controls="faq-panel-3" aria-expanded="false"><div class="item-acc-mobile-menu_title">Our Science</div><div class="item-acc-mobile-menu_arrow w-embed"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g clip-path="url(#clip0_13084_1516)">
+    <path d="M11.5288 5.52864C11.7891 5.26829 12.2111 5.26829 12.4715 5.52864C12.7318 5.78899 12.7318 6.21099 12.4715 6.47134L8.47147 10.4713C8.21112 10.7317 7.78911 10.7317 7.52876 10.4713L3.52876 6.47134C3.26841 6.21099 3.26841 5.78899 3.52876 5.52864C3.78911 5.26829 4.21112 5.26829 4.47147 5.52864L8.00011 9.05728L11.5288 5.52864Z" fill="#1A126E"></path>
+  </g>
+  <defs>
+    <clipPath id="clip0_13084_1516">
+      <rect width="16" height="16" fill="currentColor"></rect>
+    </clipPath>
+  </defs>
+</svg></div></div><div class="item-acc-mobile-menu_panel" id="faq-panel-3"><div class="item-acc-mobile-menu_list"><a href="https://www.trudiagnostic.com/lab-research" class="item-acc-mobile-menu_link">Our Laboratory</a><a href="https://www.trudiagnostic.com/our-array-platforms" class="item-acc-mobile-menu_link">Our Arrays</a><a href="https://www.trudiagnostic.com/interventional-studies" class="item-acc-mobile-menu_link">Intervention Tracking</a><a href="https://www.trudiagnostic.com/about-truage#" class="item-acc-mobile-menu_link">DNA Methylation</a><a href="https://www.trudiagnostic.com/omicmage" class="item-acc-mobile-menu_link">OMICmAge</a><a href="https://www.trudiagnostic.com/symphony-age" class="item-acc-mobile-menu_link">SYMPHONYAge</a><a href="https://www.trudiagnostic.com/dunedin-pace" class="item-acc-mobile-menu_link">DunedinPACE</a><a href="https://www.trudiagnostic.com/our-publication" class="item-acc-mobile-menu_link">Our Publications</a></div></div></div></div></div></div><div class="header-v2_code w-embed w-script">
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const accHeader = document.querySelectorAll('.item-acc-mobile-menu');
+
+    function closeItem(accItem) {
+      const head = accItem.querySelector('.item-acc-mobile-menu_head');
+      const panel = accItem.querySelector('.item-acc-mobile-menu_panel');
+
+      accItem.classList.remove('active');
+      panel.classList.remove('active');
+      head.classList.remove('active');
+      head.setAttribute('aria-expanded', 'false');
+      panel.style.maxHeight = null;
+    }
+
+    function openItem(accItem) {
+      const head = accItem.querySelector('.item-acc-mobile-menu_head');
+      const panel = accItem.querySelector('.item-acc-mobile-menu_panel');
+
+      accItem.classList.add('active');
+      panel.classList.add('active');
+      head.classList.add('active');
+      head.setAttribute('aria-expanded', 'true');
+      panel.style.maxHeight = panel.scrollHeight + 'px';
+    }
+
+    accHeader.forEach((accItem, index) => {
+      const head = accItem.querySelector('.item-acc-mobile-menu_head');
+      const panel = accItem.querySelector('.item-acc-mobile-menu_panel');
+
+      // Генеруємо унікальний id для кожної панелі
+      const panelId = `faq-panel-${index}`;
+      panel.setAttribute('id', panelId);
+      head.setAttribute('aria-controls', panelId);
+
+      // Початковий стан: перший елемент відкритий, решта закриті
+      if (index === 0) {
+        head.setAttribute('aria-expanded', 'true');
+      } else {
+        head.setAttribute('aria-expanded', 'false');
+      }
+
+      accItem.addEventListener('click', function () {
+        const isActive = this.classList.contains('active');
+
+        // Закриваємо всі елементи
+        accHeader.forEach(closeItem);
+
+        // Якщо клікнутий елемент був закритий — відкриваємо його
+        if (!isActive) {
+          openItem(this);
+        }
+      });
+    });
+
+    // Відкриваємо перший елемент за замовчуванням
+    if (accHeader.length > 0) {
+      openItem(accHeader[0]);
+    }
+  });
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const burger = document.querySelector('.header-v2_burger');
+    const mobileMenu = document.querySelector('.header-v2_mobile-menu');
+    const overlay = document.querySelector('.header-v2_mobile-overlay');
+    const body = document.body;
+
+    const mq = window.matchMedia('(max-width: 991px)');
+
+    function openMenu() {
+      burger.classList.add('is-active');
+      mobileMenu.classList.add('is-visible');
+      overlay.classList.add('is-visible');
+      body.classList.add('no-scroll');
+    }
+
+    function closeMenu() {
+      burger.classList.remove('is-active');
+      mobileMenu.classList.remove('is-visible');
+      overlay.classList.remove('is-visible');
+      body.classList.remove('no-scroll');
+    }
+
+    function toggleMenu() {
+      // діємо лише на пристроях менших за 991px
+      if (!mq.matches) return;
+
+      if (burger.classList.contains('is-active')) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    }
+
+    if (burger && mobileMenu && overlay) {
+      burger.addEventListener('click', toggleMenu);
+
+      // клік по оверлею закриває меню
+      overlay.addEventListener('click', closeMenu);
+
+      // закриваємо меню, якщо viewport став ширшим за 991px
+      mq.addEventListener('change', function (e) {
+        if (!e.matches) {
+          closeMenu();
+        }
+      });
+
+      // закриваємо меню при кліку на будь-яке посилання всередині мобільного меню
+      mobileMenu.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', closeMenu);
+      });
+    }
+  });
+</script></div></header></div></div><main id="main-content" class="main-wrapper above-fold-cta"><section class="section_hero-symphony"><div class="padding-global new"><div class="container-new"><div class="hero-symphony_wrapper is-v2"><div class="hero-symphony_content"><div class="hero-symphony_content-head"><div class="heading-xs-regular blue">TRUAGE™</div><h1 class="title-h2-new blue">The Most Trusted Biological Age Test</h1></div><div class="hero-symphony_content-bot"><div class="hero-symphony_content-bot-text"><div class="text-regular blue">TruAge combines 3 of the most advanced epigenetic age clocks to deliver a multi-dimensional view of how a patient's body is aging.</div></div><div class="hero-symphony_content-bot-links"><a data-wf--global-cta-yellow--variant="modify" href="https://cdn.prod.website-files.com/6690e254f4f07d1a469bb330/684b0280d60621d1be91641c_ExampleAdvancedTruAge.pdf" class="cta-yellow w-variant-927ae097-63d8-7236-ec7b-a65ed4a0b41b w-inline-block"><div class="text-regular blue cta">Download Sample Report</div><div class="cta-yellow-icon w-variant-927ae097-63d8-7236-ec7b-a65ed4a0b41b w-embed"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_11047_7388)">
+<path d="M2 16.2002V15C2 14.4477 2.44772 14 3 14C3.55229 14 4 14.4477 4 15V16.2002C4 17.0566 4.00035 17.6388 4.03711 18.0889C4.07293 18.5273 4.13809 18.7518 4.21778 18.9082C4.40951 19.2845 4.71555 19.5905 5.0918 19.7822C5.2482 19.8619 5.47272 19.9271 5.91113 19.9629C6.36117 19.9997 6.94342 20 7.79981 20H16.2002C17.0566 20 17.6388 19.9997 18.0889 19.9629C18.5273 19.9271 18.7518 19.8619 18.9082 19.7822C19.2845 19.5905 19.5905 19.2845 19.7822 18.9082C19.8619 18.7518 19.9271 18.5273 19.9629 18.0889C19.9997 17.6388 20 17.0566 20 16.2002V15C20 14.4477 20.4477 14 21 14C21.5523 14 22 14.4477 22 15V16.2002C22 17.0237 22.001 17.7016 21.9561 18.252C21.9101 18.814 21.8117 19.3311 21.5645 19.8164C21.181 20.5689 20.5689 21.181 19.8164 21.5645C19.3311 21.8117 18.814 21.9101 18.252 21.9561C17.7016 22.001 17.0237 22 16.2002 22H7.79981C6.97632 22 6.29843 22.001 5.74805 21.9561C5.18599 21.9101 4.6689 21.8117 4.1836 21.5645C3.43109 21.181 2.81902 20.5689 2.43555 19.8164C2.18827 19.3311 2.08988 18.814 2.04395 18.252C1.99898 17.7016 2 17.0237 2 16.2002ZM11 3C11 2.44772 11.4477 2 12 2C12.5523 2 13 2.44772 13 3V12.5859L16.293 9.29297C16.6835 8.90244 17.3165 8.90244 17.707 9.29297C18.0976 9.68349 18.0976 10.3165 17.707 10.707L12.707 15.707C12.3165 16.0976 11.6835 16.0976 11.293 15.707L6.29297 10.707C5.90245 10.3165 5.90245 9.68349 6.29297 9.29297C6.6835 8.90244 7.31651 8.90244 7.70703 9.29297L11 12.5859V3Z" fill="#1A126E"></path>
+</g>
+<defs>
+<clipPath id="clip0_11047_7388">
+<rect width="24" height="24" fill="white"></rect>
+</clipPath>
+</defs>
+</svg>
+</div><div class="cta-yellow-icon-v2 w-variant-927ae097-63d8-7236-ec7b-a65ed4a0b41b w-embed"><svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 7.33333C8 7.70152 7.70152 8 7.33333 8C6.96514 8 6.66667 7.70152 6.66667 7.33333V2.27604L1.13802 7.80469C0.877671 8.06504 0.455662 8.06504 0.195312 7.80469C-0.065037 7.54434 -0.065037 7.12233 0.195312 6.86198L5.72396 1.33333H0.666667C0.298477 1.33333 0 1.03486 0 0.666667C0 0.298477 0.298477 0 0.666667 0H7.33333C7.70152 0 8 0.298477 8 0.666667V7.33333Z" fill="#1A126E"></path>
+</svg>
+</div></a></div></div></div><div class="item-testimonials swiper-slide hero"><div class="item-testimonials_image"><div class="different_slider swiper-no-swiping br-24"><div class="different_slider-slide"><div class="different_slider-img-wrap"><div class="different_slider-strapline"><img src="https://cdn.prod.website-files.com/6690e254f4f07d1a469bb330/6a70a46e54339d07bcb6a221_age.png" loading="lazy" alt=""></div><img alt="" loading="lazy" src="https://cdn.prod.website-files.com/6690e254f4f07d1a469bb330/6a687e54ccc186dba885cf45_Old%20(2).png" class="different_slider-img hero" width="1904" height="1904"></div></div><div class="different_slider-slide"><div class="different_slider-img-wrap"><div class="different_slider-strapline right"><img src="https://cdn.prod.website-files.com/6690e254f4f07d1a469bb330/6a70aa4c9214ef89281cfa19_age.png" loading="lazy" alt=""></div><img alt="" loading="lazy" src="https://cdn.prod.website-files.com/6690e254f4f07d1a469bb330/6a687e27689a211b67f2d7e1_Young.png" class="different_slider-img" width="952" height="952"></div></div><div class="different_slider-divider"><div class="different_slider-handle"><div class="different_slider-handle-embed w-embed"><svg width="22" height="11" viewBox="0 0 22 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M6.32445e-08 5.30336L7.95536 0.710335L7.95536 9.89639L6.32445e-08 5.30336Z" fill="white"></path>
+<path d="M21.2139 5.30357L13.2585 9.8966L13.2585 0.710544L21.2139 5.30357Z" fill="white"></path>
+</svg>
+</div></div></div></div></div><div class="testimonials_script w-embed w-script">
+
+<script>
+  document.querySelectorAll('.different_slider').forEach((wrap) => {
+    const clip = wrap.querySelector('.different_slider-slide:nth-child(2)');
+    const divider = wrap.querySelector('.different_slider-divider');
+    let drag = false;
+    function setPos(x) {
+      const r = wrap.getBoundingClientRect();
+      const p = Math.min(100, Math.max(0, ((x - r.left) / r.width) * 100));
+      clip.style.width = p + '%';
+      divider.style.left = p + '%';
+    }
+    wrap.addEventListener('mousedown', (e) => {
+      drag = true;
+      e.preventDefault();
+    });
+    document.addEventListener('mouseup', () => (drag = false));
+    document.addEventListener('mousemove', (e) => {
+      if (drag) setPos(e.clientX);
+    });
+    wrap.addEventListener(
+      'touchmove',
+      (e) => {
+        e.preventDefault();
+        setPos(e.touches[0].clientX);
+      },
+      { passive: false },
+    );
+    wrap.addEventListener('touchstart', (e) => setPos(e.touches[0].clientX), { passive: true });
+  });
+</script>
+
+<script>
+  window.Webflow ||= [];
+  window.Webflow.push(function () {
+    if (typeof Swiper === 'undefined') return;
+    if (!document.querySelector('#swiperTestimonials')) return;
+    const swiperTestimonials = new Swiper('#swiperTestimonials', {
+      slidesPerView: 1,
+      spaceBetween: 16,
+      noSwipingClass: 'swiper-no-swiping',
+
+      navigation: {
+        nextEl: '#swiperTestimonials-next',
+        prevEl: '#swiperTestimonials-prev',
+      },
+      pagination: {
+        el: '#swiperTestimonials-pag',
+        clickable: true,
+      },
+      breakpoints: {
+        768: {
+          slidesPerView: 3,
+          spaceBetween: 24,
+        },
+      },
+    });
+  });
+</script></div></div></div></div></div></section><section class="section_powered-by"><div class="padding-global"><div class="container-large"><div class="powered-by_wrapper"><div class="powered-by_title">POWERED BY SCIENCE FROM</div><div class="powered-by_list"><div class="item-powered-by"><img src="https://cdn.prod.website-files.com/6690e254f4f07d1a469bb330/6a5a236214109da7a76834f3_Vector.png" loading="lazy" alt="" class="item-powered-by_img"></div><div class="item-powered-by"><img src="https://cdn.prod.website-files.com/6690e254f4f07d1a469bb330/6a5a237dd6bd604bb7c4f0b1_Vector.png" loading="lazy" alt="" class="item-powered-by_img"></div><div class="item-powered-by"><img src="https://cdn.prod.website-files.com/6690e254f4f07d1a469bb330/6a5a239f7def63d6e6b4a9b5_Vector.png" loading="lazy" alt="" class="item-powered-by_img"></div></div></div></div></div></section><section class="section_reveals"><div class="padding-global"><div class="container-large"><div class="reveals_wrapper"><div class="reveals_title-wrap"><h2 class="title-h2-new is-light">What Epigenetics Reveals about Aging</h2></div><div class="reveals_content"><div id="swiperReveals" class="reveals_carousel swiper swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden"><div class="reveals_list swiper-wrapper" id="swiper-wrapper-a71020a8110873108c4" aria-live="polite"><div class="item-reveals swiper-slide swiper-slide-active" role="group" aria-label="1 / 3" style="margin-right: 24px;"><div class="item-reveals_title">How old is the body biologically?</div><div class="item-reveals_text">The OMICmAge™ algorithm is a multi-omic–informed methylation clock that quantifies biological age against chronological age.</div><a href="https://www.trudiagnostic.com/omicmage" class="item-reveals_link w-inline-block"><div class="item-reveals_link-text">OMICmAge™</div><div class="item-reveals_link-arrow w-embed"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_13070_9537)">
+<path d="M7.52897 2.86201C7.78932 2.60166 8.21133 2.60166 8.47168 2.86201L13.1383 7.52868C13.3987 7.78903 13.3987 8.21104 13.1383 8.47138L8.47168 13.1381C8.21133 13.3984 7.78932 13.3984 7.52897 13.1381C7.26862 12.8777 7.26862 12.4557 7.52897 12.1953L11.0576 8.6667H3.33366C2.96547 8.6667 2.66699 8.36822 2.66699 8.00003C2.66699 7.63184 2.96547 7.33336 3.33366 7.33336H11.0576L7.52897 3.80472C7.26862 3.54437 7.26862 3.12236 7.52897 2.86201Z" fill="white"></path>
+</g>
+<defs>
+<clipPath id="clip0_13070_9537">
+<rect width="16" height="16" fill="white"></rect>
+</clipPath>
+</defs>
+</svg>
+</div></a></div><div class="item-reveals swiper-slide swiper-slide-next" role="group" aria-label="2 / 3" style="margin-right: 24px;"><div class="item-reveals_title">Which organ systems are aging fastest?</div><div class="item-reveals_text">The SymphonyAge™ algorithm reveals the age of 11 organ systems key for longevity.</div><a href="https://www.trudiagnostic.com/symphony-age" class="item-reveals_link w-inline-block"><div class="item-reveals_link-text">SymphonyAge™</div><div class="item-reveals_link-arrow w-embed"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_13070_9537)">
+<path d="M7.52897 2.86201C7.78932 2.60166 8.21133 2.60166 8.47168 2.86201L13.1383 7.52868C13.3987 7.78903 13.3987 8.21104 13.1383 8.47138L8.47168 13.1381C8.21133 13.3984 7.78932 13.3984 7.52897 13.1381C7.26862 12.8777 7.26862 12.4557 7.52897 12.1953L11.0576 8.6667H3.33366C2.96547 8.6667 2.66699 8.36822 2.66699 8.00003C2.66699 7.63184 2.96547 7.33336 3.33366 7.33336H11.0576L7.52897 3.80472C7.26862 3.54437 7.26862 3.12236 7.52897 2.86201Z" fill="white"></path>
+</g>
+<defs>
+<clipPath id="clip0_13070_9537">
+<rect width="16" height="16" fill="white"></rect>
+</clipPath>
+</defs>
+</svg>
+</div></a></div><div class="item-reveals swiper-slide" role="group" aria-label="3 / 3" style="margin-right: 24px;"><div class="item-reveals_title">How fast is the patient aging right now?</div><div class="item-reveals_text">The DunedinPACE™ algorithm can track how fast the body is aging and the impact of lifestyle changes.</div><a href="https://www.trudiagnostic.com/dunedin-pace" class="item-reveals_link w-inline-block"><div class="item-reveals_link-text">DunedinPACE™</div><div class="item-reveals_link-arrow w-embed"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_13070_9537)">
+<path d="M7.52897 2.86201C7.78932 2.60166 8.21133 2.60166 8.47168 2.86201L13.1383 7.52868C13.3987 7.78903 13.3987 8.21104 13.1383 8.47138L8.47168 13.1381C8.21133 13.3984 7.78932 13.3984 7.52897 13.1381C7.26862 12.8777 7.26862 12.4557 7.52897 12.1953L11.0576 8.6667H3.33366C2.96547 8.6667 2.66699 8.36822 2.66699 8.00003C2.66699 7.63184 2.96547 7.33336 3.33366 7.33336H11.0576L7.52897 3.80472C7.26862 3.54437 7.26862 3.12236 7.52897 2.86201Z" fill="white"></path>
+</g>
+<defs>
+<clipPath id="clip0_13070_9537">
+<rect width="16" height="16" fill="white"></rect>
+</clipPath>
+</defs>
+</svg>
+</div></a></div></div><span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div></div></div></div></div><div class="reveals_code w-embed w-script"><script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const swiperRevealsEl = document.querySelector('#swiperReveals');
+
+    if (swiperRevealsEl && typeof Swiper !== 'undefined') {
+      const swiperReveals = new Swiper('#swiperReveals', {
+        slidesPerView: 'auto',
+        spaceBetween: 24,
+      });
+    }
+  });
+</script></div></section><section class="section_results-v2 is-v2"><div class="padding-global"><div class="container-large"><div class="results-v2_wrapper"><div class="results-v2_title-wrap"><h2 class="title-h2-new blue">The Results of Epigenetic Testing</h2></div><div class="results-v2_subtitle-wrap"><div class="text-regular is-dark">Example shown for illustrative purposes; not an actual patient result</div></div><div class="results-v2_content"><div data-current="Tab 1" data-easing="ease" data-duration-in="300" data-duration-out="100" class="results-v2_tabs w-tabs"><div class="results-v2_tabs-menu w-tab-menu" role="tablist"><a data-w-tab="Tab 1" class="results-v2_tab-link w-inline-block w-tab-link w--current" id="w-tabs-0-data-w-tab-0" href="https://www.trudiagnostic.com/about-truage#w-tabs-0-data-w-pane-0" role="tab" aria-controls="w-tabs-0-data-w-pane-0" aria-selected="true"><div class="results-v2_tab-head"><div class="results-v2_tab-head-image"><img src="https://cdn.prod.website-files.com/6690e254f4f07d1a469bb330/6a5df6cbcf5561baa23de3f0_Avatar.png" loading="lazy" alt="" class="results-v2_tab-head-img"></div><div class="results-v2_tab-head-content"><div class="results-v2_tab-head-title">PROACTIVE LONGEVITY</div><div class="results-v2_tab-head-text">Elena M.</div></div></div></a><a data-w-tab="Tab 2" class="results-v2_tab-link w-inline-block w-tab-link" tabindex="-1" id="w-tabs-0-data-w-tab-1" href="https://www.trudiagnostic.com/about-truage#w-tabs-0-data-w-pane-1" role="tab" aria-controls="w-tabs-0-data-w-pane-1" aria-selected="false"><div class="results-v2_tab-head"><div class="results-v2_tab-head-image"><img src="https://cdn.prod.website-files.com/6690e254f4f07d1a469bb330/6a5df758dfaf827d52c757aa_Avatar.png" loading="lazy" alt="" class="results-v2_tab-head-img"></div><div class="results-v2_tab-head-content"><div class="results-v2_tab-head-title">HEART HEALTH</div><div class="results-v2_tab-head-text">Robert K.</div></div></div></a><a data-w-tab="Tab 3" class="results-v2_tab-link w-inline-block w-tab-link" tabindex="-1" id="w-tabs-0-data-w-tab-2" href="https://www.trudiagnostic.com/about-truage#w-tabs-0-data-w-pane-2" role="tab" aria-controls="w-tabs-0-data-w-pane-2" aria-selected="false"><div class="results-v2_tab-head"><div class="results-v2_tab-head-image"><img src="https://cdn.prod.website-files.com/6690e254f4f07d1a469bb330/6a5df7e31141f05a31b72686_Avatar.png" loading="lazy" alt="" class="results-v2_tab-head-img"></div><div class="results-v2_tab-head-content"><div class="results-v2_tab-head-title">COGNITIVE HEALTH</div><div class="results-v2_tab-head-text">Sarah L.</div></div></div></a><a data-w-tab="Tab 4" class="results-v2_tab-link w-inline-block w-tab-link" tabindex="-1" id="w-tabs-0-data-w-tab-3" href="https://www.trudiagnostic.com/about-truage#w-tabs-0-data-w-pane-3" role="tab" aria-controls="w-tabs-0-data-w-pane-3" aria-selected="false"><div class="results-v2_tab-head"><div class="results-v2_tab-head-image"><img src="https://cdn.prod.website-files.com/6690e254f4f07d1a469bb330/6a5df86cc0a6a42dbf5ba753_Avatar.png" loading="lazy" alt="" class="results-v2_tab-head-img"></div><div class="results-v2_tab-head-content"><div class="results-v2_tab-head-title">ATHLETIC PERFORMANCE</div><div class="results-v2_tab-head-text">Tyler R.</div></div></div></a></div><div class="results-v2_tabs-content w-tab-content"><div data-w-tab="Tab 1" class="results-v2_tab-pane w-tab-pane w--tab-active" id="w-tabs-0-data-w-pane-0" role="tabpanel" aria-labelledby="w-tabs-0-data-w-tab-0"><div class="item-results-v2"><div class="item-results-v2_left"><div class="item-results-v2_text-wrap"><div class="item-results-v2_text mb24">Elena feels healthy but has a family history of early heart disease and wants an objective baseline before problems appear. She is tired of guessing whether her habits are actually working.</div><div class="item-results-v2_title">HOW TRUDIAGNOSTIC MAY HELP</div><div class="item-results-v2_text mt8">TruAge can give her a full picture across biological age, individual organ systems through the SYMPHONYAge clocks, and pace of aging. In a profile like Elena’s, seeing immune and heart ages running ahead of calendar age could focus her plan, and ongoing testing may show her aging speed easing from 1.11 toward 0.88 as her organ ages trend younger.</div></div><div class="item-results-v2_cta-wrap"><a data-wf--global-cta-transparent--variant="card-big" href="https://portal.trudiagnostic.com/sign-in" class="cta-transparent w-inline-block"><div class="text-regular white w-variant-c7f5dc61-c592-b720-bff6-e27ddee3968f cta">Start Testing</div><div class="cta-transparent-icon w-embed"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_11191_819)">
+<path d="M18 17C18 17.5523 17.5523 18 17 18C16.4477 18 16 17.5523 16 17V9.41406L7.70703 17.707C7.31651 18.0976 6.68349 18.0976 6.29297 17.707C5.90244 17.3165 5.90244 16.6835 6.29297 16.293L14.5859 8H7C6.44772 8 6 7.55228 6 7C6 6.44772 6.44772 6 7 6H17C17.5523 6 18 6.44772 18 7V17Z" fill="white"></path>
+</g>
+<defs>
+<clipPath id="clip0_11191_819">
+<rect width="24" height="24" fill="white"></rect>
+</clipPath>
+</defs>
+</svg>
+</div></a></div></div><div class="item-results-v2_right"><div class="item-results-v2-stats"><div class="item-results-v2-stats_strapline">YEAR 1</div><div class="item-results-v2-stats_value">1.11</div><div class="item-results-v2-stats_title">AGING SPEED</div><div class="item-results-v2-stats_list"><div class="item-results-v2-stats_item"><div class="item-results-v2-stats_list-title">BIOLOGICAL AGE</div><div class="item-results-v2-stats_list-value">+4 yrs</div></div><div class="item-results-v2-stats_item"><div class="item-results-v2-stats_list-title">HEART AGE</div><div class="item-results-v2-stats_list-value">+3 yrs</div></div><div class="item-results-v2-stats_item"><div class="item-results-v2-stats_list-title">BRAIN AGE</div><div class="item-results-v2-stats_list-value">+2 yrs</div></div><div class="item-results-v2-stats_item"><div class="item-results-v2-stats_list-title">IMMUNE AGE</div><div class="item-results-v2-stats_list-value">+5 yrs</div></div></div></div><div class="item-results-v2-stats is-light"><div class="item-results-v2-stats_strapline is-light">YEAR 3</div><div class="item-results-v2-stats_value">34%</div><div class="item-results-v2-stats_title">INFLAMMATION</div><div class="item-results-v2-stats_list is-light"><div class="item-results-v2-stats_item"><div class="item-results-v2-stats_list-title">BIOLOGICAL AGE</div><div class="item-results-v2-stats_list-value">−2 yrs</div></div><div class="item-results-v2-stats_item"><div class="item-results-v2-stats_list-title">HEART AGE</div><div class="item-results-v2-stats_list-value">0 yrs</div></div><div class="item-results-v2-stats_item"><div class="item-results-v2-stats_list-title">BRAIN AGE</div><div class="item-results-v2-stats_list-value">−1 yr</div></div><div class="item-results-v2-stats_item"><div class="item-results-v2-stats_list-title">IMMUNE AGE</div><div class="item-results-v2-stats_list-value">+1 yr</div></div></div></div></div></div></div><div data-w-tab="Tab 2" class="results-v2_tab-pane w-tab-pane" id="w-tabs-0-data-w-pane-1" role="tabpanel" aria-labelledby="w-tabs-0-data-w-tab-1"><div class="item-results-v2"><div class="item-results-v2_left"><div class="item-results-v2_text-wrap"><div class="item-results-v2_text mb24">Robert has had a borderline stress test and wants to know how old his cardiovascular system really is, not just his cholesterol number. He is looking for something concrete to hold himself accountable to.</div><div class="item-results-v2_title">HOW TRUDIAGNOSTIC MAY HELP</div><div class="item-results-v2_text mt8">TruAge SYMPHONYAge can break his aging down by organ system and reveal whether his heart age is running ahead of his calendar age. In a profile like Robert’s, that insight could guide care alongside his cardiologist, and repeat testing may show his heart age moving from several years ahead back toward his actual age.</div></div><div class="item-results-v2_cta-wrap"><a data-wf--global-cta-transparent--variant="card-big" href="https://portal.trudiagnostic.com/sign-in" class="cta-transparent w-inline-block"><div class="text-regular white w-variant-c7f5dc61-c592-b720-bff6-e27ddee3968f cta">Start Testing</div><div class="cta-transparent-icon w-embed"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_11191_819)">
+<path d="M18 17C18 17.5523 17.5523 18 17 18C16.4477 18 16 17.5523 16 17V9.41406L7.70703 17.707C7.31651 18.0976 6.68349 18.0976 6.29297 17.707C5.90244 17.3165 5.90244 16.6835 6.29297 16.293L14.5859 8H7C6.44772 8 6 7.55228 6 7C6 6.44772 6.44772 6 7 6H17C17.5523 6 18 6.44772 18 7V17Z" fill="white"></path>
+</g>
+<defs>
+<clipPath id="clip0_11191_819">
+<rect width="24" height="24" fill="white"></rect>
+</clipPath>
+</defs>
+</svg>
+</div></a></div></div><div class="item-results-v2_right"><div class="item-results-v2-stats"><div class="item-results-v2-stats_strapline">BEFORE</div><div class="item-results-v2-stats_value">+7 yrs</div><div class="item-results-v2-stats_title">HEART AGE</div><div class="item-results-v2-stats_list"><div class="item-results-v2-stats_item"><div class="item-results-v2-stats_list-title">BIOLOGICAL AGE</div><div class="item-results-v2-stats_list-value">+6 yrs</div></div><div class="item-results-v2-stats_item"><div class="item-results-v2-stats_list-title">AGING SPEED</div><div class="item-results-v2-stats_list-value">1.20</div></div><div class="item-results-v2-stats_item"><div class="item-results-v2-stats_list-title">INFLAMMATION AGE</div><div class="item-results-v2-stats_list-value">+4 yrs</div></div><div class="item-results-v2-stats_item"><div class="item-results-v2-stats_list-title">BLOOD AGE</div><div class="item-results-v2-stats_list-value">+5 yrs</div></div></div></div><div class="item-results-v2-stats is-light"><div class="item-results-v2-stats_strapline is-light">BEFORE</div><div class="item-results-v2-stats_value">+1 yr</div><div class="item-results-v2-stats_title">HEART AGE</div><div class="item-results-v2-stats_list is-light"><div class="item-results-v2-stats_item"><div class="item-results-v2-stats_list-title">BIOLOGICAL AGE</div><div class="item-results-v2-stats_list-value">+1 yr</div></div><div class="item-results-v2-stats_item"><div class="item-results-v2-stats_list-title">AGING SPEED</div><div class="item-results-v2-stats_list-value">0.97</div></div><div class="item-results-v2-stats_item"><div class="item-results-v2-stats_list-title">INFLAMMATION AGE</div><div class="item-results-v2-stats_list-value">0 yrs</div></div><div class="item-results-v2-stats_item"><div class="item-results-v2-stats_list-title">BLOOD AGE</div><div class="item-results-v2-stats_list-value">+2 yrs</div></div></div></div></div></div></div><div data-w-tab="Tab 3" class="results-v2_tab-pane w-tab-pane" id="w-tabs-0-data-w-pane-2" role="tabpanel" aria-labelledby="w-tabs-0-data-w-tab-2"><div class="item-results-v2"><div class="item-results-v2_left"><div class="item-results-v2_text-wrap"><div class="item-results-v2_text mb24">With both parents affected by dementia, Sarah wants to track her brain aging early rather than wait for symptoms. She is looking for a measurable way to see whether her interventions are helping.</div><div class="item-results-v2_title">HOW TRUDIAGNOSTIC MAY HELP</div><div class="item-results-v2_text mt8">TruAge SYMPHONYAge can give her a brain age to follow over time alongside her other organ systems. In a profile like Sarah’s, watching a brain age that starts ahead of calendar age move closer to it could show that sleep, exercise, and diet changes are working, with pace of aging improving in parallel.</div></div><div class="item-results-v2_cta-wrap"><a data-wf--global-cta-transparent--variant="card-big" href="https://portal.trudiagnostic.com/sign-in" class="cta-transparent w-inline-block"><div class="text-regular white w-variant-c7f5dc61-c592-b720-bff6-e27ddee3968f cta">Start Testing</div><div class="cta-transparent-icon w-embed"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_11191_819)">
+<path d="M18 17C18 17.5523 17.5523 18 17 18C16.4477 18 16 17.5523 16 17V9.41406L7.70703 17.707C7.31651 18.0976 6.68349 18.0976 6.29297 17.707C5.90244 17.3165 5.90244 16.6835 6.29297 16.293L14.5859 8H7C6.44772 8 6 7.55228 6 7C6 6.44772 6.44772 6 7 6H17C17.5523 6 18 6.44772 18 7V17Z" fill="white"></path>
+</g>
+<defs>
+<clipPath id="clip0_11191_819">
+<rect width="24" height="24" fill="white"></rect>
+</clipPath>
+</defs>
+</svg>
+</div></a></div></div><div class="item-results-v2_right"><div class="item-results-v2-stats"><div class="item-results-v2-stats_strapline">BEFORE</div><div class="item-results-v2-stats_value">+6 yrs</div><div class="item-results-v2-stats_title">BRAIN AGE</div><div class="item-results-v2-stats_list"><div class="item-results-v2-stats_item"><div class="item-results-v2-stats_list-title">BIOLOGICAL AGE</div><div class="item-results-v2-stats_list-value">+4 yrs</div></div><div class="item-results-v2-stats_item"><div class="item-results-v2-stats_list-title">AGING SPEED</div><div class="item-results-v2-stats_list-value">1.14</div></div><div class="item-results-v2-stats_item"><div class="item-results-v2-stats_list-title">HORMONE AGE</div><div class="item-results-v2-stats_list-value">+3 yrs</div></div><div class="item-results-v2-stats_item"><div class="item-results-v2-stats_list-title">IMMUNE AGE</div><div class="item-results-v2-stats_list-value">+5 yrs</div></div></div></div><div class="item-results-v2-stats is-light"><div class="item-results-v2-stats_strapline is-light">BEFORE</div><div class="item-results-v2-stats_value">84%</div><div class="item-results-v2-stats_title">STRESS RESILIENCE</div><div class="item-results-v2-stats_list is-light"><div class="item-results-v2-stats_item"><div class="item-results-v2-stats_list-title">BIOLOGICAL AGE</div><div class="item-results-v2-stats_list-value">−1 yr</div></div><div class="item-results-v2-stats_item"><div class="item-results-v2-stats_list-title">AGING SPEED</div><div class="item-results-v2-stats_list-value">0.95</div></div><div class="item-results-v2-stats_item"><div class="item-results-v2-stats_list-title">HORMONE AGE</div><div class="item-results-v2-stats_list-value">0 yrs</div></div><div class="item-results-v2-stats_item"><div class="item-results-v2-stats_list-title">IMMUNE AGE</div><div class="item-results-v2-stats_list-value">+2 yrs</div></div></div></div></div></div></div><div data-w-tab="Tab 4" class="results-v2_tab-pane w-tab-pane" id="w-tabs-0-data-w-pane-3" role="tabpanel" aria-labelledby="w-tabs-0-data-w-tab-3"><div class="item-results-v2"><div class="item-results-v2_left"><div class="item-results-v2_text-wrap"><div class="item-results-v2_text mb24">Tyler is already fit but wants proof that his training and recovery choices are adding up to real biological benefit, not just aesthetics. He wants to optimize, not just maintain.</div><div class="item-results-v2_title">HOW TRUDIAGNOSTIC MAY HELP</div><div class="item-results-v2_text mt8">TruAge can let him benchmark his biological age, his organ systems through the SYMPHONYAge clocks, and his pace of aging against his training, and fine tune recovery if an organ system like immune age lags. In a profile like Tyler’s, consistent testing could show his aging speed trending down with each organ system tracking younger than his calendar age.</div></div><div class="item-results-v2_cta-wrap"><a data-wf--global-cta-transparent--variant="card-big" href="https://portal.trudiagnostic.com/sign-in" class="cta-transparent w-inline-block"><div class="text-regular white w-variant-c7f5dc61-c592-b720-bff6-e27ddee3968f cta">Start Testing</div><div class="cta-transparent-icon w-embed"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_11191_819)">
+<path d="M18 17C18 17.5523 17.5523 18 17 18C16.4477 18 16 17.5523 16 17V9.41406L7.70703 17.707C7.31651 18.0976 6.68349 18.0976 6.29297 17.707C5.90244 17.3165 5.90244 16.6835 6.29297 16.293L14.5859 8H7C6.44772 8 6 7.55228 6 7C6 6.44772 6.44772 6 7 6H17C17.5523 6 18 6.44772 18 7V17Z" fill="white"></path>
+</g>
+<defs>
+<clipPath id="clip0_11191_819">
+<rect width="24" height="24" fill="white"></rect>
+</clipPath>
+</defs>
+</svg>
+</div></a></div></div><div class="item-results-v2_right"><div class="item-results-v2-stats"><div class="item-results-v2-stats_strapline">BEFORE</div><div class="item-results-v2-stats_value">0.95</div><div class="item-results-v2-stats_title">AGING SPEED</div><div class="item-results-v2-stats_list"><div class="item-results-v2-stats_item"><div class="item-results-v2-stats_list-title">BIOLOGICAL AGE</div><div class="item-results-v2-stats_list-value">−2 yrs</div></div><div class="item-results-v2-stats_item"><div class="item-results-v2-stats_list-title">MUSCULOSKELETAL AGE</div><div class="item-results-v2-stats_list-value">−1 yr</div></div><div class="item-results-v2-stats_item"><div class="item-results-v2-stats_list-title">HEART AGE</div><div class="item-results-v2-stats_list-value">−2 yrs</div></div><div class="item-results-v2-stats_item"><div class="item-results-v2-stats_list-title">IMMUNE AGE</div><div class="item-results-v2-stats_list-value">+1 yr</div></div></div></div><div class="item-results-v2-stats is-light"><div class="item-results-v2-stats_strapline is-light">AFTER</div><div class="item-results-v2-stats_value">0.82</div><div class="item-results-v2-stats_title">AGING SPEED</div><div class="item-results-v2-stats_list is-light"><div class="item-results-v2-stats_item"><div class="item-results-v2-stats_list-title">BIOLOGICAL AGE</div><div class="item-results-v2-stats_list-value">−4 yrs</div></div><div class="item-results-v2-stats_item"><div class="item-results-v2-stats_list-title">MUSCULOSKELETAL AGE</div><div class="item-results-v2-stats_list-value">−3 yrs</div></div><div class="item-results-v2-stats_item"><div class="item-results-v2-stats_list-title">HEART AGE</div><div class="item-results-v2-stats_list-value">−3 yrs</div></div><div class="item-results-v2-stats_item"><div class="item-results-v2-stats_list-title">IMMUNE AGE</div><div class="item-results-v2-stats_list-value">−2 yrs</div></div></div></div></div></div></div></div></div><div class="results-mobile-v2"><div class="results-mobile-v2_list"><div class="item-results-mobile-v2 is-active"><div class="item-results-mobile-v2_head is-active" aria-expanded="true" aria-controls="faq-panel-0"><div class="item-results-mobile-v2_avatar"><img src="https://cdn.prod.website-files.com/6690e254f4f07d1a469bb330/6a5df6cbcf5561baa23de3f0_Avatar.png" loading="lazy" alt="" class="item-results-mobile-v2_avatar-img"></div><div class="item-results-mobile-v2_info"><div class="item-results-mobile-v2_name">PROACTIVE LONGEVITY</div><div class="item-results-mobile-v2_position">Elena M.</div></div></div><div class="item-results-mobile-v2_panel is-active" id="faq-panel-0" style="max-height: 460px;"><div class="item-results-mobile-v2_layout"><div class="item-results-v2-stats"><div class="item-results-v2-stats_title">AGING SPEED</div><div class="item-results-v2-stats_value-wrap"><div class="item-results-v2-stats_value">1.11</div><div class="item-results-v2-stats_value-arrow">→</div><div class="item-results-v2-stats_value is-yellow">0.88</div></div><div class="item-results-v2-stats_list"><div class="item-results-v2-stats_item"><div class="item-results-v2-stats_list-title item-results-v2-stats_list-title_hidden">CRP</div><div class="item-results-v2-stats_list-value">YEAR 1</div><div class="item-results-v2-stats_list-value is-yellow">YEAR 3</div></div><div class="item-results-v2-stats_item"><div class="item-results-v2-stats_list-title">BIOLOGICAL AGE</div><div class="item-results-v2-stats_list-value">+4 yrs</div><div class="item-results-v2-stats_list-value is-yellow">−2 yrs</div></div><div class="item-results-v2-stats_item"><div class="item-results-v2-stats_list-title">HEART AGE</div><div class="item-results-v2-stats_list-value">+3 yrs</div><div class="item-results-v2-stats_list-value is-yellow">0 yrs</div></div><div class="item-results-v2-stats_item"><div class="item-results-v2-stats_list-title">BRAIN AGE</div><div class="item-results-v2-stats_list-value">+2 yrs</div><div class="item-results-v2-stats_list-value is-yellow">−1 yr</div></div><div class="item-results-v2-stats_item"><div class="item-results-v2-stats_list-title">IMMUNE AGE</div><div class="item-results-v2-stats_list-value">+5 yrs</div><div class="item-results-v2-stats_list-value is-yellow">+1 yr</div></div></div></div><div class="item-results-v2_left is-mobile"><div class="item-results-v2_text-wrap"><div class="item-results-v2_text mb24">Elena feels healthy but has a family history of early heart disease and wants an objective baseline before problems appear. She is tired of guessing whether her habits are actually working.</div><div class="item-results-v2_title">HOW TRUDIAGNOSTIC MAY HELP</div><div class="item-results-v2_text mt8">TruAge can give her a full picture across biological age, individual organ systems through the SYMPHONYAge clocks, and pace of aging. In a profile like Elena’s, seeing immune and heart ages running ahead of calendar age could focus her plan, and ongoing testing may show her aging speed easing from 1.11 toward 0.88 as her organ ages trend younger.</div></div><div class="item-results-v2_cta-wrap"><a data-wf--global-cta-transparent--variant="full" href="https://portal.trudiagnostic.com/sign-in" class="cta-transparent w-variant-cc64accf-5b4f-aad9-61af-c2fc1b05ec90 w-inline-block"><div class="text-regular white cta">Start Testing</div><div class="cta-transparent-icon w-embed"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_11191_819)">
+<path d="M18 17C18 17.5523 17.5523 18 17 18C16.4477 18 16 17.5523 16 17V9.41406L7.70703 17.707C7.31651 18.0976 6.68349 18.0976 6.29297 17.707C5.90244 17.3165 5.90244 16.6835 6.29297 16.293L14.5859 8H7C6.44772 8 6 7.55228 6 7C6 6.44772 6.44772 6 7 6H17C17.5523 6 18 6.44772 18 7V17Z" fill="white"></path>
+</g>
+<defs>
+<clipPath id="clip0_11191_819">
+<rect width="24" height="24" fill="white"></rect>
+</clipPath>
+</defs>
+</svg>
+</div></a></div></div></div></div></div><div class="item-results-mobile-v2"><div class="item-results-mobile-v2_head" aria-expanded="false" aria-controls="faq-panel-1"><div class="item-results-mobile-v2_avatar"><img src="https://cdn.prod.website-files.com/6690e254f4f07d1a469bb330/6a5df758dfaf827d52c757aa_Avatar.png" loading="lazy" alt="" class="item-results-mobile-v2_avatar-img"></div><div class="item-results-mobile-v2_info"><div class="item-results-mobile-v2_name">HEART HEALTH</div><div class="item-results-mobile-v2_position">Robert K.</div></div></div><div class="item-results-mobile-v2_panel" id="faq-panel-1"><div class="item-results-mobile-v2_layout"><div class="item-results-v2-stats"><div class="item-results-v2-stats_title">HEART AGE</div><div class="item-results-v2-stats_value-wrap"><div class="item-results-v2-stats_value">+7 yrs</div><div class="item-results-v2-stats_value-arrow">→</div><div class="item-results-v2-stats_value is-yellow">+1 yr</div></div><div class="item-results-v2-stats_list"><div class="item-results-v2-stats_item"><div class="item-results-v2-stats_list-title item-results-v2-stats_list-title_hidden">CRP</div><div class="item-results-v2-stats_list-value">BEFORE</div><div class="item-results-v2-stats_list-value is-yellow">AFTER</div></div><div class="item-results-v2-stats_item"><div class="item-results-v2-stats_list-title">BIOLOGICAL AGE</div><div class="item-results-v2-stats_list-value">+6 yrs</div><div class="item-results-v2-stats_list-value is-yellow">+1 yr</div></div><div class="item-results-v2-stats_item"><div class="item-results-v2-stats_list-title">AGING SPEED</div><div class="item-results-v2-stats_list-value">1.20</div><div class="item-results-v2-stats_list-value is-yellow">0.97</div></div><div class="item-results-v2-stats_item"><div class="item-results-v2-stats_list-title">INFLAMMATION AGE</div><div class="item-results-v2-stats_list-value">+4 yrs</div><div class="item-results-v2-stats_list-value is-yellow">0 yrs</div></div><div class="item-results-v2-stats_item"><div class="item-results-v2-stats_list-title">BLOOD AGE</div><div class="item-results-v2-stats_list-value">+5 yrs</div><div class="item-results-v2-stats_list-value is-yellow">+2 yrs</div></div></div></div><div class="item-results-v2_left is-mobile"><div class="item-results-v2_text-wrap"><div class="item-results-v2_text mb24">Robert has had a borderline stress test and wants to know how old his cardiovascular system really is, not just his cholesterol number. He is looking for something concrete to hold himself accountable to.</div><div class="item-results-v2_title">HOW TRUDIAGNOSTIC MAY HELP</div><div class="item-results-v2_text mt8">TruAge SYMPHONYAge can break his aging down by organ system and reveal whether his heart age is running ahead of his calendar age. In a profile like Robert’s, that insight could guide care alongside his cardiologist, and repeat testing may show his heart age moving from several years ahead back toward his actual age.</div></div><div class="item-results-v2_cta-wrap"><a data-wf--global-cta-transparent--variant="full" href="https://portal.trudiagnostic.com/sign-in" class="cta-transparent w-variant-cc64accf-5b4f-aad9-61af-c2fc1b05ec90 w-inline-block"><div class="text-regular white cta">Start Testing</div><div class="cta-transparent-icon w-embed"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_11191_819)">
+<path d="M18 17C18 17.5523 17.5523 18 17 18C16.4477 18 16 17.5523 16 17V9.41406L7.70703 17.707C7.31651 18.0976 6.68349 18.0976 6.29297 17.707C5.90244 17.3165 5.90244 16.6835 6.29297 16.293L14.5859 8H7C6.44772 8 6 7.55228 6 7C6 6.44772 6.44772 6 7 6H17C17.5523 6 18 6.44772 18 7V17Z" fill="white"></path>
+</g>
+<defs>
+<clipPath id="clip0_11191_819">
+<rect width="24" height="24" fill="white"></rect>
+</clipPath>
+</defs>
+</svg>
+</div></a></div></div></div></div></div><div class="item-results-mobile-v2"><div class="item-results-mobile-v2_head" aria-expanded="false" aria-controls="faq-panel-2"><div class="item-results-mobile-v2_avatar"><img src="https://cdn.prod.website-files.com/6690e254f4f07d1a469bb330/6a5df7e31141f05a31b72686_Avatar.png" loading="lazy" alt="" class="item-results-mobile-v2_avatar-img"></div><div class="item-results-mobile-v2_info"><div class="item-results-mobile-v2_name">COGNITIVE HEALTH</div><div class="item-results-mobile-v2_position">Sarah L.</div></div></div><div class="item-results-mobile-v2_panel" id="faq-panel-2"><div class="item-results-mobile-v2_layout"><div class="item-results-v2-stats"><div class="item-results-v2-stats_title">BRAIN AGE</div><div class="item-results-v2-stats_value-wrap"><div class="item-results-v2-stats_value">+6 yrs</div><div class="item-results-v2-stats_value-arrow">→</div><div class="item-results-v2-stats_value is-yellow">+1 yr</div></div><div class="item-results-v2-stats_list"><div class="item-results-v2-stats_item"><div class="item-results-v2-stats_list-title item-results-v2-stats_list-title_hidden">CRP</div><div class="item-results-v2-stats_list-value">BEFORE</div><div class="item-results-v2-stats_list-value is-yellow">AFTER</div></div><div class="item-results-v2-stats_item"><div class="item-results-v2-stats_list-title">BIOLOGICAL AGE</div><div class="item-results-v2-stats_list-value">+4 yrs</div><div class="item-results-v2-stats_list-value is-yellow">−1 yr</div></div><div class="item-results-v2-stats_item"><div class="item-results-v2-stats_list-title">AGING SPEED</div><div class="item-results-v2-stats_list-value">1.14</div><div class="item-results-v2-stats_list-value is-yellow">0.95</div></div><div class="item-results-v2-stats_item"><div class="item-results-v2-stats_list-title">HORMONE AGE</div><div class="item-results-v2-stats_list-value">+3 yrs</div><div class="item-results-v2-stats_list-value is-yellow">0 yrs</div></div><div class="item-results-v2-stats_item"><div class="item-results-v2-stats_list-title">IMMUNE AGE</div><div class="item-results-v2-stats_list-value">+5 yrs</div><div class="item-results-v2-stats_list-value is-yellow">+2 yrs</div></div></div></div><div class="item-results-v2_left is-mobile"><div class="item-results-v2_text-wrap"><div class="item-results-v2_text mb24">With both parents affected by dementia, Sarah wants to track her brain aging early rather than wait for symptoms. She is looking for a measurable way to see whether her interventions are helping.</div><div class="item-results-v2_title">HOW TRUDIAGNOSTIC MAY HELP</div><div class="item-results-v2_text mt8">TruAge SYMPHONYAge can give her a brain age to follow over time alongside her other organ systems. In a profile like Sarah’s, watching a brain age that starts ahead of calendar age move closer to it could show that sleep, exercise, and diet changes are working, with pace of aging improving in parallel.</div></div><div class="item-results-v2_cta-wrap"><a data-wf--global-cta-transparent--variant="full" href="https://portal.trudiagnostic.com/sign-in" class="cta-transparent w-variant-cc64accf-5b4f-aad9-61af-c2fc1b05ec90 w-inline-block"><div class="text-regular white cta">Start Testing</div><div class="cta-transparent-icon w-embed"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_11191_819)">
+<path d="M18 17C18 17.5523 17.5523 18 17 18C16.4477 18 16 17.5523 16 17V9.41406L7.70703 17.707C7.31651 18.0976 6.68349 18.0976 6.29297 17.707C5.90244 17.3165 5.90244 16.6835 6.29297 16.293L14.5859 8H7C6.44772 8 6 7.55228 6 7C6 6.44772 6.44772 6 7 6H17C17.5523 6 18 6.44772 18 7V17Z" fill="white"></path>
+</g>
+<defs>
+<clipPath id="clip0_11191_819">
+<rect width="24" height="24" fill="white"></rect>
+</clipPath>
+</defs>
+</svg>
+</div></a></div></div></div></div></div><div class="item-results-mobile-v2"><div class="item-results-mobile-v2_head" aria-expanded="false" aria-controls="faq-panel-3"><div class="item-results-mobile-v2_avatar"><img src="https://cdn.prod.website-files.com/6690e254f4f07d1a469bb330/6a5df86cc0a6a42dbf5ba753_Avatar.png" loading="lazy" alt="" class="item-results-mobile-v2_avatar-img"></div><div class="item-results-mobile-v2_info"><div class="item-results-mobile-v2_name">ATHLETIC PERFORMANCE</div><div class="item-results-mobile-v2_position">Tyler R.</div></div></div><div class="item-results-mobile-v2_panel" id="faq-panel-3"><div class="item-results-mobile-v2_layout"><div class="item-results-v2-stats"><div class="item-results-v2-stats_title">AGING SPEED</div><div class="item-results-v2-stats_value-wrap"><div class="item-results-v2-stats_value">0.95</div><div class="item-results-v2-stats_value-arrow">→</div><div class="item-results-v2-stats_value is-yellow">0.82</div></div><div class="item-results-v2-stats_list"><div class="item-results-v2-stats_item"><div class="item-results-v2-stats_list-title item-results-v2-stats_list-title_hidden">CRP</div><div class="item-results-v2-stats_list-value">BEFORE</div><div class="item-results-v2-stats_list-value is-yellow">AFTER</div></div><div class="item-results-v2-stats_item"><div class="item-results-v2-stats_list-title">BIOLOGICAL AGE</div><div class="item-results-v2-stats_list-value">−2 yrs</div><div class="item-results-v2-stats_list-value is-yellow">−4 yrs</div></div><div class="item-results-v2-stats_item"><div class="item-results-v2-stats_list-title">MUSCULOSKELETAL AGE</div><div class="item-results-v2-stats_list-value">−1 yr</div><div class="item-results-v2-stats_list-value is-yellow">−3 yrs</div></div><div class="item-results-v2-stats_item"><div class="item-results-v2-stats_list-title">HEART AGE</div><div class="item-results-v2-stats_list-value">−2 yrs</div><div class="item-results-v2-stats_list-value is-yellow">−3 yrs</div></div><div class="item-results-v2-stats_item"><div class="item-results-v2-stats_list-title">IMMUNE AGE</div><div class="item-results-v2-stats_list-value">+1 yr</div><div class="item-results-v2-stats_list-value is-yellow">−2 yrs</div></div></div></div><div class="item-results-v2_left is-mobile"><div class="item-results-v2_text-wrap"><div class="item-results-v2_text mb24">Tyler is already fit but wants proof that his training and recovery choices are adding up to real biological benefit, not just aesthetics. He wants to optimize, not just maintain.</div><div class="item-results-v2_title">HOW TRUDIAGNOSTIC MAY HELP</div><div class="item-results-v2_text mt8">TruAge can let him benchmark his biological age, his organ systems through the SYMPHONYAge clocks, and his pace of aging against his training, and fine tune recovery if an organ system like immune age lags. In a profile like Tyler’s, consistent testing could show his aging speed trending down with each organ system tracking younger than his calendar age.</div></div><div class="item-results-v2_cta-wrap"><a data-wf--global-cta-transparent--variant="full" href="https://portal.trudiagnostic.com/sign-in" class="cta-transparent w-variant-cc64accf-5b4f-aad9-61af-c2fc1b05ec90 w-inline-block"><div class="text-regular white cta">Start Testing</div><div class="cta-transparent-icon w-embed"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_11191_819)">
+<path d="M18 17C18 17.5523 17.5523 18 17 18C16.4477 18 16 17.5523 16 17V9.41406L7.70703 17.707C7.31651 18.0976 6.68349 18.0976 6.29297 17.707C5.90244 17.3165 5.90244 16.6835 6.29297 16.293L14.5859 8H7C6.44772 8 6 7.55228 6 7C6 6.44772 6.44772 6 7 6H17C17.5523 6 18 6.44772 18 7V17Z" fill="white"></path>
+</g>
+<defs>
+<clipPath id="clip0_11191_819">
+<rect width="24" height="24" fill="white"></rect>
+</clipPath>
+</defs>
+</svg>
+</div></a></div></div></div></div></div></div></div></div></div></div></div><div class="results-v2_code w-embed w-script">
+
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const accResults = document.querySelectorAll(".item-results-mobile-v2");
+
+    function closeItem(item) {
+      const panel = item.querySelector('.item-results-mobile-v2_panel');
+      const head = item.querySelector('.item-results-mobile-v2_head');
+      item.classList.remove("is-active");
+      panel.classList.remove("is-active");
+      head.classList.remove("is-active");
+      head.setAttribute('aria-expanded', 'false');
+      panel.style.maxHeight = null;
+    }
+
+    function openItem(item) {
+      const panel = item.querySelector('.item-results-mobile-v2_panel');
+      const head = item.querySelector('.item-results-mobile-v2_head');
+      item.classList.add("is-active");
+      panel.classList.add("is-active");
+      head.classList.add("is-active");
+      head.setAttribute('aria-expanded', 'true');
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    }
+
+    accResults.forEach((accItem, index) => {
+      const head = accItem.querySelector('.item-results-mobile-v2_head');
+      const panel = accItem.querySelector('.item-results-mobile-v2_panel');
+
+      // Генеруємо унікальний id для кожної панелі
+      const panelId = `faq-panel-${index}`;
+      panel.setAttribute('id', panelId);
+
+      // Початкові aria-атрибути
+      head.setAttribute('aria-expanded', 'false');
+      head.setAttribute('aria-controls', panelId);
+
+      accItem.addEventListener("click", function () {
+        const isCurrentlyActive = this.classList.contains("is-active");
+
+        // Закриваємо всі пункти
+        accResults.forEach(closeItem);
+
+        // Якщо клікнутий пункт не був активним — відкриваємо його
+        if (!isCurrentlyActive) {
+          openItem(this);
+        }
+      });
+
+      // Перший пункт відкритий за замовчуванням
+      if (index === 0) {
+        openItem(accItem);
+      }
+    });
+  });
+</script></div></section><section class="section_faq-with-image is-white"><div class="padding-global"><div class="container-large"><div class="faq-with-image_wrapper"><div class="faq-with-image_title-wrap"><h2 class="title-h2-new blue">How TruAge Benefits Your Clinic</h2></div><div class="faq-with-image_text-wrap"><div class="text-regular is-dark">TruAge is a precision longevity tool that analyzes more than 75 essential aging biomarkers to empower healthcare providers with personalized recommendations to help patients live longer, healthier lives.</div></div><div class="faq-with-image_layout"><div class="faq-with-image_content"><div class="faq-with-image_faq"><div class="item-faq-v2 is-full"><div class="item-faq-v2_head" aria-expanded="false" aria-controls="faq-panel-0"><div class="item-faq-v2_title">Establish a baseline</div><div class="item-faq-v2_icon"><div class="item-faq-v2_icon-vertical"></div><div class="item-faq-v2_icon-horizontal"></div></div></div><div class="item-faq-v2_panel" id="faq-panel-0"><p class="item-faq-v2_text">An initial test establishes where your patient stands biologically today, giving you the clinical anchor that turns every follow-up visit into a progress conversation.</p></div></div><div class="item-faq-v2 is-full"><div class="item-faq-v2_head" aria-expanded="false" aria-controls="faq-panel-1"><div class="item-faq-v2_title">Personalize a care plan</div><div class="item-faq-v2_icon"><div class="item-faq-v2_icon-vertical"></div><div class="item-faq-v2_icon-horizontal"></div></div></div><div class="item-faq-v2_panel" id="faq-panel-1"><p class="item-faq-v2_text">When your patient’s history and labs leave the picture incomplete, &nbsp;fill the gaps with the biological context you need to build a care plan that actually fits.</p></div></div><div class="item-faq-v2 is-full"><div class="item-faq-v2_head" aria-expanded="false" aria-controls="faq-panel-2"><div class="item-faq-v2_title">Monitor intervention response</div><div class="item-faq-v2_icon"><div class="item-faq-v2_icon-vertical"></div><div class="item-faq-v2_icon-horizontal"></div></div></div><div class="item-faq-v2_panel" id="faq-panel-2"><p class="item-faq-v2_text">Show whether the protocols you’re recommending are actually working at the biological level, giving your patients evidence &nbsp;that lifestyle changes are making a measurable difference.</p></div></div><div class="item-faq-v2 is-full"><div class="item-faq-v2_head" aria-expanded="false" aria-controls="faq-panel-3"><div class="item-faq-v2_title">Prioritize areas for follow-up</div><div class="item-faq-v2_icon"><div class="item-faq-v2_icon-vertical"></div><div class="item-faq-v2_icon-horizontal"></div></div></div><div class="item-faq-v2_panel" id="faq-panel-3"><p class="item-faq-v2_text">When a patient has multiple concerns, testing helps you see which biological systems need the most attention, turning a complex clinical picture into a clear set of priorities.</p></div></div></div><div class="faq-with-image_cta-wrap"><a data-wf--global-cta-yellow--variant="full-width-height" href="https://portal.trudiagnostic.com/sign-in" class="cta-yellow w-variant-5b9601e6-6a59-2b05-1b12-8de340a701eb w-inline-block"><div class="text-regular blue cta">Start Testing</div><div class="cta-yellow-icon w-embed"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_11047_7388)">
+<path d="M2 16.2002V15C2 14.4477 2.44772 14 3 14C3.55229 14 4 14.4477 4 15V16.2002C4 17.0566 4.00035 17.6388 4.03711 18.0889C4.07293 18.5273 4.13809 18.7518 4.21778 18.9082C4.40951 19.2845 4.71555 19.5905 5.0918 19.7822C5.2482 19.8619 5.47272 19.9271 5.91113 19.9629C6.36117 19.9997 6.94342 20 7.79981 20H16.2002C17.0566 20 17.6388 19.9997 18.0889 19.9629C18.5273 19.9271 18.7518 19.8619 18.9082 19.7822C19.2845 19.5905 19.5905 19.2845 19.7822 18.9082C19.8619 18.7518 19.9271 18.5273 19.9629 18.0889C19.9997 17.6388 20 17.0566 20 16.2002V15C20 14.4477 20.4477 14 21 14C21.5523 14 22 14.4477 22 15V16.2002C22 17.0237 22.001 17.7016 21.9561 18.252C21.9101 18.814 21.8117 19.3311 21.5645 19.8164C21.181 20.5689 20.5689 21.181 19.8164 21.5645C19.3311 21.8117 18.814 21.9101 18.252 21.9561C17.7016 22.001 17.0237 22 16.2002 22H7.79981C6.97632 22 6.29843 22.001 5.74805 21.9561C5.18599 21.9101 4.6689 21.8117 4.1836 21.5645C3.43109 21.181 2.81902 20.5689 2.43555 19.8164C2.18827 19.3311 2.08988 18.814 2.04395 18.252C1.99898 17.7016 2 17.0237 2 16.2002ZM11 3C11 2.44772 11.4477 2 12 2C12.5523 2 13 2.44772 13 3V12.5859L16.293 9.29297C16.6835 8.90244 17.3165 8.90244 17.707 9.29297C18.0976 9.68349 18.0976 10.3165 17.707 10.707L12.707 15.707C12.3165 16.0976 11.6835 16.0976 11.293 15.707L6.29297 10.707C5.90245 10.3165 5.90245 9.68349 6.29297 9.29297C6.6835 8.90244 7.31651 8.90244 7.70703 9.29297L11 12.5859V3Z" fill="#1A126E"></path>
+</g>
+<defs>
+<clipPath id="clip0_11047_7388">
+<rect width="24" height="24" fill="white"></rect>
+</clipPath>
+</defs>
+</svg>
+</div><div class="cta-yellow-icon-v2 w-embed"><svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 7.33333C8 7.70152 7.70152 8 7.33333 8C6.96514 8 6.66667 7.70152 6.66667 7.33333V2.27604L1.13802 7.80469C0.877671 8.06504 0.455662 8.06504 0.195312 7.80469C-0.065037 7.54434 -0.065037 7.12233 0.195312 6.86198L5.72396 1.33333H0.666667C0.298477 1.33333 0 1.03486 0 0.666667C0 0.298477 0.298477 0 0.666667 0H7.33333C7.70152 0 8 0.298477 8 0.666667V7.33333Z" fill="#1A126E"></path>
+</svg>
+</div></a><a data-wf--global-cta-blue--variant="full-width-height" href="https://cdn.prod.website-files.com/6690e254f4f07d1a469bb330/684b0280d60621d1be91641c_ExampleAdvancedTruAge.pdf" class="cta_blue w-variant-94260c0e-959b-bc05-fe6a-acd750cb1b17 w-inline-block"><div class="text-regular purple">Download Sample Report</div><div class="cta_blue-icon w-embed"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_11191_621)">
+<path d="M18 17C18 17.5523 17.5523 18 17 18C16.4477 18 16 17.5523 16 17V9.41406L7.70703 17.707C7.31651 18.0976 6.68349 18.0976 6.29297 17.707C5.90244 17.3165 5.90244 16.6835 6.29297 16.293L14.5859 8H7C6.44772 8 6 7.55228 6 7C6 6.44772 6.44772 6 7 6H17C17.5523 6 18 6.44772 18 7V17Z" fill="#1A126E"></path>
+</g>
+<defs>
+<clipPath id="clip0_11191_621">
+<rect width="24" height="24" fill="white"></rect>
+</clipPath>
+</defs>
+</svg>
+</div></a></div></div><div class="faq-with-image_image"><img src="https://cdn.prod.website-files.com/6690e254f4f07d1a469bb330/6a5dfbcc52c9feb378ac5bf0_Right.png" loading="lazy" alt="" class="faq-with-image_img"></div></div></div></div></div><div class="faq-with-image_code w-embed w-script">
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const accq2 = document.querySelectorAll(".section_faq-with-image .item-faq-v2");
+    accq2.forEach((accItem, index) => {
+      const head = accItem.querySelector('.section_faq-with-image .item-faq-v2_head');
+      const panel = accItem.querySelector('.section_faq-with-image .item-faq-v2_panel');
+      // Генеруємо унікальний id для кожної панелі
+      const panelId = `faq-panel-${index}`;
+      panel.setAttribute('id', panelId);
+      // Початкові aria-атрибути
+      head.setAttribute('aria-expanded', 'false');
+      head.setAttribute('aria-controls', panelId);
+      accItem.addEventListener("click", function () {
+        const isActive = this.classList.toggle("active");
+        panel.classList.toggle("active");
+        head.classList.toggle("active");
+        // Оновлюємо aria-expanded
+        head.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+        if (panel.style.maxHeight) {
+          panel.style.maxHeight = null;
+        } else {
+          panel.style.maxHeight = panel.scrollHeight + "px";
+        }
+      });
+    });
+  });
+</script></div></section><section class="section_clocks is-v2 is-blue"><div class="padding-global new"><div class="container-new"><div class="clocks_wrapper"><div class="clocks_strapline-wrap"><div class="heading-xs-regular blue">SEAMLESS CLINIC WORKFLOW</div></div><div class="clocks_title-wrap"><h2 class="title-h2-new blue">How does TruAge work?</h2></div><div id="clocksSlider" class="clocks_slider swiper swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden"><div class="clocks_list swiper-wrapper" id="swiper-wrapper-e34c4098713f13aa" aria-live="polite" style="transform: translate3d(0px, 0px, 0px);"><div class="clocks_item swiper-slide swiper-slide-active" role="group" aria-label="1 / 3" style="margin-right: 24px;"><div class="clocks_item-image"><img src="https://cdn.prod.website-files.com/6690e254f4f07d1a469bb330/6a6908edebbad95b88c1b3ea_How%20does%20trauge%20work%2001.png" loading="lazy" alt=""></div><div class="clocks_item-title-wrap"><h4 class="title-h4-v2 blue is-light">Order TruAge for Your Practice</h4></div><div class="text-regular light-blue">Register as a TruDiagnostic provider and order directly through the Provider Portal – either in bulk for clinic delivery or shipped directly to individual patients.</div></div><div class="clocks_item swiper-slide swiper-slide-next" role="group" aria-label="2 / 3" style="margin-right: 24px;"><div class="clocks_item-image"><img src="https://cdn.prod.website-files.com/6690e254f4f07d1a469bb330/6a6908f9cf0b7544133c9197_How%20does%20trauge%20work%2002.png" loading="lazy" alt=""></div><div class="clocks_item-title-wrap"><h4 class="title-h4-v2 blue is-light">Patient Sample Collection</h4></div><div class="text-regular light-blue">Each test includes a simple finger-stick blood collection that takes approximately 3 minutes. Patients follow the enclosed instructions and return their sample via USPS drop-off using the prepaid materials provided.</div></div><div class="clocks_item swiper-slide" role="group" aria-label="3 / 3" style="margin-right: 24px;"><div class="clocks_item-image"><img src="https://cdn.prod.website-files.com/6690e254f4f07d1a469bb330/6a690902b7542dce41e5590a_How%20does%20trauge%20work%2003.png" loading="lazy" alt=""></div><div class="clocks_item-title-wrap"><h4 class="title-h4-v2 blue is-light">Receive Actionable Results</h4></div><div class="text-regular light-blue">Results are available in your Provider Portal within 2–4 weeks from the date the lab receives the sample, including biological age, organ system–level ages, and aging speed, ready to review with your patient.</div></div></div><span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div></div></div></div></section><section class="section_developed is-v2"><div class="padding-global"><div class="container-large"><div class="developed_layout"><div class="developed_title-wrap is-v2"><h2 class="title-h2-new blue">The Aging Clocks of TruAge</h2></div><div class="developed_list"><div class="developed_wrapper is-white"><div class="developed_content"><div class="developed_strapline-wrap"><div class="developed_strapline is-dark">DEVELOPED WITH HARVARD</div></div><div class="developed_title-wrap"><h2 class="title-h2-new is-light">Biological Age</h2></div><div class="developed_tag-wrapper"><div class="developed_tag">OMICmAge™</div></div><div class="developed_text-wrap"><p class="developed_text is-dark">The OMICmAge™ algorithm is one of the most precise and comprehensive methods for measuring biological aging. Its multi-omic approach analyzes proteins, metabolites, and clinical biomarkers to reveal the true state of the body’s aging process — and the factors accelerating or decelerating it — empowering you to optimize patient health and potentially slow aging.</p></div><div class="developed_cta-wrap"><a data-wf--global-cta-yellow--variant="modify" href="https://www.trudiagnostic.com/omicmage" class="cta-yellow w-variant-927ae097-63d8-7236-ec7b-a65ed4a0b41b w-inline-block"><div class="text-regular blue cta">Learn More</div><div class="cta-yellow-icon w-variant-927ae097-63d8-7236-ec7b-a65ed4a0b41b w-embed"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_11047_7388)">
+<path d="M2 16.2002V15C2 14.4477 2.44772 14 3 14C3.55229 14 4 14.4477 4 15V16.2002C4 17.0566 4.00035 17.6388 4.03711 18.0889C4.07293 18.5273 4.13809 18.7518 4.21778 18.9082C4.40951 19.2845 4.71555 19.5905 5.0918 19.7822C5.2482 19.8619 5.47272 19.9271 5.91113 19.9629C6.36117 19.9997 6.94342 20 7.79981 20H16.2002C17.0566 20 17.6388 19.9997 18.0889 19.9629C18.5273 19.9271 18.7518 19.8619 18.9082 19.7822C19.2845 19.5905 19.5905 19.2845 19.7822 18.9082C19.8619 18.7518 19.9271 18.5273 19.9629 18.0889C19.9997 17.6388 20 17.0566 20 16.2002V15C20 14.4477 20.4477 14 21 14C21.5523 14 22 14.4477 22 15V16.2002C22 17.0237 22.001 17.7016 21.9561 18.252C21.9101 18.814 21.8117 19.3311 21.5645 19.8164C21.181 20.5689 20.5689 21.181 19.8164 21.5645C19.3311 21.8117 18.814 21.9101 18.252 21.9561C17.7016 22.001 17.0237 22 16.2002 22H7.79981C6.97632 22 6.29843 22.001 5.74805 21.9561C5.18599 21.9101 4.6689 21.8117 4.1836 21.5645C3.43109 21.181 2.81902 20.5689 2.43555 19.8164C2.18827 19.3311 2.08988 18.814 2.04395 18.252C1.99898 17.7016 2 17.0237 2 16.2002ZM11 3C11 2.44772 11.4477 2 12 2C12.5523 2 13 2.44772 13 3V12.5859L16.293 9.29297C16.6835 8.90244 17.3165 8.90244 17.707 9.29297C18.0976 9.68349 18.0976 10.3165 17.707 10.707L12.707 15.707C12.3165 16.0976 11.6835 16.0976 11.293 15.707L6.29297 10.707C5.90245 10.3165 5.90245 9.68349 6.29297 9.29297C6.6835 8.90244 7.31651 8.90244 7.70703 9.29297L11 12.5859V3Z" fill="#1A126E"></path>
+</g>
+<defs>
+<clipPath id="clip0_11047_7388">
+<rect width="24" height="24" fill="white"></rect>
+</clipPath>
+</defs>
+</svg>
+</div><div class="cta-yellow-icon-v2 w-variant-927ae097-63d8-7236-ec7b-a65ed4a0b41b w-embed"><svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 7.33333C8 7.70152 7.70152 8 7.33333 8C6.96514 8 6.66667 7.70152 6.66667 7.33333V2.27604L1.13802 7.80469C0.877671 8.06504 0.455662 8.06504 0.195312 7.80469C-0.065037 7.54434 -0.065037 7.12233 0.195312 6.86198L5.72396 1.33333H0.666667C0.298477 1.33333 0 1.03486 0 0.666667C0 0.298477 0.298477 0 0.666667 0H7.33333C7.70152 0 8 0.298477 8 0.666667V7.33333Z" fill="#1A126E"></path>
+</svg>
+</div></a></div></div><div class="developed_image"><img src="https://cdn.prod.website-files.com/6690e254f4f07d1a469bb330/6a5dff43a1df570fa5ec7cb4_Image.png" loading="lazy" alt="" class="developed_img"></div></div><div class="developed_wrapper is-blue"><div class="developed_content"><div class="developed_strapline-wrap"><div class="developed_strapline is-dark">DEVELOPED BY YALE</div></div><div class="developed_title-wrap"><h2 class="title-h2-new is-light">Organ System Aging</h2></div><div class="developed_tag-wrapper"><div class="developed_tag is-white">SYMPHONYAge™</div></div><div class="developed_text-wrap"><p class="developed_text is-dark">SYMPHONYAge™ offers a revolutionary way to understand aging across multiple organ systems. This system-specific epigenetic algorithm evaluates organs like the brain, liver, heart, and immune system independently, pinpointing where targeted health interventions may be most effective. Easy-to-read reports deliver actionable recommendations and highlight key areas for improvement, allowing providers to direct protocols to where biological burden is the highest.</p></div><div class="developed_cta-wrap"><a data-wf--global-cta-yellow--variant="modify" href="https://www.trudiagnostic.com/symphony-age" class="cta-yellow w-variant-927ae097-63d8-7236-ec7b-a65ed4a0b41b w-inline-block"><div class="text-regular blue cta">Learn More</div><div class="cta-yellow-icon w-variant-927ae097-63d8-7236-ec7b-a65ed4a0b41b w-embed"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_11047_7388)">
+<path d="M2 16.2002V15C2 14.4477 2.44772 14 3 14C3.55229 14 4 14.4477 4 15V16.2002C4 17.0566 4.00035 17.6388 4.03711 18.0889C4.07293 18.5273 4.13809 18.7518 4.21778 18.9082C4.40951 19.2845 4.71555 19.5905 5.0918 19.7822C5.2482 19.8619 5.47272 19.9271 5.91113 19.9629C6.36117 19.9997 6.94342 20 7.79981 20H16.2002C17.0566 20 17.6388 19.9997 18.0889 19.9629C18.5273 19.9271 18.7518 19.8619 18.9082 19.7822C19.2845 19.5905 19.5905 19.2845 19.7822 18.9082C19.8619 18.7518 19.9271 18.5273 19.9629 18.0889C19.9997 17.6388 20 17.0566 20 16.2002V15C20 14.4477 20.4477 14 21 14C21.5523 14 22 14.4477 22 15V16.2002C22 17.0237 22.001 17.7016 21.9561 18.252C21.9101 18.814 21.8117 19.3311 21.5645 19.8164C21.181 20.5689 20.5689 21.181 19.8164 21.5645C19.3311 21.8117 18.814 21.9101 18.252 21.9561C17.7016 22.001 17.0237 22 16.2002 22H7.79981C6.97632 22 6.29843 22.001 5.74805 21.9561C5.18599 21.9101 4.6689 21.8117 4.1836 21.5645C3.43109 21.181 2.81902 20.5689 2.43555 19.8164C2.18827 19.3311 2.08988 18.814 2.04395 18.252C1.99898 17.7016 2 17.0237 2 16.2002ZM11 3C11 2.44772 11.4477 2 12 2C12.5523 2 13 2.44772 13 3V12.5859L16.293 9.29297C16.6835 8.90244 17.3165 8.90244 17.707 9.29297C18.0976 9.68349 18.0976 10.3165 17.707 10.707L12.707 15.707C12.3165 16.0976 11.6835 16.0976 11.293 15.707L6.29297 10.707C5.90245 10.3165 5.90245 9.68349 6.29297 9.29297C6.6835 8.90244 7.31651 8.90244 7.70703 9.29297L11 12.5859V3Z" fill="#1A126E"></path>
+</g>
+<defs>
+<clipPath id="clip0_11047_7388">
+<rect width="24" height="24" fill="white"></rect>
+</clipPath>
+</defs>
+</svg>
+</div><div class="cta-yellow-icon-v2 w-variant-927ae097-63d8-7236-ec7b-a65ed4a0b41b w-embed"><svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 7.33333C8 7.70152 7.70152 8 7.33333 8C6.96514 8 6.66667 7.70152 6.66667 7.33333V2.27604L1.13802 7.80469C0.877671 8.06504 0.455662 8.06504 0.195312 7.80469C-0.065037 7.54434 -0.065037 7.12233 0.195312 6.86198L5.72396 1.33333H0.666667C0.298477 1.33333 0 1.03486 0 0.666667C0 0.298477 0.298477 0 0.666667 0H7.33333C7.70152 0 8 0.298477 8 0.666667V7.33333Z" fill="#1A126E"></path>
+</svg>
+</div></a></div></div><div class="developed_image"><img src="https://cdn.prod.website-files.com/6690e254f4f07d1a469bb330/6a5e00dad473cee1365783df_Image.png" loading="lazy" alt="" class="developed_img"></div></div><div class="developed_wrapper is-full-blue"><div class="developed_content"><div class="developed_strapline-wrap"><div class="developed_strapline">DEVELOPED BY DUKE AND COLUMBIA</div></div><div class="developed_title-wrap"><h2 class="title-h2-new is-light">Aging Speed</h2></div><div class="developed_tag-wrapper"><div class="developed_tag">DunedinPACE™</div></div><div class="developed_text-wrap"><p class="developed_text">The DunedinPACE™ algorithm measures the rate at which the body is aging, providing a clear picture of whether you’re aging faster, slower, or as expected for your calendar age. It’s ideal for tracking the effectiveness of lifestyle and protocol interventions over time — regular monitoring shows how lifestyle and other interventions may impact biological age, giving patients the data and motivation to stay on track.</p></div><div class="developed_cta-wrap"><a data-wf--global-cta-yellow--variant="modify" href="https://www.trudiagnostic.com/dunedin-pace" class="cta-yellow w-variant-927ae097-63d8-7236-ec7b-a65ed4a0b41b w-inline-block"><div class="text-regular blue cta">Learn More</div><div class="cta-yellow-icon w-variant-927ae097-63d8-7236-ec7b-a65ed4a0b41b w-embed"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_11047_7388)">
+<path d="M2 16.2002V15C2 14.4477 2.44772 14 3 14C3.55229 14 4 14.4477 4 15V16.2002C4 17.0566 4.00035 17.6388 4.03711 18.0889C4.07293 18.5273 4.13809 18.7518 4.21778 18.9082C4.40951 19.2845 4.71555 19.5905 5.0918 19.7822C5.2482 19.8619 5.47272 19.9271 5.91113 19.9629C6.36117 19.9997 6.94342 20 7.79981 20H16.2002C17.0566 20 17.6388 19.9997 18.0889 19.9629C18.5273 19.9271 18.7518 19.8619 18.9082 19.7822C19.2845 19.5905 19.5905 19.2845 19.7822 18.9082C19.8619 18.7518 19.9271 18.5273 19.9629 18.0889C19.9997 17.6388 20 17.0566 20 16.2002V15C20 14.4477 20.4477 14 21 14C21.5523 14 22 14.4477 22 15V16.2002C22 17.0237 22.001 17.7016 21.9561 18.252C21.9101 18.814 21.8117 19.3311 21.5645 19.8164C21.181 20.5689 20.5689 21.181 19.8164 21.5645C19.3311 21.8117 18.814 21.9101 18.252 21.9561C17.7016 22.001 17.0237 22 16.2002 22H7.79981C6.97632 22 6.29843 22.001 5.74805 21.9561C5.18599 21.9101 4.6689 21.8117 4.1836 21.5645C3.43109 21.181 2.81902 20.5689 2.43555 19.8164C2.18827 19.3311 2.08988 18.814 2.04395 18.252C1.99898 17.7016 2 17.0237 2 16.2002ZM11 3C11 2.44772 11.4477 2 12 2C12.5523 2 13 2.44772 13 3V12.5859L16.293 9.29297C16.6835 8.90244 17.3165 8.90244 17.707 9.29297C18.0976 9.68349 18.0976 10.3165 17.707 10.707L12.707 15.707C12.3165 16.0976 11.6835 16.0976 11.293 15.707L6.29297 10.707C5.90245 10.3165 5.90245 9.68349 6.29297 9.29297C6.6835 8.90244 7.31651 8.90244 7.70703 9.29297L11 12.5859V3Z" fill="#1A126E"></path>
+</g>
+<defs>
+<clipPath id="clip0_11047_7388">
+<rect width="24" height="24" fill="white"></rect>
+</clipPath>
+</defs>
+</svg>
+</div><div class="cta-yellow-icon-v2 w-variant-927ae097-63d8-7236-ec7b-a65ed4a0b41b w-embed"><svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 7.33333C8 7.70152 7.70152 8 7.33333 8C6.96514 8 6.66667 7.70152 6.66667 7.33333V2.27604L1.13802 7.80469C0.877671 8.06504 0.455662 8.06504 0.195312 7.80469C-0.065037 7.54434 -0.065037 7.12233 0.195312 6.86198L5.72396 1.33333H0.666667C0.298477 1.33333 0 1.03486 0 0.666667C0 0.298477 0.298477 0 0.666667 0H7.33333C7.70152 0 8 0.298477 8 0.666667V7.33333Z" fill="#1A126E"></path>
+</svg>
+</div></a></div></div><div class="developed_image"><img src="https://cdn.prod.website-files.com/6690e254f4f07d1a469bb330/6a5e018cee9272a0cc6bcdb4_Image.png" loading="lazy" alt="" class="developed_img"></div></div></div></div></div></div></section><section class="section_choose"><div class="padding-global"><div class="container-large"><div class="choose_wrapper"><div class="choose_title-wrap"><h2 class="title-h2-new white">Why Physicians Choose TruAge</h2></div><div class="choose_subtitle-wrap"><div class="text-regular">The #1 biological age test and why it matters.</div></div><div class="choose_content"><div class="table-choose"><div class="table-choose_row"><div class="table-choose_col is-first"></div><div class="table-choose_col is-second is-head"><div class="table-choose_text-wrap"><div class="table-choose_title">TruAge™</div></div></div><div class="table-choose_col is-head"><div class="table-choose_text-wrap"><div class="table-choose_title">Generation Labs</div></div></div><div class="table-choose_col is-head is-white"><div class="table-choose_text-wrap"><div class="table-choose_title">MyDNAge</div></div></div><div class="table-choose_col is-head"><div class="table-choose_text-wrap"><div class="table-choose_title">Elysium</div></div></div><div class="table-choose_col is-head is-white"><div class="table-choose_text-wrap"><div class="table-choose_title">DoNotAge</div></div></div><div class="table-choose_col is-head"><div class="table-choose_text-wrap"><div class="table-choose_title">EpiAge</div></div></div></div><div class="table-choose_row"><div class="table-choose_col is-first"><div class="table-choose_text-wrap"><div class="table-choose_title is-left-title">Advanced Precision</div></div></div><div class="table-choose_col is-second"><div class="table-choose_text-wrap"><div class="table-choose_title">Average of &gt; 0.98 ICC</div><div class="table-choose_text is-dark">Extremely high intraclass correlation coefficient (ICC) for results you can trust</div></div></div><div class="table-choose_col"><div class="table-choose_text-wrap"><div class="table-choose_title">Not Published</div></div></div><div class="table-choose_col is-white"><div class="table-choose_text-wrap"><div class="table-choose_title">Not Published</div></div></div><div class="table-choose_col"><div class="table-choose_text-wrap"><div class="table-choose_title">Not Published</div></div></div><div class="table-choose_col is-white"><div class="table-choose_text-wrap"><div class="table-choose_title">Not Published</div></div></div><div class="table-choose_col"><div class="table-choose_text-wrap"><div class="table-choose_title">Not Published</div></div></div></div><div class="table-choose_row"><div class="table-choose_col is-first"><div class="table-choose_text-wrap"><div class="table-choose_title is-left-title">Published Algorithms</div></div></div><div class="table-choose_col is-second"><div class="table-choose_text-wrap"><div class="table-choose_check w-embed"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="14" cy="14" r="14" fill="#7064DD"></circle>
+<path d="M8 14.5L12.2 18.5L20 9.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div><div class="table-choose_text is-dark">Peer-reviewed science from Harvard, Yale, &amp; Duke</div></div></div><div class="table-choose_col"><div class="table-choose_icon-wrap"><div class="table-choose_icon w-embed"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="14" cy="14" r="13.25" stroke="#A8B0C2" stroke-width="1.5"></circle>
+<path d="M9.5 9.5L18.5 18.5M18.5 9.5L9.5 18.5" stroke="#A8B0C2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div></div></div><div class="table-choose_col is-white"><div class="table-choose_icon-wrap"><div class="table-choose_icon w-embed"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="14" cy="14" r="13.25" stroke="#A8B0C2" stroke-width="1.5"></circle>
+<path d="M9.5 9.5L18.5 18.5M18.5 9.5L9.5 18.5" stroke="#A8B0C2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div></div></div><div class="table-choose_col"><div class="table-choose_icon-wrap"><div class="table-choose_icon w-embed"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="14" cy="14" r="13.25" stroke="#A8B0C2" stroke-width="1.5"></circle>
+<path d="M9.5 9.5L18.5 18.5M18.5 9.5L9.5 18.5" stroke="#A8B0C2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div></div></div><div class="table-choose_col is-white"><div class="table-choose_icon-wrap"><div class="table-choose_icon w-embed"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="14" cy="14" r="13.25" stroke="#A8B0C2" stroke-width="1.5"></circle>
+<path d="M9.5 9.5L18.5 18.5M18.5 9.5L9.5 18.5" stroke="#A8B0C2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div></div></div><div class="table-choose_col"><div class="table-choose_icon-wrap"><div class="table-choose_icon w-embed"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="14" cy="14" r="13.25" stroke="#A8B0C2" stroke-width="1.5"></circle>
+<path d="M9.5 9.5L18.5 18.5M18.5 9.5L9.5 18.5" stroke="#A8B0C2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div></div></div></div><div class="table-choose_row"><div class="table-choose_col is-first"><div class="table-choose_text-wrap"><div class="table-choose_title is-left-title">Generation Clock</div></div></div><div class="table-choose_col is-second"><div class="table-choose_text-wrap"><div class="table-choose_title">2nd + 3rd</div><div class="table-choose_text is-dark">The most advanced algorithms for tracking epigenetics longitudinally</div></div></div><div class="table-choose_col"><div class="table-choose_text-wrap"><div class="table-choose_title">1st Gen</div></div></div><div class="table-choose_col is-white"><div class="table-choose_text-wrap"><div class="table-choose_title">1st Gen</div></div></div><div class="table-choose_col"><div class="table-choose_text-wrap"><div class="table-choose_title">1st Gen</div></div></div><div class="table-choose_col is-white"><div class="table-choose_text-wrap"><div class="table-choose_title">1st Gen</div></div></div><div class="table-choose_col"><div class="table-choose_text-wrap"><div class="table-choose_title">1st Gen</div></div></div></div><div class="table-choose_row"><div class="table-choose_col is-first"><div class="table-choose_text-wrap"><div class="table-choose_title is-left-title">Immune Deconvolution</div></div></div><div class="table-choose_col is-second"><div class="table-choose_text-wrap"><div class="table-choose_check w-embed"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="14" cy="14" r="14" fill="#7064DD"></circle>
+<path d="M8 14.5L12.2 18.5L20 9.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div><div class="table-choose_text is-dark">Filters out cellular noise to reflect the most precise aging insights</div></div></div><div class="table-choose_col"><div class="table-choose_icon-wrap"><div class="table-choose_icon w-embed"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="14" cy="14" r="13.25" stroke="#A8B0C2" stroke-width="1.5"></circle>
+<path d="M9.5 9.5L18.5 18.5M18.5 9.5L9.5 18.5" stroke="#A8B0C2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div></div></div><div class="table-choose_col is-white"><div class="table-choose_icon-wrap"><div class="table-choose_icon w-embed"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="14" cy="14" r="13.25" stroke="#A8B0C2" stroke-width="1.5"></circle>
+<path d="M9.5 9.5L18.5 18.5M18.5 9.5L9.5 18.5" stroke="#A8B0C2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div></div></div><div class="table-choose_col"><div class="table-choose_icon-wrap"><div class="table-choose_icon w-embed"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="14" cy="14" r="13.25" stroke="#A8B0C2" stroke-width="1.5"></circle>
+<path d="M9.5 9.5L18.5 18.5M18.5 9.5L9.5 18.5" stroke="#A8B0C2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div></div></div><div class="table-choose_col is-white"><div class="table-choose_icon-wrap"><div class="table-choose_icon w-embed"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="14" cy="14" r="13.25" stroke="#A8B0C2" stroke-width="1.5"></circle>
+<path d="M9.5 9.5L18.5 18.5M18.5 9.5L9.5 18.5" stroke="#A8B0C2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div></div></div><div class="table-choose_col"><div class="table-choose_icon-wrap"><div class="table-choose_icon w-embed"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="14" cy="14" r="13.25" stroke="#A8B0C2" stroke-width="1.5"></circle>
+<path d="M9.5 9.5L18.5 18.5M18.5 9.5L9.5 18.5" stroke="#A8B0C2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div></div></div></div><div class="table-choose_row"><div class="table-choose_col is-first is-no-border"><div class="table-choose_text-wrap"><div class="table-choose_title is-left-title">Sample Type</div></div></div><div class="table-choose_col is-second is-bottom is-no-border"><div class="table-choose_text-wrap"><div class="table-choose_title">Blood</div><div class="table-choose_text is-dark">No phlebotomies needed</div></div></div><div class="table-choose_col is-no-border"><div class="table-choose_text-wrap"><div class="table-choose_title">Blood</div></div></div><div class="table-choose_col is-no-border is-white"><div class="table-choose_text-wrap"><div class="table-choose_title">Blood + Saliva</div></div></div><div class="table-choose_col is-no-border"><div class="table-choose_text-wrap"><div class="table-choose_title">Saliva</div></div></div><div class="table-choose_col is-no-border is-white"><div class="table-choose_text-wrap"><div class="table-choose_title">Saliva</div></div></div><div class="table-choose_col is-no-border"><div class="table-choose_text-wrap"><div class="table-choose_title">Saliva</div></div></div></div></div></div></div></div></div><div class="choose_code w-embed"></div></section><section class="section_faq-new"><div class="padding-global new"><div class="container-large medium"><div class="faq-new_wrapper"><div class="faq-new_content"><div class="faq-new_title-wrap"><h2 class="title-h2-new blue">FAQs</h2></div></div><div class="faq-new_list"><div class="item_faq"><div class="item_faq-flex"><div class="label-large-2 ls-1">Which biomarkers are tested with TruAge?</div><div class="item_faq-icon"><div class="item_faq-minus"></div><div class="item_faq-plus"></div></div></div><div class="item_faq-content w-richtext"><p>TruAge measures biological age, aging speed, and organ-level aging through multiple aging clocks and epigenetic biomarker panels. All TruAge reports include three core aging clocks, each analyzing a distinct set of biomarkers from a single blood sample:<strong>OMICmAge™</strong>, our primary biological age clock developed with Harvard, analyzes epigenetic biomarkers spanning proteins, metabolites, and clinical measures: Albumin, Hemoglobin, HbA1c, Hematocrit, Blood Urea Nitrogen, Alkaline Phosphatase, IGFBP-2, Carboxypeptidase B2, Serum Paraoxonase/Arylesterase 1 (PON1), Ribonuclease Pancreatic, Inter-Alpha-Trypsin Inhibitor Heavy Chain H3 (ITIH3), Ribitol, Phenylacetylglutamine, Uridine, 4-Methoxyphenol Sulfate, 1-Margaroyl-Glycerophospholipid (GPE)(17:0), Vanillactic Acid, Red Blood Cell Distribution Width, Creatinine, Fasting Glucose, Carotene Diol, Bone Morphogenetic Protein 1 (BMP1), Versican Core Protein, N-Acetyl-Isoputreanine, Gluconate, 4-Hydroxyphenylacetylglutamine, Androsterone Sulfate, 3-Ureidopropionate, 1-Stearoyl-2-Adrenoyl-GPC (18:0/22:4), and Histone H2B Type 1-K.<strong>DunedinPACE™</strong>, our aging speed clock developed with Duke, uses DNA methylation patterns across the epigenome to calculate your patient's pace of aging – the number of biological years elapsed per calendar year – providing a dynamic rate of aging rather than a static biological age estimate.<strong>SYMPHONYAge™</strong>, our organ-level age clock developed with Yale, analyzes clinical biomarkers across 11 organ systems:</p><ul role="list"><li><strong>Blood</strong>: Ferritin, Hematocrit, Hemoglobin, Mean Corpuscular Hemoglobin, Mean Corpuscular Hemoglobin Concentration, Mean Corpuscular Volume, Mean Platelet Volume, Platelet Distribution Width, Platelet Count, Red Blood Cell Count, Red Cell Distribution Width</li><li><strong>Brain</strong>: Homocysteine, BDNF (serum), Clusterin, Stroke, Total Mental Status Summary Score, Total Cognition Summary Score, Immediate Word Recall, Delayed Word Recall, Total Word Recall Summary Score, Serial 7s</li><li><strong>Inflammation</strong>: Ferritin, C-Reactive Protein, Transforming Growth Factor Beta, Interleukin-10, Interleukin-1 Receptor Antagonist, Interleukin-6, Tumor Necrosis Factor Receptor 1</li><li><strong>Heart</strong>: Shortness of Breath While Awake, PC Components of GrimAge, Previous High Blood Pressure, Previous Heart Attack, Previous Stroke, Homocysteine, BMI</li><li><strong>Hormone</strong>: IGF-1, DHEA-S</li><li><strong>Immune</strong>: Eosinophil Count, Lymphocyte Count, Monocyte Count, Neutrophil Count, Percent Basophils, Percent Eosinophils, Percent Lymphocytes, Percent Monocytes, White Blood Cell Count, Myeloid Dendritic Cells (DC-M) Percentage, Plasmacytoid Dendritic Cells (DC-P) Percentage, NK Cells CD56HI Percentage, NK Cells CD56LO Percentage, CD16- Monocytes Percentage, CD16+ Monocytes Percentage, B Cells Percentage, CD8+ T Cells Central Memory Percentage, CD4+ T Cells Central Memory Percentage, CD8+ T Cells Percentage, CD8+ T Cells TemRA Percentage, CD4+ T Cells TemRA Percentage, CD4+ T Cells Percentage, IgD+ Memory B Cells Percentage, IgD- Memory B Cells Percentage, CD8+ T Cells Naïve Percentage, CD4+ T Cells Naïve Percentage, T Cells Percentage, Naïve B Cells Percentage, CD8+ T Cells Effector Memory Percentage, CD4+ T Cells Effector Memory Percentage, Natural Killer (NK) Cells Percentage, Monocytes Percentage, Dendritic Cells Percentage</li><li><strong>Kidney</strong>: Albumin, Urea Nitrogen, Chloride, Bicarbonate, Creatinine, Cystatin C, Potassium, Sodium</li><li><strong>Liver</strong>: Albumin, Alkaline Phosphatase, ALT, AST, Bilirubin, Total Protein</li><li><strong>Metabolic</strong>: PC Smoking Pack-Years, Previous Diabetes, C-Reactive Protein, Fasting Glucose, HDL Cholesterol, LDL Cholesterol, Triglycerides, Interleukin-6, BMI, Waist Circumference</li><li><strong>Lung</strong>: Peak Expiratory Flow, Bicarbonate, Chronic Lung Disease, Shortness of Breath While Awake, Persistent Wheezing/Cough/Phlegm, PC Smoking Pack-Years</li><li><strong>Musculoskeletal</strong>: Vitamin D3, DHEA-S, IGF-1</li></ul></div></div><div class="item_faq"><div class="item_faq-flex"><div class="label-large-2 ls-1">How does TruAge measure biological age?</div><div class="item_faq-icon"><div class="item_faq-minus"></div><div class="item_faq-plus"></div></div></div><div class="item_faq-content w-richtext"><p>TruAge measures biological age through DNA methylation (DNAm) analysis – a chemical tagging system cells use to regulate gene activity. Rather than analyzing genetic sequence, TruAge reads epigenetic patterns across more than 1,000,000 sites on a patient's DNA. These patterns shift with age, lifestyle, and environment, making them a more dynamic and clinically meaningful signal than a birth date alone.</p></div></div><div class="item_faq"><div class="item_faq-flex"><div class="label-large-2 ls-1">Why is measuring epigenetic aging important?</div><div class="item_faq-icon"><div class="item_faq-minus"></div><div class="item_faq-plus"></div></div></div><div class="item_faq-content w-richtext"><p>Aging is the single largest risk factor for all-cause mortality and most chronic disease. But chronological age – the number a patient celebrates on their birthday – tells you very little about their current biological health trajectory. Two patients born the same year can have dramatically different cellular ages and aging rates depending on genetics, environment, lifestyle, and medical history.</p><p>Epigenetic biomarkers fill a gap that conventional labs can't. Traditional blood biomarkers are snapshot measurements – highly sensitive to near-term factors like meals, hydration, or acute stress. DNA methylation patterns, by contrast, reflect a sustained biological signal across weeks to months. They can reveal whether a patient is progressing toward disease risk faster than expected, whether a current intervention is actually working at the cellular level, and which organ systems are most under biological strain.</p><p>Crucially, epigenetic age is modifiable. Unlike genetic tests, which produce a fixed result, DNAm-based measurements change in response to diet, exercise, sleep, medications, and other interventions. That makes them an actionable tool for longitudinal patient monitoring – not just a one-time assessment.</p></div></div><div class="item_faq"><div class="item_faq-flex"><div class="label-large-2 ls-1">What type of patients benefit from TruAge?</div><div class="item_faq-icon"><div class="item_faq-minus"></div><div class="item_faq-plus"></div></div></div><div class="item_faq-content w-richtext"><p>TruAge is most clinically useful for patients who are motivated to understand and address their long-term health trajectory – and for providers who want objective, longitudinal data to guide preventive or lifestyle medicine protocols.<br>​<br>Strong candidate profiles include:<br>​<br>• Patients with unexplained symptoms or accelerated phenotypic aging (fatigue, cognitive changes, metabolic dysfunction) where conventional labs are inconclusive<br>• Patients managing chronic disease risk factors (cardiovascular disease, metabolic syndrome, obesity) who want to track biological progress beyond traditional markers<br>• Patients on active interventions – including GLP-1 agonists, caloric restriction, exercise protocols, or supplementation – where you want to measure cellular impact, not just clinical endpoints<br>• Patients interested in longevity and preventive medicine who are looking for a quantitative baseline and repeat testing to track progress over time<br>• Patients with a family history of age-related disease who are seeking earlier, actionable risk insight<br>​<br>Because TruAge is not a diagnostic test, it is best positioned as an adjunct to clinical evaluation – a longitudinal signal to complement, not replace, standard workup.</p></div></div><div class="item_faq"><div class="item_faq-flex"><div class="label-large-2 ls-1">What are the validated clinical outcomes for TruAge?</div><div class="item_faq-icon"><div class="item_faq-minus"></div><div class="item_faq-plus"></div></div></div><div class="item_faq-content w-richtext"><p>TruAge's underlying aging clocks and algorithms are each published in peer-reviewed literature and validated against hard outcomes across large longitudinal cohorts.<br>​<br>Key validated associations include:<br><br>• OMICmAge – our biological age clock developed in partnership with Harvard University, was published most recently in Nature Aging² and validated across multiple independent cohorts. Head-to-head benchmarking showed OMICmAge matched or exceeded all other tested clocks on 5- and 10-year survival prediction.<br>• SYMPHONYAge – our organ-level clock has been validated at Yale to reflect differential aging across tissue systems.<br>• DunedinPACE – our aging speed clock has been validated as the strongest epigenetic predictor of mortality among 14 consensus biomarkers of aging, as demonstrated in the peer-reviewed, BASE-II cohort study¹.</p></div></div><div class="item_faq"><div class="item_faq-flex"><div class="label-large-2 ls-1">How do I order TruAge?</div><div class="item_faq-icon"><div class="item_faq-minus"></div><div class="item_faq-plus"></div></div></div><div class="item_faq-content w-richtext"><p>Providers order directly through the TruDiagnostic Provider Portal. Once your account is set up, you can place orders for clinic delivery or patient drop-ship.<br><br>Full pricing is available in the Provider Portal once your account is active. To get started, register as a provider at <a href="https://www.trudiagnostic.com/provider-application" target="_blank">www.trudiagnostic.com/provider-application.</a></p></div></div></div></div></div></div><div class="faq-new_script w-embed w-script"><script defer="">
+ document.addEventListener('DOMContentLoaded', function () {
+  const faqItems = document.querySelectorAll('.item_faq');
+  faqItems.forEach(item => {
+    item.addEventListener('click', () => {
+      faqItems.forEach(innerItem => {
+        if (innerItem !== item) {
+          innerItem.classList.remove('active');
+          innerItem.querySelector('.item_faq-content').style.maxHeight = 0;
+          const plusIcon = innerItem.querySelector('.item_faq-plus');
+          if (plusIcon) plusIcon.classList.remove('active');
+        }
+      });
+      const content = item.querySelector('.item_faq-content');
+      const plusIcon = item.querySelector('.item_faq-plus');
+      const isActive = item.classList.contains('active');
+      item.classList.toggle('active');
+      if (plusIcon) plusIcon.classList.toggle('active');
+      if (!isActive) {
+        content.style.maxHeight = (content.scrollHeight + 25) + "px";
+      } else {
+        content.style.maxHeight = 0;
+      }
+    });
+  });
+ });
+</script></div></section><section class="section_reference"><div class="padding-global"><div class="container-large"><div class="reference_wrapper"><div class="reference_rich w-richtext"><p>REFERENCES</p><ol role="list"><li>Demuth I, et al. Comparing fourteen consensus biomarkers of aging: epigenetic pace of aging as the strongest predictor of mortality in BASE-II. Biomarker Research. 2026. PMID: 41792861. <a href="https://link.springer.com/article/10.1186/s40364-026-00909-z" target="_blank">https://link.springer.com/article/10.1186/s40364-026-00909-z</a></li><li>Dwaraka V, et al. OMICmAge: An integrative multi-omics approach to quantify biological age with electronic medical records. Nature Aging. 2026. <a href="https://www.nature.com/articles/s43587-026-01073-7" target="_blank">https://www.nature.com/articles/s43587-026-01073-7</a></li></ol></div></div></div></div></section></main><footer class="footer below-fold"><div class="footer-new"><div class="padding-global padding-section-footer"><div class="container-large"><div class="footer_wrapper new"><div class="footer_top new"><div class="footer-new_col"><div class="footer-new_col-title">About</div><a href="https://www.trudiagnostic.com/about-us" class="footer-new_col-item">About Us</a><a href="https://trudiagnostic.my.site.com/support/s/?language=en_US" class="footer-new_col-item">Help Center</a><a href="https://www.trudiagnostic.com/careers" class="footer-new_col-item">Careers</a><a href="https://manage.kmail-lists.com/subscriptions/subscribe?a=LmGkBQ&amp;g=W7Xgyt" class="footer-new_col-item">Newsletter</a></div><div class="footer-new_col"><div class="footer-new_col-title">Partners</div><a href="https://www.trudiagnostic.com/become-a-provider" class="footer-new_col-item">Become a Provider</a><a href="https://www.trudiagnostic.com/become-an-affiliate" class="footer-new_col-item">Become an Affiliate</a><a href="https://www.trudiagnostic.com/research-services" class="footer-new_col-item">Research Services</a><a href="https://www.trudiagnostic.com/requisition-form" class="footer-new_col-item">Requisition Form</a><a href="https://trudiagnostic.notion.site/Tru-Diagnostic-v2-API-100865e61b7e803fa038dee5e55e6cc2" class="footer-new_col-item">API Reference</a></div><div class="footer-new_col"><div class="footer-new_col-title">Members</div><a href="https://portal.trudiagnostic.com/sign-in" class="footer-new_col-item">Log In</a><a href="https://portal.trudiagnostic.com/registration" class="footer-new_col-item">Register My Kit</a><a href="https://portal.trudiagnostic.com/sign-in" class="footer-new_col-item">View My Reports</a><a href="https://www.trudiagnostic.com/return-and-refund-policy" class="footer-new_col-item">Return Policy</a></div><div class="footer-new_col"><div class="footer-new_col-title">CONTACT</div><a href="https://www.trudiagnostic.com/about-truage#" class="footer-new_col-item">881 Corporate Dr. <br>Lexington, KY 40503</a><div class="footer-new_col-flex"><a href="tel:+18889093634" class="footer-new_col-item">(888) 909-3634</a><div id="standartTime" class="footer-span">Mon-Fri 9am-7pm | Sat 9am-3pm<br>Eastern Time (UTC-4:00)</div></div><a href="mailto:support@trudiagnostic.com" class="footer-new_col-item">support@trudiagnostic.com</a></div></div><div class="footer_bot new"><div class="footer-span">DNAm biomarker outputs are intended to support, not replace, clinical judgment. They should be interpreted within the full clinical context, including history, physical examination, conventional laboratory testing, and imaging studies where clinically indicated. They should not be used as the sole basis for diagnosis or treatment decisions.</div></div><div class="footer_copyright"><div class="footer_copyright-left"><a href="https://www.trudiagnostic.com/terms-of-service" class="footer-new_col-item">Terms of Service</a><a href="https://www.trudiagnostic.com/privacy-policy" class="footer-new_col-item">Privacy Policy</a><a href="https://www.trudiagnostic.com/fcoi-policy" class="footer-new_col-item">FCIO Policy</a></div><div class="footer-span">© TruDiagnostic 2026, All Rights Reserved</div></div></div></div></div></div><div class="footer_code w-embed w-script"><script>
+(function() {
+  function getEasternUtcOffset() {
+    const now = new Date();
+    const utcDate = new Date(now.toLocaleString('en-US', { timeZone: 'UTC' }));
+    const nyDate = new Date(now.toLocaleString('en-US', { timeZone: 'America/New_York' }));
+    return Math.round((utcDate - nyDate) / (1000 * 60 * 60)); // 5 = EST, 4 = EDT
+  }
+
+  function updateStandardTimeLabel() {
+    var el = document.getElementById('standartTime');
+    if (!el) return;
+
+    var offset = getEasternUtcOffset();
+    var tzLabel = offset === 4
+      ? 'Eastern Time (UTC-4:00)'
+      : 'Eastern Time (UTC-5:00)';
+
+    el.innerHTML = 'Mon-Fri 9am-7pm | Sat 9am-3pm<br>' + tzLabel;
+  }
+
+  document.addEventListener('DOMContentLoaded', updateStandardTimeLabel);
+  // На випадок, якщо DOMContentLoaded вже відбувся до виконання embed-скрипта
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    updateStandardTimeLabel();
+  }
+})();
+</script></div></footer></div><script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=6690e254f4f07d1a469bb330" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script><script src="https://cdn.prod.website-files.com/6690e254f4f07d1a469bb330/js/trud-website.9419bb1d.f3c360aca447d438.js" type="text/javascript" integrity="sha384-w3chV5/qjxx02Be/hOItOu9h39wCMLAIicqKFLJjVa3wAJfUHxOzkC42jvuU8+L0" crossorigin="anonymous"></script><!-- ===========================
+     GLOBAL & HERO CSS (merged)
+=========================== -->
+
+
+<!-- ===========================
+     GTM NOSCRIPT (keep)
+=========================== -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5NZQZLP" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<!-- Pinterest Tag -->
+<script>
+!function(e){if(!window.pintrk){window.pintrk = function () {
+window.pintrk.queue.push(Array.prototype.slice.call(arguments))};var
+  n=window.pintrk;n.queue=[],n.version="3.0";var
+  t=document.createElement("script");t.async=!0,t.src=e;var
+  r=document.getElementsByTagName("script")[0];
+  r.parentNode.insertBefore(t,r)}}("https://s.pinimg.com/ct/core.js");
+
+pintrk('load', '2613101028583');
+pintrk('page');
+</script>
+<noscript>
+<img height="1" width="1" style="display:none;" alt=""
+  src="https://ct.pinterest.com/v3/?event=init&tid=2613101028583&noscript=1" />
+</noscript>
+<!-- end Pinterest Tag -->
+
+<!-- ===========================
+     MIXPANEL CORE (unchanged behavior)
+=========================== -->
+<!--<script>
+(function(e,a){
+  if(!a.__SV){
+    var b=window;try{var c,l,i,j=b.location,g=j.hash;
+      c=function(a,b){return(l=a.match(RegExp(b+"=([^&]*)")))?l[1]:null};
+      g&&c(g,"state")&&(i=JSON.parse(decodeURIComponent(c(g,"state"))),"mpeditor"===i.action&&(b.sessionStorage.setItem("_mpcehash",g),history.replaceState(i.desiredHash||"",e.title,j.pathname+j.search)));
+    }catch(m){}
+    var k,h;window.mixpanel=a;a._i=[];
+    a.init=function(b,c,f){function e(b,a){var c=a.split(".");2==c.length&&(b=b[c[0]],a=c[1]);b[a]=function(){b.push([a].concat(Array.prototype.slice.call(arguments,0)))}}
+      var d=a;"undefined"!==typeof f?d=a[f]=[]:f="mixpanel";
+      d.people=d.people||[];d.toString=function(b){var a="mixpanel";"mixpanel"!==f&&(a+="."+f);b||(a+=" (stub)");return a};
+      d.people.toString=function(){return d.toString(1)+".people (stub)"};
+      k="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config reset people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
+      for(h=0;h<k.length;h++)e(d,k[h]);a._i.push([b,c,f])};
+    a.__SV=1.2;b=e.createElement("script");b.type="text/javascript";b.async=!0;b.src="https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";
+    c=e.getElementsByTagName("script")[0];c.parentNode.insertBefore(b,c)
+  }
+})(document,window.mixpanel||{});
+mixpanel.init("d0711144a8aa9054ab559c27aac7335b");
+</script>-->
+
+<!-- Mixpanel session logic (idle + visible) -->
+<!--<script>
+(function () {
+  function runMixpanelSessionLogic() {
+    try {
+      if (!window.mixpanel) return;
+
+      // rsid identity
+      var rsid = sessionStorage.getItem('rsid');
+      if (!rsid) {
+        rsid = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : (Date.now() + '-' + Math.random().toString(36).slice(2));
+        sessionStorage.setItem('rsid', rsid);
+      }
+      mixpanel.identify(rsid);
+      mixpanel.register({ rsid: rsid });
+
+      // UTM params -> register_once
+      var params = new URL(location.href).searchParams;
+      ['utm_source','utm_medium','utm_campaign','utm_term','utm_content'].forEach(function (k) {
+        var v = params.get(k); if (!v) return;
+        var o={}; o[k]=v; mixpanel.register_once(o);
+      });
+
+      // Session_Started (once per session)
+      if (!sessionStorage.getItem('sessionStarted')) {
+        mixpanel.track('Session_Started', { rsid: rsid, startTime: new Date().toISOString(), url: location.href, referrer: document.referrer });
+        sessionStorage.setItem('sessionStarted','true');
+      }
+
+      // First / returning
+      if (localStorage.getItem('returningVisitor')) {
+        var sc = parseInt(localStorage.getItem('sessionCount')||'1',10)+1;
+        localStorage.setItem('sessionCount', String(sc));
+        mixpanel.track('Visitor_Returned', { rsid: rsid, returningVisitor: true, sessionCount: sc });
+      } else {
+        localStorage.setItem('returningVisitor','true'); localStorage.setItem('sessionCount','1');
+        mixpanel.track('First_Time_Visitor', { rsid: rsid, returningVisitor: false, sessionCount: 1 });
+      }
+
+      // Page_Viewed
+      mixpanel.track('Page_Viewed', { rsid: rsid, pageURL: location.href, pageTitle: document.title, referrerURL: document.referrer });
+
+      // Traffic source (once per session)
+      if (!sessionStorage.getItem('trafficSourceDetected')) {
+        var src = params.get('utm_source') || (document.referrer ? new URL(document.referrer).hostname : 'Direct');
+        var med = params.get('utm_medium') || (document.referrer ? 'Referral' : 'Direct');
+        var camp = params.get('utm_campaign') || undefined;
+        mixpanel.track('Traffic_Source_Detected', { rsid: rsid, trafficSource: src, medium: med, campaign: camp });
+        sessionStorage.setItem('trafficSourceDetected','true');
+      }
+
+      // Exit
+      window.addEventListener('beforeunload', function () {
+        try { mixpanel.track('Page_Exited', { rsid: rsid, pageURL: location.href, exitTime: new Date().toISOString() }); } catch(e){}
+      });
+
+      // Targeted button clicks
+      var TRACK_SELECTORS = '.button, .section3_card-button, .card_button, .research_card-button';
+      document.addEventListener('click', function (e) {
+        var el = e.target.closest(TRACK_SELECTORS); if (!el) return;
+        var top = el.getBoundingClientRect().top, vh = window.innerHeight || 1;
+        var pos = top < vh/3 ? 'Top' : (top < 2*vh/3 ? 'Middle' : 'Bottom');
+        mixpanel.track('Button_Clicked', { rsid: rsid, pageURL: location.href, buttonText: (el.innerText||'').trim(), buttonID: el.className || '', clickPosition: pos });
+      }, true);
+
+      // Video play (if present)
+      var v = document.getElementById('video1');
+      if (v) v.addEventListener('play', function(){ mixpanel.track('Content_Interacted', { contentType:'Video', interactionType:'Play', contentURL: location.href }); });
+
+    } catch (err) {}
+  }
+
+  function start() {
+    if ('requestIdleCallback' in window) { requestIdleCallback(runMixpanelSessionLogic, { timeout: 2000 }); }
+    else { setTimeout(runMixpanelSessionLogic, 0); }
+  }
+
+  if (document.hidden) {
+    document.addEventListener('visibilitychange', function onv(){ if (!document.hidden){ document.removeEventListener('visibilitychange', onv); start(); }});
+  } else if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    start();
+  } else {
+    document.addEventListener('DOMContentLoaded', start);
+  }
+})();
+</script>-->
+
+
+
+<!-- Card center hover logic (only on hover-capable devices) -->
+<script>
+(function(){
+  if (!window.matchMedia || !window.matchMedia('(hover: hover)').matches) return;
+  document.addEventListener('DOMContentLoaded', function(){
+    var cards = document.querySelectorAll('.card'), initial = document.querySelector('.card-center');
+    if (!cards.length || !initial) return;
+    cards.forEach(function(card){
+      card.addEventListener('mouseenter', function(){ cards.forEach(function(c){ c.classList.remove('card-center'); }); card.classList.add('card-center'); });
+      card.addEventListener('mouseleave', function(){
+        setTimeout(function(){
+          var anyHover = Array.prototype.some.call(cards, function(c){ return c.matches(':hover'); });
+          if (!anyHover) { cards.forEach(function(c){ c.classList.remove('card-center'); }); initial.classList.add('card-center'); }
+        }, 300);
+      });
+    });
+  });
+})();
+</script>
+
+<!-- Iframe height helper -->
+<script>
+(function(){
+  function sendHeightToParent(){
+    try{
+      var height = document.documentElement.scrollHeight;
+      if (window.self !== window.top) { window.parent.postMessage({ type:'iframe-height', height:height }, '*'); }
+    } catch(e){}
+  }
+  window.addEventListener('load', sendHeightToParent);
+})();
+</script>
+
+<!-- Salesforce chat init function (used by lazy loader) -->
+<script>
+function initEmbeddedMessaging(){
+  try{
+    embeddedservice_bootstrap.settings.language = 'en_US';
+    embeddedservice_bootstrap.init(
+      '00DHp00000HEg1d',
+      'TruDiagnostic_Service_Agent_Messaging_for_Website',
+      'https://trudiagnostic.my.site.com/ESWTruDiagnosticService1738072767419',
+      { scrt2URL: 'https://trudiagnostic.my.salesforce-scrt.com' }
+    );
+  }catch(err){ console.error('Error loading Embedded Messaging:', err); }
+}
+</script>
+
+<!-- ===========================
+     LAZY LOAD NON-CRITICAL JS (smart, gesture/visible gated)
+=========================== -->
+<script>
+(function lazyVendors(){
+  var fired = false;
+  var mobile = window.innerWidth <= 991;
+  var delay = mobile ? 7000 : 3000;
+  var timer;
+
+  function netConstrained(){
+    try{
+      var c = navigator.connection;
+      return c && (c.saveData || /(^|^slow-)?2g$/.test(c.effectiveType));
+    }catch(e){ return false; }
+  }
+
+  function once(fn){ var ran=false; return function(){ if (ran) return; ran=true; fn(); }; }
+  var load = once(function loadVendors(){
+    if (fired) return; fired = true;
+    
+    // Wellput (Tune) — load late, then init/identify
+    (function(){
+      if (window.__tuneLoaded) return;
+      var s = document.createElement('script');
+      s.src = "https://js.go2sdk.com/v2/tune.js";
+      s.async = true;
+      s.onload = function(){
+        window.__tuneLoaded = true;
+        if (window.tdl && typeof tdl.init === 'function') {
+          tdl.init("https://wellput.go2cloud.org");
+          tdl.identify();
+        }
+      };
+      document.head.appendChild(s);
+    })();
+
+    // Vibe
+    if (!window.vbpx){
+      (function(v,i,b,e,c,o){
+        if(!v[c]){
+          var s=v[c]=function(){ s.process ? s.process.apply(s,arguments) : s.queue.push(arguments); };
+          s.queue=[]; s.b=1*new Date;
+          var t=i.createElement(b); t.async=!0; t.src=e;
+          var n=i.getElementsByTagName(b)[0]; n.parentNode.insertBefore(t,n);
+        }
+      })(window,document,"script","https://s.vibe.co/vbpx.js","vbpx");
+      // init after script bootstraps
+      window.vbpx && vbpx('init','BPg4n1'); 
+      window.vbpx && vbpx('event','page_view');
+    }
+
+    // Twitter pixel
+    if (!window.twq){
+      !function(e,t,n,s,u,a){
+        e.twq||(s=e.twq=function(){ s.exe ? s.exe.apply(s,arguments) : s.queue.push(arguments); },
+        s.version='1.1',s.queue=[],u=t.createElement(n),u.async=!0,u.src='https://static.ads-twitter.com/uwt.js',
+        a=t.getElementsByTagName(n)[0],a.parentNode.insertBefore(u,a));
+      }(window,document,'script');
+      window.twq && twq('config','os3sf');
+    }
+
+    // Finsweet CMS Slider (only if attribute exists)
+    if (!window.__fsSliderLoaded && document.querySelector('[fs-cmsslider-element="slider"]')){
+      var fs = document.createElement('script');
+      fs.src = "https://cdn.jsdelivr.net/npm/@finsweet/attributes-cmsslider@1/cmsslider.js";
+      fs.async = true;
+      fs.onload = function(){ window.__fsSliderLoaded = true; };
+      document.head.appendChild(fs);
+    }
+
+    // SplitType + GSAP + ScrollTrigger (load missing only)
+    var needInit = 0;
+    function add(src, present){
+      if (present) return;
+      var s = document.createElement('script'); s.src = src; s.async = true; s.onload = done; needInit++;
+      document.head.appendChild(s);
+    }
+    function done(){ if(--needInit<=0) initTextSplit(); }
+
+    add("https://unpkg.com/split-type", !!window.SplitType);
+    add("https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js", !!window.gsap);
+    add("https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js", !!(window.gsap && window.ScrollTrigger));
+    if (needInit===0) initTextSplit();
+
+    function initTextSplit(){
+      if (!window.gsap || !window.ScrollTrigger || !window.SplitType || initTextSplit._done) return;
+      initTextSplit._done = true;
+      gsap.registerPlugin(ScrollTrigger);
+
+      var typeSplit = new SplitType("[text-split]", { types:"words, chars", tagName:"span" });
+
+      function createScrollTrigger(el, tl){
+        ScrollTrigger.create({ trigger: el, start:"top bottom", onLeaveBack:function(){ tl.progress(0); tl.pause(); }});
+        ScrollTrigger.create({ trigger: el, start:"top 60%", onEnter:function(){ tl.play(); }});
+      }
+
+      document.querySelectorAll("[letters-fade-in]").forEach(function(el){
+        var tl = gsap.timeline({ paused:true });
+        tl.from(el.querySelectorAll(".char"), { opacity:0, duration:.2, ease:"power1.out", stagger:{ amount:.8 } });
+        createScrollTrigger(el, tl);
+      });
+
+      document.querySelectorAll("[scrub-each-word]").forEach(function(el){
+        gsap.timeline({ scrollTrigger:{ trigger:el, start:"top 90%", end:"top center", scrub:true } })
+            .from(el.querySelectorAll(".word"), { opacity:.2, duration:.2, ease:"power1.out", stagger:{ each:.4 }});
+      });
+
+      gsap.set("[text-split]", { opacity:1 });
+    }
+
+    // Salesforce Embedded Messaging (lazy)
+    if (!window.__sfBoot){
+      var sf = document.createElement('script');
+      sf.src = 'https://trudiagnostic.my.site.com/ESWTruDiagnosticService1738072767419/assets/js/bootstrap.min.js';
+      sf.defer = true;
+      sf.onload = function(){ window.__sfBoot = true; if (typeof initEmbeddedMessaging === 'function') initEmbeddedMessaging(); };
+      document.head.appendChild(sf);
+    }
+  });
+
+  function schedule(){
+    if (document.hidden || netConstrained()){
+      clearTimeout(timer);
+      timer = setTimeout(schedule, 4000);
+      return;
+    }
+    setTimeout(load, delay);
+  }
+
+  // user signals
+  window.addEventListener('pointerdown', load, { once:true });
+  window.addEventListener('scroll', load, { once:true, passive:true });
+  document.addEventListener('visibilitychange', function(){ if (!document.hidden) schedule(); }, { once:true });
+
+  // time fallback
+  schedule();
+})();
+</script>
+<script src="https://backend.alia-prod.com/public/embed.js?shop=trudiagnostictest.myshopify.com" async=""></script>
+
+<script>
+  (function () {
+    var nav = document.querySelector('.navbar_component[role="banner"]');
+    if (!nav) return;
+
+    // Замінюємо div на header зі збереженням всього вмісту
+    var header = document.createElement('header');
+
+    // Копіюємо всі атрибути
+    Array.from(nav.attributes).forEach(function (attr) {
+      if (attr.name !== 'role') { // role="banner" не потрібен на <header>
+        header.setAttribute(attr.name, attr.value);
+      }
+    });
+
+    header.innerHTML = nav.innerHTML;
+    nav.parentNode.replaceChild(header, nav);
+  })();
+</script>
+
+<!-- ChatGPT Ads Measurement Pixel -->
+<script>
+  window.oaiq = window.oaiq || function () {
+    (window.oaiq.q = window.oaiq.q || []).push(arguments);
+  };
+  oaiq("init", { pixelId: "8xNJtaPSJ4LenyopbDWz4w" });
+</script>
+<script async="" src="https://bzrcdn.openai.com/sdk/oaiq.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide-extension-auto-scroll@0.5.3/dist/js/splide-extension-auto-scroll.min.js"></script>
+
+<script>
+  const aboutSlider = new Swiper('#aboutSlider', {
+    slidesPerView: 'auto',
+    spaceBetween: 24,
+  });
+</script>
+<script>
+  if (document.querySelector('.trusted_slider')) {
+    new Splide('.trusted_slider', {
+      type: 'loop',
+      drag: 'free',
+      autoWidth: true,
+      autoScroll: {
+        speed: 0.25,
+        pauseOnHover: false,
+        autoStart: true,
+      },
+      pagination: false,
+      arrows: false,
+      clones: 30,
+    }).mount(window.splide.Extensions);
+  }
+</script>
+
+<script>
+  window.addEventListener('DOMContentLoaded', function () {
+    if (window.innerWidth <= 767 && typeof Swiper !== 'undefined') {
+      new Swiper('#healthSlider', {
+        slidesPerView: 'auto',
+        spaceBetween: 24,
+      });
+    }
+  });
+</script>
+
+<script>
+  const newsSlider = new Swiper('#newsSlider', {
+    slidesPerView: 'auto',
+    spaceBetween: 24,
+    navigation: {
+      nextEl: '#newsNext',
+      prevEl: '#newsPrev',
+    },
+  });
+</script>
+
+<script>
+  const clocksSlider = new Swiper('#clocksSlider', {
+    slidesPerView: 'auto',
+    spaceBetween: 24,
+    pagination: {
+      el: '.clocks_progress-bar',
+      type: 'progressbar',
+    },
+  });
+</script>
+
+<script>
+  const patientSwiper = new Swiper('#patientSlider', {
+    slidesPerView: 'auto',
+    spaceBetween: 24,
+    navigation: {
+      prevEl: '#patientPrev',
+      nextEl: '#patientNext',
+    },
+  });
+</script>
+</body></html>

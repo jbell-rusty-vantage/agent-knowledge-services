@@ -1,0 +1,221 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "AI Engineer Knowledge Services durable worker and isolated Docling Serve runtime",
+  "Parameters": {
+    "VpcId": { "Type": "AWS::EC2::VPC::Id" },
+    "PrivateSubnetIds": { "Type": "List<AWS::EC2::Subnet::Id>" },
+    "PrivateHostedZoneId": { "Type": "AWS::Route53::HostedZone::Id" },
+    "DoclingPrivateDnsName": { "Type": "String", "AllowedPattern": "^[a-z0-9][a-z0-9.-]+[a-z0-9]$" },
+    "DoclingCertificateArn": { "Type": "String", "AllowedPattern": "^arn:[^:]+:acm:[^:]+:[0-9]{12}:certificate/.+$" },
+    "WorkerImageUri": { "Type": "String", "AllowedPattern": "^.+@sha256:[a-f0-9]{64}$" },
+    "DoclingImageUri": { "Type": "String", "Default": "ghcr.io/docling-project/docling-serve@sha256:f8b324448e7c9e66083049727aaa90e3e65e88f0d7796624597a29d04183198b", "AllowedPattern": "^.+@sha256:[a-f0-9]{64}$" },
+    "DatabaseSecretArn": { "Type": "String", "AllowedPattern": "^arn:[^:]+:secretsmanager:[^:]+:[0-9]{12}:secret:.+$" },
+    "WorkerRuntimeSecretArn": { "Type": "String", "AllowedPattern": "^arn:[^:]+:secretsmanager:[^:]+:[0-9]{12}:secret:.+$" },
+    "WorkerTenantId": { "Type": "String", "AllowedPattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$" },
+    "WorkerDesiredCount": { "Type": "Number", "Default": 1, "MinValue": 1, "MaxValue": 100 },
+    "WorkerMaximumCount": { "Type": "Number", "Default": 8, "MinValue": 1, "MaxValue": 100 },
+    "DoclingDesiredCount": { "Type": "Number", "Default": 1, "MinValue": 1, "MaxValue": 20 },
+    "DoclingMaximumCount": { "Type": "Number", "Default": 4, "MinValue": 1, "MaxValue": 20 },
+    "LogRetentionDays": { "Type": "Number", "Default": 30, "AllowedValues": [7, 14, 30, 60, 90, 120, 180, 365] }
+  },
+  "Resources": {
+    "Cluster": {
+      "Type": "AWS::ECS::Cluster",
+      "Properties": {
+        "ClusterSettings": [{ "Name": "containerInsights", "Value": "enhanced" }],
+        "CapacityProviders": ["FARGATE", "FARGATE_SPOT"],
+        "DefaultCapacityProviderStrategy": [{ "CapacityProvider": "FARGATE", "Weight": 1 }]
+      }
+    },
+    "WorkerLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": { "LogGroupName": { "Fn::Sub": "/aiengineer/knowledge/${AWS::StackName}/worker" }, "RetentionInDays": { "Ref": "LogRetentionDays" } },
+      "UpdateReplacePolicy": "Retain", "DeletionPolicy": "Retain"
+    },
+    "DoclingLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": { "LogGroupName": { "Fn::Sub": "/aiengineer/knowledge/${AWS::StackName}/docling" }, "RetentionInDays": { "Ref": "LogRetentionDays" } },
+      "UpdateReplacePolicy": "Retain", "DeletionPolicy": "Retain"
+    },
+    "TaskExecutionRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": { "Version": "2012-10-17", "Statement": [{ "Effect": "Allow", "Principal": { "Service": "ecs-tasks.amazonaws.com" }, "Action": "sts:AssumeRole" }] },
+        "ManagedPolicyArns": [{ "Fn::Sub": "arn:${AWS::Partition}:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy" }],
+        "Policies": [{ "PolicyName": "ReadKnowledgeRuntimeSecrets", "PolicyDocument": { "Version": "2012-10-17", "Statement": [{ "Effect": "Allow", "Action": "secretsmanager:GetSecretValue", "Resource": [{ "Ref": "DatabaseSecretArn" }, { "Ref": "WorkerRuntimeSecretArn" }] }] } }]
+      }
+    },
+    "WorkerTaskRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": { "AssumeRolePolicyDocument": { "Version": "2012-10-17", "Statement": [{ "Effect": "Allow", "Principal": { "Service": "ecs-tasks.amazonaws.com" }, "Action": "sts:AssumeRole" }] } }
+    },
+    "DoclingTaskRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": { "AssumeRolePolicyDocument": { "Version": "2012-10-17", "Statement": [{ "Effect": "Allow", "Principal": { "Service": "ecs-tasks.amazonaws.com" }, "Action": "sts:AssumeRole" }] } }
+    },
+    "WorkerSecurityGroup": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Knowledge worker outbound-only network identity",
+        "VpcId": { "Ref": "VpcId" },
+        "SecurityGroupEgress": [
+          { "IpProtocol": "tcp", "FromPort": 443, "ToPort": 443, "CidrIp": "0.0.0.0/0", "Description": "Managed APIs and artifact storage" },
+          { "IpProtocol": "tcp", "FromPort": 5432, "ToPort": 5432, "CidrIp": "0.0.0.0/0", "Description": "Configured PostgreSQL endpoint" }
+        ]
+      }
+    },
+    "LoadBalancerSecurityGroup": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Private Docling HTTPS ingress from knowledge workers",
+        "VpcId": { "Ref": "VpcId" },
+        "SecurityGroupIngress": [{ "IpProtocol": "tcp", "FromPort": 443, "ToPort": 443, "SourceSecurityGroupId": { "Ref": "WorkerSecurityGroup" } }],
+        "SecurityGroupEgress": []
+      }
+    },
+    "DoclingSecurityGroup": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Docling accepts only load balancer traffic",
+        "VpcId": { "Ref": "VpcId" },
+        "SecurityGroupIngress": [{ "IpProtocol": "tcp", "FromPort": 5001, "ToPort": 5001, "SourceSecurityGroupId": { "Ref": "LoadBalancerSecurityGroup" } }],
+        "SecurityGroupEgress": [{ "IpProtocol": "tcp", "FromPort": 443, "ToPort": 443, "CidrIp": "0.0.0.0/0", "Description": "Pinned image and admitted model artifact retrieval" }]
+      }
+    },
+    "LoadBalancerToDoclingEgress": {
+      "Type": "AWS::EC2::SecurityGroupEgress",
+      "Properties": { "GroupId": { "Ref": "LoadBalancerSecurityGroup" }, "IpProtocol": "tcp", "FromPort": 5001, "ToPort": 5001, "DestinationSecurityGroupId": { "Ref": "DoclingSecurityGroup" } }
+    },
+    "WorkerToLoadBalancerEgress": {
+      "Type": "AWS::EC2::SecurityGroupEgress",
+      "Properties": { "GroupId": { "Ref": "WorkerSecurityGroup" }, "IpProtocol": "tcp", "FromPort": 443, "ToPort": 443, "DestinationSecurityGroupId": { "Ref": "LoadBalancerSecurityGroup" } }
+    },
+    "DoclingLoadBalancer": {
+      "Type": "AWS::ElasticLoadBalancingV2::LoadBalancer",
+      "Properties": {
+        "Scheme": "internal", "Type": "application", "IpAddressType": "ipv4",
+        "Subnets": { "Ref": "PrivateSubnetIds" },
+        "SecurityGroups": [{ "Ref": "LoadBalancerSecurityGroup" }],
+        "LoadBalancerAttributes": [{ "Key": "deletion_protection.enabled", "Value": "true" }, { "Key": "routing.http.drop_invalid_header_fields.enabled", "Value": "true" }]
+      }
+    },
+    "DoclingTargetGroup": {
+      "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
+      "Properties": {
+        "VpcId": { "Ref": "VpcId" }, "TargetType": "ip", "Protocol": "HTTP", "Port": 5001,
+        "HealthCheckEnabled": true, "HealthCheckPath": "/health", "HealthCheckProtocol": "HTTP",
+        "HealthCheckIntervalSeconds": 30, "HealthCheckTimeoutSeconds": 5, "HealthyThresholdCount": 2, "UnhealthyThresholdCount": 3,
+        "Matcher": { "HttpCode": "200" },
+        "TargetGroupAttributes": [{ "Key": "deregistration_delay.timeout_seconds", "Value": "30" }]
+      }
+    },
+    "DoclingListener": {
+      "Type": "AWS::ElasticLoadBalancingV2::Listener",
+      "Properties": {
+        "LoadBalancerArn": { "Ref": "DoclingLoadBalancer" }, "Port": 443, "Protocol": "HTTPS",
+        "SslPolicy": "ELBSecurityPolicy-TLS13-1-2-2021-06",
+        "Certificates": [{ "CertificateArn": { "Ref": "DoclingCertificateArn" } }],
+        "DefaultActions": [{ "Type": "forward", "TargetGroupArn": { "Ref": "DoclingTargetGroup" } }]
+      }
+    },
+    "DoclingDnsRecord": {
+      "Type": "AWS::Route53::RecordSet",
+      "Properties": {
+        "HostedZoneId": { "Ref": "PrivateHostedZoneId" }, "Name": { "Ref": "DoclingPrivateDnsName" }, "Type": "A",
+        "AliasTarget": { "DNSName": { "Fn::GetAtt": ["DoclingLoadBalancer", "DNSName"] }, "HostedZoneId": { "Fn::GetAtt": ["DoclingLoadBalancer", "CanonicalHostedZoneID"] }, "EvaluateTargetHealth": true }
+      }
+    },
+    "WorkerTaskDefinition": {
+      "Type": "AWS::ECS::TaskDefinition",
+      "Properties": {
+        "Family": { "Fn::Sub": "${AWS::StackName}-worker" }, "RequiresCompatibilities": ["FARGATE"], "NetworkMode": "awsvpc", "Cpu": "1024", "Memory": "2048",
+        "ExecutionRoleArn": { "Fn::GetAtt": ["TaskExecutionRole", "Arn"] }, "TaskRoleArn": { "Fn::GetAtt": ["WorkerTaskRole", "Arn"] },
+        "RuntimePlatform": { "CpuArchitecture": "X86_64", "OperatingSystemFamily": "LINUX" },
+        "ContainerDefinitions": [{
+          "Name": "worker", "Image": { "Ref": "WorkerImageUri" }, "Essential": true, "ReadonlyRootFilesystem": true, "StopTimeout": 120,
+          "Environment": [
+            { "Name": "NODE_ENV", "Value": "production" }, { "Name": "KNOWLEDGE_PERSISTENCE_MODE", "Value": "postgres" },
+            { "Name": "WORKER_TENANT_ID", "Value": { "Ref": "WorkerTenantId" } },
+            { "Name": "DOCLING_BASE_URL", "Value": { "Fn::Sub": "https://${DoclingPrivateDnsName}" } },
+            { "Name": "DOCLING_VERSION", "Value": "sha256:f8b324448e7c9e66083049727aaa90e3e65e88f0d7796624597a29d04183198b" }
+          ],
+          "Secrets": [
+            { "Name": "POSTGRES_URL", "ValueFrom": { "Fn::Sub": "${DatabaseSecretArn}:POSTGRES_URL::" } },
+            { "Name": "SUPABASE_URL", "ValueFrom": { "Fn::Sub": "${WorkerRuntimeSecretArn}:SUPABASE_URL::" } },
+            { "Name": "SUPABASE_SECRET_KEY", "ValueFrom": { "Fn::Sub": "${WorkerRuntimeSecretArn}:SUPABASE_SECRET_KEY::" } },
+            { "Name": "AI_GATEWAY_API_KEY", "ValueFrom": { "Fn::Sub": "${WorkerRuntimeSecretArn}:AI_GATEWAY_API_KEY::" } }
+          ],
+          "LogConfiguration": { "LogDriver": "awslogs", "Options": { "awslogs-group": { "Ref": "WorkerLogGroup" }, "awslogs-region": { "Ref": "AWS::Region" }, "awslogs-stream-prefix": "worker" } }
+        }]
+      }
+    },
+    "DoclingTaskDefinition": {
+      "Type": "AWS::ECS::TaskDefinition",
+      "Properties": {
+        "Family": { "Fn::Sub": "${AWS::StackName}-docling" }, "RequiresCompatibilities": ["FARGATE"], "NetworkMode": "awsvpc", "Cpu": "4096", "Memory": "8192",
+        "ExecutionRoleArn": { "Fn::GetAtt": ["TaskExecutionRole", "Arn"] }, "TaskRoleArn": { "Fn::GetAtt": ["DoclingTaskRole", "Arn"] },
+        "RuntimePlatform": { "CpuArchitecture": "X86_64", "OperatingSystemFamily": "LINUX" },
+        "ContainerDefinitions": [{
+          "Name": "docling", "Image": { "Ref": "DoclingImageUri" }, "Essential": true, "ReadonlyRootFilesystem": true,
+          "LinuxParameters": { "InitProcessEnabled": true, "Capabilities": { "Drop": ["ALL"] }, "Tmpfs": [{ "ContainerPath": "/tmp", "Size": 2048, "MountOptions": ["noexec", "nosuid", "nodev"] }] },
+          "PortMappings": [{ "Name": "http", "ContainerPort": 5001, "HostPort": 5001, "Protocol": "tcp", "AppProtocol": "http" }],
+          "Environment": [{ "Name": "DOCLING_SERVE_ENABLE_UI", "Value": "0" }, { "Name": "DOCLING_SERVE_ENG_LOC_NUM_WORKERS", "Value": "1" }],
+          "HealthCheck": { "Command": ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:5001/health', timeout=3).read()"], "Interval": 30, "Timeout": 5, "Retries": 3, "StartPeriod": 120 },
+          "LogConfiguration": { "LogDriver": "awslogs", "Options": { "awslogs-group": { "Ref": "DoclingLogGroup" }, "awslogs-region": { "Ref": "AWS::Region" }, "awslogs-stream-prefix": "docling" } }
+        }]
+      }
+    },
+    "WorkerService": {
+      "Type": "AWS::ECS::Service",
+      "Properties": {
+        "Cluster": { "Ref": "Cluster" }, "TaskDefinition": { "Ref": "WorkerTaskDefinition" }, "DesiredCount": { "Ref": "WorkerDesiredCount" }, "LaunchType": "FARGATE", "EnableExecuteCommand": false,
+        "DeploymentConfiguration": { "MinimumHealthyPercent": 100, "MaximumPercent": 200, "DeploymentCircuitBreaker": { "Enable": true, "Rollback": true } },
+        "NetworkConfiguration": { "AwsvpcConfiguration": { "AssignPublicIp": "DISABLED", "Subnets": { "Ref": "PrivateSubnetIds" }, "SecurityGroups": [{ "Ref": "WorkerSecurityGroup" }] } },
+        "PropagateTags": "SERVICE", "EnableECSManagedTags": true
+      }
+    },
+    "DoclingService": {
+      "Type": "AWS::ECS::Service", "DependsOn": ["DoclingListener"],
+      "Properties": {
+        "Cluster": { "Ref": "Cluster" }, "TaskDefinition": { "Ref": "DoclingTaskDefinition" }, "DesiredCount": { "Ref": "DoclingDesiredCount" }, "LaunchType": "FARGATE", "EnableExecuteCommand": false,
+        "HealthCheckGracePeriodSeconds": 180,
+        "DeploymentConfiguration": { "MinimumHealthyPercent": 100, "MaximumPercent": 200, "DeploymentCircuitBreaker": { "Enable": true, "Rollback": true } },
+        "NetworkConfiguration": { "AwsvpcConfiguration": { "AssignPublicIp": "DISABLED", "Subnets": { "Ref": "PrivateSubnetIds" }, "SecurityGroups": [{ "Ref": "DoclingSecurityGroup" }] } },
+        "LoadBalancers": [{ "ContainerName": "docling", "ContainerPort": 5001, "TargetGroupArn": { "Ref": "DoclingTargetGroup" } }],
+        "PropagateTags": "SERVICE", "EnableECSManagedTags": true
+      }
+    },
+    "WorkerScalableTarget": {
+      "Type": "AWS::ApplicationAutoScaling::ScalableTarget",
+      "Properties": { "ServiceNamespace": "ecs", "ScalableDimension": "ecs:service:DesiredCount", "ResourceId": { "Fn::Join": ["/", ["service", { "Ref": "Cluster" }, { "Fn::GetAtt": ["WorkerService", "Name"] }]] }, "MinCapacity": 1, "MaxCapacity": { "Ref": "WorkerMaximumCount" } }
+    },
+    "WorkerCpuScaling": {
+      "Type": "AWS::ApplicationAutoScaling::ScalingPolicy",
+      "Properties": { "PolicyType": "TargetTrackingScaling", "ScalingTargetId": { "Ref": "WorkerScalableTarget" }, "TargetTrackingScalingPolicyConfiguration": { "TargetValue": 65, "ScaleInCooldown": 300, "ScaleOutCooldown": 60, "PredefinedMetricSpecification": { "PredefinedMetricType": "ECSServiceAverageCPUUtilization" } } }
+    },
+    "DoclingScalableTarget": {
+      "Type": "AWS::ApplicationAutoScaling::ScalableTarget",
+      "Properties": { "ServiceNamespace": "ecs", "ScalableDimension": "ecs:service:DesiredCount", "ResourceId": { "Fn::Join": ["/", ["service", { "Ref": "Cluster" }, { "Fn::GetAtt": ["DoclingService", "Name"] }]] }, "MinCapacity": 1, "MaxCapacity": { "Ref": "DoclingMaximumCount" } }
+    },
+    "DoclingCpuScaling": {
+      "Type": "AWS::ApplicationAutoScaling::ScalingPolicy",
+      "Properties": { "PolicyType": "TargetTrackingScaling", "ScalingTargetId": { "Ref": "DoclingScalableTarget" }, "TargetTrackingScalingPolicyConfiguration": { "TargetValue": 60, "ScaleInCooldown": 600, "ScaleOutCooldown": 120, "PredefinedMetricSpecification": { "PredefinedMetricType": "ECSServiceAverageCPUUtilization" } } }
+    },
+    "DoclingUnhealthyTargetsAlarm": {
+      "Type": "AWS::CloudWatch::Alarm",
+      "Properties": {
+        "AlarmDescription": "One or more Docling targets are unhealthy", "Namespace": "AWS/ApplicationELB", "MetricName": "UnHealthyHostCount",
+        "Dimensions": [{ "Name": "LoadBalancer", "Value": { "Fn::GetAtt": ["DoclingLoadBalancer", "LoadBalancerFullName"] } }, { "Name": "TargetGroup", "Value": { "Fn::GetAtt": ["DoclingTargetGroup", "TargetGroupFullName"] } }],
+        "Statistic": "Maximum", "Period": 60, "EvaluationPeriods": 2, "DatapointsToAlarm": 2, "Threshold": 1,
+        "ComparisonOperator": "GreaterThanOrEqualToThreshold", "TreatMissingData": "breaching"
+      }
+    }
+  },
+  "Outputs": {
+    "ClusterArn": { "Value": { "Fn::GetAtt": ["Cluster", "Arn"] } },
+    "WorkerServiceArn": { "Value": { "Ref": "WorkerService" } },
+    "DoclingServiceArn": { "Value": { "Ref": "DoclingService" } },
+    "DoclingBaseUrl": { "Value": { "Fn::Sub": "https://${DoclingPrivateDnsName}" } },
+    "DoclingAlarmArn": { "Value": { "Fn::GetAtt": ["DoclingUnhealthyTargetsAlarm", "Arn"] } }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "knowledge-capability-catalog/v1",
+  "catalogVersion": "2026-09-03",
+  "profiles": [
+    {
+      "id": "conversion.docling-serve.cpu",
+      "version": "1.29.0+sha256.f8b324448e7c",
+      "lifecycle": "admitted-fallback",
+      "owner": "knowledge-services",
+      "image": "ghcr.io/docling-project/docling-serve@sha256:f8b324448e7c9e66083049727aaa90e3e65e88f0d7796624597a29d04183198b",
+      "inputSchema": "conversion-request/v1",
+      "outputSchema": "provider-conversion-result/v1",
+      "egress": "denied",
+      "idempotency": "request-and-profile-digest",
+      "limits": { "timeoutSeconds": 300, "memoryMiB": 8192, "maxInputBytes": 52428800 },
+      "knownFailureModes": ["ocr_low_confidence", "layout_loss", "parser_timeout", "malicious_document"]
+    },
+    {
+      "id": "embedding.ai-gateway.text-embedding-3-small",
+      "version": "1.0.0",
+      "lifecycle": "admitted-exploratory",
+      "owner": "knowledge-services",
+      "model": "openai/text-embedding-3-small",
+      "dimensions": 1536,
+      "inputSchema": "embedding-run/v1",
+      "outputSchema": "embedding-receipt/v1",
+      "egress": "ai-gateway-only",
+      "idempotency": "vector-space-and-input-digest"
+    },
+    {
+      "id": "retrieval.hybrid-rrf",
+      "version": "1.0.0",
+      "lifecycle": "admitted-exploratory",
+      "owner": "knowledge-services",
+      "channels": ["exact", "trigram", "fts", "semantic", "graph", "rerank"],
+      "inputSchema": "retrieval-plan/v1",
+      "outputSchema": "evidence-packet/v1",
+      "bounds": { "maxCandidateK": 50, "maxFinalK": 10, "maxGraphDepth": 2, "maxGraphNodes": 100 }
+    }
+  ]
+}

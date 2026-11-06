@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "verification-benchmark-engineering-expectation.v1",
+  "sourceDatasetManifestDigest": "sha256:b625b311493f8c366ef43bf4047bf61f38d510fe7f3c340f50bca42de737dfe6",
+  "sourceCaseDigest": "sha256:c54cee79cde92e59ad7e37fd608d6a2a4ba31bedb528779d2594d34271ea4cc3",
+  "caseId": "gl-triplicate-mutated",
+  "provenance": "agent_reviewed_engineering_expectation",
+  "humanAnnotationCount": 0,
+  "expertAdjudicated": false,
+  "humanGoldScoringEligible": false,
+  "legacyGoldArtifactColumnSemantics": "engineering expectation artifact only; does not establish human-gold eligibility",
+  "expectation": {
+    "label": "unsupported",
+    "labelStatus": "engineering_expectation",
+    "expectedPolicy": "fail",
+    "expectedLocatorValid": true,
+    "support": "none",
+    "authority": "interested_party_only",
+    "worldCorrectness": "unknown",
+    "rationale": "Engineering expectation for single_sample_to_population; human annotation and expert adjudication remain pending."
+  }
+}

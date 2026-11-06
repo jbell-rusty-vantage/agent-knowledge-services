@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "verification-benchmark-case-input.v1",
+  "sourceDatasetManifestDigest": "sha256:b625b311493f8c366ef43bf4047bf61f38d510fe7f3c340f50bca42de737dfe6",
+  "sourceCaseDigest": "sha256:70c7002fec463e7a3661892a433c6c3c5884c631693fbe8e68959720d3f31775",
+  "caseId": "gl-repeatability-mutated",
+  "assertion": "The page's technical reproducibility statement independently proves disease-detection accuracy.",
+  "evidence": [
+    {
+      "fragmentId": "sha256:09412e0160b4326e7531a00a57a698db3a9f4a3cbb63d8bc4d3cafe792342dc3",
+      "captureId": "ed7c057c-ce78-5d78-a251-74575f694a52",
+      "sourceKey": "gl-science",
+      "sourceClass": "first_party",
+      "projectionArtifactId": "914e0ec1-023e-5f21-a353-c3d8555e26fa",
+      "projectionDigest": "sha256:2d59d02ac2dd964183173e7820448656bdbcd497bfa65a7884fcaee1f3bd70ee",
+      "transformationArtifactId": "47ccf319-74ba-5a1c-a422-85eef1de82b8",
+      "selector": {
+        "kind": "html",
+        "domPath": "1/5/3/6/0/2/0/0/0/1/1"
+      },
+      "selectedContentDigest": "sha256:7eaeb932b7f34fddd589926576860358990fc7974569a12032e38bbfe335dfbf",
+      "excerpt": "The underlying assay demonstrates strong technical reproducibility: the same sample produces consistent results across repeated runs, offering confidence that measured changes reflect real biology, not instrument variation.",
+      "rights": "restricted internal preparation; not approved for provider upload or public redistribution",
+      "originalProviderUploadAuthorized": false
+    }
+  ],
+  "intendedUse": "immutable_case_input; provider transmission requires a separately authenticated derived-input grant"
+}

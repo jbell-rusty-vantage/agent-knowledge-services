@@ -1,0 +1,56 @@
+{
+  "schema": 1,
+  "unit": "5P",
+  "topic": "transport structure before the Unit 5 folds",
+  "branch": "refactor/ks-unit-5p-transport-structure",
+  "base": "d7f55e4",
+  "environment": {
+    "node": "v24.18.0",
+    "os": "Windows 11",
+    "gitAutocrlf": "true"
+  },
+  "entryGate": {
+    "registeredReplay": "28 passed, 1 failed: SEALED_CHECKPOINT_MISSING:records/25-gl-repeatability-mutated-haiku_judge-failure.json",
+    "decision": "continue under the exact pre-existing exception; no substitute receipt, skip or weakened assertion"
+  },
+  "commands": {
+    "install": "corepack pnpm install --frozen-lockfile --offline: passed, 22 workspace projects",
+    "typecheck": "corepack pnpm exec turbo run typecheck --concurrency=1 --force --output-logs=errors-only: 37/37 tasks, zero cached",
+    "build": "corepack pnpm exec turbo run build --concurrency=1 --force --output-logs=errors-only: 21/21 tasks, zero cached",
+    "tests": "corepack pnpm exec turbo run test --continue=always --concurrency=1 --force --output-logs=errors-only -- --maxWorkers=2: 37/38 tasks, zero cached; only the retained registered-replay receipt failure",
+    "verificationExamples": "corepack pnpm examples:verification: passed, 11 receipts, zero providers",
+    "acquisitionExamples": "corepack pnpm --filter @aiengineer/knowledge-acquisition examples: passed",
+    "skillConformance": "node skills/check.mjs: passed (12 skills, 42 executor operations, 58 executor MCP tools, 95 platform commands, 70 platform MCP tools, 6 Jev MCP tools, 9 Jev commands)",
+    "format": "corepack pnpm format:check: passed, 1371 files",
+    "lint": "corepack pnpm lint: passed, ratchet baseline 4384 from 4385",
+    "boundaries": "corepack pnpm boundaries: passed, 262 known violations from 266, zero added",
+    "repositoryDocs": "node .agent-docs/cli.mjs build --repo . and check --repo .: passed",
+    "workspaceDocs": "build --workspace . and check --workspace . both blocked by the pre-existing missing ai-engineer-meta/ai-engineer-architecture/specs/research-operations-workspace/DEPLOYMENT_AND_DELIVERY.md registration; ai-engineer-meta/docs/agents/workspace/DOCUMENTATION-PROGRAM.md already records this gap; no sibling registration changed",
+    "diffCheck": "git diff --check: passed"
+  },
+  "packageSmoke": {
+    "pack": "corepack pnpm --filter @aiengineer/knowledge-cli pack:sandbox: passed",
+    "tarball": "apps/cli/dist/sandbox/ks-0.0.0.tgz",
+    "sha256": "dee12435414c2102260563c30c1a9659a28111a0546d1392f7ea4a09a5a56650",
+    "runtimeDependencies": ["zod"],
+    "installedSmoke": "node docs/operations/package-cleanup/workspace/evidence/unit5c-ks-smoke.mjs: passed outside workspace; help and group help 0, remote plan 0, unauthorized/unreachable 2, offline chain eight receipts and zero providers with network guard, unconfigured capture CAPABILITY_NOT_ADMITTED"
+  },
+  "inventory": {
+    "before": "unit5p-before.json",
+    "after": "unit5p-after.json",
+    "comparison": "unit5p-comparison.json",
+    "missingTests": 0,
+    "changedOutcomes": 0,
+    "addedGoldenTests": 153,
+    "movedBenchmarkReadIdentities": 3,
+    "recordedMcpRenames": 70,
+    "apiRoutes": 105,
+    "mcpTools": 70,
+    "cliCommands": 95,
+    "operationRows": 156,
+    "cycles": 0,
+    "unrecordedExports": 0
+  },
+  "documentation": "Six existing evidence-research proposal Markdown files were added as explicitly proposed material after repairing local links and removing machine-specific references; their conclusions were not promoted into accepted architecture.",
+  "limits": "Database and storage integration suites requiring disposable credentials remained gated; the registered-replay test cannot pass until its original historical receipt is restored. Workspace-wide agent-docs build/check cannot pass until the pre-existing ai-engineer-meta source registration is repaired. No shared database was touched."
+}

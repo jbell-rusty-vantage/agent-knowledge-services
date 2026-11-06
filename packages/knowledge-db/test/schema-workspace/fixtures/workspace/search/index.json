@@ -1,0 +1,23 @@
+[
+  { "id": "rel:temporal.segment", "kind": "table", "qualified_name": "temporal.segment", "path": "relations/temporal/segment.md", "domain": "temporal-facts",
+    "aliases": ["fact", "temporal fact", "state segment", "interval fact"],
+    "tokens": ["temporal", "segment", "stream_id", "valid_during", "belief", "temporal_basis", "status", "amount", "currency", "unit", "k_from", "k_to"],
+    "summary": "A fact on a stream: world interval valid_during, knowledge interval [k_from,k_to)." },
+  { "id": "rel:corpus.entity", "kind": "table", "qualified_name": "corpus.entity", "path": "relations/corpus/entity.md", "domain": "identity",
+    "aliases": ["entity", "entities", "canonical entity", "identity row"],
+    "tokens": ["corpus", "entity", "kind", "display_name", "slug", "lifecycle", "merged_into_id", "created_by_receipt_id"],
+    "summary": "One row per canonical identity; typed attributes live in corpus.<kind>." },
+  { "id": "rel:temporal.knowledge_head", "kind": "table", "qualified_name": "temporal.knowledge_head", "path": "relations/temporal/knowledge_head.md", "domain": "temporal-facts",
+    "aliases": ["head", "knowledge clock"], "tokens": ["temporal", "knowledge_head", "knowledge_seq", "open_xid", "open_k"],
+    "summary": "One row per tenant; knowledge_seq is the tenant clock." },
+  { "id": "fn:temporal.assert_state", "kind": "function", "qualified_name": "temporal.assert_state", "path": "functions/temporal/assert_state.md", "domain": "temporal-facts",
+    "aliases": ["assert fact"], "tokens": ["temporal", "assert_state", "segment", "stream"], "summary": "Asserts a fact segment inside an open batch." },
+  { "id": "dom:temporal-facts", "kind": "domain", "path": "domains/temporal-facts.md", "domain": "temporal-facts",
+    "aliases": ["facts", "two-clock", "bitemporal", "history", "timeline", "knowledge head", "batch"], "tokens": ["temporal"], "summary": "Two-clock facts: world time and knowledge sequence." },
+  { "id": "dom:identity", "kind": "domain", "path": "domains/identity.md", "domain": "identity",
+    "aliases": ["entities", "identity", "canonical entity", "resolve"], "tokens": ["corpus"], "summary": "Canonical identities, aliases, identifiers, merges." },
+  { "id": "task:what-do-we-know-about-entity", "kind": "task", "path": "tasks/what-do-we-know-about-entity.md", "domain": "identity",
+    "aliases": ["what do we know", "entity overview"], "tokens": ["resolve", "card", "head"], "summary": "Resolve an entity, read its card, record the head." },
+  { "id": "q:entity.at", "kind": "query", "path": "queries/README.md#entityat", "domain": "temporal-facts",
+    "aliases": ["as of", "point in time", "historical facts", "replay"], "tokens": ["entity_at"], "summary": "Facts true at world time `at` as known at knowledge seq `k` for one entity." }
+]

@@ -1,0 +1,151 @@
+{
+  "repository": "ai-engineer-knowledge-services",
+  "head": "35286421b8d4e85be5e5b0b6812f7145cdc5414e",
+  "snapshot": "explicit current working-copy bytes; hashes authoritative, HEAD alone does not describe dirty files",
+  "files": [
+    {
+      "path": "knowledge/service-boundaries.md",
+      "sha256": "20f28f08dba1ea498a6eb30815e002c099af439eb62858aa1cce8b735caa34e3",
+      "normalizedSha256": "ada97e4021b181ac7735e4fe0247d9a0fa5e80be8ae9ffd236f8b3335053bfe0"
+    },
+    {
+      "path": "knowledge/schema-read-and-ingestion.md",
+      "sha256": "de6e1bc311eac4caea54fd9f8d85b3057b02f0906b29954a5531edae05edf4c8",
+      "normalizedSha256": "2d9dec37076f7a8ace5d11003837c66f3b40a9433b94033913d3e8bb6855d39f"
+    },
+    {
+      "path": "knowledge/preparation-and-publication.md",
+      "sha256": "29075107864d61f1c2077610c5fdc388d32820861ef0f27dc030c7605f1c619a",
+      "normalizedSha256": "a71ef7fb6d1c4f24db48141edf9b07f8e77fa5ac1f977dc3712c179e3c713b4b"
+    },
+    {
+      "path": "knowledge/retrieval-and-evidence.md",
+      "sha256": "4657aba790004ec9b30b1b2f15843cb95baeeea34dc2bfb30a558258da16b928",
+      "normalizedSha256": "3c81b85685e84afdc2625b2fd9cef86c236eb7d1b62092b14388a6ec67a52c34"
+    },
+    {
+      "path": "knowledge/verification-and-admission.md",
+      "sha256": "b85bbaf53a22a75a89d4b9833f326b83319c3a589a89789f16a3487a662f56e9",
+      "normalizedSha256": "c235bf4059be9f551fa30e1c6866a0e2165dfd589631a0af18662a952bca594f"
+    },
+    {
+      "path": "knowledge/durable-execution-and-recovery.md",
+      "sha256": "84a5482ae30e912e9eaec20bd971a1b98b93651b2d89e261e9a6cecbf34a8753",
+      "normalizedSha256": "509cd0f98cf45388814fbaad93766295ca6f726e9336ead832c37dfc26e5ad04"
+    }
+  ],
+  "docs": [
+    {
+      "path": "knowledge/service-boundaries.md",
+      "task": "Choose a transport and the owning module",
+      "status": "reference",
+      "modules": [
+        "application",
+        "api",
+        "mcp",
+        "cli",
+        "verification-executor",
+        "persistence"
+      ]
+    },
+    {
+      "path": "knowledge/schema-read-and-ingestion.md",
+      "task": "Read a bounded knowledge snapshot or apply evidence-backed changes",
+      "status": "reference",
+      "modules": [
+        "knowledge-db",
+        "verification-executor"
+      ]
+    },
+    {
+      "path": "knowledge/preparation-and-publication.md",
+      "task": "Prepare source material and publish a retrieval version",
+      "status": "reference",
+      "modules": [
+        "application",
+        "knowledge-db",
+        "persistence",
+        "retrieval",
+        "policy"
+      ]
+    },
+    {
+      "path": "knowledge/retrieval-and-evidence.md",
+      "task": "Retrieve supported results and replay citations",
+      "status": "reference",
+      "modules": [
+        "retrieval",
+        "contracts",
+        "api",
+        "persistence",
+        "policy"
+      ]
+    },
+    {
+      "path": "knowledge/verification-and-admission.md",
+      "task": "Verify claims and admit exact downstream effects",
+      "status": "reference",
+      "modules": [
+        "verification",
+        "knowledge-db",
+        "application",
+        "policy",
+        "verification-executor",
+        "persistence"
+      ]
+    },
+    {
+      "path": "knowledge/durable-execution-and-recovery.md",
+      "task": "Understand fenced worker execution and bounded recovery",
+      "status": "reference",
+      "modules": [
+        "worker",
+        "core",
+        "persistence",
+        "application",
+        "verification-executor"
+      ]
+    }
+  ],
+  "knowledge": {
+    "root": "knowledge",
+    "routes": [
+      {
+        "task": "Ownership and caller contracts",
+        "concepts": [
+          "service-boundaries"
+        ]
+      },
+      {
+        "task": "Schema, bounded reads, canonical writes",
+        "concepts": [
+          "schema-read-and-ingestion"
+        ]
+      },
+      {
+        "task": "Capture, prepare, publish",
+        "concepts": [
+          "preparation-and-publication"
+        ]
+      },
+      {
+        "task": "Search, evidence packets, citation replay",
+        "concepts": [
+          "retrieval-and-evidence"
+        ]
+      },
+      {
+        "task": "Claims, deterministic failures, admission",
+        "concepts": [
+          "verification-and-admission"
+        ]
+      },
+      {
+        "task": "Leases, retries, cancellation, repair",
+        "concepts": [
+          "durable-execution-and-recovery"
+        ]
+      }
+    ]
+  }
+}

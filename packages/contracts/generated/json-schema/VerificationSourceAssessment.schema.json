@@ -1,0 +1,155 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "assessmentId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255
+    },
+    "assertionId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255
+    },
+    "fragmentId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255
+    },
+    "sourceFamilyId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255
+    },
+    "sourceOrganizationId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255
+    },
+    "vector": {
+      "type": "object",
+      "properties": {
+        "authority": {
+          "type": "string",
+          "enum": [
+            "primary",
+            "authoritative_aggregator",
+            "independent",
+            "secondary",
+            "promotional",
+            "unknown"
+          ]
+        },
+        "independence": {
+          "type": "string",
+          "enum": [
+            "independent",
+            "same_organization",
+            "self_reported",
+            "interested_party",
+            "unknown"
+          ]
+        },
+        "directness": {
+          "type": "string",
+          "enum": [
+            "direct",
+            "derived",
+            "commentary",
+            "unknown"
+          ]
+        },
+        "freshness": {
+          "type": "string",
+          "enum": [
+            "current",
+            "historical",
+            "stale",
+            "unknown"
+          ]
+        },
+        "applicability": {
+          "type": "string",
+          "enum": [
+            "direct",
+            "partial",
+            "indirect",
+            "unknown"
+          ]
+        }
+      },
+      "required": [
+        "authority",
+        "independence",
+        "directness",
+        "freshness",
+        "applicability"
+      ],
+      "additionalProperties": false
+    },
+    "claimScope": {
+      "type": "string",
+      "enum": [
+        "source_summary",
+        "descriptive_fact",
+        "population_accuracy",
+        "clinical_utility",
+        "comparative_superiority",
+        "causal",
+        "product_validation",
+        "method_validation"
+      ]
+    },
+    "evidenceScope": {
+      "type": "string",
+      "enum": [
+        "single_sample_technical",
+        "population",
+        "antecedent_method",
+        "commercial_product",
+        "company_statement",
+        "unknown"
+      ]
+    },
+    "publicationRelation": {
+      "type": "string",
+      "enum": [
+        "validates_product",
+        "validates_antecedent_method",
+        "general_concept",
+        "not_publication",
+        "unknown"
+      ]
+    },
+    "jurisdictionKnown": {
+      "type": "boolean"
+    },
+    "licenseKnown": {
+      "type": "boolean"
+    },
+    "freshnessKnown": {
+      "type": "boolean"
+    },
+    "conflictSetId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255
+    }
+  },
+  "required": [
+    "assessmentId",
+    "assertionId",
+    "fragmentId",
+    "sourceFamilyId",
+    "sourceOrganizationId",
+    "vector",
+    "claimScope",
+    "evidenceScope",
+    "publicationRelation",
+    "jurisdictionKnown",
+    "licenseKnown",
+    "freshnessKnown"
+  ],
+  "additionalProperties": false
+}

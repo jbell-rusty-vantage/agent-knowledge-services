@@ -1,0 +1,33 @@
+{
+  "name": "@aiengineer/knowledge-db",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Loads schema workspaces, executes bounded knowledge reads, and applies deterministic ingestion intents.",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format esm && tsc --emitDeclarationOnly --rootDir src --outDir dist",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@aiengineer/database-contract": "file:../../vendor/aiengineer-database-contract-0.6.0.tgz",
+    "@aiengineer/knowledge-contracts": "workspace:*",
+    "@aiengineer/knowledge-core": "workspace:*",
+    "@aiengineer/knowledge-operation-protocol": "workspace:*",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@aiengineer/knowledge-persistence": "workspace:*",
+    "@aiengineer/knowledge-preparation": "workspace:*",
+    "@types/node": "catalog:",
+    "tsup": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}

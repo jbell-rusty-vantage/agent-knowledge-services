@@ -1,0 +1,48 @@
+{
+  "storeClass": "internal_exploratory",
+  "corpusId": "agentic-knowledge-reviewed-heldout",
+  "reviewRounds": [
+    {
+      "round": "v1",
+      "decision": "reject",
+      "reviewerIdentity": "codex-independent-reviewer:blind-corpus-review:2026-09-03:v1",
+      "blockingFindings": [
+        "Circular query/qrel-derived vector construction created label leakage.",
+        "Templated pseudo-replicates did not provide credible held-out coverage.",
+        "Graph, freshness, contradiction, negative, and filter claims were not substantively demonstrated."
+      ]
+    },
+    {
+      "round": "v2",
+      "decision": "reject",
+      "reviewerIdentity": "codex-independent-reviewer:blind-corpus-review:2026-09-03:v2",
+      "blockingFindings": [
+        "Cross-partition wording and intents remained insufficiently distinct.",
+        "Semantic fields, graph paths, filter decoys, and expected evidence fields were not all enforced by scoring.",
+        "The corpus author could still self-author acceptance."
+      ]
+    },
+    {
+      "round": "v3",
+      "decision": "reject",
+      "reviewerIdentity": "codex-independent-reviewer:blind-corpus-review:2026-09-03:v3",
+      "blockingFindings": [
+        "A targeted retrieval test was red.",
+        "Regression coverage was missing for authorization, graph-locator binding, evaluation modes, and evidence expectations.",
+        "Multi-hop result-type and locator endpoint requirements were incomplete."
+      ]
+    },
+    {
+      "round": "v4",
+      "decision": "accept",
+      "reviewerIdentity": "codex-independent-reviewer:blind-corpus-review:2026-09-03:v4",
+      "candidateManifestDigest": "sha256:cde7e540e00f05e4bebf9f163389c732bd2efc3f926d2693c7a66ae26d9d46fb",
+      "reviewArtifactDigest": "sha256:1988208b505406a9002c7369ff06b52399cebb6b99f8db3beb39ea1240adf469",
+      "acceptedArtifact": "broad-corpus-review-v4.json"
+    }
+  ],
+  "limitations": [
+    "The independent reviewer is a separate agent, not a human adjudicator.",
+    "Only three real source families were available; missing domain coverage uses explicitly labeled synthetic fixtures."
+  ]
+}

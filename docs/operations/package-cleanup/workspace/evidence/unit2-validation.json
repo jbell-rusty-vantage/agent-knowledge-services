@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "unit": 2,
+  "branch": "refactor/ks-unit-2-host-composition",
+  "baseCommit": "0d73dac",
+  "implementationCommits": ["a6b6790", "e036bf0"],
+  "node": "v24.18.0",
+  "pnpm": "10.34.5",
+  "fixtureReassessment": {
+    "test": "packages/application/src/verification/benchmark/verification-benchmark-registered-replay.test.ts",
+    "entryRun": "1 failed, 28 passed; SEALED_CHECKPOINT_MISSING:records/25-gl-repeatability-mutated-haiku_judge-failure.json",
+    "workspaceSearch": "no file named 25-gl-repeatability-mutated-haiku_judge-failure* outside node_modules/.git in the aiengineer workspace",
+    "decision": "continue Unit 2 (composition only, no behavior intended) under the same exact exception; no new failure accepted; assertion, skip predicate and receipts unchanged"
+  },
+  "checks": {
+    "frozenInstall": "passed (22 workspace projects)",
+    "typecheck": "passed 36/36",
+    "build": "passed 21/21 (forced)",
+    "testGraphForced": {
+      "command": "corepack pnpm exec turbo run test --force --continue=always --concurrency=1 -- --maxWorkers=2",
+      "tasks": "36/37 successful, 0 cached",
+      "passed": 2752,
+      "skipped": 126,
+      "failed": 1,
+      "failures": ["application: registered replay missing historical judge receipt (retained exception)"],
+      "note": "First forced run also failed acquisition#test (8 stale compiled dist/*.test.js files dated 12:49, the Unit 1 contamination) and host#build (typecheck of a test file edited mid-run). Stale files preserved under %TEMP%/ks-unit2-stale-acquisition-dist; rerun above is the acceptance run."
+    },
+    "inventoryCompare": "unit2-before.json vs unit2-after.json: 0 missing tests, 0 changed outcomes, 23 added tests, all 8 config exports present in host, host runtime moved out of persistence, no other persistence export removed, 0 cycles, host imports no app, config package removed",
+    "examplesVerification": "passed; offline executor example 11 receipts, 0 provider calls, semantic not run, policy review",
+    "skillConformance": "passed; 12 skills, 6 Jev MCP tools, 9 Jev commands",
+    "sandboxPack": "passed; sha256 71fe20dec551d5dcfa3a83218b142bf7f0c2fa51c56ba588fc407a64b4aadd03",
+    "installedSandboxSmoke": "fresh npm project outside workspace: knowledge-verify and knowledge help exit 0 with content; packaged offline example exit 0, 11 receipts, 0 providers",
+    "jevBuiltWorker": "packages/jev dist/worker.js present beside dist/service.js; copy of service.test.ts run against dist: 8/9 passed using the built child worker (distinct PIDs, kill/restart); the 9th forks a script importing ./service.ts, absent in dist (harness artifact); the source suite passes 9/9 in the graph",
+    "remoteCliHostExclusion": "apps/cli has no host or persistence dependency; running the built CLI with an empty environment exits 2 UNKNOWN_COMMAND without configuration",
+    "proofScripts": "affected registered proof tsconfigs (benchmark reads, comparison reads, eve live report) typecheck; ad-hoc typecheck of all changed proofs shows only pre-existing unrelated errors",
+    "agentDocs": "build and check clean (331 selected inputs)",
+    "diffCheck": "clean"
+  },
+  "notRun": ["database integration tests (skipped without local Supabase)", "live proofs", "provider calls", "deployment"]
+}

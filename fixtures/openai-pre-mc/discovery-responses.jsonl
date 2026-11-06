@@ -1,0 +1,1 @@
+{"_status":"incomplete_scaffold","_kind":"scaffold_header","notAdmissionGold":true,"schemaNote":"Required later: recorded provider requests/results, duplicates, irrelevant candidates, failures, redirects, provider trust and raw response handles. No live discovery was run. Do not invent provider recordings."}

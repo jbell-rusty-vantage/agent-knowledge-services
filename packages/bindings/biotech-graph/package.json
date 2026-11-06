@@ -1,0 +1,39 @@
+{
+  "name": "@aiengineer/knowledge-binding-biotech-graph",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "K06: the Biotech graph binding. Operational K02 records live in the knowledge_verification component of the Biotech application PostgreSQL; exact-use admission enqueues one dispatch per effect in the same transaction; the BKS native executor applies it (graph effect + marker in one Neo4j transaction) and KS verifies the acknowledgment and serves official reads over BKS HTTP. No Neo4j driver.",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./testing": {
+      "types": "./dist/testing.d.ts",
+      "import": "./dist/testing.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup src/index.ts src/testing.ts --format esm && tsc --emitDeclarationOnly --rootDir src --outDir dist",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@aiengineer/knowledge-application": "workspace:*",
+    "@aiengineer/knowledge-binding-aiengineer-postgres": "workspace:*",
+    "@aiengineer/knowledge-db": "workspace:*",
+    "@aiengineer/knowledge-host": "workspace:*",
+    "@aiengineer/knowledge-operation-protocol": "workspace:*",
+    "@aiengineer/knowledge-research-core": "workspace:*",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@aiengineer/knowledge-db-contract": "workspace:*",
+    "@types/pg": "8.15.5",
+    "pg": "8.16.3",
+    "tsup": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}

@@ -1,0 +1,4 @@
+update.lock
+audit-state.json
+audit-report.json
+*.tmp

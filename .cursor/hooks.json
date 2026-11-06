@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "hooks": {
+    "beforeSubmitPrompt": [
+      {
+        "command": "node tools/maintenance/cursor-hooks.mjs --event beforeSubmitPrompt",
+        "timeout": 30
+      }
+    ],
+    "afterFileEdit": [
+      { "command": "node tools/maintenance/cursor-hooks.mjs", "timeout": 10 }
+    ],
+    "afterShellExecution": [
+      { "command": "node tools/maintenance/cursor-hooks.mjs", "timeout": 10 }
+    ],
+    "stop": [
+      {
+        "command": "node tools/maintenance/cursor-hooks.mjs",
+        "timeout": 30,
+        "loop_limit": 1
+      }
+    ]
+  }
+}

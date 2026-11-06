@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "verification-benchmark-engineering-expectation.v1",
+  "sourceDatasetManifestDigest": "sha256:b625b311493f8c366ef43bf4047bf61f38d510fe7f3c340f50bca42de737dfe6",
+  "sourceCaseDigest": "sha256:df322a702a6242623b38290bf174fd54eccfb1ada6dfc536d7efbfc591f7398b",
+  "caseId": "tru-corrupted-locator",
+  "provenance": "agent_reviewed_engineering_expectation",
+  "humanAnnotationCount": 0,
+  "expertAdjudicated": false,
+  "humanGoldScoringEligible": false,
+  "legacyGoldArtifactColumnSemantics": "engineering expectation artifact only; does not establish human-gold eligibility",
+  "expectation": {
+    "label": "locator_error",
+    "labelStatus": "engineering_expectation",
+    "expectedPolicy": "abstain",
+    "expectedLocatorValid": false,
+    "support": "not_applicable",
+    "authority": "not_applicable",
+    "worldCorrectness": "not_applicable",
+    "rationale": "The modified DOM path must fail closed before semantic evaluation."
+  }
+}

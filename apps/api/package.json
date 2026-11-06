@@ -1,0 +1,32 @@
+{
+  "name": "@aiengineer/knowledge-api",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsup src/index.ts --format esm --sourcemap --external @aiengineer/knowledge-testkit",
+    "dev": "tsx watch src/index.ts",
+    "start": "node dist/index.js",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@aiengineer/knowledge-application": "workspace:*",
+    "@aiengineer/knowledge-contracts": "workspace:*",
+    "@aiengineer/knowledge-core": "workspace:*",
+    "@aiengineer/knowledge-host": "workspace:*",
+    "@aiengineer/knowledge-persistence": "workspace:*",
+    "@aiengineer/knowledge-retrieval": "workspace:*",
+    "fastify": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@aiengineer/knowledge-client": "workspace:*",
+    "@aiengineer/knowledge-db": "workspace:*",
+    "@aiengineer/knowledge-testkit": "workspace:*",
+    "tsup": "catalog:",
+    "tsx": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}

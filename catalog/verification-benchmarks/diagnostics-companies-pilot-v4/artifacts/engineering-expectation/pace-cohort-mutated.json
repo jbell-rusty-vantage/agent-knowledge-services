@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "verification-benchmark-engineering-expectation.v1",
+  "sourceDatasetManifestDigest": "sha256:b625b311493f8c366ef43bf4047bf61f38d510fe7f3c340f50bca42de737dfe6",
+  "sourceCaseDigest": "sha256:8c427365bd7d5d6a998f88eeafa736abdcb67adc35e05ef9e1014c334db8a941",
+  "caseId": "pace-cohort-mutated",
+  "provenance": "agent_reviewed_engineering_expectation",
+  "humanAnnotationCount": 0,
+  "expertAdjudicated": false,
+  "humanGoldScoringEligible": false,
+  "legacyGoldArtifactColumnSemantics": "engineering expectation artifact only; does not establish human-gold eligibility",
+  "expectation": {
+    "label": "contradicted",
+    "labelStatus": "engineering_expectation",
+    "expectedPolicy": "fail",
+    "expectedLocatorValid": true,
+    "support": "contradicted",
+    "authority": "insufficient",
+    "worldCorrectness": "unknown",
+    "rationale": "Engineering expectation for study_design_swap; human annotation and expert adjudication remain pending."
+  }
+}

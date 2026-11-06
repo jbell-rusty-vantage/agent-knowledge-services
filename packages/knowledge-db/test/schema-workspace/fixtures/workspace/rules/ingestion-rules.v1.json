@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "ingestion-rules.v1",
+  "rules": [
+    { "id": "price.scope_key_is_unit", "basis": "curated", "action": "rewrite",
+      "when": { "kind": "fact.assert_state", "streamKind": ["model_offering_price", "compute_offering_price"], "missing": ["scopeKey"] },
+      "set": { "scopeKey": "$unit" },
+      "note": "Each price series is its own stream; scopeKey carries the unit so two units on one subject never collide." },
+    { "id": "price.currency_iso4217", "basis": "enforced", "action": "note",
+      "when": { "kind": "fact.assert_state", "streamKind": ["model_offering_price", "compute_offering_price", "valuation"] },
+      "note": "commit_batch requires currency ~ '^[A-Z]{3}$'." },
+    { "id": "organization.headquarters_has_no_stream", "basis": "curated", "action": "stage",
+      "when": { "kind": "fact.assert_state", "streamKind": ["organization_headquarters"] },
+      "note": "No stream kind for headquarters today; stage the candidate for review." }
+  ]
+}

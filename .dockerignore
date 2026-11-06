@@ -1,0 +1,14 @@
+.git
+.turbo
+.vercel
+**/.turbo
+**/dist
+**/node_modules
+coverage
+catalog
+agent_workspaces
+docs
+*.log
+.env
+.env.*
+!.env.example

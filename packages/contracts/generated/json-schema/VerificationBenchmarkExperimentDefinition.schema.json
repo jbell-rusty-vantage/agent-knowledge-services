@@ -1,0 +1,159 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "verification-benchmark-experiment.v1"
+    },
+    "verificationContractVersion": {
+      "type": "string",
+      "const": "verification.v1"
+    },
+    "experimentId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255
+    },
+    "datasetManifestDigest": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "runnerVersion": {
+      "type": "string",
+      "const": "verification-benchmark-runner.v1"
+    },
+    "randomSeed": {
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "repetitions": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 10
+    },
+    "arms": {
+      "minItems": 2,
+      "maxItems": 16,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "armId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "control": {
+            "type": "boolean"
+          },
+          "strategy": {
+            "type": "string",
+            "enum": [
+              "baseline",
+              "interfaze",
+              "cascade",
+              "consensus_abstention"
+            ]
+          },
+          "extractorProfile": {
+            "type": "string",
+            "minLength": 1
+          },
+          "parserProfile": {
+            "type": "string",
+            "minLength": 1
+          },
+          "retrieverProfile": {
+            "type": "string",
+            "minLength": 1
+          },
+          "judgeProfile": {
+            "type": "string",
+            "minLength": 1
+          },
+          "policyVersion": {
+            "type": "string",
+            "minLength": 1
+          },
+          "configurationDigest": {
+            "type": "string",
+            "pattern": "^sha256:[a-f0-9]{64}$"
+          },
+          "cachePolicy": {
+            "type": "string",
+            "enum": [
+              "disabled",
+              "exact_request_only"
+            ]
+          },
+          "replicas": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 10
+          }
+        },
+        "required": [
+          "armId",
+          "name",
+          "control",
+          "strategy",
+          "extractorProfile",
+          "parserProfile",
+          "retrieverProfile",
+          "judgeProfile",
+          "policyVersion",
+          "configurationDigest",
+          "cachePolicy",
+          "replicas"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "networkPolicy": {
+      "type": "string",
+      "const": "offline"
+    },
+    "recordedObservationArtifacts": {
+      "maxItems": 512,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "artifactId": {
+            "type": "string",
+            "format": "uuid",
+            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+          },
+          "digest": {
+            "type": "string",
+            "pattern": "^sha256:[a-f0-9]{64}$"
+          }
+        },
+        "required": [
+          "artifactId",
+          "digest"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "verificationContractVersion",
+    "experimentId",
+    "datasetManifestDigest",
+    "runnerVersion",
+    "randomSeed",
+    "repetitions",
+    "arms",
+    "networkPolicy",
+    "recordedObservationArtifacts"
+  ],
+  "additionalProperties": false
+}

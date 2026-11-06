@@ -1,0 +1,249 @@
+{
+  "labelProvenance": "Engineer-authored task expectations fixed before ranking changes; no independent human adjudication claimed. Screening and heldout are reported separately.",
+  "cases": [
+    {
+      "id": "service-boundaries-1",
+      "query": "Where should an HTTP handler call business logic?",
+      "expected": [
+        "service-boundaries"
+      ],
+      "critical": true,
+      "partition": "screening"
+    },
+    {
+      "id": "service-boundaries-2",
+      "query": "Can another repository import internal algorithms?",
+      "expected": [
+        "service-boundaries"
+      ],
+      "critical": false,
+      "partition": "screening"
+    },
+    {
+      "id": "service-boundaries-3",
+      "query": "Which transport should an out-of-process caller use?",
+      "expected": [
+        "service-boundaries"
+      ],
+      "critical": false,
+      "partition": "screening"
+    },
+    {
+      "id": "service-boundaries-4",
+      "query": "Who owns shared database migrations?",
+      "expected": [
+        "service-boundaries"
+      ],
+      "critical": false,
+      "partition": "heldout"
+    },
+    {
+      "id": "schema-read-and-ingestion-1",
+      "query": "How do I execute a bounded SQL read?",
+      "expected": [
+        "schema-read-and-ingestion"
+      ],
+      "critical": true,
+      "partition": "screening"
+    },
+    {
+      "id": "schema-read-and-ingestion-2",
+      "query": "Where are ingestion receipts recorded?",
+      "expected": [
+        "schema-read-and-ingestion"
+      ],
+      "critical": false,
+      "partition": "screening"
+    },
+    {
+      "id": "schema-read-and-ingestion-3",
+      "query": "What validates schema workspace freshness?",
+      "expected": [
+        "schema-read-and-ingestion"
+      ],
+      "critical": false,
+      "partition": "screening"
+    },
+    {
+      "id": "schema-read-and-ingestion-4",
+      "query": "Does a knowledge-read retrieval operation execute?",
+      "expected": [
+        "schema-read-and-ingestion"
+      ],
+      "critical": false,
+      "partition": "heldout"
+    },
+    {
+      "id": "preparation-and-publication-1",
+      "query": "How are captures converted into chunks?",
+      "expected": [
+        "preparation-and-publication"
+      ],
+      "critical": true,
+      "partition": "screening"
+    },
+    {
+      "id": "preparation-and-publication-2",
+      "query": "What gates publication of a vector version?",
+      "expected": [
+        "preparation-and-publication"
+      ],
+      "critical": false,
+      "partition": "screening"
+    },
+    {
+      "id": "preparation-and-publication-3",
+      "query": "How do admitted chunk profiles preserve source spans?",
+      "expected": [
+        "preparation-and-publication"
+      ],
+      "critical": false,
+      "partition": "screening"
+    },
+    {
+      "id": "preparation-and-publication-4",
+      "query": "When is managed processing allowed for conversion?",
+      "expected": [
+        "preparation-and-publication"
+      ],
+      "critical": false,
+      "partition": "heldout"
+    },
+    {
+      "id": "retrieval-and-evidence-1",
+      "query": "How does citation replay detect changed bytes?",
+      "expected": [
+        "retrieval-and-evidence"
+      ],
+      "critical": true,
+      "partition": "screening"
+    },
+    {
+      "id": "retrieval-and-evidence-2",
+      "query": "Which temporal clocks constrain retrieval?",
+      "expected": [
+        "retrieval-and-evidence"
+      ],
+      "critical": false,
+      "partition": "screening"
+    },
+    {
+      "id": "retrieval-and-evidence-3",
+      "query": "What happens to unsupported retrieval capabilities?",
+      "expected": [
+        "retrieval-and-evidence"
+      ],
+      "critical": false,
+      "partition": "screening"
+    },
+    {
+      "id": "retrieval-and-evidence-4",
+      "query": "Why does a packet recommend abstention?",
+      "expected": [
+        "retrieval-and-evidence"
+      ],
+      "critical": false,
+      "partition": "heldout"
+    },
+    {
+      "id": "verification-and-admission-1",
+      "query": "Can semantic judgment reverse a deterministic failure?",
+      "expected": [
+        "verification-and-admission"
+      ],
+      "critical": true,
+      "partition": "screening"
+    },
+    {
+      "id": "verification-and-admission-2",
+      "query": "What gates semantic judging?",
+      "expected": [
+        "verification-and-admission"
+      ],
+      "critical": false,
+      "partition": "screening"
+    },
+    {
+      "id": "verification-and-admission-3",
+      "query": "How are claims admitted by verification policy?",
+      "expected": [
+        "verification-and-admission"
+      ],
+      "critical": false,
+      "partition": "screening"
+    },
+    {
+      "id": "verification-and-admission-4",
+      "query": "How is an audit bundle sealed and replayed?",
+      "expected": [
+        "verification-and-admission"
+      ],
+      "critical": false,
+      "partition": "heldout"
+    },
+    {
+      "id": "durable-execution-and-recovery-1",
+      "query": "How do I retry after a worker lease expires?",
+      "expected": [
+        "durable-execution-and-recovery"
+      ],
+      "critical": true,
+      "partition": "screening"
+    },
+    {
+      "id": "durable-execution-and-recovery-2",
+      "query": "What happens when provider repair exceeds its reservation?",
+      "expected": [
+        "durable-execution-and-recovery"
+      ],
+      "critical": false,
+      "partition": "screening"
+    },
+    {
+      "id": "durable-execution-and-recovery-3",
+      "query": "How does recovery preserve original membership?",
+      "expected": [
+        "durable-execution-and-recovery"
+      ],
+      "critical": false,
+      "partition": "screening"
+    },
+    {
+      "id": "durable-execution-and-recovery-4",
+      "query": "What prevents stale lease tokens from completing work?",
+      "expected": [
+        "durable-execution-and-recovery"
+      ],
+      "critical": false,
+      "partition": "heldout"
+    },
+    {
+      "id": "negative-24",
+      "query": "quantum banana telescope",
+      "expected": [],
+      "critical": false,
+      "partition": "heldout"
+    },
+    {
+      "id": "negative-25",
+      "query": "configure Kubernetes autoscaling",
+      "expected": [],
+      "critical": false,
+      "partition": "heldout"
+    },
+    {
+      "id": "negative-26",
+      "query": "style React checkout buttons",
+      "expected": [],
+      "critical": false,
+      "partition": "heldout"
+    },
+    {
+      "id": "negative-27",
+      "query": "zzzxxyy",
+      "expected": [],
+      "critical": false,
+      "partition": "heldout"
+    }
+  ]
+}

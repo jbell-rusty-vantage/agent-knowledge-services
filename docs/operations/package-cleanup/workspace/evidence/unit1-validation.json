@@ -1,0 +1,126 @@
+{
+  "schema": "knowledge-services-package-merge-validation.v1",
+  "baselineCommit": "99aeaa6",
+  "implementationCommit": "2ba71110c86dbba0ec94eed7b27b2ce1ee1c7328",
+  "branch": "refactor/ks-unit-1-package-merges",
+  "environment": {
+    "platform": "Windows PowerShell",
+    "node": "v24.18.0",
+    "pnpm": "10.34.5",
+    "workspaceProjects": 22,
+    "databaseOrPaidProvider": "No shared database or paid provider invoked; no .env file loaded. Database integration skips are not pass evidence."
+  },
+  "logDirectory": "C:/Users/Pinda/AppData/Local/Temp/ks-unit1-final-2ba7111",
+  "commands": [
+    {
+      "command": "corepack pnpm install --frozen-lockfile",
+      "outcome": "passed; lockfile up to date, 22 workspace projects",
+      "log": "frozen-install.log"
+    },
+    {
+      "command": "corepack pnpm verify",
+      "outcome": "diagnostic failure: Turbo restored a stale acquisition build containing eight old emitted dist test files, whose imports named removed packages",
+      "log": "verify.log"
+    },
+    {
+      "command": "corepack pnpm exec turbo run test --continue=always --concurrency=1 -- --maxWorkers=2",
+      "outcome": "diagnostic failure: 35/37 tasks; acquisition stale dist test loads and the known application sealed-checkpoint failure",
+      "log": "full-test-graph.log"
+    },
+    {
+      "command": "corepack pnpm exec turbo run test --force --continue=always --concurrency=1 -- --maxWorkers=2",
+      "outcome": "36/37 tasks passed, zero cached; sole failure is the known missing sealed checkpoint",
+      "log": "full-test-graph-forced.log",
+      "testTasks": 20,
+      "tests": { "passed": 2729, "skipped": 126, "failed": 1 }
+    },
+    {
+      "command": "corepack pnpm verify",
+      "outcome": "typecheck 36/36 passed; normal cached test stage 29/30 passed, with only the known missing sealed checkpoint; verify stopped before build/examples",
+      "log": "verify-rerun.log"
+    },
+    {
+      "command": "corepack pnpm build",
+      "outcome": "21/21 build tasks passed",
+      "log": "build.log"
+    },
+    {
+      "command": "corepack pnpm examples:verification",
+      "outcome": "passed; offline executor example created 11 receipts with zero provider calls",
+      "log": "examples-verification.log"
+    },
+    {
+      "command": "corepack pnpm --filter @aiengineer/knowledge-preparation examples",
+      "outcome": "passed",
+      "log": "examples-preparation.log"
+    },
+    {
+      "command": "corepack pnpm --filter @aiengineer/knowledge-retrieval examples",
+      "outcome": "passed",
+      "log": "examples-retrieval.log"
+    },
+    {
+      "command": "node skills/check.mjs",
+      "outcome": "passed; 12 skills, 6 Jev MCP tools, 9 Jev commands",
+      "log": "skills-check.log"
+    },
+    {
+      "command": "corepack pnpm --filter @aiengineer/knowledge-verification-executor pack:sandbox",
+      "outcome": "passed",
+      "log": "pack-sandbox.log"
+    },
+    {
+      "command": "npm.cmd install --no-audit --no-fund --ignore-scripts <tarball>",
+      "outcome": "passed in a fresh directory outside the workspace; 109 packages installed",
+      "log": "installed-npm-install.log"
+    },
+    {
+      "command": "<installed>/node_modules/.bin/knowledge-verify.cmd --help; <installed>/node_modules/.bin/knowledge.cmd --help",
+      "outcome": "both passed with nonempty help output",
+      "log": "installed-help.log"
+    },
+    {
+      "command": "node <installed>/node_modules/knowledge-verify/skills/knowledge-verify/examples/offline.mjs <installed>/node_modules/knowledge-verify/dist/index.js",
+      "outcome": "passed; 11 receipts, zero provider calls, mechanical and extraction checks passed",
+      "log": "installed-offline.log"
+    },
+    {
+      "command": "node docs/operations/package-cleanup/workspace/evidence/inventory.mjs collect after .../unit1-after.json; node .../inventory.mjs compare .../unit1-before.json .../unit1-after.json",
+      "outcome": "passed; all four groups have no missing or added compiler-resolved source or built runtime exports, changed kinds, or test files; graph has no cycles or collisions",
+      "log": "final-inventory.log"
+    },
+    {
+      "command": "node docs/operations/package-cleanup/workspace/evidence/test-inventory.mjs collect after .../unit1-after-tests.json; node .../test-inventory.mjs compare .../unit1-before-tests.json .../unit1-after-tests.json",
+      "outcome": "passed; 684 identities unchanged: 652 passed, 32 skipped, zero failed across 78 tracked files",
+      "log": "final-test-inventory.log"
+    },
+    {
+      "command": "node docs/operations/package-cleanup/workspace/evidence/type-consumer-probe.mjs <group> after (knowledge-db, retrieval, preparation, core)",
+      "outcome": "all four compiler probes passed; 211, 81, 78, and 52 public symbols respectively",
+      "log": "final-consumer-probes.log"
+    }
+  ],
+  "knownFailure": {
+    "test": "packages/application/src/verification/benchmark/verification-benchmark-registered-replay.test.ts > registered benchmark replay > replays all seven actual captured schema failures exactly once in memory",
+    "error": "SEALED_CHECKPOINT_MISSING:records/25-gl-repeatability-mutated-haiku_judge-failure.json",
+    "status": "pre-existing missing sealed fixture; preserved without changing test or receipt"
+  },
+  "diagnosticOutputContamination": {
+    "cause": "A Turbo cache hit for acquisition build hash 179a7b9651f6ecf2 restored old ignored dist test JavaScript after a direct clean build. The exact old output was moved to temp backup, then --force rebuilt that hash from clean source. A subsequent normal verify ran all 12 acquisition source test files successfully.",
+    "backups": [
+      "stale-dist/acquisition",
+      "stale-dist/acquisition-restored-by-turbo"
+    ],
+    "historicalFullGraphPassDifference": "The historical 2,771 passes included 42 duplicate acquisition tests in eight generated dist files (85 acquisition passes/20 files). The clean final graph has 2,729 passes, including all 43 tracked acquisition source tests/12 files. All 684 merged-package test identities and outcomes match their fresh Unit 1 baseline."
+  },
+  "sandboxTarball": {
+    "path": "apps/verification-executor/dist/sandbox/knowledge-verify-0.1.0.tgz",
+    "sha256": "862d37cc6fc8dfa8da13bd96b5355a7de6a835b4b6f4f69c8423b1e8ccf66147",
+    "installedDirectoryRecord": "installed-directory.txt"
+  },
+  "limits": [
+    "Postgres-backed integration tests remained skipped because this validation did not connect to a database.",
+    "The four-group runtime export comparison uses built dist byte digests and exported names; the inventory labels dist output present-unverified-build because untracked output alone does not prove source provenance. Successful build commands and compiler probes are recorded separately.",
+    "Temporary diagnostic logs and installed package are outside the repository; the checked-in captures retain the identity comparisons."
+  ]
+}

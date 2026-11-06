@@ -1,0 +1,10 @@
+{
+  "_status": "incomplete_scaffold",
+  "notAdmissionGold": true,
+  "schemaNote": "Fixture §4 required delta is authored only after a real seed exists: 12/12 missing facts/events applied; 8/8 stale slots corrected in place with history preserved; 8/8 controls unchanged; identities reused; ambiguities held. Do not invent expected row IDs, values, or query results.",
+  "requiredMissingFacts": [],
+  "staleSlotCorrections": [],
+  "unchangedControls": [],
+  "forbiddenChanges": [],
+  "historicalQueries": []
+}

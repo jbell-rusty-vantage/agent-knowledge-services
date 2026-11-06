@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "verificationContractVersion": {
+      "type": "string",
+      "const": "verification.v1"
+    },
+    "source": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "mode": {
+              "type": "string",
+              "const": "acquire"
+            },
+            "sourceKind": {
+              "type": "string",
+              "enum": [
+                "web_page",
+                "api",
+                "repository",
+                "pdf",
+                "image",
+                "table",
+                "transcript",
+                "audio",
+                "video",
+                "dataset",
+                "registry",
+                "upload",
+                "other"
+              ]
+            },
+            "sourceUri": {
+              "type": "string",
+              "maxLength": 2048
+            }
+          },
+          "required": [
+            "mode",
+            "sourceKind",
+            "sourceUri"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "mode": {
+              "type": "string",
+              "const": "register"
+            },
+            "sourceKind": {
+              "type": "string",
+              "enum": [
+                "web_page",
+                "api",
+                "repository",
+                "pdf",
+                "image",
+                "table",
+                "transcript",
+                "audio",
+                "video",
+                "dataset",
+                "registry",
+                "upload",
+                "other"
+              ]
+            },
+            "sourceId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 255
+            },
+            "contentArtifact": {
+              "type": "object",
+              "properties": {
+                "artifactId": {
+                  "type": "string",
+                  "format": "uuid",
+                  "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                },
+                "digest": {
+                  "type": "string",
+                  "pattern": "^sha256:[a-f0-9]{64}$"
+                }
+              },
+              "required": [
+                "artifactId",
+                "digest"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "mode",
+            "sourceKind",
+            "sourceId",
+            "contentArtifact"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    },
+    "requestedProjectionKinds": {
+      "minItems": 1,
+      "maxItems": 4,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "native_text",
+          "canonical_json",
+          "html_dom",
+          "pdf_text",
+          "geometry",
+          "ocr_geometry",
+          "table_grid",
+          "transcript"
+        ]
+      }
+    }
+  },
+  "required": [
+    "verificationContractVersion",
+    "source",
+    "requestedProjectionKinds"
+  ],
+  "additionalProperties": false
+}

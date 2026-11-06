@@ -1,0 +1,82 @@
+{
+  "schemaVersion": "sv09-labels.v1",
+  "task": "sv09-evidence-orion7",
+  "labelSource": "synthetic: authored with the fixture by SV-09 helper C before any model call; not independent human labels",
+  "obligations": {
+    "finding.parameters": { "expected": "supported", "sources": ["S1"], "planted": "table cell", "keyFacts": ["7.2 billion"] },
+    "finding.license": { "expected": "supported", "sources": ["S1"], "planted": "table cell", "keyFacts": ["Apache-2.0"] },
+    "finding.function_calling": {
+      "expected": "must_hold",
+      "sources": ["S1", "S2"],
+      "planted": "contradiction: S1 says Orion-7 supports function calling, S2 says it does not",
+      "keyFacts": ["function calling"]
+    },
+    "finding.training_data": {
+      "expected": "supported",
+      "sources": ["S3"],
+      "planted": "negation: the proposition is negative",
+      "negation": true,
+      "keyFacts": ["not trained on proprietary customer data"]
+    },
+    "finding.throughput": {
+      "expected": "supported",
+      "sources": ["S4"],
+      "planted": "figure caption",
+      "keyFacts": ["410 tokens per second"]
+    },
+    "limitation.evidence": { "expected": "optional", "sources": [], "planted": null, "keyFacts": [] }
+  },
+  "distractors": ["S5 (context window history, not asked)", "S7 (hosting price and region, not asked)"],
+  "expectedReportDecision": ["held", "rejected"],
+  "census": {
+    "body": "recorded/evidence_report.reference-draft.json",
+    "occurrences": [
+      {
+        "id": "L1",
+        "path": "findings/heading",
+        "quote": "Orion-7 is a 7.2-billion-parameter model released under Apache-2.0",
+        "assertionKey": null,
+        "note": "planted uncited factual heading (headingExcludedReason null, no claim inline)"
+      },
+      { "id": "L2", "path": "findings/p1", "quote": "Orion-7 has 7.2 billion parameters.", "assertionKey": "parameters", "note": null },
+      { "id": "L3", "path": "findings/p2", "quote": "Orion-7 is released under the Apache-2.0 license.", "assertionKey": "license", "note": null },
+      {
+        "id": "L4",
+        "path": "findings/p3",
+        "quote": "Orion-7 supports function calling through a JSON tool schema.",
+        "assertionKey": "function_calling",
+        "note": null
+      },
+      {
+        "id": "L5",
+        "path": "findings/p4",
+        "quote": "Orion-7 was not trained on proprietary customer data.",
+        "assertionKey": "training_data",
+        "note": "negated occurrence"
+      },
+      {
+        "id": "L6",
+        "path": "findings/p5",
+        "quote": "Orion-7 serves 410 tokens per second on a single A100 80 GB GPU at batch size 1.",
+        "assertionKey": "throughput",
+        "note": null
+      }
+    ],
+    "expectedUnitExplanations": [],
+    "expectedHolds": ["unexplained_auditor_only", "uncovered_factual_unit"]
+  },
+  "t0Expected": {
+    "reportDisposition": "rejected",
+    "censusHolds": ["unexplained_auditor_only", "uncovered_factual_unit"],
+    "assertionDispositions": {
+      "parameters": "admitted",
+      "license": "admitted",
+      "function_calling": "held",
+      "training_data": "admitted",
+      "throughput": "admitted"
+    },
+    "nativeAdmitted": 4,
+    "nativeRefused": 1,
+    "nativeSkippedNoProposal": 1
+  }
+}

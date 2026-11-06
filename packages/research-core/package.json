@@ -1,0 +1,31 @@
+{
+  "name": "@aiengineer/knowledge-research-core",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "description": "K02/K03: pure research domain records (task, assertion, occurrence, fragment, support set, observation, report, run, use decision), support algebra, deterministic report rendering and census, run sealing, admission and invalidation rules, plus the K03 port interfaces. No HTTP, SQL, graph, model, orchestration, filesystem or clock access.",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./testing": {
+      "types": "./dist/testing.d.ts",
+      "import": "./dist/testing.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup src/index.ts src/testing.ts --format esm && tsc --emitDeclarationOnly --rootDir src --outDir dist",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@aiengineer/knowledge-operation-protocol": "workspace:*",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "tsup": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}

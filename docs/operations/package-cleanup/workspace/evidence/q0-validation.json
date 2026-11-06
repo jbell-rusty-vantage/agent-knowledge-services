@@ -1,0 +1,630 @@
+{
+  "schema": 1,
+  "unit": "Q0",
+  "topic": "quality gates: Biome format and lint ratchet, dependency-cruiser boundary baseline",
+  "branch": "chore/ks-q0-quality-gates",
+  "base": "b94116d",
+  "commits": {
+    "7430d09": "build(quality): pin Biome and dependency-cruiser; format, lint and boundary configuration",
+    "a0a8aff": "style: apply Biome formatting (formatting only)",
+    "f8df698": "chore: ignore the Biome formatting commit in blame",
+    "479b2a6": "build(quality): lint and boundary baselines in verify and CI",
+    "evidence": "docs(evidence): Q0 validation record (the commit after 479b2a6)"
+  },
+  "implementationHead": "479b2a6",
+  "environment": {
+    "node": "v24.18.0",
+    "pnpm": "10.34.5",
+    "os": "Windows 11",
+    "biome": "2.5.14",
+    "dependencyCruiser": "18.4.0",
+    "dependencyCruiserTypescript": "6.0.3 via pnpm packageExtensions, private to dependency-cruiser; the workspace stays on TypeScript 7.0.2, which dependency-cruiser 18.4.0 cannot read",
+    "gitAutocrlf": "true"
+  },
+  "entryGate": {
+    "registeredReplay": "28 passed, 1 failed: SEALED_CHECKPOINT_MISSING:records/25-gl-repeatability-mutated-haiku_judge-failure.json",
+    "receiptSearch": "no copy found under C:/Users/Pinda/Proyectos (node_modules excluded)",
+    "decision": "continue under the same exact exception; Q0 is mechanical and changes no test, receipt or assertion"
+  },
+  "lockfile": "additions only versus b94116d: root importer entries for @biomejs/biome and dependency-cruiser, their packages (39, plus typescript@6.0.3) and packageExtensionsChecksum. pnpm also re-sorted the esbuild peer variant of vitest in three other importers; those lines were restored by hand and pnpm install --frozen-lockfile passes.",
+  "formatter": {
+    "scope": "tracked .ts .tsx .mts .cts .js .mjs .cjs under apps/, packages/, services/, scripts/, tools/ (1,343 files at 479b2a6; services/ has none)",
+    "style": "2-space indent, lineWidth 120, double quotes, semicolons always, trailing commas all",
+    "lineEnding": "auto (CRLF on Windows, LF elsewhere). Observed: with core.autocrlf=true the working copy is CRLF and committed blobs are LF; lineEnding lf fails format:check on all 1,343 files locally, auto passes; an LF checkout of the committed blobs passes under lf, which is what auto resolves to on Linux CI.",
+    "excluded": [
+      "every JSON/JSONC/YAML/Markdown file (not matched by the include globs; Biome's json formatter and linter are disabled so biome.json is not processed)",
+      "**/dist, **/node_modules, **/.turbo",
+      "**/fixtures, **/__fixtures__, **/testdata",
+      "**/skills (apps/verification-executor/skills/knowledge-verify/examples/offline.mjs is named in a skill manifest and packaged as written)",
+      "**/*.generated.*",
+      "packages/persistence/src/promotion-selection.ts (content-links.integration.test.ts digests its source text)",
+      "root vendor/, catalog/, fixtures/, docs/, skills/, knowledge/, internal/, internal_hidden_docs/, infra/, .agent-docs/ (outside the include globs)"
+    ],
+    "generatedFiles": "none found: no tracked in-scope file has a generated or do-not-edit header in its first 8 lines and none is named *.generated.*; packages/contracts/generated holds JSON only",
+    "sourceReadingTests": "packages/persistence/src/promotion-selection.ts (digest; excluded). Regex-only readers kept in scope because formatting cannot change their result: apps/mcp/src/index.ts (no-http-shims), apps/jev/src/mcp.ts (skills.test registerTool regex), packages/host/src/local/*.ts (import specifier regex), packages/application/src/**/*.ts (diagnostics quarantine regex); the full graph passed.",
+    "passes": "biome format --write is not idempotent in one pass: pass 1 changed 1,189 files, pass 2 changed 12 more, pass 3 none. The formatting commit holds the fixpoint (1,189 files, +184,820/-56,323).",
+    "semanticCheck": "for each of the 1,189 changed files, esbuild --minify output of the HEAD blob equals that of the formatted file (1,188 equal; packages/persistence/test/retrieval-history-fixture.d.mts is a declaration file esbuild cannot transform, and tsc accepts it); forced typecheck 37/37 on the result"
+  },
+  "digests": {
+    "method": "sha256 of committed blob bytes (git ls-tree and cat-file, not the working copy) of every tracked file outside the formatter's file set, by q0-digest-manifest.mjs in this folder",
+    "formatterFileList": "1,343 files listed by biome format --verbose; the same list for before and after",
+    "before": {
+      "commit": "7430d09",
+      "notFormatted": {
+        "files": 2068,
+        "sha256": "728ba3f0a0a7a1a278391eaa891bd96dda798b9c45100c2299bb625b346116ee"
+      },
+      "folders": {
+        "catalog": {
+          "files": 1521,
+          "sha256": "3b3448cdddf5d12cd9f0a9848dba3edaa5e6716744fb3afa676204765a32f2c6"
+        },
+        "fixtures": {
+          "files": 33,
+          "sha256": "d5c89680dd20476743ad86beb7a3bbe18f829b34cef125b0714708bafa46a6e7"
+        },
+        "vendor": {
+          "files": 1,
+          "sha256": "e225b59da24524c14313e1e2253a120e7ff37a451b531097fe85dab96eb02858"
+        },
+        "evidence": {
+          "files": 65,
+          "sha256": "66ffcdd57f6ad240148fab017678adf1f933d1d9ff35a3bc734641e94f9ffa8b"
+        }
+      }
+    },
+    "after": {
+      "commit": "a0a8aff81e7a2fa980e6d31a1f0bd2d109914bdb",
+      "notFormatted": {
+        "files": 2068,
+        "sha256": "728ba3f0a0a7a1a278391eaa891bd96dda798b9c45100c2299bb625b346116ee"
+      },
+      "folders": {
+        "catalog": {
+          "files": 1521,
+          "sha256": "3b3448cdddf5d12cd9f0a9848dba3edaa5e6716744fb3afa676204765a32f2c6"
+        },
+        "fixtures": {
+          "files": 33,
+          "sha256": "d5c89680dd20476743ad86beb7a3bbe18f829b34cef125b0714708bafa46a6e7"
+        },
+        "vendor": {
+          "files": 1,
+          "sha256": "e225b59da24524c14313e1e2253a120e7ff37a451b531097fe85dab96eb02858"
+        },
+        "evidence": {
+          "files": 65,
+          "sha256": "66ffcdd57f6ad240148fab017678adf1f933d1d9ff35a3bc734641e94f9ffa8b"
+        }
+      }
+    },
+    "identical": true,
+    "perFileLinesSha256": {
+      "before": "03f8f4d2022a1360758b407c5dd3cb0dd457b4c219d2ee3a9a90b33143b2a418",
+      "after": "03f8f4d2022a1360758b407c5dd3cb0dd457b4c219d2ee3a9a90b33143b2a418",
+      "note": "sha256 of the sorted 'path sha256' line files (2,067 lines each), equal"
+    },
+    "catalogSubfolders": {
+      "catalog/README.md": {
+        "files": 1,
+        "sha256": "fde0309f616c1bccdfe9bdc6f92cef065914d148f4cb46ef6d63748300613703"
+      },
+      "catalog/broad-corpus-review-history.json": {
+        "files": 1,
+        "sha256": "b24e43c10a63a9d70214a7751698a754ba7698d332dec1280bcfe40365181794"
+      },
+      "catalog/broad-corpus-review-v4.json": {
+        "files": 1,
+        "sha256": "d8cda208708e1e6122fd4eaa51d3b9ac252964266e01ad2310456317ea96ce98"
+      },
+      "catalog/broad-heldout-evaluation.json": {
+        "files": 1,
+        "sha256": "5ae660f54ed4afa71d5e639aa5ebff892d9f39a7b360ef5db7aa871cee9753f4"
+      },
+      "catalog/canonical-durability-proof.json": {
+        "files": 1,
+        "sha256": "a9cbcdb288fac1c3de194564243c1da75d414909a853f8cda6e7302fa3b711a0"
+      },
+      "catalog/capability-profiles.v1.json": {
+        "files": 1,
+        "sha256": "ceb633f5c278d2912875fb48789667f3211f93abbafb412ef4869ed6f8e7b1ea"
+      },
+      "catalog/durable-preparation-proof.json": {
+        "files": 1,
+        "sha256": "b293fbd77062e4070003da2c9776d3071b784a0abb05a7513af67a4020571f64"
+      },
+      "catalog/gate1-live-evidence.json": {
+        "files": 1,
+        "sha256": "81eecca3a6ea753585f8a9568ac191ea811fe32b8087b9c66631042b745eb3fe"
+      },
+      "catalog/gate5-human-review-response.template.json": {
+        "files": 1,
+        "sha256": "06273913c4600122e0532feccb7a9e4ee21e34f8868ce7a052f5d603a1083781"
+      },
+      "catalog/gate5-human-review-sample.packet.json": {
+        "files": 1,
+        "sha256": "ff4549f9dcb0aa28138114a175922f8b0f9ac2bc6a6e9df6c15d6d4597c2dc91"
+      },
+      "catalog/governed-indexing-proof.json": {
+        "files": 1,
+        "sha256": "4a01d14ecc363dc073f18787acbef662fb6a894acdccd2cc6dcbea7292fe9ff6"
+      },
+      "catalog/live-docling-receipt.json": {
+        "files": 1,
+        "sha256": "15411907f860bf118cfed9d73169ac98e290f193dd0af5538756f5178167e470"
+      },
+      "catalog/live-embedding-receipt.json": {
+        "files": 1,
+        "sha256": "8b17ffc542fb3f2eee50d631673278b28f3605fb9ff0c5b808342a4568403b7a"
+      },
+      "catalog/live-judge-calibration-receipt.json": {
+        "files": 1,
+        "sha256": "4cc4c462bab7d748493af79a8584c202714bdae23a03e22a705d62ea7755addb"
+      },
+      "catalog/local-hnsw-proof.json": {
+        "files": 1,
+        "sha256": "234a61981bd1aebf1174ad03889ba2f8ea253f7b3a8b73ca8a3036f8a7622056"
+      },
+      "catalog/real-bundle-evaluation.json": {
+        "files": 1,
+        "sha256": "7e566f856a26427411f1ff5dfe4ae30829234e5d1b293e40891d780a4fcc1f6d"
+      },
+      "catalog/verification-assets": {
+        "files": 84,
+        "sha256": "eed25dc78898ff596fbf5fb3bea71a0a6dcd0c783456d5abfc3d6f777cba1b53"
+      },
+      "catalog/verification-benchmarks": {
+        "files": 220,
+        "sha256": "54bde5581750e5bbe62eca5d54c21c4c680b85e6c06f1750bc6e643908edc06a"
+      },
+      "catalog/verification-proofs": {
+        "files": 20,
+        "sha256": "5b706ef1db98c781cc4b0c5a912e303bbd737b2d245d4b23a62c8b713eae1974"
+      },
+      "catalog/verification-semantic-fixtures": {
+        "files": 1181,
+        "sha256": "3a3334390d58db8dfe89186b75ff142f9ec01de97b28f926611f64a77971b4f0"
+      }
+    },
+    "note": "'before' is commit 7430d09 (immediately before formatting), because that commit changes package.json, pnpm-lock.yaml and pnpm-workspace.yaml relative to b94116d"
+  },
+  "commands": {
+    "install": {
+      "command": "corepack pnpm install --frozen-lockfile",
+      "exit": 0,
+      "result": "lockfile up to date"
+    },
+    "typecheck": {
+      "command": "corepack pnpm exec turbo run typecheck --force",
+      "exit": 0,
+      "tasks": "37/37 successful, 0 cached (on 479b2a6)"
+    },
+    "build": {
+      "command": "corepack pnpm exec turbo run build --force",
+      "exit": 0,
+      "tasks": "21/21 successful, 0 cached (on 479b2a6)"
+    },
+    "staleCompiledTests": {
+      "result": "no dist/**/*.test.js under apps or packages"
+    },
+    "test": {
+      "command": "corepack pnpm exec turbo run test --continue=always --concurrency=1 --force -- --maxWorkers=2",
+      "exit": 1,
+      "tasks": "37/38 successful, 0 cached; 5m02s",
+      "passed": 2977,
+      "skipped": 126,
+      "failed": 1,
+      "failures": [
+        "packages/application/src/verification/benchmark/verification-benchmark-registered-replay.test.ts :: registered benchmark replay replays all seven actual captured schema failures exactly once in memory (SEALED_CHECKPOINT_MISSING, retained exception)"
+      ],
+      "skips": {
+        "@aiengineer/knowledge-persistence": 29,
+        "@aiengineer/knowledge-db": 32,
+        "@aiengineer/knowledge-verification-executor": 39,
+        "@aiengineer/knowledge-api": 20,
+        "@aiengineer/knowledge-worker": 5,
+        "@aiengineer/knowledge-mcp": 1,
+        "note": "identical to 5C"
+      },
+      "perPackage": "contracts 203, client 25, verification 285, core 22, jev 9, preparation 83, acquisition 43, evaluation 55, policy 47, retrieval 136, testkit 11, application 442+1 failed, persistence 340/29 skipped, jev-service 6, knowledge-db 411/32, host 73, cli 67, mcp 218/1, worker 141/5, api 120/20, executor 240/39"
+    },
+    "examples": {
+      "command": "corepack pnpm examples:verification",
+      "exit": 0,
+      "result": "providersCalled 0, receipts 11"
+    },
+    "packageExamples": {
+      "command": "corepack pnpm --filter knowledge-acquisition --filter knowledge-preparation --filter knowledge-retrieval --if-present examples",
+      "exit": 0
+    },
+    "skills": {
+      "command": "node skills/check.mjs",
+      "exit": 0,
+      "result": "12 skills, 42 executor operations, 58 executor MCP tools, 95 platform commands, 70 platform MCP tools, 6 Jev MCP tools, 9 Jev commands"
+    },
+    "packagingSmoke": {
+      "command": "corepack pnpm --filter \"@aiengineer/knowledge-cli...\" build; corepack pnpm --filter @aiengineer/knowledge-api build; corepack pnpm --filter @aiengineer/knowledge-cli pack:sandbox; node docs/operations/package-cleanup/workspace/evidence/unit5c-ks-smoke.mjs",
+      "exit": 0,
+      "tarball": "apps/cli/dist/sandbox/ks-0.0.0.tgz",
+      "tarballBytes": 519738,
+      "tarballSha256": "7785a008f0c19bb98b2e208184f4b838a0c6a214b946e2e5429e4232a4781180",
+      "result": "passed",
+      "note": "differs from 5C (510113 bytes, e2479861...) because the bundled sources are now formatted"
+    },
+    "formatCheck": {
+      "command": "corepack pnpm format:check",
+      "exit": 0,
+      "result": "1,343 files checked, no fixes"
+    },
+    "lint": {
+      "command": "corepack pnpm lint",
+      "exit": 0,
+      "result": "4,385 diagnostics over 30 rules, equal to baseline"
+    },
+    "boundaries": {
+      "command": "corepack pnpm boundaries",
+      "exit": 0,
+      "result": "no new violations (1,252 modules, 5,357 dependencies cruised); 266 known ignored"
+    },
+    "verify": "not run as one command: format:check, lint, typecheck, test, build, boundaries and examples:verification each ran above on the same commit",
+    "docs": {
+      "command": "node .agent-docs/cli.mjs check --repo .",
+      "exit": 1,
+      "result": "only generated provenance drift (.agent-docs/provenance.json; 352 selected inputs); the coordinator owns the build. git diff --check b94116d..479b2a6 exit 0"
+    }
+  },
+  "gateProofs": {
+    "lintRatchet": "a scratch var+any file raised noExplicitAny 262 -> 263 and exited 1; a scratch debugger statement reported the new rule noDebugger and exited 1; both files removed, exit 0 afterwards",
+    "boundaries": "one scratch file per rule (apps/api -> apps/mcp, apps/mcp -> packages/persistence, packages/host -> apps/mcp, packages/core -> apps/api, packages/knowledge-db -> packages/persistence) produced exactly 6 new violations (the host scratch also trips packages-import-no-apps), exit 6; the .test.ts variants for the two test-exempt rules produced none; all scratch files removed"
+  },
+  "lintBaseline": {
+    "file": "tools/quality/lint-baseline.json",
+    "biome": "2.5.14",
+    "total": 4385,
+    "rules": {
+      "lint/complexity/noCommaOperator": 2,
+      "lint/complexity/noExtraBooleanCast": 1,
+      "lint/complexity/noUselessCatch": 2,
+      "lint/complexity/noUselessEscapeInRegex": 3,
+      "lint/complexity/noUselessUndefinedInitialization": 1,
+      "lint/complexity/useLiteralKeys": 4,
+      "lint/complexity/useOptionalChain": 76,
+      "lint/correctness/noUnsafeFinally": 7,
+      "lint/correctness/noUnsafeOptionalChaining": 4,
+      "lint/correctness/noUnusedFunctionParameters": 7,
+      "lint/correctness/noUnusedImports": 83,
+      "lint/correctness/noUnusedVariables": 26,
+      "lint/correctness/noVoidTypeReturn": 1,
+      "lint/performance/noAccumulatingSpread": 2,
+      "lint/style/noNonNullAssertion": 3646,
+      "lint/style/useConst": 3,
+      "lint/style/useImportType": 49,
+      "lint/style/useShorthandFunctionType": 1,
+      "lint/style/useTemplate": 140,
+      "lint/suspicious/noAssignInExpressions": 8,
+      "lint/suspicious/noCatchAssign": 3,
+      "lint/suspicious/noControlCharactersInRegex": 18,
+      "lint/suspicious/noExplicitAny": 262,
+      "lint/suspicious/noImplicitAnyLet": 18,
+      "lint/suspicious/noNonNullAssertedOptionalChain": 1,
+      "lint/suspicious/noProto": 2,
+      "lint/suspicious/noPrototypeBuiltins": 4,
+      "lint/suspicious/noShadowRestrictedNames": 2,
+      "lint/suspicious/noUselessEscapeInString": 1,
+      "lint/suspicious/useIterableCallbackReturn": 8
+    },
+    "severity": "the 30 rules with diagnostics are warn in biome.json; other recommended rules keep Biome's default severity (not enumerated); the ratchet fails on any diagnostic of a rule absent from the baseline, whatever its severity"
+  },
+  "boundaryBaseline": {
+    "file": "tools/quality/boundaries-baseline.json",
+    "total": 266,
+    "perRule": {
+      "no-app-to-other-app": 35,
+      "apps-import-host-contracts-client": 228,
+      "host-imports-no-app": 0,
+      "packages-import-no-apps": 3,
+      "knowledge-db-no-persistence-in-production": 0
+    },
+    "violations": {
+      "no-app-to-other-app": [
+        "apps/api/src/tests/consumer-transports.integration.test.ts -> apps/verification-executor/src/knowledge/selected-candidate-fixture.ts",
+        "apps/api/src/tests/consumer-transports.integration.test.ts -> apps/verification-executor/src/knowledge/selected-candidate-publication.ts",
+        "apps/api/src/tests/retrieval-history.integration.test.ts -> apps/verification-executor/src/knowledge/selected-candidate-fixture.ts",
+        "apps/api/src/tests/retrieval-history.integration.test.ts -> apps/verification-executor/src/knowledge/selected-candidate-publication.ts",
+        "apps/cli/src/local/offline.ts -> apps/verification-executor/dist/local-services.d.ts",
+        "apps/mcp/src/tests/operation-catalog.test.ts -> apps/api/src/server.ts",
+        "apps/mcp/src/tests/operation-catalog.test.ts -> apps/cli/src/commands.ts",
+        "apps/mcp/src/tests/operation-catalog.test.ts -> apps/cli/src/ks-commands.ts",
+        "apps/mcp/src/tests/operation-catalog.test.ts -> apps/verification-executor/src/knowledge/operations.ts",
+        "apps/mcp/src/tests/operation-catalog.test.ts -> apps/verification-executor/src/mcp.ts",
+        "apps/mcp/src/tests/parity-harness.ts -> apps/api/src/server.ts",
+        "apps/mcp/src/tests/parity-rows.ts -> apps/api/src/server.ts",
+        "apps/mcp/src/tests/retrieval-reads.test.ts -> apps/cli/src/commands.ts",
+        "apps/mcp/src/tests/verification-surface-inventory.test.ts -> apps/api/src/server.ts",
+        "apps/mcp/src/tests/verification-surface-inventory.test.ts -> apps/cli/src/commands.ts",
+        "apps/verification-executor/src/knowledge/content-links.integration.test.ts -> apps/worker/src/activity-registry.ts",
+        "apps/verification-executor/src/knowledge/content-links.integration.test.ts -> apps/worker/src/canonical-worker.ts",
+        "apps/verification-executor/src/knowledge/promotion-selection-host.ts -> apps/worker/src/index.ts",
+        "apps/verification-executor/src/knowledge/promotion-selection-host.ts -> apps/worker/src/promotion-selection.ts",
+        "apps/verification-executor/src/knowledge/recovery-host.integration.test.ts -> apps/worker/src/activity-registry.ts",
+        "apps/verification-executor/src/knowledge/recovery-host.integration.test.ts -> apps/worker/src/canonical-worker.ts",
+        "apps/verification-executor/src/knowledge/recovery-host.integration.test.ts -> apps/worker/src/verification-claims-activity.ts",
+        "apps/verification-executor/src/knowledge/recovery-host.integration.test.ts -> apps/worker/src/verification-claims-sealer.ts",
+        "apps/verification-executor/src/knowledge/recovery-host.integration.test.ts -> apps/worker/src/verification-claims-semantic-stage.ts",
+        "apps/verification-executor/src/knowledge/recovery-host.integration.test.ts -> apps/worker/src/verification-claims-source-authority.ts",
+        "apps/verification-executor/src/knowledge/selected-candidate-fixture.ts -> apps/worker/src/activity-registry.ts",
+        "apps/verification-executor/src/knowledge/selected-candidate-fixture.ts -> apps/worker/src/canonical-worker.ts",
+        "apps/verification-executor/src/knowledge/selected-candidate-fixture.ts -> apps/worker/src/promotion-selection.ts",
+        "apps/verification-executor/src/root-host-preparation.ts -> apps/worker/src/activity-registry.ts",
+        "apps/verification-executor/src/root-host-preparation.ts -> apps/worker/src/canonical-worker.ts",
+        "apps/verification-executor/src/root-host-selection-composition.ts -> apps/worker/src/activity-registry.ts",
+        "apps/verification-executor/src/root-host-selection-composition.ts -> apps/worker/src/canonical-worker.ts",
+        "apps/verification-executor/src/root-host-selection.ts -> apps/worker/src/activity-registry.ts",
+        "apps/verification-executor/src/root-host-selection.ts -> apps/worker/src/canonical-worker.ts",
+        "apps/verification-executor/src/root-host-selection.ts -> apps/worker/src/promotion-selection.ts"
+      ],
+      "apps-import-host-contracts-client": [
+        "apps/api/src/a2a-adapter.ts -> packages/application/dist/index.d.ts",
+        "apps/api/src/a2a-http.ts -> packages/application/dist/index.d.ts",
+        "apps/api/src/demo-evaluation-bundles.ts -> packages/application/dist/index.d.ts",
+        "apps/api/src/demo-evaluation-bundles.ts -> packages/testkit/dist/index.d.ts",
+        "apps/api/src/index.ts -> packages/application/dist/index.d.ts",
+        "apps/api/src/server.ts -> packages/application/dist/index.d.ts",
+        "apps/api/src/server.ts -> packages/persistence/dist/index.d.ts",
+        "apps/api/src/server.ts -> packages/retrieval/dist/index.d.ts",
+        "apps/cli/scripts/copy-demo-assets.mjs -> packages/verification/dist/index.js",
+        "apps/cli/src/benchmark-capture.ts -> packages/application/dist/index.d.ts",
+        "apps/cli/src/benchmark-capture.ts -> packages/verification/dist/index.d.ts",
+        "apps/cli/src/benchmark-version-diff.ts -> packages/application/dist/index.d.ts",
+        "apps/cli/src/commands.ts -> packages/application/dist/index.d.ts",
+        "apps/cli/src/diagnostics-demo.ts -> packages/application/dist/index.d.ts",
+        "apps/cli/src/verification-attestation.ts -> packages/verification/dist/index.d.ts",
+        "apps/jev/src/http.ts -> packages/application/dist/jev.d.ts",
+        "apps/jev/src/index.ts -> packages/application/dist/jev.d.ts",
+        "apps/jev/src/mcp.ts -> packages/application/dist/jev.d.ts",
+        "apps/mcp/src/index.ts -> packages/application/dist/index.d.ts",
+        "apps/verification-executor/src/capture.ts -> packages/verification/dist/index.d.ts",
+        "apps/verification-executor/src/checkpoint-state.ts -> packages/verification/dist/index.d.ts",
+        "apps/verification-executor/src/evidence-reader.ts -> packages/persistence/dist/index.d.ts",
+        "apps/verification-executor/src/evidence-reader.ts -> packages/verification/dist/index.d.ts",
+        "apps/verification-executor/src/executor.ts -> packages/policy/dist/index.d.ts",
+        "apps/verification-executor/src/executor.ts -> packages/verification/dist/index.d.ts",
+        "apps/verification-executor/src/http.ts -> packages/knowledge-db/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/checkpoints-custody.ts -> packages/application/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/checkpoints-custody.ts -> packages/verification/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/checkpoints-events.ts -> packages/verification/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/checkpoints-harness.ts -> packages/application/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/checkpoints-harness.ts -> packages/verification/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/checkpoints-native.ts -> packages/application/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/checkpoints-native.ts -> packages/verification/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/checkpoints-owners.ts -> packages/application/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/checkpoints-owners.ts -> packages/knowledge-db/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/checkpoints-owners.ts -> packages/persistence/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/checkpoints-policy.ts -> packages/verification/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/checkpoints-reconciler.ts -> packages/application/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/checkpoints-reconciler.ts -> packages/persistence/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/checkpoints-reconciler.ts -> packages/verification/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/checkpoints-source-import.ts -> packages/application/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/checkpoints-source-import.ts -> packages/verification/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/cli.ts -> packages/knowledge-db/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/content-links.ts -> packages/knowledge-db/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/context.ts -> packages/application/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/context.ts -> packages/core/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/context.ts -> packages/knowledge-db/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/context.ts -> packages/persistence/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/context.ts -> packages/verification/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/evidence-oracle.ts -> packages/knowledge-db/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/evidence-oracle.ts -> packages/policy/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/evidence-oracle.ts -> packages/verification/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/operations.ts -> packages/knowledge-db/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/promotion-selection-host.ts -> packages/application/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/promotion-selection-host.ts -> packages/core/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/promotion-selection-host.ts -> packages/knowledge-db/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/promotion-selection-host.ts -> packages/persistence/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/promotion-selection.ts -> packages/core/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/promotion-selection.ts -> packages/knowledge-db/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/promotion-selection.ts -> packages/persistence/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/recovery-authority.ts -> packages/application/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/recovery-authority.ts -> packages/verification/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/recovery-durable-checkpoints.ts -> packages/application/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/recovery-durable-custody.ts -> packages/application/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/recovery-durable-custody.ts -> packages/verification/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/recovery-durable-drift.ts -> packages/application/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/recovery-durable-drift.ts -> packages/persistence/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/recovery-durable-drift.ts -> packages/verification/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/recovery-durable-runtime.ts -> packages/application/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/recovery-durable-runtime.ts -> packages/persistence/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/recovery-durable-runtime.ts -> packages/verification/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/recovery-durable.ts -> packages/application/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/recovery-durable.ts -> packages/persistence/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/recovery-executor-evidence.ts -> packages/application/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/recovery-executor-evidence.ts -> packages/policy/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/recovery-executor-evidence.ts -> packages/verification/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/recovery-host-canonical.ts -> packages/application/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/recovery-host-canonical.ts -> packages/persistence/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/recovery-host-canonical.ts -> packages/policy/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/recovery-host-canonical.ts -> packages/verification/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/recovery-host.ts -> packages/application/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/recovery-host.ts -> packages/core/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/recovery-host.ts -> packages/persistence/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/recovery-host.ts -> packages/verification/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/recovery-probes.ts -> packages/application/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/recovery-probes.ts -> packages/verification/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/recovery-routing.ts -> packages/application/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/recovery-routing.ts -> packages/verification/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/recovery-test-fixtures.ts -> packages/application/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/recovery-test-fixtures.ts -> packages/verification/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/report-assessment.ts -> packages/knowledge-db/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/report-assessment.ts -> packages/persistence/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/report-assessment.ts -> packages/verification/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/report-dependency-fixture.ts -> packages/core/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/report-dependency-fixture.ts -> packages/persistence/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/report-dependency-fixture.ts -> packages/preparation/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/scoped-knowledge-operations.ts -> packages/knowledge-db/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/selected-candidate-fixture.ts -> packages/core/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/selected-candidate-fixture.ts -> packages/knowledge-db/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/selected-candidate-fixture.ts -> packages/knowledge-db/src/ingestion/content-links/operations.ts",
+        "apps/verification-executor/src/knowledge/selected-candidate-fixture.ts -> packages/knowledge-db/test/ingestion/snapshot-fixture.mjs",
+        "apps/verification-executor/src/knowledge/selected-candidate-fixture.ts -> packages/persistence/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/selected-candidate-fixture.ts -> packages/preparation/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/selected-candidate-fixture.ts -> packages/retrieval/src/index.ts",
+        "apps/verification-executor/src/knowledge/selected-candidate-fixture.ts -> packages/verification/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/selected-candidate-publication.ts -> packages/persistence/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/source-discovery-custody.ts -> packages/application/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/source-discovery-custody.ts -> packages/core/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/source-discovery-custody.ts -> packages/verification/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/source-discovery-host.ts -> packages/application/dist/index.d.ts",
+        "apps/verification-executor/src/knowledge/source-discovery-host.ts -> packages/verification/dist/index.d.ts",
+        "apps/verification-executor/src/locate.ts -> packages/verification/dist/index.d.ts",
+        "apps/verification-executor/src/mcp.ts -> packages/knowledge-db/dist/index.d.ts",
+        "apps/verification-executor/src/root-host-accounting.ts -> packages/persistence/dist/index.d.ts",
+        "apps/verification-executor/src/root-host-accounting.ts -> packages/verification/dist/index.d.ts",
+        "apps/verification-executor/src/root-host-coverage.ts -> packages/verification/dist/index.d.ts",
+        "apps/verification-executor/src/root-host-inspection.ts -> packages/verification/dist/index.d.ts",
+        "apps/verification-executor/src/root-host-preparation.ts -> packages/core/dist/index.d.ts",
+        "apps/verification-executor/src/root-host-preparation.ts -> packages/persistence/dist/index.d.ts",
+        "apps/verification-executor/src/root-host-preparation.ts -> packages/preparation/dist/index.d.ts",
+        "apps/verification-executor/src/root-host-preparation.ts -> packages/sources/dist/index.d.ts",
+        "apps/verification-executor/src/root-host-recovery-authorization.ts -> packages/persistence/dist/index.d.ts",
+        "apps/verification-executor/src/root-host-recovery-authorization.ts -> packages/verification/dist/index.d.ts",
+        "apps/verification-executor/src/root-host-recovery-evidence.ts -> packages/verification/dist/index.d.ts",
+        "apps/verification-executor/src/root-host-report.ts -> packages/knowledge-db/dist/index.d.ts",
+        "apps/verification-executor/src/root-host-report.ts -> packages/verification/dist/index.d.ts",
+        "apps/verification-executor/src/root-host-selection-composition.ts -> packages/core/dist/index.d.ts",
+        "apps/verification-executor/src/root-host-selection-composition.ts -> packages/persistence/dist/index.d.ts",
+        "apps/verification-executor/src/root-host-selection.ts -> packages/core/dist/index.d.ts",
+        "apps/verification-executor/src/root-host-selection.ts -> packages/persistence/dist/index.d.ts",
+        "apps/verification-executor/src/root-host-verification-receipts.ts -> packages/persistence/dist/index.d.ts",
+        "apps/verification-executor/src/root-host-verification-receipts.ts -> packages/verification/dist/index.d.ts",
+        "apps/verification-executor/src/root-host.ts -> packages/application/dist/index.d.ts",
+        "apps/verification-executor/src/root-host.ts -> packages/core/dist/index.d.ts",
+        "apps/verification-executor/src/root-host.ts -> packages/persistence/dist/index.d.ts",
+        "apps/verification-executor/src/root-host.ts -> packages/verification/dist/index.d.ts",
+        "apps/verification-executor/src/store-custody-postgres.ts -> packages/core/dist/index.d.ts",
+        "apps/verification-executor/src/store-custody-postgres.ts -> packages/persistence/dist/index.d.ts",
+        "apps/verification-executor/src/store-custody-profile.ts -> packages/verification/dist/index.d.ts",
+        "apps/verification-executor/src/store-custody.ts -> packages/verification/dist/index.d.ts",
+        "apps/verification-executor/src/store.ts -> packages/verification/dist/index.d.ts",
+        "apps/worker/src/activity-registry.ts -> packages/application/dist/index.d.ts",
+        "apps/worker/src/activity-registry.ts -> packages/core/dist/index.d.ts",
+        "apps/worker/src/activity-registry.ts -> packages/evaluation/dist/index.d.ts",
+        "apps/worker/src/activity-registry.ts -> packages/persistence/dist/index.d.ts",
+        "apps/worker/src/activity-registry.ts -> packages/preparation/dist/index.d.ts",
+        "apps/worker/src/activity-registry.ts -> packages/retrieval/dist/index.d.ts",
+        "apps/worker/src/activity-registry.ts -> packages/sources/dist/index.d.ts",
+        "apps/worker/src/canonical-worker.ts -> packages/core/dist/index.d.ts",
+        "apps/worker/src/canonical-worker.ts -> packages/persistence/dist/index.d.ts",
+        "apps/worker/src/index.ts -> packages/application/dist/index.d.ts",
+        "apps/worker/src/index.ts -> packages/core/dist/index.d.ts",
+        "apps/worker/src/index.ts -> packages/persistence/dist/index.d.ts",
+        "apps/worker/src/index.ts -> packages/preparation/dist/index.d.ts",
+        "apps/worker/src/index.ts -> packages/verification/dist/index.d.ts",
+        "apps/worker/src/process-restart-fixture.ts -> packages/persistence/dist/index.d.ts",
+        "apps/worker/src/promotion-selection.ts -> packages/application/dist/index.d.ts",
+        "apps/worker/src/promotion-selection.ts -> packages/core/dist/index.d.ts",
+        "apps/worker/src/promotion-selection.ts -> packages/persistence/dist/index.d.ts",
+        "apps/worker/src/verification-activities.ts -> packages/application/dist/index.d.ts",
+        "apps/worker/src/verification-activities.ts -> packages/persistence/dist/index.d.ts",
+        "apps/worker/src/verification-adjudication-activity.ts -> packages/application/dist/index.d.ts",
+        "apps/worker/src/verification-adjudication-activity.ts -> packages/persistence/dist/index.d.ts",
+        "apps/worker/src/verification-adjudication-activity.ts -> packages/verification/dist/index.d.ts",
+        "apps/worker/src/verification-adjudication-decision-activity.ts -> packages/application/dist/index.d.ts",
+        "apps/worker/src/verification-adjudication-decision-activity.ts -> packages/persistence/dist/index.d.ts",
+        "apps/worker/src/verification-adjudication-decision-activity.ts -> packages/verification/dist/index.d.ts",
+        "apps/worker/src/verification-adjudication-decision-runtime.ts -> packages/application/dist/index.d.ts",
+        "apps/worker/src/verification-adjudication-decision-runtime.ts -> packages/persistence/dist/index.d.ts",
+        "apps/worker/src/verification-adjudication-runtime.ts -> packages/application/dist/index.d.ts",
+        "apps/worker/src/verification-adjudication-runtime.ts -> packages/persistence/dist/index.d.ts",
+        "apps/worker/src/verification-audit-inspection-activity.ts -> packages/application/dist/index.d.ts",
+        "apps/worker/src/verification-audit-inspection-activity.ts -> packages/persistence/dist/index.d.ts",
+        "apps/worker/src/verification-audit-inspection-activity.ts -> packages/verification/dist/index.d.ts",
+        "apps/worker/src/verification-audit-inspection-runtime.ts -> packages/persistence/dist/index.d.ts",
+        "apps/worker/src/verification-benchmark-activity.ts -> packages/application/dist/index.d.ts",
+        "apps/worker/src/verification-benchmark-activity.ts -> packages/core/dist/index.d.ts",
+        "apps/worker/src/verification-benchmark-activity.ts -> packages/evaluation/dist/index.d.ts",
+        "apps/worker/src/verification-benchmark-activity.ts -> packages/persistence/dist/index.d.ts",
+        "apps/worker/src/verification-benchmark-comparison-activity.ts -> packages/application/dist/index.d.ts",
+        "apps/worker/src/verification-benchmark-comparison-activity.ts -> packages/core/dist/index.d.ts",
+        "apps/worker/src/verification-benchmark-comparison-activity.ts -> packages/persistence/dist/index.d.ts",
+        "apps/worker/src/verification-benchmark-comparison-activity.ts -> packages/verification/dist/index.d.ts",
+        "apps/worker/src/verification-benchmark-comparison-runtime.ts -> packages/application/dist/index.d.ts",
+        "apps/worker/src/verification-benchmark-comparison-runtime.ts -> packages/core/dist/index.d.ts",
+        "apps/worker/src/verification-benchmark-comparison-runtime.ts -> packages/persistence/dist/index.d.ts",
+        "apps/worker/src/verification-benchmark-comparison-runtime.ts -> packages/verification/dist/index.d.ts",
+        "apps/worker/src/verification-benchmark-runtime.ts -> packages/application/dist/index.d.ts",
+        "apps/worker/src/verification-benchmark-runtime.ts -> packages/core/dist/index.d.ts",
+        "apps/worker/src/verification-benchmark-runtime.ts -> packages/persistence/dist/index.d.ts",
+        "apps/worker/src/verification-benchmark-runtime.ts -> packages/verification/dist/index.d.ts",
+        "apps/worker/src/verification-claims-activity.ts -> packages/application/dist/index.d.ts",
+        "apps/worker/src/verification-claims-activity.ts -> packages/persistence/dist/index.d.ts",
+        "apps/worker/src/verification-claims-activity.ts -> packages/verification/dist/index.d.ts",
+        "apps/worker/src/verification-claims-recovery-profile.ts -> packages/application/dist/index.d.ts",
+        "apps/worker/src/verification-claims-recovery-profile.ts -> packages/persistence/dist/index.d.ts",
+        "apps/worker/src/verification-claims-recovery-profile.ts -> packages/verification/dist/index.d.ts",
+        "apps/worker/src/verification-claims-sealer.ts -> packages/application/dist/index.d.ts",
+        "apps/worker/src/verification-claims-sealer.ts -> packages/core/dist/index.d.ts",
+        "apps/worker/src/verification-claims-sealer.ts -> packages/persistence/dist/index.d.ts",
+        "apps/worker/src/verification-claims-sealer.ts -> packages/policy/dist/index.d.ts",
+        "apps/worker/src/verification-claims-sealer.ts -> packages/verification/dist/index.d.ts",
+        "apps/worker/src/verification-claims-semantic-stage.ts -> packages/application/dist/index.d.ts",
+        "apps/worker/src/verification-claims-semantic-stage.ts -> packages/core/dist/index.d.ts",
+        "apps/worker/src/verification-claims-semantic-stage.ts -> packages/persistence/dist/index.d.ts",
+        "apps/worker/src/verification-claims-semantic-stage.ts -> packages/verification/dist/index.d.ts",
+        "apps/worker/src/verification-claims-source-authority.ts -> packages/persistence/dist/index.d.ts",
+        "apps/worker/src/verification-claims-source-authority.ts -> packages/verification/dist/index.d.ts",
+        "apps/worker/src/verification-metric-activity.ts -> packages/application/dist/index.d.ts",
+        "apps/worker/src/verification-metric-activity.ts -> packages/persistence/dist/index.d.ts",
+        "apps/worker/src/verification-metric-activity.ts -> packages/verification/dist/index.d.ts",
+        "apps/worker/src/verification-metric-sealer.ts -> packages/application/dist/index.d.ts",
+        "apps/worker/src/verification-metric-sealer.ts -> packages/core/dist/index.d.ts",
+        "apps/worker/src/verification-metric-sealer.ts -> packages/persistence/dist/index.d.ts",
+        "apps/worker/src/verification-metric-sealer.ts -> packages/policy/dist/index.d.ts",
+        "apps/worker/src/verification-metric-sealer.ts -> packages/verification/dist/index.d.ts",
+        "apps/worker/src/verification-parse-activity.ts -> packages/application/dist/index.d.ts",
+        "apps/worker/src/verification-sealed-replay-activity.ts -> packages/application/dist/index.d.ts",
+        "apps/worker/src/verification-sealed-replay-activity.ts -> packages/persistence/dist/index.d.ts",
+        "apps/worker/src/verification-sealed-replay-activity.ts -> packages/verification/dist/index.d.ts",
+        "apps/worker/src/verification-sealed-replay-runtime.ts -> packages/application/dist/index.d.ts",
+        "apps/worker/src/verification-sealed-replay-runtime.ts -> packages/persistence/dist/index.d.ts",
+        "apps/worker/src/verification-structured-extraction-runtime.ts -> packages/application/dist/index.d.ts",
+        "apps/worker/src/verification-structured-extraction-runtime.ts -> packages/core/dist/index.d.ts",
+        "apps/worker/src/verification-structured-extraction-runtime.ts -> packages/persistence/dist/index.d.ts",
+        "apps/worker/src/verification-structured-extraction-runtime.ts -> packages/preparation/dist/index.d.ts",
+        "apps/worker/src/verification-structured-extraction-runtime.ts -> packages/verification/dist/index.d.ts",
+        "apps/worker/src/worker.ts -> packages/application/dist/index.d.ts"
+      ],
+      "host-imports-no-app": [],
+      "packages-import-no-apps": [
+        "packages/persistence/test/retrieval-history-fixture.d.mts -> apps/verification-executor/src/knowledge/selected-candidate-fixture.ts",
+        "packages/persistence/test/retrieval-history-fixture.mjs -> apps/verification-executor/src/knowledge/selected-candidate-fixture.ts",
+        "packages/persistence/test/retrieval-history-fixture.mjs -> apps/verification-executor/src/knowledge/selected-candidate-publication.ts"
+      ],
+      "knowledge-db-no-persistence-in-production": []
+    },
+    "note": "edges to other workspace packages resolve through pnpm symlinks to packages/<x>/dist/*.d.ts or *.js (apps/<x>/dist for the CLI to executor seam); type-only imports count (tsPreCompilationDeps)"
+  },
+  "inventory": {
+    "script": "docs/operations/package-cleanup/workspace/evidence/q0-inventory.mjs (copy of unit5c-inventory.mjs; replacedTests emptied; the 5C pre-to-ks CLI rename mapping replaced by strict equality of the CLI table and all operation rows, because 'before' is already post-5C and the rename logic made compare exit 1)",
+    "before": "q0-before.json (b94116d)",
+    "after": "q0-after.json (479b2a6)",
+    "compareExit": 0,
+    "missingTests": [],
+    "changedOutcomes": [],
+    "addedTests": [],
+    "replacedTests": {},
+    "suiteExitCodes": "unchanged: application 1 before and after (retained replay receipt); host, executor, mcp, cli 0",
+    "testCounts": "host 73, application 442 passed + 1 failed, executor 240 + 39 skipped, MCP 218 + 1 skipped, CLI 67, before and after",
+    "exports": "none added or removed",
+    "graph": "no cycles; no knowledge-db production edge to persistence; no host to app edge",
+    "catalog": "kinds, routes, tools, operations, CLI table and state identical",
+    "eve": "unchanged (read-only)"
+  },
+  "notDone": [
+    "no push, deployment, paid provider call, shared-database mutation or .jev change",
+    "the 126 skipped tests need a disposable database or providers and are not passing evidence",
+    "agent-docs build, ledger, specs and navigation not touched (coordinator)",
+    "no source was changed to fix a lint diagnostic or a boundary violation",
+    "full pnpm verify not run as a single command",
+    "GitHub Actions run not observed; CI runs pnpm verify on Linux, where lineEnding auto is LF and Biome's linux-x64 package is in the lockfile"
+  ]
+}

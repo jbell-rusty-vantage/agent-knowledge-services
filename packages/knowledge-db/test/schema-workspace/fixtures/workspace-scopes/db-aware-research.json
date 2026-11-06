@@ -1,0 +1,9 @@
+{
+  "format": "ai-engineer-schema-scope/1",
+  "id": "db-aware-research",
+  "description": "Read-side exploration for research planning and ingestion authoring (fixture)",
+  "include": { "domains": ["identity", "temporal-facts"], "relations": [], "functions": ["temporal.*"] },
+  "exclude": { "relations": ["temporal.knowledge_head"] },
+  "tasks": ["what-do-we-know-about-entity"],
+  "queries": ["entity.*", "knowledge.head"]
+}

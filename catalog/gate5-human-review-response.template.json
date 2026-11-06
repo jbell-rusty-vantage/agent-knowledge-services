@@ -1,0 +1,228 @@
+{
+  "schemaVersion": "gate5-human-review/v1",
+  "sampleId": "gate5-broad-v3-human-sample-24",
+  "packetDigest": "sha256:c618e4f8b4907ef1fe81d213fa0c7fb55e6e0eae3455d979849d827219e48f0a",
+  "sampleDigest": "sha256:605ff2d899c0215bc00361e8bb314bede2f4597a10a97bd5fe600758f67c93d1",
+  "datasetManifestDigest": "sha256:46487a5d08d0720c085c5b2bb676028fc76c3a7044813c8cced404da0ae032ab",
+  "reviewerIdentity": "",
+  "humanAttestation": "I attest that I am the named human reviewer and personally completed this review.",
+  "reviewedAt": "",
+  "assessments": [
+    {
+      "caseId": "case-d84fe2db0da42ace",
+      "retrievalRelevance": "",
+      "citationCorrectness": "",
+      "abstentionCorrectness": "",
+      "policyCorrectness": "",
+      "decision": "",
+      "rationale": ""
+    },
+    {
+      "caseId": "case-1006ffe16e973e7f",
+      "retrievalRelevance": "",
+      "citationCorrectness": "",
+      "abstentionCorrectness": "",
+      "policyCorrectness": "",
+      "decision": "",
+      "rationale": ""
+    },
+    {
+      "caseId": "case-f5f9b9349d8110e1",
+      "retrievalRelevance": "",
+      "citationCorrectness": "",
+      "abstentionCorrectness": "",
+      "policyCorrectness": "",
+      "decision": "",
+      "rationale": ""
+    },
+    {
+      "caseId": "case-cdac243a2529796d",
+      "retrievalRelevance": "",
+      "citationCorrectness": "",
+      "abstentionCorrectness": "",
+      "policyCorrectness": "",
+      "decision": "",
+      "rationale": ""
+    },
+    {
+      "caseId": "case-bb6ad21665eb11e5",
+      "retrievalRelevance": "",
+      "citationCorrectness": "",
+      "abstentionCorrectness": "",
+      "policyCorrectness": "",
+      "decision": "",
+      "rationale": ""
+    },
+    {
+      "caseId": "case-d57127a2a7eed7c0",
+      "retrievalRelevance": "",
+      "citationCorrectness": "",
+      "abstentionCorrectness": "",
+      "policyCorrectness": "",
+      "decision": "",
+      "rationale": ""
+    },
+    {
+      "caseId": "case-241b12cffafd9014",
+      "retrievalRelevance": "",
+      "citationCorrectness": "",
+      "abstentionCorrectness": "",
+      "policyCorrectness": "",
+      "decision": "",
+      "rationale": ""
+    },
+    {
+      "caseId": "case-4b175684d755f981",
+      "retrievalRelevance": "",
+      "citationCorrectness": "",
+      "abstentionCorrectness": "",
+      "policyCorrectness": "",
+      "decision": "",
+      "rationale": ""
+    },
+    {
+      "caseId": "case-8468d9052dfaf8e7",
+      "retrievalRelevance": "",
+      "citationCorrectness": "",
+      "abstentionCorrectness": "",
+      "policyCorrectness": "",
+      "decision": "",
+      "rationale": ""
+    },
+    {
+      "caseId": "case-5d153a78a49b50c5",
+      "retrievalRelevance": "",
+      "citationCorrectness": "",
+      "abstentionCorrectness": "",
+      "policyCorrectness": "",
+      "decision": "",
+      "rationale": ""
+    },
+    {
+      "caseId": "case-366a1993ffb49baf",
+      "retrievalRelevance": "",
+      "citationCorrectness": "",
+      "abstentionCorrectness": "",
+      "policyCorrectness": "",
+      "decision": "",
+      "rationale": ""
+    },
+    {
+      "caseId": "case-b14c9792325263fa",
+      "retrievalRelevance": "",
+      "citationCorrectness": "",
+      "abstentionCorrectness": "",
+      "policyCorrectness": "",
+      "decision": "",
+      "rationale": ""
+    },
+    {
+      "caseId": "case-486cbc54fa4eff38",
+      "retrievalRelevance": "",
+      "citationCorrectness": "",
+      "abstentionCorrectness": "",
+      "policyCorrectness": "",
+      "decision": "",
+      "rationale": ""
+    },
+    {
+      "caseId": "case-b62136c765bbac11",
+      "retrievalRelevance": "",
+      "citationCorrectness": "",
+      "abstentionCorrectness": "",
+      "policyCorrectness": "",
+      "decision": "",
+      "rationale": ""
+    },
+    {
+      "caseId": "case-e8922a5cdfa8248f",
+      "retrievalRelevance": "",
+      "citationCorrectness": "",
+      "abstentionCorrectness": "",
+      "policyCorrectness": "",
+      "decision": "",
+      "rationale": ""
+    },
+    {
+      "caseId": "case-689f54e958d73bab",
+      "retrievalRelevance": "",
+      "citationCorrectness": "",
+      "abstentionCorrectness": "",
+      "policyCorrectness": "",
+      "decision": "",
+      "rationale": ""
+    },
+    {
+      "caseId": "case-cf333c4d5c7f4df3",
+      "retrievalRelevance": "",
+      "citationCorrectness": "",
+      "abstentionCorrectness": "",
+      "policyCorrectness": "",
+      "decision": "",
+      "rationale": ""
+    },
+    {
+      "caseId": "case-18efcb2d9136debe",
+      "retrievalRelevance": "",
+      "citationCorrectness": "",
+      "abstentionCorrectness": "",
+      "policyCorrectness": "",
+      "decision": "",
+      "rationale": ""
+    },
+    {
+      "caseId": "case-eaa8ff2ec9d804b8",
+      "retrievalRelevance": "",
+      "citationCorrectness": "",
+      "abstentionCorrectness": "",
+      "policyCorrectness": "",
+      "decision": "",
+      "rationale": ""
+    },
+    {
+      "caseId": "case-5fa1aa3a2bdb3113",
+      "retrievalRelevance": "",
+      "citationCorrectness": "",
+      "abstentionCorrectness": "",
+      "policyCorrectness": "",
+      "decision": "",
+      "rationale": ""
+    },
+    {
+      "caseId": "case-73933eed0611e567",
+      "retrievalRelevance": "",
+      "citationCorrectness": "",
+      "abstentionCorrectness": "",
+      "policyCorrectness": "",
+      "decision": "",
+      "rationale": ""
+    },
+    {
+      "caseId": "case-d92622aad803e0e9",
+      "retrievalRelevance": "",
+      "citationCorrectness": "",
+      "abstentionCorrectness": "",
+      "policyCorrectness": "",
+      "decision": "",
+      "rationale": ""
+    },
+    {
+      "caseId": "case-07d1b95dac1f3eeb",
+      "retrievalRelevance": "",
+      "citationCorrectness": "",
+      "abstentionCorrectness": "",
+      "policyCorrectness": "",
+      "decision": "",
+      "rationale": ""
+    },
+    {
+      "caseId": "case-ca9de1bf0620210e",
+      "retrievalRelevance": "",
+      "citationCorrectness": "",
+      "abstentionCorrectness": "",
+      "policyCorrectness": "",
+      "decision": "",
+      "rationale": ""
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": { "noEmit": true, "declaration": false, "sourceMap": false },
+  "files": ["run.ts", "fixtures.ts", "manifest.ts", "meter.ts", "analysis.ts", "providers.ts"],
+  "include": []
+}

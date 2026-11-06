@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "knowledge-executor-skill-catalog/v1",
+  "description": "Skills shipped with the knowledge executor tarball. knowledge-verify is canonical here; schema, read and ingestion skills are canonical in ../../skills.",
+  "skills": [
+    {
+      "id": "knowledge-verify",
+      "version": "1.2.0",
+      "path": "knowledge-verify/SKILL.md",
+      "cli": "knowledge-verify *",
+      "mcp": "verify_*",
+      "references": [
+        "references/intents.md",
+        "references/failure-playbook.md",
+        "references/capabilities.md",
+        "examples/offline.mjs"
+      ]
+    },
+    {
+      "id": "schema-explore",
+      "version": "1.2.0",
+      "path": "../../../skills/schema-explore/SKILL.md",
+      "cli": "knowledge schema *",
+      "mcp": "schema_*"
+    },
+    {
+      "id": "knowledge-db",
+      "version": "1.1.0",
+      "path": "../../../skills/knowledge-db/SKILL.md",
+      "cli": "knowledge db *, knowledge artifact get",
+      "mcp": "db_*, artifact_get"
+    },
+    {
+      "id": "knowledge-ingest",
+      "version": "1.2.0",
+      "path": "../../../skills/knowledge-ingest/SKILL.md",
+      "cli": "knowledge ingest *",
+      "mcp": "ingest_*"
+    }
+  ]
+}

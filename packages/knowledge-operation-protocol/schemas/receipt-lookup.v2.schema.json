@@ -1,0 +1,925 @@
+{
+  "$id": "https://belllabs.local/knowledge-operation-protocol/receipt-lookup.v2.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "oneOf": [
+    {
+      "type": "object",
+      "properties": {
+        "disposition": {
+          "type": "string",
+          "const": "found"
+        },
+        "receipt": {
+          "type": "object",
+          "properties": {
+            "handle": {
+              "type": "object",
+              "properties": {
+                "protocolVersion": {
+                  "type": "string",
+                  "const": "ks.knowledge_operation.v2"
+                },
+                "tenant": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                },
+                "application": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_.-]{0,119}$"
+                },
+                "binding": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_.-]{0,119}$"
+                },
+                "operationId": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@-]{0,199}$"
+                }
+              },
+              "required": [
+                "protocolVersion",
+                "tenant",
+                "application",
+                "binding",
+                "operationId"
+              ],
+              "additionalProperties": false
+            },
+            "effect": {
+              "type": "object",
+              "properties": {
+                "effectKey": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@-]{0,199}$"
+                },
+                "semanticPayloadDigest": {
+                  "type": "string",
+                  "pattern": "^sha256:[0-9a-f]{64}$"
+                },
+                "originatingOrigin": {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "type": "string",
+                      "enum": [
+                        "mission_invocation",
+                        "standalone",
+                        "recovery",
+                        "durable_worker"
+                      ]
+                    },
+                    "installationId": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 200
+                    },
+                    "applicationId": {
+                      "type": "string",
+                      "pattern": "^[a-z][a-z0-9_.-]{0,119}$"
+                    },
+                    "tenantId": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 200
+                    },
+                    "issuer": {
+                      "type": "string",
+                      "pattern": "^[a-z][a-z0-9_.-]{0,119}$"
+                    },
+                    "subject": {
+                      "type": "string",
+                      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@-]{0,199}$"
+                    },
+                    "mission": {
+                      "anyOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "missionId": {
+                              "type": "string",
+                              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@-]{0,199}$"
+                            },
+                            "runId": {
+                              "type": "string",
+                              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@-]{0,199}$"
+                            },
+                            "activationId": {
+                              "anyOf": [
+                                {
+                                  "type": "string",
+                                  "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@-]{0,199}$"
+                                },
+                                {
+                                  "type": "null"
+                                }
+                              ]
+                            },
+                            "operationId": {
+                              "type": "string",
+                              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@-]{0,199}$"
+                            },
+                            "operationAttempt": {
+                              "type": "integer",
+                              "minimum": 0,
+                              "maximum": 9007199254740991
+                            },
+                            "executionGeneration": {
+                              "type": "integer",
+                              "minimum": 0,
+                              "maximum": 9007199254740991
+                            },
+                            "lane": {
+                              "type": "string",
+                              "pattern": "^[a-z][a-z0-9_.-]{0,119}$"
+                            }
+                          },
+                          "required": [
+                            "missionId",
+                            "runId",
+                            "activationId",
+                            "operationId",
+                            "operationAttempt",
+                            "executionGeneration",
+                            "lane"
+                          ],
+                          "additionalProperties": false
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "recoveryAuthorityRef": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@-]{0,199}$"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "invocationId": {
+                      "type": "string",
+                      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@-]{0,199}$"
+                    },
+                    "authenticatedAt": {
+                      "type": "string",
+                      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d*[1-9])?Z$"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "installationId",
+                    "applicationId",
+                    "tenantId",
+                    "issuer",
+                    "subject",
+                    "mission",
+                    "recoveryAuthorityRef",
+                    "invocationId",
+                    "authenticatedAt"
+                  ],
+                  "additionalProperties": false
+                },
+                "boundEffectDigest": {
+                  "type": "string",
+                  "pattern": "^sha256:[0-9a-f]{64}$"
+                },
+                "canonicalization": {
+                  "type": "string",
+                  "const": "kop-canonical-json.v1"
+                },
+                "currentCallerOrigin": {
+                  "type": "object",
+                  "properties": {
+                    "kind": {
+                      "type": "string",
+                      "enum": [
+                        "mission_invocation",
+                        "standalone",
+                        "recovery",
+                        "durable_worker"
+                      ]
+                    },
+                    "installationId": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 200
+                    },
+                    "applicationId": {
+                      "type": "string",
+                      "pattern": "^[a-z][a-z0-9_.-]{0,119}$"
+                    },
+                    "tenantId": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 200
+                    },
+                    "issuer": {
+                      "type": "string",
+                      "pattern": "^[a-z][a-z0-9_.-]{0,119}$"
+                    },
+                    "subject": {
+                      "type": "string",
+                      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@-]{0,199}$"
+                    },
+                    "mission": {
+                      "anyOf": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "missionId": {
+                              "type": "string",
+                              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@-]{0,199}$"
+                            },
+                            "runId": {
+                              "type": "string",
+                              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@-]{0,199}$"
+                            },
+                            "activationId": {
+                              "anyOf": [
+                                {
+                                  "type": "string",
+                                  "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@-]{0,199}$"
+                                },
+                                {
+                                  "type": "null"
+                                }
+                              ]
+                            },
+                            "operationId": {
+                              "type": "string",
+                              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@-]{0,199}$"
+                            },
+                            "operationAttempt": {
+                              "type": "integer",
+                              "minimum": 0,
+                              "maximum": 9007199254740991
+                            },
+                            "executionGeneration": {
+                              "type": "integer",
+                              "minimum": 0,
+                              "maximum": 9007199254740991
+                            },
+                            "lane": {
+                              "type": "string",
+                              "pattern": "^[a-z][a-z0-9_.-]{0,119}$"
+                            }
+                          },
+                          "required": [
+                            "missionId",
+                            "runId",
+                            "activationId",
+                            "operationId",
+                            "operationAttempt",
+                            "executionGeneration",
+                            "lane"
+                          ],
+                          "additionalProperties": false
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "recoveryAuthorityRef": {
+                      "anyOf": [
+                        {
+                          "type": "string",
+                          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@-]{0,199}$"
+                        },
+                        {
+                          "type": "null"
+                        }
+                      ]
+                    },
+                    "invocationId": {
+                      "type": "string",
+                      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@-]{0,199}$"
+                    },
+                    "authenticatedAt": {
+                      "type": "string",
+                      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d*[1-9])?Z$"
+                    }
+                  },
+                  "required": [
+                    "kind",
+                    "installationId",
+                    "applicationId",
+                    "tenantId",
+                    "issuer",
+                    "subject",
+                    "mission",
+                    "recoveryAuthorityRef",
+                    "invocationId",
+                    "authenticatedAt"
+                  ],
+                  "additionalProperties": false
+                },
+                "dispatchId": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@-]{0,199}$"
+                },
+                "envelopeDigest": {
+                  "type": "string",
+                  "pattern": "^sha256:[0-9a-f]{64}$"
+                },
+                "dispatchSequence": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 9007199254740991
+                }
+              },
+              "required": [
+                "effectKey",
+                "semanticPayloadDigest",
+                "originatingOrigin",
+                "boundEffectDigest",
+                "canonicalization",
+                "currentCallerOrigin",
+                "dispatchId",
+                "envelopeDigest",
+                "dispatchSequence"
+              ],
+              "additionalProperties": false
+            },
+            "outcome": {
+              "type": "string",
+              "enum": [
+                "applied",
+                "noop",
+                "partial",
+                "rejected",
+                "pending_dispatch"
+              ]
+            },
+            "nativeReceiptRef": {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "enum": [
+                    "task",
+                    "artifact",
+                    "assertion",
+                    "occurrence",
+                    "fragment",
+                    "support_set",
+                    "observation",
+                    "report",
+                    "report_kind",
+                    "rubric",
+                    "policy",
+                    "method",
+                    "mapping",
+                    "verification_run",
+                    "run_manifest",
+                    "use_decision",
+                    "adjudication",
+                    "receipt",
+                    "effect",
+                    "operation"
+                  ]
+                },
+                "id": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@-]{0,199}$"
+                },
+                "version": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_.-]*\\.v[0-9]+$"
+                },
+                "digest": {
+                  "type": "string",
+                  "pattern": "^sha256:[0-9a-f]{64}$"
+                },
+                "tenant": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200
+                },
+                "binding": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9_.-]{0,119}$"
+                }
+              },
+              "required": [
+                "kind",
+                "id",
+                "version",
+                "digest",
+                "tenant",
+                "binding"
+              ],
+              "additionalProperties": false
+            },
+            "affectedRefs": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "type": "string",
+                    "enum": [
+                      "task",
+                      "artifact",
+                      "assertion",
+                      "occurrence",
+                      "fragment",
+                      "support_set",
+                      "observation",
+                      "report",
+                      "report_kind",
+                      "rubric",
+                      "policy",
+                      "method",
+                      "mapping",
+                      "verification_run",
+                      "run_manifest",
+                      "use_decision",
+                      "adjudication",
+                      "receipt",
+                      "effect",
+                      "operation"
+                    ]
+                  },
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@-]{0,199}$"
+                  },
+                  "version": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_.-]*\\.v[0-9]+$"
+                  },
+                  "digest": {
+                    "type": "string",
+                    "pattern": "^sha256:[0-9a-f]{64}$"
+                  },
+                  "tenant": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 200
+                  },
+                  "binding": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_.-]{0,119}$"
+                  }
+                },
+                "required": [
+                  "kind",
+                  "id",
+                  "version",
+                  "digest",
+                  "tenant",
+                  "binding"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "concurrencyToken": {
+              "type": "object",
+              "properties": {
+                "before": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "maxLength": 400
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "after": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "maxLength": 400
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "before",
+                "after"
+              ],
+              "additionalProperties": false
+            },
+            "processedRevocationEpoch": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "itemOutcomes": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "itemId": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@-]{0,199}$"
+                  },
+                  "outcome": {
+                    "type": "string",
+                    "enum": [
+                      "admitted",
+                      "held",
+                      "rejected",
+                      "superseded",
+                      "duplicate"
+                    ]
+                  },
+                  "reason": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "maxLength": 400
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "ref": {
+                    "anyOf": [
+                      {
+                        "type": "object",
+                        "properties": {
+                          "kind": {
+                            "type": "string",
+                            "enum": [
+                              "task",
+                              "artifact",
+                              "assertion",
+                              "occurrence",
+                              "fragment",
+                              "support_set",
+                              "observation",
+                              "report",
+                              "report_kind",
+                              "rubric",
+                              "policy",
+                              "method",
+                              "mapping",
+                              "verification_run",
+                              "run_manifest",
+                              "use_decision",
+                              "adjudication",
+                              "receipt",
+                              "effect",
+                              "operation"
+                            ]
+                          },
+                          "id": {
+                            "type": "string",
+                            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@-]{0,199}$"
+                          },
+                          "version": {
+                            "type": "string",
+                            "pattern": "^[a-z][a-z0-9_.-]*\\.v[0-9]+$"
+                          },
+                          "digest": {
+                            "type": "string",
+                            "pattern": "^sha256:[0-9a-f]{64}$"
+                          },
+                          "tenant": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 200
+                          },
+                          "binding": {
+                            "type": "string",
+                            "pattern": "^[a-z][a-z0-9_.-]{0,119}$"
+                          }
+                        },
+                        "required": [
+                          "kind",
+                          "id",
+                          "version",
+                          "digest",
+                          "tenant",
+                          "binding"
+                        ],
+                        "additionalProperties": false
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "itemId",
+                  "outcome",
+                  "reason",
+                  "ref"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "appliedAt": {
+              "type": "string",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d*[1-9])?Z$"
+            },
+            "details": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/__schema0"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "digest": {
+              "type": "string",
+              "pattern": "^sha256:[0-9a-f]{64}$"
+            }
+          },
+          "required": [
+            "handle",
+            "effect",
+            "outcome",
+            "nativeReceiptRef",
+            "affectedRefs",
+            "concurrencyToken",
+            "processedRevocationEpoch",
+            "itemOutcomes",
+            "appliedAt",
+            "details",
+            "digest"
+          ],
+          "additionalProperties": false
+        },
+        "delivery": {
+          "type": "object",
+          "properties": {
+            "state": {
+              "type": "string",
+              "enum": [
+                "pending",
+                "dispatched",
+                "applied",
+                "revoked",
+                "failed"
+              ]
+            },
+            "dispatchId": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@-]{0,199}$"
+            },
+            "targetBinding": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_.-]{0,119}$"
+            },
+            "nativeState": {
+              "type": "string",
+              "pattern": "^[a-z_]{1,40}$"
+            },
+            "ackDigest": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^sha256:[0-9a-f]{64}$"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "ackedAt": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d*[1-9])?Z$"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "graphTxRef": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 400
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "checkedAt": {
+              "type": "string",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d*[1-9])?Z$"
+            }
+          },
+          "required": [
+            "state",
+            "dispatchId",
+            "targetBinding",
+            "nativeState",
+            "ackDigest",
+            "ackedAt",
+            "graphTxRef",
+            "checkedAt"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "disposition",
+        "receipt"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "disposition": {
+          "type": "string",
+          "const": "not_found"
+        },
+        "checkedAt": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d*[1-9])?Z$"
+        }
+      },
+      "required": [
+        "disposition",
+        "checkedAt"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "type": "object",
+      "properties": {
+        "disposition": {
+          "type": "string",
+          "const": "unresolved"
+        },
+        "error": {
+          "type": "object",
+          "properties": {
+            "protocolVersion": {
+              "type": "string",
+              "const": "ks.knowledge_operation.v2"
+            },
+            "code": {
+              "type": "string",
+              "enum": [
+                "ORIGIN_MISMATCH",
+                "SCOPE_DENIED",
+                "EFFECT_CONFLICT",
+                "SCHEMA_UNSUPPORTED",
+                "EXACT_REVISION_UNAVAILABLE",
+                "REVIEW_REQUIRED",
+                "BUDGET_EXHAUSTED",
+                "UNSUPPORTED_MEDIA",
+                "STALE_DECISION",
+                "UNRESOLVED_EFFECT",
+                "INDEPENDENCE_UNPROVEN",
+                "INVALID_ENVELOPE",
+                "CAPABILITY_UNAVAILABLE",
+                "NOT_FOUND",
+                "CANCELLED",
+                "INTERNAL"
+              ]
+            },
+            "message": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000
+            },
+            "retryable": {
+              "type": "boolean"
+            },
+            "domainOutcome": {
+              "type": "boolean"
+            },
+            "correlation": {
+              "type": "object",
+              "properties": {
+                "dispatchId": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@-]{0,199}$"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "operationId": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@-]{0,199}$"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "effectKey": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@-]{0,199}$"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "dispatchId",
+                "operationId",
+                "effectKey"
+              ],
+              "additionalProperties": false
+            },
+            "details": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/__schema0"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "occurredAt": {
+              "type": "string",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d*[1-9])?Z$"
+            }
+          },
+          "required": [
+            "protocolVersion",
+            "code",
+            "message",
+            "retryable",
+            "domainOutcome",
+            "correlation",
+            "details",
+            "occurredAt"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "disposition",
+        "error"
+      ],
+      "additionalProperties": false
+    }
+  ],
+  "$defs": {
+    "__schema0": {
+      "anyOf": [
+        {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/__schema0"
+          }
+        },
+        {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/__schema0"
+          }
+        }
+      ]
+    }
+  }
+}

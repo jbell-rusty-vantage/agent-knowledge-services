@@ -1,0 +1,60 @@
+{
+  "name": "@aiengineer/knowledge-verification-executor",
+  "version": "0.1.0",
+  "description": "Knowledge executor host: capture and artifact tools (knowledge-verify), ks.knowledge_operation.v2, schema workspace + bounded database reads + deterministic ingestion (knowledge). One process, three surfaces: CLI, Streamable HTTP MCP (/mcp), and HTTP routes for sandbox handoff.",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./scoped-host/v1": "./dist/scoped-host.js",
+    "./local-verification": {
+      "types": "./dist/local-services.d.ts",
+      "import": "./dist/local-services.js"
+    }
+  },
+  "bin": {
+    "knowledge-verify": "./dist/index.js",
+    "knowledge": "./dist/knowledge.js"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsup && tsc -p tsconfig.local-verification.json",
+    "dev": "tsx src/index.ts",
+    "dev:knowledge": "tsx src/knowledge.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --passWithNoTests",
+    "pack:sandbox": "node scripts/pack-sandbox.mjs",
+    "examples": "node skills/knowledge-verify/examples/offline.mjs dist/index.js"
+  },
+  "dependencies": {
+    "@aiengineer/database-contract": "file:../../vendor/aiengineer-database-contract-0.6.0.tgz",
+    "@aiengineer/knowledge-application": "workspace:*",
+    "@aiengineer/knowledge-binding-aiengineer-postgres": "workspace:*",
+    "@aiengineer/knowledge-binding-biotech-graph": "workspace:*",
+    "@aiengineer/knowledge-contracts": "workspace:*",
+    "@aiengineer/knowledge-core": "workspace:*",
+    "@aiengineer/knowledge-db": "workspace:*",
+    "@aiengineer/knowledge-host": "workspace:*",
+    "@aiengineer/knowledge-operation-protocol": "workspace:*",
+    "@aiengineer/knowledge-persistence": "workspace:*",
+    "@aiengineer/knowledge-policy": "workspace:*",
+    "@aiengineer/knowledge-research-core": "workspace:*",
+    "@aiengineer/knowledge-verification": "workspace:*",
+    "@modelcontextprotocol/sdk": "catalog:",
+    "pg": "8.16.3",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@aiengineer/knowledge-core": "workspace:*",
+    "@aiengineer/knowledge-db-contract": "workspace:*",
+    "@aiengineer/knowledge-preparation": "workspace:*",
+    "@types/node": "catalog:",
+    "@types/pg": "8.15.5",
+    "tsup": "catalog:",
+    "tsx": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}

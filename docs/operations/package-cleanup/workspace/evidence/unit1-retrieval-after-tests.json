@@ -1,0 +1,752 @@
+{
+  "schema": 1,
+  "layout": "after",
+  "group": "retrieval",
+  "sourceCommit": "6e816582369fdfb7787c7d7deeebb37de3db50c1",
+  "dirty": true,
+  "command": "node node_modules/vitest/vitest.mjs run --maxWorkers=2 --reporter=json",
+  "runs": [
+    {
+      "package": "retrieval",
+      "exitCode": 0,
+      "counts": {
+        "passed": 136,
+        "failed": 0,
+        "skipped": 0,
+        "total": 136
+      },
+      "files": [
+        {
+          "file": "packages/retrieval/examples/embeddings/01-deterministic-batch.test.ts",
+          "originalFile": "packages/embeddings/examples/01-deterministic-batch.test.ts",
+          "tests": [
+            {
+              "name": "example 01: deterministic batch keeps the caller's input order",
+              "status": "passed"
+            },
+            {
+              "name": "example 01: deterministic batch produces an identical output manifest digest across two runs",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/retrieval/examples/embeddings/02-cache-and-retry.test.ts",
+          "originalFile": "packages/embeddings/examples/02-cache-and-retry.test.ts",
+          "tests": [
+            {
+              "name": "example 02: cache and retry retries the 503 once under the same idempotency key",
+              "status": "passed"
+            },
+            {
+              "name": "example 02: cache and retry serves the second call from the cache without another network call",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/retrieval/examples/embeddings/03-reject-bad-output.test.ts",
+          "originalFile": "packages/embeddings/examples/03-reject-bad-output.test.ts",
+          "tests": [
+            {
+              "name": "example 03: reject bad output rejects reordered, partial, wrong-dimension and non-finite responses",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/retrieval/examples/projections/01-validate-and-build.test.ts",
+          "originalFile": "packages/projections/examples/01-validate-and-build.test.ts",
+          "tests": [
+            {
+              "name": "example 01: validate and build derives the same projectionId from the same evidence and text",
+              "status": "passed"
+            },
+            {
+              "name": "example 01: validate and build validates the evidence support set before building",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/retrieval/examples/projections/02-source-native-fidelity.test.ts",
+          "originalFile": "packages/projections/examples/02-source-native-fidelity.test.ts",
+          "tests": [
+            {
+              "name": "example 02: source-native fidelity accepts faithful text that equals the ordered evidence",
+              "status": "passed"
+            },
+            {
+              "name": "example 02: source-native fidelity rejects derived assertions on a source-native section",
+              "status": "passed"
+            },
+            {
+              "name": "example 02: source-native fidelity rejects text that does not match the ordered evidence",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/retrieval/examples/projections/03-classify-dispositions.test.ts",
+          "originalFile": "packages/projections/examples/03-classify-dispositions.test.ts",
+          "tests": [
+            {
+              "name": "example 03: classify dispositions classifies not_ingestible alone as no spaces",
+              "status": "passed"
+            },
+            {
+              "name": "example 03: classify dispositions maps admitted dispositions to their vector spaces",
+              "status": "passed"
+            },
+            {
+              "name": "example 03: classify dispositions refuses a canonical disposition with an unresolved identity",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/retrieval/examples/search/01-plan-and-admission.test.ts",
+          "originalFile": "packages/retrieval/examples/01-plan-and-admission.test.ts",
+          "tests": [
+            {
+              "name": "example 01: plan and admission decomposes a compound query into more than one subquery",
+              "status": "passed"
+            },
+            {
+              "name": "example 01: plan and admission denies a filter field the policy never allowed with FILTER_NOT_ALLOWED",
+              "status": "passed"
+            },
+            {
+              "name": "example 01: plan and admission denies a space the policy never admitted with SPACE_NOT_ADMITTED",
+              "status": "passed"
+            },
+            {
+              "name": "example 01: plan and admission infers implementation_support for an API/compare question",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/retrieval/examples/search/02-fuse-channels.test.ts",
+          "originalFile": "packages/retrieval/examples/02-fuse-channels.test.ts",
+          "tests": [
+            {
+              "name": "example 02: fuse channels collects contributions from exact, trigram and semantic channels for r0",
+              "status": "passed"
+            },
+            {
+              "name": "example 02: fuse channels expands the verified graph edge to r0's neighbor",
+              "status": "passed"
+            },
+            {
+              "name": "example 02: fuse channels produces an identical digest for the same query twice",
+              "status": "passed"
+            },
+            {
+              "name": "example 02: fuse channels ranks the identifier-matching record first",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/retrieval/examples/search/03-abstain-and-omit.test.ts",
+          "originalFile": "packages/retrieval/examples/03-abstain-and-omit.test.ts",
+          "tests": [
+            {
+              "name": "example 03: abstain and omit recommends abstention with a coverage reason when nothing satisfies the query",
+              "status": "passed"
+            },
+            {
+              "name": "example 03: abstain and omit records tenant, promotion, visibility and retraction omissions by reason",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/retrieval/examples/vector-backends/01-exact-search.test.ts",
+          "originalFile": "packages/vector-backends/examples/01-exact-search.test.ts",
+          "tests": [
+            {
+              "name": "example 01: exact search isolates by tenant, vector-space version and lifecycle, and orders deterministically",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/retrieval/examples/vector-backends/02-publish-and-rollback.test.ts",
+          "originalFile": "packages/vector-backends/examples/02-publish-and-rollback.test.ts",
+          "tests": [
+            {
+              "name": "example 02: publish and rollback verifies publish, replays idempotently, and rolls back to an intact predecessor",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/retrieval/examples/vector-backends/03-reconcile-drift.test.ts",
+          "originalFile": "packages/vector-backends/examples/03-reconcile-drift.test.ts",
+          "tests": [
+            {
+              "name": "example 03: reconcile drift classifies a manifest mismatch as security_critical",
+              "status": "passed"
+            },
+            {
+              "name": "example 03: reconcile drift classifies an evaluation regression as review_required",
+              "status": "passed"
+            },
+            {
+              "name": "example 03: reconcile drift classifies an orphan active pointer as security_critical",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/retrieval/src/embeddings/cache.test.ts",
+          "originalFile": "packages/embeddings/src/cache.test.ts",
+          "tests": [
+            {
+              "name": "MemoryEmbeddingCache returns undefined for a key it has not seen",
+              "status": "passed"
+            },
+            {
+              "name": "MemoryEmbeddingCache stores a frozen copy of the vector it was given, not the original array",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/retrieval/src/embeddings/fake.test.ts",
+          "originalFile": "packages/embeddings/src/fake.test.ts",
+          "tests": [
+            {
+              "name": "DeterministicFakeEmbeddingAdapter rejects caller-supplied digest mismatches and duplicate projection identities",
+              "status": "passed"
+            },
+            {
+              "name": "DeterministicFakeEmbeddingAdapter returns stable ordered deterministic embeddings and manifests",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/retrieval/src/embeddings/gateway.test.ts",
+          "originalFile": "packages/embeddings/src/gateway.test.ts",
+          "tests": [
+            {
+              "name": "createGatewayEmbeddingAdapterFromEnvironment accepts VERCEL_OIDC_TOKEN when AI_GATEWAY_API_KEY is absent",
+              "status": "passed"
+            },
+            {
+              "name": "createGatewayEmbeddingAdapterFromEnvironment throws AI_GATEWAY_CREDENTIAL_MISSING with neither env var set",
+              "status": "passed"
+            },
+            {
+              "name": "retryDelay falls back to capped exponential backoff when the header is absent or unparseable",
+              "status": "passed"
+            },
+            {
+              "name": "retryDelay honours a numeric retry-after header, capped at 10 seconds",
+              "status": "passed"
+            },
+            {
+              "name": "VercelAiGatewayEmbeddingAdapter discovers the configured model without exposing credentials",
+              "status": "passed"
+            },
+            {
+              "name": "VercelAiGatewayEmbeddingAdapter rejects reordered, partial and malformed output atomically",
+              "status": "passed"
+            },
+            {
+              "name": "VercelAiGatewayEmbeddingAdapter retries with one idempotency key, validates provider order, and caches per version",
+              "status": "passed"
+            },
+            {
+              "name": "VercelAiGatewayEmbeddingAdapter throws without retrying on a non-retryable status",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/retrieval/src/embeddings/vectors.test.ts",
+          "originalFile": "packages/embeddings/src/vectors.test.ts",
+          "tests": [
+            {
+              "name": "cacheKey namespaces the cache key by vectorSpaceVersionId",
+              "status": "passed"
+            },
+            {
+              "name": "validateVector rejects wrong dimensions and non-finite values",
+              "status": "passed"
+            },
+            {
+              "name": "vectorDigest is stable for the same vector and differs for -0 versus 0",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/retrieval/src/projections/classification/disposition-spaces.test.ts",
+          "originalFile": "packages/projections/src/classification/disposition-spaces.test.ts",
+          "tests": [
+            {
+              "name": "classifyProjectionSpaces rejects a proposal missing deduplication keys",
+              "status": "passed"
+            },
+            {
+              "name": "classifyProjectionSpaces rejects a proposal missing evidence locators",
+              "status": "passed"
+            },
+            {
+              "name": "classifyProjectionSpaces rejects an empty targetContractVersion",
+              "status": "passed"
+            },
+            {
+              "name": "classifyProjectionSpaces rejects an unknown disposition",
+              "status": "passed"
+            },
+            {
+              "name": "classifyProjectionSpaces rejects not_ingestible combined with another disposition",
+              "status": "passed"
+            },
+            {
+              "name": "classifyProjectionSpaces validates classification evidence and resolved canonical identities",
+              "status": "passed"
+            },
+            {
+              "name": "publicProjectionSpaces has exactly the seven public domains and excludes source_native_sections",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/retrieval/src/projections/projection/create-projection.test.ts",
+          "originalFile": "packages/projections/src/projection/create-projection.test.ts",
+          "tests": [
+            {
+              "name": "createProjection builds deterministic contract-valid projections for every space",
+              "status": "passed"
+            },
+            {
+              "name": "createProjection produces a different projectionId when procedureVersionId changes but the text does not",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/retrieval/src/projections/validation/evidence-support.test.ts",
+          "originalFile": "packages/projections/src/validation/evidence-support.test.ts",
+          "tests": [
+            {
+              "name": "validateEvidenceSupport rejects unsupported assertions and altered quoted evidence",
+              "status": "passed"
+            },
+            {
+              "name": "validateEvidenceSupport reports an empty quoted text",
+              "status": "passed"
+            },
+            {
+              "name": "validateEvidenceSupport reports duplicate evidence locator ids",
+              "status": "passed"
+            },
+            {
+              "name": "validateEvidenceSupport requires supported assertions for a derived space with zero assertions",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/retrieval/src/search/graph/expand.test.ts",
+          "originalFile": "packages/retrieval/src/graph/expand.test.ts",
+          "tests": [
+            {
+              "name": "expandVerifiedGraph expands a verified edge whose locator binds to an endpoint",
+              "status": "passed"
+            },
+            {
+              "name": "expandVerifiedGraph rejects an edge whose locatorDigest binds to neither endpoint",
+              "status": "passed"
+            },
+            {
+              "name": "expandVerifiedGraph stops expansion once seen reaches policy.maxGraphNodes",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/retrieval/src/search/lexical/scoring.test.ts",
+          "originalFile": "packages/retrieval/src/lexical/scoring.test.ts",
+          "tests": [
+            {
+              "name": "exactScore scores 0 when neither identifiers nor text match",
+              "status": "passed"
+            },
+            {
+              "name": "exactScore scores 0.95 for a text substring match without an identifier hit",
+              "status": "passed"
+            },
+            {
+              "name": "exactScore scores 1 for an exact identifier match",
+              "status": "passed"
+            },
+            {
+              "name": "ftsScore returns 0 for no tokens",
+              "status": "passed"
+            },
+            {
+              "name": "ftsScore returns the fraction of tokens covered by the text",
+              "status": "passed"
+            },
+            {
+              "name": "score keeps only positive scores and sorts by score desc, then id asc",
+              "status": "passed"
+            },
+            {
+              "name": "trigramScore is 0 when one side is empty and shares no trigram with the other",
+              "status": "passed"
+            },
+            {
+              "name": "trigramScore is 1 for identical strings",
+              "status": "passed"
+            },
+            {
+              "name": "trigramScore is symmetric",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/retrieval/src/search/plan/build-plan.test.ts",
+          "originalFile": "packages/retrieval/src/plan/build-plan.test.ts",
+          "tests": [
+            {
+              "name": "buildRetrievalPlan assigns the first subquery required and the rest supporting",
+              "status": "passed"
+            },
+            {
+              "name": "buildRetrievalPlan freezes graph.maxDepth at 1 even when the policy allows more (memo §7 item 2, unchanged)",
+              "status": "passed"
+            },
+            {
+              "name": "buildRetrievalPlan splits on versus/vs/then separators as well as ; and ?",
+              "status": "passed"
+            },
+            {
+              "name": "inferIntents falls back to decision_support when nothing matches",
+              "status": "passed"
+            },
+            {
+              "name": "inferIntents infers compare the best tool -> includes tool_selection",
+              "status": "passed"
+            },
+            {
+              "name": "inferIntents infers how do I implement this api -> includes implementation_support",
+              "status": "passed"
+            },
+            {
+              "name": "inferIntents infers what evidence supports this claim -> includes knowledge_evidence",
+              "status": "passed"
+            },
+            {
+              "name": "inferIntents infers which company built this -> includes entity_discovery",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/retrieval/src/search/rerank/fuse.test.ts",
+          "originalFile": "packages/retrieval/src/rerank/fuse.test.ts",
+          "tests": [
+            {
+              "name": "compareCandidate tie-break order: score, then assurance, then freshness, then id breaks a full tie by ascending record id",
+              "status": "passed"
+            },
+            {
+              "name": "compareCandidate tie-break order: score, then assurance, then freshness, then id breaks an equal score and assurance by fresher freshnessAt first",
+              "status": "passed"
+            },
+            {
+              "name": "compareCandidate tie-break order: score, then assurance, then freshness, then id breaks an equal score by localeCompare on the raw assurance string (not a severity order — an existing quirk kept as-is)",
+              "status": "passed"
+            },
+            {
+              "name": "compareCandidate tie-break order: score, then assurance, then freshness, then id ranks the higher score first",
+              "status": "passed"
+            },
+            {
+              "name": "rrfContribution defaults to weight 1 for a channel the policy does not mention",
+              "status": "passed"
+            },
+            {
+              "name": "rrfContribution uses the policy's channel weight when present",
+              "status": "passed"
+            },
+            {
+              "name": "sum adds up rrfContribution across contributions",
+              "status": "passed"
+            },
+            {
+              "name": "sum is 0 for no contributions",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/retrieval/src/search/retrieve.test.ts",
+          "originalFile": "packages/retrieval/src/retrieve.test.ts",
+          "tests": [
+            {
+              "name": "advanced retrieval abstains with reasoned coverage and rejects cross-tenant/unpromoted content",
+              "status": "passed"
+            },
+            {
+              "name": "advanced retrieval denies unauthorized visibility and rejects graph edges with unbound locators",
+              "status": "passed"
+            },
+            {
+              "name": "advanced retrieval falls back to fused results when reranking fails",
+              "status": "passed"
+            },
+            {
+              "name": "advanced retrieval fuses independent channels deterministically, verifies filters, expands graph and attaches context",
+              "status": "passed"
+            },
+            {
+              "name": "advanced retrieval supports every public domain plus faithful native sections",
+              "status": "passed"
+            },
+            {
+              "name": "advanced retrieval validates policy, decomposes intent, spaces, filters and limits",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/retrieval/src/search/semantic/cosine.test.ts",
+          "originalFile": "packages/retrieval/src/semantic/cosine.test.ts",
+          "tests": [
+            {
+              "name": "cosine is 0 when either vector has zero magnitude",
+              "status": "passed"
+            },
+            {
+              "name": "cosine is 1 for identical direction and 0 for orthogonal vectors",
+              "status": "passed"
+            },
+            {
+              "name": "cosine throws NON_FINITE_VECTOR when either vector holds a non-finite component",
+              "status": "passed"
+            },
+            {
+              "name": "cosine throws QUERY_VECTOR_DIMENSION_MISMATCH for mismatched lengths",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/retrieval/src/search/spaces/admission.test.ts",
+          "originalFile": "packages/retrieval/src/spaces/admission.test.ts",
+          "tests": [
+            {
+              "name": "ALL_SPACES is derived from VectorSpaceSchema.options, not a hand-written copy (P2-9)",
+              "status": "passed"
+            },
+            {
+              "name": "assertAdmittedSpaces passes silently when every requested space is admitted",
+              "status": "passed"
+            },
+            {
+              "name": "assertAdmittedSpaces throws SPACE_NOT_ADMITTED with the denied spaces listed, in order",
+              "status": "passed"
+            },
+            {
+              "name": "inferSpaces falls back to every admitted space when nothing matches",
+              "status": "passed"
+            },
+            {
+              "name": "inferSpaces infers spaces for \"benchmark scores\"",
+              "status": "passed"
+            },
+            {
+              "name": "inferSpaces infers spaces for \"implement the api\"",
+              "status": "passed"
+            },
+            {
+              "name": "inferSpaces infers spaces for \"read the paper\"",
+              "status": "passed"
+            },
+            {
+              "name": "inferSpaces infers spaces for \"which company built this\"",
+              "status": "passed"
+            },
+            {
+              "name": "inferSpaces infers spaces for \"which model is best\"",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/retrieval/src/vector-backends/backends/in-memory-exact.test.ts",
+          "originalFile": "packages/vector-backends/src/backends/in-memory-exact.test.ts",
+          "tests": [
+            {
+              "name": "InMemoryExactCosineBackend is append-only and rejects invalid query vectors",
+              "status": "passed"
+            },
+            {
+              "name": "InMemoryExactCosineBackend performs deterministic exact cosine search with tenant, version, and lifecycle isolation",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/retrieval/src/vector-backends/backends/postgres.test.ts",
+          "originalFile": "packages/vector-backends/src/backends/postgres.test.ts",
+          "tests": [
+            {
+              "name": "PostgresVectorSearchBackend calls the authoritative RPC and maps its typed result",
+              "status": "passed"
+            },
+            {
+              "name": "PostgresVectorSearchBackend surfaces database failures and rejects malformed responses",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/retrieval/src/vector-backends/publication/coordinator.test.ts",
+          "originalFile": "packages/vector-backends/src/publication/coordinator.test.ts",
+          "tests": [
+            {
+              "name": "ExploratoryPublicationCoordinator leaves no partial state when verification fails",
+              "status": "passed"
+            },
+            {
+              "name": "ExploratoryPublicationCoordinator reconciles counts, manifests, format, index, authorization, evaluation, and sample search",
+              "status": "passed"
+            },
+            {
+              "name": "ExploratoryPublicationCoordinator rejects a reused event id across different publications for the same tenant",
+              "status": "passed"
+            },
+            {
+              "name": "ExploratoryPublicationCoordinator rejects a rollback target that belongs to another vectorStoreSpaceId",
+              "status": "passed"
+            },
+            {
+              "name": "ExploratoryPublicationCoordinator rejects an idempotent replay whose verified content differs, e.g. a different receipt",
+              "status": "passed"
+            },
+            {
+              "name": "ExploratoryPublicationCoordinator reports MISSING_ACTIVE_POINTER as review_required when no pointer exists",
+              "status": "passed"
+            },
+            {
+              "name": "ExploratoryPublicationCoordinator reports ORPHAN_ACTIVE_POINTER as security_critical when the pointer references a missing publication",
+              "status": "passed"
+            },
+            {
+              "name": "ExploratoryPublicationCoordinator rolls back by pointer switch without deleting versions and emits a reason-bearing event",
+              "status": "passed"
+            },
+            {
+              "name": "ExploratoryPublicationCoordinator treats a rollback to the already-active publication as a no-op returning the current pointer",
+              "status": "passed"
+            },
+            {
+              "name": "ExploratoryPublicationCoordinator verifies and atomically advances a versioned publication pointer",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/retrieval/src/vector-backends/publication/verification.test.ts",
+          "originalFile": "packages/vector-backends/src/publication/verification.test.ts",
+          "tests": [
+            {
+              "name": "collectInspectionFindings checks candidate evidence only when the publication carries one, classifying digest drift security_critical and dependency revocation review_required",
+              "status": "passed"
+            },
+            {
+              "name": "collectInspectionFindings classifies a count mismatch as repairable",
+              "status": "passed"
+            },
+            {
+              "name": "collectInspectionFindings classifies a vector format change (dimensions or precision) as security_critical",
+              "status": "passed"
+            },
+            {
+              "name": "collectInspectionFindings classifies a version mismatch as security_critical",
+              "status": "passed"
+            },
+            {
+              "name": "collectInspectionFindings classifies an evaluation regression as review_required and a failed sample search as repairable",
+              "status": "passed"
+            },
+            {
+              "name": "collectInspectionFindings classifies an unready index as repairable and a failed authorization check as security_critical",
+              "status": "passed"
+            },
+            {
+              "name": "collectInspectionFindings names the mismatched manifest key and classifies it security_critical",
+              "status": "passed"
+            },
+            {
+              "name": "collectInspectionFindings reports no findings for a matching inspection",
+              "status": "passed"
+            },
+            {
+              "name": "verifyInspection checks candidateEvidenceDigest and requiredDependenciesEligible only when a candidate digest is requested",
+              "status": "passed"
+            },
+            {
+              "name": "verifyInspection does not include candidateEvidenceDigest or requiredDependenciesEligible in the returned digest's input",
+              "status": "passed"
+            },
+            {
+              "name": "verifyInspection returns a stable digest for a matching inspection, independent of call order",
+              "status": "passed"
+            },
+            {
+              "name": "verifyInspection throws PUBLICATION_VERIFICATION_FAILED joining every mismatch in check order",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/retrieval/src/vector-backends/spaces/link.test.ts",
+          "originalFile": "packages/vector-backends/src/spaces/link.test.ts",
+          "tests": [
+            {
+              "name": "validateVectorItemEntityLink does not require canonicalId to equal chunkId for a non-chunk target",
+              "status": "passed"
+            },
+            {
+              "name": "validateVectorItemEntityLink flags a chunk target whose canonicalId does not equal lineage.chunkId",
+              "status": "passed"
+            },
+            {
+              "name": "validateVectorItemEntityLink is complete with no issues for a fully bound, admitted link",
+              "status": "passed"
+            },
+            {
+              "name": "validateVectorItemEntityLink rejects a digest that does not match the sha256 pattern",
+              "status": "passed"
+            },
+            {
+              "name": "validateVectorItemEntityLink reports a not_admitted admission as an issue, never throwing",
+              "status": "passed"
+            },
+            {
+              "name": "validateVectorItemEntityLink reports every empty identity field",
+              "status": "passed"
+            },
+            {
+              "name": "validateVectorItemEntityLink validates the admission digest when the link is admitted",
+              "status": "passed"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

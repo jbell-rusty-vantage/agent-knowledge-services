@@ -1,0 +1,52 @@
+{
+  "name": "@aiengineer/knowledge-host",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./config": {
+      "types": "./dist/config/index.d.ts",
+      "import": "./dist/config.js"
+    },
+    "./local": {
+      "types": "./dist/local/index.d.ts",
+      "import": "./dist/local.js"
+    },
+    "./knowledge-operation": {
+      "types": "./dist/knowledge-operation/index.d.ts",
+      "import": "./dist/knowledge-operation.js"
+    },
+    "./knowledge-operation/conformance": {
+      "types": "./dist/tests/conformance/backends/suite.d.ts",
+      "import": "./dist/knowledge-operation-conformance.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup --entry.index=src/index.ts --entry.config=src/config/index.ts --entry.local=src/local/index.ts --entry.knowledge-operation=src/knowledge-operation/index.ts --entry.knowledge-operation-conformance=src/tests/conformance/backends/suite.ts --format esm && tsc --emitDeclarationOnly --rootDir src --outDir dist",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@aiengineer/knowledge-acquisition": "workspace:*",
+    "@aiengineer/knowledge-application": "workspace:*",
+    "@aiengineer/knowledge-contracts": "workspace:*",
+    "@aiengineer/knowledge-core": "workspace:*",
+    "@aiengineer/knowledge-db": "workspace:*",
+    "@aiengineer/knowledge-operation-protocol": "workspace:*",
+    "@aiengineer/knowledge-persistence": "workspace:*",
+    "@aiengineer/knowledge-preparation": "workspace:*",
+    "@aiengineer/knowledge-research-core": "workspace:*",
+    "@aiengineer/knowledge-retrieval": "workspace:*",
+    "@aiengineer/knowledge-verification": "workspace:*",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "tsup": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}

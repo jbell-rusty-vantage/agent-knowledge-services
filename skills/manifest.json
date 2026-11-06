@@ -1,0 +1,279 @@
+{
+  "schemaVersion": "knowledge-skill-catalog/v2",
+  "contractVersion": "v1",
+  "distributions": {
+    "executor-cli": "@aiengineer/knowledge-verification-executor bin knowledge (sandbox executor; also knowledge-verify)",
+    "executor-mcp": "verification executor /mcp",
+    "platform-cli": "@aiengineer/knowledge-cli bin ks (platform API client and local profile)",
+    "platform-mcp": "@aiengineer/knowledge-mcp",
+    "jev-cli": "@aiengineer/knowledge-jev-service bin jev (HTTP client)",
+    "jev-mcp": "@aiengineer/knowledge-jev-service /mcp or dedicated mcp-stdio host",
+    "jev-http": "@aiengineer/knowledge-jev-service /v1/jev"
+  },
+  "skills": [
+    {
+      "id": "schema-explore",
+      "version": "1.2.0",
+      "path": "schema-explore/SKILL.md",
+      "surfaces": [
+        "executor-cli",
+        "executor-mcp",
+        "workspace-files"
+      ],
+      "operations": [
+        "schema_search",
+        "schema_get",
+        "schema_manifest",
+        "schema_materialize",
+        "artifact_get",
+        "source_attempt"
+      ]
+    },
+    {
+      "id": "knowledge-db",
+      "version": "1.1.0",
+      "path": "knowledge-db/SKILL.md",
+      "surfaces": [
+        "executor-cli",
+        "executor-mcp"
+      ],
+      "operations": [
+        "db_head",
+        "db_read_intent",
+        "db_sql_readonly",
+        "db_explain",
+        "schema_manifest",
+        "artifact_get",
+        "ingest_receipt"
+      ],
+      "artifactTypes": [
+        "knowledge_read_intent",
+        "knowledge_read_snapshot"
+      ]
+    },
+    {
+      "id": "knowledge-ingest",
+      "version": "1.2.0",
+      "path": "knowledge-ingest/SKILL.md",
+      "surfaces": [
+        "executor-cli",
+        "executor-mcp"
+      ],
+      "operations": [
+        "ingest_plan",
+        "ingest_apply",
+        "ingest_receipt",
+        "db_read_intent",
+        "artifact_get",
+        "source_discover",
+        "source_import",
+        "source_select",
+        "source_attempt",
+        "source_reconcile"
+      ],
+      "artifactTypes": [
+        "knowledge_report_markdown",
+        "report_version",
+        "knowledge_read_intent",
+        "knowledge_read_snapshot"
+      ]
+    },
+    {
+      "id": "knowledge-acquisition-and-vetting",
+      "version": "1.4.0",
+      "path": "knowledge-acquisition-and-vetting/SKILL.md",
+      "surfaces": [
+        "executor-cli",
+        "executor-mcp",
+        "platform-cli"
+      ],
+      "operations": [
+        "source_discover",
+        "source_import",
+        "source_attempt",
+        "source_reconcile",
+        "source_select",
+        "verify_capture_source",
+        "verify_capture_file",
+        "verify_read_capture",
+        "verify_search_capture",
+        "knowledge source discover",
+        "knowledge source fetch",
+        "knowledge source vet"
+      ],
+      "absentOperations": [
+        "source_resolve_identity"
+      ]
+    },
+    {
+      "id": "knowledge-preparation-and-promotion",
+      "version": "1.6.0",
+      "path": "knowledge-preparation-and-promotion/SKILL.md",
+      "surfaces": [
+        "executor-cli",
+        "executor-mcp",
+        "platform-cli",
+        "platform-mcp"
+      ],
+      "references": [
+        "cli-reference.md",
+        "mcp-reference.md",
+        "examples.md"
+      ],
+      "operations": [
+        "source_prepare_captured",
+        "knowledge document convert",
+        "knowledge document compare",
+        "knowledge chunk preview",
+        "knowledge chunk build",
+        "knowledge promotion propose",
+        "knowledge promotion review",
+        "knowledge promotion status",
+        "knowledge embed run",
+        "knowledge embed verify",
+        "knowledge embed status"
+      ],
+      "absentOperations": [
+        "promotion_selection_select",
+        "knowledge promotion select"
+      ]
+    },
+    {
+      "id": "knowledge-retrieval-and-evidence",
+      "version": "1.3.0",
+      "path": "knowledge-retrieval-and-evidence/SKILL.md",
+      "surfaces": [
+        "platform-cli",
+        "platform-mcp"
+      ],
+      "operations": [
+        "knowledge retrieve plan",
+        "knowledge retrieve search",
+        "knowledge retrieve explain",
+        "knowledge operation status"
+      ]
+    },
+    {
+      "id": "knowledge-evaluation",
+      "version": "1.3.0",
+      "path": "knowledge-evaluation/SKILL.md",
+      "surfaces": [
+        "platform-cli"
+      ],
+      "operations": [
+        "knowledge eval generate",
+        "knowledge eval run",
+        "knowledge eval compare",
+        "knowledge eval failures",
+        "verify benchmark compare",
+        "verify benchmark comparison"
+      ]
+    },
+    {
+      "id": "knowledge-verification",
+      "version": "1.5.0",
+      "path": "knowledge-verification/SKILL.md",
+      "surfaces": [
+        "platform-cli",
+        "platform-mcp",
+        "executor-cli"
+      ],
+      "references": [
+        "cli-reference.md",
+        "mcp-reference.md",
+        "examples.md",
+        "capabilities.md"
+      ],
+      "operations": [
+        "verify status",
+        "verify extract",
+        "verify extraction run",
+        "verify extraction show",
+        "verify artifact parse",
+        "verify benchmark run",
+        "verify benchmark compare",
+        "verify benchmark show",
+        "verify benchmark manifest",
+        "verify benchmark comparison",
+        "verify benchmark capture",
+        "verify bundle replay",
+        "verify reconciliation apply",
+        "verify reconciliation show",
+        "knowledge operation status",
+        "knowledge operation events",
+        "knowledge operation retry",
+        "knowledge operation reconcile",
+        "verify_extract",
+        "verify_status",
+        "verify_extraction_run",
+        "verify_extraction_show",
+        "verify_artifact_parse",
+        "verify_benchmark_run",
+        "verify_benchmark_compare",
+        "verify_benchmark_show",
+        "verify_benchmark_manifest",
+        "verify_benchmark_comparison",
+        "verify_benchmark_capture",
+        "verify_bundle_replay",
+        "verify_reconciliation_apply",
+        "verify_reconciliation_show"
+      ],
+      "absentOperations": [
+        "knowledge_extract_structured",
+        "knowledge_inspect_run",
+        "knowledge_get_operation",
+        "verify capture-show"
+      ]
+    },
+    {
+      "id": "vector-store-management",
+      "version": "1.2.0",
+      "path": "vector-store-management/SKILL.md",
+      "surfaces": [
+        "platform-cli"
+      ],
+      "operations": [
+        "knowledge store create",
+        "knowledge store show",
+        "knowledge store add-documents",
+        "knowledge store evaluate",
+        "knowledge store status",
+        "knowledge space publish",
+        "knowledge space rollback",
+        "knowledge operation status",
+        "knowledge operation reconcile"
+      ],
+      "absentOperations": [
+        "knowledge store search",
+        "knowledge space rebuild"
+      ]
+    },
+    {
+      "id": "jev-system-one",
+      "version": "0.2.0",
+      "path": "jev-system-one/SKILL.md",
+      "surfaces": [
+        "jev-cli",
+        "jev-mcp",
+        "jev-http"
+      ],
+      "operations": [
+        "jev_submit",
+        "jev_batch",
+        "jev_get",
+        "jev_list",
+        "jev_cancel",
+        "jev_workers"
+      ],
+      "requireCatalogPrefix": [
+        "jev_"
+      ],
+      "references": [
+        "api-reference.md",
+        "question-design.md",
+        "examples.md",
+        "scripts/jev-batch.mjs"
+      ]
+    }
+  ]
+}

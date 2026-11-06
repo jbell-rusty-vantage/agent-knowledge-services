@@ -1,0 +1,1060 @@
+{
+  "schemaVersion": "diagnostics-benchmark-extraction-experiment.v1",
+  "manifestDigest": "sha256:c7d1588f870bbae4f1b5dd1ae590ad547ea85bfc6ca48f798c6f6b40700707c4",
+  "datasetManifestDigest": "sha256:a6bc1cf3ecbb335e4f5ef49165798d29ce937a9324f2a1ba7d9768f23ad7feee",
+  "grantDigest": "sha256:a9e48e1d29049312a0895ffb1c5b30149e40404143918b7e5572ae8bfb7665e5",
+  "outputSchemaDigest": "sha256:8e288ea97a20b14da4327d688e90d55c11fc5d98b8b4b77e7e513190335cfe37",
+  "runnerVersion": "verification-benchmark-runner.v1+recorded-extraction.v1",
+  "arms": [
+    {
+      "armId": "baseline",
+      "name": "Luna extraction plus deterministic mechanics",
+      "control": true,
+      "strategy": "baseline",
+      "extractorProfile": "openai/gpt-5.6-luna",
+      "parserProfile": "frozen-native-v2",
+      "retrieverProfile": "capture-bound-single-fragment",
+      "judgeProfile": "bounded-rules.v1",
+      "policyVersion": "diagnostics-policy.v1",
+      "configurationDigest": "sha256:83f5ecd4504e474cbb12bd6d0686c2025ad81aee1b5d251103870d34a1cabfd5",
+      "cachePolicy": "disabled",
+      "replicas": 1
+    },
+    {
+      "armId": "interfaze",
+      "name": "Interfaze extraction plus deterministic mechanics",
+      "control": false,
+      "strategy": "interfaze",
+      "extractorProfile": "interfaze-beta",
+      "parserProfile": "frozen-native-v2",
+      "retrieverProfile": "capture-bound-single-fragment",
+      "judgeProfile": "bounded-rules.v1",
+      "policyVersion": "diagnostics-policy.v1",
+      "configurationDigest": "sha256:1a68443893f67a7954d567b13da987da6aefb676d9f9467a2dbda210a7adfcd8",
+      "cachePolicy": "exact_request_only",
+      "replicas": 1
+    },
+    {
+      "armId": "cascade",
+      "name": "Interfaze extraction plus Haiku judge",
+      "control": false,
+      "strategy": "cascade",
+      "extractorProfile": "interfaze-beta",
+      "parserProfile": "frozen-native-v2",
+      "retrieverProfile": "capture-bound-single-fragment",
+      "judgeProfile": "anthropic/claude-haiku-4.5-evidence-only",
+      "policyVersion": "diagnostics-policy.v1",
+      "configurationDigest": "sha256:4927136bb7a6c59bdf9a5fa7d12885a7c02b5fd17ca52fe818f858d7016d5917",
+      "cachePolicy": "exact_request_only",
+      "replicas": 1
+    },
+    {
+      "armId": "consensus-abstention",
+      "name": "Luna and Interfaze consensus with Haiku adjudication and abstention",
+      "control": false,
+      "strategy": "consensus_abstention",
+      "extractorProfile": "openai/gpt-5.6-luna+interfaze-beta",
+      "parserProfile": "frozen-native-v2",
+      "retrieverProfile": "capture-bound-single-fragment",
+      "judgeProfile": "anthropic/claude-haiku-4.5-evidence-only",
+      "policyVersion": "diagnostics-policy.v1",
+      "configurationDigest": "sha256:11ca3509305d7292c22e10e3bc094a92de55fcab1b46c5e86ace8f1b8451dc7f",
+      "cachePolicy": "exact_request_only",
+      "replicas": 1
+    }
+  ],
+  "providerCallPlan": [
+    {
+      "role": "luna_extractor",
+      "provider": "gateway",
+      "model": "openai/gpt-5.6-luna",
+      "reservationCostMicros": 5000,
+      "maximumOutputTokens": 900,
+      "maximumRequestUtf8Bytes": 10000,
+      "outputSchemaDigest": "sha256:8e288ea97a20b14da4327d688e90d55c11fc5d98b8b4b77e7e513190335cfe37",
+      "ownerArmId": "baseline",
+      "sharedWithArmIds": [
+        "baseline",
+        "consensus-abstention"
+      ]
+    },
+    {
+      "role": "interfaze_extractor",
+      "provider": "interfaze",
+      "model": "interfaze-beta",
+      "reservationCostMicros": 50000,
+      "maximumOutputTokens": 900,
+      "maximumRequestUtf8Bytes": 10000,
+      "outputSchemaDigest": "sha256:8e288ea97a20b14da4327d688e90d55c11fc5d98b8b4b77e7e513190335cfe37",
+      "ownerArmId": "interfaze",
+      "sharedWithArmIds": [
+        "interfaze",
+        "cascade",
+        "consensus-abstention"
+      ]
+    },
+    {
+      "role": "haiku_judge",
+      "provider": "gateway",
+      "model": "anthropic/claude-haiku-4.5",
+      "reservationCostMicros": 20000,
+      "maximumOutputTokens": 900,
+      "maximumRequestUtf8Bytes": 10000,
+      "outputSchemaDigest": "sha256:68b1f85f170d0d4580c95e246990d09bcacae8ac3630517eaa4097b3097acbd8",
+      "ownerArmId": "cascade",
+      "sharedWithArmIds": [
+        "cascade",
+        "consensus-abstention"
+      ]
+    }
+  ],
+  "casePlan": [
+    {
+      "caseId": "tru-turnaround-about-source",
+      "caseDigest": "sha256:49ef0dfd6ba73abf32d396d615b9b208fa97d885d73f0e4a6c829f78e2537a7c",
+      "execution": "fresh_dispatch",
+      "providerRoles": [
+        "luna_extractor",
+        "interfaze_extractor",
+        "haiku_judge"
+      ],
+      "fields": [
+        {
+          "fieldKey": "turnaround_range",
+          "description": "Reported turnaround range including units.",
+          "comparison": "exact",
+          "required": true
+        },
+        {
+          "fieldKey": "turnaround_start_event",
+          "description": "Event from which the turnaround interval begins.",
+          "comparison": "normalized_text",
+          "required": true
+        }
+      ]
+    },
+    {
+      "caseId": "tru-turnaround-about-mutated",
+      "caseDigest": "sha256:09ab448f1f7fafe8b2e33ac10d16745e516d97f0880c810853ddac5e16f655ed",
+      "execution": "fresh_dispatch",
+      "providerRoles": [
+        "luna_extractor",
+        "interfaze_extractor",
+        "haiku_judge"
+      ],
+      "fields": [
+        {
+          "fieldKey": "turnaround_range",
+          "description": "Reported turnaround range including units.",
+          "comparison": "exact",
+          "required": true
+        },
+        {
+          "fieldKey": "turnaround_start_event",
+          "description": "Event from which the turnaround interval begins.",
+          "comparison": "normalized_text",
+          "required": true
+        }
+      ]
+    },
+    {
+      "caseId": "tru-turnaround-product-source",
+      "caseDigest": "sha256:ad544bd72084af2537a5472b49eca3b515732fc8dbd539bed6a4c80539c9d347",
+      "execution": "fresh_dispatch",
+      "providerRoles": [
+        "luna_extractor",
+        "interfaze_extractor",
+        "haiku_judge"
+      ],
+      "fields": [
+        {
+          "fieldKey": "turnaround_range",
+          "description": "Reported turnaround range including units.",
+          "comparison": "exact",
+          "required": true
+        },
+        {
+          "fieldKey": "turnaround_start_event",
+          "description": "Event from which the turnaround interval begins.",
+          "comparison": "normalized_text",
+          "required": true
+        }
+      ]
+    },
+    {
+      "caseId": "tru-turnaround-product-mutated",
+      "caseDigest": "sha256:cc09a41738139ade8e7cf834a95b32d1f6ff74c8e7b54d2cd59cd9b4ce13290d",
+      "execution": "excluded_prior_protocol_smoke",
+      "providerRoles": [],
+      "fields": []
+    },
+    {
+      "caseId": "tru-sample-source",
+      "caseDigest": "sha256:47eca6ab4dc4dd542793a8e2a4310ee10f95b4aba6bbe4e56cf1f7948601a2bb",
+      "execution": "fresh_dispatch",
+      "providerRoles": [
+        "luna_extractor",
+        "interfaze_extractor",
+        "haiku_judge"
+      ],
+      "fields": [
+        {
+          "fieldKey": "collection_sample_type",
+          "description": "Biological sample and collection method.",
+          "comparison": "normalized_text",
+          "required": true
+        }
+      ]
+    },
+    {
+      "caseId": "tru-sample-mutated",
+      "caseDigest": "sha256:8805e4ab875286c526fa4ed2fa199deaff29e0c66f582adba98546dd2b3e1a9d",
+      "execution": "fresh_dispatch",
+      "providerRoles": [
+        "luna_extractor",
+        "interfaze_extractor",
+        "haiku_judge"
+      ],
+      "fields": [
+        {
+          "fieldKey": "collection_sample_type",
+          "description": "Biological sample and collection method.",
+          "comparison": "normalized_text",
+          "required": true
+        }
+      ]
+    },
+    {
+      "caseId": "tru-sites-source",
+      "caseDigest": "sha256:88a4d052301b131325883c8ea62ed1371120a287cefce376ca6039af4c554a39",
+      "execution": "fresh_dispatch",
+      "providerRoles": [
+        "luna_extractor",
+        "interfaze_extractor",
+        "haiku_judge"
+      ],
+      "fields": [
+        {
+          "fieldKey": "methylation_site_count_bound",
+          "description": "Reported DNA methylation site count with any plus or bound marker.",
+          "comparison": "exact",
+          "required": true
+        }
+      ]
+    },
+    {
+      "caseId": "tru-sites-mutated",
+      "caseDigest": "sha256:794f407b33ae0c6a9d0e64d832aa218b20671d10f99ab4746b3caffb5299b59d",
+      "execution": "fresh_dispatch",
+      "providerRoles": [
+        "luna_extractor",
+        "interfaze_extractor",
+        "haiku_judge"
+      ],
+      "fields": [
+        {
+          "fieldKey": "methylation_site_count_bound",
+          "description": "Reported DNA methylation site count with any plus or bound marker.",
+          "comparison": "exact",
+          "required": true
+        }
+      ]
+    },
+    {
+      "caseId": "tru-biomarkers-source",
+      "caseDigest": "sha256:4e4a0f2717ba3522b859b0bfe9166d12d6cc7b4095bc5e5124505e986e361f4a",
+      "execution": "fresh_dispatch",
+      "providerRoles": [
+        "luna_extractor",
+        "interfaze_extractor",
+        "haiku_judge"
+      ],
+      "fields": [
+        {
+          "fieldKey": "biomarker_count_bound",
+          "description": "Reported biomarker count with any plus or bound marker.",
+          "comparison": "exact",
+          "required": true
+        }
+      ]
+    },
+    {
+      "caseId": "tru-biomarkers-mutated",
+      "caseDigest": "sha256:1fb031fb51dedbb13080d44722798fd3349a6af08fba4e0bc23b1ba0e3ca838b",
+      "execution": "fresh_dispatch",
+      "providerRoles": [
+        "luna_extractor",
+        "interfaze_extractor",
+        "haiku_judge"
+      ],
+      "fields": [
+        {
+          "fieldKey": "biomarker_count_bound",
+          "description": "Reported biomarker count with any plus or bound marker.",
+          "comparison": "exact",
+          "required": true
+        }
+      ]
+    },
+    {
+      "caseId": "tru-symphony-source",
+      "caseDigest": "sha256:84b840c98c7770e22c754a7ef22fb5ec4d315722b3858c4e5f8c297de34bfd6e",
+      "execution": "fresh_dispatch",
+      "providerRoles": [
+        "luna_extractor",
+        "interfaze_extractor",
+        "haiku_judge"
+      ],
+      "fields": [
+        {
+          "fieldKey": "algorithm_name",
+          "description": "Named algorithm.",
+          "comparison": "exact",
+          "required": true
+        },
+        {
+          "fieldKey": "organ_system_count",
+          "description": "Reported number of organ systems.",
+          "comparison": "exact",
+          "required": true
+        }
+      ]
+    },
+    {
+      "caseId": "tru-symphony-mutated",
+      "caseDigest": "sha256:175d13dcba5a01530885924a4b24489228896c0343ab028a2b4f6711f6a783f6",
+      "execution": "fresh_dispatch",
+      "providerRoles": [
+        "luna_extractor",
+        "interfaze_extractor",
+        "haiku_judge"
+      ],
+      "fields": [
+        {
+          "fieldKey": "algorithm_name",
+          "description": "Named algorithm.",
+          "comparison": "exact",
+          "required": true
+        },
+        {
+          "fieldKey": "organ_system_count",
+          "description": "Reported number of organ systems.",
+          "comparison": "exact",
+          "required": true
+        }
+      ]
+    },
+    {
+      "caseId": "tru-omic-source",
+      "caseDigest": "sha256:e6f7511e783b6a9c103e441426ec9886ba1db333fd5b7b3204fbcb98418df7cc",
+      "execution": "fresh_dispatch",
+      "providerRoles": [
+        "luna_extractor",
+        "interfaze_extractor",
+        "haiku_judge"
+      ],
+      "fields": [
+        {
+          "fieldKey": "algorithm_name",
+          "description": "Named algorithm.",
+          "comparison": "exact",
+          "required": true
+        },
+        {
+          "fieldKey": "method_type",
+          "description": "Stated clock or measurement method.",
+          "comparison": "normalized_text",
+          "required": true
+        }
+      ]
+    },
+    {
+      "caseId": "tru-omic-mutated",
+      "caseDigest": "sha256:00cac98fc9983ca02874157823c486408126877a06b4e1ecf83a42da4e419c60",
+      "execution": "fresh_dispatch",
+      "providerRoles": [
+        "luna_extractor",
+        "interfaze_extractor",
+        "haiku_judge"
+      ],
+      "fields": [
+        {
+          "fieldKey": "algorithm_name",
+          "description": "Named algorithm.",
+          "comparison": "exact",
+          "required": true
+        },
+        {
+          "fieldKey": "method_type",
+          "description": "Stated clock or measurement method.",
+          "comparison": "normalized_text",
+          "required": true
+        }
+      ]
+    },
+    {
+      "caseId": "tru-pace-source",
+      "caseDigest": "sha256:8fbb4d2a4bd00997c29f4ab9f1fe1b1f0396a9ee3d7b9eef2d8345c44cf69520",
+      "execution": "fresh_dispatch",
+      "providerRoles": [
+        "luna_extractor",
+        "interfaze_extractor",
+        "haiku_judge"
+      ],
+      "fields": [
+        {
+          "fieldKey": "algorithm_name",
+          "description": "Named algorithm.",
+          "comparison": "exact",
+          "required": true
+        },
+        {
+          "fieldKey": "stated_function",
+          "description": "What the source says the algorithm tracks.",
+          "comparison": "normalized_text",
+          "required": true
+        }
+      ]
+    },
+    {
+      "caseId": "tru-pace-mutated",
+      "caseDigest": "sha256:4719ac6e020dd03a5c4c96a7819986832ca8db1a81617f3d013cc9236e8ff063",
+      "execution": "fresh_dispatch",
+      "providerRoles": [
+        "luna_extractor",
+        "interfaze_extractor",
+        "haiku_judge"
+      ],
+      "fields": [
+        {
+          "fieldKey": "algorithm_name",
+          "description": "Named algorithm.",
+          "comparison": "exact",
+          "required": true
+        },
+        {
+          "fieldKey": "stated_function",
+          "description": "What the source says the algorithm tracks.",
+          "comparison": "normalized_text",
+          "required": true
+        }
+      ]
+    },
+    {
+      "caseId": "gl-systems-source",
+      "caseDigest": "sha256:3c971630d9a41e4f254b3a7c2d67131696c4d670064ba5084e8ee89980ffd801",
+      "execution": "fresh_dispatch",
+      "providerRoles": [
+        "luna_extractor",
+        "interfaze_extractor",
+        "haiku_judge"
+      ],
+      "fields": [
+        {
+          "fieldKey": "biomarker_count",
+          "description": "Reported epigenetic biomarker count.",
+          "comparison": "exact",
+          "required": true
+        },
+        {
+          "fieldKey": "body_system_count",
+          "description": "Reported body-system count.",
+          "comparison": "exact",
+          "required": true
+        }
+      ]
+    },
+    {
+      "caseId": "gl-systems-mutated",
+      "caseDigest": "sha256:65195b1e433cda8915c86b79e0a13250f7d5fe131d398006e0f34227ecce3fc7",
+      "execution": "fresh_dispatch",
+      "providerRoles": [
+        "luna_extractor",
+        "interfaze_extractor",
+        "haiku_judge"
+      ],
+      "fields": [
+        {
+          "fieldKey": "biomarker_count",
+          "description": "Reported epigenetic biomarker count.",
+          "comparison": "exact",
+          "required": true
+        },
+        {
+          "fieldKey": "body_system_count",
+          "description": "Reported body-system count.",
+          "comparison": "exact",
+          "required": true
+        }
+      ]
+    },
+    {
+      "caseId": "gl-historical-wording-source",
+      "caseDigest": "sha256:6f9fca1d81ce2823196c9c47872921109517b1daac758facfd98c3fdabbcb06a",
+      "execution": "fresh_dispatch",
+      "providerRoles": [
+        "luna_extractor",
+        "interfaze_extractor",
+        "haiku_judge"
+      ],
+      "fields": [
+        {
+          "fieldKey": "body_system_count",
+          "description": "Reported count of systems or organs and systems.",
+          "comparison": "exact",
+          "required": true
+        }
+      ]
+    },
+    {
+      "caseId": "gl-historical-wording-mutated",
+      "caseDigest": "sha256:3bb2a52940184f6a8220335220cfdb33e93cdbbdd500c8ac38d26d27f1f9ea8f",
+      "execution": "fresh_dispatch",
+      "providerRoles": [
+        "luna_extractor",
+        "interfaze_extractor",
+        "haiku_judge"
+      ],
+      "fields": [
+        {
+          "fieldKey": "body_system_count",
+          "description": "Reported count of systems or organs and systems.",
+          "comparison": "exact",
+          "required": true
+        }
+      ]
+    },
+    {
+      "caseId": "gl-same-page-footer-source",
+      "caseDigest": "sha256:fd4fed27144b87a5d57c3fcb829ee0ba03d86fc6bc36a2a46f42f03ebe462f0d",
+      "execution": "fresh_dispatch",
+      "providerRoles": [
+        "luna_extractor",
+        "interfaze_extractor",
+        "haiku_judge"
+      ],
+      "fields": [
+        {
+          "fieldKey": "body_system_count",
+          "description": "Reported count of systems or organs and systems.",
+          "comparison": "exact",
+          "required": true
+        }
+      ]
+    },
+    {
+      "caseId": "gl-same-page-footer-mutated",
+      "caseDigest": "sha256:70d91a155cfd9cc6776c95a1ff7db622cd3d80dfe53aa168387393683b816d19",
+      "execution": "fresh_dispatch",
+      "providerRoles": [
+        "luna_extractor",
+        "interfaze_extractor",
+        "haiku_judge"
+      ],
+      "fields": [
+        {
+          "fieldKey": "body_system_count",
+          "description": "Reported count of systems or organs and systems.",
+          "comparison": "exact",
+          "required": true
+        }
+      ]
+    },
+    {
+      "caseId": "gl-triplicate-source",
+      "caseDigest": "sha256:75a4c59ead90cda1ee4e2b591a43baab97790fea0e57756fe06f6871570f539b",
+      "execution": "fresh_dispatch",
+      "providerRoles": [
+        "luna_extractor",
+        "interfaze_extractor",
+        "haiku_judge"
+      ],
+      "fields": [
+        {
+          "fieldKey": "replicate_sample_scope",
+          "description": "Sample scope used for triplicate testing.",
+          "comparison": "normalized_text",
+          "required": true
+        },
+        {
+          "fieldKey": "reported_consistency",
+          "description": "Reported agreement property across runs.",
+          "comparison": "normalized_text",
+          "required": true
+        }
+      ]
+    },
+    {
+      "caseId": "gl-triplicate-mutated",
+      "caseDigest": "sha256:5ec5d86f32a39b09278ec3251fc40a900aa669c84f574f9b3d6ff5500aedf486",
+      "execution": "fresh_dispatch",
+      "providerRoles": [
+        "luna_extractor",
+        "interfaze_extractor",
+        "haiku_judge"
+      ],
+      "fields": [
+        {
+          "fieldKey": "replicate_sample_scope",
+          "description": "Sample scope used for triplicate testing.",
+          "comparison": "normalized_text",
+          "required": true
+        },
+        {
+          "fieldKey": "reported_consistency",
+          "description": "Reported agreement property across runs.",
+          "comparison": "normalized_text",
+          "required": true
+        }
+      ]
+    },
+    {
+      "caseId": "gl-repeatability-source",
+      "caseDigest": "sha256:857d1d63e8f8a77ee6efc20b2a4379ecaa00b7e8029b10e4d3b6f8f3c8d61fe2",
+      "execution": "fresh_dispatch",
+      "providerRoles": [
+        "luna_extractor",
+        "interfaze_extractor",
+        "haiku_judge"
+      ],
+      "fields": [
+        {
+          "fieldKey": "repeat_sample_scope",
+          "description": "Sample scope used for repeatability.",
+          "comparison": "normalized_text",
+          "required": true
+        },
+        {
+          "fieldKey": "reported_consistency",
+          "description": "Reported repeated-run result property.",
+          "comparison": "normalized_text",
+          "required": true
+        }
+      ]
+    },
+    {
+      "caseId": "gl-repeatability-mutated",
+      "caseDigest": "sha256:050f814d65687b59645a7966153f96b78f56c45d2f7787d975f6281ce7b11a0b",
+      "execution": "fresh_dispatch",
+      "providerRoles": [
+        "luna_extractor",
+        "interfaze_extractor",
+        "haiku_judge"
+      ],
+      "fields": [
+        {
+          "fieldKey": "repeat_sample_scope",
+          "description": "Sample scope used for repeatability.",
+          "comparison": "normalized_text",
+          "required": true
+        },
+        {
+          "fieldKey": "reported_consistency",
+          "description": "Reported repeated-run result property.",
+          "comparison": "normalized_text",
+          "required": true
+        }
+      ]
+    },
+    {
+      "caseId": "gl-no-diagnosis-source",
+      "caseDigest": "sha256:256fd5838e8e9baa39a8ac387e404a1b21b681efee12e893604a848e8c4c8385",
+      "execution": "fresh_dispatch",
+      "providerRoles": [
+        "luna_extractor",
+        "interfaze_extractor",
+        "haiku_judge"
+      ],
+      "fields": [
+        {
+          "fieldKey": "diagnosis_qualification",
+          "description": "Whether the report constitutes diagnosis or treatment.",
+          "comparison": "normalized_text",
+          "required": true
+        }
+      ]
+    },
+    {
+      "caseId": "gl-no-diagnosis-mutated",
+      "caseDigest": "sha256:bfc792fc571fcb956c903032e1fc647f4e7f80a8e0b12946172d36a8021bf19f",
+      "execution": "fresh_dispatch",
+      "providerRoles": [
+        "luna_extractor",
+        "interfaze_extractor",
+        "haiku_judge"
+      ],
+      "fields": [
+        {
+          "fieldKey": "diagnosis_qualification",
+          "description": "Whether the report constitutes diagnosis or treatment.",
+          "comparison": "normalized_text",
+          "required": true
+        }
+      ]
+    },
+    {
+      "caseId": "gl-consultation-source",
+      "caseDigest": "sha256:de71678dd060c6bcff1c6dd611876b7e38fd25e76e26305fa26d2e8a3634af9b",
+      "execution": "fresh_dispatch",
+      "providerRoles": [
+        "luna_extractor",
+        "interfaze_extractor",
+        "haiku_judge"
+      ],
+      "fields": [
+        {
+          "fieldKey": "clinician_prerequisite",
+          "description": "Consultation prerequisite before acting on recommendations.",
+          "comparison": "normalized_text",
+          "required": true
+        }
+      ]
+    },
+    {
+      "caseId": "gl-consultation-mutated",
+      "caseDigest": "sha256:cad6a4058ac003ada7ab6a3a55441a514413f639e822327ce19b20dbba9da7a3",
+      "execution": "fresh_dispatch",
+      "providerRoles": [
+        "luna_extractor",
+        "interfaze_extractor",
+        "haiku_judge"
+      ],
+      "fields": [
+        {
+          "fieldKey": "clinician_prerequisite",
+          "description": "Consultation prerequisite before acting on recommendations.",
+          "comparison": "normalized_text",
+          "required": true
+        }
+      ]
+    },
+    {
+      "caseId": "gl-informational-source",
+      "caseDigest": "sha256:227c76181a211c7e5eba4672a50e5fdcc9d3a6beef7da0c1307470d58bb3b9c4",
+      "execution": "fresh_dispatch",
+      "providerRoles": [
+        "luna_extractor",
+        "interfaze_extractor",
+        "haiku_judge"
+      ],
+      "fields": [
+        {
+          "fieldKey": "use_qualification",
+          "description": "Stated permitted purpose of the report.",
+          "comparison": "normalized_text",
+          "required": true
+        },
+        {
+          "fieldKey": "warranty_scope",
+          "description": "Stated warranty limitation.",
+          "comparison": "normalized_text",
+          "required": true
+        }
+      ]
+    },
+    {
+      "caseId": "gl-informational-mutated",
+      "caseDigest": "sha256:a3697c0e7ec68403c1ebf9e297916d9d0d279832eda43d8e16e5207f0643e7f4",
+      "execution": "fresh_dispatch",
+      "providerRoles": [
+        "luna_extractor",
+        "interfaze_extractor",
+        "haiku_judge"
+      ],
+      "fields": [
+        {
+          "fieldKey": "use_qualification",
+          "description": "Stated permitted purpose of the report.",
+          "comparison": "normalized_text",
+          "required": true
+        },
+        {
+          "fieldKey": "warranty_scope",
+          "description": "Stated warranty limitation.",
+          "comparison": "normalized_text",
+          "required": true
+        }
+      ]
+    },
+    {
+      "caseId": "pace-definition-source",
+      "caseDigest": "sha256:bf2319358545c6ff73a05f7a2af155541713211266fc7d385a091d137fce7704",
+      "execution": "fresh_dispatch",
+      "providerRoles": [
+        "luna_extractor",
+        "interfaze_extractor",
+        "haiku_judge"
+      ],
+      "fields": [
+        {
+          "fieldKey": "method_name",
+          "description": "Name of the DNA methylation biomarker.",
+          "comparison": "exact",
+          "required": true
+        },
+        {
+          "fieldKey": "measurement_target",
+          "description": "Quantity the biomarker is stated to measure.",
+          "comparison": "normalized_text",
+          "required": true
+        }
+      ]
+    },
+    {
+      "caseId": "pace-definition-mutated",
+      "caseDigest": "sha256:c6c69fc72265fca63f6f215651a0b0032152ed222172be196945807055aae9cc",
+      "execution": "fresh_dispatch",
+      "providerRoles": [
+        "luna_extractor",
+        "interfaze_extractor",
+        "haiku_judge"
+      ],
+      "fields": [
+        {
+          "fieldKey": "method_name",
+          "description": "Name of the DNA methylation biomarker.",
+          "comparison": "exact",
+          "required": true
+        },
+        {
+          "fieldKey": "measurement_target",
+          "description": "Quantity the biomarker is stated to measure.",
+          "comparison": "normalized_text",
+          "required": true
+        }
+      ]
+    },
+    {
+      "caseId": "pace-cohort-source",
+      "caseDigest": "sha256:5dc3a36426d43884f8a1fa195527908f25051b705690e2fe54edf8fd4b20e7b4",
+      "execution": "fresh_dispatch",
+      "providerRoles": [
+        "luna_extractor",
+        "interfaze_extractor",
+        "haiku_judge"
+      ],
+      "fields": [
+        {
+          "fieldKey": "cohort_design",
+          "description": "Study cohort and longitudinal design.",
+          "comparison": "normalized_text",
+          "required": true
+        },
+        {
+          "fieldKey": "indicator_count",
+          "description": "Number of organ-system indicators.",
+          "comparison": "exact",
+          "required": true
+        },
+        {
+          "fieldKey": "timepoint_count",
+          "description": "Number of measurement time points.",
+          "comparison": "exact",
+          "required": true
+        },
+        {
+          "fieldKey": "study_span",
+          "description": "Reported longitudinal time span.",
+          "comparison": "normalized_text",
+          "required": true
+        }
+      ]
+    },
+    {
+      "caseId": "pace-cohort-mutated",
+      "caseDigest": "sha256:f1f77facfe64397e01d042402755011269fafa58bd3cf05028697c1005aea7a2",
+      "execution": "fresh_dispatch",
+      "providerRoles": [
+        "luna_extractor",
+        "interfaze_extractor",
+        "haiku_judge"
+      ],
+      "fields": [
+        {
+          "fieldKey": "cohort_design",
+          "description": "Study cohort and longitudinal design.",
+          "comparison": "normalized_text",
+          "required": true
+        },
+        {
+          "fieldKey": "indicator_count",
+          "description": "Number of organ-system indicators.",
+          "comparison": "exact",
+          "required": true
+        },
+        {
+          "fieldKey": "timepoint_count",
+          "description": "Number of measurement time points.",
+          "comparison": "exact",
+          "required": true
+        },
+        {
+          "fieldKey": "study_span",
+          "description": "Reported longitudinal time span.",
+          "comparison": "normalized_text",
+          "required": true
+        }
+      ]
+    },
+    {
+      "caseId": "noise-method-source",
+      "caseDigest": "sha256:8116621c401664d739d230e0c9357e14b1679e9cce9e3f5e47434715806d4b9c",
+      "execution": "fresh_dispatch",
+      "providerRoles": [
+        "luna_extractor",
+        "interfaze_extractor",
+        "haiku_judge"
+      ],
+      "fields": [
+        {
+          "fieldKey": "method_name",
+          "description": "Name assigned to the described measurement.",
+          "comparison": "exact",
+          "required": true
+        },
+        {
+          "fieldKey": "measurement_type",
+          "description": "Whether the method is described as a measurement or prediction.",
+          "comparison": "normalized_text",
+          "required": true
+        }
+      ]
+    },
+    {
+      "caseId": "noise-method-mutated",
+      "caseDigest": "sha256:045890db24d79ff5837af3dd5a72579832b44c1f819df457fda00156fd01ef60",
+      "execution": "fresh_dispatch",
+      "providerRoles": [
+        "luna_extractor",
+        "interfaze_extractor",
+        "haiku_judge"
+      ],
+      "fields": [
+        {
+          "fieldKey": "method_name",
+          "description": "Name assigned to the described measurement.",
+          "comparison": "exact",
+          "required": true
+        },
+        {
+          "fieldKey": "measurement_type",
+          "description": "Whether the method is described as a measurement or prediction.",
+          "comparison": "normalized_text",
+          "required": true
+        }
+      ]
+    },
+    {
+      "caseId": "gl-interested-comparison-source",
+      "caseDigest": "sha256:56ada05e478c4f326cff2d17e63901e5d2244f8fcccf80edfa186d2e32f260c2",
+      "execution": "fresh_dispatch",
+      "providerRoles": [
+        "luna_extractor",
+        "interfaze_extractor",
+        "haiku_judge"
+      ],
+      "fields": [
+        {
+          "fieldKey": "claim_attribution",
+          "description": "Party making the comparison claim.",
+          "comparison": "normalized_text",
+          "required": true
+        },
+        {
+          "fieldKey": "comparison_claim",
+          "description": "Exact comparative descriptor used by the source.",
+          "comparison": "normalized_text",
+          "required": true
+        }
+      ]
+    },
+    {
+      "caseId": "gl-interested-comparison-mutated",
+      "caseDigest": "sha256:e114941d49202d116ac31204ddc27b2a70964d67a8c669f0e6551de30e8557d3",
+      "execution": "fresh_dispatch",
+      "providerRoles": [
+        "luna_extractor",
+        "interfaze_extractor",
+        "haiku_judge"
+      ],
+      "fields": [
+        {
+          "fieldKey": "claim_attribution",
+          "description": "Party making the comparison claim.",
+          "comparison": "normalized_text",
+          "required": true
+        },
+        {
+          "fieldKey": "comparison_claim",
+          "description": "Exact comparative descriptor used by the source.",
+          "comparison": "normalized_text",
+          "required": true
+        }
+      ]
+    },
+    {
+      "caseId": "tru-corrupted-locator",
+      "caseDigest": "sha256:06e6212c519f2b39f151758c36cb3d9a113b5310bff16a68f02cb03f6084b69e",
+      "execution": "local_only",
+      "providerRoles": [],
+      "fields": []
+    },
+    {
+      "caseId": "tru-pdf-graph-text-abstention",
+      "caseDigest": "sha256:50384e8d1a28b775a516da87a912ba4553b3e1ce5dd4bc86f820bc34c5e7035d",
+      "execution": "local_only",
+      "providerRoles": [],
+      "fields": []
+    },
+    {
+      "caseId": "gl-same-page-superlative-source",
+      "caseDigest": "sha256:cd677aea0594869e6f1b01a9475435c5d2d236c17105c14611dd9b50c028a115",
+      "execution": "local_only",
+      "providerRoles": [],
+      "fields": []
+    }
+  ],
+  "repetitions": 1,
+  "randomSeed": 207197,
+  "networkPolicy": "allow_listed_providers",
+  "concurrency": 1,
+  "automaticQualityRetries": 0,
+  "maximumFreshProviderCalls": 117,
+  "maximumFreshReservationMicros": 2925000,
+  "budget": {
+    "budgetId": "5890d523-561b-55db-a724-890d642885d9",
+    "budgetKey": "ws07-pilot-recovery-20260905",
+    "ceilingMicros": 17928167,
+    "carriedLiabilityMicros": 2071833,
+    "carryForwardReceiptDigest": "sha256:9c08f8c33131e844347bddd5b9711fffc1552d9127ea949e2746d25cf2cdf9b9"
+  },
+  "hypothesisFamily": [
+    "interfaze_vs_luna_case_nominal",
+    "interfaze_vs_luna_clustered",
+    "cascade_vs_luna_case_nominal",
+    "cascade_vs_luna_clustered",
+    "consensus_vs_luna_case_nominal",
+    "consensus_vs_luna_clustered"
+  ],
+  "metricDimensions": [
+    "schema",
+    "locator",
+    "field_mechanics",
+    "support",
+    "authority",
+    "world_correctness",
+    "policy",
+    "calibration",
+    "cost",
+    "latency",
+    "failure"
+  ],
+  "limitations": [
+    "All 43 labels are agent engineering expectations; human-gold scoring and calibration promotion are prohibited.",
+    "The prior V3 smoke case is protocol-only and excluded because its support-only schema cannot be relabeled as extraction output.",
+    "Four source-family clusters support exact 16-sign enumeration but very small-cluster uncertainty remains.",
+    "McNemar is nominal and exploratory because source-correlated cases do not meet independence.",
+    "Each provider-produced leaf must map to an exact quote in the granted fragment and pass deterministic extraction verification."
+  ],
+  "createdAt": "2026-09-05T08:05:44.283Z"
+}

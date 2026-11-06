@@ -1,0 +1,125 @@
+{
+  "bundle": {
+    "verificationContractVersion": "verification.v1",
+    "bundleId": "prototype-claim-parity",
+    "policyVersion": "verification-policy-0.1.0",
+    "producer": {
+      "deploymentId": "research-synthesis",
+      "attemptId": "producer-attempt",
+      "capabilityVersion": "prototype-0.1.0"
+    },
+    "verifier": {
+      "deploymentId": "verification-agent",
+      "attemptId": "verifier-attempt",
+      "capabilityVersion": "verification.v1"
+    },
+    "sources": [
+      {
+        "sourceId": "source-1",
+        "kind": "transcript",
+        "canonicalUri": "fixture:transcript",
+        "logicalIdentity": "prototype transcript"
+      }
+    ],
+    "captures": [
+      {
+        "captureId": "capture-1",
+        "sourceId": "source-1",
+        "capturedAt": "2026-08-23T00:53:08.482Z",
+        "captureMethod": "fixture",
+        "captureMethodVersion": "1",
+        "contentArtifact": {
+          "artifactId": "22222222-2222-4222-8222-222222222222",
+          "tenantId": "11111111-1111-4111-8111-111111111111",
+          "digest": "sha256:942312285bc59cd6edf696b8d2ff6db9cc6cc0794ecc72f7b1233b5ddeb2f571",
+          "mediaType": "text/plain",
+          "byteLength": 101,
+          "objectKey": "verification/22222222-2222-4222-8222-222222222222",
+          "createdAt": "2026-08-23T00:53:08.482Z",
+          "producerActivityId": "fixture-capture",
+          "producerVersion": "1",
+          "encryptionClass": "managed",
+          "retentionClass": "test",
+          "dataClassification": "internal",
+          "parentArtifactIds": []
+        }
+      }
+    ],
+    "assertions": [
+      {
+        "assertionId": "claim-1",
+        "kind": "claim",
+        "claimType": "attribute",
+        "proposition": "The speaker described RAG as basically a hack.",
+        "producer": {
+          "deploymentId": "research-synthesis",
+          "attemptId": "producer-attempt",
+          "capabilityVersion": "prototype-0.1.0"
+        },
+        "qualifiers": [],
+        "entityBindings": [],
+        "derivation": "direct",
+        "evidence": [
+          {
+            "evidenceId": "evidence-1",
+            "fragment": {
+              "fragmentId": "fragment-evidence-1",
+              "captureId": "capture-1",
+              "representationArtifactId": "22222222-2222-4222-8222-222222222222",
+              "selector": {
+                "kind": "text_quote",
+                "quote": "RAG was basically just a hack",
+                "normalization": "none"
+              }
+            },
+            "role": "supports",
+            "origin": "declared",
+            "expectedSelectedContentDigest": "sha256:ceeff18e421941a228b863d1d0464c596dc0e0c936a22d8a79d790a1f38a7530",
+            "authority": {
+              "authority": "primary",
+              "independence": "self_reported",
+              "directness": "direct",
+              "freshness": "historical",
+              "applicability": "direct"
+            },
+            "parserLineageArtifactIds": []
+          }
+        ],
+        "intent": {
+          "intentId": "intent-1",
+          "operation": "verify_claim_support",
+          "subject": "claim-1",
+          "expectedResult": "The source contains the exact quoted description.",
+          "method": "Resolve the quote against hash-checked transcript bytes.",
+          "acceptanceCriteria": [
+            "quote resolves uniquely",
+            "offsets round-trip"
+          ],
+          "abstainWhen": [
+            "quote is absent or ambiguous"
+          ]
+        },
+        "riskClass": "medium",
+        "downstreamUse": [
+          "semantic_verification"
+        ],
+        "atomic": true
+      }
+    ],
+    "metricObservations": [],
+    "lineage": []
+  },
+  "artifacts": [
+    {
+      "artifactId": "22222222-2222-4222-8222-222222222222",
+      "content": "Intro. RAG was basically just a hack. The package recorded 10 downloads on day one and 15 on day two."
+    }
+  ],
+  "runtimePrincipals": {
+    "basis": "runtime_principal_binding",
+    "producerDeploymentId": "research-synthesis",
+    "verifierDeploymentId": "verification-agent",
+    "producerPrincipalDigest": "sha256:8ccdce39afa0858149bbbeab73af50d2aa234e7a514ae6c014946180914a99b0",
+    "verifierPrincipalDigest": "sha256:048a006b87357ba596af36194f96d8fbcb9fddbae1bb6d7af8c2a16adb986bb3"
+  }
+}

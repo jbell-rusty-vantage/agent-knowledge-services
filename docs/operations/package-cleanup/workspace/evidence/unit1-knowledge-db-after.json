@@ -1,0 +1,4182 @@
+{
+  "schema": 1,
+  "layout": "after",
+  "group": "knowledge-db",
+  "sourceCommit": "99aeaa61483cec0ba720f21bce25b659cb302aab",
+  "dirty": true,
+  "compilerVersion": "7.0.2",
+  "runtimeProvenance": "Built dist/index.js is untracked output; digest proves byte identity only, not source commit or successful build.",
+  "packages": {
+    "schema-workspace": {
+      "group": "knowledge-db",
+      "packageName": "@aiengineer/knowledge-db",
+      "sourceEntry": "packages/knowledge-db/src/schema-workspace/index.ts",
+      "sourceExports": [
+        {
+          "name": "assertHeadMatches",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/head.ts"
+          ]
+        },
+        {
+          "name": "CatalogEntry",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/workspace.ts"
+          ]
+        },
+        {
+          "name": "CatalogEntrySchema",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/workspace.ts"
+          ]
+        },
+        {
+          "name": "compareHeads",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/head.ts"
+          ]
+        },
+        {
+          "name": "domainError",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/errors.ts"
+          ]
+        },
+        {
+          "name": "ExitClass",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/errors.ts"
+          ]
+        },
+        {
+          "name": "getPage",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/pages.ts"
+          ]
+        },
+        {
+          "name": "HeadCheck",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/head.ts"
+          ]
+        },
+        {
+          "name": "infrastructureError",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/errors.ts"
+          ]
+        },
+        {
+          "name": "isKnowledgeError",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/errors.ts"
+          ]
+        },
+        {
+          "name": "KnowledgeError",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/errors.ts"
+          ]
+        },
+        {
+          "name": "loadMaterialized",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/materialize.ts"
+          ]
+        },
+        {
+          "name": "loadWorkspace",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/workspace.ts"
+          ]
+        },
+        {
+          "name": "LocateOptions",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/locate.ts"
+          ]
+        },
+        {
+          "name": "MaterializeInput",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/materialize.ts"
+          ]
+        },
+        {
+          "name": "MaterializeResult",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/materialize.ts"
+          ]
+        },
+        {
+          "name": "materializeScope",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/materialize.ts"
+          ]
+        },
+        {
+          "name": "Page",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/pages.ts"
+          ]
+        },
+        {
+          "name": "PageOptions",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/pages.ts"
+          ]
+        },
+        {
+          "name": "QueryCatalog",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/workspace.ts"
+          ]
+        },
+        {
+          "name": "QueryCatalogSchema",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/workspace.ts"
+          ]
+        },
+        {
+          "name": "requireCatalog",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/workspace.ts"
+          ]
+        },
+        {
+          "name": "resolveWorkspaceDir",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/locate.ts"
+          ]
+        },
+        {
+          "name": "SchemaScope",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/materialize.ts"
+          ]
+        },
+        {
+          "name": "SearchEntry",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/workspace.ts"
+          ]
+        },
+        {
+          "name": "SearchEntrySchema",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/workspace.ts"
+          ]
+        },
+        {
+          "name": "SearchHit",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/search.ts"
+          ]
+        },
+        {
+          "name": "SearchOptions",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/search.ts"
+          ]
+        },
+        {
+          "name": "SearchResult",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/search.ts"
+          ]
+        },
+        {
+          "name": "searchWorkspace",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/search.ts"
+          ]
+        },
+        {
+          "name": "TerminologyEntry",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/workspace.ts"
+          ]
+        },
+        {
+          "name": "Workspace",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/workspace.ts"
+          ]
+        },
+        {
+          "name": "WORKSPACE_FILES",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/workspace.ts"
+          ]
+        },
+        {
+          "name": "WorkspaceManifest",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/workspace.ts"
+          ]
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "packages/knowledge-db/src/schema-workspace/schema-workspace.test.ts",
+          "originalPath": "packages/schema-workspace/src/schema-workspace.test.ts"
+        }
+      ],
+      "runtimeExports": {
+        "status": "present-unverified-build",
+        "sha256": "3f0b064d097a0a37211bdd43adc39a789cbb2619d431bf41d38a38f70aa6ad84",
+        "names": [
+          "admissionIssues",
+          "ALIAS_KINDS",
+          "applyDefaults",
+          "applyPlan",
+          "applyRules",
+          "ArtifactLedger",
+          "assertHeadMatches",
+          "assertSingleReadStatement",
+          "authenticateCanonicalContentEvidence",
+          "awaitWinnerReceipt",
+          "bindKnowledgeClock",
+          "buildPlan",
+          "buildSpaceManifest",
+          "canonicalJson",
+          "CatalogEntrySchema",
+          "classifyFailure",
+          "compareHeads",
+          "contentEvidenceAssessmentDigest",
+          "contentLinkEffect",
+          "ContentLinkExecutor",
+          "ContentSourceReader",
+          "ContentSummaryPreparer",
+          "DEFAULT_DUPLICATE_WAIT",
+          "deterministicId",
+          "digestHexOf",
+          "digestOf",
+          "domainError",
+          "ENTITY_REF_KINDS",
+          "EvidenceRefSchema",
+          "ExtentSchema",
+          "gatherFacts",
+          "getPage",
+          "IDENTIFIER_SCHEMES",
+          "infrastructureError",
+          "IngestionExecutor",
+          "IngestionIntentSchema",
+          "InlineClaimSchema",
+          "intentDigestOf",
+          "intentIdempotencyKey",
+          "isDigest",
+          "isIdempotencyKeyCollision",
+          "isKnowledgeError",
+          "isOfficiallyAdmittedVerdict",
+          "isUuid",
+          "jsonSafeRow",
+          "KnowledgeError",
+          "loadMaterialized",
+          "loadRules",
+          "loadVocabulary",
+          "loadWorkspace",
+          "materializeScope",
+          "MAX_OPERATIONS",
+          "MAX_STATEMENT_TIMEOUT_MS",
+          "NO_RULES",
+          "proposalClaims",
+          "proposalEffect",
+          "proposalIdempotencyKey",
+          "ProposalSchema",
+          "QueryCatalogSchema",
+          "readContentLinkReceipt",
+          "ReadContextSchema",
+          "ReadExecutor",
+          "ReadIntentSchema",
+          "ReadOperationSchema",
+          "ReadRoleSchema",
+          "readSpaceManifest",
+          "renderReport",
+          "REPORT_BUCKET",
+          "ReportService",
+          "ReportStructureSchema",
+          "requireCatalog",
+          "resolveReferences",
+          "resolveWorkspaceDir",
+          "SearchEntrySchema",
+          "searchWorkspace",
+          "sha256Hex",
+          "SLUG",
+          "slugify",
+          "SlugSchema",
+          "snapshotDigest",
+          "SPACE_MANIFEST_SCHEMA_VERSION",
+          "STRONG_MATCH",
+          "subjectIdentity",
+          "subjectRefsOf",
+          "SubjectSchema",
+          "UUID_PATTERN",
+          "UuidSchema",
+          "uuidv7",
+          "validatePersistedSnapshot",
+          "validateProposal",
+          "validateSchema",
+          "WORKSPACE_FILES",
+          "WorldIntervalSchema"
+        ]
+      }
+    },
+    "db-read": {
+      "group": "knowledge-db",
+      "packageName": "@aiengineer/knowledge-db",
+      "sourceEntry": "packages/knowledge-db/src/db-read/index.ts",
+      "sourceExports": [
+        {
+          "name": "applyDefaults",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/json-schema.ts"
+          ]
+        },
+        {
+          "name": "ArtifactLedger",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/artifacts.ts"
+          ]
+        },
+        {
+          "name": "ArtifactLedgerConfig",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/artifacts.ts"
+          ]
+        },
+        {
+          "name": "ArtifactRecord",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/artifacts.ts"
+          ]
+        },
+        {
+          "name": "assertSingleReadStatement",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/sql-guard.ts"
+          ]
+        },
+        {
+          "name": "bindKnowledgeClock",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/snapshot.ts"
+          ]
+        },
+        {
+          "name": "buildSpaceManifest",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/space-manifest.ts"
+          ]
+        },
+        {
+          "name": "BuildSpaceManifestInput",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/space-manifest.ts"
+          ]
+        },
+        {
+          "name": "canonicalJson",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/canonical.ts"
+          ]
+        },
+        {
+          "name": "Digest",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/canonical.ts"
+          ]
+        },
+        {
+          "name": "digestHexOf",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/canonical.ts"
+          ]
+        },
+        {
+          "name": "digestOf",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/canonical.ts"
+          ]
+        },
+        {
+          "name": "isDigest",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/canonical.ts"
+          ]
+        },
+        {
+          "name": "isUuid",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/uuid.ts"
+          ]
+        },
+        {
+          "name": "JsonPrimitive",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/canonical.ts"
+          ]
+        },
+        {
+          "name": "jsonSafeRow",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/rows.ts"
+          ]
+        },
+        {
+          "name": "JsonSchema",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/json-schema.ts"
+          ]
+        },
+        {
+          "name": "JsonValue",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/canonical.ts"
+          ]
+        },
+        {
+          "name": "KnowledgeArtifactType",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/artifacts.ts"
+          ]
+        },
+        {
+          "name": "KnowledgeHead",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/read-intent.ts"
+          ]
+        },
+        {
+          "name": "LineageEdge",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/artifacts.ts"
+          ]
+        },
+        {
+          "name": "MAX_OPERATIONS",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/read-intent.ts"
+          ]
+        },
+        {
+          "name": "MAX_STATEMENT_TIMEOUT_MS",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/read-intent.ts"
+          ]
+        },
+        {
+          "name": "OperationResult",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/read-intent.ts"
+          ]
+        },
+        {
+          "name": "OperationStatus",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/read-intent.ts"
+          ]
+        },
+        {
+          "name": "PutArtifactInput",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/artifacts.ts"
+          ]
+        },
+        {
+          "name": "ReadContextSchema",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/read-intent.ts"
+          ]
+        },
+        {
+          "name": "ReadExecutor",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/read-executor.ts"
+          ]
+        },
+        {
+          "name": "ReadExecutorConfig",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/read-executor.ts"
+          ]
+        },
+        {
+          "name": "ReadIntent",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/read-intent.ts"
+          ]
+        },
+        {
+          "name": "ReadIntentInput",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/read-intent.ts"
+          ]
+        },
+        {
+          "name": "ReadIntentSchema",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/read-intent.ts"
+          ]
+        },
+        {
+          "name": "ReadOperation",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/read-intent.ts"
+          ]
+        },
+        {
+          "name": "ReadOperationSchema",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/read-intent.ts"
+          ]
+        },
+        {
+          "name": "ReadRoleSchema",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/read-intent.ts"
+          ]
+        },
+        {
+          "name": "ReadSnapshot",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/read-intent.ts"
+          ]
+        },
+        {
+          "name": "readSpaceManifest",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/space-manifest.ts"
+          ]
+        },
+        {
+          "name": "ReadSpaceManifestInput",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/space-manifest.ts"
+          ]
+        },
+        {
+          "name": "ResolvedParams",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/references.ts"
+          ]
+        },
+        {
+          "name": "resolveReferences",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/references.ts"
+          ]
+        },
+        {
+          "name": "Row",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/rows.ts"
+          ]
+        },
+        {
+          "name": "RunIntentOptions",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/read-executor.ts"
+          ]
+        },
+        {
+          "name": "SchemaIssue",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/json-schema.ts"
+          ]
+        },
+        {
+          "name": "sha256Hex",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/canonical.ts"
+          ]
+        },
+        {
+          "name": "SLUG",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/read-intent.ts"
+          ]
+        },
+        {
+          "name": "SlugSchema",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/read-intent.ts"
+          ]
+        },
+        {
+          "name": "snapshotDigest",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/snapshot.ts"
+          ]
+        },
+        {
+          "name": "SnapshotExpectation",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/snapshot.ts"
+          ]
+        },
+        {
+          "name": "SPACE_MANIFEST_SCHEMA_VERSION",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/space-manifest.ts"
+          ]
+        },
+        {
+          "name": "SpaceManifest",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/space-manifest.ts"
+          ]
+        },
+        {
+          "name": "SpaceManifestActivePublication",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/space-manifest.ts"
+          ]
+        },
+        {
+          "name": "SpaceManifestAuthorityClass",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/space-manifest.ts"
+          ]
+        },
+        {
+          "name": "SpaceManifestBudget",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/space-manifest.ts"
+          ]
+        },
+        {
+          "name": "SpaceManifestEntry",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/space-manifest.ts"
+          ]
+        },
+        {
+          "name": "SpaceManifestLiveFacts",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/space-manifest.ts"
+          ]
+        },
+        {
+          "name": "SpaceManifestProfile",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/space-manifest.ts"
+          ]
+        },
+        {
+          "name": "SpaceManifestProfileTable",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/space-manifest.ts"
+          ]
+        },
+        {
+          "name": "SpaceManifestReads",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/space-manifest.ts"
+          ]
+        },
+        {
+          "name": "SpaceManifestUnavailable",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/space-manifest.ts"
+          ]
+        },
+        {
+          "name": "SqlReadInput",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/read-executor.ts"
+          ]
+        },
+        {
+          "name": "SqlReadResult",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/read-executor.ts"
+          ]
+        },
+        {
+          "name": "UUID_PATTERN",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/uuid.ts"
+          ]
+        },
+        {
+          "name": "UuidSchema",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/read-intent.ts"
+          ]
+        },
+        {
+          "name": "uuidv7",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/uuid.ts"
+          ]
+        },
+        {
+          "name": "validatePersistedSnapshot",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/snapshot.ts"
+          ]
+        },
+        {
+          "name": "validateSchema",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/json-schema.ts"
+          ]
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "packages/knowledge-db/src/db-read/artifacts-reconciliation.integration.test.ts",
+          "originalPath": "packages/db-read/src/artifacts-reconciliation.integration.test.ts"
+        },
+        {
+          "path": "packages/knowledge-db/src/db-read/artifacts-reconciliation.test.ts",
+          "originalPath": "packages/db-read/src/artifacts-reconciliation.test.ts"
+        },
+        {
+          "path": "packages/knowledge-db/src/db-read/db-read.test.ts",
+          "originalPath": "packages/db-read/src/db-read.test.ts"
+        },
+        {
+          "path": "packages/knowledge-db/src/db-read/read-executor.integration.test.ts",
+          "originalPath": "packages/db-read/src/read-executor.integration.test.ts"
+        },
+        {
+          "path": "packages/knowledge-db/src/db-read/snapshot.integration.test.ts",
+          "originalPath": "packages/db-read/src/snapshot.integration.test.ts"
+        },
+        {
+          "path": "packages/knowledge-db/src/db-read/snapshot.test.ts",
+          "originalPath": "packages/db-read/src/snapshot.test.ts"
+        },
+        {
+          "path": "packages/knowledge-db/src/db-read/space-manifest.test.ts",
+          "originalPath": "packages/db-read/src/space-manifest.test.ts"
+        }
+      ],
+      "runtimeExports": {
+        "status": "present-unverified-build",
+        "sha256": "3f0b064d097a0a37211bdd43adc39a789cbb2619d431bf41d38a38f70aa6ad84",
+        "names": [
+          "admissionIssues",
+          "ALIAS_KINDS",
+          "applyDefaults",
+          "applyPlan",
+          "applyRules",
+          "ArtifactLedger",
+          "assertHeadMatches",
+          "assertSingleReadStatement",
+          "authenticateCanonicalContentEvidence",
+          "awaitWinnerReceipt",
+          "bindKnowledgeClock",
+          "buildPlan",
+          "buildSpaceManifest",
+          "canonicalJson",
+          "CatalogEntrySchema",
+          "classifyFailure",
+          "compareHeads",
+          "contentEvidenceAssessmentDigest",
+          "contentLinkEffect",
+          "ContentLinkExecutor",
+          "ContentSourceReader",
+          "ContentSummaryPreparer",
+          "DEFAULT_DUPLICATE_WAIT",
+          "deterministicId",
+          "digestHexOf",
+          "digestOf",
+          "domainError",
+          "ENTITY_REF_KINDS",
+          "EvidenceRefSchema",
+          "ExtentSchema",
+          "gatherFacts",
+          "getPage",
+          "IDENTIFIER_SCHEMES",
+          "infrastructureError",
+          "IngestionExecutor",
+          "IngestionIntentSchema",
+          "InlineClaimSchema",
+          "intentDigestOf",
+          "intentIdempotencyKey",
+          "isDigest",
+          "isIdempotencyKeyCollision",
+          "isKnowledgeError",
+          "isOfficiallyAdmittedVerdict",
+          "isUuid",
+          "jsonSafeRow",
+          "KnowledgeError",
+          "loadMaterialized",
+          "loadRules",
+          "loadVocabulary",
+          "loadWorkspace",
+          "materializeScope",
+          "MAX_OPERATIONS",
+          "MAX_STATEMENT_TIMEOUT_MS",
+          "NO_RULES",
+          "proposalClaims",
+          "proposalEffect",
+          "proposalIdempotencyKey",
+          "ProposalSchema",
+          "QueryCatalogSchema",
+          "readContentLinkReceipt",
+          "ReadContextSchema",
+          "ReadExecutor",
+          "ReadIntentSchema",
+          "ReadOperationSchema",
+          "ReadRoleSchema",
+          "readSpaceManifest",
+          "renderReport",
+          "REPORT_BUCKET",
+          "ReportService",
+          "ReportStructureSchema",
+          "requireCatalog",
+          "resolveReferences",
+          "resolveWorkspaceDir",
+          "SearchEntrySchema",
+          "searchWorkspace",
+          "sha256Hex",
+          "SLUG",
+          "slugify",
+          "SlugSchema",
+          "snapshotDigest",
+          "SPACE_MANIFEST_SCHEMA_VERSION",
+          "STRONG_MATCH",
+          "subjectIdentity",
+          "subjectRefsOf",
+          "SubjectSchema",
+          "UUID_PATTERN",
+          "UuidSchema",
+          "uuidv7",
+          "validatePersistedSnapshot",
+          "validateProposal",
+          "validateSchema",
+          "WORKSPACE_FILES",
+          "WorldIntervalSchema"
+        ]
+      }
+    },
+    "ingestion": {
+      "group": "knowledge-db",
+      "packageName": "@aiengineer/knowledge-db",
+      "sourceEntry": "packages/knowledge-db/src/ingestion/index.ts",
+      "sourceExports": [
+        {
+          "name": "admissionIssues",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/evidence-admission.ts"
+          ]
+        },
+        {
+          "name": "AffectedRef",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/receipt.ts"
+          ]
+        },
+        {
+          "name": "ALIAS_KINDS",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/intent.ts"
+          ]
+        },
+        {
+          "name": "ApplyContext",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/apply.ts"
+          ]
+        },
+        {
+          "name": "ApplyOutcome",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/apply.ts"
+          ]
+        },
+        {
+          "name": "applyPlan",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/apply.ts"
+          ]
+        },
+        {
+          "name": "applyRules",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/rules.ts"
+          ]
+        },
+        {
+          "name": "authenticateCanonicalContentEvidence",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/content-links/evidence.ts"
+          ]
+        },
+        {
+          "name": "AuthenticatedContentEvidence",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/content-links/types.ts"
+          ]
+        },
+        {
+          "name": "AuthoritativeClaim",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/evidence-admission.ts"
+          ]
+        },
+        {
+          "name": "awaitWinnerReceipt",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/duplicate.ts"
+          ]
+        },
+        {
+          "name": "buildPlan",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/plan.ts"
+          ]
+        },
+        {
+          "name": "ChangedItem",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/plan.ts"
+          ]
+        },
+        {
+          "name": "ClaimEligibility",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/evidence-admission.ts"
+          ]
+        },
+        {
+          "name": "ClaimFacts",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/plan.ts"
+          ]
+        },
+        {
+          "name": "classifyFailure",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/executor.ts"
+          ]
+        },
+        {
+          "name": "contentEvidenceAssessmentDigest",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/content-links/evidence.ts"
+          ]
+        },
+        {
+          "name": "ContentLinkAuthority",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/content-links/types.ts"
+          ]
+        },
+        {
+          "name": "contentLinkEffect",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/content-links/operations.ts"
+          ]
+        },
+        {
+          "name": "ContentLinkExecutor",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/content-links/executor.ts"
+          ]
+        },
+        {
+          "name": "ContentLinkPlan",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/content-links/types.ts"
+          ]
+        },
+        {
+          "name": "ContentLinkReceipt",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/content-links/types.ts"
+          ]
+        },
+        {
+          "name": "ContentSourceReader",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/content-links/sources.ts"
+          ]
+        },
+        {
+          "name": "ContentSummaryPreparationResult",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/content-links/summary-preparation.ts"
+          ]
+        },
+        {
+          "name": "ContentSummaryPreparer",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/content-links/summary-preparation.ts"
+          ]
+        },
+        {
+          "name": "DEFAULT_DUPLICATE_WAIT",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/duplicate.ts"
+          ]
+        },
+        {
+          "name": "deterministicId",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/plan.ts"
+          ]
+        },
+        {
+          "name": "DuplicateIdentity",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/duplicate.ts"
+          ]
+        },
+        {
+          "name": "DuplicateWaitPolicy",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/duplicate.ts"
+          ]
+        },
+        {
+          "name": "ENTITY_REF_KINDS",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/intent.ts"
+          ]
+        },
+        {
+          "name": "EntityKind",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/vocabulary.ts"
+          ]
+        },
+        {
+          "name": "EntityMatch",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/plan.ts"
+          ]
+        },
+        {
+          "name": "EventKind",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/vocabulary.ts"
+          ]
+        },
+        {
+          "name": "EvidenceOracle",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/facts.ts"
+          ]
+        },
+        {
+          "name": "EvidenceRef",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/intent.ts"
+          ]
+        },
+        {
+          "name": "EvidenceRefSchema",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/intent.ts"
+          ]
+        },
+        {
+          "name": "ExistingFacts",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/plan.ts"
+          ]
+        },
+        {
+          "name": "ExtentSchema",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/intent.ts"
+          ]
+        },
+        {
+          "name": "FactGatheringDeps",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/facts.ts"
+          ]
+        },
+        {
+          "name": "gatherFacts",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/facts.ts"
+          ]
+        },
+        {
+          "name": "IDENTIFIER_SCHEMES",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/intent.ts"
+          ]
+        },
+        {
+          "name": "IngestionExecutor",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/executor.ts"
+          ]
+        },
+        {
+          "name": "IngestionExecutorConfig",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/executor.ts"
+          ]
+        },
+        {
+          "name": "IngestionIntent",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/intent.ts"
+          ]
+        },
+        {
+          "name": "IngestionIntentInput",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/intent.ts"
+          ]
+        },
+        {
+          "name": "IngestionIntentSchema",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/intent.ts"
+          ]
+        },
+        {
+          "name": "IngestionOptions",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/executor.ts"
+          ]
+        },
+        {
+          "name": "IngestionPlan",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/plan.ts"
+          ]
+        },
+        {
+          "name": "IngestionReceipt",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/receipt.ts"
+          ]
+        },
+        {
+          "name": "IngestionRule",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/rules.ts"
+          ]
+        },
+        {
+          "name": "InlineClaim",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/intent.ts"
+          ]
+        },
+        {
+          "name": "InlineClaimSchema",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/intent.ts"
+          ]
+        },
+        {
+          "name": "intentDigestOf",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/plan.ts"
+          ]
+        },
+        {
+          "name": "intentIdempotencyKey",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/plan.ts"
+          ]
+        },
+        {
+          "name": "isIdempotencyKeyCollision",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/duplicate.ts"
+          ]
+        },
+        {
+          "name": "isOfficiallyAdmittedVerdict",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/evidence-admission.ts"
+          ]
+        },
+        {
+          "name": "loadRules",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/rules.ts"
+          ]
+        },
+        {
+          "name": "loadVocabulary",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/vocabulary.ts"
+          ]
+        },
+        {
+          "name": "NewSubject",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/intent.ts"
+          ]
+        },
+        {
+          "name": "NO_RULES",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/rules.ts"
+          ]
+        },
+        {
+          "name": "PlanError",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/plan.ts"
+          ]
+        },
+        {
+          "name": "PlanExecutorIdentity",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/plan.ts"
+          ]
+        },
+        {
+          "name": "PlanFacts",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/plan.ts"
+          ]
+        },
+        {
+          "name": "PlannedAction",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/plan.ts"
+          ]
+        },
+        {
+          "name": "PlannedOutcome",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/plan.ts"
+          ]
+        },
+        {
+          "name": "PlannedProposal",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/plan.ts"
+          ]
+        },
+        {
+          "name": "PlannedSubject",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/plan.ts"
+          ]
+        },
+        {
+          "name": "Proposal",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/intent.ts"
+          ]
+        },
+        {
+          "name": "proposalClaims",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/evidence-admission.ts"
+          ]
+        },
+        {
+          "name": "proposalEffect",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/evidence-admission.ts"
+          ]
+        },
+        {
+          "name": "proposalIdempotencyKey",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/plan.ts"
+          ]
+        },
+        {
+          "name": "ProposalKind",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/intent.ts"
+          ]
+        },
+        {
+          "name": "ProposalOf",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/intent.ts"
+          ]
+        },
+        {
+          "name": "ProposalOutcome",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/plan.ts"
+          ]
+        },
+        {
+          "name": "ProposalReceipt",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/receipt.ts"
+          ]
+        },
+        {
+          "name": "ProposalSchema",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/intent.ts"
+          ]
+        },
+        {
+          "name": "readContentLinkReceipt",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/content-links/read-receipt.ts"
+          ]
+        },
+        {
+          "name": "ReceiptFailure",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/receipt.ts"
+          ]
+        },
+        {
+          "name": "RegisterReportInput",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/reports/service.ts"
+          ]
+        },
+        {
+          "name": "RelationshipKind",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/vocabulary.ts"
+          ]
+        },
+        {
+          "name": "RenderedAssertion",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/reports/structure.ts"
+          ]
+        },
+        {
+          "name": "renderReport",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/reports/structure.ts"
+          ]
+        },
+        {
+          "name": "REPORT_BUCKET",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/reports/service.ts"
+          ]
+        },
+        {
+          "name": "ReportClaimReference",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/reports/structure.ts"
+          ]
+        },
+        {
+          "name": "ReportEvidence",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/evidence-admission.ts"
+          ]
+        },
+        {
+          "name": "ReportPackageRead",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/reports/service.ts"
+          ]
+        },
+        {
+          "name": "ReportRegistration",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/reports/service.ts"
+          ]
+        },
+        {
+          "name": "ReportService",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/reports/service.ts"
+          ]
+        },
+        {
+          "name": "ReportServiceConfig",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/reports/service.ts"
+          ]
+        },
+        {
+          "name": "ReportStructure",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/reports/structure.ts"
+          ]
+        },
+        {
+          "name": "ReportStructureSchema",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/reports/structure.ts"
+          ]
+        },
+        {
+          "name": "Rewrite",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/rules.ts"
+          ]
+        },
+        {
+          "name": "RuleApplication",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/rules.ts"
+          ]
+        },
+        {
+          "name": "RuleCheck",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/rules.ts"
+          ]
+        },
+        {
+          "name": "RuleCondition",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/rules.ts"
+          ]
+        },
+        {
+          "name": "RuleFacts",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/rules.ts"
+          ]
+        },
+        {
+          "name": "RuleSet",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/rules.ts"
+          ]
+        },
+        {
+          "name": "slugify",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/plan.ts"
+          ]
+        },
+        {
+          "name": "StreamKind",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/vocabulary.ts"
+          ]
+        },
+        {
+          "name": "STRONG_MATCH",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/plan.ts"
+          ]
+        },
+        {
+          "name": "Subject",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/intent.ts"
+          ]
+        },
+        {
+          "name": "SubjectFacts",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/plan.ts"
+          ]
+        },
+        {
+          "name": "subjectIdentity",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/evidence-admission.ts"
+          ]
+        },
+        {
+          "name": "subjectRefsOf",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/intent.ts"
+          ]
+        },
+        {
+          "name": "SubjectSchema",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/intent.ts"
+          ]
+        },
+        {
+          "name": "validateProposal",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/validate.ts"
+          ]
+        },
+        {
+          "name": "ValidationContext",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/validate.ts"
+          ]
+        },
+        {
+          "name": "Vocabulary",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/vocabulary.ts"
+          ]
+        },
+        {
+          "name": "VocabularyIssue",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/validate.ts"
+          ]
+        },
+        {
+          "name": "WorldInterval",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/intent.ts"
+          ]
+        },
+        {
+          "name": "WorldIntervalSchema",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/intent.ts"
+          ]
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "packages/knowledge-db/src/ingestion/content-links/chunk-manifest.test.ts",
+          "originalPath": "packages/ingestion/src/content-links/chunk-manifest.test.ts"
+        },
+        {
+          "path": "packages/knowledge-db/src/ingestion/content-links/evidence.test.ts",
+          "originalPath": "packages/ingestion/src/content-links/evidence.test.ts"
+        },
+        {
+          "path": "packages/knowledge-db/src/ingestion/content-links/executor.test.ts",
+          "originalPath": "packages/ingestion/src/content-links/executor.test.ts"
+        },
+        {
+          "path": "packages/knowledge-db/src/ingestion/content-links/ledger-review.test.ts",
+          "originalPath": "packages/ingestion/src/content-links/ledger-review.test.ts"
+        },
+        {
+          "path": "packages/knowledge-db/src/ingestion/content-links/ledger.test.ts",
+          "originalPath": "packages/ingestion/src/content-links/ledger.test.ts"
+        },
+        {
+          "path": "packages/knowledge-db/src/ingestion/content-links/operations.test.ts",
+          "originalPath": "packages/ingestion/src/content-links/operations.test.ts"
+        },
+        {
+          "path": "packages/knowledge-db/src/ingestion/content-links/sources.test.ts",
+          "originalPath": "packages/ingestion/src/content-links/sources.test.ts"
+        },
+        {
+          "path": "packages/knowledge-db/src/ingestion/content-links/summary-preparation.test.ts",
+          "originalPath": "packages/ingestion/src/content-links/summary-preparation.test.ts"
+        },
+        {
+          "path": "packages/knowledge-db/src/ingestion/reports/service.integration.test.ts",
+          "originalPath": "packages/ingestion/src/reports/service.integration.test.ts"
+        },
+        {
+          "path": "packages/knowledge-db/src/ingestion/reports/structure.test.ts",
+          "originalPath": "packages/ingestion/src/reports/structure.test.ts"
+        },
+        {
+          "path": "packages/knowledge-db/src/ingestion/tests/apply-support.test.ts",
+          "originalPath": "packages/ingestion/src/tests/apply-support.test.ts"
+        },
+        {
+          "path": "packages/knowledge-db/src/ingestion/tests/duplicate.test.ts",
+          "originalPath": "packages/ingestion/src/tests/duplicate.test.ts"
+        },
+        {
+          "path": "packages/knowledge-db/src/ingestion/tests/evidence-admission.test.ts",
+          "originalPath": "packages/ingestion/src/tests/evidence-admission.test.ts"
+        },
+        {
+          "path": "packages/knowledge-db/src/ingestion/tests/executor.integration.test.ts",
+          "originalPath": "packages/ingestion/src/tests/executor.integration.test.ts"
+        },
+        {
+          "path": "packages/knowledge-db/src/ingestion/tests/plan.test.ts",
+          "originalPath": "packages/ingestion/src/tests/plan.test.ts"
+        },
+        {
+          "path": "packages/knowledge-db/src/ingestion/tests/provenance.test.ts",
+          "originalPath": "packages/ingestion/src/tests/provenance.test.ts"
+        },
+        {
+          "path": "packages/knowledge-db/src/ingestion/tests/receipt-reconciliation.test.ts",
+          "originalPath": "packages/ingestion/src/tests/receipt-reconciliation.test.ts"
+        },
+        {
+          "path": "packages/knowledge-db/src/ingestion/tests/records.test.ts",
+          "originalPath": "packages/ingestion/src/tests/records.test.ts"
+        },
+        {
+          "path": "packages/knowledge-db/test/ingestion/current-schema.integration.test.ts",
+          "originalPath": "packages/ingestion/test/current-schema.integration.test.ts"
+        },
+        {
+          "path": "packages/knowledge-db/test/ingestion/temporal.integration.test.ts",
+          "originalPath": "packages/ingestion/test/temporal.integration.test.ts"
+        }
+      ],
+      "runtimeExports": {
+        "status": "present-unverified-build",
+        "sha256": "3f0b064d097a0a37211bdd43adc39a789cbb2619d431bf41d38a38f70aa6ad84",
+        "names": [
+          "admissionIssues",
+          "ALIAS_KINDS",
+          "applyDefaults",
+          "applyPlan",
+          "applyRules",
+          "ArtifactLedger",
+          "assertHeadMatches",
+          "assertSingleReadStatement",
+          "authenticateCanonicalContentEvidence",
+          "awaitWinnerReceipt",
+          "bindKnowledgeClock",
+          "buildPlan",
+          "buildSpaceManifest",
+          "canonicalJson",
+          "CatalogEntrySchema",
+          "classifyFailure",
+          "compareHeads",
+          "contentEvidenceAssessmentDigest",
+          "contentLinkEffect",
+          "ContentLinkExecutor",
+          "ContentSourceReader",
+          "ContentSummaryPreparer",
+          "DEFAULT_DUPLICATE_WAIT",
+          "deterministicId",
+          "digestHexOf",
+          "digestOf",
+          "domainError",
+          "ENTITY_REF_KINDS",
+          "EvidenceRefSchema",
+          "ExtentSchema",
+          "gatherFacts",
+          "getPage",
+          "IDENTIFIER_SCHEMES",
+          "infrastructureError",
+          "IngestionExecutor",
+          "IngestionIntentSchema",
+          "InlineClaimSchema",
+          "intentDigestOf",
+          "intentIdempotencyKey",
+          "isDigest",
+          "isIdempotencyKeyCollision",
+          "isKnowledgeError",
+          "isOfficiallyAdmittedVerdict",
+          "isUuid",
+          "jsonSafeRow",
+          "KnowledgeError",
+          "loadMaterialized",
+          "loadRules",
+          "loadVocabulary",
+          "loadWorkspace",
+          "materializeScope",
+          "MAX_OPERATIONS",
+          "MAX_STATEMENT_TIMEOUT_MS",
+          "NO_RULES",
+          "proposalClaims",
+          "proposalEffect",
+          "proposalIdempotencyKey",
+          "ProposalSchema",
+          "QueryCatalogSchema",
+          "readContentLinkReceipt",
+          "ReadContextSchema",
+          "ReadExecutor",
+          "ReadIntentSchema",
+          "ReadOperationSchema",
+          "ReadRoleSchema",
+          "readSpaceManifest",
+          "renderReport",
+          "REPORT_BUCKET",
+          "ReportService",
+          "ReportStructureSchema",
+          "requireCatalog",
+          "resolveReferences",
+          "resolveWorkspaceDir",
+          "SearchEntrySchema",
+          "searchWorkspace",
+          "sha256Hex",
+          "SLUG",
+          "slugify",
+          "SlugSchema",
+          "snapshotDigest",
+          "SPACE_MANIFEST_SCHEMA_VERSION",
+          "STRONG_MATCH",
+          "subjectIdentity",
+          "subjectRefsOf",
+          "SubjectSchema",
+          "UUID_PATTERN",
+          "UuidSchema",
+          "uuidv7",
+          "validatePersistedSnapshot",
+          "validateProposal",
+          "validateSchema",
+          "WORKSPACE_FILES",
+          "WorldIntervalSchema"
+        ]
+      }
+    }
+  },
+  "groupExports": {
+    "knowledge-db": {
+      "source": [
+        {
+          "name": "admissionIssues",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/evidence-admission.ts"
+          ]
+        },
+        {
+          "name": "AffectedRef",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/receipt.ts"
+          ]
+        },
+        {
+          "name": "ALIAS_KINDS",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/intent.ts"
+          ]
+        },
+        {
+          "name": "ApplyContext",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/apply.ts"
+          ]
+        },
+        {
+          "name": "applyDefaults",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/json-schema.ts"
+          ]
+        },
+        {
+          "name": "ApplyOutcome",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/apply.ts"
+          ]
+        },
+        {
+          "name": "applyPlan",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/apply.ts"
+          ]
+        },
+        {
+          "name": "applyRules",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/rules.ts"
+          ]
+        },
+        {
+          "name": "ArtifactLedger",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/artifacts.ts"
+          ]
+        },
+        {
+          "name": "ArtifactLedgerConfig",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/artifacts.ts"
+          ]
+        },
+        {
+          "name": "ArtifactRecord",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/artifacts.ts"
+          ]
+        },
+        {
+          "name": "assertHeadMatches",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/head.ts"
+          ]
+        },
+        {
+          "name": "assertSingleReadStatement",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/sql-guard.ts"
+          ]
+        },
+        {
+          "name": "authenticateCanonicalContentEvidence",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/content-links/evidence.ts"
+          ]
+        },
+        {
+          "name": "AuthenticatedContentEvidence",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/content-links/types.ts"
+          ]
+        },
+        {
+          "name": "AuthoritativeClaim",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/evidence-admission.ts"
+          ]
+        },
+        {
+          "name": "awaitWinnerReceipt",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/duplicate.ts"
+          ]
+        },
+        {
+          "name": "bindKnowledgeClock",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/snapshot.ts"
+          ]
+        },
+        {
+          "name": "buildPlan",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/plan.ts"
+          ]
+        },
+        {
+          "name": "buildSpaceManifest",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/space-manifest.ts"
+          ]
+        },
+        {
+          "name": "BuildSpaceManifestInput",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/space-manifest.ts"
+          ]
+        },
+        {
+          "name": "canonicalJson",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/canonical.ts"
+          ]
+        },
+        {
+          "name": "CatalogEntry",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/workspace.ts"
+          ]
+        },
+        {
+          "name": "CatalogEntrySchema",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/workspace.ts"
+          ]
+        },
+        {
+          "name": "ChangedItem",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/plan.ts"
+          ]
+        },
+        {
+          "name": "ClaimEligibility",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/evidence-admission.ts"
+          ]
+        },
+        {
+          "name": "ClaimFacts",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/plan.ts"
+          ]
+        },
+        {
+          "name": "classifyFailure",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/executor.ts"
+          ]
+        },
+        {
+          "name": "compareHeads",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/head.ts"
+          ]
+        },
+        {
+          "name": "contentEvidenceAssessmentDigest",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/content-links/evidence.ts"
+          ]
+        },
+        {
+          "name": "ContentLinkAuthority",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/content-links/types.ts"
+          ]
+        },
+        {
+          "name": "contentLinkEffect",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/content-links/operations.ts"
+          ]
+        },
+        {
+          "name": "ContentLinkExecutor",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/content-links/executor.ts"
+          ]
+        },
+        {
+          "name": "ContentLinkPlan",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/content-links/types.ts"
+          ]
+        },
+        {
+          "name": "ContentLinkReceipt",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/content-links/types.ts"
+          ]
+        },
+        {
+          "name": "ContentSourceReader",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/content-links/sources.ts"
+          ]
+        },
+        {
+          "name": "ContentSummaryPreparationResult",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/content-links/summary-preparation.ts"
+          ]
+        },
+        {
+          "name": "ContentSummaryPreparer",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/content-links/summary-preparation.ts"
+          ]
+        },
+        {
+          "name": "DEFAULT_DUPLICATE_WAIT",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/duplicate.ts"
+          ]
+        },
+        {
+          "name": "deterministicId",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/plan.ts"
+          ]
+        },
+        {
+          "name": "Digest",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/canonical.ts"
+          ]
+        },
+        {
+          "name": "digestHexOf",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/canonical.ts"
+          ]
+        },
+        {
+          "name": "digestOf",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/canonical.ts"
+          ]
+        },
+        {
+          "name": "domainError",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/errors.ts"
+          ]
+        },
+        {
+          "name": "DuplicateIdentity",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/duplicate.ts"
+          ]
+        },
+        {
+          "name": "DuplicateWaitPolicy",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/duplicate.ts"
+          ]
+        },
+        {
+          "name": "ENTITY_REF_KINDS",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/intent.ts"
+          ]
+        },
+        {
+          "name": "EntityKind",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/vocabulary.ts"
+          ]
+        },
+        {
+          "name": "EntityMatch",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/plan.ts"
+          ]
+        },
+        {
+          "name": "EventKind",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/vocabulary.ts"
+          ]
+        },
+        {
+          "name": "EvidenceOracle",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/facts.ts"
+          ]
+        },
+        {
+          "name": "EvidenceRef",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/intent.ts"
+          ]
+        },
+        {
+          "name": "EvidenceRefSchema",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/intent.ts"
+          ]
+        },
+        {
+          "name": "ExistingFacts",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/plan.ts"
+          ]
+        },
+        {
+          "name": "ExitClass",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/errors.ts"
+          ]
+        },
+        {
+          "name": "ExtentSchema",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/intent.ts"
+          ]
+        },
+        {
+          "name": "FactGatheringDeps",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/facts.ts"
+          ]
+        },
+        {
+          "name": "gatherFacts",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/facts.ts"
+          ]
+        },
+        {
+          "name": "getPage",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/pages.ts"
+          ]
+        },
+        {
+          "name": "HeadCheck",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/head.ts"
+          ]
+        },
+        {
+          "name": "IDENTIFIER_SCHEMES",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/intent.ts"
+          ]
+        },
+        {
+          "name": "infrastructureError",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/errors.ts"
+          ]
+        },
+        {
+          "name": "IngestionExecutor",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/executor.ts"
+          ]
+        },
+        {
+          "name": "IngestionExecutorConfig",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/executor.ts"
+          ]
+        },
+        {
+          "name": "IngestionIntent",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/intent.ts"
+          ]
+        },
+        {
+          "name": "IngestionIntentInput",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/intent.ts"
+          ]
+        },
+        {
+          "name": "IngestionIntentSchema",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/intent.ts"
+          ]
+        },
+        {
+          "name": "IngestionOptions",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/executor.ts"
+          ]
+        },
+        {
+          "name": "IngestionPlan",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/plan.ts"
+          ]
+        },
+        {
+          "name": "IngestionReceipt",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/receipt.ts"
+          ]
+        },
+        {
+          "name": "IngestionRule",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/rules.ts"
+          ]
+        },
+        {
+          "name": "InlineClaim",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/intent.ts"
+          ]
+        },
+        {
+          "name": "InlineClaimSchema",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/intent.ts"
+          ]
+        },
+        {
+          "name": "intentDigestOf",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/plan.ts"
+          ]
+        },
+        {
+          "name": "intentIdempotencyKey",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/plan.ts"
+          ]
+        },
+        {
+          "name": "isDigest",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/canonical.ts"
+          ]
+        },
+        {
+          "name": "isIdempotencyKeyCollision",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/duplicate.ts"
+          ]
+        },
+        {
+          "name": "isKnowledgeError",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/errors.ts"
+          ]
+        },
+        {
+          "name": "isOfficiallyAdmittedVerdict",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/evidence-admission.ts"
+          ]
+        },
+        {
+          "name": "isUuid",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/uuid.ts"
+          ]
+        },
+        {
+          "name": "JsonPrimitive",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/canonical.ts"
+          ]
+        },
+        {
+          "name": "jsonSafeRow",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/rows.ts"
+          ]
+        },
+        {
+          "name": "JsonSchema",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/json-schema.ts"
+          ]
+        },
+        {
+          "name": "JsonValue",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/canonical.ts"
+          ]
+        },
+        {
+          "name": "KnowledgeArtifactType",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/artifacts.ts"
+          ]
+        },
+        {
+          "name": "KnowledgeError",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/errors.ts"
+          ]
+        },
+        {
+          "name": "KnowledgeHead",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/read-intent.ts"
+          ]
+        },
+        {
+          "name": "LineageEdge",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/artifacts.ts"
+          ]
+        },
+        {
+          "name": "loadMaterialized",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/materialize.ts"
+          ]
+        },
+        {
+          "name": "loadRules",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/rules.ts"
+          ]
+        },
+        {
+          "name": "loadVocabulary",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/vocabulary.ts"
+          ]
+        },
+        {
+          "name": "loadWorkspace",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/workspace.ts"
+          ]
+        },
+        {
+          "name": "LocateOptions",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/locate.ts"
+          ]
+        },
+        {
+          "name": "MaterializeInput",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/materialize.ts"
+          ]
+        },
+        {
+          "name": "MaterializeResult",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/materialize.ts"
+          ]
+        },
+        {
+          "name": "materializeScope",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/materialize.ts"
+          ]
+        },
+        {
+          "name": "MAX_OPERATIONS",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/read-intent.ts"
+          ]
+        },
+        {
+          "name": "MAX_STATEMENT_TIMEOUT_MS",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/read-intent.ts"
+          ]
+        },
+        {
+          "name": "NewSubject",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/intent.ts"
+          ]
+        },
+        {
+          "name": "NO_RULES",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/rules.ts"
+          ]
+        },
+        {
+          "name": "OperationResult",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/read-intent.ts"
+          ]
+        },
+        {
+          "name": "OperationStatus",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/read-intent.ts"
+          ]
+        },
+        {
+          "name": "Page",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/pages.ts"
+          ]
+        },
+        {
+          "name": "PageOptions",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/pages.ts"
+          ]
+        },
+        {
+          "name": "PlanError",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/plan.ts"
+          ]
+        },
+        {
+          "name": "PlanExecutorIdentity",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/plan.ts"
+          ]
+        },
+        {
+          "name": "PlanFacts",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/plan.ts"
+          ]
+        },
+        {
+          "name": "PlannedAction",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/plan.ts"
+          ]
+        },
+        {
+          "name": "PlannedOutcome",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/plan.ts"
+          ]
+        },
+        {
+          "name": "PlannedProposal",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/plan.ts"
+          ]
+        },
+        {
+          "name": "PlannedSubject",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/plan.ts"
+          ]
+        },
+        {
+          "name": "Proposal",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/intent.ts"
+          ]
+        },
+        {
+          "name": "proposalClaims",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/evidence-admission.ts"
+          ]
+        },
+        {
+          "name": "proposalEffect",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/evidence-admission.ts"
+          ]
+        },
+        {
+          "name": "proposalIdempotencyKey",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/plan.ts"
+          ]
+        },
+        {
+          "name": "ProposalKind",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/intent.ts"
+          ]
+        },
+        {
+          "name": "ProposalOf",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/intent.ts"
+          ]
+        },
+        {
+          "name": "ProposalOutcome",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/plan.ts"
+          ]
+        },
+        {
+          "name": "ProposalReceipt",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/receipt.ts"
+          ]
+        },
+        {
+          "name": "ProposalSchema",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/intent.ts"
+          ]
+        },
+        {
+          "name": "PutArtifactInput",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/artifacts.ts"
+          ]
+        },
+        {
+          "name": "QueryCatalog",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/workspace.ts"
+          ]
+        },
+        {
+          "name": "QueryCatalogSchema",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/workspace.ts"
+          ]
+        },
+        {
+          "name": "readContentLinkReceipt",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/content-links/read-receipt.ts"
+          ]
+        },
+        {
+          "name": "ReadContextSchema",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/read-intent.ts"
+          ]
+        },
+        {
+          "name": "ReadExecutor",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/read-executor.ts"
+          ]
+        },
+        {
+          "name": "ReadExecutorConfig",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/read-executor.ts"
+          ]
+        },
+        {
+          "name": "ReadIntent",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/read-intent.ts"
+          ]
+        },
+        {
+          "name": "ReadIntentInput",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/read-intent.ts"
+          ]
+        },
+        {
+          "name": "ReadIntentSchema",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/read-intent.ts"
+          ]
+        },
+        {
+          "name": "ReadOperation",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/read-intent.ts"
+          ]
+        },
+        {
+          "name": "ReadOperationSchema",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/read-intent.ts"
+          ]
+        },
+        {
+          "name": "ReadRoleSchema",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/read-intent.ts"
+          ]
+        },
+        {
+          "name": "ReadSnapshot",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/read-intent.ts"
+          ]
+        },
+        {
+          "name": "readSpaceManifest",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/space-manifest.ts"
+          ]
+        },
+        {
+          "name": "ReadSpaceManifestInput",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/space-manifest.ts"
+          ]
+        },
+        {
+          "name": "ReceiptFailure",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/receipt.ts"
+          ]
+        },
+        {
+          "name": "RegisterReportInput",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/reports/service.ts"
+          ]
+        },
+        {
+          "name": "RelationshipKind",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/vocabulary.ts"
+          ]
+        },
+        {
+          "name": "RenderedAssertion",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/reports/structure.ts"
+          ]
+        },
+        {
+          "name": "renderReport",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/reports/structure.ts"
+          ]
+        },
+        {
+          "name": "REPORT_BUCKET",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/reports/service.ts"
+          ]
+        },
+        {
+          "name": "ReportClaimReference",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/reports/structure.ts"
+          ]
+        },
+        {
+          "name": "ReportEvidence",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/evidence-admission.ts"
+          ]
+        },
+        {
+          "name": "ReportPackageRead",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/reports/service.ts"
+          ]
+        },
+        {
+          "name": "ReportRegistration",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/reports/service.ts"
+          ]
+        },
+        {
+          "name": "ReportService",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/reports/service.ts"
+          ]
+        },
+        {
+          "name": "ReportServiceConfig",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/reports/service.ts"
+          ]
+        },
+        {
+          "name": "ReportStructure",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/reports/structure.ts"
+          ]
+        },
+        {
+          "name": "ReportStructureSchema",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/reports/structure.ts"
+          ]
+        },
+        {
+          "name": "requireCatalog",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/workspace.ts"
+          ]
+        },
+        {
+          "name": "ResolvedParams",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/references.ts"
+          ]
+        },
+        {
+          "name": "resolveReferences",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/references.ts"
+          ]
+        },
+        {
+          "name": "resolveWorkspaceDir",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/locate.ts"
+          ]
+        },
+        {
+          "name": "Rewrite",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/rules.ts"
+          ]
+        },
+        {
+          "name": "Row",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/rows.ts"
+          ]
+        },
+        {
+          "name": "RuleApplication",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/rules.ts"
+          ]
+        },
+        {
+          "name": "RuleCheck",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/rules.ts"
+          ]
+        },
+        {
+          "name": "RuleCondition",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/rules.ts"
+          ]
+        },
+        {
+          "name": "RuleFacts",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/rules.ts"
+          ]
+        },
+        {
+          "name": "RuleSet",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/rules.ts"
+          ]
+        },
+        {
+          "name": "RunIntentOptions",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/read-executor.ts"
+          ]
+        },
+        {
+          "name": "SchemaIssue",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/json-schema.ts"
+          ]
+        },
+        {
+          "name": "SchemaScope",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/materialize.ts"
+          ]
+        },
+        {
+          "name": "SearchEntry",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/workspace.ts"
+          ]
+        },
+        {
+          "name": "SearchEntrySchema",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/workspace.ts"
+          ]
+        },
+        {
+          "name": "SearchHit",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/search.ts"
+          ]
+        },
+        {
+          "name": "SearchOptions",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/search.ts"
+          ]
+        },
+        {
+          "name": "SearchResult",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/search.ts"
+          ]
+        },
+        {
+          "name": "searchWorkspace",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/search.ts"
+          ]
+        },
+        {
+          "name": "sha256Hex",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/canonical.ts"
+          ]
+        },
+        {
+          "name": "SLUG",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/read-intent.ts"
+          ]
+        },
+        {
+          "name": "slugify",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/plan.ts"
+          ]
+        },
+        {
+          "name": "SlugSchema",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/read-intent.ts"
+          ]
+        },
+        {
+          "name": "snapshotDigest",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/snapshot.ts"
+          ]
+        },
+        {
+          "name": "SnapshotExpectation",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/snapshot.ts"
+          ]
+        },
+        {
+          "name": "SPACE_MANIFEST_SCHEMA_VERSION",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/space-manifest.ts"
+          ]
+        },
+        {
+          "name": "SpaceManifest",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/space-manifest.ts"
+          ]
+        },
+        {
+          "name": "SpaceManifestActivePublication",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/space-manifest.ts"
+          ]
+        },
+        {
+          "name": "SpaceManifestAuthorityClass",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/space-manifest.ts"
+          ]
+        },
+        {
+          "name": "SpaceManifestBudget",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/space-manifest.ts"
+          ]
+        },
+        {
+          "name": "SpaceManifestEntry",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/space-manifest.ts"
+          ]
+        },
+        {
+          "name": "SpaceManifestLiveFacts",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/space-manifest.ts"
+          ]
+        },
+        {
+          "name": "SpaceManifestProfile",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/space-manifest.ts"
+          ]
+        },
+        {
+          "name": "SpaceManifestProfileTable",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/space-manifest.ts"
+          ]
+        },
+        {
+          "name": "SpaceManifestReads",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/space-manifest.ts"
+          ]
+        },
+        {
+          "name": "SpaceManifestUnavailable",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/space-manifest.ts"
+          ]
+        },
+        {
+          "name": "SqlReadInput",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/read-executor.ts"
+          ]
+        },
+        {
+          "name": "SqlReadResult",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/read-executor.ts"
+          ]
+        },
+        {
+          "name": "StreamKind",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/vocabulary.ts"
+          ]
+        },
+        {
+          "name": "STRONG_MATCH",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/plan.ts"
+          ]
+        },
+        {
+          "name": "Subject",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/intent.ts"
+          ]
+        },
+        {
+          "name": "SubjectFacts",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/plan.ts"
+          ]
+        },
+        {
+          "name": "subjectIdentity",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/evidence-admission.ts"
+          ]
+        },
+        {
+          "name": "subjectRefsOf",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/intent.ts"
+          ]
+        },
+        {
+          "name": "SubjectSchema",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/intent.ts"
+          ]
+        },
+        {
+          "name": "TerminologyEntry",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/workspace.ts"
+          ]
+        },
+        {
+          "name": "UUID_PATTERN",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/uuid.ts"
+          ]
+        },
+        {
+          "name": "UuidSchema",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/read-intent.ts"
+          ]
+        },
+        {
+          "name": "uuidv7",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/uuid.ts"
+          ]
+        },
+        {
+          "name": "validatePersistedSnapshot",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/snapshot.ts"
+          ]
+        },
+        {
+          "name": "validateProposal",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/validate.ts"
+          ]
+        },
+        {
+          "name": "validateSchema",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/db-read/json-schema.ts"
+          ]
+        },
+        {
+          "name": "ValidationContext",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/validate.ts"
+          ]
+        },
+        {
+          "name": "Vocabulary",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/vocabulary.ts"
+          ]
+        },
+        {
+          "name": "VocabularyIssue",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/validate.ts"
+          ]
+        },
+        {
+          "name": "Workspace",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/workspace.ts"
+          ]
+        },
+        {
+          "name": "WORKSPACE_FILES",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/workspace.ts"
+          ]
+        },
+        {
+          "name": "WorkspaceManifest",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/schema-workspace/workspace.ts"
+          ]
+        },
+        {
+          "name": "WorldInterval",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/intent.ts"
+          ]
+        },
+        {
+          "name": "WorldIntervalSchema",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/knowledge-db/src/ingestion/intent.ts"
+          ]
+        }
+      ],
+      "runtime": {
+        "status": "present-unverified-build",
+        "sha256": "3f0b064d097a0a37211bdd43adc39a789cbb2619d431bf41d38a38f70aa6ad84",
+        "names": [
+          "admissionIssues",
+          "ALIAS_KINDS",
+          "applyDefaults",
+          "applyPlan",
+          "applyRules",
+          "ArtifactLedger",
+          "assertHeadMatches",
+          "assertSingleReadStatement",
+          "authenticateCanonicalContentEvidence",
+          "awaitWinnerReceipt",
+          "bindKnowledgeClock",
+          "buildPlan",
+          "buildSpaceManifest",
+          "canonicalJson",
+          "CatalogEntrySchema",
+          "classifyFailure",
+          "compareHeads",
+          "contentEvidenceAssessmentDigest",
+          "contentLinkEffect",
+          "ContentLinkExecutor",
+          "ContentSourceReader",
+          "ContentSummaryPreparer",
+          "DEFAULT_DUPLICATE_WAIT",
+          "deterministicId",
+          "digestHexOf",
+          "digestOf",
+          "domainError",
+          "ENTITY_REF_KINDS",
+          "EvidenceRefSchema",
+          "ExtentSchema",
+          "gatherFacts",
+          "getPage",
+          "IDENTIFIER_SCHEMES",
+          "infrastructureError",
+          "IngestionExecutor",
+          "IngestionIntentSchema",
+          "InlineClaimSchema",
+          "intentDigestOf",
+          "intentIdempotencyKey",
+          "isDigest",
+          "isIdempotencyKeyCollision",
+          "isKnowledgeError",
+          "isOfficiallyAdmittedVerdict",
+          "isUuid",
+          "jsonSafeRow",
+          "KnowledgeError",
+          "loadMaterialized",
+          "loadRules",
+          "loadVocabulary",
+          "loadWorkspace",
+          "materializeScope",
+          "MAX_OPERATIONS",
+          "MAX_STATEMENT_TIMEOUT_MS",
+          "NO_RULES",
+          "proposalClaims",
+          "proposalEffect",
+          "proposalIdempotencyKey",
+          "ProposalSchema",
+          "QueryCatalogSchema",
+          "readContentLinkReceipt",
+          "ReadContextSchema",
+          "ReadExecutor",
+          "ReadIntentSchema",
+          "ReadOperationSchema",
+          "ReadRoleSchema",
+          "readSpaceManifest",
+          "renderReport",
+          "REPORT_BUCKET",
+          "ReportService",
+          "ReportStructureSchema",
+          "requireCatalog",
+          "resolveReferences",
+          "resolveWorkspaceDir",
+          "SearchEntrySchema",
+          "searchWorkspace",
+          "sha256Hex",
+          "SLUG",
+          "slugify",
+          "SlugSchema",
+          "snapshotDigest",
+          "SPACE_MANIFEST_SCHEMA_VERSION",
+          "STRONG_MATCH",
+          "subjectIdentity",
+          "subjectRefsOf",
+          "SubjectSchema",
+          "UUID_PATTERN",
+          "UuidSchema",
+          "uuidv7",
+          "validatePersistedSnapshot",
+          "validateProposal",
+          "validateSchema",
+          "WORKSPACE_FILES",
+          "WorldIntervalSchema"
+        ]
+      }
+    }
+  },
+  "collisions": {
+    "knowledge-db": []
+  },
+  "manifestGraph": {
+    "packageCount": 28,
+    "edges": [
+      {
+        "from": "@aiengineer/knowledge-acquisition",
+        "to": [
+          "@aiengineer/knowledge-domain",
+          "@aiengineer/knowledge-runtime"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-api",
+        "to": [
+          "@aiengineer/knowledge-application",
+          "@aiengineer/knowledge-client",
+          "@aiengineer/knowledge-config",
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-db",
+          "@aiengineer/knowledge-domain",
+          "@aiengineer/knowledge-embeddings",
+          "@aiengineer/knowledge-persistence",
+          "@aiengineer/knowledge-runtime",
+          "@aiengineer/knowledge-testkit"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-application",
+        "to": [
+          "@aiengineer/knowledge-acquisition",
+          "@aiengineer/knowledge-chunking",
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-conversion",
+          "@aiengineer/knowledge-documents",
+          "@aiengineer/knowledge-domain",
+          "@aiengineer/knowledge-embeddings",
+          "@aiengineer/knowledge-evaluation",
+          "@aiengineer/knowledge-jev",
+          "@aiengineer/knowledge-policy",
+          "@aiengineer/knowledge-projections",
+          "@aiengineer/knowledge-retrieval",
+          "@aiengineer/knowledge-runtime",
+          "@aiengineer/knowledge-testkit",
+          "@aiengineer/knowledge-vector-backends",
+          "@aiengineer/knowledge-verification"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-chunking",
+        "to": [
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-documents",
+          "@aiengineer/knowledge-domain"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-cli",
+        "to": [
+          "@aiengineer/knowledge-application",
+          "@aiengineer/knowledge-client",
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-verification"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-client",
+        "to": [
+          "@aiengineer/knowledge-contracts"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-config",
+        "to": [
+          "@aiengineer/knowledge-contracts"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-contracts",
+        "to": []
+      },
+      {
+        "from": "@aiengineer/knowledge-conversion",
+        "to": [
+          "@aiengineer/knowledge-domain",
+          "@aiengineer/knowledge-runtime"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-db",
+        "to": [
+          "@aiengineer/knowledge-chunking",
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-documents",
+          "@aiengineer/knowledge-domain",
+          "@aiengineer/knowledge-persistence",
+          "@aiengineer/knowledge-runtime"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-documents",
+        "to": [
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-domain"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-domain",
+        "to": [
+          "@aiengineer/knowledge-contracts"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-embeddings",
+        "to": [
+          "@aiengineer/knowledge-domain"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-evaluation",
+        "to": [
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-domain",
+          "@aiengineer/knowledge-verification"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-jev",
+        "to": [
+          "@aiengineer/knowledge-contracts"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-jev-service",
+        "to": [
+          "@aiengineer/knowledge-application",
+          "@aiengineer/knowledge-client",
+          "@aiengineer/knowledge-contracts"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-mcp",
+        "to": [
+          "@aiengineer/knowledge-application",
+          "@aiengineer/knowledge-client",
+          "@aiengineer/knowledge-config",
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-persistence"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-observability",
+        "to": [
+          "@aiengineer/knowledge-domain"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-persistence",
+        "to": [
+          "@aiengineer/knowledge-application",
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-domain",
+          "@aiengineer/knowledge-runtime",
+          "@aiengineer/knowledge-verification"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-policy",
+        "to": [
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-domain",
+          "@aiengineer/knowledge-verification"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-projections",
+        "to": [
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-documents",
+          "@aiengineer/knowledge-domain"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-retrieval",
+        "to": [
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-domain",
+          "@aiengineer/knowledge-vector-backends"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-runtime",
+        "to": [
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-domain"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-testkit",
+        "to": [
+          "@aiengineer/knowledge-domain",
+          "@aiengineer/knowledge-evaluation",
+          "@aiengineer/knowledge-retrieval"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-vector-backends",
+        "to": [
+          "@aiengineer/knowledge-domain"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-verification",
+        "to": [
+          "@aiengineer/knowledge-contracts"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-verification-executor",
+        "to": [
+          "@aiengineer/knowledge-application",
+          "@aiengineer/knowledge-chunking",
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-db",
+          "@aiengineer/knowledge-documents",
+          "@aiengineer/knowledge-domain",
+          "@aiengineer/knowledge-persistence",
+          "@aiengineer/knowledge-policy",
+          "@aiengineer/knowledge-runtime",
+          "@aiengineer/knowledge-verification"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-worker",
+        "to": [
+          "@aiengineer/knowledge-acquisition",
+          "@aiengineer/knowledge-application",
+          "@aiengineer/knowledge-chunking",
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-conversion",
+          "@aiengineer/knowledge-documents",
+          "@aiengineer/knowledge-domain",
+          "@aiengineer/knowledge-embeddings",
+          "@aiengineer/knowledge-evaluation",
+          "@aiengineer/knowledge-persistence",
+          "@aiengineer/knowledge-policy",
+          "@aiengineer/knowledge-runtime",
+          "@aiengineer/knowledge-verification"
+        ]
+      }
+    ],
+    "cycles": []
+  }
+}

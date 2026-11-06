@@ -1,0 +1,89 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build / cache
+.turbo/
+dist/
+.next/
+.vercel/
+coverage/
+.cache/
+*.tsbuildinfo
+*.log
+
+# Python (services/parser)
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+*.egg-info/
+
+# Env
+.env
+.env.*
+!.env.example
+!**/.env.example
+
+# Test / browser artifacts
+test-results/
+playwright-report/
+blob-report/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.idea/
+*.swp
+*.swo
+*~
+
+# Local agent / scraper caches
+.eve
+.eve-extension-build-*
+.firecrawl/
+.herenow/
+.vitest/
+.vite/
+
+# Runtime / local run outputs (catalog fixtures stay tracked)
+/artifacts/
+/outputs/
+/runs/
+/receipts/
+.verification-store/
+.knowledge-artifacts/
+.jev/
+**/.verification-store/
+**/.knowledge-artifacts/
+
+# Local dumps and key material dropped beside the repo
+*.sqlite
+*.sqlite3
+*.dump
+*.pem
+*.p12
+*.pfx
+
+# Fixture capture/replay receipts stay local. Scripts, manifests, and
+# candidate inventories remain trackable. Catalog fixtures stay tracked.
+fixtures/**/*.result.json
+
+# Experiment / local run outputs
+experiments/**/output/
+experiments/**/results/
+scripts/experiments/**/output/
+
+# Local Jev course-track taxonomy run. Script and receipts stay off git.
+scripts/experiments/jev/local/
+internal/*.json
+internal/**/*.tgz
+internal_hidden_docs/
+
+# Packed npm artifacts. Keep only the currently referenced database-contract pin.
+*.tgz
+!vendor/aiengineer-database-contract-0.6.0.tgz
+packages/persistence/vendor/

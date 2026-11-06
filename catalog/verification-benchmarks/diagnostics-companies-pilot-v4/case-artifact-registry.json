@@ -1,0 +1,1041 @@
+{
+  "schemaVersion": "verification-benchmark-case-artifact-registry.v1",
+  "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+  "sourceDatasetManifestDigest": "sha256:b625b311493f8c366ef43bf4047bf61f38d510fe7f3c340f50bca42de737dfe6",
+  "datasetManifestDigest": "sha256:a6bc1cf3ecbb335e4f5ef49165798d29ce937a9324f2a1ba7d9768f23ad7feee",
+  "humanGoldScoringEligible": false,
+  "artifacts": [
+    {
+      "caseId": "tru-turnaround-about-source",
+      "role": "case_input",
+      "file": "artifacts/case-input/tru-turnaround-about-source.json",
+      "handle": {
+        "artifactId": "6f721c7e-f140-554d-a728-daa18e2ec1f0",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:d531a25cf61347420d094c1958b6322c70bc8630d0cc454dc7d973078b537189",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-case-input+json",
+        "byteLength": 1625
+      }
+    },
+    {
+      "caseId": "tru-turnaround-about-source",
+      "role": "engineering_expectation",
+      "file": "artifacts/engineering-expectation/tru-turnaround-about-source.json",
+      "handle": {
+        "artifactId": "c1480888-6a6c-5485-a8eb-e9412bce7789",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:fdda2301f84beaef976b2d5d7f7bcaeedbaee9ff687b14d184e7a491ab0b1546",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-engineering-expectation+json",
+        "byteLength": 1050
+      }
+    },
+    {
+      "caseId": "tru-turnaround-about-mutated",
+      "role": "case_input",
+      "file": "artifacts/case-input/tru-turnaround-about-mutated.json",
+      "handle": {
+        "artifactId": "7c1fe894-5e4e-550b-aed8-d52be43d4fec",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:47f194fb43c91f518cbc601e9d2b75eb3a663b02f0d74db28a3151d087048036",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-case-input+json",
+        "byteLength": 1622
+      }
+    },
+    {
+      "caseId": "tru-turnaround-about-mutated",
+      "role": "engineering_expectation",
+      "file": "artifacts/engineering-expectation/tru-turnaround-about-mutated.json",
+      "handle": {
+        "artifactId": "97b7e615-c564-586f-a0da-fecdb3e8f222",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:20b7f1f281f00819454dd2d7d6c4828a82091127103fcd33d96e83568106d70d",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-engineering-expectation+json",
+        "byteLength": 1000
+      }
+    },
+    {
+      "caseId": "tru-turnaround-product-source",
+      "role": "case_input",
+      "file": "artifacts/case-input/tru-turnaround-product-source.json",
+      "handle": {
+        "artifactId": "6c913b0e-dfcc-54c8-a3eb-287cc9b0ca6b",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:511b94a5bf618c6f83afd53cc8b42037640841318c7c08d2c4c2d8ca021e129e",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-case-input+json",
+        "byteLength": 1570
+      }
+    },
+    {
+      "caseId": "tru-turnaround-product-source",
+      "role": "engineering_expectation",
+      "file": "artifacts/engineering-expectation/tru-turnaround-product-source.json",
+      "handle": {
+        "artifactId": "1fdff443-df6b-5256-a910-34ab2d7ab608",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:1e0bd701b04147090178a3d6dbdb4ec122ec886dbd8cb860c8c748569f674d04",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-engineering-expectation+json",
+        "byteLength": 1052
+      }
+    },
+    {
+      "caseId": "tru-turnaround-product-mutated",
+      "role": "case_input",
+      "file": "artifacts/case-input/tru-turnaround-product-mutated.json",
+      "handle": {
+        "artifactId": "587707f3-10da-5932-a943-119b997ec5a0",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:d53f44849d03833b9f5b49872d8f7a8b32af8cdb54332465a1a3a73657060421",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-case-input+json",
+        "byteLength": 1536
+      }
+    },
+    {
+      "caseId": "tru-turnaround-product-mutated",
+      "role": "engineering_expectation",
+      "file": "artifacts/engineering-expectation/tru-turnaround-product-mutated.json",
+      "handle": {
+        "artifactId": "f7b67f27-33de-55a6-a82c-85d0ed4a83f5",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:f579082bf7188f196862bc337a848334c356e90acfb14cbd9eb3de175d37ea88",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-engineering-expectation+json",
+        "byteLength": 1013
+      }
+    },
+    {
+      "caseId": "tru-sample-source",
+      "role": "case_input",
+      "file": "artifacts/case-input/tru-sample-source.json",
+      "handle": {
+        "artifactId": "a5814e41-0375-53ea-a8ba-820d2f115681",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:8057097c35d0c982d81e195c9c5cf0e7d3b204d2fa775bccd6103edccd39d589",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-case-input+json",
+        "byteLength": 1581
+      }
+    },
+    {
+      "caseId": "tru-sample-source",
+      "role": "engineering_expectation",
+      "file": "artifacts/engineering-expectation/tru-sample-source.json",
+      "handle": {
+        "artifactId": "11c98cd4-d556-5777-ac26-6b7bcb97299d",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:1058f03d4a90d207d9d3216163225ebc79675bab131f0805966ba94f3e3ffedf",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-engineering-expectation+json",
+        "byteLength": 1040
+      }
+    },
+    {
+      "caseId": "tru-sample-mutated",
+      "role": "case_input",
+      "file": "artifacts/case-input/tru-sample-mutated.json",
+      "handle": {
+        "artifactId": "ba1d085e-ea14-54ed-a396-17062ffea97d",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:b69c000c2ea55a97949a59c5a52ccf7503bfa4f25e4ed88f81d481e059ae210a",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-case-input+json",
+        "byteLength": 1582
+      }
+    },
+    {
+      "caseId": "tru-sample-mutated",
+      "role": "engineering_expectation",
+      "file": "artifacts/engineering-expectation/tru-sample-mutated.json",
+      "handle": {
+        "artifactId": "029262d6-f5b5-5f9e-a408-6cffa360ec0a",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:cff7c8fa3b9094c5c43f3d000e5365f3f6fc777f90a9eaf98eaafb02fcb101d2",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-engineering-expectation+json",
+        "byteLength": 984
+      }
+    },
+    {
+      "caseId": "tru-sites-source",
+      "role": "case_input",
+      "file": "artifacts/case-input/tru-sites-source.json",
+      "handle": {
+        "artifactId": "afab84cd-128c-59b5-a715-1e1125561908",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:aa5ba0c2501ee5bf786829fd9bbf4f39a9471a532e8afbe799061c724c3820d3",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-case-input+json",
+        "byteLength": 1650
+      }
+    },
+    {
+      "caseId": "tru-sites-source",
+      "role": "engineering_expectation",
+      "file": "artifacts/engineering-expectation/tru-sites-source.json",
+      "handle": {
+        "artifactId": "dd7837d1-81b6-58f4-a0d1-9529c1a4466c",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:15d76f57338c97943f449e32a74b58c927412172ca35f2589e50d7f03a142d73",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-engineering-expectation+json",
+        "byteLength": 1039
+      }
+    },
+    {
+      "caseId": "tru-sites-mutated",
+      "role": "case_input",
+      "file": "artifacts/case-input/tru-sites-mutated.json",
+      "handle": {
+        "artifactId": "6ab83d00-80b0-5f6a-a525-f013c088248c",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:932007a9fd285fc705141842bb1a41661810edaa9c482f359d478556122fbd98",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-case-input+json",
+        "byteLength": 1659
+      }
+    },
+    {
+      "caseId": "tru-sites-mutated",
+      "role": "engineering_expectation",
+      "file": "artifacts/engineering-expectation/tru-sites-mutated.json",
+      "handle": {
+        "artifactId": "e54de72a-3df5-51b8-a357-1a82528d3fda",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:f5350050b2e269f86fe6f187e8bfed3c3f388eea477a13b94d86b97b074cf371",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-engineering-expectation+json",
+        "byteLength": 977
+      }
+    },
+    {
+      "caseId": "tru-biomarkers-source",
+      "role": "case_input",
+      "file": "artifacts/case-input/tru-biomarkers-source.json",
+      "handle": {
+        "artifactId": "7f3327b6-ce0c-58c8-a880-1aa643cd769b",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:c573f515b9af00b1f1ac5ffb986eb60c43163c3397fb9aeda2b9e796f132e9d9",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-case-input+json",
+        "byteLength": 1447
+      }
+    },
+    {
+      "caseId": "tru-biomarkers-source",
+      "role": "engineering_expectation",
+      "file": "artifacts/engineering-expectation/tru-biomarkers-source.json",
+      "handle": {
+        "artifactId": "ddb46bb8-53d1-5c38-ad32-b5909f8dbde6",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:b08b2b4922ea50b3bcffca1c9c0b412b73d1424b03e41a396cda92d227237d66",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-engineering-expectation+json",
+        "byteLength": 1044
+      }
+    },
+    {
+      "caseId": "tru-biomarkers-mutated",
+      "role": "case_input",
+      "file": "artifacts/case-input/tru-biomarkers-mutated.json",
+      "handle": {
+        "artifactId": "b7e9d5ee-09fb-5f32-aeb6-e5c05c9205fd",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:74be1508ac8cafdff98673e28b2cf316d084247ce3da67e7f4bafcb35e135ee8",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-case-input+json",
+        "byteLength": 1446
+      }
+    },
+    {
+      "caseId": "tru-biomarkers-mutated",
+      "role": "engineering_expectation",
+      "file": "artifacts/engineering-expectation/tru-biomarkers-mutated.json",
+      "handle": {
+        "artifactId": "67d84ad5-4ed3-50c8-af66-f8f0ecef4efc",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:0cc6b069e5e40dd01c30499a0af123d3649c0564ef4fd64a2c9ac937b5210afd",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-engineering-expectation+json",
+        "byteLength": 982
+      }
+    },
+    {
+      "caseId": "tru-symphony-source",
+      "role": "case_input",
+      "file": "artifacts/case-input/tru-symphony-source.json",
+      "handle": {
+        "artifactId": "faf3e88f-8029-548e-a864-e1711a1947f6",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:02be7cc7ba8295fc6e8b01562d8e349403da9ab120920f7fee41ef97923d0dc7",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-case-input+json",
+        "byteLength": 1490
+      }
+    },
+    {
+      "caseId": "tru-symphony-source",
+      "role": "engineering_expectation",
+      "file": "artifacts/engineering-expectation/tru-symphony-source.json",
+      "handle": {
+        "artifactId": "603ab69e-9eea-5e59-a5e1-8cf0c0c54818",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:e553ccec156373b9dbfca249a82bdfe380ec975143e8a6a4ea9591262eaa76b7",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-engineering-expectation+json",
+        "byteLength": 1042
+      }
+    },
+    {
+      "caseId": "tru-symphony-mutated",
+      "role": "case_input",
+      "file": "artifacts/case-input/tru-symphony-mutated.json",
+      "handle": {
+        "artifactId": "8e878cbd-6262-590e-a1b3-4a478040bd84",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:1408ef7b9c81aa41544b0262fc70f1f4406b5bc1b1c6408f3455b12c5da535a8",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-case-input+json",
+        "byteLength": 1468
+      }
+    },
+    {
+      "caseId": "tru-symphony-mutated",
+      "role": "engineering_expectation",
+      "file": "artifacts/engineering-expectation/tru-symphony-mutated.json",
+      "handle": {
+        "artifactId": "0bb1ac2f-0f52-5f57-a187-4480359908a3",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:967bebd9a4834f9e13ef3e299b5d629f4a0b382470086fa8ae47ba7e8002155e",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-engineering-expectation+json",
+        "byteLength": 990
+      }
+    },
+    {
+      "caseId": "tru-omic-source",
+      "role": "case_input",
+      "file": "artifacts/case-input/tru-omic-source.json",
+      "handle": {
+        "artifactId": "f3e26a3f-69fb-5e82-af09-5d497b3e5865",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:0a5841d3796df77aab5191e3f963e4ccf70e3c8b6d4600a2f536be0df7cd2967",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-case-input+json",
+        "byteLength": 1513
+      }
+    },
+    {
+      "caseId": "tru-omic-source",
+      "role": "engineering_expectation",
+      "file": "artifacts/engineering-expectation/tru-omic-source.json",
+      "handle": {
+        "artifactId": "d160a01f-8b2d-515d-a957-5f0c3c4446d4",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:d7d86080b09e7c85eeb5b561a6284504b8c0ea501e98f2dc2bb780151ac7cea8",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-engineering-expectation+json",
+        "byteLength": 1038
+      }
+    },
+    {
+      "caseId": "tru-omic-mutated",
+      "role": "case_input",
+      "file": "artifacts/case-input/tru-omic-mutated.json",
+      "handle": {
+        "artifactId": "8275e866-4075-5bf3-a4f6-507c035fa9c6",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:e7597644d5f731b47c6a85a7c3507f2d2313f31e181009d09dca186bc0a7efb5",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-case-input+json",
+        "byteLength": 1547
+      }
+    },
+    {
+      "caseId": "tru-omic-mutated",
+      "role": "engineering_expectation",
+      "file": "artifacts/engineering-expectation/tru-omic-mutated.json",
+      "handle": {
+        "artifactId": "1b353af7-3923-5285-a0e7-687d0389239f",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:7f04f2fff99281a38cc423919e2973ee5d42e3f7592ed96ea84ec942eff9b2ce",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-engineering-expectation+json",
+        "byteLength": 991
+      }
+    },
+    {
+      "caseId": "tru-pace-source",
+      "role": "case_input",
+      "file": "artifacts/case-input/tru-pace-source.json",
+      "handle": {
+        "artifactId": "6cccc5ac-5eed-5331-a741-71236ae779e4",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:030acf6c64e0c5a658a686901e4f359cde7c8e109c70c6bab2a25d095f100547",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-case-input+json",
+        "byteLength": 1486
+      }
+    },
+    {
+      "caseId": "tru-pace-source",
+      "role": "engineering_expectation",
+      "file": "artifacts/engineering-expectation/tru-pace-source.json",
+      "handle": {
+        "artifactId": "5c0607c2-7d4e-5af4-afb0-35653fe410cd",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:e859d44638ff01a8fee917bb7f2cc23d2c8e645e33bb8d15a51166c148465ad4",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-engineering-expectation+json",
+        "byteLength": 1038
+      }
+    },
+    {
+      "caseId": "tru-pace-mutated",
+      "role": "case_input",
+      "file": "artifacts/case-input/tru-pace-mutated.json",
+      "handle": {
+        "artifactId": "14cf90de-7b12-54a0-a5ce-6c93aaec1146",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:cee9ed6aabd0fefd4d07c82f77fa00da897a269b23bffe8f86d95293aba24625",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-case-input+json",
+        "byteLength": 1496
+      }
+    },
+    {
+      "caseId": "tru-pace-mutated",
+      "role": "engineering_expectation",
+      "file": "artifacts/engineering-expectation/tru-pace-mutated.json",
+      "handle": {
+        "artifactId": "5a5a5ce4-c857-5d4a-a5ae-e9d82986982d",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:007de502ea667e3904507a09f6ba161c49e43a74bd7e52db0b73e2ac68808a58",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-engineering-expectation+json",
+        "byteLength": 978
+      }
+    },
+    {
+      "caseId": "gl-systems-source",
+      "role": "case_input",
+      "file": "artifacts/case-input/gl-systems-source.json",
+      "handle": {
+        "artifactId": "fdb2ea51-4ef5-5611-a627-a1cf85ae17fa",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:1d44f4980b9ffc8aac7899d7f1c4c84424730c459ad0215eacac5fc8a38ba390",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-case-input+json",
+        "byteLength": 1653
+      }
+    },
+    {
+      "caseId": "gl-systems-source",
+      "role": "engineering_expectation",
+      "file": "artifacts/engineering-expectation/gl-systems-source.json",
+      "handle": {
+        "artifactId": "9feca9ce-e291-55e8-a9fe-bb89405460a1",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:ddf2230ad9a61ed77b00c38932008b80fd696ca5bd12aaab9228e13452f4a545",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-engineering-expectation+json",
+        "byteLength": 1040
+      }
+    },
+    {
+      "caseId": "gl-systems-mutated",
+      "role": "case_input",
+      "file": "artifacts/case-input/gl-systems-mutated.json",
+      "handle": {
+        "artifactId": "eaaf5cf9-f80b-5085-ae40-f1a901fa6f73",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:0b323ef3059bfe4a90ecf6a7a26c9f66f81c2bf2e854be870d6a4d4c28977841",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-case-input+json",
+        "byteLength": 1645
+      }
+    },
+    {
+      "caseId": "gl-systems-mutated",
+      "role": "engineering_expectation",
+      "file": "artifacts/engineering-expectation/gl-systems-mutated.json",
+      "handle": {
+        "artifactId": "a1b66401-66c6-5a78-a682-6dfdfed8dd15",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:4b4bb22bd469a35ba2c045b9947642ad2a2865d500cb383af55fd293942409a4",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-engineering-expectation+json",
+        "byteLength": 978
+      }
+    },
+    {
+      "caseId": "gl-historical-wording-source",
+      "role": "case_input",
+      "file": "artifacts/case-input/gl-historical-wording-source.json",
+      "handle": {
+        "artifactId": "758a4faf-1c1c-5326-ad7b-d787ef60ab43",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:0d8914a35aa944337984c4d9ea133189069ad38703cf0d415a8cf496c3a3f8d6",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-case-input+json",
+        "byteLength": 1501
+      }
+    },
+    {
+      "caseId": "gl-historical-wording-source",
+      "role": "engineering_expectation",
+      "file": "artifacts/engineering-expectation/gl-historical-wording-source.json",
+      "handle": {
+        "artifactId": "99f0d6d1-9786-5065-add0-b7f61b52d671",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:17a793b9e8636de5a14a9f35aa22bc63c66134b7c27f1d47a11f9f4dce02a342",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-engineering-expectation+json",
+        "byteLength": 1051
+      }
+    },
+    {
+      "caseId": "gl-historical-wording-mutated",
+      "role": "case_input",
+      "file": "artifacts/case-input/gl-historical-wording-mutated.json",
+      "handle": {
+        "artifactId": "7294bccd-5f7c-50d5-a824-d4ca8b454765",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:e3f1630547d66b770f6ede3aee8f320e07c4ec4ccd25cb120ba3b65f2e59c121",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-case-input+json",
+        "byteLength": 1505
+      }
+    },
+    {
+      "caseId": "gl-historical-wording-mutated",
+      "role": "engineering_expectation",
+      "file": "artifacts/engineering-expectation/gl-historical-wording-mutated.json",
+      "handle": {
+        "artifactId": "3ea874af-1881-5266-acfd-70df3179b811",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:4f23095d4342b719d5462e8aed134d23ee2a1faac69f018e8a148b6cc3e80d33",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-engineering-expectation+json",
+        "byteLength": 1006
+      }
+    },
+    {
+      "caseId": "gl-same-page-footer-source",
+      "role": "case_input",
+      "file": "artifacts/case-input/gl-same-page-footer-source.json",
+      "handle": {
+        "artifactId": "0edbb571-01e2-5df6-aba1-e0cd777a143b",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:5c5d1f1564cc3b3ccc3ecf845fa57f9d0cd58bc6f0ae39934d3c886ada51e12f",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-case-input+json",
+        "byteLength": 1518
+      }
+    },
+    {
+      "caseId": "gl-same-page-footer-source",
+      "role": "engineering_expectation",
+      "file": "artifacts/engineering-expectation/gl-same-page-footer-source.json",
+      "handle": {
+        "artifactId": "376085fa-185f-5cf9-aa08-8290f19c21b8",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:8f309e6392e59ef78afb108ed33ddc503acbe36d1fbc8071e59bf4611dc92509",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-engineering-expectation+json",
+        "byteLength": 1049
+      }
+    },
+    {
+      "caseId": "gl-same-page-footer-mutated",
+      "role": "case_input",
+      "file": "artifacts/case-input/gl-same-page-footer-mutated.json",
+      "handle": {
+        "artifactId": "0cb23ac6-076c-5bb0-a8e4-9522be711279",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:01de402082ff5909a0191fe33ec56fe14ef9b4fe83282281ad4768da04090852",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-case-input+json",
+        "byteLength": 1559
+      }
+    },
+    {
+      "caseId": "gl-same-page-footer-mutated",
+      "role": "engineering_expectation",
+      "file": "artifacts/engineering-expectation/gl-same-page-footer-mutated.json",
+      "handle": {
+        "artifactId": "938c9e4d-f2a4-52cf-a420-54ceadc3e238",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:4791ea30a41b2597e9aee8e237a23649045b38b80930a6bc6d70eb031da0cd18",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-engineering-expectation+json",
+        "byteLength": 993
+      }
+    },
+    {
+      "caseId": "gl-triplicate-source",
+      "role": "case_input",
+      "file": "artifacts/case-input/gl-triplicate-source.json",
+      "handle": {
+        "artifactId": "b386d002-b0d7-5b80-ac80-d5d6549369e1",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:09690c042dc8e4648047d743cc8144da657cb9a264b0b452173f3a1f30cb872d",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-case-input+json",
+        "byteLength": 1528
+      }
+    },
+    {
+      "caseId": "gl-triplicate-source",
+      "role": "engineering_expectation",
+      "file": "artifacts/engineering-expectation/gl-triplicate-source.json",
+      "handle": {
+        "artifactId": "884b0971-e4a5-5333-a7f1-bfc2bd0b7726",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:b573520448d301de788f9826e5382e96621770f5d60fa586fe0d813bcb3fd9b4",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-engineering-expectation+json",
+        "byteLength": 1043
+      }
+    },
+    {
+      "caseId": "gl-triplicate-mutated",
+      "role": "case_input",
+      "file": "artifacts/case-input/gl-triplicate-mutated.json",
+      "handle": {
+        "artifactId": "2e381e96-9d46-5325-a731-f0879f66bfee",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:b3187c953e480aac5fd0c804d42bd3341c83789ae15d02b29ed7f17dc293648f",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-case-input+json",
+        "byteLength": 1518
+      }
+    },
+    {
+      "caseId": "gl-triplicate-mutated",
+      "role": "engineering_expectation",
+      "file": "artifacts/engineering-expectation/gl-triplicate-mutated.json",
+      "handle": {
+        "artifactId": "7faa168a-dfeb-53ec-aad6-9a9acc4f27db",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:13af2ae1f2a0166858916e53fb0b0fb8e1c255b4cf4e9d576b637e9084c4a506",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-engineering-expectation+json",
+        "byteLength": 989
+      }
+    },
+    {
+      "caseId": "gl-repeatability-source",
+      "role": "case_input",
+      "file": "artifacts/case-input/gl-repeatability-source.json",
+      "handle": {
+        "artifactId": "fd5284c8-6894-5d01-a5df-835704a32772",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:5d74f892b9545757c336d46eaffe37e39f3008aaa16fc43621567aabcf0c5ed5",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-case-input+json",
+        "byteLength": 1627
+      }
+    },
+    {
+      "caseId": "gl-repeatability-source",
+      "role": "engineering_expectation",
+      "file": "artifacts/engineering-expectation/gl-repeatability-source.json",
+      "handle": {
+        "artifactId": "a3017acb-1f0b-5f91-a9a7-9f070e49288d",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:f057ce7e588d4549189dd40cbd0f6c666eed7e364c7c8fc2697bd72c3c71b4aa",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-engineering-expectation+json",
+        "byteLength": 1046
+      }
+    },
+    {
+      "caseId": "gl-repeatability-mutated",
+      "role": "case_input",
+      "file": "artifacts/case-input/gl-repeatability-mutated.json",
+      "handle": {
+        "artifactId": "13a88cad-da5c-569d-a785-e7dd8c45c4ba",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:320b6d98c80f2b76384774aa7d0b3c09ecac23a7e05ce44db92c056045d2572b",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-case-input+json",
+        "byteLength": 1646
+      }
+    },
+    {
+      "caseId": "gl-repeatability-mutated",
+      "role": "engineering_expectation",
+      "file": "artifacts/engineering-expectation/gl-repeatability-mutated.json",
+      "handle": {
+        "artifactId": "90430472-ba88-5857-af5f-df5ac5552bb5",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:bfb728a13ea63fecc976fcc844309dee1655286d9f1171190a1f1755eb98d421",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-engineering-expectation+json",
+        "byteLength": 990
+      }
+    },
+    {
+      "caseId": "gl-no-diagnosis-source",
+      "role": "case_input",
+      "file": "artifacts/case-input/gl-no-diagnosis-source.json",
+      "handle": {
+        "artifactId": "bd492e7e-01b5-5951-aa83-305ba4ba37b4",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:fbd21ba51c94475fe0db54786d20a8d30f95401d58268b97abe61aa061ca16c8",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-case-input+json",
+        "byteLength": 1614
+      }
+    },
+    {
+      "caseId": "gl-no-diagnosis-source",
+      "role": "engineering_expectation",
+      "file": "artifacts/engineering-expectation/gl-no-diagnosis-source.json",
+      "handle": {
+        "artifactId": "69295f97-a9a4-5bde-a781-3e086c0e4126",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:4edd1c29ff8210145d4b8fad1e3419ed1b3475515db8e37f8c2bc01bbc04ffef",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-engineering-expectation+json",
+        "byteLength": 1045
+      }
+    },
+    {
+      "caseId": "gl-no-diagnosis-mutated",
+      "role": "case_input",
+      "file": "artifacts/case-input/gl-no-diagnosis-mutated.json",
+      "handle": {
+        "artifactId": "d24c3dae-3eb8-5eee-aa24-b5e0b0fad85f",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:b44f7b9b974c092a9a1b6205e8a7a7571e8fafd01885b39120a723c3faa9673b",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-case-input+json",
+        "byteLength": 1613
+      }
+    },
+    {
+      "caseId": "gl-no-diagnosis-mutated",
+      "role": "engineering_expectation",
+      "file": "artifacts/engineering-expectation/gl-no-diagnosis-mutated.json",
+      "handle": {
+        "artifactId": "7ba5f91a-d718-5273-a896-64d2bea9b154",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:83bf8cb58c914a408e4bef9239e1140c45342d947b6b5c20741643b1ee8ade27",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-engineering-expectation+json",
+        "byteLength": 989
+      }
+    },
+    {
+      "caseId": "gl-consultation-source",
+      "role": "case_input",
+      "file": "artifacts/case-input/gl-consultation-source.json",
+      "handle": {
+        "artifactId": "3a907cc3-51ac-5c5f-ac27-f01754c31a1b",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:0d74abb2299ddbb3b6dbab51c57d02a35d7989241ff6456337c61203d454064e",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-case-input+json",
+        "byteLength": 1899
+      }
+    },
+    {
+      "caseId": "gl-consultation-source",
+      "role": "engineering_expectation",
+      "file": "artifacts/engineering-expectation/gl-consultation-source.json",
+      "handle": {
+        "artifactId": "aa881ba8-995f-5ba7-a728-905f8510c0f8",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:f4342c1ef8af1557a19f2c21714ea4a50ad684a3f07748e856d2568b3d76d258",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-engineering-expectation+json",
+        "byteLength": 1045
+      }
+    },
+    {
+      "caseId": "gl-consultation-mutated",
+      "role": "case_input",
+      "file": "artifacts/case-input/gl-consultation-mutated.json",
+      "handle": {
+        "artifactId": "8c28f2ba-1ee6-56ff-aaee-044da5ecafe4",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:aafd973aff430a6f528e2ffd3d3f958395d65ac2ab9880d4299a95d7702e2d5c",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-case-input+json",
+        "byteLength": 1852
+      }
+    },
+    {
+      "caseId": "gl-consultation-mutated",
+      "role": "engineering_expectation",
+      "file": "artifacts/engineering-expectation/gl-consultation-mutated.json",
+      "handle": {
+        "artifactId": "719199b2-de08-5389-a09f-9917beffb816",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:0ff1bc290ec7cf52749960366a8c73769cd31b6fa2fdc45f46784f6b6b05af80",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-engineering-expectation+json",
+        "byteLength": 998
+      }
+    },
+    {
+      "caseId": "gl-informational-source",
+      "role": "case_input",
+      "file": "artifacts/case-input/gl-informational-source.json",
+      "handle": {
+        "artifactId": "a47979cf-a89a-52c5-a600-dc03271f5f6c",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:fca7214269df427c28dc56b3f556394afb30617837ff057de4d29166a6507015",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-case-input+json",
+        "byteLength": 1641
+      }
+    },
+    {
+      "caseId": "gl-informational-source",
+      "role": "engineering_expectation",
+      "file": "artifacts/engineering-expectation/gl-informational-source.json",
+      "handle": {
+        "artifactId": "469513e9-107a-5f63-a807-89c4b0b1a421",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:86a72976392cf3570dc6db9adf20c08546e037435edb876dded5805c7ac264d3",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-engineering-expectation+json",
+        "byteLength": 1046
+      }
+    },
+    {
+      "caseId": "gl-informational-mutated",
+      "role": "case_input",
+      "file": "artifacts/case-input/gl-informational-mutated.json",
+      "handle": {
+        "artifactId": "7e67fa5b-0cf8-53c8-a7b6-07a1f8580b07",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:65e142c58c8aab7a5dff9c3e6520b392436401221b0f41943746f316005c55b2",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-case-input+json",
+        "byteLength": 1657
+      }
+    },
+    {
+      "caseId": "gl-informational-mutated",
+      "role": "engineering_expectation",
+      "file": "artifacts/engineering-expectation/gl-informational-mutated.json",
+      "handle": {
+        "artifactId": "96fbce98-5a8b-54e5-ab4f-e4ef4197cae3",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:7e320d7440ff0b1d265d5af018f5298f52859afff238aea84230069643f83403",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-engineering-expectation+json",
+        "byteLength": 996
+      }
+    },
+    {
+      "caseId": "pace-definition-source",
+      "role": "case_input",
+      "file": "artifacts/case-input/pace-definition-source.json",
+      "handle": {
+        "artifactId": "ad041081-0273-5482-ab55-cd36f67b36c5",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:02c77a605dd23a08c15899fa335db9fc176be9fa403fd2461c62d9cb42c41598",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-case-input+json",
+        "byteLength": 1851
+      }
+    },
+    {
+      "caseId": "pace-definition-source",
+      "role": "engineering_expectation",
+      "file": "artifacts/engineering-expectation/pace-definition-source.json",
+      "handle": {
+        "artifactId": "2e6559db-93ef-5848-afa1-2c5f9b86969f",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:176ae96d4acef9c4f2698c5fd6b2ac41e0209a0ec2d5ddaa522c0dae30206862",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-engineering-expectation+json",
+        "byteLength": 1021
+      }
+    },
+    {
+      "caseId": "pace-definition-mutated",
+      "role": "case_input",
+      "file": "artifacts/case-input/pace-definition-mutated.json",
+      "handle": {
+        "artifactId": "44383861-af3d-57e3-a1eb-822e9e0c510a",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:ae921953b3d6dee8a848d2b0c890bb0ed45ed237f5b5fc59cca2f4387bbbe11f",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-case-input+json",
+        "byteLength": 1845
+      }
+    },
+    {
+      "caseId": "pace-definition-mutated",
+      "role": "engineering_expectation",
+      "file": "artifacts/engineering-expectation/pace-definition-mutated.json",
+      "handle": {
+        "artifactId": "38489772-d3ed-5be5-a511-d3cd1c086c06",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:921cdbb9af32854b9010e511cd01c8d7286bb044e9cb97216f436cb1d1e260d2",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-engineering-expectation+json",
+        "byteLength": 983
+      }
+    },
+    {
+      "caseId": "pace-cohort-source",
+      "role": "case_input",
+      "file": "artifacts/case-input/pace-cohort-source.json",
+      "handle": {
+        "artifactId": "15b6ab06-dcdd-5dc4-a3fe-6f28f4c4b430",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:32c0950104c36b23176790303f604eec7117acbbcd2505c50d0ece52b4b9b6f8",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-case-input+json",
+        "byteLength": 1988
+      }
+    },
+    {
+      "caseId": "pace-cohort-source",
+      "role": "engineering_expectation",
+      "file": "artifacts/engineering-expectation/pace-cohort-source.json",
+      "handle": {
+        "artifactId": "4d8069d6-3e77-5bbd-a385-1b1a4277fc93",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:ce2ba8d77d233796ed5e97fd336ccde7dd58acd5b58104b1408a6c0fb02342b7",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-engineering-expectation+json",
+        "byteLength": 1017
+      }
+    },
+    {
+      "caseId": "pace-cohort-mutated",
+      "role": "case_input",
+      "file": "artifacts/case-input/pace-cohort-mutated.json",
+      "handle": {
+        "artifactId": "eebcaf16-c038-5bc8-a18a-5fc745be23cc",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:39d3afed81d8127300facb1cf1bf054209c7ad258edbcbe2009a9878f59f38c0",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-case-input+json",
+        "byteLength": 1929
+      }
+    },
+    {
+      "caseId": "pace-cohort-mutated",
+      "role": "engineering_expectation",
+      "file": "artifacts/engineering-expectation/pace-cohort-mutated.json",
+      "handle": {
+        "artifactId": "952e5e40-ffac-58d5-a727-8fda505303e8",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:191124bbf33e57bc826bb341a7748d425c397beff6679c1fe49265c67ae0f282",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-engineering-expectation+json",
+        "byteLength": 977
+      }
+    },
+    {
+      "caseId": "noise-method-source",
+      "role": "case_input",
+      "file": "artifacts/case-input/noise-method-source.json",
+      "handle": {
+        "artifactId": "d91f7904-3903-5da4-a1f7-bea5dbaa36d5",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:3353240c32bcdb289b83b39afa9f4758c44cc83f2cd42e3bcb84d1866f64ba04",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-case-input+json",
+        "byteLength": 2143
+      }
+    },
+    {
+      "caseId": "noise-method-source",
+      "role": "engineering_expectation",
+      "file": "artifacts/engineering-expectation/noise-method-source.json",
+      "handle": {
+        "artifactId": "6041270c-3b63-55a3-aa32-f3ab6f355987",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:cb33980892c3f4f0c3683976849ae1371a11964aaedd285818bb942f0b208d06",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-engineering-expectation+json",
+        "byteLength": 1018
+      }
+    },
+    {
+      "caseId": "noise-method-mutated",
+      "role": "case_input",
+      "file": "artifacts/case-input/noise-method-mutated.json",
+      "handle": {
+        "artifactId": "500c63df-969a-5e42-a71c-580f7bd1c70b",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:53f1bec1d8dba28f9b46ecfbb3e0a5734365ed4a7f6edb5650eae8cdcb9bf81d",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-case-input+json",
+        "byteLength": 2176
+      }
+    },
+    {
+      "caseId": "noise-method-mutated",
+      "role": "engineering_expectation",
+      "file": "artifacts/engineering-expectation/noise-method-mutated.json",
+      "handle": {
+        "artifactId": "c8218487-80a1-5960-ab0f-0a7b8d2e4de2",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:ed1822db22b510410eb71a172d8e8400cf68bc14bd4d1b33679737709f9e6e8f",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-engineering-expectation+json",
+        "byteLength": 973
+      }
+    },
+    {
+      "caseId": "gl-interested-comparison-source",
+      "role": "case_input",
+      "file": "artifacts/case-input/gl-interested-comparison-source.json",
+      "handle": {
+        "artifactId": "bbb7615e-8fb4-5795-a460-35cedb0f55c0",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:d678ff4a908ee4193b1574543f3def6ccb853950356e55453bfbf491e5c36e9c",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-case-input+json",
+        "byteLength": 1641
+      }
+    },
+    {
+      "caseId": "gl-interested-comparison-source",
+      "role": "engineering_expectation",
+      "file": "artifacts/engineering-expectation/gl-interested-comparison-source.json",
+      "handle": {
+        "artifactId": "79639ae0-6d88-5d33-a670-2d2a6057f38a",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:b62aba93e799674637449b028cdfa4238defb6cd8c28155f7c23b5dee3d9616e",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-engineering-expectation+json",
+        "byteLength": 1050
+      }
+    },
+    {
+      "caseId": "gl-interested-comparison-mutated",
+      "role": "case_input",
+      "file": "artifacts/case-input/gl-interested-comparison-mutated.json",
+      "handle": {
+        "artifactId": "767db310-8dd0-577c-a419-451c3c14498b",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:ed620b7dfc8c6262b85bae31604024f8199070b19b60aa1e0ff6fd571bd41fc6",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-case-input+json",
+        "byteLength": 1622
+      }
+    },
+    {
+      "caseId": "gl-interested-comparison-mutated",
+      "role": "engineering_expectation",
+      "file": "artifacts/engineering-expectation/gl-interested-comparison-mutated.json",
+      "handle": {
+        "artifactId": "3d28a7c2-1e13-5e71-a934-2877e4092d06",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:93b146121b9719b5ff70a5e6b4310b6ada0fb6f2be8b83db065a7c13bb91e581",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-engineering-expectation+json",
+        "byteLength": 1004
+      }
+    },
+    {
+      "caseId": "tru-corrupted-locator",
+      "role": "case_input",
+      "file": "artifacts/case-input/tru-corrupted-locator.json",
+      "handle": {
+        "artifactId": "118aad2a-b1ee-5122-ab95-7624672182b7",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:e348c1f42216c62b06b00665a7121f64c9084bc6434f9c0aff61a88c124c953e",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-case-input+json",
+        "byteLength": 1626
+      }
+    },
+    {
+      "caseId": "tru-corrupted-locator",
+      "role": "engineering_expectation",
+      "file": "artifacts/engineering-expectation/tru-corrupted-locator.json",
+      "handle": {
+        "artifactId": "4e2d67cf-1b65-55f2-a88a-52cdd2147dd4",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:c680ab2dc4787c3ca73090a041ebc78d3b15c0a0aa384b58d3938f7428d9bbdc",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-engineering-expectation+json",
+        "byteLength": 958
+      }
+    },
+    {
+      "caseId": "tru-pdf-graph-text-abstention",
+      "role": "case_input",
+      "file": "artifacts/case-input/tru-pdf-graph-text-abstention.json",
+      "handle": {
+        "artifactId": "6f9444c9-c05a-5431-a873-f65a3e1301c7",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:9f314f3c785f42ce5ce9e241d8df23aab313b6d29f58180c0eac5ede957a7b3b",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-case-input+json",
+        "byteLength": 563
+      }
+    },
+    {
+      "caseId": "tru-pdf-graph-text-abstention",
+      "role": "engineering_expectation",
+      "file": "artifacts/engineering-expectation/tru-pdf-graph-text-abstention.json",
+      "handle": {
+        "artifactId": "fd0f238f-f46c-54c9-a80d-79b99e2082a2",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:35a30bc68463e2cf313c795112b95eb372df2e1c422e8c77cdd1dd2b3f26a1d7",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-engineering-expectation+json",
+        "byteLength": 955
+      }
+    },
+    {
+      "caseId": "gl-same-page-superlative-source",
+      "role": "case_input",
+      "file": "artifacts/case-input/gl-same-page-superlative-source.json",
+      "handle": {
+        "artifactId": "b2ffc094-d71f-5cac-a765-4159f3c0edee",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:7cfe205ed427f57f1b97e2ef3553b5bf6a72484e9be66bfb6e7a87749693ea10",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-case-input+json",
+        "byteLength": 1554
+      }
+    },
+    {
+      "caseId": "gl-same-page-superlative-source",
+      "role": "engineering_expectation",
+      "file": "artifacts/engineering-expectation/gl-same-page-superlative-source.json",
+      "handle": {
+        "artifactId": "bd919b5d-8d11-51f5-acc8-134475ded17b",
+        "tenantId": "6d057f43-6aaf-48d9-b3ba-374169abb989",
+        "digest": "sha256:41fd128c325874b6287908a2c32f49d00f14304d812c8fdf119f39261191b54d",
+        "mediaType": "application/vnd.aiengineer.verification-benchmark-engineering-expectation+json",
+        "byteLength": 1017
+      }
+    }
+  ]
+}

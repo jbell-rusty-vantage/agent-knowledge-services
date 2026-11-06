@@ -1,0 +1,96 @@
+{
+  "type": "object",
+  "description": "Evidence-only support decision with candidate-produced structured leaf values.",
+  "additionalProperties": false,
+  "required": [
+    "support",
+    "qualifiers_preserved",
+    "fields",
+    "unsupported_facets",
+    "public_rationale"
+  ],
+  "properties": {
+    "support": {
+      "type": "string",
+      "description": "Relation of the assertion to the supplied fragment.",
+      "enum": [
+        "full",
+        "partial",
+        "none",
+        "contradicted"
+      ],
+      "maxLength": 32
+    },
+    "qualifiers_preserved": {
+      "type": "boolean",
+      "description": "Whether all material qualifiers in the fragment were preserved."
+    },
+    "fields": {
+      "type": "array",
+      "description": "Requested structured fields extracted from the supplied fragment.",
+      "minItems": 1,
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "description": "One requested candidate field and its exact source quote.",
+        "additionalProperties": false,
+        "required": [
+          "fieldKey",
+          "status",
+          "value",
+          "evidenceQuote",
+          "publicRationale"
+        ],
+        "properties": {
+          "fieldKey": {
+            "type": "string",
+            "description": "Requested field key exactly as supplied.",
+            "maxLength": 128
+          },
+          "status": {
+            "type": "string",
+            "description": "Whether one unambiguous value was found.",
+            "enum": [
+              "extracted",
+              "missing",
+              "ambiguous"
+            ],
+            "maxLength": 32
+          },
+          "value": {
+            "type": "string",
+            "description": "Candidate-produced leaf value; empty unless extracted.",
+            "maxLength": 300
+          },
+          "evidenceQuote": {
+            "type": "string",
+            "description": "Small exact fragment substring supporting the value; empty unless extracted.",
+            "maxLength": 600
+          },
+          "publicRationale": {
+            "type": "string",
+            "description": "Short public explanation for this field without hidden reasoning.",
+            "minLength": 1,
+            "maxLength": 300
+          }
+        }
+      }
+    },
+    "unsupported_facets": {
+      "type": "array",
+      "description": "Assertion facets absent from or inconsistent with the supplied fragment.",
+      "maxItems": 12,
+      "items": {
+        "type": "string",
+        "description": "One bounded unsupported facet.",
+        "maxLength": 160
+      }
+    },
+    "public_rationale": {
+      "type": "string",
+      "description": "Short evidence-only rationale without hidden reasoning.",
+      "minLength": 1,
+      "maxLength": 600
+    }
+  }
+}

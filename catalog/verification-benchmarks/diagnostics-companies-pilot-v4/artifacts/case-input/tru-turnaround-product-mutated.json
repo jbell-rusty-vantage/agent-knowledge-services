@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "verification-benchmark-case-input.v1",
+  "sourceDatasetManifestDigest": "sha256:b625b311493f8c366ef43bf4047bf61f38d510fe7f3c340f50bca42de737dfe6",
+  "sourceCaseDigest": "sha256:ed703a37da7bdaa9f88e45b98f6cb9b8358193fa4e595553529c08e9a9bea6ce",
+  "caseId": "tru-turnaround-product-mutated",
+  "assertion": "Results are ready within 3–4 weeks after the customer orders the kit.",
+  "evidence": [
+    {
+      "fragmentId": "sha256:c1bfde422ac73486de6256d145c8854a135fc7230c24712da0aa99f5ad58433c",
+      "captureId": "ab5c8b0f-3f27-5ea4-ad00-9771148daa54",
+      "sourceKey": "tru-product",
+      "sourceClass": "first_party",
+      "projectionArtifactId": "42cef373-e401-523a-af45-eb586b235c8c",
+      "projectionDigest": "sha256:872f9fd5adfe086ea2a054a0337255dc2afb44333fa5a015788e8efe3cbea681",
+      "transformationArtifactId": "08044e5e-8be2-5981-a907-0e2214a744bf",
+      "selector": {
+        "kind": "html",
+        "domPath": "2/5/1/5/5/1/1/1/3/3"
+      },
+      "selectedContentDigest": "sha256:c6aa3a2075f69467f59dad54e4ba2953d9984eff2ded75511a5142c2651232b2",
+      "excerpt": "Your personalized TruAge   report will be ready in your secure results portal within 3–4 weeks after our lab receives your sample.",
+      "rights": "restricted internal preparation; not approved for provider upload or public redistribution",
+      "originalProviderUploadAuthorized": false
+    }
+  ],
+  "intendedUse": "immutable_case_input; provider transmission requires a separately authenticated derived-input grant"
+}

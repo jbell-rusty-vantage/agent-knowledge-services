@@ -1,0 +1,470 @@
+{
+  "$id": "https://belllabs.local/knowledge-operation-protocol/operation-status.v2.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "handle": {
+      "type": "object",
+      "properties": {
+        "protocolVersion": {
+          "type": "string",
+          "const": "ks.knowledge_operation.v2"
+        },
+        "tenant": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "application": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_.-]{0,119}$"
+        },
+        "binding": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_.-]{0,119}$"
+        },
+        "operationId": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@-]{0,199}$"
+        }
+      },
+      "required": [
+        "protocolVersion",
+        "tenant",
+        "application",
+        "binding",
+        "operationId"
+      ],
+      "additionalProperties": false
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "queued",
+        "running",
+        "waiting_review",
+        "cancelling",
+        "succeeded",
+        "partial",
+        "held",
+        "rejected",
+        "failed",
+        "cancelled"
+      ]
+    },
+    "revision": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 9007199254740991
+    },
+    "createdAt": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d*[1-9])?Z$"
+    },
+    "updatedAt": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d*[1-9])?Z$"
+    },
+    "progressRef": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "artifact"
+            },
+            "id": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@-]{0,199}$"
+            },
+            "version": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_.-]*\\.v[0-9]+$"
+            },
+            "digest": {
+              "type": "string",
+              "pattern": "^sha256:[0-9a-f]{64}$"
+            },
+            "tenant": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "binding": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_.-]{0,119}$"
+            }
+          },
+          "required": [
+            "kind",
+            "id",
+            "version",
+            "digest",
+            "tenant",
+            "binding"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "pendingReviewRef": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "const": "adjudication"
+            },
+            "id": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@-]{0,199}$"
+            },
+            "version": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_.-]*\\.v[0-9]+$"
+            },
+            "digest": {
+              "type": "string",
+              "pattern": "^sha256:[0-9a-f]{64}$"
+            },
+            "tenant": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "binding": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_.-]{0,119}$"
+            }
+          },
+          "required": [
+            "kind",
+            "id",
+            "version",
+            "digest",
+            "tenant",
+            "binding"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "resultRef": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "kind": {
+              "type": "string",
+              "enum": [
+                "task",
+                "artifact",
+                "assertion",
+                "occurrence",
+                "fragment",
+                "support_set",
+                "observation",
+                "report",
+                "report_kind",
+                "rubric",
+                "policy",
+                "method",
+                "mapping",
+                "verification_run",
+                "run_manifest",
+                "use_decision",
+                "adjudication",
+                "receipt",
+                "effect",
+                "operation"
+              ]
+            },
+            "id": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@-]{0,199}$"
+            },
+            "version": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_.-]*\\.v[0-9]+$"
+            },
+            "digest": {
+              "type": "string",
+              "pattern": "^sha256:[0-9a-f]{64}$"
+            },
+            "tenant": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "binding": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_.-]{0,119}$"
+            }
+          },
+          "required": [
+            "kind",
+            "id",
+            "version",
+            "digest",
+            "tenant",
+            "binding"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "error": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "protocolVersion": {
+              "type": "string",
+              "const": "ks.knowledge_operation.v2"
+            },
+            "code": {
+              "type": "string",
+              "enum": [
+                "ORIGIN_MISMATCH",
+                "SCOPE_DENIED",
+                "EFFECT_CONFLICT",
+                "SCHEMA_UNSUPPORTED",
+                "EXACT_REVISION_UNAVAILABLE",
+                "REVIEW_REQUIRED",
+                "BUDGET_EXHAUSTED",
+                "UNSUPPORTED_MEDIA",
+                "STALE_DECISION",
+                "UNRESOLVED_EFFECT",
+                "INDEPENDENCE_UNPROVEN",
+                "INVALID_ENVELOPE",
+                "CAPABILITY_UNAVAILABLE",
+                "NOT_FOUND",
+                "CANCELLED",
+                "INTERNAL"
+              ]
+            },
+            "message": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000
+            },
+            "retryable": {
+              "type": "boolean"
+            },
+            "domainOutcome": {
+              "type": "boolean"
+            },
+            "correlation": {
+              "type": "object",
+              "properties": {
+                "dispatchId": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@-]{0,199}$"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "operationId": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@-]{0,199}$"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "effectKey": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@-]{0,199}$"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "dispatchId",
+                "operationId",
+                "effectKey"
+              ],
+              "additionalProperties": false
+            },
+            "details": {
+              "anyOf": [
+                {
+                  "$ref": "#/$defs/__schema0"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "occurredAt": {
+              "type": "string",
+              "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d*[1-9])?Z$"
+            }
+          },
+          "required": [
+            "protocolVersion",
+            "code",
+            "message",
+            "retryable",
+            "domainOutcome",
+            "correlation",
+            "details",
+            "occurredAt"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "unresolvedEffects": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "effectKey": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@-]{0,199}$"
+          },
+          "boundEffectDigest": {
+            "type": "string",
+            "pattern": "^sha256:[0-9a-f]{64}$"
+          },
+          "dispatchId": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@-]{0,199}$"
+          },
+          "reconciliation": {
+            "type": "string",
+            "enum": [
+              "pending",
+              "lookup_negative",
+              "lookup_failed",
+              "resolved"
+            ]
+          },
+          "lastCheckedAt": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d*[1-9])?Z$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "effectKey",
+          "boundEffectDigest",
+          "dispatchId",
+          "reconciliation",
+          "lastCheckedAt"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "retryAfterMs": {
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 100,
+          "maximum": 300000
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "cancelRequestId": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@-]{0,199}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "required": [
+    "handle",
+    "state",
+    "revision",
+    "createdAt",
+    "updatedAt",
+    "progressRef",
+    "pendingReviewRef",
+    "resultRef",
+    "error",
+    "unresolvedEffects",
+    "retryAfterMs",
+    "cancelRequestId"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "__schema0": {
+      "anyOf": [
+        {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "integer",
+              "minimum": -9007199254740991,
+              "maximum": 9007199254740991
+            },
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/__schema0"
+          }
+        },
+        {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/__schema0"
+          }
+        }
+      ]
+    }
+  }
+}

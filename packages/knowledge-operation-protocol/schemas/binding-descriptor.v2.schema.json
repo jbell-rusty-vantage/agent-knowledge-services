@@ -1,0 +1,222 @@
+{
+  "$id": "https://belllabs.local/knowledge-operation-protocol/binding-descriptor.v2.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "protocolVersions": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "const": "ks.knowledge_operation.v2"
+      }
+    },
+    "binding": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_.-]{0,119}$"
+    },
+    "application": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_.-]{0,119}$"
+    },
+    "coreSchemas": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9_.-]*\\.v[0-9]+$"
+      }
+    },
+    "operations": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "knowledge.describe",
+          "knowledge.read",
+          "knowledge.apply",
+          "knowledge.plan_preview",
+          "knowledge.read_intent",
+          "report.register",
+          "report.assess",
+          "report.derive",
+          "verify.claims",
+          "report.observe",
+          "report.seal",
+          "report.decide",
+          "report.review",
+          "decision.resolve",
+          "operation.get",
+          "operation.cancel",
+          "receipt.get"
+        ]
+      }
+    },
+    "auditorKind": {
+      "type": "string",
+      "enum": [
+        "scripted",
+        "independent",
+        "none"
+      ]
+    },
+    "reportKinds": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9_.-]{0,119}$"
+      }
+    },
+    "media": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z][a-z0-9_.-]{0,119}$"
+      }
+    },
+    "guarantees": {
+      "type": "object",
+      "properties": {
+        "exactRead": {
+          "type": "string",
+          "enum": [
+            "exact_revision",
+            "latest_only"
+          ]
+        },
+        "receiptLookup": {
+          "type": "string",
+          "enum": [
+            "by_effect_key",
+            "unsupported"
+          ]
+        },
+        "nativeCancellation": {
+          "type": "string",
+          "enum": [
+            "native",
+            "stop_dispatch_and_reconcile"
+          ]
+        },
+        "admission": {
+          "type": "string",
+          "enum": [
+            "exact_use_decision",
+            "unsupported"
+          ]
+        },
+        "revocation": {
+          "type": "string",
+          "enum": [
+            "epoch_checked",
+            "unsupported"
+          ]
+        },
+        "writeAtomicity": {
+          "type": "string",
+          "enum": [
+            "single_transaction",
+            "marker_plus_outbox"
+          ]
+        }
+      },
+      "required": [
+        "exactRead",
+        "receiptLookup",
+        "nativeCancellation",
+        "admission",
+        "revocation",
+        "writeAtomicity"
+      ],
+      "additionalProperties": false
+    },
+    "signingIssuer": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_.-]{0,119}$"
+    },
+    "pinnedSchema": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_.-]{0,119}$"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_.-]*\\.v[0-9]+$"
+        },
+        "digest": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "name",
+        "version",
+        "digest"
+      ],
+      "additionalProperties": false
+    },
+    "qualification": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "capability": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_.-]{0,119}$"
+          },
+          "receiptRef": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@-]{0,199}$"
+          },
+          "tier": {
+            "type": "string",
+            "enum": [
+              "T0",
+              "T1-KS",
+              "T1-MC",
+              "T2-control",
+              "Q"
+            ]
+          },
+          "recordedAt": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d*[1-9])?Z$"
+          },
+          "digest": {
+            "type": "string",
+            "pattern": "^sha256:[0-9a-f]{64}$"
+          }
+        },
+        "required": [
+          "capability",
+          "receiptRef",
+          "tier",
+          "recordedAt",
+          "digest"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "describedAt": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d*[1-9])?Z$"
+    }
+  },
+  "required": [
+    "protocolVersions",
+    "binding",
+    "application",
+    "coreSchemas",
+    "operations",
+    "auditorKind",
+    "reportKinds",
+    "media",
+    "guarantees",
+    "signingIssuer",
+    "pinnedSchema",
+    "qualification",
+    "describedAt"
+  ],
+  "additionalProperties": false
+}

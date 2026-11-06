@@ -1,0 +1,21 @@
+{
+  "projectRef": "wkythqbofmckbuoothhn",
+  "tenantId": "93000000-0000-7000-8000-000000000001",
+  "reportId": "93000000-0000-7000-8000-000000000101",
+  "revisionIds": [
+    "93000000-0000-7000-8000-000000000102",
+    "93000000-0000-7000-8000-000000000103"
+  ],
+  "bucket": "research-reports",
+  "checks": {
+    "uploadReadback": true,
+    "freshArtifactRead": true,
+    "exactUtf16Span": true,
+    "incremental": true,
+    "postResearchFromArtifact": true,
+    "duplicateRecovery": true,
+    "crossTenantDenied": true
+  },
+  "admission": "not_evaluated",
+  "recordedAt": "2026-09-13T00:39:26.324Z"
+}

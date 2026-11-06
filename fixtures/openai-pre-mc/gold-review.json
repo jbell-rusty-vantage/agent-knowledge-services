@@ -1,0 +1,19 @@
+{
+  "_status": "incomplete_scaffold",
+  "notAdmissionGold": true,
+  "goldReview": {
+    "status": "review_required",
+    "reviewerIdentity": null,
+    "humanEngineeringProvenance": null,
+    "manifestDigest": null,
+    "disagreements": [],
+    "resolution": null,
+    "reviewTime": null,
+    "rubricVersion": null
+  },
+  "gold_review": {
+    "status": "review_required"
+  },
+  "agentsMustNotInventHumanAdjudication": true,
+  "note": "Human-origin review is required for release acceptance. Independent agent review may later prepare candidate labels and catch mechanical issues but cannot be relabelled human adjudication. Do not invent a reviewer, bind a digest, or claim gold is reviewed. Until a human binds this record to exact fixture bytes, status remains review_required."
+}

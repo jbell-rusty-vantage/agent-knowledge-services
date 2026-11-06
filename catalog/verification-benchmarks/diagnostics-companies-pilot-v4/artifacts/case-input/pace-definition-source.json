@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "verification-benchmark-case-input.v1",
+  "sourceDatasetManifestDigest": "sha256:b625b311493f8c366ef43bf4047bf61f38d510fe7f3c340f50bca42de737dfe6",
+  "sourceCaseDigest": "sha256:6f29e07f0becb61073071055a7954236d78e5c888bedc94a45fe90c97be968b2",
+  "caseId": "pace-definition-source",
+  "assertion": "The paper introduces DunedinPACE as a DNA-methylation biomarker of Pace of Aging.",
+  "evidence": [
+    {
+      "fragmentId": "sha256:a2fda48762aa0e3c4f73beb7cd53ba7fe9757e0933fcb7e9def1932467fcf879",
+      "captureId": "60f7dd92-6f3f-5205-a08a-cea2d0770489",
+      "sourceKey": "paper-pace",
+      "sourceClass": "publication",
+      "projectionArtifactId": "cb9b6f63-800e-5079-afd1-f82fc2a43b06",
+      "projectionDigest": "sha256:87eee3598cf29dab59e1a8c7b70cef756b69a652c0c2787656d3fa02913d2af6",
+      "transformationArtifactId": "8fd5c39f-11e0-5598-a82c-59fc8d169031",
+      "selector": {
+        "kind": "html",
+        "domPath": "2/11/3/1/1/1/3/2/2/1/0/0/2/2"
+      },
+      "selectedContentDigest": "sha256:34df35a06c7a102de733fae08b73c10230ac48487c7f73b89b074dee73b3ecdc",
+      "excerpt": "Measures to quantify changes in the pace of biological aging in response to intervention are needed to evaluate geroprotective interventions for humans. Previously, we showed that quantification of the pace of biological aging from a DNA-methylation blood test was possible (Belsky et al., 2020). Here, we report a next-generation DNA-methylation biomarker of Pace of Aging, DunedinPACE (for Pace of Aging Calculated from the Epigenome).",
+      "rights": "restricted internal preparation; not approved for provider upload or public redistribution",
+      "originalProviderUploadAuthorized": false
+    }
+  ],
+  "intendedUse": "immutable_case_input; provider transmission requires a separately authenticated derived-input grant"
+}

@@ -1,0 +1,182 @@
+{
+  "$id": "https://belllabs.local/knowledge-operation-protocol/selected-report-read.v2.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "report": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "report"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@-]{0,199}$"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_.-]*\\.v[0-9]+$"
+        },
+        "digest": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "tenant": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "binding": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_.-]{0,119}$"
+        }
+      },
+      "required": [
+        "kind",
+        "id",
+        "version",
+        "digest",
+        "tenant",
+        "binding"
+      ],
+      "additionalProperties": false
+    },
+    "exact": {
+      "type": "boolean",
+      "const": true
+    },
+    "purpose": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]{0,63}$",
+      "description": "The receiver's declared purpose; recorded with the read, never a use decision."
+    },
+    "selection": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "mode": {
+              "type": "string",
+              "const": "revision"
+            }
+          },
+          "required": [
+            "mode"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "mode": {
+              "type": "string",
+              "const": "members"
+            },
+            "assertions": {
+              "maxItems": 512,
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "type": "string",
+                    "const": "assertion"
+                  },
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@-]{0,199}$"
+                  },
+                  "version": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_.-]*\\.v[0-9]+$"
+                  },
+                  "digest": {
+                    "type": "string",
+                    "pattern": "^sha256:[0-9a-f]{64}$"
+                  },
+                  "tenant": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 200
+                  },
+                  "binding": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_.-]{0,119}$"
+                  }
+                },
+                "required": [
+                  "kind",
+                  "id",
+                  "version",
+                  "digest",
+                  "tenant",
+                  "binding"
+                ],
+                "additionalProperties": false
+              },
+              "description": "Exact assertion handles of the revision, sorted by id, one per id."
+            },
+            "evidence": {
+              "maxItems": 512,
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "kind": {
+                    "type": "string",
+                    "const": "fragment"
+                  },
+                  "id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@-]{0,199}$"
+                  },
+                  "version": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_.-]*\\.v[0-9]+$"
+                  },
+                  "digest": {
+                    "type": "string",
+                    "pattern": "^sha256:[0-9a-f]{64}$"
+                  },
+                  "tenant": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 200
+                  },
+                  "binding": {
+                    "type": "string",
+                    "pattern": "^[a-z][a-z0-9_.-]{0,119}$"
+                  }
+                },
+                "required": [
+                  "kind",
+                  "id",
+                  "version",
+                  "digest",
+                  "tenant",
+                  "binding"
+                ],
+                "additionalProperties": false
+              },
+              "description": "Exact fragment handles of the revision, sorted by id, one per id."
+            }
+          },
+          "required": [
+            "mode",
+            "assertions",
+            "evidence"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    }
+  },
+  "required": [
+    "report",
+    "exact",
+    "purpose",
+    "selection"
+  ],
+  "additionalProperties": false
+}

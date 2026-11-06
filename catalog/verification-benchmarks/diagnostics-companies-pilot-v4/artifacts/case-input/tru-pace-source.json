@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "verification-benchmark-case-input.v1",
+  "sourceDatasetManifestDigest": "sha256:b625b311493f8c366ef43bf4047bf61f38d510fe7f3c340f50bca42de737dfe6",
+  "sourceCaseDigest": "sha256:3c4d4390edcc3b4320866b85f55dbcc4c3703d79ccfe4dea5d25c05a85845114",
+  "caseId": "tru-pace-source",
+  "assertion": "DunedinPACE is described as tracking how fast the body is aging.",
+  "evidence": [
+    {
+      "fragmentId": "sha256:eecb46671f32862e2f7493bd738e4872880b21485d679efcf5f154b208f7d529",
+      "captureId": "67b3c277-5c66-5ef5-ace8-66aff1d3e736",
+      "sourceKey": "tru-about",
+      "sourceClass": "first_party",
+      "projectionArtifactId": "b4573767-03c2-55e9-a771-0385eeff5aa5",
+      "projectionDigest": "sha256:102c76510c12f523e3d67d8795ceb2b20c40e95f055c0038965e6da1e9cedbb4",
+      "transformationArtifactId": "37fc6dff-19ec-5292-aef3-b861b305a7ed",
+      "selector": {
+        "kind": "html",
+        "domPath": "1/0/2/2/0/0/0/1/0/0/2/1"
+      },
+      "selectedContentDigest": "sha256:0f1d7b60297053d8c46479d624829ac8cc142e9511f9e4ca1c05d4007888e926",
+      "excerpt": "The DunedinPACE™ algorithm can track how fast the body is aging and the impact of lifestyle changes.",
+      "rights": "restricted internal preparation; not approved for provider upload or public redistribution",
+      "originalProviderUploadAuthorized": false
+    }
+  ],
+  "intendedUse": "immutable_case_input; provider transmission requires a separately authenticated derived-input grant"
+}

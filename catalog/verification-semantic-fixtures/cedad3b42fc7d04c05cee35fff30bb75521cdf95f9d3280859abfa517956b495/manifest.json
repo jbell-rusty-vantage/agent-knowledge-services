@@ -1,0 +1,518 @@
+{
+  "schemaVersion": "diagnostics-offline-semantic-replay-fixture.v1",
+  "datasetManifestDigest": "sha256:e3529d2d27e3f473d4f6eb9da633b404c14c48f20b9db8c1d7a428220d538d9e",
+  "entries": [
+    {
+      "caseId": "tru-symphony-source",
+      "caseDigest": "sha256:e789dfbf93456b2b16b8d5693c73e1df5234111bb481bded85ac641ad4055704",
+      "inputManifestArtifactId": "bc05759e-8b83-5813-8970-6d171446f190",
+      "verificationBundleArtifact": {
+        "artifactId": "aad63dbe-a099-591a-ab8e-44d75e68b5b1",
+        "byteLength": 4151,
+        "createdAt": "2026-09-07T22:28:19.351Z",
+        "dataClassification": "restricted",
+        "digest": "sha256:0fb3d68eb6d864c6751e35cbfb11219a66f2689443b006f68a9d91cff4acce5a",
+        "encryptionClass": "supabase-managed",
+        "mediaType": "application/vnd.aiengineer.verification-bundle+json",
+        "objectKey": "fbfa12cf-0cef-423d-858e-f7a3e213fa80/0f/0fb3d68eb6d864c6751e35cbfb11219a66f2689443b006f68a9d91cff4acce5a",
+        "parentArtifactIds": [
+          "99714922-21ba-5da6-a084-540c6a771916"
+        ],
+        "producerActivityId": "verification-worker:sealClaimsAudit",
+        "producerVersion": "verification-claims-sealer.v1",
+        "retentionClass": "verification-audit",
+        "tenantId": "fbfa12cf-0cef-423d-858e-f7a3e213fa80",
+        "transformationSignature": "sha256:2e5b904bb97d5f8b0a7978aa086a24ed7e1411d47ff377b36343b3d45b186563"
+      },
+      "deterministicResultArtifact": {
+        "artifactId": "858cc738-533c-5666-ab2a-018fd69aa649",
+        "byteLength": 5966,
+        "createdAt": "2026-09-07T22:28:19.351Z",
+        "dataClassification": "restricted",
+        "digest": "sha256:1ce496735a3225766e7102830308712fa02b046eeac86d75b66dea4662b9dba1",
+        "encryptionClass": "supabase-managed",
+        "mediaType": "application/vnd.aiengineer.deterministic-verification-result+json",
+        "objectKey": "fbfa12cf-0cef-423d-858e-f7a3e213fa80/1c/1ce496735a3225766e7102830308712fa02b046eeac86d75b66dea4662b9dba1",
+        "parentArtifactIds": [
+          "aad63dbe-a099-591a-ab8e-44d75e68b5b1"
+        ],
+        "producerActivityId": "verification-worker:sealClaimsAudit",
+        "producerVersion": "verification-claims-sealer.v1",
+        "retentionClass": "verification-audit",
+        "tenantId": "fbfa12cf-0cef-423d-858e-f7a3e213fa80",
+        "transformationSignature": "sha256:8a3eaec1ecbfe4d506274b46e20a9e828debf2b8ef3f17f4c98d4bee7d0ccf03"
+      },
+      "producerDeploymentId": "semantic-mission-producer-0562c6a5-aebe-4d96-80bf-fee931ef9a2a",
+      "expectedAssessment": {
+        "assertionId": "86b34a28-7593-4670-8edb-9ecb78bf8950",
+        "attributionFaithfulness": "not_assessed",
+        "contradictingFragmentIds": [],
+        "crossFamilySecondJudge": false,
+        "disposition": "admit",
+        "evidenceSupport": "satisfied",
+        "judgeIdentities": [
+          {
+            "capability": "llm_evidence_rubric",
+            "configurationDigest": "sha256:88f611fea7b7719f3e1b0d15e92d547fd0154bdeb244e9559d8033c0aabf0487",
+            "deploymentId": "semantic-luna-0562c6a5-aebe-4d96-80bf-fee931ef9a2a",
+            "family": "openai",
+            "graderVersion": "evidence-only.v1",
+            "model": "openai/gpt-5.6-luna",
+            "outputSchemaDigest": "sha256:68b1f85f170d0d4580c95e246990d09bcacae8ac3630517eaa4097b3097acbd8",
+            "promptDigest": "sha256:b1ee5148b08ca7e7cbf4d95d829744b68d10f712c253e270a30ae1c9d828b17e",
+            "provider": "vercel-ai-gateway"
+          }
+        ],
+        "provenanceIntegrity": "satisfied",
+        "rawProviderConfidences": [],
+        "reasonCodes": [],
+        "sourceAuthority": "not_assessed",
+        "supportingFragmentIds": [
+          "8f606ecc-3edf-4d13-9ae8-2f18e1de447d"
+        ],
+        "unsupportedFacets": [],
+        "verdict": "directly_supported",
+        "worldCorrectness": "not_assessed"
+      },
+      "judges": [
+        {
+          "identity": {
+            "capability": "llm_evidence_rubric",
+            "configurationDigest": "sha256:88f611fea7b7719f3e1b0d15e92d547fd0154bdeb244e9559d8033c0aabf0487",
+            "deploymentId": "semantic-luna-0562c6a5-aebe-4d96-80bf-fee931ef9a2a",
+            "family": "openai",
+            "graderVersion": "evidence-only.v1",
+            "model": "openai/gpt-5.6-luna",
+            "outputSchemaDigest": "sha256:68b1f85f170d0d4580c95e246990d09bcacae8ac3630517eaa4097b3097acbd8",
+            "promptDigest": "sha256:b1ee5148b08ca7e7cbf4d95d829744b68d10f712c253e270a30ae1c9d828b17e",
+            "provider": "vercel-ai-gateway"
+          },
+          "profileArtifact": {
+            "artifactId": "3c1aca15-c16c-5c81-a65d-7c0ff9c7a71d",
+            "byteLength": 568,
+            "createdAt": "2026-09-07T22:28:09.851Z",
+            "dataClassification": "restricted",
+            "digest": "sha256:83bfc0f0ad260e7e865f0f70a66e1c991fbc2d099d2a723dc077ada1e44a69ab",
+            "encryptionClass": "supabase-managed",
+            "mediaType": "application/json",
+            "objectKey": "fbfa12cf-0cef-423d-858e-f7a3e213fa80/83/83bfc0f0ad260e7e865f0f70a66e1c991fbc2d099d2a723dc077ada1e44a69ab",
+            "parentArtifactIds": [],
+            "producerActivityId": "verification-semantic-mission-control",
+            "producerVersion": "v1",
+            "retentionClass": "verification-audit",
+            "tenantId": "fbfa12cf-0cef-423d-858e-f7a3e213fa80"
+          },
+          "observationArtifact": {
+            "artifactId": "a473a6df-45de-5675-ad9d-1c296c188f38",
+            "byteLength": 5205,
+            "createdAt": "2026-09-07T22:28:19.003Z",
+            "dataClassification": "restricted",
+            "digest": "sha256:88c25f147ea225826ee1d64620f673eb95df00bcb98bfb475e14247eef29b6d8",
+            "encryptionClass": "supabase-managed",
+            "mediaType": "application/vnd.aiengineer.verification-semantic-response-observation+json",
+            "objectKey": "fbfa12cf-0cef-423d-858e-f7a3e213fa80/88/88c25f147ea225826ee1d64620f673eb95df00bcb98bfb475e14247eef29b6d8",
+            "parentArtifactIds": [
+              "caa66969-aca5-5151-a1ce-d3278fe2ef7b",
+              "81669f51-aa3f-5d59-ab21-b26f734cfebe",
+              "3c1aca15-c16c-5c81-a65d-7c0ff9c7a71d"
+            ],
+            "producerActivityId": "verification-semantic-gateway",
+            "producerVersion": "v1",
+            "retentionClass": "verification-audit",
+            "tenantId": "fbfa12cf-0cef-423d-858e-f7a3e213fa80",
+            "transformationSignature": "sha256:18c1cb391ecbd23302dc8d405e1a62b499b7c81a45d82f3abd09b664a09cbc26"
+          },
+          "capture": {
+            "dispatchFencingToken": 787,
+            "operationId": "e1c66623-0652-5432-a01d-674d6c210408",
+            "operationStepId": "4cb74179-fe85-5f0c-a3a4-7b8581b49702",
+            "profileArtifactId": "3c1aca15-c16c-5c81-a65d-7c0ff9c7a71d",
+            "profileDigest": "sha256:83bfc0f0ad260e7e865f0f70a66e1c991fbc2d099d2a723dc077ada1e44a69ab",
+            "providerAttemptId": "6b87d333-d4c6-55de-ab5d-bf72f0c57608",
+            "tenantId": "fbfa12cf-0cef-423d-858e-f7a3e213fa80",
+            "httpStatus": 200,
+            "responseEnvelopeArtifactId": "81669f51-aa3f-5d59-ab21-b26f734cfebe",
+            "transportArtifactId": "6b775dfd-5c9e-56e1-a560-4ae1dd8ccc7e",
+            "transportDigest": "sha256:1f911343f21adcf54c9355f7301b89e19bb576657faa97142b1f67b4d2ba9b14",
+            "capturedAt": "2026-09-07T22:28:18.990Z"
+          }
+        }
+      ]
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "artifacts/22b7d8ae-adbd-55c9-a5a3-b6dc84274c43.bin",
+      "handle": {
+        "artifactId": "22b7d8ae-adbd-55c9-a5a3-b6dc84274c43",
+        "byteLength": 2710,
+        "createdAt": "2026-09-07T22:28:15.447Z",
+        "dataClassification": "restricted",
+        "digest": "sha256:79b16e0a4849b643e18cc39bb3e8c399029d49605e28abf1346ae4b6ca64af68",
+        "encryptionClass": "supabase-managed",
+        "mediaType": "application/json",
+        "objectKey": "fbfa12cf-0cef-423d-858e-f7a3e213fa80/79/79b16e0a4849b643e18cc39bb3e8c399029d49605e28abf1346ae4b6ca64af68",
+        "parentArtifactIds": [
+          "caa66969-aca5-5151-a1ce-d3278fe2ef7b"
+        ],
+        "producerActivityId": "verification-semantic-gateway",
+        "producerVersion": "v1",
+        "retentionClass": "verification-audit",
+        "tenantId": "fbfa12cf-0cef-423d-858e-f7a3e213fa80",
+        "transformationSignature": "sha256:2a3c052fe4c3868ce235d20fcb30b48aaea91a2023c7db846979e89ae8aa9017"
+      }
+    },
+    {
+      "file": "artifacts/2de3368b-a5bb-59c7-a677-d8efa5128fb8.bin",
+      "handle": {
+        "artifactId": "2de3368b-a5bb-59c7-a677-d8efa5128fb8",
+        "byteLength": 418,
+        "createdAt": "2026-09-07T22:28:09.439Z",
+        "dataClassification": "restricted",
+        "digest": "sha256:dbda9f9844f07d631e569f938fa81d7eaadccf6d5e6b24286ff94b5ca0fddf62",
+        "encryptionClass": "supabase-managed",
+        "mediaType": "application/json",
+        "objectKey": "fbfa12cf-0cef-423d-858e-f7a3e213fa80/db/dbda9f9844f07d631e569f938fa81d7eaadccf6d5e6b24286ff94b5ca0fddf62",
+        "parentArtifactIds": [],
+        "producerActivityId": "verification-semantic-mission-control",
+        "producerVersion": "v1",
+        "retentionClass": "verification-audit",
+        "tenantId": "fbfa12cf-0cef-423d-858e-f7a3e213fa80"
+      }
+    },
+    {
+      "file": "artifacts/37fc6dff-19ec-5292-aef3-b861b305a7ed.bin",
+      "handle": {
+        "artifactId": "37fc6dff-19ec-5292-aef3-b861b305a7ed",
+        "byteLength": 1098,
+        "createdAt": "2026-09-05T04:58:18.569Z",
+        "dataClassification": "restricted",
+        "digest": "sha256:e0c87ab3716e67347ac59c167ad73bb87d97e54dc8d9e6ec033de91a9fed4f86",
+        "encryptionClass": "supabase-managed",
+        "mediaType": "application/vnd.aiengineer.verification-projection-admission+json",
+        "objectKey": "fbfa12cf-0cef-423d-858e-f7a3e213fa80/e0/e0c87ab3716e67347ac59c167ad73bb87d97e54dc8d9e6ec033de91a9fed4f86",
+        "parentArtifactIds": [
+          "87cf263e-3e29-5bcb-a187-cc068dc3b122",
+          "fe1fd4ab-1a92-5bad-a2f8-5e21a912a8fe",
+          "b4573767-03c2-55e9-a771-0385eeff5aa5"
+        ],
+        "producerActivityId": "verification-parser-admission",
+        "producerVersion": "verification-admission.v1",
+        "retentionClass": "verification-audit",
+        "tenantId": "fbfa12cf-0cef-423d-858e-f7a3e213fa80",
+        "transformationSignature": "sha256:64ec76cd67463dfe2976e617addd4fbbaee0d0ec1707b30a64262a67d005c3ac"
+      }
+    },
+    {
+      "file": "artifacts/3c1aca15-c16c-5c81-a65d-7c0ff9c7a71d.bin",
+      "handle": {
+        "artifactId": "3c1aca15-c16c-5c81-a65d-7c0ff9c7a71d",
+        "byteLength": 568,
+        "createdAt": "2026-09-07T22:28:09.851Z",
+        "dataClassification": "restricted",
+        "digest": "sha256:83bfc0f0ad260e7e865f0f70a66e1c991fbc2d099d2a723dc077ada1e44a69ab",
+        "encryptionClass": "supabase-managed",
+        "mediaType": "application/json",
+        "objectKey": "fbfa12cf-0cef-423d-858e-f7a3e213fa80/83/83bfc0f0ad260e7e865f0f70a66e1c991fbc2d099d2a723dc077ada1e44a69ab",
+        "parentArtifactIds": [],
+        "producerActivityId": "verification-semantic-mission-control",
+        "producerVersion": "v1",
+        "retentionClass": "verification-audit",
+        "tenantId": "fbfa12cf-0cef-423d-858e-f7a3e213fa80"
+      }
+    },
+    {
+      "file": "artifacts/6b775dfd-5c9e-56e1-a560-4ae1dd8ccc7e.bin",
+      "handle": {
+        "artifactId": "6b775dfd-5c9e-56e1-a560-4ae1dd8ccc7e",
+        "byteLength": 2053,
+        "createdAt": "2026-09-07T22:28:18.879Z",
+        "dataClassification": "restricted",
+        "digest": "sha256:1f911343f21adcf54c9355f7301b89e19bb576657faa97142b1f67b4d2ba9b14",
+        "encryptionClass": "supabase-managed",
+        "mediaType": "application/vnd.aiengineer.verification-provider-transport-response+json",
+        "objectKey": "fbfa12cf-0cef-423d-858e-f7a3e213fa80/1f/1f911343f21adcf54c9355f7301b89e19bb576657faa97142b1f67b4d2ba9b14",
+        "parentArtifactIds": [
+          "81669f51-aa3f-5d59-ab21-b26f734cfebe",
+          "3c1aca15-c16c-5c81-a65d-7c0ff9c7a71d"
+        ],
+        "producerActivityId": "verification-semantic-gateway",
+        "producerVersion": "v1",
+        "retentionClass": "verification-audit",
+        "tenantId": "fbfa12cf-0cef-423d-858e-f7a3e213fa80",
+        "transformationSignature": "sha256:07f342660509eaec1c1009676de5ea754cc8a720cb22436f45fc1782a7fae8c0"
+      }
+    },
+    {
+      "file": "artifacts/81669f51-aa3f-5d59-ab21-b26f734cfebe.bin",
+      "handle": {
+        "artifactId": "81669f51-aa3f-5d59-ab21-b26f734cfebe",
+        "byteLength": 368,
+        "createdAt": "2026-09-07T22:28:18.770Z",
+        "dataClassification": "restricted",
+        "digest": "sha256:1123db9d8675561dff04cecba92703327ab0ea754354a2fb1e04a6273c118fe1",
+        "encryptionClass": "supabase-managed",
+        "mediaType": "application/vnd.aiengineer.verification-provider-response-envelope+json",
+        "objectKey": "fbfa12cf-0cef-423d-858e-f7a3e213fa80/11/1123db9d8675561dff04cecba92703327ab0ea754354a2fb1e04a6273c118fe1",
+        "parentArtifactIds": [
+          "22b7d8ae-adbd-55c9-a5a3-b6dc84274c43",
+          "d11d84ba-2548-5f63-a4d5-5ea2c736fddb"
+        ],
+        "producerActivityId": "verification-semantic-gateway",
+        "producerVersion": "v1",
+        "retentionClass": "verification-audit",
+        "tenantId": "fbfa12cf-0cef-423d-858e-f7a3e213fa80",
+        "transformationSignature": "sha256:ddbfd8d6426a1ecfd83813a9e0a3154764434f01f8fbf10c158ae3cf498ab82f"
+      }
+    },
+    {
+      "file": "artifacts/87cf263e-3e29-5bcb-a187-cc068dc3b122.bin",
+      "handle": {
+        "artifactId": "87cf263e-3e29-5bcb-a187-cc068dc3b122",
+        "byteLength": 181306,
+        "createdAt": "2026-09-05T04:57:52.663Z",
+        "dataClassification": "restricted",
+        "digest": "sha256:b623cec22b5a340ef27eedfe32702485d2115ddf8b6b1b00e97458a519f319d5",
+        "encryptionClass": "supabase-managed",
+        "mediaType": "text/html",
+        "objectKey": "fbfa12cf-0cef-423d-858e-f7a3e213fa80/b6/b623cec22b5a340ef27eedfe32702485d2115ddf8b6b1b00e97458a519f319d5",
+        "parentArtifactIds": [
+          "c620c8a2-6ab9-5d50-aee0-dd9290ebc60e"
+        ],
+        "producerActivityId": "diagnostics-frozen-source-import",
+        "producerVersion": "1",
+        "retentionClass": "restricted-source",
+        "tenantId": "fbfa12cf-0cef-423d-858e-f7a3e213fa80",
+        "transformationSignature": "sha256:d232771b9eeaaaed16e8e7e8105982d7b526c75ed29c36dad724b75e398d5418"
+      }
+    },
+    {
+      "file": "artifacts/9467b76b-a477-5529-a115-ae0ec5d46e37.bin",
+      "handle": {
+        "artifactId": "9467b76b-a477-5529-a115-ae0ec5d46e37",
+        "byteLength": 7521,
+        "createdAt": "2026-09-07T22:28:19.351Z",
+        "dataClassification": "restricted",
+        "digest": "sha256:b56afeebb2be7d859e1cad377e9c78e75b9b50c0251929a3b2ce48f5c67559e8",
+        "encryptionClass": "supabase-managed",
+        "mediaType": "application/vnd.aiengineer.verification-policy-inputs+json",
+        "objectKey": "fbfa12cf-0cef-423d-858e-f7a3e213fa80/b5/b56afeebb2be7d859e1cad377e9c78e75b9b50c0251929a3b2ce48f5c67559e8",
+        "parentArtifactIds": [
+          "22b7d8ae-adbd-55c9-a5a3-b6dc84274c43",
+          "3c1aca15-c16c-5c81-a65d-7c0ff9c7a71d",
+          "6b775dfd-5c9e-56e1-a560-4ae1dd8ccc7e",
+          "81669f51-aa3f-5d59-ab21-b26f734cfebe",
+          "858cc738-533c-5666-ab2a-018fd69aa649",
+          "a473a6df-45de-5675-ad9d-1c296c188f38",
+          "caa66969-aca5-5151-a1ce-d3278fe2ef7b",
+          "d11d84ba-2548-5f63-a4d5-5ea2c736fddb"
+        ],
+        "producerActivityId": "verification-worker:sealClaimsAudit",
+        "producerVersion": "verification-claims-sealer.v1",
+        "retentionClass": "verification-audit",
+        "tenantId": "fbfa12cf-0cef-423d-858e-f7a3e213fa80",
+        "transformationSignature": "sha256:7ccb1573495430bf9053616990430f6adfc69f56e5ea89c37b303ad94a9095bb"
+      }
+    },
+    {
+      "file": "artifacts/99714922-21ba-5da6-a084-540c6a771916.bin",
+      "handle": {
+        "artifactId": "99714922-21ba-5da6-a084-540c6a771916",
+        "byteLength": 4212,
+        "createdAt": "2026-09-07T22:28:09.766Z",
+        "dataClassification": "restricted",
+        "digest": "sha256:59cd20b6abf20845b4b97503d11ad62b817ec0d8e3029c85bc44191ad6e9a6eb",
+        "encryptionClass": "supabase-managed",
+        "mediaType": "application/json",
+        "objectKey": "fbfa12cf-0cef-423d-858e-f7a3e213fa80/59/59cd20b6abf20845b4b97503d11ad62b817ec0d8e3029c85bc44191ad6e9a6eb",
+        "parentArtifactIds": [
+          "37fc6dff-19ec-5292-aef3-b861b305a7ed"
+        ],
+        "producerActivityId": "verification-semantic-mission-fixture",
+        "producerVersion": "v1",
+        "retentionClass": "verification-audit",
+        "tenantId": "fbfa12cf-0cef-423d-858e-f7a3e213fa80",
+        "transformationSignature": "sha256:dfc9ac35562281584af7df2f289707f243727e6776d601824ac0f1605eccbcbd"
+      }
+    },
+    {
+      "file": "artifacts/a473a6df-45de-5675-ad9d-1c296c188f38.bin",
+      "handle": {
+        "artifactId": "a473a6df-45de-5675-ad9d-1c296c188f38",
+        "byteLength": 5205,
+        "createdAt": "2026-09-07T22:28:19.003Z",
+        "dataClassification": "restricted",
+        "digest": "sha256:88c25f147ea225826ee1d64620f673eb95df00bcb98bfb475e14247eef29b6d8",
+        "encryptionClass": "supabase-managed",
+        "mediaType": "application/vnd.aiengineer.verification-semantic-response-observation+json",
+        "objectKey": "fbfa12cf-0cef-423d-858e-f7a3e213fa80/88/88c25f147ea225826ee1d64620f673eb95df00bcb98bfb475e14247eef29b6d8",
+        "parentArtifactIds": [
+          "caa66969-aca5-5151-a1ce-d3278fe2ef7b",
+          "81669f51-aa3f-5d59-ab21-b26f734cfebe",
+          "3c1aca15-c16c-5c81-a65d-7c0ff9c7a71d"
+        ],
+        "producerActivityId": "verification-semantic-gateway",
+        "producerVersion": "v1",
+        "retentionClass": "verification-audit",
+        "tenantId": "fbfa12cf-0cef-423d-858e-f7a3e213fa80",
+        "transformationSignature": "sha256:18c1cb391ecbd23302dc8d405e1a62b499b7c81a45d82f3abd09b664a09cbc26"
+      }
+    },
+    {
+      "file": "artifacts/b4573767-03c2-55e9-a771-0385eeff5aa5.bin",
+      "handle": {
+        "artifactId": "b4573767-03c2-55e9-a771-0385eeff5aa5",
+        "byteLength": 172717,
+        "createdAt": "2026-09-05T04:58:18.569Z",
+        "dataClassification": "restricted",
+        "digest": "sha256:102c76510c12f523e3d67d8795ceb2b20c40e95f055c0038965e6da1e9cedbb4",
+        "encryptionClass": "supabase-managed",
+        "mediaType": "application/vnd.aiengineer.verification-projection.html_dom+json",
+        "objectKey": "fbfa12cf-0cef-423d-858e-f7a3e213fa80/10/102c76510c12f523e3d67d8795ceb2b20c40e95f055c0038965e6da1e9cedbb4",
+        "parentArtifactIds": [],
+        "producerActivityId": "verification-parser-admission",
+        "producerVersion": "verification-admission.v1",
+        "retentionClass": "verification-audit",
+        "tenantId": "fbfa12cf-0cef-423d-858e-f7a3e213fa80"
+      }
+    },
+    {
+      "file": "artifacts/c620c8a2-6ab9-5d50-aee0-dd9290ebc60e.bin",
+      "handle": {
+        "artifactId": "c620c8a2-6ab9-5d50-aee0-dd9290ebc60e",
+        "byteLength": 223134,
+        "createdAt": "2026-09-05T04:57:52.663Z",
+        "dataClassification": "restricted",
+        "digest": "sha256:aa69299f7a30ca934ffe0229395e50a275dd4123e06c2c9b8cb31488a262e3aa",
+        "encryptionClass": "supabase-managed",
+        "mediaType": "application/json",
+        "objectKey": "fbfa12cf-0cef-423d-858e-f7a3e213fa80/aa/aa69299f7a30ca934ffe0229395e50a275dd4123e06c2c9b8cb31488a262e3aa",
+        "parentArtifactIds": [],
+        "producerActivityId": "diagnostics-frozen-source-import",
+        "producerVersion": "1",
+        "retentionClass": "restricted-source",
+        "tenantId": "fbfa12cf-0cef-423d-858e-f7a3e213fa80"
+      }
+    },
+    {
+      "file": "artifacts/caa66969-aca5-5151-a1ce-d3278fe2ef7b.bin",
+      "handle": {
+        "artifactId": "caa66969-aca5-5151-a1ce-d3278fe2ef7b",
+        "byteLength": 391,
+        "createdAt": "2026-09-07T22:28:15.361Z",
+        "dataClassification": "restricted",
+        "digest": "sha256:748f88342bb38727d853bdefdd0a2dbee78cd6e2d7579e13a9f60583d6c0f281",
+        "encryptionClass": "supabase-managed",
+        "mediaType": "application/vnd.aiengineer.verification-semantic-blinded-input+json",
+        "objectKey": "fbfa12cf-0cef-423d-858e-f7a3e213fa80/74/748f88342bb38727d853bdefdd0a2dbee78cd6e2d7579e13a9f60583d6c0f281",
+        "parentArtifactIds": [],
+        "producerActivityId": "verification-semantic-gateway",
+        "producerVersion": "v1",
+        "retentionClass": "verification-audit",
+        "tenantId": "fbfa12cf-0cef-423d-858e-f7a3e213fa80"
+      }
+    },
+    {
+      "file": "artifacts/d11d84ba-2548-5f63-a4d5-5ea2c736fddb.bin",
+      "handle": {
+        "artifactId": "d11d84ba-2548-5f63-a4d5-5ea2c736fddb",
+        "byteLength": 4061,
+        "createdAt": "2026-09-07T22:28:18.675Z",
+        "dataClassification": "restricted",
+        "digest": "sha256:9eee2407fc88b7bf3e64fb0efbaeac293734614ea4e62eccdb3783854c0f449d",
+        "encryptionClass": "supabase-managed",
+        "mediaType": "application/octet-stream",
+        "objectKey": "fbfa12cf-0cef-423d-858e-f7a3e213fa80/9e/9eee2407fc88b7bf3e64fb0efbaeac293734614ea4e62eccdb3783854c0f449d",
+        "parentArtifactIds": [],
+        "producerActivityId": "verification-semantic-gateway",
+        "producerVersion": "v1",
+        "retentionClass": "verification-audit",
+        "tenantId": "fbfa12cf-0cef-423d-858e-f7a3e213fa80"
+      }
+    },
+    {
+      "file": "artifacts/fe1fd4ab-1a92-5bad-a2f8-5e21a912a8fe.bin",
+      "handle": {
+        "artifactId": "fe1fd4ab-1a92-5bad-a2f8-5e21a912a8fe",
+        "byteLength": 173174,
+        "createdAt": "2026-09-05T04:58:18.569Z",
+        "dataClassification": "restricted",
+        "digest": "sha256:d4d372200505bc867634bd280b01d661cc7e5348929cc6b3cc93d2a62f65c003",
+        "encryptionClass": "supabase-managed",
+        "mediaType": "application/vnd.aiengineer.verification-parser-output+json",
+        "objectKey": "fbfa12cf-0cef-423d-858e-f7a3e213fa80/d4/d4d372200505bc867634bd280b01d661cc7e5348929cc6b3cc93d2a62f65c003",
+        "parentArtifactIds": [],
+        "producerActivityId": "verification-parser-admission",
+        "producerVersion": "verification-admission.v1",
+        "retentionClass": "verification-audit",
+        "tenantId": "fbfa12cf-0cef-423d-858e-f7a3e213fa80"
+      }
+    },
+    {
+      "file": "artifacts/6b540e1a-e15e-5698-a47f-8bb7a5a06035.bin",
+      "handle": {
+        "artifactId": "6b540e1a-e15e-5698-a47f-8bb7a5a06035",
+        "byteLength": 404,
+        "createdAt": "2026-09-07T22:28:19.351Z",
+        "dataClassification": "restricted",
+        "digest": "sha256:854f8f0987a1567cb298e704106b35d2050d2fe0206beb91acb555dd58b43f21",
+        "encryptionClass": "supabase-managed",
+        "mediaType": "application/vnd.aiengineer.verification-policy-decision+json",
+        "objectKey": "fbfa12cf-0cef-423d-858e-f7a3e213fa80/85/854f8f0987a1567cb298e704106b35d2050d2fe0206beb91acb555dd58b43f21",
+        "parentArtifactIds": [
+          "2de3368b-a5bb-59c7-a677-d8efa5128fb8",
+          "858cc738-533c-5666-ab2a-018fd69aa649",
+          "9467b76b-a477-5529-a115-ae0ec5d46e37"
+        ],
+        "producerActivityId": "verification-worker:sealClaimsAudit",
+        "producerVersion": "verification-claims-sealer.v1",
+        "retentionClass": "verification-audit",
+        "tenantId": "fbfa12cf-0cef-423d-858e-f7a3e213fa80",
+        "transformationSignature": "sha256:6b47255cc7cc6b2cabf309f78ca8dc0606e36ed24e2b5901e5b036dc45c7c376"
+      }
+    },
+    {
+      "file": "artifacts/858cc738-533c-5666-ab2a-018fd69aa649.bin",
+      "handle": {
+        "artifactId": "858cc738-533c-5666-ab2a-018fd69aa649",
+        "byteLength": 5966,
+        "createdAt": "2026-09-07T22:28:19.351Z",
+        "dataClassification": "restricted",
+        "digest": "sha256:1ce496735a3225766e7102830308712fa02b046eeac86d75b66dea4662b9dba1",
+        "encryptionClass": "supabase-managed",
+        "mediaType": "application/vnd.aiengineer.deterministic-verification-result+json",
+        "objectKey": "fbfa12cf-0cef-423d-858e-f7a3e213fa80/1c/1ce496735a3225766e7102830308712fa02b046eeac86d75b66dea4662b9dba1",
+        "parentArtifactIds": [
+          "aad63dbe-a099-591a-ab8e-44d75e68b5b1"
+        ],
+        "producerActivityId": "verification-worker:sealClaimsAudit",
+        "producerVersion": "verification-claims-sealer.v1",
+        "retentionClass": "verification-audit",
+        "tenantId": "fbfa12cf-0cef-423d-858e-f7a3e213fa80",
+        "transformationSignature": "sha256:8a3eaec1ecbfe4d506274b46e20a9e828debf2b8ef3f17f4c98d4bee7d0ccf03"
+      }
+    },
+    {
+      "file": "artifacts/aad63dbe-a099-591a-ab8e-44d75e68b5b1.bin",
+      "handle": {
+        "artifactId": "aad63dbe-a099-591a-ab8e-44d75e68b5b1",
+        "byteLength": 4151,
+        "createdAt": "2026-09-07T22:28:19.351Z",
+        "dataClassification": "restricted",
+        "digest": "sha256:0fb3d68eb6d864c6751e35cbfb11219a66f2689443b006f68a9d91cff4acce5a",
+        "encryptionClass": "supabase-managed",
+        "mediaType": "application/vnd.aiengineer.verification-bundle+json",
+        "objectKey": "fbfa12cf-0cef-423d-858e-f7a3e213fa80/0f/0fb3d68eb6d864c6751e35cbfb11219a66f2689443b006f68a9d91cff4acce5a",
+        "parentArtifactIds": [
+          "99714922-21ba-5da6-a084-540c6a771916"
+        ],
+        "producerActivityId": "verification-worker:sealClaimsAudit",
+        "producerVersion": "verification-claims-sealer.v1",
+        "retentionClass": "verification-audit",
+        "tenantId": "fbfa12cf-0cef-423d-858e-f7a3e213fa80",
+        "transformationSignature": "sha256:2e5b904bb97d5f8b0a7978aa086a24ed7e1411d47ff377b36343b3d45b186563"
+      }
+    }
+  ],
+  "fixtureDigest": "sha256:cedad3b42fc7d04c05cee35fff30bb75521cdf95f9d3280859abfa517956b495"
+}

@@ -1,0 +1,57 @@
+{
+  "schemaVersion": "verification-benchmark-v1-human-review-pack.v2",
+  "status": "awaiting_case_atomization_and_human_review",
+  "sourceCandidatePool": {
+    "relativePath": "../diagnostics-companies-pilot-v4/benchmark-v1-candidate-pool.json",
+    "rawFileDigest": "sha256:442214adecc5d468afd3e9cf9a08c2d9d5a1ed74b0edff21264a64c0cb84b6e1",
+    "semanticCandidatePoolDigest": "sha256:e4b2392399b46764a0a76d7aa60da6509925cd11b4359a9b71c4df87a0ec02f1",
+    "sourcePreparationDigest": "sha256:50a3552cffc639a78d7789865be929baefd64d2342431e2de958e669c21f163e"
+  },
+  "frozenSourcePreparation": {
+    "manifestPath": "C:\\Users\\Pinda\\Proyectos\\aiengineer\\internal\\verification-offline-source-preparation-9093b465-16c2-4cc1-b7f4-728d3958b0ed",
+    "manifestDigest": "sha256:50a3552cffc639a78d7789865be929baefd64d2342431e2de958e669c21f163e",
+    "fragmentRegistryPath": "C:\\Users\\Pinda\\Proyectos\\aiengineer\\internal\\verification-offline-source-preparation-9093b465-16c2-4cc1-b7f4-728d3958b0ed\\fragment-candidates.json",
+    "fragmentRegistryDigest": "sha256:d1781f1c5b32dff5fff3a27251c9072386f1673e98d4fb9210090fc4ef6b9831",
+    "registryRows": 1186,
+    "matchedCandidates": 180
+  },
+  "files": [
+    {
+      "name": "curation-queue.json",
+      "digest": "sha256:e5f53b4c08cee91bc6ffeac377f00cbf1be09ee5c2daa7f622bcc9791afea1ca",
+      "byteLength": 137775
+    },
+    {
+      "name": "split-plan.json",
+      "digest": "sha256:4d1654f9bcfecc4d03978fcc8237bab28cdbc6a261f709bce0e30672a5693ffd",
+      "byteLength": 79687
+    }
+  ],
+  "counts": {
+    "candidates": 180,
+    "independentObservations": 0,
+    "humanGoldCases": 0,
+    "sourceKeys": 15,
+    "sourceClasses": 4,
+    "provenanceComponents": 6,
+    "partitions": {
+      "development": 90,
+      "calibration": 14,
+      "locked_test": 76
+    }
+  },
+  "requiredBeforeFreeze": [
+    "atomize_each_assertion",
+    "review_provenance_grouping",
+    "two_blinded_human_annotations_per_case",
+    "expert_adjudication",
+    "trusted_reviewer_identity_admission",
+    "register_case_and_adjudication_artifacts",
+    "seal_benchmark_v1_dataset"
+  ],
+  "limitations": [
+    "The 180 rows are source-bound fragment candidates, not cases, labels, or independent observations.",
+    "The provisional six-component split is leakage-safe but imbalanced at 90/14/76; human review must accept or revise provenance coverage before freezing."
+  ],
+  "manifestDigest": "sha256:c394efdf20d45b666f8097c958bb7f9f1f8e36c2981d22b42657246aafb284f7"
+}

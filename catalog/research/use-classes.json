@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "research-use-classes.v1",
+  "id": "use-classes",
+  "version": "1.0.0",
+  "classes": [
+    { "class": "official", "audiences": ["official", "consumer", "public"], "uses": [], "reviewAtRisk": ["high", "critical"] },
+    { "class": "consequential", "audiences": [], "uses": ["knowledge_ingestion.*"], "reviewAtRisk": ["critical"] },
+    { "class": "draft", "audiences": ["draft"], "uses": [], "reviewAtRisk": [] }
+  ],
+  "defaultClass": "internal"
+}

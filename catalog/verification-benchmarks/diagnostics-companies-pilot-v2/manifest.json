@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "verification-benchmark-catalog-manifest.v1",
+  "datasetManifestDigest": "sha256:eb445e684327bab2da14216b8e3277421507cae2d0504e2cdea9c4c19fd1eee8",
+  "sourcePreparationDigest": "sha256:50a3552cffc639a78d7789865be929baefd64d2342431e2de958e669c21f163e",
+  "proposalDigest": "sha256:ae9bce06f634715b7a6f8ff278839347433e7f4889cac6f9b25fa1bcd49823c8",
+  "fragmentCandidateDigest": "sha256:d1781f1c5b32dff5fff3a27251c9072386f1673e98d4fb9210090fc4ef6b9831",
+  "files": [
+    {
+      "name": "annotation-guidelines.json",
+      "digest": "sha256:c7ce3d536f9f3549656dea535cf0b63100753df54cae0bd863ded42979df3962",
+      "bytes": 667
+    },
+    {
+      "name": "dataset.json",
+      "digest": "sha256:dd6748f1e1cfecc817ca8f7304e85802270544aff3b78627dc492b7d09542793",
+      "bytes": 112165
+    },
+    {
+      "name": "derived-input-grant.json",
+      "digest": "sha256:b29c658d6b26e9f597a80db3ba2e1e2feb5bd29f2f28609948bba292eab93add",
+      "bytes": 24287
+    },
+    {
+      "name": "annotation-queue.json",
+      "digest": "sha256:0a47beeae009d86584de6eaacb28c722218c516060d0c70da278ad44c021b320",
+      "bytes": 8763
+    },
+    {
+      "name": "source-ledger.json",
+      "digest": "sha256:473cd99d45f8d6425c02330a6a81d0cb285926c32e3d70297f11385b1420444a",
+      "bytes": 9367
+    },
+    {
+      "name": "experiment.json",
+      "digest": "sha256:4ddb92771a27da5242d864cd00ccf6cf5b9ae12d5e9572482ccbb75c27b4d3dd",
+      "bytes": 814
+    },
+    {
+      "name": "benchmark-v1-candidate-pool.json",
+      "digest": "sha256:442214adecc5d468afd3e9cf9a08c2d9d5a1ed74b0edff21264a64c0cb84b6e1",
+      "bytes": 134601
+    }
+  ],
+  "manifestDigest": "sha256:d9a7f850d61f2ced4a3eedcb40b9dd77a5232950cb7ad57f5d49803970fbc400"
+}

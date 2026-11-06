@@ -1,0 +1,453 @@
+{
+  "schema_version": "ai-engineer-embedding-bundle/0.1.0",
+  "store_class": "internal_exploratory",
+  "video_id": "bk0TmxoZlUY",
+  "title": "Evals 101 — Doug Guthrie, Braintrust",
+  "research_as_of": "2026-09-01",
+  "primary": {
+    "engineer": {
+      "slug": "doug-guthrie",
+      "display_name": "Doug Guthrie"
+    },
+    "organization": {
+      "slug": "braintrust",
+      "display_name": "Braintrust"
+    }
+  },
+  "selected_documents": [
+    {
+      "id": "doc-transcript",
+      "document_kind": "talk_transcript",
+      "title": "Evals 101 — Doug Guthrie, Braintrust",
+      "canonical_url": "https://www.youtube.com/watch?v=bk0TmxoZlUY",
+      "source_role": "primary",
+      "publisher": "AI Engineer",
+      "source_class": "transcript",
+      "target_vector_spaces": [
+        "source_native_sections",
+        "engineering_claims"
+      ],
+      "text": "Hey everybody, my name is Doug Guthrie. Uh, I'm a solutions engineer at Braintrust. Um, as you can see here, we're an end-to-end developer platform for building AI products. We do evals. If you watched the the keynote this morning, you saw our founding engineer jumping up and down on stage yelling evals. I am not going to do that. I'm not as uh as funny or cool as him, but uh we should all be very excited about eval here. Very brief agenda of of what we'll cover today in this sort of uh this intro uh very very brief company overview. Uh give you an intro to evals why would you even uh start thinking about using them? what are they? Uh what are the different components that you need to create an eval? Um some more Braintrust specific things via uh running evals via our SDK. You'll see uh in the examples um that you can run evals both uh in the platform itself as well as the SDK. I think it's it's a really kind of cool thing that we can connect uh maybe the local development that we're that we're doing with what we're doing within the platform. Uh and then how we then move to production. uh this is uh maybe human review. This is online scoring. So how well is our our application performing uh in production and then lastly a little bit of human in the loop uh getting user feedback from your users? How do we now uh take some of these uh these production logs and feed them into the datasets that we're using in our eval uh creating this really great flywheel effect.\n\nCool. Quick quick company overview. Um you see up there maybe in the top right uh some of our fun some of our investors. Uh maybe a quick call out on the on the leadership side. Ankur Goyal is our CEO. Uh maybe the the reason to call out that is Ankur in the last uh two two stops. He he essentially built brain uh Braintrust uh from scratch the last two places. and and this is really where he found the the idea to like like maybe this is actually a a thing that that people need and and really like the origination story of Braintrust. Uh the other thing to call out here is like we already have a lot of companies using Braintrust in production today. This is just a a few of uh the the companies that are that are utilizing us for for evals for uh for observability of their their genai applications. So, I won't bore you too much with with that, but uh let's jump into this. If you're at the keynote, you probably saw a a similar slide here. I didn't I didn't take it out, but uh you see like the tech luminaries here, I think, as as Manu referenced them talking about evals and the importance of them. I think this is a you know, obviously this is an intro to eval uh track and what better way to start this out with uh some some really um you know, influential people in the space talking about eval and and why they are so important.\n\nSo why would you think about eval? Right? They they they help you answer questions. So here's here's a few of them. Um when I change the underlying model to my application, is it is it getting better or is it getting worse?\n\nWhen I change my prompt, right, when I change uh certain certain things about the application, is it getting better or is it getting worse? So we want to get away from uh not having a rigorous sort of process around building with large language models which as you all know right non-deterministic outputs uh creates somewhat of a challenge and without uh eval becomes really really hard to uh to create a good application that we can put into production. Maybe some other ones like obviously being able to uh detect regressions within the within the code. I think the other the other thing that Ankur mentioned uh to me when I first started which I didn't really mention this but uh this is my my third week at at Braintrust as a solutions engineer but one of the things that he mentioned to me that I thought really resonated was uh eval are a really great way I think people think of them as almost like unit tests for uh for you know our applications but he kind of described it another way of like this is a really great way to for us to play offense uh as opposed to just playing defense where I think maybe unit tests are are kind of used for This can actually be used as a tool to to really help uh create a lot of rigor around us building and developing these applications and ensuring that we actually build uh things that we can put into production.\n\nMaybe from like a business perspective, uh why would you think about running evals or using evals? Uh here's a few here. uh if you have um eval running both offline and online, you create the this feedback loop or this flywheel effect. I think Manu mentioned in the in the keynote the keynote, excuse me. Um and this flywheel effect allows us to, you know, uh cut dev time, allows us to enhance the quality of this application that we're putting out in production. If you're able to connect the things that are happening in in real life with your users in production and being able to uh filter those logs down, add those SP spans to datasets, inform what you're doing in an offline way creates uh that that flywheel effect that becomes really powerful from a development perspective.\n\nUh again, a little bit more on the on the customer side. Here's a few of our customers and some of the outcomes that they've that they've seen using Braintrust, whether it's moving a little bit faster, pushing more AI features into production or just increasing the quality of of the applications that they have. Here's a few of the the outcomes that we've seen or that they have seen. So, let's let's start talking a little bit about the the core concepts of of Braintrust. Obviously, we're here to talk about evals. uh the the the things that I think um you see like these arrow these arrows going uh one way and and the other this again is that that flywheel effect that that I described earlier. Um there's the the prompt engineering aspect of this uh in Braintrust think of uh this playground that we have as an IDE for LLM outputs. Uh the playgrounds allow for that rapid prototyping as we make those changes as we change the underlying model. what is the impact to that to that uh particular uh task or that application and those observability aspect right this is the the logs that we're generating in production the the ability to uh have a human review those logs in a really easy uh intuitive interface and then have user feedback from actual users be logged into the application as well so what is an eval you probably heard this several several times today throughout the week if you stop by the booth. But sort of our definition here is that structured test that checks how well your AI system performs, right? It helps you measure these things that are important. Quality, reliability, uh correctness.\n\nSo what are the ingredients in an eval? Right? I've been talking a little bit about task, right? This is the thing uh the code or the prompt that we want to uh evaluate. The the really cool thing about Braintrust is that this can be as simple as a as a s a single prompt or it could be this this full sort of agentic workflow where we're uh calling out to tools. There's no sort of limit onto the the complexity that we put into this task. The only thing it requires is an input and an output. The second thing is a dataset. This is our uh real world examples. This is uh essentially what we're going to run the task against to understand how well uh our application is performing. And how we do that is via scores. So the score is really the the logic behind your eval. There's there's a couple different ways to think about this. There's the LLM-as-a-judge type score. So uh you give it the the output and some criteria and it is able to assess uh like say I want uh based on this output is this excellent, is this fair, is this poor? And then those outputs then correspond to you know zero point five or one. Uh you also have code-based scores right these are maybe a little bit more heuristic or binary but uh we can use both of these to really aid in the development of that of that eval and ensuring that we're building a really good application.\n\nUh I think I just sort of mentioned this here as well but like the the two mental models here of of eval there's there's offline and online. Offline is pre-production. This is us actually doing that that iteration. It's uh identifying and resolving issues before deployment. Uh this is where we're defining those tasks. It's where we're defining those scores. Uh online evals, this is that real-time tracing of of the application in production. It's logging the model inputs and the outputs uh the intermediate steps, the tool calls, everything that's happening. It allows us to diagnose performance and reliability issues, latency uh based on how you instrument your your application with Braintrust. We can pull back lots of different metrics related to cost and tokens and duration and all of these things be help inform uh how we build this application. Um I'll I'll jump into a little bit more of like how we can instrument our app for online evals. Uh we're going to first I think talk a little bit more of the offline Before doing that, maybe just like level set on how to improve. I think one of the the the the things that I've seen uh in the last few days here, the conversations that I've had, it's like almost how do I get started or what do I do if X or you know those types of questions. Another thing I had heard from Ankur uh very early on is that like just get started create that baseline that you can then iterate and build from. Uh I think a lot of people get caught in like creating this this golden dataset of test cases uh that they they can then like iterate from. Start you you don't necessarily have to do that. Start and build that uh that baseline. Establish that foundation that you can then improve upon. But this is a really good sort of matrix of like uh if I have good output but a low score, what do I do? Right? Improve your evals. If I have bad output and a high score, improve your your evals or your scoring. but really good kind of like highle uh understanding of of where to start to target your your efforts when you are building these apps and you're and you're creating evals.\n\nSo let's jump into the actual components that I just that I just talked about. So within the Braintrust platform we have a task. Uh again this could be a prompt.\n\nThis could be like this full agentic workflow. Uh very basic you see that that gif running. This is a prompt within the platform. You uh specify an underlying model that you want it to use. You give it a a system prompt. You can also uh give it access to tools. It has access to mustache templating.\n\nSo you can pass in variables like user questions or um you know the input from the user or its chat history or metadata. Right? So when we actually go and want to parse through these logs, the metadata becomes actually beneficial uh enabling us to do that in a really easy way. Um going forward uh maybe we have a multi-turn sort of chat type scenario where we want to add uh additional messages for the system and the assistant and the user uh and our tool calls as well. The uh the the platform allows for that just via this uh plus this messages uh button and then you're able to add those different messages to the prompt. Um also we can add tools. So oftentimes the the prompt will will need access to to something, right? Maybe it's a a rag type workflow, maybe it's doing web search, whatever it is, we can now use those tools as part of that prompt, right? And so when you you sort of encode in that prompt like make sure you use X tool, uh this prompt has access to that tool while it's running.\n\nUh the last one, this is actually a feature that is in beta right now. uh it's actually creating more of that agentic type workflow within your uh within the Braintrust platform itself.\n\nSo it's it's a way right now at least to chain together prompts where the the output of one now becomes the input of the other. But if you think back maybe to to this slide, if I have sort of um this prompt that has access to tools, you you create a pretty powerful system here where you're able to go from uh maybe that first step that has access to a certain tool and we get some output from that. we can then go to that next step that has access to maybe some other tools, right? This sort of like maybe multi- aent type of workflow we can create with the underlying tools within those prompts.\n\nThe second thing that I talked about is datasets, right? These are our test cases that we want to give to the the task to run. So we can sort of iterate over that. We can get the output and then going down a little bit further actually score that. But this is um obviously really important when we're when we're running our eval. And then when we are uh trying to pull from production, right, the the actual logs that are happening, we can add those those uh spans, those traces to the datasets in a really easy way. And I can show you what that looks like. But uh if you look there at the bottom, the only thing that's required is the the input.\n\nUh you also have the ability to add uh expected. So what is the expected output for that input, right? you can sort of like uh create some sort of score that looks at the output with the expected. There's a a score called Levenshtein that allows you to you know measure the the the difference between those two. So you can do some different things based on what you provide to that dataset. You also have metadata as well. Again being able to filter down different things pulling the dataset maybe into your own codebase and I want to filter by again x y or z via the metadata. That's all possible.\n\nUh I mentioned this a little bit ago, but just start small and iterate, right? You don't have to create this golden dataset to to get started here. Um just just start and then uh then continue to iterate and build from that baseline. Uh the human review portion also becomes really powerful again when we have stuff uh being logged within production having humans actually go through those logs and you there's lots of different ways to filter it down to the things that they should be looking at and then we can now decide to add those things to certain datasets that then inform uh the offline evals that we're running.\n\nUh the last thing, the last ingredient here that we need for our uh for our evals are our scores. We have both code-based scores, right? Again, this is like more of those binary type conditions, but you can actually uh code TypeScript or Python. You can do that within the UI as you see over there on the bottom left. Or you can within your own codebase, create that score and then push it into Braintrust. So we can use it in the platform. Other users who maybe aren't in the codebase can use that score as well.\n\nThe other score that we have access to is called LLM-as-a-judge. So this allows us to use an LLM to sort of judge the output. We can give it the the set of criteria that indicates what a good or a fair or a bad score or whatever it is. You you get to decide uh what that looks like. So you give it that criteria and it says if it's good uh I want to do a one. If it's bad I want to do a zero. But this starts to create the scores uh that we can use in that offline in that online sense. The other thing to call out here is that we have um internally built a package called autoevals. So this is something that you can now pull into your project. These are out of the box scores that are both LLM-as-a-judge as well as code-based. And so it just allows you to get started very very quickly. Another thing I heard Ankur mention is um maybe starting with Levenshtein maybe not the best score in a lot of cases but again it establishes a baseline very very little development work for for uh our users but it creates that thing that we can then build from and now you have uh a direction a direction to go in to go build maybe that more custom score. some of the things that we've heard from our customers. Uh some tips that um you know important to think about a lot of our customers are using higher quality models for scoring. Uh even if the prompt uses a cheaper model just just makes a lot of sense like while we're running that application to use the cheaper model but use the the more expensive one to actually go out and score it. Um also break your scoring into uh very focused areas. So uh the example that I'll show is a an application that that generates a changelog from a series of commits. So I could create a score that says assess my accuracy, my formatting and my correctness. Or I could create three different scores that assess accuracy and then formatting and then correctness. So have your scores be very targeted to the thing uh that they're supposed to be doing. Uh test your score pump, prompts in the playground before use. And then avoid overloading the score or prompt with context. Uh focus it on the relevant input and the output.\n\nUh a couple things here. Here's where over on the left we have our playgrounds. This is where we do that that sort of like rapid iteration where we can pull in those prompts. We can pull in those agents, add our datasets, and add our scores. and we can click run and it'll go out and sort of churn through that dataset that we've defined and will give you a sense for how well your task is performing against the dataset with the scores that we defined. But this is the place where uh developers uh PMs we even have a healthcare company that has doctors coming into the platform and interacting with the playground and even doing human review as well. Uh depends a little bit obviously on on the organization. The thing on the right is our experiments.\n\nThis is our sort of like snapshot in time of those eval. So imagine now like as we are doing this development and we're trying to understand uh like the last you know the last month or so are are we getting better right the the changes that we are making the model changes whatever it is are we improving our our application and the experiments is a really great way to to understand that.\n\nUh really important maybe to call out as well. You can see in the bottom right the eval can happen from uh the application, right? The the Braintrust platform as well as via the SDK.\n\nCool. Maybe just really quick because uh nobody likes looking at at slides all the time. I I certainly don't. Uh maybe if you haven't seen Braintrust yet, this is maybe a good a good quick demo.\n\nUh so again like the the uh the idea here is I have this this application. I'll just give you I'll show you over here. uh you give it a GitHub repository URL. It uh grabs the most recent commits and then creates a changelog from there. And then once this completes, you can even provide some user feedback. But this is the thing that we want to uh evaluate.\n\nSo what I can do uh I'll go into my my playground, right? This is the place where I can start to uh run those those uh those experiments or I can start to iterate on that prompt that I have from my project. I've actually loaded in two different uh two different prompts. So maybe I'll before going into the playground, I've actually created these two prompts within my codebase and I pushed them into the Braintrust platform. I've also created a dataset in that codebase and I've also created some scores. Right? These are the ingredients that we need to run our eval.\n\nSo now when we have we have those we have those different components. Now we're able to start to iterate here. So I'm going to actually create a net new playground and I will load in one of these prompts.\n\nSo again, here's my first prompt. Uh my first prompt has a model associated with it. What becomes really cool here is the ability to to like to iterate on the underlying model, right? I think a lot of us are we have access to a lot of underlying providers and we want to be able to understand if I change this or if I you know a provider adds a new model what is the impact to my application. So I can duplicate this prompt and maybe change this to GPT-4.1. I can run this. Before I run it, I have to add all of my components. So I'll add my my dataset and then I can add my different scores that I've uh that I've configured here for my changelog. And so I can click run and then now we'll understand here what is the effect of changing the model uh for this particular task with the scores that I've configured against this dataset.\n\nSo this will churn through all of these in in parallel and we'll start to get some results back. Uh lots of different ways to actually start to look at this data. I always like coming over to the summary layout because I can understand like um you can see over here this is my base task right here and then my comparison task. So I can understand uh looks like you know on average uh the base is performing a little bit better than my uh comparison task on my completeness score. Uh it's fairing a little bit worse on my accuracy score.\n\nUh both of them are you know 0% on my formatting. So probably have some work to do there. But you can start to see how you can use this type of interface to iterate very quickly. Right now uh the other thing that um maybe shouldn't do but uh I can't resist because we just released this today is this new loop feature. So imagine you are uh you know you're a user within Braintrust and before this you would sort of manually iterate here creating net new prompts uh making modifications changing the model. What if you could now uh utilize AI to go and do that for you? So in a sort of like cursor like uh interface, we can ask it to optimize a prompt. And I think the really unique thing here is it has access to those uh those evaluation results. And so when it goes to go uh change that prompt, it understands that it changes the prompt, it runs the evaluation. It understands if it got better relative to the scores that we defined. So you can see it's going to go through here. It'll fetch some eval results. Uh you'll probably see a diff here very very soon. if we don't I won't I won't hang out here too long, but I do want to highlight one of the things that we are releasing that really enables our users to iterate in a really uh really fast way. So, here's my my change. We can click accept and then it'll actually go out and run that eval again or it would uh I think I have an issue with my anthropic API keys. But the idea here again is like we can create that very rapid uh iterative feedback loop here within the playground.\n\nThe other thing here is uh we can run these as experiments. So this is um this is where we can start to create those snapshots in time of that eval and again see as I make these changes to that that application how is it sort of performed over time. I want to make sure I don't I don't want to go down. I don't want to like uh decrease the performance of my scores relative to obviously the last time it ran, but uh looking out over the last month, six months, whatever it is that we're tracking.\n\nCool.\n\nSo that was very very uh brief sort of intro to like eval via the UI, right?\n\nAgain, like just to summarize, we need a task, we need a dataset, and we need at least one score. We can pull those into the playground and now we can start to iterate. We can save these via experiments. Uh and now we can we have a way in which we can understand how well this application is performing. Right?\n\nThis is no longer like qualitative, right? This isn't like hey I think this got better that output looks better. There is actual rigor behind this. Now um customers oftentimes ask though like I don't really want to use or I'm not going to use the the platform as much. I'd rather use this from my my codebase. Is that possible? uh and it is uh so uh we have a Python SDK, we have a TypeScript SDK there there's some other ones as well. Go, Java, Kotlin. Uh for the most part, most of our users are using uh Python or TypeScript. Here's a just couple examples of what this might look like from an SDK perspective. Um, actually, if you all aren't opposed to looking at uh some code, here's just a a really basic example of uh defining a prompt within my my codebase and then pushing it into Braintrust. So, just leveraging that that Python SDK. Uh, another example should come over here creating a score. So, you give it sort of like the the things that it's looking for, but now I've sort of defined this score within my codebase. Uh, it's version controlled. Uh also the the prompts that you create within the UI are version controlled as well. Um but this is just another way to start to interact with with Braintrust. So again scores we could do datasets uh and then you can even do uh prompts up here as well I believe. So here's my eval dataset. Here's my changelog to prompt.\n\nAgain being able to start from the codebase and actually push them into the platform is possible. Just depends on the organization where they want to start.\n\nThe the other thing here is like this is more on the like the components of the eval side. So that's that top portion. Define those assets in code. Run that Braintrust push and now you have access to that in that Braintrust library. The other one is actually like defining the evals in code, right? So what that looks like is is slightly different. Um come over here. So we have our eval class that's coming from our Braintrust SDK. Again, it's looking for the exact same things that I just described, right? A dataset that we can use from Braintrust itself. Uh the task that we want to invoke and then the scores. So again defining this here within uh within your codebase certainly possible and then I can run you know a command that actually runs that eval within Braintrust. So from here go into Braintrust see the eval running this is now experiment that I can view over time. So again like you saw two different types of workflows here uh again catering to maybe two different personas or again the way in which organizations want to work it's up to them. Braintrust is very flexible in how we allow our users to uh to consume or use the platform.\n\nUh probably jumped ahead a little bit, but this is sort of a recap of what I just showed you. Again, from your code, you you create your prompts, your scores, your datasets, you can push them in there. Uh maybe just importantly important to highlight here of like why you would do this. Uh you want to source control your your prompts. Uh the big one here to call out is the online scoring. I have a section in a little bit diving a little bit deeper into that. Uh but if you want to use those scores that we define in the dataset, we should push them into Braintrust so that we can create online scores. We can understand how our application is performing in production relative to those scores that we want or that we're using within our offline evals. what I just showed you maybe another uh another variation of that that eval within our code again defining that dataset defining that task defining those scores becomes very very easy to now connect these two things it's just again up to you to decide where you are where you want to do this the other thing to call out here is that this can be run via CI/CD we do have some customers that that want to run their eval as part of the CI process so understanding in a more automated way right the the score for A and C whatever they've configured has it gotten better has it gotten worse, this becomes maybe a check as part of CI. There is uh if you look within our documentation, there's a a GitHub action example that shows you how you could set this up.\n\nCool. Let's let's move to production. Moving to production entails setting up logging, right? It entails instrumenting our application with uh with Braintrust um code. uh being able to like say I want to wrap this this uh LLM client. I want to wrap this particular function when it goes to call that tool becomes very very easy to do that. But so so why should you do it? Um I think I've probably said it said it numerous times here. But we want to measure quality on live traffic, right? We actually want to understand how well our application is performing with those scores. really great to use during offline eval becomes uh our aid in ensuring that we that we build really good applications that we're not creating regressions but also really important to monitor that live traffic. The other really important thing to call out I think is that that flywheel effect that it creates. So we have these datasets that we use to inform our offline evals. It's very very easy now to take the the logs that are generated within production and add those back to datasets. This also um speaks to some of that human review component where we want to now bring those humans in. They can start to review some of the logs that are relevant like maybe there's user feedback equals zero, maybe there's a comment or whatever it is, but like they can filter down to those particular things and as they find really interesting maybe test cases, it's very very easy to add those uh back to the dataset that we use in our offline evals. So I think the the feedback loop or the flywheel effect that that this creates is one of the really fundamental value props of of the platform.\n\nSo how do we do this? Uh there there's a couple different ways, right? We're first going to initialize a logger. This is just going to authenticate us into Braintrust and point us to a project.\n\nUh you may have seen when I open up the platform, I had numerous projects inside of there. You can almost think of a a project as a as a container for that feature, right? So you probably have multiple AI features that you're building. I want to have a container for feature A for those prompts, those scores, those datasets. You could certainly utilize those things across projects, but it becomes a really good sort of way to uh containerize the things that are important for that feature. Then you can start really basic, right? You can wrap a an LLM client. Uh so when you saw those some of those metrics with like tokens and l and duration and costs uh just very basically within the the uh the script or the the code here I just wrapped that OpenAI client and now I'm just sort of ingesting all of that those metrics into my logs. That's the easiest way to get started. You obviously probably want to uh do a little bit more. Again maybe you want to uh understand when you know that LLM invokes a tool. So, I want to trace uh I can add a trace decorator on top of a function. Uh I can even use some of the like the Braintrust low-level like span elements to create custom logs. And I want to customize the input and I want to customize the output and the metadata that we that we log to that span. So again, you can you can start very basic with wrapping in a client and then go down to like the individual span itself specifying that input and that output.\n\nThis leads us to online scoring, right?\n\nThis is I talked a little bit about this, right? This is where like when our logs are coming in, we can actually configure within the platform those scores that we want to run and we can specify sort of a sampling rate. So, we don't necessarily run that score across every single log that comes in. Maybe it's 10%, 20%, so on. Um, but it but it creates that really tight feedback loop that that I've been talking about. Uh al also maybe just important to mention the early regression alerts. So we can create automations within the Braintrust platform. If my score drops below a certain threshold, let's create an alert uh with it with our automation feature.\n\nThis is just uh and I can maybe walk through what this looks like instead of showing you here. Uh the custom views.\n\nThis is where like there's a lot of really rich information within these logs and it becomes really important I think again for the human review component to like filter these down to the things that they care about or the things that anybody cares about. So we can create custom views within Braintrust with the appropriate filters uh and then it's very easy for that human to go into what we call human review mode within Braintrust and sort of parse through those logs uh the ones that are the the ones that are going to be most meaningful to them.\n\nLet me uh let me connect some of those those dots there. So again, showing you some code, maybe good, maybe bad, but um I'm guessing there's some technical people in the room that that don't mind here.\n\nSo if I look for um the uh you may have s seen in one of those slides, there is a the Vercel AI SDK. I want to wrap this AI SDK model.\n\nAgain, this allows us to just create all of those metrics within Braintrust with just zero lift from us as a developer.\n\nThis becomes really easy to do. Uh you can also see where I have specified that span itself, right? I actually want to define the inputs and the outputs of that. The reason you would do that is because you have a specific dataset with a structure that you want to ensure maps to that. So like when you are within those logs parsing through them becomes really easy to add those spans back to that dataset. So ensuring that that data structure is sort of consistent across offline and online becomes really important again to create that feedback loop. So this is you know very high level of like how we can start to create those spans. Um now that we do right we can now go in uh the platform and start to configure our online scoring. So this is here just within this configuration pane I can click online scoring. I'll just delete I'll create a new rule.\n\nUh so my new rule and here's where we can add different scores, right? Obviously I have a few here that I've been using for the offline evals. I don't necessarily need to select all of them, but I certainly can. And then I want to uh apply a sampling rate. So I want to actually give you an example of what this looks like. So I'm going to do 100%. The other thing to call out here is that you can apply these to the individual spans themselves and not the entire root span. So where this becomes beneficial is like when you are invoking maybe tool calls, you're invoking like a a rag workflow and you actually want to create a score on whether or not the thing that it gave back uh is actually relevant to the user's query. So we can actually create a score specifically for that and highlight what that span is here. So again very very uh flexible in how you apply these scores to the things that are happening online.\n\nNow when I come back here to the application and we'll just run this again uh creating that changelog you'll now start to see here within uh the logs this will start to show up and then you'll start to see these scores be generated. Right? Again, this is where like you can now start to understand over time in production. How are these things doing? How are they fairing? Where can we get better? Uh again, now we can connect again like the things that are happening in our offline evals with the things that are happening with online. The other thing to call out here is the uh the feedback mechanism, right?\n\nUh we certainly have uh the ability to do like human review, but oftentimes you want your users to provide feedback as well. And so this is just a basic example of a thumbs up, thumbs down. And you can even provide a comment here.\n\nThis can now be logged to Braintrust.\n\nSo I should see over here my user feedback. So here's my my comment and then I have my user feedback score. But now I can also do something like this.\n\nSo again, maybe I want to filter my logs down to where user feedback is zero. So click that button. I'm going to change this to zero. Right? I don't have any rows yet like that. But now I can save this as a view and people who are now using this as human review can filter this down to where user feedback equals zero and we can figure out what's going on, right? What are the things that that fell down here within this application that we need to go fix. The other thing I'll highlight here is our sort of human review component. Uh actually um you click that that button or you can hit just R and it opens up this this different pane of your log. So it's a pared-down version of what you just saw there. It's a little bit easier for a human to go through and actually uh look at that that that input and that output. But you as a as a user of Braintrust can configure the human review scores that you would like to uh to use. So I have this add something here. So maybe this is a little bit more free text. I have a better score. Again, these are the things that that you can add to your platform that map to the the the review, the scores that you want your your humans to to add to those logs. Um, just really quick, I I'll highlight some of these things here. Um, this is what it starts to look like when you instrument your uh your application with those different um wrappers or those different trace functions. uh I'm able to understand at a very granular level, granular level the things that it's doing, right? So I essentially have these tool calls where it's going out and it's grabbing the commits from GitHub. It's understanding what the latest release is and it's fetching the commits from that latest release and now I can generate that changelog. But again, the the really unique thing here and maybe a different example of this is I can start to score those individual things that are happening. So this is a different uh application with a with this example. So if I open this up, I have these uh this conversational analytics application. So a user can ask a question, it can return back some data. But this application goes through these various steps, right? The first step is to rephrase the question that the user asked. So imagine like there's this chat history that we can load in as input and the LLM needs to rephrase that user question. If the LLM does a really bad job of rephrasing this question, everything as a result of this will fall down. probably not going to get a right a right answer. So what I can do is create a score specifically for that span to understand how well the LLM did in rephrasing that question can also understand the intent that I was able to derive or the LLM was able to derive from that question. Is that right? But you start to think of like these these more complex type of applications that you build. You need to be able to understand the individual steps that are happening and Braintrust allows for that very very easily via these scores and then being able to apply them not only again while you're in offline eval kind of mode but also online right we want to uh understand these logs and be able to apply these scores at the individual span level this becomes pretty powerful as well. Um, I think I actually stole from my my next section, my human in the loop. Kind of walked through this uh a little bit. Um, maybe just another call out if you happen to be at one of our workshops on Tuesday, um, Sarah from Notion, uh, who's a a Braintrust customer talked a little bit about how they think about human in the loop. And I think it's it's important to consider like the the size of her organization and what they're doing. Um, she mentioned that like she has a special type of role that they use for human in the loop type of interaction, right? There is it's almost like a product manager mixed with an LLM specialist. Uh, they're the people that are going through and doing those human reviews. Smaller organizations, she made a comment that was it actually makes a lot of sense for the engineers, some engineers to actually go through and do this as well. Becomes really powerful to pair like the automation with the human component of this. like this is not going to go away. I think it it adds value to the process. Um again, I think I just stole from myself like why why this matters, right? This is really critical for the the quality and the reliability of your application.\n\nUh it provides that that ground truth for for what you're for what you're doing. Two types of human in the loop uh interactions here. I walked you through that human review. Um give me one second and I'll call you. Yeah. uh the the two the two types the human review uh being able to like create that that uh interface within Braintrust that allows that user to kind of parse through the logs in a really easy manner as well as configuring scores that allow them to add the relevant scores to that particular log and then the user feedback. This is actually coming from our users in the application. Again being able to create sort of uh views on top of that feedback that then power uh maybe the human review and then creates that flywheel effect uh that we that we that we want. That's all I have today. Appreciate you all coming out here and and listening to me. But yeah, you had a question.\n\nThanks.\n\nYeah, the question is around like how are we using uh human review and like some of the logs and informing the the offline eval portion of this largely that cool uh yeah one thing I maybe I didn't highlight here is so maybe back within Braintrust I'm going to go back to my initial project.\n\nSo imagine now like we have we have all of these logs. We filtered it down to a particular Oh, are we still showing on the screen?\n\nAwesome. Thank you. Um, yeah. So, imagine like we have this uh this this process now, right, where we're we're doing that human review. We filtered it down to the records that are meaningful for whatever reason. It becomes really easy again to connect what's happening within production. So, I maybe I select all of these rows or I select individual rows, but I can add these back to the dataset that we're using within those offline evals. I I think I've said this like a hundred times over this conference, this flywheel effect. This is like I think what's missing oftentimes when we're building these these AI applications and what Braintrust allows for really seamlessly.\n\nYeah. Uh I have two questions. Uh the first one is about production. Uh is it possible to have multiple models in production and compare how they behave?\n\nYeah, I I don't see why not. Like my guess is in the underlying application you're swapping them out like having like AB tests, you know, I can have like a two or three or four and easily compare. Absolutely. Yeah. Um let's see if I have an example here. You're able to to group some of these scores. Uh maybe this is sort of an example of of what you're talking about.\n\nSo like maybe within production we have different models running. uh this this sort of view here allows us to understand like the the models that we're using under the hood. Uh and this is just you know you could do this within production as well and sort of do that AB testing. Cool. Uh my my second question is about humans in the loop, right? Um let's suppose that I have multiple humans and um they behave uh slightly different as a scorer scorers. Do you have anything or what what is the vision to do with that? Like is there a way that I can actually compare how they're scoring or something like that or not really?\n\nSo different users can maybe have different sort of criteria for scoring.\n\nMaybe the first thing I would say to that is like there there should be like maybe a rubric for your users who are interacting with human review. So you're not creating that. Uh you certainly have the ability to see like who is scoring different things within the platform. Um, I'm not sure if you're able to pull that as like a dataset to like assess the differences there, but maybe like before it gets to that place, like have a rubric, have a guideline of of what scoring looks like for your humans. Okay. Thank you. Yeah, of course.\n\nHi. Um, so the scorers I'm used to working with for like LLM-as-a-judge are like they're relativistic, right? So they can't tell you is the answer relevancy good or bad for a single run but it can tell you how it compares to previous iteration of like the same test set for example. Um, do you guys use LLM-as-a-judge scores for online or is and like how are are they relativistic like that or do you have some way to be like this is a good answer you know in and of itself for this sample or because it's all you have new data coming in right yeah I think a lot of our customers who are are thinking about this are like almost doing eval like trying to understand did the LLM-as-a-judge actually do a good job there. So like when that actually runs there's a rationale behind it and so you can sort of run an eval of those LLMs as a judge.\n\nI think Sarah from notion in our workshop described sort of a process like that within notion but I think that's that's sort of like where I would aim you. Okay. Cool. Thanks. Cool.\n\nAwesome.\n\nAre any of your customers doing eval before they launch? Like I'm working with a government. They don't want to launch until we show some accuracy levels. Yeah. So, we're getting our subject matter experts to enter in all the questions that they have. Right. They have huge datasets of thousands of questions, believe me, as a government. Um, and then we're using measures like you're talking about. Do you have a way to do that? Like I guess it I guess it's the same is it? So what you're describing is what we call offline evals, right? This is development, right? Um, we can actually do this testing before we get into production. And this is what I was talking about like establish that baseline, right? Using those scores, using that that dataset that you've already um created, but this all happens before we get into production, right? And then you can like one of the things that I heard from from somebody earlier is like one of my challenging things of building this AI application is uh establishing trust or creating that trust in this thing. That's part of what this is, right? It's like it's showing showing uh those people the scores of that application. So you start to iterate on this thing. Maybe it starts at 20% then it goes to 30 then at 40 and so on. That to me is the thing that you use to create that trust and uh create that like ground swell to push it into production. Okay. Yeah, that's what it that is what we're trying to do. So but I wondered if I can see the tool does that. Thank you. Yeah, of course. Yeah.\n\nTime for one more. Thanks. Um quick question. I love the CI/CD components. Um we're trying to build a lot of um we're trying to build like ML as a as a platform for our team. Um so we're get into evals and stuff like that. So how much of how much of the monitoring dashboard you have in Braintrust can actually be like take the data taken out and posted in a unified dashboard somewhere else. Yeah. All of this is available via SDK, right? You can pull down experiments, you can pull down datasets. Uh so you're able to you know pull this down like we have we have a customer that is actually building their own UI on top of like the the SDK itself. Like so they built their own sort of like components utilizing the SDK and pulling the the sort of things that we've logged the experiments that we have in the application into into their own UI. So certainly possible.\n\nAwesome. Oh great. Thanks. All right.\n\nCool. Thanks everybody.\n",
+      "entity_slugs": [
+        "doug-guthrie",
+        "ankur-goyal",
+        "braintrust",
+        "braintrust-platform"
+      ]
+    },
+    {
+      "id": "doc-research-summary",
+      "document_kind": "research_summary",
+      "title": "Optimized research summary: Evals 101 lifecycle",
+      "canonical_url": "https://www.youtube.com/watch?v=bk0TmxoZlUY",
+      "source_role": "primary",
+      "publisher": "AI Engineer research seed",
+      "source_class": "other",
+      "target_vector_spaces": [
+        "engineering_claims"
+      ],
+      "text": "Doug Guthrie, then a new solutions engineer at Braintrust, taught an introductory workshop on the AI eval lifecycle: task + dataset + scores, offline (pre-production) versus online (production) evaluation, playgrounds and experiments, Python/TypeScript SDKs versus the hosted platform, production logging, online scoring with sampling, human review, user feedback, and the flywheel of adding production traces back into offline datasets. Official Braintrust docs independently describe the same cycle. Claims below are speaker assertions unless marked independently verified.\n\nStrategy: Do not wait for a golden dataset. Establish a cheap baseline (even Levenshtein) and iterate. Push code-defined scores into the platform so production can be scored with the same logic used in offline evals. Log custom span input/output that matches dataset structure so production rows can be added back to eval datasets. Split accuracy / formatting / correctness rather than one combined score. Prefer a stronger model for judging than for the app task. Pair online scoring and user feedback filters with a human-review pane and a rubric when multiple reviewers exist. Organizations can define assets in the UI or in source control (`braintrust push` / `Eval` in code). The platform is optional for some users if they stay in the SDK.\n\nOfficial lifecycle: Iterate in playgrounds (mutable, side-by-side prompts/models/scorers); Promote to an experiment (immutable snapshot); Automate in CI/CD (GitHub Actions example in docs; official eval-action repo); Score in production with online scoring rules and a sampling rate; Feed production traces back into datasets for offline coverage",
+      "entity_slugs": [
+        "doug-guthrie",
+        "braintrust",
+        "braintrust-platform",
+        "autoevals"
+      ]
+    },
+    {
+      "id": "doc-org-profile",
+      "document_kind": "entity_profile",
+      "title": "Braintrust organization and product profile",
+      "canonical_url": "https://www.braintrust.dev/",
+      "source_role": "official",
+      "publisher": "Braintrust",
+      "source_class": "web_page",
+      "target_vector_spaces": [
+        "source_native_sections"
+      ],
+      "text": "Braintrust is a vendor (braintrust.dev, GitHub org braintrustdata) of a hosted AI evals and observability platform. Founder and CEO is Ankur Goyal (first-party blog 2023-09-28). Open SDKs are the braintrust package (PyPI and npm) and autoevals scorers. The hosted product (playgrounds, experiments, online scoring, human review) is distinct from those libraries. Speaker Doug Guthrie is a solutions engineer.",
+      "entity_slugs": [
+        "braintrust",
+        "ankur-goyal",
+        "doug-guthrie",
+        "braintrust-platform"
+      ]
+    },
+    {
+      "id": "doc-homepage",
+      "document_kind": "official_homepage",
+      "title": "Braintrust — The active observability platform for agents",
+      "canonical_url": "https://www.braintrust.dev/",
+      "source_role": "official",
+      "publisher": "Braintrust",
+      "source_class": "web_page",
+      "target_vector_spaces": [
+        "source_native_sections"
+      ],
+      "text": "Official homepage (retrieved 2026-09-01): Ship quality agents at scale. Surface patterns in production, turn them into evals, and improve quality with every release. Pillars: observability, evals, discovery. Native SDKs for Python, TypeScript, Go, Ruby, C#, and more. Homepage code sample imports Eval from braintrust and Factuality from autoevals.",
+      "entity_slugs": [
+        "braintrust",
+        "braintrust-platform",
+        "autoevals"
+      ]
+    },
+    {
+      "id": "doc-evaluate",
+      "document_kind": "official_docs",
+      "title": "Evaluate systematically — Braintrust docs",
+      "canonical_url": "https://www.braintrust.dev/docs/evaluate",
+      "source_role": "official",
+      "publisher": "Braintrust",
+      "source_class": "web_page",
+      "target_vector_spaces": [
+        "source_native_sections",
+        "engineering_claims"
+      ],
+      "text": "Official evaluation cycle: 1) Iterate in playgrounds. 2) Promote to an experiment. 3) Automate in CI/CD. 4) Score in production with online scoring rules. 5) Feed interesting production traces back into datasets. Offline evaluation runs against known datasets. Online scoring evaluates production traces asynchronously. Anatomy: data, task, scorers.",
+      "entity_slugs": [
+        "braintrust-platform",
+        "autoevals"
+      ]
+    },
+    {
+      "id": "doc-autoevals",
+      "document_kind": "official_docs",
+      "title": "Autoevals — Braintrust docs",
+      "canonical_url": "https://www.braintrust.dev/docs/evaluate/autoevals",
+      "source_role": "official",
+      "publisher": "Braintrust",
+      "source_class": "web_page",
+      "target_vector_spaces": [
+        "source_native_sections"
+      ],
+      "text": "The autoevals library provides pre-built scorers. Install with npm/pnpm add autoevals or pip install autoevals. Use inline with Eval from braintrust. Scorers include Factuality, Semantic, Levenshtein, JSON, SQL. Autoevals evaluate individual spans, not entire traces.",
+      "entity_slugs": [
+        "autoevals",
+        "braintrust"
+      ]
+    },
+    {
+      "id": "doc-run-in-code",
+      "document_kind": "official_docs",
+      "title": "Run experiments in code — Braintrust docs",
+      "canonical_url": "https://www.braintrust.dev/docs/evaluate/run-in-code",
+      "source_role": "official",
+      "publisher": "Braintrust",
+      "source_class": "web_page",
+      "target_vector_spaces": [
+        "source_native_sections"
+      ],
+      "text": "Run evaluations with the Braintrust SDK from a local script or the bt eval CLI. TypeScript: npm install braintrust openai autoevals. Python: pip install braintrust openai autoevals. Same eval code can be wired into CI/CD.",
+      "entity_slugs": [
+        "braintrust",
+        "autoevals"
+      ]
+    },
+    {
+      "id": "doc-repo-python",
+      "document_kind": "official_repository",
+      "title": "braintrustdata/braintrust-sdk-python",
+      "canonical_url": "https://github.com/braintrustdata/braintrust-sdk-python",
+      "source_role": "official",
+      "publisher": "Braintrust",
+      "source_class": "repository",
+      "target_vector_spaces": [
+        "source_native_sections"
+      ],
+      "text": "Official GitHub repository: Python Tracing and Evals library for Braintrust. Owner braintrustdata. Default branch main. Backs the PyPI package braintrust.",
+      "entity_slugs": [
+        "braintrust"
+      ]
+    },
+    {
+      "id": "doc-repo-js",
+      "document_kind": "official_repository",
+      "title": "braintrustdata/braintrust-sdk-javascript",
+      "canonical_url": "https://github.com/braintrustdata/braintrust-sdk-javascript",
+      "source_role": "official",
+      "publisher": "Braintrust",
+      "source_class": "repository",
+      "target_vector_spaces": [
+        "source_native_sections"
+      ],
+      "text": "Official GitHub repository: JavaScript Tracing and Evals library for Braintrust. Homepage https://www.braintrust.dev. README: npm install braintrust autoevals. Backs the npm package braintrust.",
+      "entity_slugs": [
+        "braintrust",
+        "autoevals"
+      ]
+    },
+    {
+      "id": "doc-repo-autoevals",
+      "document_kind": "official_repository",
+      "title": "braintrustdata/autoevals",
+      "canonical_url": "https://github.com/braintrustdata/autoevals",
+      "source_role": "official",
+      "publisher": "Braintrust",
+      "source_class": "repository",
+      "target_vector_spaces": [
+        "source_native_sections"
+      ],
+      "text": "Official GitHub repository for AutoEvals. Backs pypi/npm package autoevals.",
+      "entity_slugs": [
+        "autoevals"
+      ]
+    },
+    {
+      "id": "doc-blog-launch",
+      "document_kind": "official_blog",
+      "title": "It's time to build reliable AI",
+      "canonical_url": "https://www.braintrust.dev/blog/reliable-ai",
+      "source_role": "official",
+      "publisher": "Braintrust",
+      "source_class": "web_page",
+      "target_vector_spaces": [
+        "source_native_sections"
+      ],
+      "text": "28 September 2023 post by Ankur Goyal introducing Braintrust. Ankur writes that he started the company. Mentions Coleen Baik as founding designer and Manu Goyal as founding engineer.",
+      "entity_slugs": [
+        "ankur-goyal",
+        "braintrust"
+      ]
+    },
+    {
+      "id": "doc-case-notion",
+      "document_kind": "case_study",
+      "title": "How Notion evaluates AI at scale",
+      "canonical_url": "https://www.braintrust.dev/customers/notion",
+      "source_role": "official",
+      "publisher": "Braintrust",
+      "source_class": "web_page",
+      "target_vector_spaces": [
+        "source_native_sections"
+      ],
+      "text": "Official Braintrust customer page for Notion. In Evals 101, Doug Guthrie named Notion as a customer and referenced Sarah from Notion's human-in-the-loop workshop. This workshop did not present Notion outcomes.",
+      "entity_slugs": [
+        "notion",
+        "braintrust-platform"
+      ]
+    }
+  ],
+  "engineering_claims": [
+    {
+      "id": "claim-1",
+      "statement": "An eval is a structured test of AI system quality with three ingredients: a task (any input/output logic, from one prompt to an agentic workflow), a dataset of real-world examples, and scores (LLM-as-judge or code-based).",
+      "claim_role": "attributed_speaker_assertion",
+      "problem": "Non-deterministic LLM outputs make it hard to know if a change is better or worse.",
+      "mechanism": "Run a task over a dataset and attach numeric or categorical scores.",
+      "applicability": "Any AI feature from a single prompt to a multi-tool agent, offline or online.",
+      "limitations": "A task still needs a defined input and output; expected output is optional but enables some code scores.",
+      "attribution": "Doug Guthrie / Braintrust, AI Engineer World's Fair 2025",
+      "locator_excerpt": "The only thing it requires is an input and an output. The second thing is a dataset. This is our real world examples.",
+      "related_entities": [
+        "braintrust",
+        "braintrust-platform",
+        "autoevals"
+      ]
+    },
+    {
+      "id": "claim-2",
+      "statement": "Offline evals are pre-production iteration against known datasets; online evals are production tracing plus quality measurement on live traffic.",
+      "claim_role": "attributed_speaker_assertion",
+      "problem": "Teams either never measure quality before ship, or never measure it after.",
+      "mechanism": "Offline: playgrounds and experiments on fixed cases. Online: instrumented traces plus scoring rules.",
+      "applicability": "Development before launch and monitoring after launch.",
+      "limitations": "Online scoring has no ground truth; official docs say it relies more on LLM-as-judge.",
+      "attribution": "Doug Guthrie / Braintrust, AI Engineer World's Fair 2025",
+      "locator_excerpt": "Offline is pre-production. This is us actually doing that that iteration. It's identifying and resolving issues before deployment.",
+      "related_entities": [
+        "braintrust-platform",
+        "braintrust"
+      ]
+    },
+    {
+      "id": "claim-3",
+      "statement": "Connecting offline and online evals creates a flywheel: filter production logs, add spans back to datasets, and improve the next offline run.",
+      "claim_role": "attributed_speaker_assertion",
+      "problem": "Offline tests drift from real user traffic.",
+      "mechanism": "Human review or user-feedback filters select production rows; those rows are appended to eval datasets.",
+      "applicability": "Any team that logs production traces with the same span shape as offline cases.",
+      "limitations": "Business claims (cut dev time, higher quality) are speaker-attributed, not independently measured here.",
+      "attribution": "Doug Guthrie / Braintrust, AI Engineer World's Fair 2025",
+      "locator_excerpt": "I can add these back to the dataset that we're using within those offline evals",
+      "related_entities": [
+        "braintrust-platform"
+      ]
+    },
+    {
+      "id": "claim-4",
+      "statement": "Evals are offensive development tools, not only defensive unit tests, for non-deterministic LLM applications.",
+      "claim_role": "attributed_speaker_assertion",
+      "problem": "Teams treat evals like after-the-fact unit tests.",
+      "mechanism": "Use evals to decide model/prompt changes and add rigor while building.",
+      "applicability": "Early product development, not only regression gates.",
+      "limitations": "Attributed to Ankur Goyal via the speaker; not a first-party quote on this recording.",
+      "attribution": "Doug Guthrie attributing Ankur Goyal / Braintrust, AI Engineer World's Fair 2025",
+      "locator_excerpt": "this is a really great way to for us to play offense as opposed to just playing defense where I think maybe unit tests are are kind of used for",
+      "related_entities": [
+        "ankur-goyal",
+        "braintrust"
+      ]
+    },
+    {
+      "id": "claim-5",
+      "statement": "The hosted Braintrust platform and the open SDKs are alternative surfaces for the same eval assets.",
+      "claim_role": "attributed_speaker_assertion",
+      "problem": "Some orgs want a UI; others want source-controlled prompts and scores.",
+      "mechanism": "Define assets in the UI or in code, push with the SDK, run playgrounds, save experiments.",
+      "applicability": "Python and TypeScript are the common SDKs; official docs also cover other languages.",
+      "limitations": "Hosted product features (Loop, human-review pane) are not provided by the SDK alone.",
+      "attribution": "Doug Guthrie / Braintrust, AI Engineer World's Fair 2025",
+      "locator_excerpt": "we have a Python SDK, we have a TypeScript SDK there there's some other ones as well. Go, Java, Kotlin.",
+      "related_entities": [
+        "braintrust",
+        "braintrust-platform"
+      ]
+    },
+    {
+      "id": "claim-6",
+      "statement": "autoevals is Braintrust's open package of out-of-the-box LLM-as-judge and code-based scorers, including Levenshtein.",
+      "claim_role": "attributed_speaker_assertion",
+      "problem": "Writing custom judges blocks getting a first baseline.",
+      "mechanism": "Import autoevals scorers in SDK code or select them in the UI / online scoring rules.",
+      "applicability": "Quick baselines; official docs list Factuality, Semantic, Levenshtein, JSON, SQL.",
+      "limitations": "Speaker said Levenshtein is often a weak score but cheap to start. Autoevals score spans, not whole traces.",
+      "attribution": "Doug Guthrie / Braintrust, AI Engineer World's Fair 2025",
+      "locator_excerpt": "we have internally built a package called autoevals. So this is something that you can now pull into your project.",
+      "related_entities": [
+        "autoevals",
+        "braintrust"
+      ]
+    },
+    {
+      "id": "claim-7",
+      "statement": "Use a higher-quality model for scoring even when the application uses a cheaper model, and keep each score narrowly targeted.",
+      "claim_role": "attributed_speaker_assertion",
+      "problem": "Combined or underpowered judges hide which dimension failed.",
+      "mechanism": "Separate accuracy, formatting, and correctness; test score prompts in the playground.",
+      "applicability": "LLM-as-judge setups where judge cost is acceptable.",
+      "limitations": "Customer tip, not a measured benchmark in this talk.",
+      "attribution": "Doug Guthrie / Braintrust, AI Engineer World's Fair 2025",
+      "locator_excerpt": "a lot of our customers are using higher quality models for scoring. Uh even if the prompt uses a cheaper model",
+      "related_entities": [
+        "braintrust-platform",
+        "autoevals"
+      ]
+    },
+    {
+      "id": "claim-8",
+      "statement": "Evals can run in CI/CD as automated quality checks; Braintrust documents a GitHub Actions setup.",
+      "claim_role": "attributed_speaker_assertion",
+      "problem": "Regressions ship because evals stay manual.",
+      "mechanism": "Run the same Eval() / bt eval path on pull requests.",
+      "applicability": "Teams that already have CI and source-controlled evals.",
+      "limitations": "Talk pointed at docs rather than showing a live Actions workflow.",
+      "attribution": "Doug Guthrie / Braintrust, AI Engineer World's Fair 2025",
+      "locator_excerpt": "this can be run via CI/CD we do have some customers that that want to run their eval as part of the CI process",
+      "related_entities": [
+        "braintrust"
+      ]
+    },
+    {
+      "id": "claim-9",
+      "statement": "Production logging starts with a project-scoped logger, wrapping an LLM client or Vercel AI SDK model, then optional trace decorators and custom spans.",
+      "claim_role": "attributed_speaker_assertion",
+      "problem": "Without instrumentation there is no online eval.",
+      "mechanism": "Initialize a logger to a project; wrap the client for tokens/duration/cost; add spans that match dataset shape.",
+      "applicability": "Apps already using OpenAI-compatible clients or Vercel AI SDK.",
+      "limitations": "Wrap APIs were demonstrated, not independently re-verified line-by-line.",
+      "attribution": "Doug Guthrie / Braintrust, AI Engineer World's Fair 2025",
+      "locator_excerpt": "we want to measure quality on live traffic, right? We actually want to understand how well our application is performing with those scores",
+      "related_entities": [
+        "braintrust",
+        "braintrust-platform"
+      ]
+    },
+    {
+      "id": "claim-10",
+      "statement": "Online scoring applies configured scores to production logs at a sampling rate and can target individual spans, not only the root span.",
+      "claim_role": "attributed_speaker_assertion",
+      "problem": "Scoring every live request is expensive; root-only scores hide tool/RAG failures.",
+      "mechanism": "Platform rule selects scores, sampling rate, and span scope.",
+      "applicability": "Production traces that already emit nested spans.",
+      "limitations": "Demo used 100% sampling; speaker said 10-20% is more typical.",
+      "attribution": "Doug Guthrie / Braintrust, AI Engineer World's Fair 2025",
+      "locator_excerpt": "we can actually configure within the platform those scores that we want to run and we can specify sort of a sampling rate",
+      "related_entities": [
+        "braintrust-platform",
+        "autoevals"
+      ]
+    },
+    {
+      "id": "claim-11",
+      "statement": "Regression alerts can fire automations when a score drops below a threshold.",
+      "claim_role": "attributed_speaker_assertion",
+      "problem": "Silent quality drops in production.",
+      "mechanism": "Platform automations on score thresholds.",
+      "applicability": "Teams already running online scoring.",
+      "limitations": "Not demonstrated end-to-end in the workshop.",
+      "attribution": "Doug Guthrie / Braintrust, AI Engineer World's Fair 2025",
+      "locator_excerpt": "If my score drops below a certain threshold, let's create an alert with it with our automation feature.",
+      "related_entities": [
+        "braintrust-platform"
+      ]
+    },
+    {
+      "id": "claim-12",
+      "statement": "Human-in-the-loop has two channels: in-platform human review and end-user thumbs up/down feedback, both used to filter logs into the flywheel.",
+      "claim_role": "attributed_speaker_assertion",
+      "problem": "Automation alone lacks ground truth.",
+      "mechanism": "Saved views, review pane (button or R), configurable review scores, plus logged user feedback.",
+      "applicability": "Ops and product reviewers as well as in-app users.",
+      "limitations": "Multi-scorer disagreement export was not confirmed as a feature; speaker recommended a rubric.",
+      "attribution": "Doug Guthrie / Braintrust, AI Engineer World's Fair 2025",
+      "locator_excerpt": "there should be like maybe a rubric for your users who are interacting with human review",
+      "related_entities": [
+        "braintrust-platform",
+        "notion"
+      ]
+    },
+    {
+      "id": "claim-13",
+      "statement": "Consistent input/output structure across offline datasets and online spans is required for the feedback loop.",
+      "claim_role": "attributed_speaker_assertion",
+      "problem": "Production rows that do not match dataset schema cannot be reused as eval cases.",
+      "mechanism": "Custom spans specify the same input/output/metadata fields used offline.",
+      "applicability": "Any flywheel that adds production traces to datasets.",
+      "limitations": "Requires engineering discipline at instrumentation time.",
+      "attribution": "Doug Guthrie / Braintrust, AI Engineer World's Fair 2025",
+      "locator_excerpt": "ensuring that that data structure is sort of consistent across offline and online becomes really important again to create that feedback loop",
+      "related_entities": [
+        "braintrust",
+        "braintrust-platform"
+      ]
+    },
+    {
+      "id": "claim-14",
+      "statement": "Experiments, datasets, and logs can be pulled via the SDK into external dashboards or a custom UI.",
+      "claim_role": "attributed_speaker_assertion",
+      "problem": "Some teams need a unified internal monitoring surface.",
+      "mechanism": "SDK read APIs for experiments, datasets, and logs.",
+      "applicability": "Platform-plus-SDK users building ML-platform dashboards.",
+      "limitations": "One unnamed customer example; no API contract shown.",
+      "attribution": "Doug Guthrie / Braintrust, AI Engineer World's Fair 2025",
+      "locator_excerpt": "All of this is available via SDK, right? You can pull down experiments, you can pull down datasets",
+      "related_entities": [
+        "braintrust"
+      ]
+    },
+    {
+      "id": "claim-15",
+      "statement": "Pre-launch testing for high-trust settings is offline evals: SME datasets establish a baseline before production.",
+      "claim_role": "attributed_speaker_assertion",
+      "problem": "Stakeholders will not launch until they see accuracy evidence.",
+      "mechanism": "Run offline evals on large SME question sets and show score movement over experiments.",
+      "applicability": "Regulated or government-style deployments; also any pre-production trust exercise.",
+      "limitations": "Audience example was unnamed; not a published case study.",
+      "attribution": "Doug Guthrie / Braintrust, AI Engineer World's Fair 2025",
+      "locator_excerpt": "this is what we call offline evals, right? This is development, right? we can actually do this testing before we get into production",
+      "related_entities": [
+        "braintrust-platform"
+      ]
+    }
+  ]
+}

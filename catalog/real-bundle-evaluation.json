@@ -1,0 +1,22 @@
+{
+  "storeClass": "internal_exploratory",
+  "bundleCount": 3,
+  "documentCount": 37,
+  "claimProjectionCount": 41,
+  "embeddingRunCount": 3,
+  "vectorCount": 41,
+  "metrics": {
+    "recallAtK": 1,
+    "precisionAtK": 0.333333333333,
+    "mrr": 1,
+    "ndcgAtK": 1,
+    "filterSatisfaction": 1,
+    "abstentionAccuracy": 1,
+    "citationCorrectness": 1,
+    "falseAcceptanceCount": 0,
+    "p95LatencyMs": 22.26000000000022,
+    "totalCostMicros": 0
+  },
+  "evaluationManifestDigest": "sha256:5dd59430ad67442bbdaa8787f42fde23a01ef8910fad0427b785154a1441f30a",
+  "totalWallMs": 1035.136
+}

@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "research-report-kind.v1",
+  "id": "study_appraisal",
+  "version": "1.0.0",
+  "title": "Study appraisal",
+  "summary": "Appraises ONE study: it names the study by exactly one cited source fragment and records what that study reported and how it was conducted, domain by domain. It never rates a body of evidence: certainty across studies is an EvidenceSynthesisAssessment with its own reviewer, never a field of a study appraisal.",
+  "profiles": ["scientific"],
+  "qualifierSchemas": ["scientific.v2"],
+  "structuredBodySchema": "research-core.structured_body.v2",
+  "bodyRenderer": "research-report-renderer.v2",
+  "requiredSections": [
+    { "id": "study", "purpose": "The appraised study, named by exactly one cited fragment, with its design.", "constraints": [{ "type": "single_cited_source" }] },
+    {
+      "id": "domains",
+      "purpose": "One table row per appraisal domain with what the study reported for it.",
+      "constraints": [{ "type": "table_first_column", "values": ["selection", "performance", "detection", "attrition", "reporting"] }]
+    },
+    { "id": "limitations", "purpose": "Limits of the appraisal: unreported items, access limits, unresolved questions.", "constraints": [] }
+  ],
+  "forbiddenSections": ["body_of_evidence", "certainty_of_evidence", "evidence_synthesis"],
+  "framingSections": ["limitations"],
+  "obligationTemplates": [
+    { "id": "design", "description": "The study's design, population, intervention and comparator as the study reports them.", "weight": 3000, "required": true, "section": "study" },
+    { "id": "domain", "description": "What the study reported for one appraisal domain, attributed to the study.", "weight": 5000, "required": true, "section": "domains" },
+    { "id": "applicability", "description": "How far the study's population and setting apply to the task's question.", "weight": 2000, "required": false, "section": "limitations" }
+  ],
+  "assertionRules": {
+    "allowedKinds": ["source_report", "derivation"],
+    "scientificClaimClasses": ["source_report"]
+  },
+  "subject": { "cardinality": "single_study", "bodyOfEvidenceRating": "forbidden" },
+  "extension": "Every other report kind uses this same research-report-kind.v1 envelope. A body-of-evidence rating for an outcome/comparison/population is a separate EvidenceSynthesisAssessment over an included-study set digest, recorded with its reviewer; three reports of one study count as one origin."
+}

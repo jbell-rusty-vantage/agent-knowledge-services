@@ -1,0 +1,306 @@
+{
+  "recordedMcpRenames": 70,
+  "movedTestFiles": [
+    {
+      "from": "apps/api/src/verification-benchmark-reads.test.ts",
+      "to": "apps/api/src/tests/verification-benchmark-reads.test.ts",
+      "identities": 3
+    }
+  ],
+  "missingTests": [],
+  "replacedTests": {},
+  "changedOutcomes": [],
+  "addedTests": [
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: A2A answers 401 Callback authentication failed for an unknown key reference and for a tampered payload",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: A2A answers 503 INTERNAL_ERROR for a retrieval task without the canonical executor, 500 for a failing port",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: A2A answers callback context failures: 403 mismatch, 404 unknown operation, 403 task binding, 409 replay",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: A2A answers callback errors before the payload is authenticated: 401, 403 for a reader, 400 without a key reference",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: A2A answers task submission errors: 401, 403 for a reader, 400 for an invalid body",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: A2A answers the task binding failures with problem+json",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: adjudication (reads) adjudication-decisions/:id answers 401, 400 tenant, 403 foreign, an invalid id, 503 unavailable, 404, 503 integrity, and pending/terminal states",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: adjudication (reads) adjudications/:id answers 401, 400 tenant, 403 foreign, an invalid id, 503 unavailable, 404, 503 integrity, and pending/terminal states",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: adjudication adjudications::record-decision answers 401, 400 tenant, 403 foreign, 503 not composed, 400 idempotency key, 403 ownership, 503 admission",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: adjudication adjudications::request answers 401, 400 tenant, 403 foreign, 503 not composed, 400 idempotency key, 403 ownership, 503 admission",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: benchmark (reads) benchmarks/:id answers 401, 400 tenant, 403 foreign, an invalid id, 503 unavailable, 404, 503 integrity, and pending/terminal states",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: benchmark (reads) benchmarks/:id/manifest answers 401, 400 tenant, 403 foreign, an invalid id, 503 unavailable, 404, 503 integrity, and pending/terminal states",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: benchmark (reads) benchmarks/comparisons/:id answers 401, 400 tenant, 403 foreign, an invalid id, 503 unavailable, 404, 503 integrity, and pending/terminal states",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: benchmark benchmarks::compare answers 401, 400 tenant, 403 foreign, 503 not composed, 400 idempotency key, 403 ownership, 503 admission",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: benchmark benchmarks::run answers 401, 400 tenant, 403 foreign, 503 not composed, 400 idempotency key, 403 ownership, 503 admission",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: benchmark profile capture answers 400 INVALID_CONTRACT for a bad profile name, a missing idempotency key and an invalid body",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: benchmark profile capture answers 400 when the caller sends routing headers the server owns",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: benchmark profile capture answers 400 when the request is not an acquisition",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: benchmark profile capture answers 401 without credentials, on its own bearer path",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: benchmark profile capture answers 404 for an unknown profile, 403 for a missing acquisition grant, and 500 for a mismatched context",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: benchmark profile capture answers 503 CAPABILITY_NOT_ADMITTED when the profile capture is not composed",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: demo answers 400 INVALID_CONTRACT for an invalid envelope and an invalid evaluation input",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: demo answers 401 without credentials, 403 for an operator (demo.evaluate is an evaluator action) and 400 without a tenant",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: demo answers 503 INTERNAL_ERROR when the fixture loader is not composed (today: untyped, not CAPABILITY_NOT_ADMITTED)",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: demo answers the context failures (today: tenant and correlation replies are untyped, the actor reply is problem+json)",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: knowledge mutations answers 400 INVALID_CONTRACT for a schema-invalid envelope and for an invalid operation input",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: knowledge mutations answers 400 when the path vector store differs from the input, and for a malformed path id",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: knowledge mutations answers 401, 400 (tenant) and 403 (reader) on a submission route",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: knowledge mutations answers 403 for publication and decision submissions an operator may not make",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: knowledge mutations answers 404 for an unknown source action and an unknown resource action (today: untyped)",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: knowledge mutations answers a list route without credentials with 401",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: knowledge mutations answers the envelope binding failures with problem+json (this route family sets the content type)",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: knowledge mutations maps a port's idempotency conflict and unexpected failure through the shared handler",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: knowledge reads /v1/artifacts answers 401, an invalid id, 503 without a resource store (today: 503 INTERNAL_ERROR) and 404 for an unknown resource",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: knowledge reads /v1/eval-runs/FAILURES answers 401, an invalid id, 503 without a resource store (today: 503 INTERNAL_ERROR) and 404 for an unknown resource",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: knowledge reads /v1/eval-runs/REPORT answers 401, an invalid id, 503 without a resource store (today: 503 INTERNAL_ERROR) and 404 for an unknown resource",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: knowledge reads /v1/receipts answers 401, an invalid id, 503 without a resource store (today: 503 INTERNAL_ERROR) and 404 for an unknown resource",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: knowledge reads /v1/retrieval-runs answers 401, an invalid id, 503 without a resource store (today: 503 INTERNAL_ERROR) and 404 for an unknown resource",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: knowledge reads /v1/retrieval-runs/EXPLAIN answers 401, an invalid id, 503 without a resource store (today: 503 INTERNAL_ERROR) and 404 for an unknown resource",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: knowledge reads /v1/vector-stores answers 401, an invalid id, 503 without a resource store (today: 503 INTERNAL_ERROR) and 404 for an unknown resource",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: knowledge reads answers 409 CONFLICT when a stored resource fails its schema (integrity), as problem+json",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: knowledge reads answers the chunking procedure list without credentials with 401",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: knowledge reads answers the citation replay: 503 INTERNAL_ERROR without custody, 404 problem+json for an unknown packet",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: knowledge reads answers the evidence-packet read: 404 when no resolver is composed (today: 404 untyped, not 503)",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: knowledge reads answers the vector-store operation read: 404 when foreign, 409 when the operation record is missing (today: 409 untyped)",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: operations answers 400 INVALID_CONTRACT with issues for a schema-invalid envelope",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: operations answers 401 for an anonymous caller with a valid kind",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: operations answers 401 on the list and detail routes without credentials",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: operations answers 403 FORBIDDEN when a reader submits, and for publication and decision kinds an operator lacks",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: operations answers 403 on the list route for a foreign tenant",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: operations answers 404 NOT_FOUND for an unknown operation (today: content-type application/json, not problem+json)",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: operations answers 503 CAPABILITY_NOT_ADMITTED when the port reports an unadmitted operation kind",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: operations answers the control route's binding failures",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: operations answers the control route's unknown action and unknown operation with 404 (today: untyped)",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: operations answers the envelope binding failures (today: tenant and correlation replies are untyped, actor reply is problem+json)",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: operations maps a thrown IDEMPOTENCY_CONFLICT to 409 IDEMPOTENCY_CONFLICT through the shared error handler",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: operations maps a thrown INVALID_STATE_TRANSITION to 409 INVALID_STATE_TRANSITION through the shared error handler",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: operations maps a thrown postgres://user:secret@host/db exploded to 500 INTERNAL_ERROR through the shared error handler",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: operations maps a thrown RESOURCE_INTEGRITY_CONFLICT to 409 CONFLICT through the shared error handler",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: operations maps a thrown RESOURCE_RESPONSE_LIMIT_EXCEEDED to 413 LIMIT_EXCEEDED through the shared error handler",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: operations validates the operation kind before it authenticates (today: 400 for an anonymous caller with a bad kind)",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: retrieval answers 400 when the retrieval contract version is not v1",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: retrieval answers 503 INTERNAL_ERROR without a canonical executor (today: not CAPABILITY_NOT_ADMITTED)",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: retrieval answers plan validation errors: 401, 403 for a foreign tenant, 400 for an invalid plan",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: retrieval answers retrieval execution failures: 422 typed body, 409 policy, 503 provider, 500 unexpected",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: retrieval answers run submission errors: 401, 403 for a reader, 400 for an invalid body",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: retrieval answers the run envelope binding failures with problem+json",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: retrieval answers the run list without credentials with 401",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: system (internal drift queue) /v1/internal/verification/drift-alerts answers 401, 403 for a reader, 503 when not composed, 403 for an unadmitted service, 400 for an invalid body",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: system (internal drift queue) /v1/internal/verification/drift-revalidations/ack answers 401, 403 for a reader, 503 when not composed, 403 for an unadmitted service, 400 for an invalid body",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: system (internal drift queue) /v1/internal/verification/drift-revalidations/claim answers 401, 403 for a reader, 503 when not composed, 403 for an unadmitted service, 400 for an invalid body",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: system (internal drift queue) /v1/internal/verification/drift-revalidations/scan answers 401, 403 for a reader, 503 when not composed, 403 for an unadmitted service, 400 for an invalid body",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: system answers 400 INVALID_CONTRACT when the tenant header is missing (checked after the token)",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: system answers 401 UNAUTHORIZED without a bearer token",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: system answers 403 FORBIDDEN for a tenant the identity holds no grant for",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: system answers an unknown route with Fastify's default 404 body (today: not a problem document)",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: system answers an unsupported media type with 500 INTERNAL_ERROR (today: 500; same cause as malformed JSON)",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: system answers malformed JSON with 500 INTERNAL_ERROR (today: 500 although the caller is at fault; the MCP host answers 400)",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: system answers the same 401 for an unknown bearer token",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: system generates a correlation id when the caller sends none, and truncates one over 255 characters",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: verification mutations answers 400 INVALID_CONTRACT for a schema-invalid body once the route is admitted",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: verification mutations answers 400 when the replay path run differs from the body, and 404 for another action suffix",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: verification mutations answers 403 FORBIDDEN when an admission predicate refuses the request",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: verification mutations answers 500 INTERNAL_ERROR when a resolver throws unexpectedly",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: verification mutations answers capture acquisition without a catalog with 503 and without a grant with 403",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: verification mutations artifacts::parse answers 401, 400 tenant, 403 foreign, 503 not composed, 400 idempotency key, 403 ownership, 503 admission",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: verification mutations audit-bundles::inspect answers 401, 400 tenant, 403 foreign, 503 not composed, 400 idempotency key, 403 ownership, 503 admission",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: verification mutations captures answers 401, 400 tenant, 403 foreign, 503 not composed, 400 idempotency key, 403 ownership, 503 admission",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: verification mutations claims::verify answers 401, 400 tenant, 403 foreign, 503 not composed, 400 idempotency key, 403 ownership, 503 admission",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: verification mutations extractions answers 401, 400 tenant, 403 foreign, 503 not composed, 400 idempotency key, 403 ownership, 503 admission",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: verification mutations extractions::verify answers 401, 400 tenant, 403 foreign, 503 not composed, 400 idempotency key, 403 ownership, 503 admission",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: verification mutations metrics::verify answers 401, 400 tenant, 403 foreign, 503 not composed, 400 idempotency key, 403 ownership, 503 admission",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: verification mutations reports::verify answers 401, 400 tenant, 403 foreign, 503 not composed, 400 idempotency key, 403 ownership, 503 admission",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: verification mutations runs::replay answers 401, 400 tenant, 403 foreign, 503 not composed, 400 idempotency key, 403 ownership, 503 admission",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: verification reads (reads) answers 400 for an unknown query parameter and for an out-of-range page size",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: verification reads (reads) answers reconciliation applies with 403 for a reader and 400 for a schema-invalid body",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: verification reads (reads) audit-inspections/:id answers 401, 400 tenant, 403 foreign, an invalid id, 503 unavailable, 404, 503 integrity, and pending/terminal states",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: verification reads (reads) captures/:id answers 401, 400 tenant, 403 foreign, an invalid id, 503 unavailable, 404, 503 integrity, and pending/terminal states",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: verification reads (reads) cases/:id answers 401, 400 tenant, 403 foreign, an invalid id, 503 unavailable, 404, 503 integrity, and pending/terminal states",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: verification reads (reads) claims/:id answers 401, 400 tenant, 403 foreign, an invalid id, 503 unavailable, 404, 503 integrity, and pending/terminal states",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: verification reads (reads) claims/:id/provider-attempts/:attempt/reconciliation answers 401, 400 tenant, 403 foreign, an invalid id, 503 unavailable, 404, 503 integrity, and pending/terminal states",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: verification reads (reads) evidence/:id answers 401, 400 tenant, 403 foreign, an invalid id, 503 unavailable, 404, 503 integrity, and pending/terminal states",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: verification reads (reads) extractions/:id answers 401, 400 tenant, 403 foreign, an invalid id, 503 unavailable, 404, 503 integrity, and pending/terminal states",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: verification reads (reads) extractions/:id/provider-attempts/:attempt/reconciliation answers 401, 400 tenant, 403 foreign, an invalid id, 503 unavailable, 404, 503 integrity, and pending/terminal states",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: verification reads (reads) reports/:id answers 401, 400 tenant, 403 foreign, an invalid id, 503 unavailable, 404, 503 integrity, and pending/terminal states",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: verification reads (reads) reports/:id/provider-attempts/:attempt/reconciliation answers 401, 400 tenant, 403 foreign, an invalid id, 503 unavailable, 404, 503 integrity, and pending/terminal states",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: verification reads (reads) runs/:id answers 401, 400 tenant, 403 foreign, an invalid id, 503 unavailable, 404, 503 integrity, and pending/terminal states",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: verification reads (reads) runs/:id/cases answers 401, 400 tenant, 403 foreign, an invalid id, 503 unavailable, 404, 503 integrity, and pending/terminal states",
+    "apps/api/src/tests/golden-errors.test.ts :: golden API errors: verification reads (reads) runs/:id/manifest answers 401, 400 tenant, 403 foreign, an invalid id, 503 unavailable, 404, 503 integrity, and pending/terminal states",
+    "apps/mcp/src/tests/golden-errors.test.ts :: golden MCP errors: catalog tools answers a read of an unknown resource with the NOT_FOUND code, and unexpected reader failures sanitized",
+    "apps/mcp/src/tests/golden-errors.test.ts :: golden MCP errors: catalog tools answers a schema-invalid retrieval plan with the thrown text and a missing v1 pin as CAPABILITY_NOT_ADMITTED",
+    "apps/mcp/src/tests/golden-errors.test.ts :: golden MCP errors: catalog tools answers a schema-invalid tool input with the thrown ZodError text (today: the raw issues JSON, no code)",
+    "apps/mcp/src/tests/golden-errors.test.ts :: golden MCP errors: catalog tools answers ACTOR_MISMATCH when the asserted actor is not the bearer's (verification tools have no such code)",
+    "apps/mcp/src/tests/golden-errors.test.ts :: golden MCP errors: catalog tools answers an unknown operation from a status tool with the raw text NOT_FOUND (today: no code payload)",
+    "apps/mcp/src/tests/golden-errors.test.ts :: golden MCP errors: catalog tools answers canonical retrieval failures: unsupported with a typed body, policy conflict, provider, unexpected",
+    "apps/mcp/src/tests/golden-errors.test.ts :: golden MCP errors: catalog tools answers CAPABILITY_NOT_ADMITTED for declared tools and unadmitted kinds",
+    "apps/mcp/src/tests/golden-errors.test.ts :: golden MCP errors: catalog tools answers CAPABILITY_NOT_ADMITTED for retrieval tools without composed services (today: the API answers 503 INTERNAL_ERROR for the same reads)",
+    "apps/mcp/src/tests/golden-errors.test.ts :: golden MCP errors: catalog tools answers citation replay of an unknown packet with NOT_FOUND and without custody with CAPABILITY_NOT_ADMITTED",
+    "apps/mcp/src/tests/golden-errors.test.ts :: golden MCP errors: catalog tools answers FORBIDDEN for a reader submitting and for a tenant outside the grant",
+    "apps/mcp/src/tests/golden-errors.test.ts :: golden MCP errors: catalog tools answers RESOURCE_ID_REQUIRED for a read tool without its id or with an extra key",
+    "apps/mcp/src/tests/golden-errors.test.ts :: golden MCP errors: catalog tools passes a submit failure's raw message through as the text (today: unlike the API's sanitized 500, 409 and 503)",
+    "apps/mcp/src/tests/golden-errors.test.ts :: golden MCP errors: credentials (HTTP host) answers 400 {code: INVALID_REQUEST} for malformed JSON (today: 400; the API answers 500 for the same input)",
+    "apps/mcp/src/tests/golden-errors.test.ts :: golden MCP errors: credentials (HTTP host) answers 401 {code: UNAUTHORIZED} without a bearer token and for an unknown token (plain JSON, no correlation id)",
+    "apps/mcp/src/tests/golden-errors.test.ts :: golden MCP errors: credentials (HTTP host) answers 500 {code: INTERNAL_ERROR} when the identity resolver throws, without its message",
+    "apps/mcp/src/tests/golden-errors.test.ts :: golden MCP errors: credentials (HTTP host) answers an unknown route with Fastify's default 404 body",
+    "apps/mcp/src/tests/golden-errors.test.ts :: golden MCP errors: input answers an unknown tool with an isError result naming it (today: the SDK's text, no code)",
+    "apps/mcp/src/tests/golden-errors.test.ts :: golden MCP errors: input answers schema-invalid arguments for knowledge_retrieve_run with the SDK's input validation error (today: text without a code)",
+    "apps/mcp/src/tests/golden-errors.test.ts :: golden MCP errors: input answers schema-invalid arguments for knowledge_source_fetch with the SDK's input validation error (today: text without a code)",
+    "apps/mcp/src/tests/golden-errors.test.ts :: golden MCP errors: input answers schema-invalid arguments for verify_benchmark_show with the SDK's input validation error (today: text without a code)",
+    "apps/mcp/src/tests/golden-errors.test.ts :: golden MCP errors: input answers schema-invalid arguments for verify_metric with the SDK's input validation error (today: text without a code)",
+    "apps/mcp/src/tests/golden-errors.test.ts :: golden MCP errors: input names the offending path in the SDK's validation text",
+    "apps/mcp/src/tests/golden-errors.test.ts :: golden MCP errors: verification reads answers reconciliation applies: FORBIDDEN for a reader and CAPABILITY_NOT_ADMITTED without reads",
+    "apps/mcp/src/tests/golden-errors.test.ts :: golden MCP errors: verification reads answers the operation poll: FORBIDDEN for a foreign tenant and the raw text NOT_FOUND for an unknown operation",
+    "apps/mcp/src/tests/golden-errors.test.ts :: golden MCP errors: verification reads verify_adjudication_get answers FORBIDDEN, CAPABILITY_NOT_ADMITTED, NOT_FOUND, INTERNAL_ERROR and the pending/terminal states as codes only",
+    "apps/mcp/src/tests/golden-errors.test.ts :: golden MCP errors: verification reads verify_adjudication_get_decision answers FORBIDDEN, CAPABILITY_NOT_ADMITTED, NOT_FOUND, INTERNAL_ERROR and the pending/terminal states as codes only",
+    "apps/mcp/src/tests/golden-errors.test.ts :: golden MCP errors: verification reads verify_benchmark_comparison answers FORBIDDEN, CAPABILITY_NOT_ADMITTED, NOT_FOUND, INTERNAL_ERROR and the pending/terminal states as codes only",
+    "apps/mcp/src/tests/golden-errors.test.ts :: golden MCP errors: verification reads verify_benchmark_manifest answers FORBIDDEN, CAPABILITY_NOT_ADMITTED, NOT_FOUND, INTERNAL_ERROR and the pending/terminal states as codes only",
+    "apps/mcp/src/tests/golden-errors.test.ts :: golden MCP errors: verification reads verify_benchmark_show answers FORBIDDEN, CAPABILITY_NOT_ADMITTED, NOT_FOUND, INTERNAL_ERROR and the pending/terminal states as codes only",
+    "apps/mcp/src/tests/golden-errors.test.ts :: golden MCP errors: verification reads verify_bundle_show answers FORBIDDEN, CAPABILITY_NOT_ADMITTED, NOT_FOUND, INTERNAL_ERROR and the pending/terminal states as codes only",
+    "apps/mcp/src/tests/golden-errors.test.ts :: golden MCP errors: verification reads verify_case answers FORBIDDEN, CAPABILITY_NOT_ADMITTED, NOT_FOUND, INTERNAL_ERROR and the pending/terminal states as codes only",
+    "apps/mcp/src/tests/golden-errors.test.ts :: golden MCP errors: verification reads verify_cases answers FORBIDDEN, CAPABILITY_NOT_ADMITTED, NOT_FOUND, INTERNAL_ERROR and the pending/terminal states as codes only",
+    "apps/mcp/src/tests/golden-errors.test.ts :: golden MCP errors: verification reads verify_claims_result answers FORBIDDEN, CAPABILITY_NOT_ADMITTED, NOT_FOUND, INTERNAL_ERROR and the pending/terminal states as codes only",
+    "apps/mcp/src/tests/golden-errors.test.ts :: golden MCP errors: verification reads verify_evidence answers FORBIDDEN, CAPABILITY_NOT_ADMITTED, NOT_FOUND, INTERNAL_ERROR and the pending/terminal states as codes only",
+    "apps/mcp/src/tests/golden-errors.test.ts :: golden MCP errors: verification reads verify_extraction_show answers FORBIDDEN, CAPABILITY_NOT_ADMITTED, NOT_FOUND, INTERNAL_ERROR and the pending/terminal states as codes only",
+    "apps/mcp/src/tests/golden-errors.test.ts :: golden MCP errors: verification reads verify_manifest answers FORBIDDEN, CAPABILITY_NOT_ADMITTED, NOT_FOUND, INTERNAL_ERROR and the pending/terminal states as codes only",
+    "apps/mcp/src/tests/golden-errors.test.ts :: golden MCP errors: verification reads verify_reconciliation_show answers FORBIDDEN, CAPABILITY_NOT_ADMITTED, NOT_FOUND, INTERNAL_ERROR and the pending/terminal states as codes only",
+    "apps/mcp/src/tests/golden-errors.test.ts :: golden MCP errors: verification reads verify_report_result answers FORBIDDEN, CAPABILITY_NOT_ADMITTED, NOT_FOUND, INTERNAL_ERROR and the pending/terminal states as codes only",
+    "apps/mcp/src/tests/golden-errors.test.ts :: golden MCP errors: verification reads verify_run answers FORBIDDEN, CAPABILITY_NOT_ADMITTED, NOT_FOUND, INTERNAL_ERROR and the pending/terminal states as codes only",
+    "apps/mcp/src/tests/golden-errors.test.ts :: golden MCP errors: verification submissions answers admission: CAPABILITY_NOT_ADMITTED without a predicate, FORBIDDEN when it refuses, success when it admits",
+    "apps/mcp/src/tests/golden-errors.test.ts :: golden MCP errors: verification submissions answers CAPABILITY_NOT_ADMITTED when verification operations or the ownership resolver are not composed",
+    "apps/mcp/src/tests/golden-errors.test.ts :: golden MCP errors: verification submissions answers FORBIDDEN for a reader and for a tenant outside the grant, before anything is resolved",
+    "apps/mcp/src/tests/golden-errors.test.ts :: golden MCP errors: verification submissions answers FORBIDDEN for every context binding failure (today: the API distinguishes four titles)",
+    "apps/mcp/src/tests/golden-errors.test.ts :: golden MCP errors: verification submissions passes a submission failure's raw message through as the text (today: the API answers a sanitized 500)"
+  ],
+  "suiteExitCodes": {
+    "packages/host": {
+      "before": 0,
+      "after": 0
+    },
+    "packages/application": {
+      "before": 1,
+      "after": 1
+    },
+    "apps/verification-executor": {
+      "before": 0,
+      "after": 0
+    },
+    "apps/api": {
+      "before": 0,
+      "after": 0
+    },
+    "apps/mcp": {
+      "before": 0,
+      "after": 0
+    },
+    "apps/cli": {
+      "before": 0,
+      "after": 0
+    }
+  },
+  "exportsRemoved": {
+    "host": [],
+    "application": []
+  },
+  "exportsAdded": {
+    "host": [],
+    "application": []
+  },
+  "exportsAddedAsRecorded": {
+    "host": [
+      "AgenticKnowledgeService",
+      "DeterministicFakeEmbeddingAdapter",
+      "OperationCapabilityUnavailableError",
+      "VerificationOperationApplicationService",
+      "assertOperationKindAdmitted",
+      "bindResolvedVerificationContext",
+      "createIntegrationService",
+      "createKnowledgeApplication",
+      "createKnowledgeResourceReads",
+      "createVerificationResourceReads",
+      "isAdjudicationDecisionReviewerActor",
+      "localProfileState",
+      "operationCatalog",
+      "productionWorkerOperationKinds",
+      "retrievalExecutionProblem",
+      "submitCanonicalRetrievalRun",
+      "transportProblem"
+    ],
+    "application": [
+      "declaredApiRequests",
+      "operationCatalog",
+      "transportState"
+    ]
+  },
+  "cycles": [],
+  "cyclesWithDevDependencies": [],
+  "knowledgeDbPersistence": {
+    "before": {
+      "production": false,
+      "testOnly": true
+    },
+    "after": {
+      "production": false,
+      "testOnly": true
+    }
+  },
+  "knowledgeDbProductionPersistenceImports": [],
+  "knowledgeDbTestPersistenceImports": [
+    "packages/knowledge-db/src/db-read/artifacts-reconciliation.integration.test.ts",
+    "packages/knowledge-db/src/db-read/read-executor.integration.test.ts",
+    "packages/knowledge-db/src/db-read/snapshot.integration.test.ts",
+    "packages/knowledge-db/src/ingestion/content-links/sources.test.ts",
+    "packages/knowledge-db/src/ingestion/reports/service.integration.test.ts",
+    "packages/knowledge-db/src/ingestion/tests/executor.integration.test.ts",
+    "packages/knowledge-db/test/ingestion/current-schema-fixture.d.mts",
+    "packages/knowledge-db/test/ingestion/current-schema.integration.test.ts",
+    "packages/knowledge-db/test/ingestion/preparation-fixture.d.mts",
+    "packages/knowledge-db/test/ingestion/preparation-fixture.mjs",
+    "packages/knowledge-db/test/ingestion/temporal.integration.test.ts"
+  ],
+  "hostImportsApps": [],
+  "applicationOrPersistenceDependOnHost": [],
+  "applicationHostImports": [],
+  "persistenceHostImports": [],
+  "executorHost": {
+    "dependency": false,
+    "devDependency": true,
+    "imports": {
+      "source": [
+        "apps/verification-executor/src/local-services.ts"
+      ],
+      "test": [
+        "apps/verification-executor/src/local-host.test.ts"
+      ]
+    }
+  },
+  "cliLocal": {
+    "dependencies": [
+      "@aiengineer/knowledge-host",
+      "@aiengineer/knowledge-verification-executor"
+    ],
+    "hostImports": [
+      "apps/cli/src/ks-commands.ts",
+      "apps/cli/src/local/offline.ts"
+    ],
+    "executorImports": [
+      "apps/cli/src/local/offline.ts"
+    ],
+    "unrecordedImports": [],
+    "testFilesImportingHost": [
+      "apps/cli/src/tests/ks.test.ts"
+    ]
+  },
+  "catalog": {
+    "kinds": "unchanged",
+    "apiRoutes": {
+      "removed": [],
+      "added": []
+    },
+    "mcpTools": {
+      "removed": [],
+      "added": []
+    },
+    "operationsOutsideCli": {
+      "removed": [],
+      "added": []
+    },
+    "cliCommandsIdentical": true,
+    "operationsIdentical": true
+  },
+  "catalogStateChanges": {},
+  "eve": "unchanged"
+}

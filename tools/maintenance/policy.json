@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "observe": false,
+  "provider": "cursor",
+  "model": "grok-4.7-high",
+  "timeoutMs": 900000,
+  "leaseMs": 1200000,
+  "maxAttempts": 2,
+  "pollMs": 15000,
+  "requirePushReceipt": false,
+  "validation": [
+    [
+      "corepack",
+      "pnpm",
+      "install",
+      "--frozen-lockfile",
+      "--ignore-scripts"
+    ],
+    [
+      "node",
+      ".agent-docs/cli.mjs",
+      "check",
+      "--repo",
+      "."
+    ],
+    [
+      "corepack",
+      "pnpm",
+      "verify"
+    ]
+  ]
+}

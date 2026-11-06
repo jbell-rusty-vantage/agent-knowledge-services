@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "verification-benchmark-engineering-expectation.v1",
+  "sourceDatasetManifestDigest": "sha256:b625b311493f8c366ef43bf4047bf61f38d510fe7f3c340f50bca42de737dfe6",
+  "sourceCaseDigest": "sha256:d646a96c7ab577660967ebfcc5f7e8651a3090e0752c1ae92c2c4aa364139c69",
+  "caseId": "pace-definition-mutated",
+  "provenance": "agent_reviewed_engineering_expectation",
+  "humanAnnotationCount": 0,
+  "expertAdjudicated": false,
+  "humanGoldScoringEligible": false,
+  "legacyGoldArtifactColumnSemantics": "engineering expectation artifact only; does not establish human-gold eligibility",
+  "expectation": {
+    "label": "unsupported",
+    "labelStatus": "engineering_expectation",
+    "expectedPolicy": "fail",
+    "expectedLocatorValid": true,
+    "support": "none",
+    "authority": "insufficient",
+    "worldCorrectness": "unknown",
+    "rationale": "Engineering expectation for method_to_product_validation; human annotation and expert adjudication remain pending."
+  }
+}

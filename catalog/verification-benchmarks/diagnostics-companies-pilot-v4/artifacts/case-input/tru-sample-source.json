@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "verification-benchmark-case-input.v1",
+  "sourceDatasetManifestDigest": "sha256:b625b311493f8c366ef43bf4047bf61f38d510fe7f3c340f50bca42de737dfe6",
+  "sourceCaseDigest": "sha256:29a93bb8d7f7eeb3d5575de67614a54c67663fcb1e95547dd13870e92d1ff7ce",
+  "caseId": "tru-sample-source",
+  "assertion": "The test uses a finger-stick blood collection.",
+  "evidence": [
+    {
+      "fragmentId": "sha256:7969ed8c9960cb2ed2bfa3b13d67b382ca55b00109e62859b56d58e93539a7e5",
+      "captureId": "67b3c277-5c66-5ef5-ace8-66aff1d3e736",
+      "sourceKey": "tru-about",
+      "sourceClass": "first_party",
+      "projectionArtifactId": "b4573767-03c2-55e9-a771-0385eeff5aa5",
+      "projectionDigest": "sha256:102c76510c12f523e3d67d8795ceb2b20c40e95f055c0038965e6da1e9cedbb4",
+      "transformationArtifactId": "37fc6dff-19ec-5292-aef3-b861b305a7ed",
+      "selector": {
+        "kind": "html",
+        "domPath": "1/0/2/5/0/0/0/2/0/1/2"
+      },
+      "selectedContentDigest": "sha256:79acaefef69a509b65f56115a190280a9d4c54c6356bf6ac0d7b16584c1a3e09",
+      "excerpt": "Each test includes a simple finger-stick blood collection that takes approximately 3 minutes. Patients follow the enclosed instructions and return their sample via USPS drop-off using the prepaid materials provided.",
+      "rights": "restricted internal preparation; not approved for provider upload or public redistribution",
+      "originalProviderUploadAuthorized": false
+    }
+  ],
+  "intendedUse": "immutable_case_input; provider transmission requires a separately authenticated derived-input grant"
+}

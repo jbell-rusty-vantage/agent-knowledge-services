@@ -1,0 +1,176 @@
+{
+  "schemaVersion": "sv09-producer-draft.v1",
+  "task": "sv09-appraisal-pair26",
+  "author": "SV-09 helper C, hand-authored reference draft (recorded producer response for T0; locked control body for paid evaluators)",
+  "studyHeading": "PAIR-26",
+  "assertions": [
+    {
+      "key": "design",
+      "obligations": ["design.trial"],
+      "sentence": "PAIR-26 was a randomized controlled trial in 240 professional software developers comparing an AI pair-programming assistant against unassisted work.",
+      "kind": "source_report",
+      "subject": "PAIR-26",
+      "value": { "valueType": "none", "amount": null, "unit": null, "text": null, "bool": null },
+      "qualifiers": {
+        "entity": "PAIR-26",
+        "population": "professional software developers",
+        "negation": false,
+        "studyDesign": "randomized_controlled_trial",
+        "species": "human",
+        "intervention": "AI pair-programming assistant",
+        "comparator": "no assistant",
+        "sampleSize": 240,
+        "endpoint": null,
+        "appraisalDomain": null,
+        "appraisalJudgment": null
+      },
+      "evidence": [
+        {
+          "source": "S6",
+          "quote": "Design: PAIR-26 was a randomized controlled trial in 240 professional software developers at three companies."
+        }
+      ],
+      "contrary": []
+    },
+    {
+      "key": "selection",
+      "obligations": ["domain.selection"],
+      "sentence": "PAIR-26 concealed allocation through central web-based randomization.",
+      "kind": "source_report",
+      "subject": "PAIR-26",
+      "value": { "valueType": "none", "amount": null, "unit": null, "text": null, "bool": null },
+      "qualifiers": {
+        "entity": "PAIR-26",
+        "population": "professional software developers",
+        "negation": false,
+        "studyDesign": "randomized_controlled_trial",
+        "species": "human",
+        "intervention": "AI pair-programming assistant",
+        "comparator": "no assistant",
+        "sampleSize": 240,
+        "endpoint": null,
+        "appraisalDomain": "selection",
+        "appraisalJudgment": "low"
+      },
+      "evidence": [{ "source": "S6", "quote": "Selection: allocation was concealed through central web-based randomization." }],
+      "contrary": []
+    },
+    {
+      "key": "performance",
+      "obligations": ["domain.performance"],
+      "sentence": "PAIR-26 participants and their team leads were not blinded to group assignment.",
+      "kind": "source_report",
+      "subject": "PAIR-26",
+      "value": { "valueType": "none", "amount": null, "unit": null, "text": null, "bool": null },
+      "qualifiers": {
+        "entity": "PAIR-26",
+        "population": "professional software developers",
+        "negation": true,
+        "studyDesign": "randomized_controlled_trial",
+        "species": "human",
+        "intervention": "AI pair-programming assistant",
+        "comparator": "no assistant",
+        "sampleSize": 240,
+        "endpoint": null,
+        "appraisalDomain": "performance",
+        "appraisalJudgment": "high"
+      },
+      "evidence": [
+        { "source": "S6", "quote": "Performance: participants and their team leads were not blinded to group assignment." }
+      ],
+      "contrary": []
+    },
+    {
+      "key": "detection",
+      "obligations": ["domain.detection"],
+      "sentence": "PAIR-26 outcome assessors were blinded to group assignment.",
+      "kind": "source_report",
+      "subject": "PAIR-26",
+      "value": { "valueType": "none", "amount": null, "unit": null, "text": null, "bool": null },
+      "qualifiers": {
+        "entity": "PAIR-26",
+        "population": "professional software developers",
+        "negation": false,
+        "studyDesign": "randomized_controlled_trial",
+        "species": "human",
+        "intervention": "AI pair-programming assistant",
+        "comparator": "no assistant",
+        "sampleSize": 240,
+        "endpoint": null,
+        "appraisalDomain": "detection",
+        "appraisalJudgment": "low"
+      },
+      "evidence": [
+        {
+          "source": "S6",
+          "quote": "Detection: outcome assessors who scored the code reviews were blinded to group assignment."
+        }
+      ],
+      "contrary": []
+    },
+    {
+      "key": "attrition",
+      "obligations": ["domain.attrition"],
+      "sentence": "PAIR-26 lost 29 of 240 participants (12%) before the final assessment, balanced across groups.",
+      "kind": "source_report",
+      "subject": "PAIR-26",
+      "value": { "valueType": "none", "amount": null, "unit": null, "text": null, "bool": null },
+      "qualifiers": {
+        "entity": "PAIR-26",
+        "population": "professional software developers",
+        "negation": false,
+        "studyDesign": "randomized_controlled_trial",
+        "species": "human",
+        "intervention": "AI pair-programming assistant",
+        "comparator": "no assistant",
+        "sampleSize": 240,
+        "endpoint": null,
+        "appraisalDomain": "attrition",
+        "appraisalJudgment": "low"
+      },
+      "evidence": [
+        {
+          "source": "S6",
+          "quote": "Attrition: 29 of 240 participants (12%) left before the final assessment, balanced across groups."
+        }
+      ],
+      "contrary": []
+    },
+    {
+      "key": "reporting",
+      "obligations": ["domain.reporting"],
+      "sentence": "PAIR-26 pre-registered its primary outcome and reported all registered outcomes.",
+      "kind": "source_report",
+      "subject": "PAIR-26",
+      "value": { "valueType": "none", "amount": null, "unit": null, "text": null, "bool": null },
+      "qualifiers": {
+        "entity": "PAIR-26",
+        "population": "professional software developers",
+        "negation": false,
+        "studyDesign": "randomized_controlled_trial",
+        "species": "human",
+        "intervention": "AI pair-programming assistant",
+        "comparator": "no assistant",
+        "sampleSize": 240,
+        "endpoint": null,
+        "appraisalDomain": "reporting",
+        "appraisalJudgment": "low"
+      },
+      "evidence": [
+        {
+          "source": "S6",
+          "quote": "Reporting: the primary outcome was pre-registered and all registered outcomes are reported."
+        }
+      ],
+      "contrary": []
+    }
+  ],
+  "domains": [
+    { "domain": "selection", "assertionKey": "selection" },
+    { "domain": "performance", "assertionKey": "performance" },
+    { "domain": "detection", "assertionKey": "detection" },
+    { "domain": "attrition", "assertionKey": "attrition" },
+    { "domain": "reporting", "assertionKey": "reporting" }
+  ],
+  "limitations": ["Only the synthetic abstract was available; no full text or protocol was appraised."]
+}

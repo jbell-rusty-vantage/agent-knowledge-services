@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "mode": {
+      "type": "string",
+      "const": "three_bundle_internal_exploratory"
+    },
+    "bundles": {
+      "minItems": 3,
+      "maxItems": 3,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "const": "ai-engineer-embedding-bundle/0.1.0"
+          },
+          "store_class": {
+            "type": "string",
+            "const": "internal_exploratory"
+          },
+          "video_id": {
+            "type": "string",
+            "enum": [
+              "kTnfJszFxCg",
+              "bk0TmxoZlUY",
+              "rmvDxxNubIg"
+            ]
+          },
+          "evaluation_scope": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          }
+        },
+        "required": [
+          "schema_version",
+          "store_class",
+          "video_id",
+          "evaluation_scope"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "mode",
+    "bundles"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "sv09-fixture-provenance.v1",
+  "synthetic": true,
+  "realWorld": false,
+  "author": "SV-09 helper C (Claude Opus 5.5 agent), Sprint V session 2026-10-25",
+  "authoredAt": "2026-10-25",
+  "acquisition": "none: hand-authored text, no web acquisition, no real product, vendor, study or person",
+  "license": "disposable engineering fixture; no third-party content",
+  "mediaType": "application/json",
+  "id": "evidence_report.task",
+  "file": "tasks/evidence_report.task.json",
+  "description": "Frozen evidence_report task (6 obligations) over S1-S5, S7."
+}

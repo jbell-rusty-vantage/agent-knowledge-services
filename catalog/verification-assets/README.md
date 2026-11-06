@@ -1,0 +1,1 @@
+Frozen source-preparation closure for the private offline diagnostics demo. Directory names are SHA-256 hashes of the exact preparation manifest. These retained internal captures are not approved for public redistribution or provider upload; bundling them into this private workspace does not change those rights. Build copies only the manifest and its digest-verified artifacts.

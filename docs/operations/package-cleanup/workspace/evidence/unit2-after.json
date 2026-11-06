@@ -1,0 +1,3354 @@
+{
+  "schema": 1,
+  "layout": "after",
+  "sourceCommit": "e036bf0414b72bcaa096df37a06599ea5a65e86a",
+  "dirty": true,
+  "node": "v24.18.0",
+  "exports": {
+    "host": [
+      "API_ACTIONS",
+      "API_ROLES",
+      "HostProfileUnavailableError",
+      "HostResources",
+      "actorsMatch",
+      "constructWithResources",
+      "createApiHost",
+      "createConfiguredVerificationAuditSigner",
+      "createHost",
+      "createLocalIdentityResolver",
+      "createMcpHost",
+      "createVerificationBenchmarkComparisonReads",
+      "createVerificationBenchmarkReads",
+      "createVerificationHostRuntime",
+      "createVerificationReads",
+      "createWorkerHost",
+      "isAuthorized",
+      "loadSemanticJudgeConfig",
+      "loadServerConfig",
+      "parseBenchmarkReadPublicKeys",
+      "parseWorkerOperationScope",
+      "parseWorkerPersistenceMode",
+      "requiredSubmissionAction",
+      "startPollingLoop"
+    ],
+    "persistence": [
+      "AdjudicationReadPersistenceError",
+      "AuditInspectionReadError",
+      "BOUNDED_ROLES",
+      "CANDIDATE_EVALUATION_GATE",
+      "CaptureReadPersistenceError",
+      "ClaimsReportReadError",
+      "PostgresAuditInspectionReadRepository",
+      "PostgresCallbackReplayStore",
+      "PostgresCanonicalRepository",
+      "PostgresCaptureReadRepository",
+      "PostgresCheckpointStore",
+      "PostgresClaimsReportReadRepository",
+      "PostgresDurableVerificationRecoveryStore",
+      "PostgresGovernedIndexRepository",
+      "PostgresKnowledgeOperationService",
+      "PostgresPreparationRepository",
+      "PostgresProviderReconciliationReadRepository",
+      "PostgresProviderReconciliationStore",
+      "PostgresSemanticObservationArtifactRegistration",
+      "PostgresSemanticProviderReconciliationReadRepository",
+      "PostgresSemanticProviderReconciliationStore",
+      "PostgresSourceDiscoveryStore",
+      "PostgresStructuredExtractionExecutionStore",
+      "PostgresStructuredExtractionFailureStore",
+      "PostgresStructuredExtractionLifecycleStore",
+      "PostgresStructuredExtractionPublicationStore",
+      "PostgresStructuredExtractionReadRepository",
+      "PostgresStructuredExtractionRecoveryStore",
+      "PostgresVectorStoreLifecycleRepository",
+      "PostgresVerificationAdjudicationDecisionPreparation",
+      "PostgresVerificationAdjudicationDecisionReadRepository",
+      "PostgresVerificationAdjudicationDecisionRepository",
+      "PostgresVerificationAdjudicationReadRepository",
+      "PostgresVerificationAdjudicationRepository",
+      "PostgresVerificationBenchmarkComparisonReadRepository",
+      "PostgresVerificationBenchmarkComparisonStore",
+      "PostgresVerificationBenchmarkPublisher",
+      "PostgresVerificationBenchmarkReadRepository",
+      "PostgresVerificationBenchmarkRunStore",
+      "PostgresVerificationCaseReads",
+      "PostgresVerificationCaseWriter",
+      "PostgresVerificationClaimsRuntimePrincipals",
+      "PostgresVerificationComponentDriftPublisher",
+      "PostgresVerificationDriftRevalidationOutbox",
+      "PostgresVerificationMetricRuntimePrincipals",
+      "PostgresVerificationProviderAccounting",
+      "PostgresVerificationProviderResponseCaptureStore",
+      "PostgresVerificationRepository",
+      "PostgresVerificationSemanticObservationStore",
+      "ProviderReconciliationReadError",
+      "RETRIEVAL_SUPPORT_LIMITS",
+      "RetrievalCitationReplay",
+      "RetrievalSupportResolver",
+      "SemanticProviderReconciliationReadError",
+      "StructuredExtractionReadError",
+      "TenantPostgres",
+      "VerificationDecisionReadError",
+      "actorIdentityKey",
+      "assertBoundedRole",
+      "assertPublicationCandidateBinding",
+      "assertPublicationDependenciesEligible",
+      "assertSignedReportSourceDependencies",
+      "assertTenantId",
+      "canonicalPersistenceConfigFromEnvironment",
+      "createCanonicalPersistence",
+      "createCanonicalPersistenceFromEnvironment",
+      "createNativeSemanticAuditJudgeResolver",
+      "createNativeSemanticGatewayCall",
+      "createRemoteRetrievalArtifactReader",
+      "createVerificationAdjudicationRequestService",
+      "createVerificationArtifactHandle",
+      "createVerificationAuditInspectionService",
+      "evaluateSelectedCandidate",
+      "loadNativeSemanticReconciliationBinding",
+      "mapSemanticObservation",
+      "operationActorIdentity",
+      "operationFailureSummary",
+      "parseSignedPolicyDecision",
+      "parseVerificationAuditInspectionPublicKeys",
+      "persistPreparedContentSummary",
+      "persistSelectedProjectionProposal",
+      "queryPublishedSpace",
+      "readContentRepresentationAdmission",
+      "readGateObservations",
+      "readRepresentationDependencies",
+      "readRepresentationImpact",
+      "recoverCapturedSemanticGatewayCall",
+      "recoverObservedSemanticGatewayCall",
+      "resolveEveVerificationBinding",
+      "sameActorIdentity",
+      "stageExploratoryVersion",
+      "validatePromotionSelection",
+      "verificationProviderHostTuple",
+      "verifyPublicationBaseline"
+    ]
+  },
+  "graph": {
+    "manifests": {
+      "@aiengineer/knowledge-api": {
+        "path": "apps/api",
+        "dependencies": [
+          "@aiengineer/knowledge-application",
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-core",
+          "@aiengineer/knowledge-host",
+          "@aiengineer/knowledge-persistence",
+          "@aiengineer/knowledge-retrieval",
+          "@aiengineer/knowledge-testkit"
+        ]
+      },
+      "@aiengineer/knowledge-cli": {
+        "path": "apps/cli",
+        "dependencies": [
+          "@aiengineer/knowledge-application",
+          "@aiengineer/knowledge-client",
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-verification"
+        ]
+      },
+      "@aiengineer/knowledge-jev-service": {
+        "path": "apps/jev",
+        "dependencies": [
+          "@aiengineer/knowledge-application",
+          "@aiengineer/knowledge-client",
+          "@aiengineer/knowledge-contracts"
+        ]
+      },
+      "@aiengineer/knowledge-mcp": {
+        "path": "apps/mcp",
+        "dependencies": [
+          "@aiengineer/knowledge-application",
+          "@aiengineer/knowledge-client",
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-host",
+          "@aiengineer/knowledge-persistence"
+        ]
+      },
+      "@aiengineer/knowledge-verification-executor": {
+        "path": "apps/verification-executor",
+        "dependencies": [
+          "@aiengineer/knowledge-application",
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-core",
+          "@aiengineer/knowledge-db",
+          "@aiengineer/knowledge-persistence",
+          "@aiengineer/knowledge-policy",
+          "@aiengineer/knowledge-verification"
+        ]
+      },
+      "@aiengineer/knowledge-worker": {
+        "path": "apps/worker",
+        "dependencies": [
+          "@aiengineer/knowledge-acquisition",
+          "@aiengineer/knowledge-application",
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-core",
+          "@aiengineer/knowledge-evaluation",
+          "@aiengineer/knowledge-host",
+          "@aiengineer/knowledge-persistence",
+          "@aiengineer/knowledge-policy",
+          "@aiengineer/knowledge-preparation",
+          "@aiengineer/knowledge-retrieval",
+          "@aiengineer/knowledge-verification"
+        ]
+      },
+      "@aiengineer/knowledge-acquisition": {
+        "path": "packages/acquisition",
+        "dependencies": [
+          "@aiengineer/knowledge-core"
+        ]
+      },
+      "@aiengineer/knowledge-application": {
+        "path": "packages/application",
+        "dependencies": [
+          "@aiengineer/knowledge-acquisition",
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-core",
+          "@aiengineer/knowledge-evaluation",
+          "@aiengineer/knowledge-jev",
+          "@aiengineer/knowledge-policy",
+          "@aiengineer/knowledge-preparation",
+          "@aiengineer/knowledge-retrieval",
+          "@aiengineer/knowledge-verification"
+        ]
+      },
+      "@aiengineer/knowledge-client": {
+        "path": "packages/client-typescript",
+        "dependencies": [
+          "@aiengineer/knowledge-contracts"
+        ]
+      },
+      "@aiengineer/knowledge-contracts": {
+        "path": "packages/contracts",
+        "dependencies": []
+      },
+      "@aiengineer/knowledge-core": {
+        "path": "packages/core",
+        "dependencies": [
+          "@aiengineer/knowledge-contracts"
+        ]
+      },
+      "@aiengineer/knowledge-evaluation": {
+        "path": "packages/evaluation",
+        "dependencies": [
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-core",
+          "@aiengineer/knowledge-verification"
+        ]
+      },
+      "@aiengineer/knowledge-host": {
+        "path": "packages/host",
+        "dependencies": [
+          "@aiengineer/knowledge-acquisition",
+          "@aiengineer/knowledge-application",
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-core",
+          "@aiengineer/knowledge-persistence",
+          "@aiengineer/knowledge-preparation",
+          "@aiengineer/knowledge-retrieval",
+          "@aiengineer/knowledge-verification"
+        ]
+      },
+      "@aiengineer/knowledge-jev": {
+        "path": "packages/jev",
+        "dependencies": [
+          "@aiengineer/knowledge-contracts"
+        ]
+      },
+      "@aiengineer/knowledge-db": {
+        "path": "packages/knowledge-db",
+        "dependencies": [
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-core",
+          "@aiengineer/knowledge-persistence"
+        ]
+      },
+      "@aiengineer/knowledge-persistence": {
+        "path": "packages/persistence",
+        "dependencies": [
+          "@aiengineer/knowledge-application",
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-core",
+          "@aiengineer/knowledge-verification"
+        ]
+      },
+      "@aiengineer/knowledge-policy": {
+        "path": "packages/policy",
+        "dependencies": [
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-core",
+          "@aiengineer/knowledge-verification"
+        ]
+      },
+      "@aiengineer/knowledge-preparation": {
+        "path": "packages/preparation",
+        "dependencies": [
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-core"
+        ]
+      },
+      "@aiengineer/knowledge-retrieval": {
+        "path": "packages/retrieval",
+        "dependencies": [
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-core",
+          "@aiengineer/knowledge-preparation"
+        ]
+      },
+      "@aiengineer/knowledge-testkit": {
+        "path": "packages/testkit",
+        "dependencies": [
+          "@aiengineer/knowledge-core",
+          "@aiengineer/knowledge-evaluation",
+          "@aiengineer/knowledge-retrieval"
+        ]
+      },
+      "@aiengineer/knowledge-verification": {
+        "path": "packages/verification",
+        "dependencies": [
+          "@aiengineer/knowledge-contracts"
+        ]
+      }
+    },
+    "cycles": []
+  },
+  "command": "node node_modules/vitest/vitest.mjs run --maxWorkers=2 --reporter=json (sequential per package)",
+  "runs": [
+    {
+      "directory": "apps/api",
+      "exitCode": 0,
+      "files": 37,
+      "tests": [
+        {
+          "identity": "apps/api/src/tests/a2a-durable.test.ts :: durable A2A callback transport local integration rejects an authenticated callback replay after API and database-connection restart",
+          "status": "skipped"
+        },
+        {
+          "identity": "apps/api/src/tests/a2a-http.test.ts :: authenticated HTTP A2A transport admits a task through the shared operation port with full nested lineage",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/a2a-http.test.ts :: authenticated HTTP A2A transport records a valid signed callback once and rejects replay and tamper",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/a2a-http.test.ts :: authenticated HTTP A2A transport rejects actor, tenant, correlation, signature-reference, and lineage substitution",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/a2a-http.test.ts :: authenticated HTTP A2A transport routes retrieval through the retrieval-only port and canonical executor exactly once",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/auth.test.ts :: local API identities binds a token to its configured actor and tenant grant",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/auth.test.ts :: local API identities denies unknown tokens, tenants, and actions by default",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/auth.test.ts :: local API identities has no implicit identity when local configuration is absent",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/bootstrap.test.ts :: API deployment bootstrap boots unrelated development endpoints without an embedding credential",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/bootstrap.test.ts :: API deployment bootstrap bridges a real Node request through the exported serverless handler",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/bootstrap.test.ts :: API deployment bootstrap is side-effect free on import and exports a Vercel handler",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/bootstrap.test.ts :: API deployment bootstrap requires durable persistence and an HTTPS public origin in production",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/bootstrap.test.ts :: keeps adjudication unavailable unless its separate complete configuration is supplied",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/bootstrap.test.ts :: requires trusted ownership configuration before metric admission",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/consumer-transports.integration.test.ts :: consumer CLI and MCP transports over a real canonical KS host runs built CLI and SDK MCP search/read/packet/replay and retains the same remote citation",
+          "status": "skipped"
+        },
+        {
+          "identity": "apps/api/src/tests/consumer-transports.integration.test.ts :: consumer CLI and MCP transports over a real canonical KS host T14 transport invokes all four built platform retrieval surfaces",
+          "status": "skipped"
+        },
+        {
+          "identity": "apps/api/src/tests/durable-server.test.ts :: durable operation API local integration admits work that a separate repository connection claims and exposes its durable result",
+          "status": "skipped"
+        },
+        {
+          "identity": "apps/api/src/tests/durable-server.test.ts :: durable operation API local integration cancels durably so a separate worker cannot claim the operation",
+          "status": "skipped"
+        },
+        {
+          "identity": "apps/api/src/tests/durable-server.test.ts :: durable operation API local integration retries without reusing a failure receipt identity",
+          "status": "skipped"
+        },
+        {
+          "identity": "apps/api/src/tests/durable-server.test.ts :: durable operation API local integration serves canonical artifact and receipt resources across independent database connections",
+          "status": "skipped"
+        },
+        {
+          "identity": "apps/api/src/tests/host-lifecycle.test.ts :: API runtime lifecycle closes the HTTP server before releasing the host, once for concurrent callers",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/host-lifecycle.test.ts :: API runtime lifecycle releases the host when transport construction fails after composition",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/openapi-parity.test.ts :: OpenAPI route parity documents every registered public route and registers every documented route",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/resource-reads.test.ts :: canonical API resource reads addresses artifacts and receipts by their own IDs without fabricating operation wrappers",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/resource-reads.test.ts :: canonical API resource reads does not reveal a resource from a different tenant and validates path IDs",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/resource-reads.test.ts :: canonical API resource reads enforces the configured serialized response bound",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/resource-reads.test.ts :: canonical API resource reads fails closed on invalid stored vector metadata and enforces response bounds",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/resource-reads.test.ts :: canonical API resource reads fails closed when the canonical resource store is not configured",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/resource-reads.test.ts :: canonical API resource reads returns a tenant-scoped vector-store resource rather than an operation projection",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/resource-reads.test.ts :: canonical API resource reads returns the persisted retrieval run and its bounded per-stage explanation",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/retrieval-executor.test.ts :: canonical retrieval reranker boundary admits a unique finite subset of the bounded fused candidates",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/retrieval-executor.test.ts :: canonical retrieval reranker boundary rejects malformed output",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/retrieval-executor.test.ts :: retrieval capability preflight admits implemented world/K/entity scope",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/retrieval-executor.test.ts :: retrieval capability preflight does not infer optionality from optional subquery text",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/retrieval-executor.test.ts :: retrieval capability preflight rejects required graph and unsupported freshness bounds",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/retrieval-executor.test.ts :: retrieval capability preflight returns typed omissions only for explicitly optional requested capabilities",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/retrieval-executor.test.ts :: typed unsupported-capability answer carries a validated 422 body instead of a generic message",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/retrieval-executor.test.ts :: typed unsupported-capability answer declares a requested-but-optional freshness bound as a recorded omission",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/retrieval-executor.test.ts :: typed unsupported-capability answer reports every required unimplemented capability at once, before any provider call",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/retrieval-history.integration.test.ts :: R02 canonical source-family diversity keeps independent captured evidence when raw material and five reviewed summaries share one source",
+          "status": "skipped"
+        },
+        {
+          "identity": "apps/api/src/tests/retrieval-history.integration.test.ts :: T08/T09 corrected and surface-scoped temporal packets R03 exposes admitted challenge and canonical correction lineage only when known",
+          "status": "skipped"
+        },
+        {
+          "identity": "apps/api/src/tests/retrieval-history.integration.test.ts :: T08/T09 corrected and surface-scoped temporal packets T08 returns old belief at K0 and corrected belief at K1 while preserving adjacent worlds and original citations",
+          "status": "skipped"
+        },
+        {
+          "identity": "apps/api/src/tests/retrieval-history.integration.test.ts :: T08/T09 corrected and surface-scoped temporal packets T09 separates announcement, preview, API GA and later ChatGPT GA through entity filters",
+          "status": "skipped"
+        },
+        {
+          "identity": "apps/api/src/tests/retrieval-history.integration.test.ts :: T7 announcement and GA temporal packets excludes GA at the earlier knowledge sequence even when world time is GA day",
+          "status": "skipped"
+        },
+        {
+          "identity": "apps/api/src/tests/retrieval-history.integration.test.ts :: T7 announcement and GA temporal packets replays each temporal packet's exact quote from remote custody after producer teardown",
+          "status": "skipped"
+        },
+        {
+          "identity": "apps/api/src/tests/retrieval-history.integration.test.ts :: T7 announcement and GA temporal packets returns only the admitted event at each world time, with exact supporting quote",
+          "status": "skipped"
+        },
+        {
+          "identity": "apps/api/src/tests/retrieval-history.integration.test.ts :: T7 temporal retrieval and citation replay through the API keeps tenant B from reading tenant A's run or packet",
+          "status": "skipped"
+        },
+        {
+          "identity": "apps/api/src/tests/retrieval-history.integration.test.ts :: T7 temporal retrieval and citation replay through the API omits revoked support from a later official current retrieval",
+          "status": "skipped"
+        },
+        {
+          "identity": "apps/api/src/tests/retrieval-history.integration.test.ts :: T7 temporal retrieval and citation replay through the API omits the preview record when no admitted world-time witness covers the query",
+          "status": "skipped"
+        },
+        {
+          "identity": "apps/api/src/tests/retrieval-history.integration.test.ts :: T7 temporal retrieval and citation replay through the API replays remote citation bytes after producer local files are gone",
+          "status": "skipped"
+        },
+        {
+          "identity": "apps/api/src/tests/retrieval-history.integration.test.ts :: T7 temporal retrieval and citation replay through the API returns an authorized current packet with full support, not a bag of ids",
+          "status": "skipped"
+        },
+        {
+          "identity": "apps/api/src/tests/retrieval-history.integration.test.ts :: T7 temporal retrieval and citation replay through the API returns RETRIEVAL_CAPABILITY_UNSUPPORTED 422 for a required unimplemented capability",
+          "status": "skipped"
+        },
+        {
+          "identity": "apps/api/src/tests/server.test.ts :: API actor authorization denies a valid identity outside its explicit tenant grants",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/server.test.ts :: API actor authorization denies reader mutations before creating an operation",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/server.test.ts :: API actor authorization does not treat actor, role, or scope headers as identity-provider claims",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/server.test.ts :: API actor authorization rejects a forged operation actor even when the token has the action",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/server.test.ts :: canonical retrieval admission executes the strict plan through the API-owned canonical executor",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/server.test.ts :: canonical retrieval admission rejects client-supplied embeddings before operation admission",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/server.test.ts :: canonical retrieval admission requires the retrieval v1 capability before operation admission",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/server.test.ts :: canonical retrieval admission returns 503 before admission when the embedding-backed executor is unconfigured",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/server.test.ts :: Gate 6 operation API reconciles an expired leased step after a restart snapshot",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/server.test.ts :: Gate 6 operation API rejects descriptor sets outside the exact allow-list",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/server.test.ts :: Gate 6 operation API resolves bounded Eve descriptors server-side and deduplicates the evaluation",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/server.test.ts :: knowledge API exposes readiness",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/server.test.ts :: knowledge API fails closed and returns typed problem details",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/server.test.ts :: knowledge API requires tenant context on authenticated reads and mutations",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/server.test.ts :: knowledge API returns a bare typed evidence packet from the configured durable resolver",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/server.test.ts :: knowledge API returns capability unavailable without creating an unadmitted generic verification operation",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/server.test.ts :: typed vector-store ingestion admission binds the path store id to the exact ingestion contract",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/server.test.ts :: typed vector-store ingestion admission rejects path mismatch and incomplete lineage before admission",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-acquisition-routes.test.ts :: verification capture acquisition HTTP route keeps acquisition unavailable without the explicitly configured catalog",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-acquisition-routes.test.ts :: verification capture acquisition HTTP route rejects ungranted URI and tenant before durable submission",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-acquisition-routes.test.ts :: verification capture acquisition HTTP route submits an exact trusted acquisition grant durably and preserves register-mode compatibility",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-adjudication-decision-reads-route.test.ts :: verified decision GET rejects foreign projections and private fields with a fixed integrity response",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-adjudication-decision-reads-route.test.ts :: verified decision GET requires configured actor authorization before reading",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-adjudication-decision-reads-route.test.ts :: verified decision GET returns exact public projection for an authorized operation",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-adjudication-decision-route.test.ts :: packet-bound decision HTTP boundary does not enqueue when runtime or reviewer grant is absent",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-adjudication-decision-route.test.ts :: packet-bound decision HTTP boundary rejects non-reviewer service identity before grant lookup",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-adjudication-decision-route.test.ts :: packet-bound decision HTTP boundary rejects request authority injection and forwards authenticated identity to grant checking",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-adjudication-decision-runtime.test.ts :: decision API runtime configuration rejects caller-like provenance, ambiguous and oversized server grants",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-adjudication-decision-runtime.test.ts :: decision API runtime configuration requires canonical ownership and signed packet verification",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-adjudication-decision-runtime.test.ts :: decision API runtime configuration requires explicit enablement and refuses dormant authority",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-adjudication-reads-route.test.ts :: adjudication terminal read fails closed and maps bounded terminal states",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-adjudication-reads-route.test.ts :: adjudication terminal read rejects a schema-valid foreign terminal projection",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-adjudication-reads-route.test.ts :: adjudication terminal read requires actor access and returns only the strict projection",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-adjudication-reads-runtime.test.ts :: adjudication read native runtime configuration allows only the three canonical replay purposes for the authorized tenant",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-adjudication-reads-runtime.test.ts :: adjudication read native runtime configuration rejects an invalid replay deadline before accepting requests",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-adjudication-reads-runtime.test.ts :: adjudication read native runtime configuration stays disabled without server trust and rejects an incomplete enabled runtime",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-adjudication-route.test.ts :: requestAdjudication HTTP route fails closed without a configured exact grant and only enqueues the admitted strict request",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-audit-inspection-routes.test.ts :: audit inspection HTTP routes enqueues only the strict request and exposes a separate typed terminal read",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-audit-inspection-routes.test.ts :: audit inspection HTTP routes fails before enqueue without an exact configured claims/report grant",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-audit-inspection-routes.test.ts :: audit inspection HTTP routes rejects malformed runtime projections before they cross the public route",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-benchmark-capture-profile-route.test.ts :: benchmark capture profile HTTP route denies ungranted source and unavailable route before enqueue",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-benchmark-capture-profile-route.test.ts :: benchmark capture profile HTTP route does not disclose unknown profile or ownership failures",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-benchmark-capture-profile-route.test.ts :: benchmark capture profile HTTP route requires auth and rejects caller routing before resolver",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-benchmark-capture-profile-route.test.ts :: benchmark capture profile HTTP route submits acquired source under server-owned profile",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-benchmark-capture-profile.test.ts :: ServerOwnedBenchmarkCaptureProfileResolver fails closed on duplicate or oversized profile configuration",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-benchmark-capture-profile.test.ts :: ServerOwnedBenchmarkCaptureProfileResolver refuses stale or mismatched canonical attempt ownership without manufacturing context",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-benchmark-capture-profile.test.ts :: ServerOwnedBenchmarkCaptureProfileResolver returns no distinguishable profile result before a canonical ownership query for unknown, foreign, or unauthorized callers",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-benchmark-capture-profile.test.ts :: ServerOwnedBenchmarkCaptureProfileResolver uses configured canonical routing only after bearer actor and tenant action checks",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-benchmark-comparison-reads.test.ts :: comparison statistics public reads authenticates and validates before read access, and sanitizes integrity failures",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-benchmark-comparison-reads.test.ts :: comparison statistics public reads rejects malformed runtime comparison data before response serialization",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-benchmark-comparison-reads.test.ts :: comparison statistics public reads requires separately configured comparison read trust",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-capture-reads-routes.test.ts :: capture terminal HTTP reads authenticates before invoking custody reads and returns a generic cross-tenant not-found",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-capture-reads-routes.test.ts :: capture terminal HTTP reads fails closed when capture-read composition is disabled",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-capture-reads-routes.test.ts :: capture terminal HTTP reads maps pending and failed durable states without exposing a terminal resource",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-capture-reads-routes.test.ts :: capture terminal HTTP reads rejects a well-shaped resource belonging to another operation or tenant",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-capture-reads-routes.test.ts :: capture terminal HTTP reads returns the compact validated projection and rejects malformed runtime output",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-capture-reads-runtime.test.ts :: capture-read native runtime authority rejects a non-granted actor before any database or CAS custody read",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-capture-reads-runtime.test.ts :: capture-read native runtime authority returns generic not-found for a granted actor whose capture operation is absent before CAS access",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-capture-reads-runtime.test.ts :: capture-read native runtime authority stays disabled or fails closed on invalid/incomplete server configuration",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-claims-report-reads-routes.test.ts :: claims/report terminal HTTP reads maps unavailable and durable nonterminal states without returning an unverified body",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-claims-report-reads-routes.test.ts :: claims/report terminal HTTP reads preserves completed fail policy evidence without inventing an execution failure",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-claims-report-reads-routes.test.ts :: claims/report terminal HTTP reads preserves completed review policy evidence without inventing an execution failure",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-claims-report-reads-routes.test.ts :: claims/report terminal HTTP reads rejects a schema-valid foreign claims terminal resource",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-claims-report-reads-routes.test.ts :: claims/report terminal HTTP reads rejects a schema-valid foreign reports terminal resource",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-claims-report-reads-routes.test.ts :: claims/report terminal HTTP reads rejects invalid or contradictory policy evidence at the public boundary: {\"outcome\":\"fail\",\"reasonCodes\":[\"SEMANTIC_DISPOSITION_FAIL\"]}",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-claims-report-reads-routes.test.ts :: claims/report terminal HTTP reads rejects invalid or contradictory policy evidence at the public boundary: {\"outcome\":\"review\",\"reasonCodes\":[\"INVENTED_SEMANTIC_FAILURE\"]}",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-claims-report-reads-routes.test.ts :: claims/report terminal HTTP reads returns only strict family-specific resources under read authority",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-claims-report-reads-runtime.test.ts :: claims/report read runtime fails closed when signature trust is configured without native storage and ownership",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-claims-report-reads-runtime.test.ts :: claims/report read runtime stays unavailable unless server-owned signature trust is configured",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-drift-revalidation-route.test.ts :: internal drift revalidation routes fails closed for missing scope, wrong tenant, actor and malformed/injected bodies",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-drift-revalidation-route.test.ts :: internal drift revalidation routes is disabled without composition",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-drift-revalidation-route.test.ts :: internal drift revalidation routes projects scan, claim, ack and durable alert inbox DTOs",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-drift-revalidation-route.test.ts :: internal drift revalidation routes rejects malformed runtime output without emitting extra fields",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-drift-revalidation-route.test.ts :: internal drift revalidation routes requires an explicit tenant scope even for an allowlisted admin service",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-drift-revalidation-runtime.test.ts :: component drift runtime does not publish equal components",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-drift-revalidation-runtime.test.ts :: component drift runtime does not read or publish foreign tenant monitors",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-drift-revalidation-runtime.test.ts :: component drift runtime fails closed for incomplete monitor configuration and missing dependencies",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-drift-revalidation-runtime.test.ts :: component drift runtime publishes derived drift once and returns durable replay count",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-drift-revalidation-runtime.test.ts :: component drift runtime reserves the aggregate limit for model observations before component monitors",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-drift-revalidation-runtime.test.ts :: component drift runtime rotates bounded scans so configured monitors cannot starve",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-failure-parity.test.ts :: canonical failure receipt to public verification HTTP preserves ACTIVITY_REGISTRY_REQUIRED without exposing raw receipt material",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-failure-parity.test.ts :: canonical failure receipt to public verification HTTP preserves PROVIDER_HTTP_FAILURE without exposing raw receipt material",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-failure-parity.test.ts :: canonical failure receipt to public verification HTTP preserves PROVIDER_INPUT_POLICY_REJECTED without exposing raw receipt material",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-ownership.test.ts :: verification ownership grant admission binds signed lineage retries to the frozen context only",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-ownership.test.ts :: verification ownership grant admission denies missing routing IDs and ungranted identities before database access",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-ownership.test.ts :: verification ownership grant admission keeps independent resolver key catalogs isolated and admits only the matching key",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-ownership.test.ts :: verification ownership grant admission rejects ambiguous or caller-extended server configuration",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-ownership.test.ts :: verification ownership grant admission rejects an attestation signed by a different resolver key catalog before database access",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-ownership.test.ts :: verification ownership grant admission rejects every mutated signed ownership binding before persistence",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-ownership.test.ts :: verification ownership grant admission requires a trusted key catalog for an Eve authority grant",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-reads.test.ts :: verification run HTTP read admission binds all case/evidence reads to authenticated tenant and validates paging before dispatch",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-reads.test.ts :: verification run HTTP read admission denies missing and foreign credentials before reading a run",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-reads.test.ts :: verification run HTTP read admission distinguishes missing run from sanitized integrity failures",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-reads.test.ts :: verification run HTTP read admission rejects malformed verification run and manifest projections before response serialization",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-reads.test.ts :: verification run HTTP read admission rejects unparsed raw fields and foreign case scopes from runtime read ports",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-reads.test.ts :: verification run HTTP read admission sanitizes case/evidence integrity failures and keeps missing identities distinct",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-routes.test.ts :: verification HTTP composition admits exact external execution grants when optional headers are absent",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-routes.test.ts :: verification HTTP composition admits only strict offline benchmark references under trusted ownership",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-routes.test.ts :: verification HTTP composition derives trusted operation context server-side and returns a durable receipt",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-routes.test.ts :: verification HTTP composition does not enqueue parseArtifact without a configured exact-grant admission predicate",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-routes.test.ts :: verification HTTP composition does not let an attestation header bypass external lineage checks in a custom resolver",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-routes.test.ts :: verification HTTP composition fails closed before enqueue unless the exact claims artifact has a runtime grant",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-routes.test.ts :: verification HTTP composition keeps verification mutations unavailable when trusted composition is absent",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-routes.test.ts :: verification HTTP composition matches only the literal parser action suffix",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-routes.test.ts :: verification HTTP composition parses the literal replay action suffix without including it in the run ID",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-routes.test.ts :: verification HTTP composition passes strict routing hints to an ownership resolver and rejects unresolved ownership",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-routes.test.ts :: verification HTTP composition rejects caller trust fields, missing idempotency, and mismatched trusted context before admission",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-routes.test.ts :: verification HTTP composition requires registered comparison profiles and rejects caller-computed results before creating an operation",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-semantic-reconciliation-route.test.ts :: semantic claims/report reconciliation routes keeps semantic service host-scoped and validates its compact result",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-semantic-reconciliation-route.test.ts :: semantic claims/report reconciliation routes rejects a schema-valid reconciliation result outside the route scope",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-semantic-reconciliation-route.test.ts :: semantic claims/report reconciliation routes returns capability unavailable without changing extraction reconciliation behavior",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-semantic-reconciliation-runtime.test.ts :: semantic reconciliation runtime configuration and scope denies wrong actor, operation, attempt, and host ownership before artifact hydration",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-semantic-reconciliation-runtime.test.ts :: semantic reconciliation runtime configuration and scope is disabled without grants and fails closed for incomplete configured trust",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-structured-extraction.test.ts :: structured extraction public custody boundary authenticates and validates before reads and sanitizes integrity errors",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-structured-extraction.test.ts :: structured extraction public custody boundary binds read grants to mission, deployment, capability and optional external execution",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-structured-extraction.test.ts :: structured extraction public custody boundary requires operator signing trust, Storage and ownership grants",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/tests/verification-structured-extraction.test.ts :: structured extraction public custody boundary returns a compact typed provider failure without raw provider material",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/verification-benchmark-reads.test.ts :: benchmark public reads authenticates before repository access and sanitizes unavailable custody",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/verification-benchmark-reads.test.ts :: benchmark public reads rejects malformed benchmark runtime projections before response serialization",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/api/src/verification-benchmark-reads.test.ts :: benchmark public reads requires configured read trust independently of submission availability",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "directory": "apps/mcp",
+      "exitCode": 0,
+      "files": 10,
+      "tests": [
+        {
+          "identity": "apps/mcp/src/tests/adjudication-reads.test.ts :: adjudication MCP reads reads a decision with exact compact identifiers and rejects caller authority injection",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/mcp/src/tests/adjudication-reads.test.ts :: adjudication MCP reads rejects tenant and authority injection before dispatch and forwards only exact read identifiers",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/mcp/src/tests/adjudication.test.ts :: adjudication MCP adapter forwards a strict packet-bound decision without accepting caller authority",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/mcp/src/tests/adjudication.test.ts :: adjudication MCP adapter forwards a strict request through tenant-granted API authority only",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/mcp/src/tests/adjudication.test.ts :: adjudication MCP adapter keeps record-decision on the HTTP shim until decision admission is present",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/mcp/src/tests/benchmark-reads.test.ts :: benchmark MCP reads rejects foreign tenants and caller signing keys before the HTTP client",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/mcp/src/tests/catalog.test.ts :: bounded MCP catalog lists only complete bounded verification tools",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/mcp/src/tests/catalog.test.ts :: bounded MCP catalog matches the admitted Gate 6 catalog and excludes authority bypasses",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/mcp/src/tests/host-lifecycle.test.ts :: MCP runtime lifecycle closes the HTTP app before releasing the host, once for concurrent callers",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/mcp/src/tests/host-lifecycle.test.ts :: MCP runtime lifecycle rejects an invalid API origin before composing persistence",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/mcp/src/tests/index.test.ts :: durable MCP operation facade awaits the injected durable application port and roots accepted URLs at the API",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/mcp/src/tests/index.test.ts :: durable MCP operation facade bridges a real Node request through the exported serverless handler",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/mcp/src/tests/index.test.ts :: durable MCP operation facade does not expose identity resolver failures or malformed request details",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/mcp/src/tests/index.test.ts :: durable MCP operation facade enforces the same tenant grant and actor binding before durable admission",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/mcp/src/tests/index.test.ts :: durable MCP operation facade is side-effect free on import and exports a Vercel handler",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/mcp/src/tests/index.test.ts :: durable MCP operation facade rejects deferred read-like tools before admission",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/mcp/src/tests/index.test.ts :: durable MCP operation facade rejects non-public API origin forms before creating operation links",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/mcp/src/tests/index.test.ts :: durable MCP operation facade routes status and explanation tools to canonical API reads without admitting writes",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/mcp/src/tests/index.test.ts :: durable MCP operation facade uses the shared API identity resolver for the MCP HTTP host",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/mcp/src/tests/index.test.ts :: MCP durable PostgreSQL admission persists MCP admission for a separately connected worker and returns API-rooted links",
+          "status": "skipped"
+        },
+        {
+          "identity": "apps/mcp/src/tests/retrieval-reads.test.ts :: public retrieval citation adapters CLI dispatch replays through the authenticated public client without a write",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/mcp/src/tests/retrieval-reads.test.ts :: public retrieval citation adapters fails closed when the public replay client is absent",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/mcp/src/tests/retrieval-reads.test.ts :: public retrieval citation adapters MCP permits a reader to replay without submitting an evidence-packet operation",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/mcp/src/tests/retrieval-reads.test.ts :: public retrieval citation adapters rejects tenant/actor forgery and caller-supplied replay authority before transport",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/mcp/src/tests/verification-operation-read.test.ts :: knowledge_get_verification_operation MCP read polls only tenant-owned operations through the verification-aware client read and never fabricates state",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/mcp/src/tests/verification-surface-inventory.test.ts :: complete verification mutation admission inventory 'captureSource' preserves HTTP/CLI/MCP input and worker lease identity",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/mcp/src/tests/verification-surface-inventory.test.ts :: complete verification mutation admission inventory 'compareBenchmarkRuns' preserves HTTP/CLI/MCP input and worker lease identity",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/mcp/src/tests/verification-surface-inventory.test.ts :: complete verification mutation admission inventory 'extractStructuredData' preserves HTTP/CLI/MCP input and worker lease identity",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/mcp/src/tests/verification-surface-inventory.test.ts :: complete verification mutation admission inventory 'inspectAuditBundle' preserves HTTP/CLI/MCP input and worker lease identity",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/mcp/src/tests/verification-surface-inventory.test.ts :: complete verification mutation admission inventory 'parseArtifact' preserves HTTP/CLI/MCP input and worker lease identity",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/mcp/src/tests/verification-surface-inventory.test.ts :: complete verification mutation admission inventory 'replayRun' preserves HTTP/CLI/MCP input and worker lease identity",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/mcp/src/tests/verification-surface-inventory.test.ts :: complete verification mutation admission inventory 'requestAdjudication' preserves HTTP/CLI/MCP input and worker lease identity",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/mcp/src/tests/verification-surface-inventory.test.ts :: complete verification mutation admission inventory 'runBenchmark' preserves HTTP/CLI/MCP input and worker lease identity",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/mcp/src/tests/verification-surface-inventory.test.ts :: complete verification mutation admission inventory 'verifyClaims' preserves HTTP/CLI/MCP input and worker lease identity",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/mcp/src/tests/verification-surface-inventory.test.ts :: complete verification mutation admission inventory 'verifyExtraction' preserves HTTP/CLI/MCP input and worker lease identity",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/mcp/src/tests/verification-surface-inventory.test.ts :: complete verification mutation admission inventory 'verifyMetricObservation' preserves HTTP/CLI/MCP input and worker lease identity",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/mcp/src/tests/verification-surface-inventory.test.ts :: complete verification mutation admission inventory 'verifyReport' preserves HTTP/CLI/MCP input and worker lease identity",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/mcp/src/tests/verification-tools.test.ts :: audit inspection MCP adapter routes only the strict audit reference through the authenticated client",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/mcp/src/tests/verification-tools.test.ts :: claims MCP adapter routes strict claims and reports without caller verifier authority",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/mcp/src/tests/verification-tools.test.ts :: claims/report read MCP adapter denies an ungranted tenant before the client call",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/mcp/src/tests/verification-tools.test.ts :: claims/report read MCP adapter uses bearer-bound read authority and strict operation input",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/mcp/src/tests/verification-tools.test.ts :: metric MCP adapter forwards metric routing hints through the API and rejects synthesized findings",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/mcp/src/tests/verification-tools.test.ts :: metric MCP adapter routes offline benchmarks and rejects caller checkpoint plans",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/mcp/src/tests/verification-tools.test.ts :: metric MCP adapter submits comparison references through the API and rejects caller inference",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/mcp/src/tests/verification-tools.test.ts :: parse MCP adapter forwards only a strict artifact handle to the API client",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/mcp/src/tests/verification-tools.test.ts :: verification MCP adapter denies a tenant outside the authenticated grant before calling the client",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/mcp/src/tests/verification-tools.test.ts :: verification MCP adapter uses bearer-bound identity and the strict API client without accepting actor context",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "directory": "apps/worker",
+      "exitCode": 0,
+      "files": 22,
+      "tests": [
+        {
+          "identity": "apps/worker/src/activity-registry.test.ts :: CanonicalActivityRegistry dispatches only the handler bound to both operation kind and step name",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/activity-registry.test.ts :: CanonicalActivityRegistry fails unsupported work closed and marks it non-retryable",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/activity-registry.test.ts :: CanonicalActivityRegistry loads the canonical operation before invoking a handler",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/activity-registry.test.ts :: CanonicalActivityRegistry registers every step in the production worker admission catalog exactly once",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/activity-registry.test.ts :: CanonicalActivityRegistry rejects a non-JSON handler result before a success receipt can be written",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/activity-registry.test.ts :: CanonicalActivityRegistry rejects a persisted kind that disagrees with the canonical operation",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/activity-registry.test.ts :: CanonicalActivityRegistry requires the sealed authenticated context even when step and request digests are independently valid",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/activity-registry.test.ts :: production activity handlers accepts an attested local upload target and still seals one artifact",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/activity-registry.test.ts :: production activity handlers binds vector-store ownership to the authenticated actor and rejects unauthorized public/official stores",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/activity-registry.test.ts :: production activity handlers executes a sealed capture through structural conversion and reconstructable candidate chunks",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/activity-registry.test.ts :: production activity handlers executes and receipts exact-versus-ANN verification inputs",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/activity-registry.test.ts :: production activity handlers executes deterministic discovery, resolution, preview, comparison, and experiment receipts",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/activity-registry.test.ts :: production activity handlers executes the three typed vector-store ingestion verification stages with one immutable binding",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/activity-registry.test.ts :: production activity handlers freezes a development dataset and runs both durable evaluation steps",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/activity-registry.test.ts :: production activity handlers performs deterministic source vetting without publishing or embedding",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/activity-registry.test.ts :: production activity handlers rejects an HTTP capture whose canonical URL does not match the target",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/activity-registry.test.ts :: production activity handlers rejects unversioned preparation input before any side effect",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/activity-registry.test.ts :: production activity handlers validates and atomically attaches bounded vector-store documents under owner authority",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/activity-registry.test.ts :: selected candidate evaluation identity enforces evaluation authority for authenticated_evaluator",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/activity-registry.test.ts :: selected candidate evaluation identity enforces evaluation authority for different_actor",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/activity-registry.test.ts :: selected candidate evaluation identity enforces evaluation authority for prefixed_evaluator",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/activity-registry.test.ts :: selected candidate evaluation identity enforces evaluation authority for wrong_service",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/activity-registry.test.ts :: selected embedding replay authority reauthenticates before returning a retained run during embed",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/activity-registry.test.ts :: selected embedding replay authority reauthenticates before returning a retained run during verify",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/activity-registry.test.ts :: selected promotion worker operation passes exact selection custody through persistence and into the guarded review subject",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/activity-registry.test.ts :: selected promotion worker operation reconciles the selected candidate at embed only under executor authority",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/activity-registry.test.ts :: selected promotion worker operation reconciles the selected candidate at index only under executor authority",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/activity-registry.test.ts :: selected promotion worker operation reconciles the selected candidate at prepare only under executor authority",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/activity-registry.test.ts :: selected promotion worker operation refuses a persistence result bound to another selection before creating a review",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/activity-registry.test.ts :: selected promotion worker operation rejects legacy whole-chunk-set payloads before persistence or review",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/activity-registry.test.ts :: selected rollback baseline admission checks complete baseline before accepting rollback plan",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/activity-registry.test.ts :: selected rollback baseline admission checks missing baseline before accepting rollback plan",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/activity-registry.test.ts :: selected rollback baseline admission checks subset baseline before accepting rollback plan",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/activity-registry.test.ts :: selected rollback baseline admission checks wrong_space baseline before accepting rollback plan",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/promotion-selection.test.ts :: canonical selected-promotion adapter pins keeps its original selection when the caller changes the configuration object",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/promotion-selection.test.ts :: canonical selected-promotion adapter pins rejects a missing provider route before dispatch",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/promotion-selection.test.ts :: canonical selected-promotion adapter pins rejects a missing selected-space pin before database dispatch",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/promotion-selection.test.ts :: canonical selected-promotion adapter pins rejects altered selection bytes and foreign tenant before database dispatch",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/promotion-selection.test.ts :: canonical selected-promotion adapter pins rejects duplicate selected-space pins before database dispatch",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/promotion-selection.test.ts :: canonical selected-promotion adapter pins rejects the producer attempt as the reviewer pin before dispatch",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/promotion-selection.test.ts :: promotion selection worker host composition composes the worker host from ports and an independently registered authority artifact",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/promotion-selection.test.ts :: promotion selection worker host composition fails closed when selection is requested without a composed authority",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/promotion-selection.test.ts :: promotion selection worker host composition parses an authority locator and rejects partial or oversized JSON",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-activities.test.ts :: verification durable worker handlers makes deterministic failures nonretryable and scrubs unknown infrastructure messages",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-activities.test.ts :: verification durable worker handlers registers only the three complete kind and step pairs and shares one executor",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-adjudication-activity.test.ts :: verification adjudication request activity commits an exact packet under the leased step and returns pending-only state",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-adjudication-activity.test.ts :: verification adjudication request activity fails a stale native lease without retrying an unowned append",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-adjudication-activity.test.ts :: verification adjudication request activity rejects cancellation and malformed commit results without claiming a human decision",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-adjudication-activity.test.ts :: verification adjudication request activity rejects mutable packet-byte drift before the native commit",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-adjudication-decision-activity.test.ts :: packet-bound decision worker activity passes the claimed fence and emits a bound result without admission changes",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-adjudication-decision-activity.test.ts :: packet-bound decision worker activity rejects preparation substitutions before commit and output substitutions before success",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-adjudication-decision-activity.test.ts :: packet-bound decision worker activity stops before preparation or commit when the operation is cancelled",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-adjudication-decision-activity.test.ts :: packet-bound decision worker activity withholds success after cancellation during commit and hides infrastructure error text",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-adjudication-runtime-config.test.ts :: adjudication decision worker configuration accepts a bounded exact synthetic allowlist only when opted in",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-adjudication-runtime-config.test.ts :: adjudication decision worker configuration is fail-closed unless the explicit decision switch is enabled",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-adjudication-runtime-config.test.ts :: adjudication worker trust configuration accepts only a complete bounded server-owned trust set",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-adjudication-runtime-config.test.ts :: adjudication worker trust configuration is disabled when all three independent values are absent and rejects partial configuration",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-audit-inspection-activity.test.ts :: verification audit inspection activity never writes malformed output or after cancellation",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-audit-inspection-activity.test.ts :: verification audit inspection activity propagates a stale lease without retrying an unowned write",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-audit-inspection-activity.test.ts :: verification audit inspection activity validates the compact output before a lease-fenced result write",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-benchmark-activity.test.ts :: verification benchmark activity (unit-only) does not disclose unsupported quality claims or publish them",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-benchmark-activity.test.ts :: verification benchmark activity (unit-only) does not publish an incomplete or failed durable benchmark",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-benchmark-activity.test.ts :: verification benchmark activity (unit-only) orchestrates trusted offline preparation, durable checkpoints, publication and a compact engineering-only receipt",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-benchmark-activity.test.ts :: verification benchmark activity (unit-only) polls cancellation into the abort signal and never publishes retained work after cancellation",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-benchmark-activity.test.ts :: verification benchmark activity (unit-only) preserves a transient polling failure as retryable instead of relabeling it as cancellation",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-benchmark-activity.test.ts :: verification benchmark activity (unit-only) rejects a runtime identity that is not bound to the canonical attempt",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-benchmark-comparison-activity.test.ts :: verification benchmark comparison activity (unit-only) maps a malformed public comparison request to the exact nonretryable input failure",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-benchmark-comparison-activity.test.ts :: verification benchmark comparison activity (unit-only) orchestrates branded preparation, fenced durable transitions and a compact engineering-only receipt",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-benchmark-comparison-activity.test.ts :: verification benchmark comparison activity (unit-only) preserves explicit retryable errors and scrubs unknown infrastructure messages",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-benchmark-comparison-activity.test.ts :: verification benchmark comparison activity (unit-only) re-prepares and regenerates exact artifacts while reusing sealed retry timing and custody",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-benchmark-comparison-activity.test.ts :: verification benchmark comparison activity (unit-only) rejects canonical tenant identity and runtime attempt mismatches before preparation",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-benchmark-comparison-activity.test.ts :: verification benchmark comparison activity (unit-only) rejects durable result drift before signing or sealing a publication",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-benchmark-comparison-activity.test.ts :: verification benchmark comparison activity (unit-only) serializes cancellation polls and does not retain work after the operation is cancelled",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-benchmark-comparison-runtime.test.ts :: configured comparison runtime constructs only with operator profile configuration and matching tenant/signing identity",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-claims-activity.test.ts :: verification claims activity fences the terminal artifact and makes the exact sealed manifest an ancestor",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-claims-activity.test.ts :: verification claims activity rejects verification_claims without retry or sealing when runtime separation is not established",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-claims-activity.test.ts :: verification claims activity rejects verification_report without retry or sealing when runtime separation is not established",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-claims-recovery-profile.test.ts :: worker recovery profile authority leaves the submit/link race retryable and never dispatches while waiting",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-claims-recovery-profile.test.ts :: worker recovery profile authority preserves an exact host grant without consulting recovery state",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-claims-recovery-profile.test.ts :: worker recovery profile authority rejects absent or ambiguous execution ancestry",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-claims-recovery-profile.test.ts :: worker recovery profile authority rejects absent or ambiguous execution ancestry",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-claims-sealer.test.ts :: records semantic assessments and evidence lineage only after the mechanical gate",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-claims-sealer.test.ts :: rejects a semantic profile outside the independently pinned source-authority receipt",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-claims-sealer.test.ts :: VerificationClaimsAuditSealer makes missing report qualifiers a monotonic mechanical policy failure and replays the exact retained gate",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-claims-sealer.test.ts :: VerificationClaimsAuditSealer recovers an exact sealed run without writes and rejects changed source custody",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-claims-sealer.test.ts :: VerificationClaimsAuditSealer recovers the exact signed report gate and rejects incoming or stored gate drift",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-claims-sealer.test.ts :: VerificationClaimsAuditSealer rejects retained report gate byte tampering before policy replay",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-claims-sealer.test.ts :: VerificationClaimsAuditSealer seals an authenticated runtime binding even when deterministic separation fails",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-claims-sealer.test.ts :: VerificationClaimsAuditSealer uses the native audit envelope, complete custody and distinct trusted attempts",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-claims-semantic-stage.test.ts :: native claims semantic stage boundary passes the actual lease and shared budget, returns both retained roots, and leaves the unused judge lazy",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-claims-semantic-stage.test.ts :: native claims semantic stage boundary rejects missing durable observation and changed retained bytes",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-claims-semantic-stage.test.ts :: native claims semantic stage boundary rejects substituted fencing or host before grading",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-claims-semantic-stage.test.ts :: native claims semantic stage boundary requires explicit bounded configuration, profile grants and a key",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-claims-semantic-stage.test.ts :: native claims semantic stage boundary shares one budget across invoked judge families with distinct logical provider attempts",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-claims-source-authority.test.ts :: independent host source authority derives complete authority from pinned receipts and ignores caller authority labels",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-claims-source-authority.test.ts :: independent host source authority keeps unknown source facts unknown despite valid custody",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-claims-source-authority.test.ts :: independent host source authority rejects capture receipt drift",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-claims-source-authority.test.ts :: independent host source authority rejects census receipt drift",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-claims-source-authority.test.ts :: independent host source authority rejects changed retained bytes and producer-authored receipts",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-claims-source-authority.test.ts :: independent host source authority rejects claim receipt drift",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-claims-source-authority.test.ts :: independent host source authority rejects fact receipt drift",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-claims-source-authority.test.ts :: independent host source authority rejects missing receipt drift",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-claims-source-authority.test.ts :: independent host source authority rejects policy receipt drift",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-claims-source-authority.test.ts :: independent host source authority rejects source receipt drift",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-claims-source-authority.test.ts :: independent host source authority rejects tenant receipt drift",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-claims-source-authority.test.ts :: requires signed native policy configuration for explicitly enabled direct-selector claims",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-metric-activity.test.ts :: metric worker failure classification does not register a successful operation result when configured sealing fails",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-metric-activity.test.ts :: metric worker failure classification keeps registry ownership denial nonretryable and performs no metric calculation",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-metric-activity.test.ts :: metric worker failure classification rejects malformed input without hydration or a retry",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-metric-sealer.test.ts :: VerificationMetricAuditSealer bounds provenance traversal before recording any output",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-metric-sealer.test.ts :: VerificationMetricAuditSealer does not recover a seal under a different profile grant",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-metric-sealer.test.ts :: VerificationMetricAuditSealer does not seal a result whose runtime deployment separation failed",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-metric-sealer.test.ts :: VerificationMetricAuditSealer fails before writing a seal when a registered provenance parent is unavailable",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-metric-sealer.test.ts :: VerificationMetricAuditSealer rejects an empty metric set before policy evaluation can turn it into a pass",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-metric-sealer.test.ts :: VerificationMetricAuditSealer rejects recovery that omits a required provenance input",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-metric-sealer.test.ts :: VerificationMetricAuditSealer retains profile envelope references and their registered parents",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-metric-sealer.test.ts :: VerificationMetricAuditSealer reuses an exact internal recovery audit without changing artifacts or timing",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-metric-sealer.test.ts :: VerificationMetricAuditSealer reuses the mechanical result CAS across different operations without operation-bound metadata",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-metric-sealer.test.ts :: VerificationMetricAuditSealer seals conservative metric policy inputs and binds the run to the lease",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-parse-activity.test.ts :: executeVerificationParseArtifact does not call application parsing when the durable operation is inactive",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-parse-activity.test.ts :: executeVerificationParseArtifact uses the server-owned context and checks activity liveness around application execution",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-sealed-replay-activity.test.ts :: sealed verification replay activity does not fall back for an integrity or authorization failure",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-sealed-replay-activity.test.ts :: sealed verification replay activity does not register after canonical cancellation arrives during replay",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-sealed-replay-activity.test.ts :: sealed verification replay activity rejects caller-controlled extras before replay and leaves no artifact",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-sealed-replay-activity.test.ts :: sealed verification replay activity replays only the sealed trusted result and records a restricted compact operation result",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-sealed-replay-activity.test.ts :: sealed verification replay activity scrubs an unrecognized replay failure into a retryable infrastructure code",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-sealed-replay-activity.test.ts :: sealed verification replay activity uses the legacy extraction handler only for the dedicated sealed-run-not-found signal",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-sealed-replay-runtime.test.ts :: canonical sealed replay authorization denies another mission before audit hydration or principal lookup",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-sealed-replay-runtime.test.ts :: canonical sealed replay authorization does not look up another tenant's run",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-sealed-replay-runtime.test.ts :: canonical sealed replay authorization uses the dedicated missing signal only for an absent canonical run",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-structured-extraction-runtime.test.ts :: structured extraction runtime configuration does not register an unconfigured handler and requires an explicit synthetic port",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-structured-extraction-runtime.test.ts :: structured extraction runtime configuration registers only the extraction activity for a valid server-owned synthetic configuration",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-structured-extraction-runtime.test.ts :: structured extraction runtime configuration rejects ambiguous grants and missing live-provider credentials",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/verification-structured-extraction-runtime.test.ts :: structured extraction runtime configuration rejects tenant and signing authority mismatch before any artifact access",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/worker.test.ts :: durable worker claims, heartbeats, executes and reconciles",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/worker.test.ts :: worker bootstrap accepts a composed host and keeps startup scoped before persistence connects",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/worker.test.ts :: worker bootstrap admits memory persistence only when explicitly requested for development or test",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/worker.test.ts :: worker bootstrap defaults to canonical persistence and fails closed when its tenant/config is absent",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/worker.test.ts :: worker bootstrap fails closed when selection is requested without a composed host authority",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/worker.test.ts :: worker bootstrap rejects malformed operation scope before a worker is started",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/worker.test.ts :: worker bootstrap uses exact operation reconciliation and claiming when explicitly scoped",
+          "status": "passed"
+        },
+        {
+          "identity": "apps/worker/src/worker.test.ts :: worker process restart does not lease API-owned retrieval runs from the production worker queue",
+          "status": "skipped"
+        },
+        {
+          "identity": "apps/worker/src/worker.test.ts :: worker process restart executes a PostgreSQL-admitted source-vetting operation through the production registry",
+          "status": "skipped"
+        },
+        {
+          "identity": "apps/worker/src/worker.test.ts :: worker process restart executes a PostgreSQL-admitted vector-store creation with immutable actor ownership",
+          "status": "skipped"
+        },
+        {
+          "identity": "apps/worker/src/worker.test.ts :: worker process restart fails an unimplemented canonical activity once without recording a false success",
+          "status": "skipped"
+        },
+        {
+          "identity": "apps/worker/src/worker.test.ts :: worker process restart reclaims an abandoned PostgreSQL lease in a fresh OS process",
+          "status": "skipped"
+        }
+      ]
+    },
+    {
+      "directory": "packages/persistence",
+      "exitCode": 0,
+      "files": 48,
+      "tests": [
+        {
+          "identity": "packages/persistence/src/actor-identity.test.ts :: sameActorIdentity rejects a different actor; kind prefixes still name the same key",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/actor-identity.test.ts :: sameActorIdentity treats a raw uuid and service:<uuid> as the same actor",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/checkpoints.integration.test.ts :: checkpoint active workspace budgets accepts an exact-budget workspace across repeated revisions without charging lifetime snapshots",
+          "status": "skipped"
+        },
+        {
+          "identity": "packages/persistence/src/checkpoints.integration.test.ts :: checkpoint physical alias retention retains bytes until every aged unreferenced alias is tombstoned",
+          "status": "skipped"
+        },
+        {
+          "identity": "packages/persistence/src/checkpoints.integration.test.ts :: checkpoint retirement reference races serializes reference-first against independent canonical writers after simulated elapsed age",
+          "status": "skipped"
+        },
+        {
+          "identity": "packages/persistence/src/checkpoints.integration.test.ts :: checkpoint retirement reference races serializes retirement-first against independent canonical writers after simulated elapsed age",
+          "status": "skipped"
+        },
+        {
+          "identity": "packages/persistence/src/checkpoints.integration.test.ts :: scoped checkpoints with real PostgreSQL and Storage commits once across independent writers, preserves parent manifest and exact handles",
+          "status": "skipped"
+        },
+        {
+          "identity": "packages/persistence/src/checkpoints.integration.test.ts :: scoped checkpoints with real PostgreSQL and Storage denies actual Storage deletion of referenced bytes and rejects forged old retention clocks",
+          "status": "skipped"
+        },
+        {
+          "identity": "packages/persistence/src/checkpoints.integration.test.ts :: scoped checkpoints with real PostgreSQL and Storage keeps child archives separate and reconciles original pending owners before continuation",
+          "status": "skipped"
+        },
+        {
+          "identity": "packages/persistence/src/checkpoints.integration.test.ts :: scoped checkpoints with real PostgreSQL and Storage recovers uploaded manifest acknowledgement loss and committed database response loss",
+          "status": "skipped"
+        },
+        {
+          "identity": "packages/persistence/src/checkpoints.integration.test.ts :: scoped checkpoints with real PostgreSQL and Storage rejects partial closure and forbidden paths without advancing the prior head",
+          "status": "skipped"
+        },
+        {
+          "identity": "packages/persistence/src/content-representation-admission.test.ts :: accepts a distinct tenant-resolved reviewer attempt and deployment",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/content-representation-admission.test.ts :: canonical representation admission admits exact independent current acceptance without consulting the raw representation label",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/content-representation-admission.test.ts :: canonical representation admission admits the actual conversion subject only for its producing operation",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/content-representation-admission.test.ts :: canonical representation admission rejects canonical decision_current drift",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/content-representation-admission.test.ts :: canonical representation admission rejects canonical eligible_roles drift",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/content-representation-admission.test.ts :: canonical representation admission rejects canonical guarded_sha256 drift",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/content-representation-admission.test.ts :: canonical representation admission rejects canonical legacy_provenance drift",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/content-representation-admission.test.ts :: canonical representation admission rejects canonical operation_actor drift",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/content-representation-admission.test.ts :: canonical representation admission rejects canonical operation_id drift",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/content-representation-admission.test.ts :: canonical representation admission rejects canonical operation_kind drift",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/content-representation-admission.test.ts :: canonical representation admission rejects canonical operation_status drift",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/content-representation-admission.test.ts :: canonical representation admission rejects canonical producer_actor drift",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/content-representation-admission.test.ts :: canonical representation admission rejects canonical producer_attempt_id drift",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/content-representation-admission.test.ts :: canonical representation admission rejects canonical producer_deployment_id drift",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/content-representation-admission.test.ts :: canonical representation admission rejects canonical producing_operation_id drift",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/content-representation-admission.test.ts :: canonical representation admission rejects canonical quorum_required drift",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/content-representation-admission.test.ts :: canonical representation admission rejects canonical representation_digest drift",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/content-representation-admission.test.ts :: canonical representation admission rejects canonical representation_id drift",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/content-representation-admission.test.ts :: canonical representation admission rejects canonical review_decision drift",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/content-representation-admission.test.ts :: canonical representation admission rejects canonical review_digest drift",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/content-representation-admission.test.ts :: canonical representation admission rejects canonical review_id drift",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/content-representation-admission.test.ts :: canonical representation admission rejects canonical review_identity drift",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/content-representation-admission.test.ts :: canonical representation admission rejects canonical review_legacy drift",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/content-representation-admission.test.ts :: canonical representation admission rejects canonical review_operation_id drift",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/content-representation-admission.test.ts :: canonical representation admission rejects canonical subject_current drift",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/content-representation-admission.test.ts :: canonical representation admission rejects canonical subject_digest drift",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/content-representation-admission.test.ts :: canonical representation admission rejects canonical subject_kind drift",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/content-representation-admission.test.ts :: canonical representation admission rejects canonical subject_ref drift",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/content-representation-admission.test.ts :: canonical representation admission rejects canonical subject_ref drift",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/content-representation-admission.test.ts :: canonical representation admission rejects canonical tenant_id drift",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/content-representation-admission.test.ts :: canonical representation admission rejects canonical transformation_attempt_id drift",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/content-representation-admission.test.ts :: canonical representation admission rejects canonical transformation_kind drift",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/content-representation-admission.test.ts :: canonical representation admission retains latest defer without falling back to older acceptance",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/content-representation-admission.test.ts :: canonical representation admission retains latest quarantine without falling back to older acceptance",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/content-representation-admission.test.ts :: canonical representation admission retains latest reject without falling back to older acceptance",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/content-representation-admission.test.ts :: canonical representation admission retains latest request_changes without falling back to older acceptance",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/content-representation-admission.test.ts :: canonical representation admission returns pending when no decision exists",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/content-representation-admission.test.ts :: rejects aliased or unresolved reviewer runtime identity 0",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/content-representation-admission.test.ts :: rejects aliased or unresolved reviewer runtime identity 1",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/content-representation-admission.test.ts :: rejects aliased or unresolved reviewer runtime identity 2",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/content-representation-admission.test.ts :: rejects aliased or unresolved reviewer runtime identity 3",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/content-representation-admission.test.ts :: rejects summary reviewer actor equal to producer-attempt",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/content-representation-admission.test.ts :: rejects summary reviewer actor equal to producer-deployment",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/content-representation-admission.test.ts :: uses the actual summary producer even when a review subject names another operation actor",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/content-summary-preparation.test.ts :: canonical summary preparation persistence rejects a conflicting artifact edge without overwriting the prior transformation",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/content-summary-preparation.test.ts :: canonical summary preparation persistence rejects missing admission authority before writes",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/content-summary-preparation.test.ts :: canonical summary preparation persistence rejects missing artifact authority before writes",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/content-summary-preparation.test.ts :: canonical summary preparation persistence rejects missing attempt authority before writes",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/content-summary-preparation.test.ts :: canonical summary preparation persistence rejects missing input authority before writes",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/content-summary-preparation.test.ts :: canonical summary preparation persistence rejects retained lineage substitutions instead of treating conflicting rows as replay",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/content-summary-preparation.test.ts :: canonical summary preparation persistence writes the actual transformation and exact lineage with pending acceptance",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/eve-verification-binding.test.ts :: resolveEveVerificationBinding freezes the first execution while appending a newly signed JTI retry with the same lineage",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/eve-verification-binding.test.ts :: resolveEveVerificationBinding rejects a changed payload reusing an issuer/JTI and binds service identity into the immutable actor",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/governance-selection.test.ts :: governed selection fail-closed boundaries does not settle a caller-created embedding context without selection authority",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/governance-selection.test.ts :: governed selection fail-closed boundaries rejects a promotion whose current independent review is not proven (false)",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/governance-selection.test.ts :: governed selection fail-closed boundaries rejects a promotion whose current independent review is not proven (undefined)",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/governance-selection.test.ts :: governed selection fail-closed boundaries rejects legacy whole-chunk-set proposals before any canonical read or write",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/operation-service.test.ts :: PostgresKnowledgeOperationService capability admission binds verification ownership to both the operation columns and idempotency digest",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/operation-service.test.ts :: PostgresKnowledgeOperationService capability admission persists bounded verification work only through an explicitly admitted service",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/operation-service.test.ts :: PostgresKnowledgeOperationService capability admission projects only canonical failure receipts through exact category classification",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/operation-service.test.ts :: PostgresKnowledgeOperationService capability admission rejects an unsupported contract kind before any database write",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/operation-service.test.ts :: PostgresKnowledgeOperationService capability admission requires explicit endpoint ownership before admitting canonical retrieval",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/operation-service.test.ts :: PostgresKnowledgeOperationService capability admission retains authenticated reviewer context in durable decision requests",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/postgres.test.ts :: PostgresCanonicalRepository local integration does not disclose lease capability tokens through events or outbox",
+          "status": "skipped"
+        },
+        {
+          "identity": "packages/persistence/src/postgres.test.ts :: PostgresCanonicalRepository local integration does not lease a later durable step before its predecessor succeeds",
+          "status": "skipped"
+        },
+        {
+          "identity": "packages/persistence/src/postgres.test.ts :: PostgresCanonicalRepository local integration fences outbox ack/nack/extension with owner and claim token",
+          "status": "skipped"
+        },
+        {
+          "identity": "packages/persistence/src/postgres.test.ts :: PostgresCanonicalRepository local integration reads artifact and receipt identities from canonical tenant-scoped rows",
+          "status": "skipped"
+        },
+        {
+          "identity": "packages/persistence/src/postgres.test.ts :: PostgresCanonicalRepository local integration reads bounded evaluation reports and failed cases from normalized evaluation rows",
+          "status": "skipped"
+        },
+        {
+          "identity": "packages/persistence/src/postgres.test.ts :: PostgresCanonicalRepository local integration reads bounded vector-store metadata and conceals it across tenants",
+          "status": "skipped"
+        },
+        {
+          "identity": "packages/persistence/src/postgres.test.ts :: PostgresCanonicalRepository local integration reconstructs and verifies an evidence packet from normalized durable state",
+          "status": "skipped"
+        },
+        {
+          "identity": "packages/persistence/src/postgres.test.ts :: PostgresCanonicalRepository local integration rejects reuse of a durable operation id under another idempotency identity",
+          "status": "skipped"
+        },
+        {
+          "identity": "packages/persistence/src/postgres.test.ts :: PostgresCanonicalRepository local integration returns the canonical operation for an idempotent retry with a different proposed id",
+          "status": "skipped"
+        },
+        {
+          "identity": "packages/persistence/src/postgres.test.ts :: PostgresCanonicalRepository local integration terminal-fails a retryable step when its maximum attempts are exhausted",
+          "status": "skipped"
+        },
+        {
+          "identity": "packages/persistence/src/postgres.test.ts :: PostgresCanonicalRepository local integration terminal-fails and releases the lease when a receipt key collides across semantic identities",
+          "status": "skipped"
+        },
+        {
+          "identity": "packages/persistence/src/postgres.test.ts :: PostgresCanonicalRepository target guard refuses a non-local database in local-only mode",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/preparation-vocabulary.test.ts :: canonical preparation vocabulary accepts canonical method api with or without a provider version",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/preparation-vocabulary.test.ts :: canonical preparation vocabulary accepts canonical method browser with or without a provider version",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/preparation-vocabulary.test.ts :: canonical preparation vocabulary accepts canonical method firecrawl with or without a provider version",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/preparation-vocabulary.test.ts :: canonical preparation vocabulary accepts canonical method http with or without a provider version",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/preparation-vocabulary.test.ts :: canonical preparation vocabulary accepts canonical method manual with or without a provider version",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/preparation-vocabulary.test.ts :: canonical preparation vocabulary accepts canonical method other with or without a provider version",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/preparation-vocabulary.test.ts :: canonical preparation vocabulary accepts canonical method repository with or without a provider version",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/preparation-vocabulary.test.ts :: canonical preparation vocabulary accepts canonical method youtube_transcript with or without a provider version",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/preparation-vocabulary.test.ts :: canonical preparation vocabulary maps acquisition adapter direct-http@1.0.0 to http",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/preparation-vocabulary.test.ts :: canonical preparation vocabulary maps acquisition adapter firecrawl-scrape@v2 to firecrawl",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/preparation-vocabulary.test.ts :: canonical preparation vocabulary maps acquisition adapter https_acquire to http",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/preparation-vocabulary.test.ts :: canonical preparation vocabulary maps acquisition adapter manual-upload@1.0.0 to manual",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/preparation-vocabulary.test.ts :: canonical preparation vocabulary maps acquisition adapter paper-resolver@1.0.0 to api",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/preparation-vocabulary.test.ts :: canonical preparation vocabulary maps acquisition adapter registered_artifact to manual",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/preparation-vocabulary.test.ts :: canonical preparation vocabulary maps acquisition adapter repository-archive@1.0.0 to repository",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/preparation-vocabulary.test.ts :: canonical preparation vocabulary maps legacy document kind official_blog to official_blog_post",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/preparation-vocabulary.test.ts :: canonical preparation vocabulary maps legacy document kind official_docs to official_docs_page",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/preparation-vocabulary.test.ts :: canonical preparation vocabulary maps legacy document kind official_repository to repository_readme",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/preparation-vocabulary.test.ts :: canonical preparation vocabulary maps legacy document kind talk_transcript to video_transcript",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/preparation-vocabulary.test.ts :: canonical preparation vocabulary preserves unaliased document type constructor for canonical database validation",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/preparation-vocabulary.test.ts :: canonical preparation vocabulary preserves unaliased document type entity_profile for canonical database validation",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/preparation-vocabulary.test.ts :: canonical preparation vocabulary preserves unaliased document type official_docs_page for canonical database validation",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/preparation-vocabulary.test.ts :: canonical preparation vocabulary preserves unaliased document type official_homepage for canonical database validation",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/preparation-vocabulary.test.ts :: canonical preparation vocabulary preserves unaliased document type research_report for canonical database validation",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/preparation-vocabulary.test.ts :: canonical preparation vocabulary preserves unaliased document type unregistered_kind for canonical database validation",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/preparation-vocabulary.test.ts :: canonical preparation vocabulary rejects unsupported capture method  without defaulting its classification",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/preparation-vocabulary.test.ts :: canonical preparation vocabulary rejects unsupported capture method __proto__ without defaulting its classification",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/preparation-vocabulary.test.ts :: canonical preparation vocabulary rejects unsupported capture method constructor without defaulting its classification",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/preparation-vocabulary.test.ts :: canonical preparation vocabulary rejects unsupported capture method fixture@1 without defaulting its classification",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/preparation-vocabulary.test.ts :: canonical preparation vocabulary rejects unsupported capture method unknown-adapter@1 without defaulting its classification",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/preparation.test.ts :: PostgresPreparationRepository is replay-safe and rejects changed immutable capture, node, and span identities",
+          "status": "skipped"
+        },
+        {
+          "identity": "packages/persistence/src/promotion-selection.test.ts :: canonical PromotionSelection validation preserves exact Unicode and selected subset without expanding excluded chunks",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/promotion-selection.test.ts :: canonical PromotionSelection validation refuses a summary whose latest independent review rejects its output",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/promotion-selection.test.ts :: canonical PromotionSelection validation rejects a foreign tenant before reading artifact bytes",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/promotion-selection.test.ts :: canonical PromotionSelection validation rejects changed canonical api.knowledge_head",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/promotion-selection.test.ts :: canonical PromotionSelection validation rejects changed canonical api.knowledge_head",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/promotion-selection.test.ts :: canonical PromotionSelection validation rejects changed canonical from retrieval.projection_target",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/promotion-selection.test.ts :: canonical PromotionSelection validation rejects changed canonical with latest",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/promotion-selection.test.ts :: canonical PromotionSelection validation rejects changed raw artifact and source bytes",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/promotion-selection.test.ts :: canonical PromotionSelection validation rejects unbound claims and missing authoritative receipt target",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/promotion-selection.test.ts :: canonical PromotionSelection validation retains both the original source and independently reviewed summary representation",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/promotion-selection.test.ts :: canonical PromotionSelection validation uses measured bounds and retains unknown usage",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/publication-evaluation.test.ts :: ANN access proof rejects HNSW mentions without an HNSW index scan",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/publication-evaluation.test.ts :: ANN access proof rejects HNSW mentions without an HNSW index scan",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/publication-evaluation.test.ts :: ANN access proof rejects HNSW mentions without an HNSW index scan",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/publication-evaluation.test.ts :: frozen rollback query coverage rejects changed_embedding query evidence before ranking",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/publication-evaluation.test.ts :: frozen rollback query coverage rejects duplicate query evidence before ranking",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/publication-evaluation.test.ts :: frozen rollback query coverage rejects empty query evidence before ranking",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/publication-evaluation.test.ts :: frozen rollback query coverage rejects subset query evidence before ranking",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/publication-evaluation.test.ts :: frozen vector identity binding rejects missing bindings before dependency eligibility",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/publication-evaluation.test.ts :: frozen vector identity binding rejects swap bindings before dependency eligibility",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/publication-evaluation.test.ts :: published query plan capture rejects an ANN arm whose captured plan is a non-HNSW index scan",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/publication-evaluation.test.ts :: published query plan capture rejects an ANN arm whose captured plan is sequential-scan only",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/publication-evaluation.test.ts :: published query plan capture retains every EXPLAIN line, not the first line only",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/publication-evaluation.test.ts :: published query plan capture stores the ANN plan text on queryPublishedSpace.annPlan",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/publication-evaluation.test.ts :: published query planner isolation applies complementary SET LOCAL restore before each arm's own constraints",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/publication-evaluation.test.ts :: published query planner isolation restores index and bitmap scans for ANN after exact on the same client, before seqscan/hnsw",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/publication-evaluation.test.ts :: published recall and query vector guards does not treat a one-item overlap as success against a four-item exact set at recall 1.0",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/publication-evaluation.test.ts :: published recall and query vector guards ranks the physical space partition so ANN can use HNSW",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/publication-evaluation.test.ts :: published recall and query vector guards rejects a infinite query embedding",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/publication-evaluation.test.ts :: published recall and query vector guards rejects a non-finite query embedding",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/publication-evaluation.test.ts :: published recall and query vector guards rejects a wrong dimension query embedding",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/publication-evaluation.test.ts :: published recall and query vector guards rejects an unknown vector space before ranking",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/report-source-dependencies.test.ts :: checks prepared input revocation after its signed exact source binding",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/report-source-dependencies.test.ts :: preserves a native captured source independently of unrelated derived siblings",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/report-source-dependencies.test.ts :: rejects missing exact source metadata instead of silently dropping it",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/representation-dependency.test.ts :: current representation dependency closure accepts a captured byte root without inventing a representation review",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/representation-dependency.test.ts :: current representation dependency closure denies a captured artifact whose canonical native representation was rejected",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/representation-dependency.test.ts :: current representation dependency closure does not declare report or unknown artifact descendants revalidated",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/representation-dependency.test.ts :: current representation dependency closure fails closed on missing artifact authority",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/representation-dependency.test.ts :: current representation dependency closure fails closed on report artifact authority",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/representation-dependency.test.ts :: current representation dependency closure fails closed on unknown artifact authority",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/representation-dependency.test.ts :: current representation dependency closure gates a still-admitted derived representation when a transitive input is revoked",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/representation-dependency.test.ts :: current representation dependency closure keeps missing artifact metadata visible and denies it",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/representation-dependency.test.ts :: current representation dependency closure rejects incomplete or oversized closure with 0 nodes",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/representation-dependency.test.ts :: current representation dependency closure rejects incomplete or oversized closure with 1025 nodes",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/representation-dependency.test.ts :: current representation dependency closure requires an independent decision for the root even when its captured bytes are available",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/retrieval-evidence.test.ts :: bounded canonical citation byte replay bounds citation operations even when all bytes are cached",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/retrieval-evidence.test.ts :: bounded canonical citation byte replay denies digest canonical artifact metadata before remote read",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/retrieval-evidence.test.ts :: bounded canonical citation byte replay denies foreign canonical artifact metadata before remote read",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/retrieval-evidence.test.ts :: bounded canonical citation byte replay denies missing canonical artifact metadata before remote read",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/retrieval-evidence.test.ts :: bounded canonical citation byte replay denies oversize canonical artifact metadata before remote read",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/retrieval-evidence.test.ts :: bounded canonical citation byte replay rejects altered count after valid replay",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/retrieval-evidence.test.ts :: bounded canonical citation byte replay rejects altered normalization after valid replay",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/retrieval-evidence.test.ts :: bounded canonical citation byte replay rejects altered quote after valid replay",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/retrieval-evidence.test.ts :: bounded canonical citation byte replay rejects altered resolution after valid replay",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/retrieval-evidence.test.ts :: bounded canonical citation byte replay rejects altered resolver after valid replay",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/retrieval-evidence.test.ts :: bounded canonical citation byte replay rejects altered selector after valid replay",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/retrieval-evidence.test.ts :: bounded canonical citation byte replay rejects altered size after valid replay",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/retrieval-evidence.test.ts :: bounded canonical citation byte replay rejects altered tenant after valid replay",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/retrieval-evidence.test.ts :: bounded canonical citation byte replay rejects remote bytes drift",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/retrieval-evidence.test.ts :: bounded canonical citation byte replay rejects remote length drift",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/retrieval-evidence.test.ts :: bounded canonical citation byte replay rejects remote media drift",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/retrieval-evidence.test.ts :: bounded canonical citation byte replay rejects remote missing objects without substituting persisted metadata",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/retrieval-evidence.test.ts :: bounded canonical citation byte replay replays actual native Unicode selectors and groups by canonical capture source",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/retrieval-evidence.test.ts :: bounded canonical target, claim and assessment resolution binds the canonical target, admitted claims, locators and source families",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/retrieval-evidence.test.ts :: bounded canonical target, claim and assessment resolution bounds legacy conflict and supersession endpoints by tenant, admission and requested knowledge",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/retrieval-evidence.test.ts :: bounded canonical target, claim and assessment resolution marks a candidate truncated instead of returning an unbounded closure",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/retrieval-evidence.test.ts :: bounded canonical target, claim and assessment resolution omits a candidate with no admitted support rather than reporting an unsupported member",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/retrieval-evidence.test.ts :: bounded canonical target, claim and assessment resolution reads admitted temporal corrections and explicit challenges at the requested knowledge sequence",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/retrieval-evidence.test.ts :: bounded canonical target, claim and assessment resolution refuses a traversal whose capture bytes exceed the query budget",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/retrieval-evidence.test.ts :: bounded canonical target, claim and assessment resolution refuses an invalid candidate in the request",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/retrieval-evidence.test.ts :: bounded canonical target, claim and assessment resolution refuses an invalid clock in the request",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/retrieval-evidence.test.ts :: bounded canonical target, claim and assessment resolution refuses an invalid duplicates in the request",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/retrieval-evidence.test.ts :: bounded canonical target, claim and assessment resolution refuses an invalid tenant in the request",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/retrieval-evidence.test.ts :: bounded canonical target, claim and assessment resolution rejects a projection target whose typed canonical identity is missing",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/retrieval-evidence.test.ts :: bounded canonical target, claim and assessment resolution rejects an altered admission_digest binding",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/retrieval-evidence.test.ts :: bounded canonical target, claim and assessment resolution rejects an altered assessment_verdict binding",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/retrieval-evidence.test.ts :: bounded canonical target, claim and assessment resolution rejects an altered claim_status binding",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/retrieval-evidence.test.ts :: bounded canonical target, claim and assessment resolution rejects an altered selector_sha256 binding",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/retrieval-evidence.test.ts :: bounded canonical target, claim and assessment resolution rejects an altered verification_run_id binding",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/retrieval-evidence.test.ts :: bounded canonical target, claim and assessment resolution requires exact current knowledge equality for unversioned relations at K=0",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/retrieval-evidence.test.ts :: bounded canonical target, claim and assessment resolution requires exact current knowledge equality for unversioned relations at K=6",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/source-discovery.integration.test.ts :: source discovery real custody and accounting finds uploaded completion bytes after lost upload acknowledgement and fences two expired owners",
+          "status": "skipped"
+        },
+        {
+          "identity": "packages/persistence/src/source-discovery.integration.test.ts :: source discovery real custody and accounting preserves imported parity and trust, failure rollups, and rejects capture mismatch atomically",
+          "status": "skipped"
+        },
+        {
+          "identity": "packages/persistence/src/source-discovery.integration.test.ts :: source discovery real custody and accounting recovers completion ack without repeating provider or changing handles",
+          "status": "skipped"
+        },
+        {
+          "identity": "packages/persistence/src/source-discovery.integration.test.ts :: source discovery real custody and accounting recovers completion rollback without repeating provider or changing handles",
+          "status": "skipped"
+        },
+        {
+          "identity": "packages/persistence/src/source-discovery.integration.test.ts :: source discovery real custody and accounting retains selection revisions, bounded pages, immutable provider output, and original retry lineage",
+          "status": "skipped"
+        },
+        {
+          "identity": "packages/persistence/src/source-discovery.integration.test.ts :: source discovery real custody and accounting serializes independent callers behind an actual PostgreSQL advisory lock",
+          "status": "skipped"
+        },
+        {
+          "identity": "packages/persistence/src/vector-store.test.ts :: vector-store lifecycle local PostgreSQL integration attaches only consistent accepted representations under owner, quota, lifecycle, and replay guards",
+          "status": "skipped"
+        },
+        {
+          "identity": "packages/persistence/src/vector-store.test.ts :: vector-store lifecycle local PostgreSQL integration persists immutable operation/owner identity, maps store classes, replays exactly, and isolates tenants",
+          "status": "skipped"
+        },
+        {
+          "identity": "packages/persistence/src/verification-adjudication-decision-preparation.test.ts :: canonical reviewer preparation adapter defaults synthetic review to disabled and requires exact configured identity",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-adjudication-decision-preparation.test.ts :: canonical reviewer preparation adapter fails closed on absent subjects and reuses the verified reader with exact operation binding",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-adjudication-decision-preparation.test.ts :: canonical reviewer preparation adapter reads human grants using authenticated tenant, subject and actor",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-adjudication-decision.test.ts :: packet-bound decision commit boundary (mocked engineering tests) does not record a decision when artifact registration fails",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-adjudication-decision.test.ts :: packet-bound decision commit boundary (mocked engineering tests) rechecks lease and subject after asynchronous storage registration",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-adjudication-decision.test.ts :: packet-bound decision commit boundary (mocked engineering tests) rechecks the exact human grant inside the commit transaction",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-adjudication-decision.test.ts :: packet-bound decision commit boundary (mocked engineering tests) registers, commits and recovers one immutable decision under a renewed fence",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-adjudication-decision.test.ts :: packet-bound decision commit boundary (mocked engineering tests) rejects caller byte and prepared-authority tampering before storage writes",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-adjudication-decision.test.ts :: packet-bound decision commit boundary (mocked engineering tests) rejects recovery drift instead of overwriting evidence",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-adjudication-decision.test.ts :: packet-bound decision commit boundary (mocked engineering tests) rejects stale leases and mismatched durable requests before registration",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-adjudication-reads.test.ts :: Postgres verification adjudication terminal reader authenticates the terminal fence, packet bytes, subject, source run, and canonical replay",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-adjudication-reads.test.ts :: Postgres verification adjudication terminal reader bounds a canonical replay port that ignores cancellation",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-adjudication-reads.test.ts :: Postgres verification adjudication terminal reader fails closed on receipt fence, subject, source, or canonical replay drift",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-adjudication-reads.test.ts :: Postgres verification adjudication terminal reader returns nonterminal state without hydrating or replaying private artifacts",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-adjudication.test.ts :: Postgres verification adjudication repository does not create an adjudication subject when canonical artifact registration fails",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-adjudication.test.ts :: Postgres verification adjudication repository recovers the original immutable subject and packet under a higher active fence",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-adjudication.test.ts :: Postgres verification adjudication repository rejects a packet handle whose metadata diverges from the separately hydrated parent vector",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-adjudication.test.ts :: Postgres verification adjudication repository rejects a recovered packet registered by a different producer attempt",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-adjudication.test.ts :: Postgres verification adjudication repository rejects stale leases and packet byte drift without a database write",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-adjudication.test.ts :: Postgres verification adjudication repository routes the packet through the canonical registrar before the live-lease subject transaction",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-adjudication.test.ts :: Postgres verification adjudication repository uses a complete pre-await snapshot when caller-owned objects mutate during registration",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-artifact-registration.test.ts :: authorizes metadata lookup before consulting the registry",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-artifact-registration.test.ts :: exposes original pending and failed registration metadata without acknowledging availability",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-artifact-registration.test.ts :: fences availability and failure updates when the worker loses its lease during upload",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-artifact-registration.test.ts :: logical artifact custody preserves exact logical handles and different parents while sharing one digest upload",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-artifact-registration.test.ts :: logical artifact custody recovers upload acknowledgement loss only after reading exact bytes",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-artifact-registration.test.ts :: logical artifact custody refuses unavailable parents before writing child bytes",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-artifact-registration.test.ts :: logical artifact custody repairs upload-success database-failure without another upload or changing identity",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-artifact-registration.test.ts :: PostgresVerificationRepository artifact registration marks a relational registration failed when the object-store write fails, leaving no available orphan",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-artifact-registration.test.ts :: PostgresVerificationRepository artifact registration rejects a collision before a second object-store write",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-artifact-registration.test.ts :: PostgresVerificationRepository artifact registration round-trips a registered object through CAS and records matching available relational metadata",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-artifact-registration.test.ts :: retries a pending CAS registration using the original immutable producer metadata",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-audit-inspection-reads.test.ts :: native audit inspection result reads attributes event and artifact drift to integrity rather than absence",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-audit-inspection-reads.test.ts :: native audit inspection result reads requires the terminal event, receipt, exact request parent, and canonical registered bytes",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-benchmark-comparison.test.ts :: durable benchmark comparison boundary exact completion retry retains its time and rejects result drift",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-benchmark-comparison.test.ts :: durable benchmark comparison boundary rejects malformed claims before SQL, and inactive operations or stale leases before reading lifecycle",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-benchmark-comparison.test.ts :: durable benchmark comparison boundary reuses retained timing while rejecting changed input identity",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-benchmark-comparison.test.ts :: durable benchmark comparison boundary sealed retries require the original result and exact publication identity",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-benchmark-reads.test.ts :: postgres benchmark publication reads (unit-only) attributes receipt, arm, and manifest drift as integrity failures rather than absence",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-benchmark-reads.test.ts :: postgres benchmark publication reads (unit-only) checks actual retained bytes independently of signed content and tenant registration",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-benchmark-reads.test.ts :: postgres benchmark publication reads (unit-only) does not reinterpret agent-generated engineering labels as human gold",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-benchmark-reads.test.ts :: postgres benchmark publication reads (unit-only) requires the exact succeeded receipt, mapped arms, canonical timing, and signed publication",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-benchmark-reads.test.ts :: postgres benchmark publication reads (unit-only) validates request UUIDs before opening a tenant transaction",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-benchmark-run.test.ts :: PostgresVerificationBenchmarkRunStore creates exactly one fenced identity and returns its persisted original start on a later retry",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-benchmark-run.test.ts :: PostgresVerificationBenchmarkRunStore does not complete a run until every immutable planned checkpoint exists",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-benchmark-run.test.ts :: PostgresVerificationBenchmarkRunStore rejects changed admitted bindings and stale/cancelled leases before run mutation",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-capture-reads.test.ts :: PostgresCaptureReadRepository authenticates terminal receipt, stored result bytes, registered source, and native projection re-admission",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-capture-reads.test.ts :: PostgresCaptureReadRepository hydrates both ordered PDF projections while retaining one deduplicated native-output custody role",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-capture-reads.test.ts :: PostgresCaptureReadRepository rejects an acquire receipt whose hydrated bytes or registration do not match the signed terminal handle",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-capture-reads.test.ts :: PostgresCaptureReadRepository rejects canonical receipt metadata that does not bind the terminal operation or acquisition response",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-capture-reads.test.ts :: PostgresCaptureReadRepository rejects malformed identity and fence/result lineage before Storage hydration",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-capture-reads.test.ts :: PostgresCaptureReadRepository rejects resealed PDF request ordering and compact parser metadata drift before projection hydration",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-capture-reads.test.ts :: PostgresCaptureReadRepository rejects source/projection re-admission drift and rechecks the terminal snapshot",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-case-writer.test.ts :: PostgresVerificationCaseWriter does not append evidence when an existing empty case is retried with a new member",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-case-writer.test.ts :: PostgresVerificationCaseWriter fails before insertion when the locked visible parent is unavailable",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-case-writer.test.ts :: PostgresVerificationCaseWriter rejects foreign or inconsistent retained handles from a malformed audit port",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-case-writer.test.ts :: PostgresVerificationCaseWriter rejects immutable retry drift in added evidence",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-case-writer.test.ts :: PostgresVerificationCaseWriter rejects immutable retry drift in case identity",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-case-writer.test.ts :: PostgresVerificationCaseWriter rejects immutable retry drift in case input",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-case-writer.test.ts :: PostgresVerificationCaseWriter rejects immutable retry drift in case result",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-case-writer.test.ts :: PostgresVerificationCaseWriter rejects immutable retry drift in evidence ID",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-case-writer.test.ts :: PostgresVerificationCaseWriter rejects immutable retry drift in removed evidence",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-case-writer.test.ts :: PostgresVerificationCaseWriter rejects invalid extras before calling the authorized audit port",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-case-writer.test.ts :: PostgresVerificationCaseWriter requires every compact artifact to be exact manifest membership",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-case-writer.test.ts :: PostgresVerificationCaseWriter requires the audit port to return the requested visible tenant/run binding",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-case-writer.test.ts :: PostgresVerificationCaseWriter writes a complete authored graph once and returns the ordered evidence IDs on an exact retry",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-claims-report-reads.test.ts :: PostgresClaimsReportReadRepository accepts only canonical, digest-bound public policy reasons from a signed decision artifact",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-claims-report-reads.test.ts :: PostgresClaimsReportReadRepository rejects context and event-fence drift before Storage hydration",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-claims-report-reads.test.ts :: PostgresClaimsReportReadRepository rejects cross-kind durable rows before Storage hydration",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-claims-report-reads.test.ts :: PostgresClaimsReportReadRepository rejects malformed identities before database access",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-claims-report-reads.test.ts :: PostgresClaimsReportReadRepository rejects result transformation drift before reading its bytes",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-drift-revalidation-outbox.test.ts :: PostgresVerificationComponentDriftPublisher keeps the unapplied migration canonical, immutable, and candidate-operation derived",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-drift-revalidation-outbox.test.ts :: PostgresVerificationComponentDriftPublisher registers immutable five-component custody and lets SQL derive the candidate operation",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-drift-revalidation-outbox.test.ts :: PostgresVerificationComponentDriftPublisher rejects payload, artifact digest, and candidate-run binding drift",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-drift-revalidation-outbox.test.ts :: PostgresVerificationComponentDriftPublisher rejects self-hashed component claims that are inconsistent or contain unknown fields",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-drift-revalidation-outbox.test.ts :: PostgresVerificationComponentDriftPublisher returns already_planned for exact replay without duplicating custody",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-drift-revalidation-outbox.test.ts :: PostgresVerificationDriftRevalidationOutbox uses the existing atomic semantic-observation plan function",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-fenced-artifact.test.ts :: verification fenced artifact registration rejects a stale step lease before registry or object-store writes",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-metric-principals.test.ts :: PostgresVerificationMetricRuntimePrincipals denies absent durable artifact, producer, or verifier ownership joins",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-metric-principals.test.ts :: PostgresVerificationMetricRuntimePrincipals denies mismatched artifact mission",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-metric-principals.test.ts :: PostgresVerificationMetricRuntimePrincipals denies mismatched producer attempt UUID",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-metric-principals.test.ts :: PostgresVerificationMetricRuntimePrincipals denies mismatched producer mission",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-metric-principals.test.ts :: PostgresVerificationMetricRuntimePrincipals denies mismatched registered artifact digest",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-metric-principals.test.ts :: PostgresVerificationMetricRuntimePrincipals denies mismatched verifier work item",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-metric-principals.test.ts :: PostgresVerificationMetricRuntimePrincipals derives canonical producer and verifier bindings from the registered observations artifact and authenticated context",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-metric-principals.test.ts :: PostgresVerificationMetricRuntimePrincipals fails before SQL when authenticated context lacks mission or work-item ownership",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-metric-principals.test.ts :: PostgresVerificationMetricRuntimePrincipals returns same-deployment bindings for deterministic quality rejection instead of inventing an admission denial",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-provider-accounting.test.ts :: operation-scoped provider accounting rejects a non-UUID lease token before database access",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-provider-accounting.test.ts :: operation-scoped provider accounting rejects a stale lease before it can create or reserve budget",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-provider-accounting.test.ts :: operation-scoped provider accounting rejects profile drift before cached settle handling",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-provider-accounting.test.ts :: operation-scoped provider accounting rejects profile drift before cached uncertain handling",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-provider-accounting.test.ts :: operation-scoped provider accounting reuses a prior scoped reservation under a replacement live lease without a second budget reservation",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-provider-accounting.test.ts :: operation-scoped provider accounting uses the live operation then step lease, and emits exactly fifteen scoped insert parameters",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-provider-host.test.ts :: closed native provider hosts binds accounting and response recovery to exact claims tuple",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-provider-host.test.ts :: closed native provider hosts binds accounting and response recovery to exact report tuple",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-provider-host.test.ts :: closed native provider hosts binds accounting and response recovery to exact structured_extraction tuple",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-provider-host.test.ts :: closed native provider hosts includes logical request digest in claims reservation lookup",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-provider-host.test.ts :: closed native provider hosts includes logical request digest in report reservation lookup",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-provider-host.test.ts :: closed native provider hosts rejects unsupported hosts before accessing persistence",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-provider-host.test.ts :: closed native provider hosts requires exact semantic logical call identity before querying",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-provider-response-capture.test.ts :: provider response capture does not read recovery state under a stale lease",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-recovery-durable-accounting.test.ts :: durable probe accounting across regrouping allows the same dependency receipt to remain accounted without another charge",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-recovery-durable-accounting.test.ts :: durable probe accounting across regrouping rejects another charge for the same operation in a new dependency group",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-recovery-durable-accounting.test.ts :: durable probe accounting across regrouping rejects contradictory usage for one observed operation",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-recovery-provider-budget.test.ts :: native provider dispatch honors durable recovery reservations leaves unrelated native verification operations under their existing provider budget",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-recovery-provider-budget.test.ts :: native provider dispatch honors durable recovery reservations rechecks active authority and deadline at dispatch without counting the reserved call twice",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-recovery-provider-budget.test.ts :: native provider dispatch honors durable recovery reservations rejects calls and cumulative charged/reserved cost outside the original execution reservation",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-run-recording.test.ts :: PostgresVerificationRepository.recordVerificationRun accepts an exact retry when PostgreSQL returns lifecycle timestamps as ISO strings",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-run-recording.test.ts :: PostgresVerificationRepository.recordVerificationRun optionally fences operation-linked sealing on the live step lease",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-run-recording.test.ts :: PostgresVerificationRepository.recordVerificationRun rejects retry drift in bundle artifact",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-run-recording.test.ts :: PostgresVerificationRepository.recordVerificationRun rejects retry drift in lifecycle",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-run-recording.test.ts :: PostgresVerificationRepository.recordVerificationRun rejects retry drift in manifest artifact",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-run-recording.test.ts :: PostgresVerificationRepository.recordVerificationRun rejects retry drift in operation",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-run-recording.test.ts :: PostgresVerificationRepository.recordVerificationRun rejects retry drift in policy artifact",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-run-recording.test.ts :: PostgresVerificationRepository.recordVerificationRun rejects retry drift in policy version",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-run-recording.test.ts :: PostgresVerificationRepository.recordVerificationRun rejects retry drift in producer",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-run-recording.test.ts :: PostgresVerificationRepository.recordVerificationRun rejects retry drift in result artifact",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-run-recording.test.ts :: PostgresVerificationRepository.recordVerificationRun rejects retry drift in verifier",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-run-recording.test.ts :: PostgresVerificationRepository.recordVerificationRun requires a locked active operation with exact verifier mission/work-item/attempt ownership",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-run-recording.test.ts :: PostgresVerificationRepository.recordVerificationRun writes one immutable row and accepts an exact retry through conflict-safe locked comparison",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-semantic-gateway-call.test.ts :: native semantic gateway call composition fences the blinded input and rejects altered judge content before network",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-semantic-gateway-call.test.ts :: native semantic gateway call composition rejects a wrong operation host before registering artifacts",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-semantic-gateway-call.test.ts :: resumes an existing undispatched reservation when the caller proposes a new attempt ID",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-semantic-observation-registration.test.ts :: fenced semantic observation registration connects composer bytes to a native fenced registration request",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-semantic-observation-registration.test.ts :: fenced semantic observation registration rejects changed parents before registration",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-semantic-observation-registration.test.ts :: fenced semantic observation registration rejects mismatched lease before registration",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-semantic-observation-registration.test.ts :: fenced semantic observation registration snapshots caller lease against mutation",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-semantic-observation-store.test.ts :: semantic observation store inserts exact mapped row only after custody checks",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-semantic-observation-store.test.ts :: semantic observation store rejects stale scope, wrong host, artifact drift and replay drift before writes",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-semantic-observation-store.test.ts :: semantic observation store replays an exact prior row without reinserting",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-semantic-observation-store.test.ts :: semantic observation store uses current recovery lease while preserving original dispatch fence",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-semantic-observation.test.ts :: semantic observation persistence mapping maps distinct producer/provider identity and preserves unknown usage",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-semantic-observation.test.ts :: semantic observation persistence mapping rejects digest, size and signature corruption",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-semantic-observation.test.ts :: semantic observation persistence mapping rejects producer/provider alias and request parent substitution",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-semantic-reconciliation-read.test.ts :: semantic provider reconciliation native read fails closed for settled-ledger amount drift or resolved artifact identity drift",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-semantic-reconciliation-read.test.ts :: semantic provider reconciliation native read hydrates the exact ledger artifact, verifies at durable appliedAt, and repeats the native snapshot",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-semantic-reconciliation-read.test.ts :: semantic provider reconciliation native read rejects a null native cost even when a zero-cost receipt would otherwise coerce equally",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-semantic-reconciliation-store.test.ts :: semantic reconciliation store transaction boundary locks operation, budget and attempt before binding and one guarded insert",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-semantic-reconciliation-store.test.ts :: semantic reconciliation store transaction boundary rechecks permit validity after locks and rejects expired decisions before writes",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-semantic-reconciliation-store.test.ts :: semantic reconciliation store transaction boundary rejects conflicting prior receipts and changed original bindings",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-semantic-reconciliation-store.test.ts :: semantic reconciliation store transaction boundary returns an identical existing settlement without hydration or another write",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-structured-extraction-lifecycle.test.ts :: structured extraction lifecycle persistence recovers the original running timestamp under an exact replacement lease",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-structured-extraction-lifecycle.test.ts :: structured extraction lifecycle persistence rejects changed candidate output before opening a transaction",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-structured-extraction-lifecycle.test.ts :: structured extraction lifecycle persistence rejects malformed and stale lease authority before lifecycle access",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-structured-extraction-lifecycle.test.ts :: structured extraction lifecycle persistence rejects persisted immutable identity drift",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-structured-extraction-lifecycle.test.ts :: structured extraction lifecycle persistence returns the original completion time on an exact retained candidate retry",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification-structured-extraction-lifecycle.test.ts :: structured extraction lifecycle persistence returns the original retention time on an exact capture retry",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification.test.ts :: verification artifact timestamp identity normalizes factory timestamps to the database round-trip representation",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/verification.test.ts :: verification artifact timestamp identity rejects externally supplied noncanonical timestamps before SQL",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/wiring.test.ts :: canonical persistence environment builds the canonical Postgres and Storage pair",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/src/wiring.test.ts :: canonical persistence environment fails closed for partial or non-canonical configuration",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/test/disposable.test.ts :: disposable database identity rejects shared, remote, overridden and missing required targets",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/persistence/test/disposable.test.ts :: disposable database identity requires matching project, container, checkout and exposed port",
+          "status": "passed"
+        }
+      ]
+    },
+    {
+      "directory": "packages/host",
+      "exitCode": 0,
+      "files": 4,
+      "tests": [
+        {
+          "identity": "packages/host/src/tests/composition.test.ts :: API host composition composes durable ports with persistence and releases the pool exactly once",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/host/src/tests/composition.test.ts :: API host composition exposes no persistence-backed capability when none is configured",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/host/src/tests/composition.test.ts :: API host composition releases the pool when construction fails after it opened",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/host/src/tests/composition.test.ts :: API host composition validates the public origin before opening the pool",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/host/src/tests/composition.test.ts :: host import and profile admission opens no pool, timer or network connection on import",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/host/src/tests/composition.test.ts :: host import and profile admission rejects the reserved local profile explicitly without reaching the network or a database",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/host/src/tests/composition.test.ts :: MCP host composition releases the pool when shared verification admission rejects its configuration",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/host/src/tests/composition.test.ts :: MCP host composition requires persistence and validates the API origin before opening the pool",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/host/src/tests/composition.test.ts :: worker host composition keeps memory mode development/test-only and never opens a pool for it",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/host/src/tests/composition.test.ts :: worker host composition reconciles before returning and releases persistence once",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/host/src/tests/composition.test.ts :: worker host composition releases persistence when adapter, execution or reconciliation construction fails",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/host/src/tests/composition.test.ts :: worker host composition validates tenant scope before opening persistence",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/host/src/tests/lifecycle.test.ts :: host polling loop reports a failed run and keeps polling until stopped",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/host/src/tests/lifecycle.test.ts :: host polling loop stops scheduling, awaits the active run and runs nothing afterwards",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/host/src/tests/lifecycle.test.ts :: host resource ownership aggregates multiple release failures",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/host/src/tests/lifecycle.test.ts :: host resource ownership keeps the construction error when a release also fails",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/host/src/tests/lifecycle.test.ts :: host resource ownership releases everything acquired before a construction failure and rethrows the original error",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/host/src/tests/lifecycle.test.ts :: host resource ownership releases in reverse acquisition order and attempts every release after a failure",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/host/src/tests/lifecycle.test.ts :: host resource ownership shares one cleanup across concurrent and repeated close calls",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/host/src/verification/api/verification-benchmark-reads-runtime.test.ts :: benchmark read signing trust rejects duplicates, private material, other algorithms and unbounded or ambiguous input",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/host/src/verification/api/verification-benchmark-reads-runtime.test.ts :: benchmark read signing trust retains an immutable operator keyring and permits rotation",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/host/src/verification/api/verification-benchmark-reads-runtime.test.ts :: benchmark read signing trust stays unavailable without a trusted keyring and fails configured incomplete custody",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/host/src/verification/worker/verification-audit-signing-runtime.test.ts :: configured verification audit signer preserves unsigned deployments and rejects partial or invalid key settings",
+          "status": "passed"
+        },
+        {
+          "identity": "packages/host/src/verification/worker/verification-audit-signing-runtime.test.ts :: configured verification audit signer produces a signature verified by the separately configured public key and rejects tampering",
+          "status": "passed"
+        }
+      ]
+    }
+  ]
+}

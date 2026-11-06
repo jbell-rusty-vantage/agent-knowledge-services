@@ -1,0 +1,368 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "verification-benchmark-experiment-manifest.v1"
+    },
+    "manifestDigest": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "datasetManifestDigest": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "grantDigest": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "runnerVersion": {
+      "type": "string",
+      "minLength": 1
+    },
+    "arms": {
+      "minItems": 4,
+      "maxItems": 4,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "armId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "control": {
+            "type": "boolean"
+          },
+          "strategy": {
+            "type": "string",
+            "enum": [
+              "baseline",
+              "interfaze",
+              "cascade",
+              "consensus_abstention"
+            ]
+          },
+          "extractorProfile": {
+            "type": "string",
+            "minLength": 1
+          },
+          "parserProfile": {
+            "type": "string",
+            "minLength": 1
+          },
+          "retrieverProfile": {
+            "type": "string",
+            "minLength": 1
+          },
+          "judgeProfile": {
+            "type": "string",
+            "minLength": 1
+          },
+          "policyVersion": {
+            "type": "string",
+            "minLength": 1
+          },
+          "configurationDigest": {
+            "type": "string",
+            "pattern": "^sha256:[a-f0-9]{64}$"
+          },
+          "cachePolicy": {
+            "type": "string",
+            "enum": [
+              "disabled",
+              "exact_request_only"
+            ]
+          },
+          "replicas": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 10
+          }
+        },
+        "required": [
+          "armId",
+          "name",
+          "control",
+          "strategy",
+          "extractorProfile",
+          "parserProfile",
+          "retrieverProfile",
+          "judgeProfile",
+          "policyVersion",
+          "configurationDigest",
+          "cachePolicy",
+          "replicas"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "providerCallPlan": {
+      "minItems": 3,
+      "maxItems": 3,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "role": {
+            "type": "string",
+            "enum": [
+              "luna_extractor",
+              "interfaze_extractor",
+              "haiku_judge"
+            ]
+          },
+          "provider": {
+            "type": "string",
+            "enum": [
+              "gateway",
+              "interfaze"
+            ]
+          },
+          "model": {
+            "type": "string",
+            "enum": [
+              "openai/gpt-5.6-luna",
+              "anthropic/claude-haiku-4.5",
+              "interfaze-beta"
+            ]
+          },
+          "reservationCostMicros": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 9007199254740991
+          },
+          "maximumOutputTokens": {
+            "type": "number",
+            "const": 900
+          },
+          "maximumRequestUtf8Bytes": {
+            "type": "number",
+            "const": 10000
+          },
+          "outputSchemaDigest": {
+            "type": "string",
+            "pattern": "^sha256:[a-f0-9]{64}$"
+          },
+          "ownerArmId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255
+          },
+          "sharedWithArmIds": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 255
+            }
+          }
+        },
+        "required": [
+          "role",
+          "provider",
+          "model",
+          "reservationCostMicros",
+          "maximumOutputTokens",
+          "maximumRequestUtf8Bytes",
+          "outputSchemaDigest",
+          "ownerArmId",
+          "sharedWithArmIds"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "casePlan": {
+      "minItems": 30,
+      "maxItems": 50,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "caseId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255
+          },
+          "caseDigest": {
+            "type": "string",
+            "pattern": "^sha256:[a-f0-9]{64}$"
+          },
+          "execution": {
+            "type": "string",
+            "enum": [
+              "recorded_exact_reuse",
+              "fresh_dispatch",
+              "local_only"
+            ]
+          },
+          "providerRoles": {
+            "maxItems": 3,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "luna_extractor",
+                "interfaze_extractor",
+                "haiku_judge"
+              ]
+            }
+          }
+        },
+        "required": [
+          "caseId",
+          "caseDigest",
+          "execution",
+          "providerRoles"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "repetitions": {
+      "type": "number",
+      "const": 1
+    },
+    "randomSeed": {
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "networkPolicy": {
+      "type": "string",
+      "const": "allow_listed_providers"
+    },
+    "concurrency": {
+      "type": "number",
+      "const": 1
+    },
+    "automaticQualityRetries": {
+      "type": "number",
+      "const": 0
+    },
+    "maximumFreshProviderCalls": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "maximumFreshReservationMicros": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 9007199254740991
+    },
+    "budget": {
+      "type": "object",
+      "properties": {
+        "originalCeilingMicros": {
+          "type": "integer",
+          "exclusiveMinimum": 0,
+          "maximum": 20000000
+        },
+        "preResetSettledAndHeldLiabilityMicros": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 20000000
+        },
+        "maximumRecoveryBudgetCeilingMicros": {
+          "type": "integer",
+          "exclusiveMinimum": 0,
+          "maximum": 20000000
+        },
+        "budgetKey": {
+          "type": "string",
+          "minLength": 1
+        },
+        "carryForwardProvenanceDigest": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^sha256:[a-f0-9]{64}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "originalCeilingMicros",
+        "preResetSettledAndHeldLiabilityMicros",
+        "maximumRecoveryBudgetCeilingMicros",
+        "budgetKey",
+        "carryForwardProvenanceDigest"
+      ],
+      "additionalProperties": false
+    },
+    "hypothesisFamily": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "metricDimensions": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "schema",
+          "locator",
+          "field_mechanics",
+          "support",
+          "authority",
+          "world_correctness",
+          "policy",
+          "calibration",
+          "cost",
+          "latency",
+          "failure"
+        ]
+      }
+    },
+    "limitations": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z|([+-](?:[01]\\d|2[0-3]):[0-5]\\d)))$"
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "manifestDigest",
+    "datasetManifestDigest",
+    "grantDigest",
+    "runnerVersion",
+    "arms",
+    "providerCallPlan",
+    "casePlan",
+    "repetitions",
+    "randomSeed",
+    "networkPolicy",
+    "concurrency",
+    "automaticQualityRetries",
+    "maximumFreshProviderCalls",
+    "maximumFreshReservationMicros",
+    "budget",
+    "hypothesisFamily",
+    "metricDimensions",
+    "limitations",
+    "createdAt"
+  ],
+  "additionalProperties": false
+}

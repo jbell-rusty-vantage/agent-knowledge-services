@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "string",
+  "enum": [
+    "PROVIDER_HTTP_FAILURE",
+    "PROVIDER_RESPONSE_TOO_LARGE",
+    "PROVIDER_RESPONSE_INVALID",
+    "PROVIDER_RESPONSE_SCHEMA_INVALID"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "research-report-kind.v1",
+  "id": "evidence_report",
+  "version": "1.0.0",
+  "title": "Evidence report",
+  "summary": "Answers one frozen research task with qualified conclusions, the supporting and contrary evidence behind each conclusion, and the limits of the search. Every factual conclusion is a declared assertion occurrence bound to the exact frozen body; report-level use is decided from authoritative observations and the independent auditor census, never from the producer's own claims.",
+  "profiles": ["engineering", "scientific"],
+  "qualifierSchemas": ["engineering.v2", "scientific.v2"],
+  "structuredBodySchema": "research-core.structured_body.v2",
+  "bodyRenderer": "research-report-renderer.v2",
+  "requiredSections": [
+    { "id": "scope", "purpose": "Scope, audience and as-of of the answer; nonfactual framing carries an exclusion reason.", "constraints": [] },
+    { "id": "findings", "purpose": "Conclusions with their qualifications, each a declared assertion occurrence.", "constraints": [] },
+    { "id": "evidence", "purpose": "Supporting and contrary evidence for each conclusion, cited by fragment.", "constraints": [] },
+    { "id": "limitations", "purpose": "Claim-level gaps, unmet obligations, search frontier and limits.", "constraints": [] }
+  ],
+  "forbiddenSections": [],
+  "framingSections": ["scope", "evidence", "limitations"],
+  "obligationTemplates": [
+    { "id": "finding", "description": "A task-specific conclusion stated with its qualifiers and supported by cited evidence.", "weight": 7000, "required": true, "section": "findings" },
+    { "id": "contrary", "description": "Contrary or conflicting evidence considered for a conclusion, or the bounded search that found none.", "weight": 1500, "required": false, "section": "evidence" },
+    { "id": "limitation", "description": "A stated limit of the evidence or the search that bounds the conclusions.", "weight": 1500, "required": false, "section": "limitations" }
+  ],
+  "assertionRules": {
+    "allowedKinds": ["source_report", "world_fact", "derivation", "recommendation", "forecast"],
+    "scientificClaimClasses": null
+  },
+  "subject": { "cardinality": "open", "bodyOfEvidenceRating": "permitted" },
+  "extension": "Every other report kind uses this same research-report-kind.v1 envelope: new pinned data (sections, constraints, obligation templates, assertion rules, qualifier profiles), contract fixtures and a qualification receipt. Adding a kind never adds an engine, a renderer branch or an agent workflow. Recommendations and forecasts expose premises and never receive a fact-entailed verdict; their use policy is OQ4."
+}

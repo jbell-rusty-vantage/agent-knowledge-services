@@ -1,0 +1,4356 @@
+{
+  "schema": 1,
+  "layout": "before",
+  "sourceCommit": "99aeaa61483cec0ba720f21bce25b659cb302aab",
+  "dirty": true,
+  "compilerVersion": "7.0.2",
+  "runtimeProvenance": "Built dist/index.js is untracked output; digest proves byte identity only, not source commit or successful build.",
+  "packages": {
+    "domain": {
+      "group": "core",
+      "packageName": "@aiengineer/knowledge-domain",
+      "sourceEntry": "packages/domain/src/index.ts",
+      "sourceExports": [
+        {
+          "name": "assertAppendOnly",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/domain/src/invariants.ts"
+          ]
+        },
+        {
+          "name": "assertAuthorityCompatible",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/domain/src/invariants.ts"
+          ]
+        },
+        {
+          "name": "assertCanonicalPublicationAuthority",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/domain/src/authority.ts"
+          ]
+        },
+        {
+          "name": "assertDecisionAuthority",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/domain/src/authority.ts"
+          ]
+        },
+        {
+          "name": "assertIdempotentReplay",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/domain/src/idempotency.ts"
+          ]
+        },
+        {
+          "name": "assertSourceNativeIntegrity",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/domain/src/invariants.ts"
+          ]
+        },
+        {
+          "name": "canonicalJson",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/domain/src/digest.ts"
+          ]
+        },
+        {
+          "name": "createIdempotencyKey",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/domain/src/idempotency.ts"
+          ]
+        },
+        {
+          "name": "deepFreeze",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/domain/src/digest.ts"
+          ]
+        },
+        {
+          "name": "DomainInvariantError",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/domain/src/errors.ts"
+          ]
+        },
+        {
+          "name": "IdempotencyIdentity",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/domain/src/idempotency.ts"
+          ]
+        },
+        {
+          "name": "KNOWLEDGE_SERVICE_NAME",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/domain/src/state-machines.ts"
+          ]
+        },
+        {
+          "name": "KnowledgeOperationState",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/domain/src/state-machines.ts"
+          ]
+        },
+        {
+          "name": "knowledgeOperationStates",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/domain/src/state-machines.ts"
+          ]
+        },
+        {
+          "name": "PromotionState",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/domain/src/state-machines.ts"
+          ]
+        },
+        {
+          "name": "promotionStates",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/domain/src/state-machines.ts"
+          ]
+        },
+        {
+          "name": "PublicationState",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/domain/src/state-machines.ts"
+          ]
+        },
+        {
+          "name": "publicationStates",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/domain/src/state-machines.ts"
+          ]
+        },
+        {
+          "name": "sha256Digest",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/domain/src/digest.ts"
+          ]
+        },
+        {
+          "name": "TransitionGuard",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/domain/src/state-machines.ts"
+          ]
+        },
+        {
+          "name": "transitionOperation",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/domain/src/state-machines.ts"
+          ]
+        },
+        {
+          "name": "transitionPromotion",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/domain/src/state-machines.ts"
+          ]
+        },
+        {
+          "name": "transitionPublication",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/domain/src/state-machines.ts"
+          ]
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "packages/domain/src/domain.test.ts",
+          "originalPath": "packages/domain/src/domain.test.ts"
+        }
+      ],
+      "runtimeExports": {
+        "status": "present-unverified-build",
+        "sha256": "1ef762777a7e3423135dc2a78a474ca6eca30f6c53b4d2e59de4018b20f77ceb",
+        "names": [
+          "assertAppendOnly",
+          "assertAuthorityCompatible",
+          "assertCanonicalPublicationAuthority",
+          "assertDecisionAuthority",
+          "assertIdempotentReplay",
+          "assertSourceNativeIntegrity",
+          "canonicalJson",
+          "createIdempotencyKey",
+          "deepFreeze",
+          "DomainInvariantError",
+          "KNOWLEDGE_SERVICE_NAME",
+          "knowledgeOperationStates",
+          "promotionStates",
+          "publicationStates",
+          "sha256Digest",
+          "transitionOperation",
+          "transitionPromotion",
+          "transitionPublication"
+        ]
+      }
+    },
+    "runtime": {
+      "group": "core",
+      "packageName": "@aiengineer/knowledge-runtime",
+      "sourceEntry": "packages/runtime/src/index.ts",
+      "sourceExports": [
+        {
+          "name": "ActivityReceipt",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/runtime/src/ledger.ts"
+          ]
+        },
+        {
+          "name": "ArtifactDigest",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/runtime/src/artifacts.ts"
+          ]
+        },
+        {
+          "name": "ArtifactFetch",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/runtime/src/artifacts.ts"
+          ]
+        },
+        {
+          "name": "ArtifactStore",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/runtime/src/artifacts.ts"
+          ]
+        },
+        {
+          "name": "Clock",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/runtime/src/ledger.ts"
+          ]
+        },
+        {
+          "name": "createEveRuntimeAttestation",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/runtime/src/eve-runtime-attestation.ts"
+          ]
+        },
+        {
+          "name": "deterministicUuid",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/runtime/src/artifacts.ts"
+          ]
+        },
+        {
+          "name": "digestBytes",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/runtime/src/artifacts.ts"
+          ]
+        },
+        {
+          "name": "InMemoryArtifactStore",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/runtime/src/artifacts.ts"
+          ]
+        },
+        {
+          "name": "InMemoryOperationLedger",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/runtime/src/ledger.ts"
+          ]
+        },
+        {
+          "name": "LedgerEvent",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/runtime/src/ledger.ts"
+          ]
+        },
+        {
+          "name": "LocalArtifactStore",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/runtime/src/artifacts.ts"
+          ]
+        },
+        {
+          "name": "OperationContext",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/runtime/src/ledger.ts"
+          ]
+        },
+        {
+          "name": "OperationLedgerSnapshot",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/runtime/src/ledger.ts"
+          ]
+        },
+        {
+          "name": "OperationRecord",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/runtime/src/ledger.ts"
+          ]
+        },
+        {
+          "name": "OperationState",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/runtime/src/ledger.ts"
+          ]
+        },
+        {
+          "name": "parseEveRuntimeAttestation",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/runtime/src/eve-runtime-attestation.ts"
+          ]
+        },
+        {
+          "name": "PutArtifact",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/runtime/src/artifacts.ts"
+          ]
+        },
+        {
+          "name": "StepRecord",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/runtime/src/ledger.ts"
+          ]
+        },
+        {
+          "name": "StepState",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/runtime/src/ledger.ts"
+          ]
+        },
+        {
+          "name": "StoredArtifact",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/runtime/src/artifacts.ts"
+          ]
+        },
+        {
+          "name": "SupabaseArtifactStore",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/runtime/src/artifacts.ts"
+          ]
+        },
+        {
+          "name": "SupabaseArtifactStoreConfig",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/runtime/src/artifacts.ts"
+          ]
+        },
+        {
+          "name": "verifyEveRuntimeAttestation",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/runtime/src/eve-runtime-attestation.ts"
+          ]
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "packages/runtime/src/artifacts-missing-object.test.ts",
+          "originalPath": "packages/runtime/src/artifacts-missing-object.test.ts"
+        },
+        {
+          "path": "packages/runtime/src/eve-runtime-attestation.test.ts",
+          "originalPath": "packages/runtime/src/eve-runtime-attestation.test.ts"
+        },
+        {
+          "path": "packages/runtime/src/runtime.test.ts",
+          "originalPath": "packages/runtime/src/runtime.test.ts"
+        }
+      ],
+      "runtimeExports": {
+        "status": "present-unverified-build",
+        "sha256": "8784c1ff9f63bffdd1028e6c5bd8399743663c4f2cf7d59714f201e2fbe01568",
+        "names": [
+          "createEveRuntimeAttestation",
+          "deterministicUuid",
+          "digestBytes",
+          "InMemoryArtifactStore",
+          "InMemoryOperationLedger",
+          "LocalArtifactStore",
+          "parseEveRuntimeAttestation",
+          "SupabaseArtifactStore",
+          "verifyEveRuntimeAttestation"
+        ]
+      }
+    },
+    "observability": {
+      "group": "core",
+      "packageName": "@aiengineer/knowledge-observability",
+      "sourceEntry": "packages/observability/src/index.ts",
+      "sourceExports": [
+        {
+          "name": "InMemoryTelemetry",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/observability/src/index.ts"
+          ]
+        },
+        {
+          "name": "OperationMetric",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/observability/src/index.ts"
+          ]
+        },
+        {
+          "name": "reconcileManifests",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/observability/src/index.ts"
+          ]
+        },
+        {
+          "name": "ReconciliationFinding",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/observability/src/index.ts"
+          ]
+        },
+        {
+          "name": "ServiceSloSnapshot",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/observability/src/index.ts"
+          ]
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "packages/observability/src/index.test.ts",
+          "originalPath": "packages/observability/src/index.test.ts"
+        }
+      ],
+      "runtimeExports": {
+        "status": "present-unverified-build",
+        "sha256": "b74851553ec9bbb81e3996777689df9a20d85cf9f710d1c06db35ac5155a4b31",
+        "names": [
+          "InMemoryTelemetry",
+          "reconcileManifests"
+        ]
+      }
+    },
+    "conversion": {
+      "group": "preparation",
+      "packageName": "@aiengineer/knowledge-conversion",
+      "sourceEntry": "packages/conversion/src/index.ts",
+      "sourceExports": [
+        {
+          "name": "ConversionAttemptOutcome",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/conversion/src/types.ts"
+          ]
+        },
+        {
+          "name": "ConversionFailureClass",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/conversion/src/types.ts"
+          ]
+        },
+        {
+          "name": "ConversionFetch",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/conversion/src/http/fetch.ts"
+          ]
+        },
+        {
+          "name": "ConversionLocator",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/conversion/src/types.ts"
+          ]
+        },
+        {
+          "name": "ConversionMetrics",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/conversion/src/types.ts"
+          ]
+        },
+        {
+          "name": "ConversionNode",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/conversion/src/types.ts"
+          ]
+        },
+        {
+          "name": "ConversionNodeKind",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/conversion/src/types.ts"
+          ]
+        },
+        {
+          "name": "ConversionOutput",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/conversion/src/types.ts"
+          ]
+        },
+        {
+          "name": "ConversionProfile",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/conversion/src/types.ts"
+          ]
+        },
+        {
+          "name": "ConversionRequest",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/conversion/src/types.ts"
+          ]
+        },
+        {
+          "name": "ConversionRouteAttempt",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/conversion/src/types.ts"
+          ]
+        },
+        {
+          "name": "ConversionRouteOptions",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/conversion/src/types.ts"
+          ]
+        },
+        {
+          "name": "ConversionRouter",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/conversion/src/route.ts"
+          ]
+        },
+        {
+          "name": "conversionRouterFromProviders",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/conversion/src/route.ts"
+          ]
+        },
+        {
+          "name": "ConversionRouterProviders",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/conversion/src/types.ts"
+          ]
+        },
+        {
+          "name": "ConversionRoutingReceipt",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/conversion/src/types.ts"
+          ]
+        },
+        {
+          "name": "convertTextToNodes",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/conversion/src/deterministic/nodes.ts"
+          ]
+        },
+        {
+          "name": "createDoclingServeClientFromEnvironment",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/conversion/src/docling/client.ts"
+          ]
+        },
+        {
+          "name": "DEFAULT_DOCLING_BASE_URL",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/conversion/src/constants.ts"
+          ]
+        },
+        {
+          "name": "DEFAULT_DOCLING_MAXIMUM_RESULT_BYTES",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/conversion/src/constants.ts"
+          ]
+        },
+        {
+          "name": "DEFAULT_DOCLING_REQUEST_TIMEOUT_MS",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/conversion/src/constants.ts"
+          ]
+        },
+        {
+          "name": "DEFAULT_UNSTRUCTURED_POLLS",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/conversion/src/constants.ts"
+          ]
+        },
+        {
+          "name": "DETERMINISTIC_PROVIDER_KEY",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/conversion/src/constants.ts"
+          ]
+        },
+        {
+          "name": "DETERMINISTIC_PROVIDER_VERSION",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/conversion/src/constants.ts"
+          ]
+        },
+        {
+          "name": "DeterministicTextConversionProvider",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/conversion/src/deterministic/provider.ts"
+          ]
+        },
+        {
+          "name": "DOCLING_PROVIDER_KEY",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/conversion/src/constants.ts"
+          ]
+        },
+        {
+          "name": "DoclingServeClient",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/conversion/src/docling/client.ts"
+          ]
+        },
+        {
+          "name": "DoclingServeEnvironment",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/conversion/src/docling/client.ts"
+          ]
+        },
+        {
+          "name": "DoclingServeHttpConfig",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/conversion/src/docling/client.ts"
+          ]
+        },
+        {
+          "name": "DoclingServeProvider",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/conversion/src/docling/provider.ts"
+          ]
+        },
+        {
+          "name": "DocumentConversionProvider",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/conversion/src/types.ts"
+          ]
+        },
+        {
+          "name": "FidelityFinding",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/conversion/src/types.ts"
+          ]
+        },
+        {
+          "name": "FidelityFindingDisposition",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/conversion/src/types.ts"
+          ]
+        },
+        {
+          "name": "FidelityGrade",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/conversion/src/types.ts"
+          ]
+        },
+        {
+          "name": "FidelityReport",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/conversion/src/types.ts"
+          ]
+        },
+        {
+          "name": "HttpDoclingServeClient",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/conversion/src/docling/client.ts"
+          ]
+        },
+        {
+          "name": "HttpUnstructuredTransformClient",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/conversion/src/unstructured/client.ts"
+          ]
+        },
+        {
+          "name": "inspectConversion",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/conversion/src/deterministic/inspect.ts"
+          ]
+        },
+        {
+          "name": "isDeterministicTextMediaType",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/conversion/src/media-type.ts"
+          ]
+        },
+        {
+          "name": "isDoclingMediaType",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/conversion/src/media-type.ts"
+          ]
+        },
+        {
+          "name": "isExclusiveTextMediaType",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/conversion/src/media-type.ts"
+          ]
+        },
+        {
+          "name": "isHtmlMediaType",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/conversion/src/media-type.ts"
+          ]
+        },
+        {
+          "name": "LOW_COVERAGE_THRESHOLD",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/conversion/src/constants.ts"
+          ]
+        },
+        {
+          "name": "normalizeMediaType",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/conversion/src/media-type.ts"
+          ]
+        },
+        {
+          "name": "REPEATED_BLOCK_REVIEW_RATIO",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/conversion/src/constants.ts"
+          ]
+        },
+        {
+          "name": "requiresAlternateConversion",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/conversion/src/deterministic/inspect.ts"
+          ]
+        },
+        {
+          "name": "SandboxedVerificationParser",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/conversion/src/verification-parser.ts"
+          ]
+        },
+        {
+          "name": "UNSTRUCTURED_PROVIDER_KEY",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/conversion/src/constants.ts"
+          ]
+        },
+        {
+          "name": "UnstructuredHttpConfig",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/conversion/src/unstructured/client.ts"
+          ]
+        },
+        {
+          "name": "UnstructuredTransformClient",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/conversion/src/unstructured/client.ts"
+          ]
+        },
+        {
+          "name": "UnstructuredTransformProvider",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/conversion/src/unstructured/provider.ts"
+          ]
+        },
+        {
+          "name": "VERIFICATION_PARSER_LIMITS",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/conversion/src/verification-parser.ts"
+          ]
+        },
+        {
+          "name": "VerificationParserOutput",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/conversion/src/verification-parser.ts"
+          ]
+        },
+        {
+          "name": "VerificationParserRequest",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/conversion/src/verification-parser.ts"
+          ]
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "packages/conversion/examples/examples.test.ts",
+          "originalPath": "packages/conversion/examples/examples.test.ts"
+        },
+        {
+          "path": "packages/conversion/src/conversion.test.ts",
+          "originalPath": "packages/conversion/src/conversion.test.ts"
+        },
+        {
+          "path": "packages/conversion/src/verification-parser.test.ts",
+          "originalPath": "packages/conversion/src/verification-parser.test.ts"
+        }
+      ],
+      "runtimeExports": {
+        "status": "present-unverified-build",
+        "sha256": "ba8e1208092eeeeef8bd21902fdcee3d2bc328ffe6e6428a7b62e296c40ee1a7",
+        "names": [
+          "ConversionRouter",
+          "conversionRouterFromProviders",
+          "convertTextToNodes",
+          "createDoclingServeClientFromEnvironment",
+          "DEFAULT_DOCLING_BASE_URL",
+          "DEFAULT_DOCLING_MAXIMUM_RESULT_BYTES",
+          "DEFAULT_DOCLING_REQUEST_TIMEOUT_MS",
+          "DEFAULT_UNSTRUCTURED_POLLS",
+          "DETERMINISTIC_PROVIDER_KEY",
+          "DETERMINISTIC_PROVIDER_VERSION",
+          "DeterministicTextConversionProvider",
+          "DOCLING_PROVIDER_KEY",
+          "DoclingServeProvider",
+          "HttpDoclingServeClient",
+          "HttpUnstructuredTransformClient",
+          "inspectConversion",
+          "isDeterministicTextMediaType",
+          "isDoclingMediaType",
+          "isExclusiveTextMediaType",
+          "isHtmlMediaType",
+          "LOW_COVERAGE_THRESHOLD",
+          "normalizeMediaType",
+          "REPEATED_BLOCK_REVIEW_RATIO",
+          "requiresAlternateConversion",
+          "SandboxedVerificationParser",
+          "UNSTRUCTURED_PROVIDER_KEY",
+          "UnstructuredTransformProvider",
+          "VERIFICATION_PARSER_LIMITS"
+        ]
+      }
+    },
+    "documents": {
+      "group": "preparation",
+      "packageName": "@aiengineer/knowledge-documents",
+      "sourceEntry": "packages/documents/src/index.ts",
+      "sourceExports": [
+        {
+          "name": "convertStructuralDocument",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/documents/src/nodes/structural-document.ts"
+          ]
+        },
+        {
+          "name": "createSourceLocator",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/documents/src/locators/source-locator.ts"
+          ]
+        },
+        {
+          "name": "deterministicUuid",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/documents/src/identity/deterministic-uuid.ts"
+          ]
+        },
+        {
+          "name": "normalizeDocumentText",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/documents/src/nodes/structural-document.ts"
+          ]
+        },
+        {
+          "name": "reconstructNodeSpan",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/documents/src/locators/source-locator.ts"
+          ]
+        },
+        {
+          "name": "StructuralBlock",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/documents/src/types.ts"
+          ]
+        },
+        {
+          "name": "StructuralDocument",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/documents/src/types.ts"
+          ]
+        },
+        {
+          "name": "StructuralDocumentInput",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/documents/src/types.ts"
+          ]
+        },
+        {
+          "name": "verifyNodeLocators",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/documents/src/locators/source-locator.ts"
+          ]
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "packages/documents/examples/01-build-nodes-and-verify-locators.test.ts",
+          "originalPath": "packages/documents/examples/01-build-nodes-and-verify-locators.test.ts"
+        },
+        {
+          "path": "packages/documents/examples/02-reject-cycle-and-invalid-span.test.ts",
+          "originalPath": "packages/documents/examples/02-reject-cycle-and-invalid-span.test.ts"
+        },
+        {
+          "path": "packages/documents/src/identity/deterministic-uuid.test.ts",
+          "originalPath": "packages/documents/src/identity/deterministic-uuid.test.ts"
+        },
+        {
+          "path": "packages/documents/src/locators/source-locator.test.ts",
+          "originalPath": "packages/documents/src/locators/source-locator.test.ts"
+        },
+        {
+          "path": "packages/documents/src/nodes/structural-document.test.ts",
+          "originalPath": "packages/documents/src/nodes/structural-document.test.ts"
+        }
+      ],
+      "runtimeExports": {
+        "status": "present-unverified-build",
+        "sha256": "aad8d71a2d329543fb4f5e98a0208fa0314577e8e00eb8ce5ae98a2d495c5fa3",
+        "names": [
+          "convertStructuralDocument",
+          "createSourceLocator",
+          "deterministicUuid",
+          "normalizeDocumentText",
+          "reconstructNodeSpan",
+          "verifyNodeLocators"
+        ]
+      }
+    },
+    "chunking": {
+      "group": "preparation",
+      "packageName": "@aiengineer/knowledge-chunking",
+      "sourceEntry": "packages/chunking/src/index.ts",
+      "sourceExports": [
+        {
+          "name": "CHUNK_PROFILE_TABLE",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/chunking/src/profiles/definitions.ts"
+          ]
+        },
+        {
+          "name": "chunkDocument",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/chunking/src/chunker/chunk-document.ts"
+          ]
+        },
+        {
+          "name": "ChunkingResult",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/chunking/src/types.ts"
+          ]
+        },
+        {
+          "name": "ChunkProfile",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/contracts/dist/chunking.d.ts"
+          ]
+        },
+        {
+          "name": "ChunkProfileRegistry",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/chunking/src/profiles/registry.ts"
+          ]
+        },
+        {
+          "name": "ChunkProfileTable",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/contracts/dist/chunking.d.ts"
+          ]
+        },
+        {
+          "name": "ChunkQaResult",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/chunking/src/types.ts"
+          ]
+        },
+        {
+          "name": "ChunkStrategy",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/contracts/dist/chunking.d.ts"
+          ]
+        },
+        {
+          "name": "defaultChunkProfileRegistry",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/chunking/src/profiles/registry.ts"
+          ]
+        },
+        {
+          "name": "PreparedChunk",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/chunking/src/types.ts"
+          ]
+        },
+        {
+          "name": "PreparedChunkSpan",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/chunking/src/types.ts"
+          ]
+        },
+        {
+          "name": "reconstructChunk",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/chunking/src/qa/validate-chunks.ts"
+          ]
+        },
+        {
+          "name": "tokenize",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/chunking/src/chunker/tokenizer.ts"
+          ]
+        },
+        {
+          "name": "TOKENIZER_VERSION",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/chunking/src/chunker/tokenizer.ts"
+          ]
+        },
+        {
+          "name": "validateChunks",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/chunking/src/qa/validate-chunks.ts"
+          ]
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "packages/chunking/examples/01-select-profiles-for-space.test.ts",
+          "originalPath": "packages/chunking/examples/01-select-profiles-for-space.test.ts"
+        },
+        {
+          "path": "packages/chunking/examples/02-chunk-and-reconstruct.test.ts",
+          "originalPath": "packages/chunking/examples/02-chunk-and-reconstruct.test.ts"
+        },
+        {
+          "path": "packages/chunking/examples/03-qa-failure-next-profile.test.ts",
+          "originalPath": "packages/chunking/examples/03-qa-failure-next-profile.test.ts"
+        },
+        {
+          "path": "packages/chunking/src/chunker/chunk-document.test.ts",
+          "originalPath": "packages/chunking/src/chunker/chunk-document.test.ts"
+        },
+        {
+          "path": "packages/chunking/src/profiles/registry.test.ts",
+          "originalPath": "packages/chunking/src/profiles/registry.test.ts"
+        },
+        {
+          "path": "packages/chunking/src/qa/validate-chunks.test.ts",
+          "originalPath": "packages/chunking/src/qa/validate-chunks.test.ts"
+        }
+      ],
+      "runtimeExports": {
+        "status": "present-unverified-build",
+        "sha256": "f9c06f6be600214aa0e7b442a377e18c1e056b0c0850c33a5c8f77578c891581",
+        "names": [
+          "CHUNK_PROFILE_TABLE",
+          "chunkDocument",
+          "ChunkProfileRegistry",
+          "defaultChunkProfileRegistry",
+          "reconstructChunk",
+          "tokenize",
+          "TOKENIZER_VERSION",
+          "validateChunks"
+        ]
+      }
+    },
+    "retrieval": {
+      "group": "retrieval",
+      "packageName": "@aiengineer/knowledge-retrieval",
+      "sourceEntry": "packages/retrieval/src/index.ts",
+      "sourceExports": [
+        {
+          "name": "AdvancedRetrievalPlan",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/types.ts"
+          ]
+        },
+        {
+          "name": "buildRetrievalPlan",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/retrieval/src/plan/build-plan.ts"
+          ]
+        },
+        {
+          "name": "EvidenceMember",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/types.ts"
+          ]
+        },
+        {
+          "name": "FilterValue",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/types.ts"
+          ]
+        },
+        {
+          "name": "GraphEdge",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/types.ts"
+          ]
+        },
+        {
+          "name": "ImmutableEvidencePacket",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/types.ts"
+          ]
+        },
+        {
+          "name": "Reranker",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/types.ts"
+          ]
+        },
+        {
+          "name": "RetrievalChannel",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/types.ts"
+          ]
+        },
+        {
+          "name": "RetrievalFilter",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/types.ts"
+          ]
+        },
+        {
+          "name": "RetrievalFlags",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/types.ts"
+          ]
+        },
+        {
+          "name": "RetrievalIntent",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/types.ts"
+          ]
+        },
+        {
+          "name": "RetrievalPolicy",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/types.ts"
+          ]
+        },
+        {
+          "name": "RetrievalRecord",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/types.ts"
+          ]
+        },
+        {
+          "name": "RetrievalStages",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/types.ts"
+          ]
+        },
+        {
+          "name": "RetrievalSubquery",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/types.ts"
+          ]
+        },
+        {
+          "name": "retrieve",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/retrieval/src/retrieve.ts"
+          ]
+        },
+        {
+          "name": "RetrievedCandidate",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/types.ts"
+          ]
+        },
+        {
+          "name": "RetrieveOptions",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/types.ts"
+          ]
+        },
+        {
+          "name": "StageContribution",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/types.ts"
+          ]
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "packages/retrieval/examples/01-plan-and-admission.test.ts",
+          "originalPath": "packages/retrieval/examples/01-plan-and-admission.test.ts"
+        },
+        {
+          "path": "packages/retrieval/examples/02-fuse-channels.test.ts",
+          "originalPath": "packages/retrieval/examples/02-fuse-channels.test.ts"
+        },
+        {
+          "path": "packages/retrieval/examples/03-abstain-and-omit.test.ts",
+          "originalPath": "packages/retrieval/examples/03-abstain-and-omit.test.ts"
+        },
+        {
+          "path": "packages/retrieval/src/graph/expand.test.ts",
+          "originalPath": "packages/retrieval/src/graph/expand.test.ts"
+        },
+        {
+          "path": "packages/retrieval/src/lexical/scoring.test.ts",
+          "originalPath": "packages/retrieval/src/lexical/scoring.test.ts"
+        },
+        {
+          "path": "packages/retrieval/src/plan/build-plan.test.ts",
+          "originalPath": "packages/retrieval/src/plan/build-plan.test.ts"
+        },
+        {
+          "path": "packages/retrieval/src/rerank/fuse.test.ts",
+          "originalPath": "packages/retrieval/src/rerank/fuse.test.ts"
+        },
+        {
+          "path": "packages/retrieval/src/retrieve.test.ts",
+          "originalPath": "packages/retrieval/src/retrieve.test.ts"
+        },
+        {
+          "path": "packages/retrieval/src/semantic/cosine.test.ts",
+          "originalPath": "packages/retrieval/src/semantic/cosine.test.ts"
+        },
+        {
+          "path": "packages/retrieval/src/spaces/admission.test.ts",
+          "originalPath": "packages/retrieval/src/spaces/admission.test.ts"
+        }
+      ],
+      "runtimeExports": {
+        "status": "present-unverified-build",
+        "sha256": "32d93ca97b9302427c9a7e51c6481cbe70a38aaa2a4a9939aec71f8086155370",
+        "names": [
+          "buildRetrievalPlan",
+          "retrieve"
+        ]
+      }
+    },
+    "projections": {
+      "group": "retrieval",
+      "packageName": "@aiengineer/knowledge-projections",
+      "sourceEntry": "packages/projections/src/index.ts",
+      "sourceExports": [
+        {
+          "name": "ClassificationProposal",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/projections/src/types.ts"
+          ]
+        },
+        {
+          "name": "classifyProjectionSpaces",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/projections/src/classification/disposition-spaces.ts"
+          ]
+        },
+        {
+          "name": "createProjection",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/projections/src/projection/create-projection.ts"
+          ]
+        },
+        {
+          "name": "DomainDisposition",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/projections/src/types.ts"
+          ]
+        },
+        {
+          "name": "EvidenceSupport",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/projections/src/types.ts"
+          ]
+        },
+        {
+          "name": "EvidenceValidationResult",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/projections/src/types.ts"
+          ]
+        },
+        {
+          "name": "ProjectionInput",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/projections/src/types.ts"
+          ]
+        },
+        {
+          "name": "publicProjectionSpaces",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/projections/src/classification/disposition-spaces.ts"
+          ]
+        },
+        {
+          "name": "SupportedAssertion",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/projections/src/types.ts"
+          ]
+        },
+        {
+          "name": "validateEvidenceSupport",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/projections/src/validation/evidence-support.ts"
+          ]
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "packages/projections/examples/01-validate-and-build.test.ts",
+          "originalPath": "packages/projections/examples/01-validate-and-build.test.ts"
+        },
+        {
+          "path": "packages/projections/examples/02-source-native-fidelity.test.ts",
+          "originalPath": "packages/projections/examples/02-source-native-fidelity.test.ts"
+        },
+        {
+          "path": "packages/projections/examples/03-classify-dispositions.test.ts",
+          "originalPath": "packages/projections/examples/03-classify-dispositions.test.ts"
+        },
+        {
+          "path": "packages/projections/src/classification/disposition-spaces.test.ts",
+          "originalPath": "packages/projections/src/classification/disposition-spaces.test.ts"
+        },
+        {
+          "path": "packages/projections/src/projection/create-projection.test.ts",
+          "originalPath": "packages/projections/src/projection/create-projection.test.ts"
+        },
+        {
+          "path": "packages/projections/src/validation/evidence-support.test.ts",
+          "originalPath": "packages/projections/src/validation/evidence-support.test.ts"
+        }
+      ],
+      "runtimeExports": {
+        "status": "present-unverified-build",
+        "sha256": "8cf7660cec4871511d0fc2b57736afd003488ab855d00d190c6ad2484f9582da",
+        "names": [
+          "classifyProjectionSpaces",
+          "createProjection",
+          "publicProjectionSpaces",
+          "validateEvidenceSupport"
+        ]
+      }
+    },
+    "embeddings": {
+      "group": "retrieval",
+      "packageName": "@aiengineer/knowledge-embeddings",
+      "sourceEntry": "packages/embeddings/src/index.ts",
+      "sourceExports": [
+        {
+          "name": "AI_GATEWAY_BASE_URL",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/embeddings/src/types.ts"
+          ]
+        },
+        {
+          "name": "createGatewayEmbeddingAdapterFromEnvironment",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/embeddings/src/gateway.ts"
+          ]
+        },
+        {
+          "name": "DEFAULT_EMBEDDING_DIMENSIONS",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/embeddings/src/types.ts"
+          ]
+        },
+        {
+          "name": "DEFAULT_EMBEDDING_MODEL",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/embeddings/src/types.ts"
+          ]
+        },
+        {
+          "name": "DeterministicFakeEmbeddingAdapter",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/embeddings/src/fake.ts"
+          ]
+        },
+        {
+          "name": "EmbedBatchReceipt",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/embeddings/src/types.ts"
+          ]
+        },
+        {
+          "name": "EmbeddedItem",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/embeddings/src/types.ts"
+          ]
+        },
+        {
+          "name": "EmbeddingAdapter",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/embeddings/src/types.ts"
+          ]
+        },
+        {
+          "name": "EmbeddingCache",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/embeddings/src/types.ts"
+          ]
+        },
+        {
+          "name": "EmbedInput",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/embeddings/src/types.ts"
+          ]
+        },
+        {
+          "name": "EmbedManyRequest",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/embeddings/src/types.ts"
+          ]
+        },
+        {
+          "name": "EmbedOneRequest",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/embeddings/src/types.ts"
+          ]
+        },
+        {
+          "name": "EmbedReceipt",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/embeddings/src/types.ts"
+          ]
+        },
+        {
+          "name": "EmbedRequestBase",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/embeddings/src/types.ts"
+          ]
+        },
+        {
+          "name": "GatewayAdapterOptions",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/embeddings/src/types.ts"
+          ]
+        },
+        {
+          "name": "MemoryEmbeddingCache",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/embeddings/src/cache.ts"
+          ]
+        },
+        {
+          "name": "ModelDescriptor",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/embeddings/src/types.ts"
+          ]
+        },
+        {
+          "name": "RetryAttempt",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/embeddings/src/types.ts"
+          ]
+        },
+        {
+          "name": "validateVector",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/embeddings/src/vectors.ts"
+          ]
+        },
+        {
+          "name": "vectorDigest",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/embeddings/src/vectors.ts"
+          ]
+        },
+        {
+          "name": "VercelAiGatewayEmbeddingAdapter",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/embeddings/src/gateway.ts"
+          ]
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "packages/embeddings/examples/01-deterministic-batch.test.ts",
+          "originalPath": "packages/embeddings/examples/01-deterministic-batch.test.ts"
+        },
+        {
+          "path": "packages/embeddings/examples/02-cache-and-retry.test.ts",
+          "originalPath": "packages/embeddings/examples/02-cache-and-retry.test.ts"
+        },
+        {
+          "path": "packages/embeddings/examples/03-reject-bad-output.test.ts",
+          "originalPath": "packages/embeddings/examples/03-reject-bad-output.test.ts"
+        },
+        {
+          "path": "packages/embeddings/src/cache.test.ts",
+          "originalPath": "packages/embeddings/src/cache.test.ts"
+        },
+        {
+          "path": "packages/embeddings/src/fake.test.ts",
+          "originalPath": "packages/embeddings/src/fake.test.ts"
+        },
+        {
+          "path": "packages/embeddings/src/gateway.test.ts",
+          "originalPath": "packages/embeddings/src/gateway.test.ts"
+        },
+        {
+          "path": "packages/embeddings/src/vectors.test.ts",
+          "originalPath": "packages/embeddings/src/vectors.test.ts"
+        }
+      ],
+      "runtimeExports": {
+        "status": "present-unverified-build",
+        "sha256": "2f8ecac6f3e80811f568a927f726437c42d29f692aff7b511f0643548b0e87a2",
+        "names": [
+          "AI_GATEWAY_BASE_URL",
+          "createGatewayEmbeddingAdapterFromEnvironment",
+          "DEFAULT_EMBEDDING_DIMENSIONS",
+          "DEFAULT_EMBEDDING_MODEL",
+          "DeterministicFakeEmbeddingAdapter",
+          "MemoryEmbeddingCache",
+          "validateVector",
+          "vectorDigest",
+          "VercelAiGatewayEmbeddingAdapter"
+        ]
+      }
+    },
+    "vector-backends": {
+      "group": "retrieval",
+      "packageName": "@aiengineer/knowledge-vector-backends",
+      "sourceEntry": "packages/vector-backends/src/index.ts",
+      "sourceExports": [
+        {
+          "name": "ActivePublicationPointer",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/vector-backends/src/spaces/version.ts"
+          ]
+        },
+        {
+          "name": "CANONICAL_EMBEDDING_DIMENSIONS",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/vector-backends/src/types.ts"
+          ]
+        },
+        {
+          "name": "Digest",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/vector-backends/src/publication/types.ts"
+          ]
+        },
+        {
+          "name": "ExactVectorItem",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/vector-backends/src/types.ts"
+          ]
+        },
+        {
+          "name": "ExploratoryPublication",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/vector-backends/src/publication/types.ts"
+          ]
+        },
+        {
+          "name": "ExploratoryPublicationCoordinator",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/vector-backends/src/publication/coordinator.ts"
+          ]
+        },
+        {
+          "name": "InMemoryExactCosineBackend",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/vector-backends/src/backends/in-memory-exact.ts"
+          ]
+        },
+        {
+          "name": "InMemoryPublicationRepository",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/vector-backends/src/publication/repository.ts"
+          ]
+        },
+        {
+          "name": "PostgresRpcClient",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/vector-backends/src/backends/postgres.ts"
+          ]
+        },
+        {
+          "name": "PostgresRpcResult",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/vector-backends/src/backends/postgres.ts"
+          ]
+        },
+        {
+          "name": "PostgresVectorSearchBackend",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/vector-backends/src/backends/postgres.ts"
+          ]
+        },
+        {
+          "name": "PublicationEvent",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/vector-backends/src/spaces/version.ts"
+          ]
+        },
+        {
+          "name": "PublicationInspection",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/vector-backends/src/publication/types.ts"
+          ]
+        },
+        {
+          "name": "PublicationInspector",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/vector-backends/src/publication/types.ts"
+          ]
+        },
+        {
+          "name": "PublicationManifests",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/vector-backends/src/publication/types.ts"
+          ]
+        },
+        {
+          "name": "PublicationReconciliationReport",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/vector-backends/src/publication/types.ts"
+          ]
+        },
+        {
+          "name": "PublicationRepository",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/vector-backends/src/publication/types.ts"
+          ]
+        },
+        {
+          "name": "PublicationState",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/vector-backends/src/spaces/version.ts"
+          ]
+        },
+        {
+          "name": "PublicationTransaction",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/vector-backends/src/publication/types.ts"
+          ]
+        },
+        {
+          "name": "PublishExploratoryRequest",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/vector-backends/src/publication/types.ts"
+          ]
+        },
+        {
+          "name": "ReconciliationFinding",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/vector-backends/src/publication/types.ts"
+          ]
+        },
+        {
+          "name": "RollbackPublicationRequest",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/vector-backends/src/publication/types.ts"
+          ]
+        },
+        {
+          "name": "serializeHalfVector",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/vector-backends/src/backends/postgres.ts"
+          ]
+        },
+        {
+          "name": "validateEmbedding",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/vector-backends/src/types.ts"
+          ]
+        },
+        {
+          "name": "validateSearchLimit",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/vector-backends/src/types.ts"
+          ]
+        },
+        {
+          "name": "validateVectorItemEntityLink",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/vector-backends/src/spaces/link.ts"
+          ]
+        },
+        {
+          "name": "VectorBackendError",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/vector-backends/src/types.ts"
+          ]
+        },
+        {
+          "name": "VectorItemEntityLink",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/vector-backends/src/spaces/link.ts"
+          ]
+        },
+        {
+          "name": "VectorSearchBackend",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/vector-backends/src/types.ts"
+          ]
+        },
+        {
+          "name": "VectorSearchCandidate",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/vector-backends/src/types.ts"
+          ]
+        },
+        {
+          "name": "VectorSearchRequest",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/vector-backends/src/types.ts"
+          ]
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "packages/vector-backends/examples/01-exact-search.test.ts",
+          "originalPath": "packages/vector-backends/examples/01-exact-search.test.ts"
+        },
+        {
+          "path": "packages/vector-backends/examples/02-publish-and-rollback.test.ts",
+          "originalPath": "packages/vector-backends/examples/02-publish-and-rollback.test.ts"
+        },
+        {
+          "path": "packages/vector-backends/examples/03-reconcile-drift.test.ts",
+          "originalPath": "packages/vector-backends/examples/03-reconcile-drift.test.ts"
+        },
+        {
+          "path": "packages/vector-backends/src/backends/in-memory-exact.test.ts",
+          "originalPath": "packages/vector-backends/src/backends/in-memory-exact.test.ts"
+        },
+        {
+          "path": "packages/vector-backends/src/backends/postgres.test.ts",
+          "originalPath": "packages/vector-backends/src/backends/postgres.test.ts"
+        },
+        {
+          "path": "packages/vector-backends/src/publication/coordinator.test.ts",
+          "originalPath": "packages/vector-backends/src/publication/coordinator.test.ts"
+        },
+        {
+          "path": "packages/vector-backends/src/publication/verification.test.ts",
+          "originalPath": "packages/vector-backends/src/publication/verification.test.ts"
+        },
+        {
+          "path": "packages/vector-backends/src/spaces/link.test.ts",
+          "originalPath": "packages/vector-backends/src/spaces/link.test.ts"
+        }
+      ],
+      "runtimeExports": {
+        "status": "present-unverified-build",
+        "sha256": "287aef43f36890fac4c971de81ddff6dc113cd3ec60b564c10392339cf14f6a5",
+        "names": [
+          "CANONICAL_EMBEDDING_DIMENSIONS",
+          "ExploratoryPublicationCoordinator",
+          "InMemoryExactCosineBackend",
+          "InMemoryPublicationRepository",
+          "PostgresVectorSearchBackend",
+          "serializeHalfVector",
+          "validateEmbedding",
+          "validateSearchLimit",
+          "validateVectorItemEntityLink",
+          "VectorBackendError"
+        ]
+      }
+    },
+    "schema-workspace": {
+      "group": "knowledge-db",
+      "packageName": "@aiengineer/knowledge-schema-workspace",
+      "sourceEntry": "packages/schema-workspace/src/index.ts",
+      "sourceExports": [
+        {
+          "name": "assertHeadMatches",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/schema-workspace/src/head.ts"
+          ]
+        },
+        {
+          "name": "CatalogEntry",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/schema-workspace/src/workspace.ts"
+          ]
+        },
+        {
+          "name": "CatalogEntrySchema",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/schema-workspace/src/workspace.ts"
+          ]
+        },
+        {
+          "name": "compareHeads",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/schema-workspace/src/head.ts"
+          ]
+        },
+        {
+          "name": "domainError",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/schema-workspace/src/errors.ts"
+          ]
+        },
+        {
+          "name": "ExitClass",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/schema-workspace/src/errors.ts"
+          ]
+        },
+        {
+          "name": "getPage",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/schema-workspace/src/pages.ts"
+          ]
+        },
+        {
+          "name": "HeadCheck",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/schema-workspace/src/head.ts"
+          ]
+        },
+        {
+          "name": "infrastructureError",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/schema-workspace/src/errors.ts"
+          ]
+        },
+        {
+          "name": "isKnowledgeError",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/schema-workspace/src/errors.ts"
+          ]
+        },
+        {
+          "name": "KnowledgeError",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/schema-workspace/src/errors.ts"
+          ]
+        },
+        {
+          "name": "loadMaterialized",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/schema-workspace/src/materialize.ts"
+          ]
+        },
+        {
+          "name": "loadWorkspace",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/schema-workspace/src/workspace.ts"
+          ]
+        },
+        {
+          "name": "LocateOptions",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/schema-workspace/src/locate.ts"
+          ]
+        },
+        {
+          "name": "MaterializeInput",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/schema-workspace/src/materialize.ts"
+          ]
+        },
+        {
+          "name": "MaterializeResult",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/schema-workspace/src/materialize.ts"
+          ]
+        },
+        {
+          "name": "materializeScope",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/schema-workspace/src/materialize.ts"
+          ]
+        },
+        {
+          "name": "Page",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/schema-workspace/src/pages.ts"
+          ]
+        },
+        {
+          "name": "PageOptions",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/schema-workspace/src/pages.ts"
+          ]
+        },
+        {
+          "name": "QueryCatalog",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/schema-workspace/src/workspace.ts"
+          ]
+        },
+        {
+          "name": "QueryCatalogSchema",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/schema-workspace/src/workspace.ts"
+          ]
+        },
+        {
+          "name": "requireCatalog",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/schema-workspace/src/workspace.ts"
+          ]
+        },
+        {
+          "name": "resolveWorkspaceDir",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/schema-workspace/src/locate.ts"
+          ]
+        },
+        {
+          "name": "SchemaScope",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/schema-workspace/src/materialize.ts"
+          ]
+        },
+        {
+          "name": "SearchEntry",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/schema-workspace/src/workspace.ts"
+          ]
+        },
+        {
+          "name": "SearchEntrySchema",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/schema-workspace/src/workspace.ts"
+          ]
+        },
+        {
+          "name": "SearchHit",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/schema-workspace/src/search.ts"
+          ]
+        },
+        {
+          "name": "SearchOptions",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/schema-workspace/src/search.ts"
+          ]
+        },
+        {
+          "name": "SearchResult",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/schema-workspace/src/search.ts"
+          ]
+        },
+        {
+          "name": "searchWorkspace",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/schema-workspace/src/search.ts"
+          ]
+        },
+        {
+          "name": "TerminologyEntry",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/schema-workspace/src/workspace.ts"
+          ]
+        },
+        {
+          "name": "Workspace",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/schema-workspace/src/workspace.ts"
+          ]
+        },
+        {
+          "name": "WORKSPACE_FILES",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/schema-workspace/src/workspace.ts"
+          ]
+        },
+        {
+          "name": "WorkspaceManifest",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/schema-workspace/src/workspace.ts"
+          ]
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "packages/schema-workspace/src/schema-workspace.test.ts",
+          "originalPath": "packages/schema-workspace/src/schema-workspace.test.ts"
+        }
+      ],
+      "runtimeExports": {
+        "status": "present-unverified-build",
+        "sha256": "a3772cf8ba8a5b13b6060e4fca683b40a581bafb3c9da69515b8ab0bd4e28016",
+        "names": [
+          "assertHeadMatches",
+          "CatalogEntrySchema",
+          "compareHeads",
+          "domainError",
+          "getPage",
+          "infrastructureError",
+          "isKnowledgeError",
+          "KnowledgeError",
+          "loadMaterialized",
+          "loadWorkspace",
+          "materializeScope",
+          "QueryCatalogSchema",
+          "requireCatalog",
+          "resolveWorkspaceDir",
+          "SearchEntrySchema",
+          "searchWorkspace",
+          "WORKSPACE_FILES"
+        ]
+      }
+    },
+    "db-read": {
+      "group": "knowledge-db",
+      "packageName": "@aiengineer/knowledge-db-read",
+      "sourceEntry": "packages/db-read/src/index.ts",
+      "sourceExports": [
+        {
+          "name": "applyDefaults",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/db-read/src/json-schema.ts"
+          ]
+        },
+        {
+          "name": "ArtifactLedger",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/db-read/src/artifacts.ts"
+          ]
+        },
+        {
+          "name": "ArtifactLedgerConfig",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/db-read/src/artifacts.ts"
+          ]
+        },
+        {
+          "name": "ArtifactRecord",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/db-read/src/artifacts.ts"
+          ]
+        },
+        {
+          "name": "assertSingleReadStatement",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/db-read/src/sql-guard.ts"
+          ]
+        },
+        {
+          "name": "bindKnowledgeClock",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/db-read/src/snapshot.ts"
+          ]
+        },
+        {
+          "name": "buildSpaceManifest",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/db-read/src/space-manifest.ts"
+          ]
+        },
+        {
+          "name": "BuildSpaceManifestInput",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/db-read/src/space-manifest.ts"
+          ]
+        },
+        {
+          "name": "canonicalJson",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/db-read/src/canonical.ts"
+          ]
+        },
+        {
+          "name": "Digest",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/db-read/src/canonical.ts"
+          ]
+        },
+        {
+          "name": "digestHexOf",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/db-read/src/canonical.ts"
+          ]
+        },
+        {
+          "name": "digestOf",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/db-read/src/canonical.ts"
+          ]
+        },
+        {
+          "name": "isDigest",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/db-read/src/canonical.ts"
+          ]
+        },
+        {
+          "name": "isUuid",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/db-read/src/uuid.ts"
+          ]
+        },
+        {
+          "name": "JsonPrimitive",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/db-read/src/canonical.ts"
+          ]
+        },
+        {
+          "name": "jsonSafeRow",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/db-read/src/rows.ts"
+          ]
+        },
+        {
+          "name": "JsonSchema",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/db-read/src/json-schema.ts"
+          ]
+        },
+        {
+          "name": "JsonValue",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/db-read/src/canonical.ts"
+          ]
+        },
+        {
+          "name": "KnowledgeArtifactType",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/db-read/src/artifacts.ts"
+          ]
+        },
+        {
+          "name": "KnowledgeHead",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/db-read/src/read-intent.ts"
+          ]
+        },
+        {
+          "name": "LineageEdge",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/db-read/src/artifacts.ts"
+          ]
+        },
+        {
+          "name": "MAX_OPERATIONS",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/db-read/src/read-intent.ts"
+          ]
+        },
+        {
+          "name": "MAX_STATEMENT_TIMEOUT_MS",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/db-read/src/read-intent.ts"
+          ]
+        },
+        {
+          "name": "OperationResult",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/db-read/src/read-intent.ts"
+          ]
+        },
+        {
+          "name": "OperationStatus",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/db-read/src/read-intent.ts"
+          ]
+        },
+        {
+          "name": "PutArtifactInput",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/db-read/src/artifacts.ts"
+          ]
+        },
+        {
+          "name": "ReadContextSchema",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/db-read/src/read-intent.ts"
+          ]
+        },
+        {
+          "name": "ReadExecutor",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/db-read/src/read-executor.ts"
+          ]
+        },
+        {
+          "name": "ReadExecutorConfig",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/db-read/src/read-executor.ts"
+          ]
+        },
+        {
+          "name": "ReadIntent",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/db-read/src/read-intent.ts"
+          ]
+        },
+        {
+          "name": "ReadIntentInput",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/db-read/src/read-intent.ts"
+          ]
+        },
+        {
+          "name": "ReadIntentSchema",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/db-read/src/read-intent.ts"
+          ]
+        },
+        {
+          "name": "ReadOperation",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/db-read/src/read-intent.ts"
+          ]
+        },
+        {
+          "name": "ReadOperationSchema",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/db-read/src/read-intent.ts"
+          ]
+        },
+        {
+          "name": "ReadRoleSchema",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/db-read/src/read-intent.ts"
+          ]
+        },
+        {
+          "name": "ReadSnapshot",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/db-read/src/read-intent.ts"
+          ]
+        },
+        {
+          "name": "readSpaceManifest",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/db-read/src/space-manifest.ts"
+          ]
+        },
+        {
+          "name": "ReadSpaceManifestInput",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/db-read/src/space-manifest.ts"
+          ]
+        },
+        {
+          "name": "ResolvedParams",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/db-read/src/references.ts"
+          ]
+        },
+        {
+          "name": "resolveReferences",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/db-read/src/references.ts"
+          ]
+        },
+        {
+          "name": "Row",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/db-read/src/rows.ts"
+          ]
+        },
+        {
+          "name": "RunIntentOptions",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/db-read/src/read-executor.ts"
+          ]
+        },
+        {
+          "name": "SchemaIssue",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/db-read/src/json-schema.ts"
+          ]
+        },
+        {
+          "name": "sha256Hex",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/db-read/src/canonical.ts"
+          ]
+        },
+        {
+          "name": "SLUG",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/db-read/src/read-intent.ts"
+          ]
+        },
+        {
+          "name": "SlugSchema",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/db-read/src/read-intent.ts"
+          ]
+        },
+        {
+          "name": "snapshotDigest",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/db-read/src/snapshot.ts"
+          ]
+        },
+        {
+          "name": "SnapshotExpectation",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/db-read/src/snapshot.ts"
+          ]
+        },
+        {
+          "name": "SPACE_MANIFEST_SCHEMA_VERSION",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/db-read/src/space-manifest.ts"
+          ]
+        },
+        {
+          "name": "SpaceManifest",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/db-read/src/space-manifest.ts"
+          ]
+        },
+        {
+          "name": "SpaceManifestActivePublication",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/db-read/src/space-manifest.ts"
+          ]
+        },
+        {
+          "name": "SpaceManifestAuthorityClass",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/db-read/src/space-manifest.ts"
+          ]
+        },
+        {
+          "name": "SpaceManifestBudget",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/db-read/src/space-manifest.ts"
+          ]
+        },
+        {
+          "name": "SpaceManifestEntry",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/db-read/src/space-manifest.ts"
+          ]
+        },
+        {
+          "name": "SpaceManifestLiveFacts",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/db-read/src/space-manifest.ts"
+          ]
+        },
+        {
+          "name": "SpaceManifestProfile",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/db-read/src/space-manifest.ts"
+          ]
+        },
+        {
+          "name": "SpaceManifestProfileTable",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/db-read/src/space-manifest.ts"
+          ]
+        },
+        {
+          "name": "SpaceManifestReads",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/db-read/src/space-manifest.ts"
+          ]
+        },
+        {
+          "name": "SpaceManifestUnavailable",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/db-read/src/space-manifest.ts"
+          ]
+        },
+        {
+          "name": "SqlReadInput",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/db-read/src/read-executor.ts"
+          ]
+        },
+        {
+          "name": "SqlReadResult",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/db-read/src/read-executor.ts"
+          ]
+        },
+        {
+          "name": "UUID_PATTERN",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/db-read/src/uuid.ts"
+          ]
+        },
+        {
+          "name": "UuidSchema",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/db-read/src/read-intent.ts"
+          ]
+        },
+        {
+          "name": "uuidv7",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/db-read/src/uuid.ts"
+          ]
+        },
+        {
+          "name": "validatePersistedSnapshot",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/db-read/src/snapshot.ts"
+          ]
+        },
+        {
+          "name": "validateSchema",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/db-read/src/json-schema.ts"
+          ]
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "packages/db-read/src/artifacts-reconciliation.integration.test.ts",
+          "originalPath": "packages/db-read/src/artifacts-reconciliation.integration.test.ts"
+        },
+        {
+          "path": "packages/db-read/src/artifacts-reconciliation.test.ts",
+          "originalPath": "packages/db-read/src/artifacts-reconciliation.test.ts"
+        },
+        {
+          "path": "packages/db-read/src/db-read.test.ts",
+          "originalPath": "packages/db-read/src/db-read.test.ts"
+        },
+        {
+          "path": "packages/db-read/src/read-executor.integration.test.ts",
+          "originalPath": "packages/db-read/src/read-executor.integration.test.ts"
+        },
+        {
+          "path": "packages/db-read/src/snapshot.integration.test.ts",
+          "originalPath": "packages/db-read/src/snapshot.integration.test.ts"
+        },
+        {
+          "path": "packages/db-read/src/snapshot.test.ts",
+          "originalPath": "packages/db-read/src/snapshot.test.ts"
+        },
+        {
+          "path": "packages/db-read/src/space-manifest.test.ts",
+          "originalPath": "packages/db-read/src/space-manifest.test.ts"
+        }
+      ],
+      "runtimeExports": {
+        "status": "present-unverified-build",
+        "sha256": "d8395a9a241df5dd191e6e0b8906fdfc14bb492cca581f0be76c9a8edaf2df2c",
+        "names": [
+          "applyDefaults",
+          "ArtifactLedger",
+          "assertSingleReadStatement",
+          "bindKnowledgeClock",
+          "buildSpaceManifest",
+          "canonicalJson",
+          "digestHexOf",
+          "digestOf",
+          "isDigest",
+          "isUuid",
+          "jsonSafeRow",
+          "MAX_OPERATIONS",
+          "MAX_STATEMENT_TIMEOUT_MS",
+          "ReadContextSchema",
+          "ReadExecutor",
+          "ReadIntentSchema",
+          "ReadOperationSchema",
+          "ReadRoleSchema",
+          "readSpaceManifest",
+          "resolveReferences",
+          "sha256Hex",
+          "SLUG",
+          "SlugSchema",
+          "snapshotDigest",
+          "SPACE_MANIFEST_SCHEMA_VERSION",
+          "UUID_PATTERN",
+          "UuidSchema",
+          "uuidv7",
+          "validatePersistedSnapshot",
+          "validateSchema"
+        ]
+      }
+    },
+    "ingestion": {
+      "group": "knowledge-db",
+      "packageName": "@aiengineer/knowledge-ingestion",
+      "sourceEntry": "packages/ingestion/src/index.ts",
+      "sourceExports": [
+        {
+          "name": "admissionIssues",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/ingestion/src/evidence-admission.ts"
+          ]
+        },
+        {
+          "name": "AffectedRef",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/receipt.ts"
+          ]
+        },
+        {
+          "name": "ALIAS_KINDS",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/ingestion/src/intent.ts"
+          ]
+        },
+        {
+          "name": "ApplyContext",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/apply.ts"
+          ]
+        },
+        {
+          "name": "ApplyOutcome",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/apply.ts"
+          ]
+        },
+        {
+          "name": "applyPlan",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/ingestion/src/apply.ts"
+          ]
+        },
+        {
+          "name": "applyRules",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/ingestion/src/rules.ts"
+          ]
+        },
+        {
+          "name": "authenticateCanonicalContentEvidence",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/ingestion/src/content-links/evidence.ts"
+          ]
+        },
+        {
+          "name": "AuthenticatedContentEvidence",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/content-links/types.ts"
+          ]
+        },
+        {
+          "name": "AuthoritativeClaim",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/evidence-admission.ts"
+          ]
+        },
+        {
+          "name": "awaitWinnerReceipt",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/ingestion/src/duplicate.ts"
+          ]
+        },
+        {
+          "name": "buildPlan",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/ingestion/src/plan.ts"
+          ]
+        },
+        {
+          "name": "ChangedItem",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/plan.ts"
+          ]
+        },
+        {
+          "name": "ClaimEligibility",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/evidence-admission.ts"
+          ]
+        },
+        {
+          "name": "ClaimFacts",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/plan.ts"
+          ]
+        },
+        {
+          "name": "classifyFailure",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/ingestion/src/executor.ts"
+          ]
+        },
+        {
+          "name": "contentEvidenceAssessmentDigest",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/ingestion/src/content-links/evidence.ts"
+          ]
+        },
+        {
+          "name": "ContentLinkAuthority",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/content-links/types.ts"
+          ]
+        },
+        {
+          "name": "contentLinkEffect",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/ingestion/src/content-links/operations.ts"
+          ]
+        },
+        {
+          "name": "ContentLinkExecutor",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/content-links/executor.ts"
+          ]
+        },
+        {
+          "name": "ContentLinkPlan",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/content-links/types.ts"
+          ]
+        },
+        {
+          "name": "ContentLinkReceipt",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/content-links/types.ts"
+          ]
+        },
+        {
+          "name": "ContentSourceReader",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/content-links/sources.ts"
+          ]
+        },
+        {
+          "name": "ContentSummaryPreparationResult",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/content-links/summary-preparation.ts"
+          ]
+        },
+        {
+          "name": "ContentSummaryPreparer",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/content-links/summary-preparation.ts"
+          ]
+        },
+        {
+          "name": "DEFAULT_DUPLICATE_WAIT",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/ingestion/src/duplicate.ts"
+          ]
+        },
+        {
+          "name": "deterministicId",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/ingestion/src/plan.ts"
+          ]
+        },
+        {
+          "name": "DuplicateIdentity",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/duplicate.ts"
+          ]
+        },
+        {
+          "name": "DuplicateWaitPolicy",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/duplicate.ts"
+          ]
+        },
+        {
+          "name": "ENTITY_REF_KINDS",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/ingestion/src/intent.ts"
+          ]
+        },
+        {
+          "name": "EntityKind",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/vocabulary.ts"
+          ]
+        },
+        {
+          "name": "EntityMatch",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/plan.ts"
+          ]
+        },
+        {
+          "name": "EventKind",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/vocabulary.ts"
+          ]
+        },
+        {
+          "name": "EvidenceOracle",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/facts.ts"
+          ]
+        },
+        {
+          "name": "EvidenceRef",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/intent.ts"
+          ]
+        },
+        {
+          "name": "EvidenceRefSchema",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/ingestion/src/intent.ts"
+          ]
+        },
+        {
+          "name": "ExistingFacts",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/plan.ts"
+          ]
+        },
+        {
+          "name": "ExtentSchema",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/ingestion/src/intent.ts"
+          ]
+        },
+        {
+          "name": "FactGatheringDeps",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/facts.ts"
+          ]
+        },
+        {
+          "name": "gatherFacts",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/ingestion/src/facts.ts"
+          ]
+        },
+        {
+          "name": "IDENTIFIER_SCHEMES",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/ingestion/src/intent.ts"
+          ]
+        },
+        {
+          "name": "IngestionExecutor",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/executor.ts"
+          ]
+        },
+        {
+          "name": "IngestionExecutorConfig",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/executor.ts"
+          ]
+        },
+        {
+          "name": "IngestionIntent",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/intent.ts"
+          ]
+        },
+        {
+          "name": "IngestionIntentInput",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/intent.ts"
+          ]
+        },
+        {
+          "name": "IngestionIntentSchema",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/ingestion/src/intent.ts"
+          ]
+        },
+        {
+          "name": "IngestionOptions",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/executor.ts"
+          ]
+        },
+        {
+          "name": "IngestionPlan",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/plan.ts"
+          ]
+        },
+        {
+          "name": "IngestionReceipt",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/receipt.ts"
+          ]
+        },
+        {
+          "name": "IngestionRule",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/rules.ts"
+          ]
+        },
+        {
+          "name": "InlineClaim",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/intent.ts"
+          ]
+        },
+        {
+          "name": "InlineClaimSchema",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/ingestion/src/intent.ts"
+          ]
+        },
+        {
+          "name": "intentDigestOf",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/ingestion/src/plan.ts"
+          ]
+        },
+        {
+          "name": "intentIdempotencyKey",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/ingestion/src/plan.ts"
+          ]
+        },
+        {
+          "name": "isIdempotencyKeyCollision",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/ingestion/src/duplicate.ts"
+          ]
+        },
+        {
+          "name": "isOfficiallyAdmittedVerdict",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/ingestion/src/evidence-admission.ts"
+          ]
+        },
+        {
+          "name": "loadRules",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/ingestion/src/rules.ts"
+          ]
+        },
+        {
+          "name": "loadVocabulary",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/ingestion/src/vocabulary.ts"
+          ]
+        },
+        {
+          "name": "NewSubject",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/intent.ts"
+          ]
+        },
+        {
+          "name": "NO_RULES",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/ingestion/src/rules.ts"
+          ]
+        },
+        {
+          "name": "PlanError",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/plan.ts"
+          ]
+        },
+        {
+          "name": "PlanExecutorIdentity",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/plan.ts"
+          ]
+        },
+        {
+          "name": "PlanFacts",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/plan.ts"
+          ]
+        },
+        {
+          "name": "PlannedAction",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/plan.ts"
+          ]
+        },
+        {
+          "name": "PlannedOutcome",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/plan.ts"
+          ]
+        },
+        {
+          "name": "PlannedProposal",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/plan.ts"
+          ]
+        },
+        {
+          "name": "PlannedSubject",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/plan.ts"
+          ]
+        },
+        {
+          "name": "Proposal",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/intent.ts"
+          ]
+        },
+        {
+          "name": "proposalClaims",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/ingestion/src/evidence-admission.ts"
+          ]
+        },
+        {
+          "name": "proposalEffect",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/ingestion/src/evidence-admission.ts"
+          ]
+        },
+        {
+          "name": "proposalIdempotencyKey",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/ingestion/src/plan.ts"
+          ]
+        },
+        {
+          "name": "ProposalKind",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/intent.ts"
+          ]
+        },
+        {
+          "name": "ProposalOf",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/intent.ts"
+          ]
+        },
+        {
+          "name": "ProposalOutcome",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/plan.ts"
+          ]
+        },
+        {
+          "name": "ProposalReceipt",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/receipt.ts"
+          ]
+        },
+        {
+          "name": "ProposalSchema",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/ingestion/src/intent.ts"
+          ]
+        },
+        {
+          "name": "readContentLinkReceipt",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/ingestion/src/content-links/read-receipt.ts"
+          ]
+        },
+        {
+          "name": "ReceiptFailure",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/receipt.ts"
+          ]
+        },
+        {
+          "name": "RegisterReportInput",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/reports/service.ts"
+          ]
+        },
+        {
+          "name": "RelationshipKind",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/vocabulary.ts"
+          ]
+        },
+        {
+          "name": "RenderedAssertion",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/reports/structure.ts"
+          ]
+        },
+        {
+          "name": "renderReport",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/ingestion/src/reports/structure.ts"
+          ]
+        },
+        {
+          "name": "REPORT_BUCKET",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/ingestion/src/reports/service.ts"
+          ]
+        },
+        {
+          "name": "ReportClaimReference",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/reports/structure.ts"
+          ]
+        },
+        {
+          "name": "ReportEvidence",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/evidence-admission.ts"
+          ]
+        },
+        {
+          "name": "ReportPackageRead",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/reports/service.ts"
+          ]
+        },
+        {
+          "name": "ReportRegistration",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/reports/service.ts"
+          ]
+        },
+        {
+          "name": "ReportService",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/reports/service.ts"
+          ]
+        },
+        {
+          "name": "ReportServiceConfig",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/reports/service.ts"
+          ]
+        },
+        {
+          "name": "ReportStructure",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/reports/structure.ts"
+          ]
+        },
+        {
+          "name": "ReportStructureSchema",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/ingestion/src/reports/structure.ts"
+          ]
+        },
+        {
+          "name": "Rewrite",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/rules.ts"
+          ]
+        },
+        {
+          "name": "RuleApplication",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/rules.ts"
+          ]
+        },
+        {
+          "name": "RuleCheck",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/rules.ts"
+          ]
+        },
+        {
+          "name": "RuleCondition",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/rules.ts"
+          ]
+        },
+        {
+          "name": "RuleFacts",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/rules.ts"
+          ]
+        },
+        {
+          "name": "RuleSet",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/rules.ts"
+          ]
+        },
+        {
+          "name": "slugify",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/ingestion/src/plan.ts"
+          ]
+        },
+        {
+          "name": "StreamKind",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/vocabulary.ts"
+          ]
+        },
+        {
+          "name": "STRONG_MATCH",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/ingestion/src/plan.ts"
+          ]
+        },
+        {
+          "name": "Subject",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/intent.ts"
+          ]
+        },
+        {
+          "name": "SubjectFacts",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/plan.ts"
+          ]
+        },
+        {
+          "name": "subjectIdentity",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/ingestion/src/evidence-admission.ts"
+          ]
+        },
+        {
+          "name": "subjectRefsOf",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/ingestion/src/intent.ts"
+          ]
+        },
+        {
+          "name": "SubjectSchema",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/ingestion/src/intent.ts"
+          ]
+        },
+        {
+          "name": "validateProposal",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/ingestion/src/validate.ts"
+          ]
+        },
+        {
+          "name": "ValidationContext",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/validate.ts"
+          ]
+        },
+        {
+          "name": "Vocabulary",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/vocabulary.ts"
+          ]
+        },
+        {
+          "name": "VocabularyIssue",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/validate.ts"
+          ]
+        },
+        {
+          "name": "WorldInterval",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/ingestion/src/intent.ts"
+          ]
+        },
+        {
+          "name": "WorldIntervalSchema",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/ingestion/src/intent.ts"
+          ]
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "packages/ingestion/src/content-links/chunk-manifest.test.ts",
+          "originalPath": "packages/ingestion/src/content-links/chunk-manifest.test.ts"
+        },
+        {
+          "path": "packages/ingestion/src/content-links/evidence.test.ts",
+          "originalPath": "packages/ingestion/src/content-links/evidence.test.ts"
+        },
+        {
+          "path": "packages/ingestion/src/content-links/executor.test.ts",
+          "originalPath": "packages/ingestion/src/content-links/executor.test.ts"
+        },
+        {
+          "path": "packages/ingestion/src/content-links/ledger-review.test.ts",
+          "originalPath": "packages/ingestion/src/content-links/ledger-review.test.ts"
+        },
+        {
+          "path": "packages/ingestion/src/content-links/ledger.test.ts",
+          "originalPath": "packages/ingestion/src/content-links/ledger.test.ts"
+        },
+        {
+          "path": "packages/ingestion/src/content-links/operations.test.ts",
+          "originalPath": "packages/ingestion/src/content-links/operations.test.ts"
+        },
+        {
+          "path": "packages/ingestion/src/content-links/sources.test.ts",
+          "originalPath": "packages/ingestion/src/content-links/sources.test.ts"
+        },
+        {
+          "path": "packages/ingestion/src/content-links/summary-preparation.test.ts",
+          "originalPath": "packages/ingestion/src/content-links/summary-preparation.test.ts"
+        },
+        {
+          "path": "packages/ingestion/src/reports/service.integration.test.ts",
+          "originalPath": "packages/ingestion/src/reports/service.integration.test.ts"
+        },
+        {
+          "path": "packages/ingestion/src/reports/structure.test.ts",
+          "originalPath": "packages/ingestion/src/reports/structure.test.ts"
+        },
+        {
+          "path": "packages/ingestion/src/tests/apply-support.test.ts",
+          "originalPath": "packages/ingestion/src/tests/apply-support.test.ts"
+        },
+        {
+          "path": "packages/ingestion/src/tests/duplicate.test.ts",
+          "originalPath": "packages/ingestion/src/tests/duplicate.test.ts"
+        },
+        {
+          "path": "packages/ingestion/src/tests/evidence-admission.test.ts",
+          "originalPath": "packages/ingestion/src/tests/evidence-admission.test.ts"
+        },
+        {
+          "path": "packages/ingestion/src/tests/executor.integration.test.ts",
+          "originalPath": "packages/ingestion/src/tests/executor.integration.test.ts"
+        },
+        {
+          "path": "packages/ingestion/src/tests/plan.test.ts",
+          "originalPath": "packages/ingestion/src/tests/plan.test.ts"
+        },
+        {
+          "path": "packages/ingestion/src/tests/provenance.test.ts",
+          "originalPath": "packages/ingestion/src/tests/provenance.test.ts"
+        },
+        {
+          "path": "packages/ingestion/src/tests/receipt-reconciliation.test.ts",
+          "originalPath": "packages/ingestion/src/tests/receipt-reconciliation.test.ts"
+        },
+        {
+          "path": "packages/ingestion/src/tests/records.test.ts",
+          "originalPath": "packages/ingestion/src/tests/records.test.ts"
+        },
+        {
+          "path": "packages/ingestion/test/current-schema.integration.test.ts",
+          "originalPath": "packages/ingestion/test/current-schema.integration.test.ts"
+        },
+        {
+          "path": "packages/ingestion/test/temporal.integration.test.ts",
+          "originalPath": "packages/ingestion/test/temporal.integration.test.ts"
+        }
+      ],
+      "runtimeExports": {
+        "status": "present-unverified-build",
+        "sha256": "1ae94661f8cd4356b5f305c6b784c9c9440624de05753fea5e14776a4878f594",
+        "names": [
+          "admissionIssues",
+          "ALIAS_KINDS",
+          "applyPlan",
+          "applyRules",
+          "authenticateCanonicalContentEvidence",
+          "awaitWinnerReceipt",
+          "buildPlan",
+          "classifyFailure",
+          "contentEvidenceAssessmentDigest",
+          "contentLinkEffect",
+          "ContentLinkExecutor",
+          "ContentSourceReader",
+          "ContentSummaryPreparer",
+          "DEFAULT_DUPLICATE_WAIT",
+          "deterministicId",
+          "ENTITY_REF_KINDS",
+          "EvidenceRefSchema",
+          "ExtentSchema",
+          "gatherFacts",
+          "IDENTIFIER_SCHEMES",
+          "IngestionExecutor",
+          "IngestionIntentSchema",
+          "InlineClaimSchema",
+          "intentDigestOf",
+          "intentIdempotencyKey",
+          "isIdempotencyKeyCollision",
+          "isOfficiallyAdmittedVerdict",
+          "loadRules",
+          "loadVocabulary",
+          "NO_RULES",
+          "proposalClaims",
+          "proposalEffect",
+          "proposalIdempotencyKey",
+          "ProposalSchema",
+          "readContentLinkReceipt",
+          "renderReport",
+          "REPORT_BUCKET",
+          "ReportService",
+          "ReportStructureSchema",
+          "slugify",
+          "STRONG_MATCH",
+          "subjectIdentity",
+          "subjectRefsOf",
+          "SubjectSchema",
+          "validateProposal",
+          "WorldIntervalSchema"
+        ]
+      }
+    }
+  },
+  "collisions": {
+    "core": [],
+    "preparation": [],
+    "retrieval": [],
+    "knowledge-db": []
+  },
+  "manifestGraph": {
+    "packageCount": 30,
+    "edges": [
+      {
+        "from": "@aiengineer/knowledge-acquisition",
+        "to": [
+          "@aiengineer/knowledge-domain",
+          "@aiengineer/knowledge-runtime"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-api",
+        "to": [
+          "@aiengineer/knowledge-application",
+          "@aiengineer/knowledge-client",
+          "@aiengineer/knowledge-config",
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-db-read",
+          "@aiengineer/knowledge-domain",
+          "@aiengineer/knowledge-embeddings",
+          "@aiengineer/knowledge-ingestion",
+          "@aiengineer/knowledge-persistence",
+          "@aiengineer/knowledge-runtime",
+          "@aiengineer/knowledge-schema-workspace",
+          "@aiengineer/knowledge-testkit"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-application",
+        "to": [
+          "@aiengineer/knowledge-acquisition",
+          "@aiengineer/knowledge-chunking",
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-conversion",
+          "@aiengineer/knowledge-documents",
+          "@aiengineer/knowledge-domain",
+          "@aiengineer/knowledge-embeddings",
+          "@aiengineer/knowledge-evaluation",
+          "@aiengineer/knowledge-jev",
+          "@aiengineer/knowledge-policy",
+          "@aiengineer/knowledge-projections",
+          "@aiengineer/knowledge-retrieval",
+          "@aiengineer/knowledge-runtime",
+          "@aiengineer/knowledge-testkit",
+          "@aiengineer/knowledge-vector-backends",
+          "@aiengineer/knowledge-verification"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-chunking",
+        "to": [
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-documents",
+          "@aiengineer/knowledge-domain"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-cli",
+        "to": [
+          "@aiengineer/knowledge-application",
+          "@aiengineer/knowledge-client",
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-verification"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-client",
+        "to": [
+          "@aiengineer/knowledge-contracts"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-config",
+        "to": [
+          "@aiengineer/knowledge-contracts"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-contracts",
+        "to": []
+      },
+      {
+        "from": "@aiengineer/knowledge-conversion",
+        "to": [
+          "@aiengineer/knowledge-domain",
+          "@aiengineer/knowledge-runtime"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-db-read",
+        "to": [
+          "@aiengineer/knowledge-persistence",
+          "@aiengineer/knowledge-runtime",
+          "@aiengineer/knowledge-schema-workspace"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-documents",
+        "to": [
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-domain"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-domain",
+        "to": [
+          "@aiengineer/knowledge-contracts"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-embeddings",
+        "to": [
+          "@aiengineer/knowledge-domain"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-evaluation",
+        "to": [
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-domain",
+          "@aiengineer/knowledge-verification"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-ingestion",
+        "to": [
+          "@aiengineer/knowledge-chunking",
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-db-read",
+          "@aiengineer/knowledge-documents",
+          "@aiengineer/knowledge-domain",
+          "@aiengineer/knowledge-persistence",
+          "@aiengineer/knowledge-schema-workspace"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-jev",
+        "to": [
+          "@aiengineer/knowledge-contracts"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-jev-service",
+        "to": [
+          "@aiengineer/knowledge-application",
+          "@aiengineer/knowledge-client",
+          "@aiengineer/knowledge-contracts"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-mcp",
+        "to": [
+          "@aiengineer/knowledge-application",
+          "@aiengineer/knowledge-client",
+          "@aiengineer/knowledge-config",
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-persistence"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-observability",
+        "to": [
+          "@aiengineer/knowledge-domain"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-persistence",
+        "to": [
+          "@aiengineer/knowledge-application",
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-domain",
+          "@aiengineer/knowledge-runtime",
+          "@aiengineer/knowledge-verification"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-policy",
+        "to": [
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-domain",
+          "@aiengineer/knowledge-verification"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-projections",
+        "to": [
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-documents",
+          "@aiengineer/knowledge-domain"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-retrieval",
+        "to": [
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-domain",
+          "@aiengineer/knowledge-vector-backends"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-runtime",
+        "to": [
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-domain"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-schema-workspace",
+        "to": []
+      },
+      {
+        "from": "@aiengineer/knowledge-testkit",
+        "to": [
+          "@aiengineer/knowledge-domain",
+          "@aiengineer/knowledge-evaluation",
+          "@aiengineer/knowledge-retrieval"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-vector-backends",
+        "to": [
+          "@aiengineer/knowledge-domain"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-verification",
+        "to": [
+          "@aiengineer/knowledge-contracts"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-verification-executor",
+        "to": [
+          "@aiengineer/knowledge-application",
+          "@aiengineer/knowledge-chunking",
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-db-read",
+          "@aiengineer/knowledge-documents",
+          "@aiengineer/knowledge-domain",
+          "@aiengineer/knowledge-ingestion",
+          "@aiengineer/knowledge-persistence",
+          "@aiengineer/knowledge-policy",
+          "@aiengineer/knowledge-runtime",
+          "@aiengineer/knowledge-schema-workspace",
+          "@aiengineer/knowledge-verification"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-worker",
+        "to": [
+          "@aiengineer/knowledge-acquisition",
+          "@aiengineer/knowledge-application",
+          "@aiengineer/knowledge-chunking",
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-conversion",
+          "@aiengineer/knowledge-documents",
+          "@aiengineer/knowledge-domain",
+          "@aiengineer/knowledge-embeddings",
+          "@aiengineer/knowledge-evaluation",
+          "@aiengineer/knowledge-persistence",
+          "@aiengineer/knowledge-policy",
+          "@aiengineer/knowledge-runtime",
+          "@aiengineer/knowledge-verification"
+        ]
+      }
+    ],
+    "cycles": []
+  }
+}

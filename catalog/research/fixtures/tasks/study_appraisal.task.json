@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "sv09-task-spec.v1",
+  "id": "sv09-appraisal-pair26",
+  "kind": "study_appraisal",
+  "domain": "scientific",
+  "question": "Appraise the single study PAIR-26 from its abstract for the AI Engineer evidence registry: its design and population, then what it reported for each appraisal domain (selection, performance, detection, attrition, reporting). Do not rate a body of evidence.",
+  "use": "knowledge_ingestion.study_appraisal",
+  "audience": "official",
+  "minimumRisk": "medium",
+  "obligations": [
+    { "id": "design.trial", "description": "State PAIR-26's design, population, intervention and comparator as the study reports them.", "weight": 2000, "required": true },
+    { "id": "domain.selection", "description": "Report what PAIR-26 reported about allocation and selection.", "weight": 1600, "required": true },
+    { "id": "domain.performance", "description": "Report what PAIR-26 reported about blinding of participants and personnel.", "weight": 1600, "required": true },
+    { "id": "domain.detection", "description": "Report what PAIR-26 reported about blinding of outcome assessment.", "weight": 1600, "required": true },
+    { "id": "domain.attrition", "description": "Report what PAIR-26 reported about attrition.", "weight": 1600, "required": true },
+    { "id": "domain.reporting", "description": "Report what PAIR-26 reported about outcome reporting and registration.", "weight": 1600, "required": true }
+  ],
+  "sources": ["S6"],
+  "qualifierGuidance": {
+    "profile": "scientific.v2",
+    "entity": "Write the study name exactly as PAIR-26 on every assertion.",
+    "studyDesign": "randomized_controlled_trial on every assertion.",
+    "population": "Write the population exactly as: professional software developers.",
+    "species": "human",
+    "claimClass": "source_report on every assertion.",
+    "appraisal": "Each domain assertion names its appraisalDomain and an appraisalJudgment (low, some_concerns, high, not_reported); the design assertion has neither."
+  },
+  "mapping": {
+    "id": "sv09-mapping-evidence-registry",
+    "targetSchema": "aiengineer-evidence-registry.v1",
+    "rules": [
+      { "ruleId": "appraisal-item", "assertionKinds": ["source_report"], "target": "ai_engineer.study_appraisal_item", "includeValue": false, "qualifierFields": ["population", "species", "negation", "studyDesign", "appraisalDomain", "appraisalJudgment"], "requiresEntity": true, "requiresTime": false }
+    ],
+    "entityResolutions": [{ "surface": "PAIR-26", "entityId": "study.pair-26" }]
+  },
+  "limits": { "calls": 40, "tokens": 400000, "costUsd": "6", "deadline": "2026-10-26T00:00:00Z" }
+}

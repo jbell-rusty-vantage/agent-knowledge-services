@@ -1,0 +1,30 @@
+{
+  "protocolVersion": "ks.knowledge_operation.v2",
+  "schemas": {
+    "ref.v2": "ref.v2.schema.json",
+    "origin.v2": "origin.v2.schema.json",
+    "evaluator-identity.v2": "evaluator-identity.v2.schema.json",
+    "effect-binding.v2": "effect-binding.v2.schema.json",
+    "effect-identity.v2": "effect-identity.v2.schema.json",
+    "protocol-error.v2": "protocol-error.v2.schema.json",
+    "operation-handle.v2": "operation-handle.v2.schema.json",
+    "operation-status.v2": "operation-status.v2.schema.json",
+    "operation-receipt.v2": "operation-receipt.v2.schema.json",
+    "receipt-lookup.v2": "receipt-lookup.v2.schema.json",
+    "operation-envelope.v2": "operation-envelope.v2.schema.json",
+    "binding-descriptor.v2": "binding-descriptor.v2.schema.json",
+    "credential-claims.v2": "credential-claims.v2.schema.json",
+    "selected-report-read.v2": "selected-report-read.v2.schema.json",
+    "research-report-package.v2": "research-report-package.v2.schema.json",
+    "credential-evaluation.v1": "credential-evaluation.v1.schema.json",
+    "report-observation.v1": "report-observation.v1.schema.json",
+    "report-seal.v1": "report-seal.v1.schema.json",
+    "report-use.v1": "report-use.v1.schema.json",
+    "report-review.v1": "report-review.v1.schema.json",
+    "decision-resolve.v1": "decision-resolve.v1.schema.json",
+    "use-decision-resolution.v1": "use-decision-resolution.v1.schema.json",
+    "knowledge-plan-preview.v1": "knowledge-plan-preview.v1.schema.json",
+    "knowledge-read-intent-request.v1": "knowledge-read-intent-request.v1.schema.json",
+    "knowledge-read-intent-result.v1": "knowledge-read-intent-result.v1.schema.json"
+  }
+}

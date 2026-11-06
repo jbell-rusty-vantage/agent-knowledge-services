@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "verification-benchmark-engineering-expectation.v1",
+  "sourceDatasetManifestDigest": "sha256:b625b311493f8c366ef43bf4047bf61f38d510fe7f3c340f50bca42de737dfe6",
+  "sourceCaseDigest": "sha256:4a725e7d111375bfa00166f85915eb1888b416501dcf6e74bbcf6c45a88da7e9",
+  "caseId": "tru-omic-mutated",
+  "provenance": "agent_reviewed_engineering_expectation",
+  "humanAnnotationCount": 0,
+  "expertAdjudicated": false,
+  "humanGoldScoringEligible": false,
+  "legacyGoldArtifactColumnSemantics": "engineering expectation artifact only; does not establish human-gold eligibility",
+  "expectation": {
+    "label": "contradicted",
+    "labelStatus": "engineering_expectation",
+    "expectedPolicy": "fail",
+    "expectedLocatorValid": true,
+    "support": "contradicted",
+    "authority": "interested_party_only",
+    "worldCorrectness": "unknown",
+    "rationale": "Engineering expectation for algorithm_definition_swap; human annotation and expert adjudication remain pending."
+  }
+}

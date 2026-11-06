@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "verification-policy-decision.v1"
+    },
+    "policyVersion": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160
+    },
+    "runId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255
+    },
+    "outcome": {
+      "type": "string",
+      "enum": [
+        "pass",
+        "pass_with_warnings",
+        "review",
+        "fail",
+        "abstain"
+      ]
+    },
+    "assertionOutcomes": {
+      "maxItems": 512,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "assertionId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255
+          },
+          "outcome": {
+            "type": "string",
+            "enum": [
+              "pass",
+              "pass_with_warnings",
+              "review",
+              "fail",
+              "abstain"
+            ]
+          },
+          "reasonCodes": {
+            "maxItems": 32,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            }
+          }
+        },
+        "required": [
+          "assertionId",
+          "outcome",
+          "reasonCodes"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "reasonCodes": {
+      "maxItems": 64,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 120
+      }
+    },
+    "overrideApplied": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "policyVersion",
+    "runId",
+    "outcome",
+    "assertionOutcomes",
+    "reasonCodes",
+    "overrideApplied"
+  ],
+  "additionalProperties": false
+}

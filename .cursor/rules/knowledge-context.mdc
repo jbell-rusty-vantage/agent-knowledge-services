@@ -1,0 +1,6 @@
+---
+description: Common Knowledge Services architecture and business-context entry point
+alwaysApply: true
+---
+
+Read [AGENTS.md](../../AGENTS.md) at the repository root, then the relevant concept and implementation paths it names. Current implementation and cleanup status: [current-state.md](../../docs/architecture/current-state.md). Use `node .agent-docs/cli.mjs context --repo . --query "task vocabulary" --format json` for bounded evidence and source/test entry points. Git-driven maintenance is documented in [agent-maintenance.md](../../docs/operations/agent-maintenance.md); session completion is not a maintenance trigger.

@@ -1,0 +1,34 @@
+{
+  "name": "@aiengineer/knowledge-binding-aiengineer-postgres",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "description": "K05: the AI Engineer PostgreSQL binding of the common knowledge_verification component. One durable run writer, sealer and exact-use oracle over the component's functions; tenant-scoped, role-bounded transactions.",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format esm && tsc --emitDeclarationOnly --rootDir src --outDir dist",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@aiengineer/knowledge-application": "workspace:*",
+    "@aiengineer/knowledge-db": "workspace:*",
+    "@aiengineer/knowledge-host": "workspace:*",
+    "@aiengineer/knowledge-operation-protocol": "workspace:*",
+    "@aiengineer/knowledge-research-core": "workspace:*",
+    "pg": "8.16.3",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@aiengineer/knowledge-db-contract": "workspace:*",
+    "@types/pg": "8.15.5",
+    "tsup": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}

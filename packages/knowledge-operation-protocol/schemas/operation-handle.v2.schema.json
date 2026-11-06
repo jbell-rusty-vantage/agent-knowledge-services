@@ -1,0 +1,36 @@
+{
+  "$id": "https://belllabs.local/knowledge-operation-protocol/operation-handle.v2.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "protocolVersion": {
+      "type": "string",
+      "const": "ks.knowledge_operation.v2"
+    },
+    "tenant": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "application": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_.-]{0,119}$"
+    },
+    "binding": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_.-]{0,119}$"
+    },
+    "operationId": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@-]{0,199}$"
+    }
+  },
+  "required": [
+    "protocolVersion",
+    "tenant",
+    "application",
+    "binding",
+    "operationId"
+  ],
+  "additionalProperties": false
+}

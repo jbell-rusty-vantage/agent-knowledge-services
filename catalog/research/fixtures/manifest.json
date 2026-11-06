@@ -1,0 +1,139 @@
+{
+  "schemaVersion": "sv09-fixture-manifest.v1",
+  "id": "sv09-ai-engineer-fixture-corpus",
+  "note": "Disposable synthetic engineering fixtures (SV-09). Not research corpus; no real product, study or person.",
+  "lockedAt": "2026-10-25T17:57:14.837Z",
+  "files": [
+    {
+      "path": "labels/evidence_report.labels.json",
+      "sha256": "sha256:3ac427b10bb8fc99a7290481c2889da6ffdb2538484e3c5d2be25edb3467d1fc",
+      "bytes": 3252
+    },
+    {
+      "path": "labels/evidence_report.labels.provenance.json",
+      "sha256": "sha256:133568c4c67315e23c96e21ab7d2ec34d42eb4c15afc4e948bcd5e4d48433d94",
+      "bytes": 634
+    },
+    {
+      "path": "labels/study_appraisal.labels.json",
+      "sha256": "sha256:706dbaf71d550a4720cdcb7b97a6aa51d90b59a749b63812ecbc91d303e394a0",
+      "bytes": 3688
+    },
+    {
+      "path": "labels/study_appraisal.labels.provenance.json",
+      "sha256": "sha256:2fdad6a8214550d548a0b19368c1eb0024bd7aa2eb77ad127243ec55b8be13d6",
+      "bytes": 618
+    },
+    {
+      "path": "recorded/evidence_report.reference-draft.json",
+      "sha256": "sha256:0dbde71547778f83dc93503daac006fa86caa694641132eeef5333da83a4c5ee",
+      "bytes": 4321
+    },
+    {
+      "path": "recorded/evidence_report.reference-draft.provenance.json",
+      "sha256": "sha256:a112908d1432e44e372609b4d14ee72cc16f28c4e39e07bb7bb9c31854692a32",
+      "bytes": 656
+    },
+    {
+      "path": "recorded/study_appraisal.reference-draft.json",
+      "sha256": "sha256:b6e821ea603dca53895b59fd1dd725490806512ec7f6c447c847defc7b74785d",
+      "bytes": 6670
+    },
+    {
+      "path": "recorded/study_appraisal.reference-draft.provenance.json",
+      "sha256": "sha256:2248f510058a5520c03b0ea8c8a600344b25b862c6461d938e1e2fad2fb46cb6",
+      "bytes": 656
+    },
+    {
+      "path": "sources/S1-orion-model-card.md",
+      "sha256": "sha256:84188e146825873acaf01629604534c76ca77ccd0868b4ff53b6c53d01fd2cb2",
+      "bytes": 321
+    },
+    {
+      "path": "sources/S1-orion-model-card.provenance.json",
+      "sha256": "sha256:f8f38d62e39c15ef265c375e46e37402c81d8beaeb679c4f24d057ebdaa4a7c0",
+      "bytes": 1033
+    },
+    {
+      "path": "sources/S2-halcyon-evaluation.md",
+      "sha256": "sha256:fcead272c7c04568c1f6b92c9060dae34e2013385e9b93dd8d4500019a0a18c1",
+      "bytes": 328
+    },
+    {
+      "path": "sources/S2-halcyon-evaluation.provenance.json",
+      "sha256": "sha256:a8bd1e1a6fbe8ed132c272f0059b54a0ec04007284ed7707bb4f811d33ba0485",
+      "bytes": 974
+    },
+    {
+      "path": "sources/S3-data-statement.md",
+      "sha256": "sha256:793fb0b7ae0698898b08180c6ec1279d973358234c7b6dbd6ff193d19f868635",
+      "bytes": 206
+    },
+    {
+      "path": "sources/S3-data-statement.provenance.json",
+      "sha256": "sha256:5bb81b97486ee6bafb656d6895b2be1bc396f3a7f3ec5a164e9076262eb45e81",
+      "bytes": 955
+    },
+    {
+      "path": "sources/S4-deployment-guide.md",
+      "sha256": "sha256:55fd4d6ffe3671536a10e4c4b23a362ecb87a2c828f103d8c8a588b5f5bde76b",
+      "bytes": 198
+    },
+    {
+      "path": "sources/S4-deployment-guide.provenance.json",
+      "sha256": "sha256:c7e5052d6a5bf0360ee5520d7e8b5d6efade9c5bee6213a9c30564f95d851895",
+      "bytes": 1005
+    },
+    {
+      "path": "sources/S5-release-notes.md",
+      "sha256": "sha256:1f32a2308566ef5d00429b98563b01ba96ed3802bada042f5f8072f2c99e5bf1",
+      "bytes": 144
+    },
+    {
+      "path": "sources/S5-release-notes.provenance.json",
+      "sha256": "sha256:828796447f33983acfcb60d908e1b33b64aafe83f4e95f1ea02f655fac94c216",
+      "bytes": 938
+    },
+    {
+      "path": "sources/S6-pair26-abstract.md",
+      "sha256": "sha256:fd167fafd3c86c7df4b96e51627616eccc078a9f191387169642b14919772793",
+      "bytes": 789
+    },
+    {
+      "path": "sources/S6-pair26-abstract.provenance.json",
+      "sha256": "sha256:813080d10307dd66e163371ce27a7250c78330c21b27b1370b96e0f7fad47c60",
+      "bytes": 1244
+    },
+    {
+      "path": "sources/S7-hosting-faq.md",
+      "sha256": "sha256:0f500b7321449ea168ded3bea4f412f42b9c0e57101c38b8dbbe1cf24d19cdf2",
+      "bytes": 172
+    },
+    {
+      "path": "sources/S7-hosting-faq.provenance.json",
+      "sha256": "sha256:a84ed807f012c9990b9730522c911d3f71a8754cec5ce490821524a0b9180714",
+      "bytes": 986
+    },
+    {
+      "path": "tasks/evidence_report.task.json",
+      "sha256": "sha256:19fca033ca2c243c876ae072d4ae25418725802cccf8b2bdd28d6d5f28dd9519",
+      "bytes": 2291
+    },
+    {
+      "path": "tasks/evidence_report.task.provenance.json",
+      "sha256": "sha256:42fed4261fcb137b76a31566b4096ff125616efe4003140d4a9a55b0e7a1f038",
+      "bytes": 578
+    },
+    {
+      "path": "tasks/study_appraisal.task.json",
+      "sha256": "sha256:4832e53ee7516cc6a6da4340468999cb13a392fb3507f4c1e92233faa660a3bb",
+      "bytes": 2643
+    },
+    {
+      "path": "tasks/study_appraisal.task.provenance.json",
+      "sha256": "sha256:9cd5d3966704504416a4fe620f8f6b7a05a9d37917772b3e45b53982a6780057",
+      "bytes": 571
+    }
+  ],
+  "corpusDigest": "sha256:c52854842315b5b16853492d368c5fcb0c9de2e94a11a756b77a09b21e79e4fa"
+}

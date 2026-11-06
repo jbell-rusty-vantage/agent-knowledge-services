@@ -1,0 +1,3 @@
+Public operator note.
+token = "super-secret-value"
+The digest of this file is sealed before inspection.

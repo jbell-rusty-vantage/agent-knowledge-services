@@ -1,0 +1,1130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "verification-policy-inputs.v1"
+    },
+    "policyVersion": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160
+    },
+    "runId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255
+    },
+    "recordedAt": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z|([+-](?:[01]\\d|2[0-3]):[0-5]\\d)))$"
+    },
+    "deterministicResult": {
+      "type": "object",
+      "properties": {
+        "verificationContractVersion": {
+          "type": "string",
+          "const": "verification.v1"
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "passed",
+            "failed",
+            "review_required"
+          ]
+        },
+        "semanticEligibility": {
+          "type": "boolean"
+        },
+        "deploymentSeparation": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": [
+                "established",
+                "not_established"
+              ]
+            },
+            "basis": {
+              "type": "string",
+              "const": "runtime_principal_binding"
+            },
+            "producerDeploymentId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 255
+            },
+            "verifierDeploymentId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 255
+            }
+          },
+          "required": [
+            "status",
+            "basis",
+            "producerDeploymentId",
+            "verifierDeploymentId"
+          ],
+          "additionalProperties": false
+        },
+        "captureChecks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "minLength": 1
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "passed",
+                  "failed",
+                  "review_required"
+                ]
+              },
+              "deterministic": {
+                "type": "boolean",
+                "const": true
+              },
+              "severity": {
+                "type": "string",
+                "enum": [
+                  "hard",
+                  "review"
+                ]
+              },
+              "detail": {
+                "type": "string",
+                "minLength": 1
+              },
+              "targetId": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 255
+              }
+            },
+            "required": [
+              "code",
+              "status",
+              "deterministic",
+              "severity",
+              "detail"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "assertions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "assertionId": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 255
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "passed",
+                  "failed",
+                  "review_required"
+                ]
+              },
+              "semanticEligibility": {
+                "type": "boolean"
+              },
+              "verdict": {
+                "type": "string",
+                "enum": [
+                  "pending_semantic_review",
+                  "directly_supported",
+                  "supported_with_qualification",
+                  "partially_supported",
+                  "context_only",
+                  "contradicted",
+                  "mixed_or_conflicting",
+                  "not_supported",
+                  "insufficient_evidence",
+                  "unverifiable",
+                  "source_unavailable",
+                  "locator_error",
+                  "parser_error",
+                  "derived_verified",
+                  "derived_failed"
+                ]
+              },
+              "evidence": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "evidenceId": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 255
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "passed",
+                        "failed",
+                        "review_required"
+                      ]
+                    },
+                    "resolution": {
+                      "type": "object",
+                      "properties": {
+                        "captureId": {
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 255
+                        },
+                        "representationArtifactId": {
+                          "type": "string",
+                          "format": "uuid",
+                          "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                        },
+                        "representationDigest": {
+                          "type": "string",
+                          "pattern": "^sha256:[a-f0-9]{64}$"
+                        },
+                        "selectorDigest": {
+                          "type": "string",
+                          "pattern": "^sha256:[a-f0-9]{64}$"
+                        },
+                        "selectorKind": {
+                          "type": "string",
+                          "enum": [
+                            "text_quote",
+                            "character_position",
+                            "multi_fragment_text",
+                            "json_pointer",
+                            "html",
+                            "pdf_text",
+                            "bounding_box",
+                            "table",
+                            "media_timecode",
+                            "repository",
+                            "dataset",
+                            "api_record"
+                          ]
+                        },
+                        "status": {
+                          "type": "string",
+                          "enum": [
+                            "resolved",
+                            "not_found",
+                            "ambiguous",
+                            "invalid",
+                            "parse_error"
+                          ]
+                        },
+                        "occurrenceCount": {
+                          "type": "integer",
+                          "minimum": 0,
+                          "maximum": 9007199254740991
+                        },
+                        "selectedContentDigest": {
+                          "type": "string",
+                          "pattern": "^sha256:[a-f0-9]{64}$"
+                        },
+                        "selectedValue": {
+                          "$ref": "#/$defs/__schema0"
+                        },
+                        "resolvedRanges": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "start": {
+                                "type": "number",
+                                "minimum": 0
+                              },
+                              "end": {
+                                "type": "number",
+                                "exclusiveMinimum": 0
+                              },
+                              "coordinateSpace": {
+                                "type": "string",
+                                "minLength": 1
+                              }
+                            },
+                            "required": [
+                              "start",
+                              "end",
+                              "coordinateSpace"
+                            ],
+                            "additionalProperties": false
+                          }
+                        },
+                        "normalization": {
+                          "type": "string",
+                          "enum": [
+                            "none",
+                            "lf",
+                            "lf_whitespace_collapsed",
+                            "casefold_whitespace_filler_removed"
+                          ]
+                        },
+                        "resolverVersion": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      },
+                      "required": [
+                        "captureId",
+                        "representationArtifactId",
+                        "representationDigest",
+                        "selectorDigest",
+                        "selectorKind",
+                        "status",
+                        "occurrenceCount",
+                        "resolvedRanges",
+                        "normalization",
+                        "resolverVersion"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "checks": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "code": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "status": {
+                            "type": "string",
+                            "enum": [
+                              "passed",
+                              "failed",
+                              "review_required"
+                            ]
+                          },
+                          "deterministic": {
+                            "type": "boolean",
+                            "const": true
+                          },
+                          "severity": {
+                            "type": "string",
+                            "enum": [
+                              "hard",
+                              "review"
+                            ]
+                          },
+                          "detail": {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          "targetId": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 255
+                          }
+                        },
+                        "required": [
+                          "code",
+                          "status",
+                          "deterministic",
+                          "severity",
+                          "detail"
+                        ],
+                        "additionalProperties": false
+                      }
+                    }
+                  },
+                  "required": [
+                    "evidenceId",
+                    "status",
+                    "resolution",
+                    "checks"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "checks": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "passed",
+                        "failed",
+                        "review_required"
+                      ]
+                    },
+                    "deterministic": {
+                      "type": "boolean",
+                      "const": true
+                    },
+                    "severity": {
+                      "type": "string",
+                      "enum": [
+                        "hard",
+                        "review"
+                      ]
+                    },
+                    "detail": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "targetId": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 255
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "status",
+                    "deterministic",
+                    "severity",
+                    "detail"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "assertionId",
+              "status",
+              "semanticEligibility",
+              "verdict",
+              "evidence",
+              "checks"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "metrics": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "observationId": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 255
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "passed",
+                  "failed",
+                  "review_required"
+                ]
+              },
+              "semanticEligibility": {
+                "type": "boolean"
+              },
+              "checks": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "passed",
+                        "failed",
+                        "review_required"
+                      ]
+                    },
+                    "deterministic": {
+                      "type": "boolean",
+                      "const": true
+                    },
+                    "severity": {
+                      "type": "string",
+                      "enum": [
+                        "hard",
+                        "review"
+                      ]
+                    },
+                    "detail": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "targetId": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 255
+                    }
+                  },
+                  "required": [
+                    "code",
+                    "status",
+                    "deterministic",
+                    "severity",
+                    "detail"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "replayedValue": {
+                "type": "string",
+                "maxLength": 128,
+                "pattern": "^-?(?:0|[1-9]\\d{0,63})(?:\\.\\d{1,63})?$"
+              }
+            },
+            "required": [
+              "observationId",
+              "status",
+              "semanticEligibility",
+              "checks"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "summary": {
+          "type": "object",
+          "properties": {
+            "capturesTotal": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "capturesPassed": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "assertionsTotal": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "assertionsPassed": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "metricsTotal": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "metricsPassed": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "failedCheckCodes": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "reviewReasons": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "required": [
+            "capturesTotal",
+            "capturesPassed",
+            "assertionsTotal",
+            "assertionsPassed",
+            "metricsTotal",
+            "metricsPassed",
+            "failedCheckCodes",
+            "reviewReasons"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "verificationContractVersion",
+        "status",
+        "semanticEligibility",
+        "deploymentSeparation",
+        "captureChecks",
+        "assertions",
+        "metrics",
+        "summary"
+      ],
+      "additionalProperties": false
+    },
+    "assertions": {
+      "maxItems": 512,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "assertionId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255
+          },
+          "riskClass": {
+            "type": "string",
+            "enum": [
+              "low",
+              "medium",
+              "high",
+              "critical"
+            ]
+          },
+          "downstreamUse": {
+            "minItems": 1,
+            "maxItems": 32,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            }
+          },
+          "claimScope": {
+            "type": "string",
+            "enum": [
+              "source_summary",
+              "descriptive_fact",
+              "population_accuracy",
+              "clinical_utility",
+              "comparative_superiority",
+              "causal",
+              "product_validation",
+              "method_validation"
+            ]
+          },
+          "literalExtraction": {
+            "type": "boolean",
+            "const": true
+          },
+          "semantic": {
+            "type": "object",
+            "properties": {
+              "assertionId": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 255
+              },
+              "assertionValueDigest": {
+                "type": "string",
+                "pattern": "^sha256:[a-f0-9]{64}$"
+              },
+              "verdict": {
+                "type": "string",
+                "enum": [
+                  "pending_semantic_review",
+                  "directly_supported",
+                  "supported_with_qualification",
+                  "partially_supported",
+                  "context_only",
+                  "contradicted",
+                  "mixed_or_conflicting",
+                  "not_supported",
+                  "insufficient_evidence",
+                  "unverifiable",
+                  "source_unavailable",
+                  "locator_error",
+                  "parser_error",
+                  "derived_verified",
+                  "derived_failed"
+                ]
+              },
+              "disposition": {
+                "type": "string",
+                "enum": [
+                  "admit",
+                  "review",
+                  "abstain",
+                  "fail"
+                ]
+              },
+              "evidenceSupport": {
+                "type": "string",
+                "enum": [
+                  "satisfied",
+                  "not_satisfied",
+                  "unknown",
+                  "not_assessed"
+                ]
+              },
+              "worldCorrectness": {
+                "type": "string",
+                "enum": [
+                  "satisfied",
+                  "not_satisfied",
+                  "unknown",
+                  "not_assessed"
+                ]
+              },
+              "attributionFaithfulness": {
+                "type": "string",
+                "enum": [
+                  "satisfied",
+                  "not_satisfied",
+                  "unknown",
+                  "not_assessed"
+                ]
+              },
+              "sourceAuthority": {
+                "type": "string",
+                "enum": [
+                  "satisfied",
+                  "not_satisfied",
+                  "unknown",
+                  "not_assessed"
+                ]
+              },
+              "provenanceIntegrity": {
+                "type": "string",
+                "enum": [
+                  "satisfied",
+                  "not_satisfied",
+                  "unknown",
+                  "not_assessed"
+                ]
+              },
+              "judgeIdentities": {
+                "maxItems": 3,
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "deploymentId": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 255
+                    },
+                    "provider": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 120
+                    },
+                    "family": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 120
+                    },
+                    "model": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 160
+                    },
+                    "capability": {
+                      "type": "string",
+                      "enum": [
+                        "trained_nli",
+                        "llm_evidence_rubric"
+                      ]
+                    },
+                    "graderVersion": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 120
+                    },
+                    "promptDigest": {
+                      "type": "string",
+                      "pattern": "^sha256:[a-f0-9]{64}$"
+                    },
+                    "outputSchemaDigest": {
+                      "type": "string",
+                      "pattern": "^sha256:[a-f0-9]{64}$"
+                    },
+                    "configurationDigest": {
+                      "type": "string",
+                      "pattern": "^sha256:[a-f0-9]{64}$"
+                    }
+                  },
+                  "required": [
+                    "deploymentId",
+                    "provider",
+                    "family",
+                    "model",
+                    "capability",
+                    "graderVersion",
+                    "promptDigest",
+                    "outputSchemaDigest",
+                    "configurationDigest"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "supportingFragmentIds": {
+                "maxItems": 16,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 255
+                }
+              },
+              "contradictingFragmentIds": {
+                "maxItems": 16,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 255
+                }
+              },
+              "unsupportedFacets": {
+                "maxItems": 32,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 160
+                }
+              },
+              "reasonCodes": {
+                "maxItems": 32,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 120
+                }
+              },
+              "crossFamilySecondJudge": {
+                "type": "boolean"
+              },
+              "rawProviderConfidences": {
+                "maxItems": 3,
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "deploymentId": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 255
+                    },
+                    "value": {
+                      "type": "number",
+                      "minimum": 0,
+                      "maximum": 1
+                    }
+                  },
+                  "required": [
+                    "deploymentId",
+                    "value"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "assertionId",
+              "verdict",
+              "disposition",
+              "evidenceSupport",
+              "worldCorrectness",
+              "attributionFaithfulness",
+              "sourceAuthority",
+              "provenanceIntegrity",
+              "judgeIdentities",
+              "supportingFragmentIds",
+              "contradictingFragmentIds",
+              "unsupportedFacets",
+              "reasonCodes",
+              "crossFamilySecondJudge",
+              "rawProviderConfidences"
+            ],
+            "additionalProperties": false
+          },
+          "authorityStatus": {
+            "type": "string",
+            "enum": [
+              "sufficient",
+              "withheld",
+              "unknown"
+            ]
+          },
+          "independentCorroboration": {
+            "type": "boolean"
+          },
+          "conflictPresent": {
+            "type": "boolean"
+          },
+          "criticalFactsKnown": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "assertionId",
+          "riskClass",
+          "downstreamUse",
+          "claimScope",
+          "semantic",
+          "authorityStatus",
+          "independentCorroboration",
+          "conflictPresent",
+          "criticalFactsKnown"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "metrics": {
+      "maxItems": 512,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "observationId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255
+          },
+          "riskClass": {
+            "type": "string",
+            "enum": [
+              "low",
+              "medium",
+              "high",
+              "critical"
+            ]
+          },
+          "downstreamUse": {
+            "minItems": 1,
+            "maxItems": 32,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 120
+            }
+          },
+          "criticalFactsKnown": {
+            "type": "boolean"
+          },
+          "conflictPresent": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "observationId",
+          "riskClass",
+          "downstreamUse",
+          "criticalFactsKnown",
+          "conflictPresent"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "sourceAssessments": {
+      "maxItems": 2048,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "assessmentId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255
+          },
+          "assertionId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255
+          },
+          "fragmentId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255
+          },
+          "sourceFamilyId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255
+          },
+          "sourceOrganizationId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255
+          },
+          "vector": {
+            "type": "object",
+            "properties": {
+              "authority": {
+                "type": "string",
+                "enum": [
+                  "primary",
+                  "authoritative_aggregator",
+                  "independent",
+                  "secondary",
+                  "promotional",
+                  "unknown"
+                ]
+              },
+              "independence": {
+                "type": "string",
+                "enum": [
+                  "independent",
+                  "same_organization",
+                  "self_reported",
+                  "interested_party",
+                  "unknown"
+                ]
+              },
+              "directness": {
+                "type": "string",
+                "enum": [
+                  "direct",
+                  "derived",
+                  "commentary",
+                  "unknown"
+                ]
+              },
+              "freshness": {
+                "type": "string",
+                "enum": [
+                  "current",
+                  "historical",
+                  "stale",
+                  "unknown"
+                ]
+              },
+              "applicability": {
+                "type": "string",
+                "enum": [
+                  "direct",
+                  "partial",
+                  "indirect",
+                  "unknown"
+                ]
+              }
+            },
+            "required": [
+              "authority",
+              "independence",
+              "directness",
+              "freshness",
+              "applicability"
+            ],
+            "additionalProperties": false
+          },
+          "claimScope": {
+            "type": "string",
+            "enum": [
+              "source_summary",
+              "descriptive_fact",
+              "population_accuracy",
+              "clinical_utility",
+              "comparative_superiority",
+              "causal",
+              "product_validation",
+              "method_validation"
+            ]
+          },
+          "evidenceScope": {
+            "type": "string",
+            "enum": [
+              "single_sample_technical",
+              "population",
+              "antecedent_method",
+              "commercial_product",
+              "company_statement",
+              "unknown"
+            ]
+          },
+          "publicationRelation": {
+            "type": "string",
+            "enum": [
+              "validates_product",
+              "validates_antecedent_method",
+              "general_concept",
+              "not_publication",
+              "unknown"
+            ]
+          },
+          "jurisdictionKnown": {
+            "type": "boolean"
+          },
+          "licenseKnown": {
+            "type": "boolean"
+          },
+          "freshnessKnown": {
+            "type": "boolean"
+          },
+          "conflictSetId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "assessmentId",
+          "assertionId",
+          "fragmentId",
+          "sourceFamilyId",
+          "sourceOrganizationId",
+          "vector",
+          "claimScope",
+          "evidenceScope",
+          "publicationRelation",
+          "jurisdictionKnown",
+          "licenseKnown",
+          "freshnessKnown"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "policyVersion",
+    "runId",
+    "recordedAt",
+    "deterministicResult",
+    "assertions",
+    "metrics",
+    "sourceAssessments"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "__schema0": {
+      "anyOf": [
+        {
+          "type": [
+            "string",
+            "number",
+            "boolean",
+            "null"
+          ]
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/__schema0"
+          }
+        },
+        {
+          "type": "object",
+          "propertyNames": {
+            "type": "string"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/__schema0"
+          }
+        }
+      ]
+    }
+  }
+}

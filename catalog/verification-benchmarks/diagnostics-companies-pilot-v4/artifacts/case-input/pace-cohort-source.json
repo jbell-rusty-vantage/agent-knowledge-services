@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "verification-benchmark-case-input.v1",
+  "sourceDatasetManifestDigest": "sha256:b625b311493f8c366ef43bf4047bf61f38d510fe7f3c340f50bca42de737dfe6",
+  "sourceCaseDigest": "sha256:cbe7feaf882365120aa475d0a7c175529d231a795129a125c3dc74bfce6c7411",
+  "caseId": "pace-cohort-source",
+  "assertion": "The DunedinPACE model used within-individual decline in 19 indicators across four time points over two decades in the 1972–1973 Dunedin birth cohort.",
+  "evidence": [
+    {
+      "fragmentId": "sha256:a21b68a9fea2a3b97e6bddb8400e899647c802ae419291285d68581fc970dca0",
+      "captureId": "60f7dd92-6f3f-5205-a08a-cea2d0770489",
+      "sourceKey": "paper-pace",
+      "sourceClass": "publication",
+      "projectionArtifactId": "cb9b6f63-800e-5079-afd1-f82fc2a43b06",
+      "projectionDigest": "sha256:87eee3598cf29dab59e1a8c7b70cef756b69a652c0c2787656d3fa02913d2af6",
+      "transformationArtifactId": "8fd5c39f-11e0-5598-a82c-59fc8d169031",
+      "selector": {
+        "kind": "html",
+        "domPath": "2/11/3/1/1/1/3/2/2/1/0/0/3/2"
+      },
+      "selectedContentDigest": "sha256:84f372b15d2a79e402ba1be203425eee09f6106bb0cba719411fe1d5d14c4954",
+      "excerpt": "We used data from the Dunedin Study 1972–1973 birth cohort tracking within-individual decline in 19 indicators of organ-system integrity across four time points spanning two decades to model Pace of Aging. We distilled this two-decade Pace of Aging into a single-time-point DNA-methylation blood-test using elastic-net regression and a DNA-methylation dataset restricted to exclude probes with low test-retest reliability. We evaluated the resulting measure, named DunedinPACE, in five additional datasets.",
+      "rights": "restricted internal preparation; not approved for provider upload or public redistribution",
+      "originalProviderUploadAuthorized": false
+    }
+  ],
+  "intendedUse": "immutable_case_input; provider transmission requires a separately authenticated derived-input grant"
+}

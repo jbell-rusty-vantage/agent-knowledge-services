@@ -1,0 +1,10 @@
+{
+  "_status": "incomplete_scaffold",
+  "notAdmissionGold": true,
+  "schemaNote": "Fixture §4 seed is required later on a disposable project/tenant. Required shape when authored: OpenAI organization plus similar-name distractor; ChatGPT, Codex, and selected model-family/version identities with partial links; 12 missing answerable facts/events; 8 stale slots; 8 unchanged controls; 2 duplicate candidate leads; 2 disputed assertions; 1 superseded historical segment; 1 pending/unavailable artifact; 1 held unadmitted claim; 2 published baseline vector generations; tenant B isolation records. Do not invent those rows or treat this file as a seed.",
+  "entities": [],
+  "slots": [],
+  "controls": [],
+  "tenants": [],
+  "vectorGenerations": []
+}

@@ -1,0 +1,31 @@
+{
+  "component": "knowledge_verification",
+  "component_version": "2.5.0",
+  "installer_protocol": "knowledge-verification-sql/v1",
+  "owned_schemas": ["knowledge_verification"],
+  "min_postgres_version": 170000,
+  "capability_roles": [
+    "knowledge_verification_reader",
+    "knowledge_verification_writer",
+    "knowledge_verification_reviewer",
+    "knowledge_verification_outbox_worker"
+  ],
+  "tenant_setting": "app.tenant_id",
+  "canonicalization": "kop-canonical-json.v1",
+  "record_schema_versions": {
+    "task": "research-core.task.v2",
+    "assertion": "research-core.assertion.v2",
+    "fragment": "research-core.fragment.v2",
+    "support_set": "research-core.support_set.v2",
+    "observation": "research-core.observation.v2",
+    "report": "research-report.v2",
+    "run_manifest": "research-core.run_manifest.v2",
+    "use_decision": "research-core.use_decision.v2",
+    "report_kind": "research-report-kind.v1",
+    "report_assessment": "research-core.report_assessment.v1",
+    "operation": "ks.knowledge_operation.v2",
+    "protocol_receipt": "ks.knowledge_operation.v2"
+  },
+  "consumers": ["ai-engineer", "biotech"],
+  "install_order_note": "Install this component before the application's domain bindings; bindings grant the capability roles to their login/bounded roles and never re-issue this DDL."
+}

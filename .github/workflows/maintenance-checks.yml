@@ -1,0 +1,32 @@
+name: Maintenance and retrieval checks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@f548e57e544e1ff5a4c46bf1e1b8685f8e4a348a
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@7f84f1d52d0c56afb45c62fee31a93b843cea4d6
+        with:
+          node-version: '24'
+      - name: Local queue and isolated proposal fixtures
+        run: node --test tools/maintenance/*.test.mjs
+      - name: Remote authorization and publication fixtures
+        run: node --test .github/maintenance/*.test.mjs
+      - name: Portable retrieval fixtures
+        run: node --test .agent-docs/retrieval.test.mjs
+      - name: Generated documentation freshness
+        run: node .agent-docs/cli.mjs check --repo .
+      - name: Retrieval quality report
+        run: node .agent-docs/retrieval-benchmark.mjs --repo .

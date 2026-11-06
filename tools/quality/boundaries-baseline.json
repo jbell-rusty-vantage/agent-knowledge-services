@@ -1,0 +1,1503 @@
+[
+  {
+    "type": "dependency",
+    "from": "apps/api/src/a2a-adapter.ts",
+    "to": "packages/application/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-application",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/api/src/a2a-http.ts",
+    "to": "packages/application/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-application",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/api/src/demo-evaluation-bundles.ts",
+    "to": "packages/application/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-application",
+    "dependencyTypes": [
+      "undetermined",
+      "type-only",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/api/src/demo-evaluation-bundles.ts",
+    "to": "packages/testkit/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-testkit",
+    "dependencyTypes": [
+      "undetermined",
+      "type-import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/api/src/index.ts",
+    "to": "packages/application/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-application",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/cli/src/benchmark-capture.ts",
+    "to": "packages/application/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-application",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/cli/src/benchmark-capture.ts",
+    "to": "packages/verification/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-verification",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/cli/src/benchmark-version-diff.ts",
+    "to": "packages/application/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-application",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/cli/src/commands.ts",
+    "to": "packages/application/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-application",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/cli/src/verification-attestation.ts",
+    "to": "packages/verification/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-verification",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/jev/src/http.ts",
+    "to": "packages/application/dist/jev.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-application/jev",
+    "dependencyTypes": [
+      "undetermined",
+      "type-only",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/jev/src/index.ts",
+    "to": "packages/application/dist/jev.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-application/jev",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/jev/src/mcp.ts",
+    "to": "packages/application/dist/jev.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-application/jev",
+    "dependencyTypes": [
+      "undetermined",
+      "type-only",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/verification-executor/src/capture.ts",
+    "to": "packages/verification/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-verification",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/verification-executor/src/checkpoint-state.ts",
+    "to": "packages/verification/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-verification",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/verification-executor/src/executor.ts",
+    "to": "packages/verification/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-verification",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/verification-executor/src/http.ts",
+    "to": "packages/knowledge-db/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-db",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/verification-executor/src/knowledge/checkpoints-custody.ts",
+    "to": "packages/application/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-application",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/verification-executor/src/knowledge/checkpoints-custody.ts",
+    "to": "packages/verification/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-verification",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/verification-executor/src/knowledge/checkpoints-events.ts",
+    "to": "packages/verification/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-verification",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/verification-executor/src/knowledge/checkpoints-harness.ts",
+    "to": "packages/application/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-application",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/verification-executor/src/knowledge/checkpoints-harness.ts",
+    "to": "packages/verification/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-verification",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/verification-executor/src/knowledge/checkpoints-native.ts",
+    "to": "packages/application/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-application",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/verification-executor/src/knowledge/checkpoints-native.ts",
+    "to": "packages/verification/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-verification",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/verification-executor/src/knowledge/checkpoints-owners.ts",
+    "to": "packages/application/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-application",
+    "dependencyTypes": [
+      "undetermined",
+      "type-only",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/verification-executor/src/knowledge/checkpoints-owners.ts",
+    "to": "packages/knowledge-db/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-db",
+    "dependencyTypes": [
+      "undetermined",
+      "type-only",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/verification-executor/src/knowledge/checkpoints-owners.ts",
+    "to": "packages/persistence/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-persistence",
+    "dependencyTypes": [
+      "undetermined",
+      "type-only",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/verification-executor/src/knowledge/checkpoints-policy.ts",
+    "to": "packages/verification/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-verification",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/verification-executor/src/knowledge/checkpoints-reconciler.ts",
+    "to": "packages/application/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-application",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/verification-executor/src/knowledge/checkpoints-reconciler.ts",
+    "to": "packages/persistence/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-persistence",
+    "dependencyTypes": [
+      "undetermined",
+      "type-only",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/verification-executor/src/knowledge/checkpoints-reconciler.ts",
+    "to": "packages/verification/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-verification",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/verification-executor/src/knowledge/checkpoints-source-import.ts",
+    "to": "packages/application/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-application",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/verification-executor/src/knowledge/checkpoints-source-import.ts",
+    "to": "packages/verification/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-verification",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/verification-executor/src/knowledge/cli.ts",
+    "to": "packages/knowledge-db/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-db",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/verification-executor/src/knowledge/context.ts",
+    "to": "packages/application/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-application",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/verification-executor/src/knowledge/context.ts",
+    "to": "packages/core/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-core",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/verification-executor/src/knowledge/context.ts",
+    "to": "packages/knowledge-db/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-db",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/verification-executor/src/knowledge/context.ts",
+    "to": "packages/persistence/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-persistence",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/verification-executor/src/knowledge/operations.ts",
+    "to": "packages/knowledge-db/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-db",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/verification-executor/src/knowledge/scoped-knowledge-operations.ts",
+    "to": "packages/knowledge-db/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-db",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/verification-executor/src/knowledge/source-discovery-custody.ts",
+    "to": "packages/application/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-application",
+    "dependencyTypes": [
+      "undetermined",
+      "type-only",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/verification-executor/src/knowledge/source-discovery-custody.ts",
+    "to": "packages/core/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-core",
+    "dependencyTypes": [
+      "undetermined",
+      "type-only",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/verification-executor/src/knowledge/source-discovery-custody.ts",
+    "to": "packages/verification/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-verification",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/verification-executor/src/knowledge/source-discovery-host.ts",
+    "to": "packages/application/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-application",
+    "dependencyTypes": [
+      "undetermined",
+      "type-only",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/verification-executor/src/knowledge/source-discovery-host.ts",
+    "to": "packages/verification/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-verification",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/verification-executor/src/locate.ts",
+    "to": "packages/verification/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-verification",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/verification-executor/src/mcp.ts",
+    "to": "packages/knowledge-db/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-db",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/verification-executor/src/store-custody-postgres.ts",
+    "to": "packages/core/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-core",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/verification-executor/src/store-custody-postgres.ts",
+    "to": "packages/persistence/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-persistence",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/verification-executor/src/store-custody-profile.ts",
+    "to": "packages/verification/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-verification",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/verification-executor/src/store-custody.ts",
+    "to": "packages/verification/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-verification",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/verification-executor/src/store.ts",
+    "to": "packages/verification/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-verification",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/worker/src/activity-registry.ts",
+    "to": "packages/application/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-application",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/worker/src/activity-registry.ts",
+    "to": "packages/core/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-core",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/worker/src/activity-registry.ts",
+    "to": "packages/evaluation/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-evaluation",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/worker/src/activity-registry.ts",
+    "to": "packages/persistence/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-persistence",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/worker/src/activity-registry.ts",
+    "to": "packages/preparation/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-preparation",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/worker/src/activity-registry.ts",
+    "to": "packages/retrieval/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-retrieval",
+    "dependencyTypes": [
+      "undetermined",
+      "type-only",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/worker/src/activity-registry.ts",
+    "to": "packages/sources/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-acquisition",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/worker/src/canonical-worker.ts",
+    "to": "packages/core/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-core",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/worker/src/canonical-worker.ts",
+    "to": "packages/persistence/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-persistence",
+    "dependencyTypes": [
+      "undetermined",
+      "type-only",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/worker/src/index.ts",
+    "to": "packages/application/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-application",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/worker/src/index.ts",
+    "to": "packages/core/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-core",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/worker/src/index.ts",
+    "to": "packages/persistence/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-persistence",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/worker/src/index.ts",
+    "to": "packages/preparation/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-preparation",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/worker/src/index.ts",
+    "to": "packages/verification/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-verification",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/worker/src/process-restart-fixture.ts",
+    "to": "packages/persistence/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-persistence",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/worker/src/promotion-selection.ts",
+    "to": "packages/application/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-application",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/worker/src/promotion-selection.ts",
+    "to": "packages/core/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-core",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/worker/src/promotion-selection.ts",
+    "to": "packages/persistence/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-persistence",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/worker/src/verification-activities.ts",
+    "to": "packages/application/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-application",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/worker/src/verification-activities.ts",
+    "to": "packages/persistence/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-persistence",
+    "dependencyTypes": [
+      "undetermined",
+      "type-only",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/worker/src/verification-benchmark-activity.ts",
+    "to": "packages/application/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-application",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/worker/src/verification-benchmark-activity.ts",
+    "to": "packages/core/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-core",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/worker/src/verification-benchmark-activity.ts",
+    "to": "packages/evaluation/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-evaluation",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/worker/src/verification-benchmark-activity.ts",
+    "to": "packages/persistence/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-persistence",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/worker/src/verification-benchmark-comparison-activity.ts",
+    "to": "packages/application/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-application",
+    "dependencyTypes": [
+      "undetermined",
+      "type-only",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/worker/src/verification-benchmark-comparison-activity.ts",
+    "to": "packages/core/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-core",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/worker/src/verification-benchmark-comparison-activity.ts",
+    "to": "packages/persistence/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-persistence",
+    "dependencyTypes": [
+      "undetermined",
+      "type-only",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/worker/src/verification-benchmark-comparison-activity.ts",
+    "to": "packages/verification/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-verification",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/worker/src/verification-benchmark-comparison-runtime.ts",
+    "to": "packages/application/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-application",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/worker/src/verification-benchmark-comparison-runtime.ts",
+    "to": "packages/core/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-core",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/worker/src/verification-benchmark-comparison-runtime.ts",
+    "to": "packages/persistence/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-persistence",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/worker/src/verification-benchmark-comparison-runtime.ts",
+    "to": "packages/verification/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-verification",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/worker/src/verification-benchmark-runtime.ts",
+    "to": "packages/application/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-application",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/worker/src/verification-benchmark-runtime.ts",
+    "to": "packages/core/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-core",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/worker/src/verification-benchmark-runtime.ts",
+    "to": "packages/persistence/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-persistence",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/worker/src/verification-benchmark-runtime.ts",
+    "to": "packages/verification/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-verification",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/worker/src/verification-parse-activity.ts",
+    "to": "packages/application/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-application",
+    "dependencyTypes": [
+      "undetermined",
+      "type-only",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/worker/src/verification-structured-extraction-runtime.ts",
+    "to": "packages/application/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-application",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/worker/src/verification-structured-extraction-runtime.ts",
+    "to": "packages/core/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-core",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/worker/src/verification-structured-extraction-runtime.ts",
+    "to": "packages/persistence/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-persistence",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/worker/src/verification-structured-extraction-runtime.ts",
+    "to": "packages/preparation/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-preparation",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/worker/src/verification-structured-extraction-runtime.ts",
+    "to": "packages/verification/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-verification",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/worker/src/worker.ts",
+    "to": "packages/application/dist/index.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-application",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "apps-import-host-contracts-client"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/cli/src/local/offline.ts",
+    "to": "apps/verification-executor/dist/local-services.d.ts",
+    "unresolvedTo": "@aiengineer/knowledge-verification-executor/local-verification",
+    "dependencyTypes": [
+      "undetermined",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "no-app-to-other-app"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/mcp/src/tests/operation-catalog.test.ts",
+    "to": "apps/api/src/server.ts",
+    "unresolvedTo": "../../../api/src/server.js",
+    "dependencyTypes": [
+      "local",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "no-app-to-other-app"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/mcp/src/tests/operation-catalog.test.ts",
+    "to": "apps/cli/src/commands.ts",
+    "unresolvedTo": "../../../cli/src/commands.js",
+    "dependencyTypes": [
+      "local",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "no-app-to-other-app"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/mcp/src/tests/operation-catalog.test.ts",
+    "to": "apps/cli/src/ks-commands.ts",
+    "unresolvedTo": "../../../cli/src/ks-commands.js",
+    "dependencyTypes": [
+      "local",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "no-app-to-other-app"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/mcp/src/tests/operation-catalog.test.ts",
+    "to": "apps/verification-executor/src/knowledge/operations.ts",
+    "unresolvedTo": "../../../verification-executor/src/knowledge/operations.js",
+    "dependencyTypes": [
+      "local",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "no-app-to-other-app"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/mcp/src/tests/operation-catalog.test.ts",
+    "to": "apps/verification-executor/src/mcp.ts",
+    "unresolvedTo": "../../../verification-executor/src/mcp.js",
+    "dependencyTypes": [
+      "local",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "no-app-to-other-app"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/mcp/src/tests/parity-harness.ts",
+    "to": "apps/api/src/server.ts",
+    "unresolvedTo": "../../../api/src/server.js",
+    "dependencyTypes": [
+      "local",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "no-app-to-other-app"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/mcp/src/tests/parity-rows.ts",
+    "to": "apps/api/src/server.ts",
+    "unresolvedTo": "../../../api/src/server.js",
+    "dependencyTypes": [
+      "local",
+      "type-only",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "no-app-to-other-app"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/mcp/src/tests/retrieval-reads.test.ts",
+    "to": "apps/cli/src/commands.ts",
+    "unresolvedTo": "../../../cli/src/commands.js",
+    "dependencyTypes": [
+      "local",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "no-app-to-other-app"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/mcp/src/tests/verification-surface-inventory.test.ts",
+    "to": "apps/api/src/server.ts",
+    "unresolvedTo": "../../../api/src/server.js",
+    "dependencyTypes": [
+      "local",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "no-app-to-other-app"
+    }
+  },
+  {
+    "type": "dependency",
+    "from": "apps/mcp/src/tests/verification-surface-inventory.test.ts",
+    "to": "apps/cli/src/commands.ts",
+    "unresolvedTo": "../../../cli/src/commands.js",
+    "dependencyTypes": [
+      "local",
+      "import"
+    ],
+    "rule": {
+      "severity": "error",
+      "name": "no-app-to-other-app"
+    }
+  }
+]

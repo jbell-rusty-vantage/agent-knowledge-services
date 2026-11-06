@@ -1,0 +1,31 @@
+{
+  "name": "@aiengineer/knowledge-verification",
+  "version": "0.1.0",
+  "description": "Algorithm owner for Knowledge Services verification: deterministic checks, selectors, extraction evidence, provenance seals, claims/authority, and evidence-closed semantic judges.",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./prototype-compat": {
+      "types": "./dist/prototype-compat/index.d.ts",
+      "import": "./dist/prototype-compat/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup src/index.ts src/prototype-compat/index.ts --format esm && tsc --emitDeclarationOnly --rootDir src --outDir dist",
+    "typecheck": "tsc --noEmit && tsc -p tsconfig.examples.json --noEmit",
+    "test": "vitest run",
+    "examples": "tsx examples/run.ts"
+  },
+  "dependencies": {
+    "@aiengineer/knowledge-contracts": "workspace:*"
+  },
+  "devDependencies": {
+    "tsup": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}

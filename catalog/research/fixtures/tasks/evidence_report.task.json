@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "sv09-task-spec.v1",
+  "id": "sv09-evidence-orion7",
+  "kind": "evidence_report",
+  "domain": "engineering",
+  "question": "For an AI Engineer model-registry entry, report Orion-7's parameter count, license, function-calling support, training-data provenance and single-GPU throughput, citing the supporting and any contrary evidence from the supplied sources.",
+  "use": "knowledge_ingestion.fact_assert_state",
+  "audience": "official",
+  "minimumRisk": "medium",
+  "obligations": [
+    { "id": "finding.parameters", "description": "State Orion-7's parameter count with its source.", "weight": 2000, "required": true },
+    { "id": "finding.license", "description": "State Orion-7's license with its source.", "weight": 1500, "required": true },
+    { "id": "finding.function_calling", "description": "State whether Orion-7 supports function calling, considering every supplied source.", "weight": 2000, "required": true },
+    { "id": "finding.training_data", "description": "State whether Orion-7 was trained on proprietary customer data.", "weight": 1500, "required": true },
+    { "id": "finding.throughput", "description": "State Orion-7's single-GPU serving throughput with its hardware and batch configuration.", "weight": 2000, "required": true },
+    { "id": "limitation.evidence", "description": "State a limit of the supplied evidence that bounds the findings.", "weight": 1000, "required": false }
+  ],
+  "sources": ["S1", "S2", "S3", "S4", "S5", "S7"],
+  "qualifierGuidance": {
+    "profile": "engineering.v2",
+    "entity": "Write the model name exactly as Orion-7.",
+    "negation": "true only when the proposition itself is negative (for example 'was not trained on ...')."
+  },
+  "mapping": {
+    "id": "sv09-mapping-model-registry",
+    "targetSchema": "aiengineer-model-registry.v1",
+    "rules": [
+      { "ruleId": "model-fact", "assertionKinds": ["source_report", "world_fact"], "target": "ai_engineer.model_fact", "includeValue": true, "qualifierFields": ["entity", "unit", "negation", "configuration"], "requiresEntity": true, "requiresTime": false }
+    ],
+    "entityResolutions": [{ "surface": "Orion-7", "entityId": "model.orion-7" }]
+  },
+  "limits": { "calls": 40, "tokens": 400000, "costUsd": "6", "deadline": "2026-10-26T00:00:00Z" }
+}

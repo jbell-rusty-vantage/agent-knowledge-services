@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "verification-benchmark-case-input.v1",
+  "sourceDatasetManifestDigest": "sha256:b625b311493f8c366ef43bf4047bf61f38d510fe7f3c340f50bca42de737dfe6",
+  "sourceCaseDigest": "sha256:4b55d7c4c4f03cc423a6f558c24c83a6b32121e5519dac4a9f7eddf18b474e7b",
+  "caseId": "gl-interested-comparison-mutated",
+  "assertion": "An independent clinical trial establishes that SystemAge is the most advanced and comprehensive aging test.",
+  "evidence": [
+    {
+      "fragmentId": "sha256:da3f6832ec5dc380bb5a66581870c90fd913a4e259c25aff042c88297bce18d0",
+      "captureId": "090d82ef-687b-5230-a581-afd105b572ca",
+      "sourceKey": "gl-comparison",
+      "sourceClass": "interested_party_comparison",
+      "projectionArtifactId": "a466058e-f04a-56e1-a698-a72d74b6fb38",
+      "projectionDigest": "sha256:61ef5c94266f2866d39c304d7f98f859ef5c2d50e08e7554760da820f689a6d6",
+      "transformationArtifactId": "bd8b6119-ea1e-5201-ae1f-0a430431a0df",
+      "selector": {
+        "kind": "html",
+        "domPath": "1/5/2/0/0/1/1/0/0"
+      },
+      "selectedContentDigest": "sha256:7ee1cd1972ba8cd1701c79238567c493d37a5eae951cfa0f22481eaefc6a1af8",
+      "excerpt": "Used by thousands of people around the world, the SystemAge test by Generation Lab is the most advanced and comprehensive aging speed test in preventive healthcare.",
+      "rights": "restricted internal preparation; not approved for provider upload or public redistribution",
+      "originalProviderUploadAuthorized": false
+    }
+  ],
+  "intendedUse": "immutable_case_input; provider transmission requires a separately authenticated derived-input grant"
+}

@@ -1,0 +1,12 @@
+{
+  "group": "core",
+  "layout": "after",
+  "baselineCommit": "99aeaa61483cec0ba720f21bce25b659cb302aab",
+  "currentCommit": "2ba71110c86dbba0ec94eed7b27b2ce1ee1c7328",
+  "dirty": true,
+  "probeFile": "docs/operations/package-cleanup/workspace/evidence/unit1-core-consumer-probe-after.ts",
+  "symbolCount": 52,
+  "exitCode": 0,
+  "stdout": "",
+  "stderr": ""
+}

@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "verification-benchmark-case-input.v1",
+  "sourceDatasetManifestDigest": "sha256:b625b311493f8c366ef43bf4047bf61f38d510fe7f3c340f50bca42de737dfe6",
+  "sourceCaseDigest": "sha256:8cb46769a0e8485cf0fbb5bee0e59b963f615786b959c56da0f7042730c69fb3",
+  "caseId": "gl-informational-source",
+  "assertion": "Generation Lab states that the report is for informational purposes only.",
+  "evidence": [
+    {
+      "fragmentId": "sha256:01c43d9d9fefa19e525ccd70c20aff007c2c0daef3828038d88898aee4ce23ce",
+      "captureId": "dc5210dc-7826-524e-ad73-27a3baf6c4ae",
+      "sourceKey": "gl-terms",
+      "sourceClass": "first_party",
+      "projectionArtifactId": "0d3a77f2-20eb-58e0-afac-b932bb55e172",
+      "projectionDigest": "sha256:f3c462cade3dde56db7d70f0e5141798cd18bde96f5cabc3b18923543a9ff896",
+      "transformationArtifactId": "3a281fe2-cd85-5cec-a90a-22a372d76d2d",
+      "selector": {
+        "kind": "html",
+        "domPath": "1/9/1/2/0/17"
+      },
+      "selectedContentDigest": "sha256:c74d21b29ce8f4b92e030c0efb817d520e8dcbfcac8b20c370a99319b52b31a9",
+      "excerpt": "The Report is for informational purposes only. Generation Lab makes no representations or warranties regarding the completeness, accuracy, or fitness for any particular purpose of the Report or its contents beyond those expressly stated in these Terms.",
+      "rights": "restricted internal preparation; not approved for provider upload or public redistribution",
+      "originalProviderUploadAuthorized": false
+    }
+  ],
+  "intendedUse": "immutable_case_input; provider transmission requires a separately authenticated derived-input grant"
+}

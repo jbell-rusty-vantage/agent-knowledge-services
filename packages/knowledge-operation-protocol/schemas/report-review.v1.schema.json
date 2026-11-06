@@ -1,0 +1,87 @@
+{
+  "$id": "https://belllabs.local/knowledge-operation-protocol/report-review.v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schema": {
+      "type": "string",
+      "const": "report-review.v1"
+    },
+    "decision": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "const": "use_decision"
+        },
+        "id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@-]{0,199}$"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_.-]*\\.v[0-9]+$"
+        },
+        "digest": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "tenant": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "binding": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_.-]{0,119}$"
+        }
+      },
+      "required": [
+        "kind",
+        "id",
+        "version",
+        "digest",
+        "tenant",
+        "binding"
+      ],
+      "additionalProperties": false
+    },
+    "outcome": {
+      "type": "string",
+      "enum": [
+        "approve",
+        "hold",
+        "reject"
+      ]
+    },
+    "boundEffectDigest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "qualifiersDigest": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "rationale": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4000
+    }
+  },
+  "required": [
+    "schema",
+    "decision",
+    "outcome",
+    "boundEffectDigest",
+    "qualifiersDigest",
+    "rationale"
+  ],
+  "additionalProperties": false
+}

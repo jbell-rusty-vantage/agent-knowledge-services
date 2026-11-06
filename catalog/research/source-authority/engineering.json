@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "research-source-authority.v1",
+  "id": "engineering",
+  "version": "1.0.0",
+  "profile": "engineering.v2",
+  "fitness": [
+    { "id": "primary-technical-source", "when": { "sourceKinds": ["primary_documentation", "repository", "peer_reviewed_article", "standard"] }, "fitness": "fit", "rationale": "Primary documentation, source code, standards and peer review are fit for engineering facts." },
+    { "id": "vendor-or-benchmark-report", "when": { "sourceKinds": ["vendor_documentation", "benchmark_report"] }, "fitness": "fit_with_limitations", "rationale": "Vendor documentation and benchmark reports are fit with their configuration and incentive limits." },
+    { "id": "secondary-commentary", "when": { "sourceKinds": ["blog", "forum", "news"] }, "fitness": "unfit", "rationale": "Secondary commentary is not alone fit for official engineering facts." }
+  ],
+  "defaultFitness": "unknown",
+  "applicability": {
+    "matchQualifiers": ["softwareVersion", "runtime"],
+    "onMatch": "applicable",
+    "onPartial": "partially_applicable",
+    "onMismatch": "not_applicable",
+    "onUnknown": "unknown"
+  },
+  "revisionFrontierRequired": false
+}

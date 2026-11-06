@@ -1,0 +1,2357 @@
+{
+  "schemaVersion": "verification-benchmark.v1",
+  "verificationContractVersion": "verification.v1",
+  "datasetId": "diagnostics-companies",
+  "version": 4,
+  "stage": "pilot",
+  "manifestDigest": "sha256:a6bc1cf3ecbb335e4f5ef49165798d29ce937a9324f2a1ba7d9768f23ad7feee",
+  "frozen": true,
+  "supersedesManifestDigest": "sha256:b625b311493f8c366ef43bf4047bf61f38d510fe7f3c340f50bca42de737dfe6",
+  "sourcePreparationDigest": "sha256:50a3552cffc639a78d7789865be929baefd64d2342431e2de958e669c21f163e",
+  "labelProvenance": "engineering_expectations",
+  "annotationGuidelinesDigest": "sha256:751f0d14607cbb53d2b658437ad74b2237138c85e8a105da5cc6d98f90712197",
+  "adjudicationArtifactDigest": null,
+  "cases": [
+    {
+      "schemaVersion": "verification-benchmark.v1",
+      "caseId": "tru-turnaround-about-source",
+      "caseDigest": "sha256:49ef0dfd6ba73abf32d396d615b9b208fa97d885d73f0e4a6c829f78e2537a7c",
+      "partition": "development",
+      "inputManifestArtifactId": "6f721c7e-f140-554d-a728-daa18e2ec1f0",
+      "goldArtifactId": "c1480888-6a6c-5485-a8eb-e9412bce7789",
+      "modality": "html",
+      "sourceFamily": "company:trudiagnostic",
+      "entityFamily": "company:trudiagnostic",
+      "reportCluster": "company:trudiagnostic",
+      "pairCluster": "tru-turnaround-about",
+      "tags": [
+        "timeline",
+        "literal_source_summary",
+        "first_party",
+        "provider_grant_d013",
+        "literal"
+      ],
+      "adversarialTransforms": [],
+      "assertion": "Results are available within 2–4 weeks from the date the lab receives the sample.",
+      "evidence": [
+        {
+          "fragmentId": "sha256:a383de6dbe16655a6d53a01f5e629d3a7deee916ca489b44bcd6cd35875b00f3",
+          "captureId": "67b3c277-5c66-5ef5-ace8-66aff1d3e736",
+          "sourceKey": "tru-about",
+          "sourceClass": "first_party",
+          "projectionArtifactId": "b4573767-03c2-55e9-a771-0385eeff5aa5",
+          "projectionDigest": "sha256:102c76510c12f523e3d67d8795ceb2b20c40e95f055c0038965e6da1e9cedbb4",
+          "transformationArtifactId": "37fc6dff-19ec-5292-aef3-b861b305a7ed",
+          "selector": {
+            "kind": "html",
+            "domPath": "1/0/2/5/0/0/0/2/0/2/2"
+          },
+          "selectedContentDigest": "sha256:442c2e1a7c9ac24dd696f11d4fe0da7afee7bb61457d9ce77f5e8b8e0c33b3d1",
+          "excerpt": "Results are available in your Provider Portal within 2–4 weeks from the date the lab receives the sample, including biological age, organ system–level ages, and aging speed, ready to review with your patient.",
+          "rights": "restricted internal preparation; not approved for provider upload or public redistribution",
+          "providerUploadAuthorized": false
+        }
+      ],
+      "expectation": {
+        "label": "supported_by_source",
+        "labelStatus": "engineering_expectation",
+        "expectedPolicy": "pass_with_warnings",
+        "expectedLocatorValid": true,
+        "support": "full",
+        "authority": "interested_party_only",
+        "worldCorrectness": "not_established",
+        "rationale": "The captured first-party fragment directly supports the bounded company-as-source statement; real-world correctness remains unestablished."
+      },
+      "independentObservation": true,
+      "humanGoldScoringEligible": false,
+      "adjudicationId": null
+    },
+    {
+      "schemaVersion": "verification-benchmark.v1",
+      "caseId": "tru-turnaround-about-mutated",
+      "caseDigest": "sha256:09ab448f1f7fafe8b2e33ac10d16745e516d97f0880c810853ddac5e16f655ed",
+      "partition": "development",
+      "inputManifestArtifactId": "7c1fe894-5e4e-550b-aed8-d52be43d4fec",
+      "goldArtifactId": "97b7e615-c564-586f-a0da-fecdb3e8f222",
+      "modality": "html",
+      "sourceFamily": "company:trudiagnostic",
+      "entityFamily": "company:trudiagnostic",
+      "reportCluster": "company:trudiagnostic",
+      "pairCluster": "tru-turnaround-about",
+      "tags": [
+        "timeline",
+        "count_or_timeline_swap",
+        "first_party",
+        "provider_grant_d013",
+        "adversarial"
+      ],
+      "adversarialTransforms": [
+        "count_or_timeline_swap"
+      ],
+      "assertion": "Results are available within 24 hours after the laboratory receives the sample.",
+      "evidence": [
+        {
+          "fragmentId": "sha256:a383de6dbe16655a6d53a01f5e629d3a7deee916ca489b44bcd6cd35875b00f3",
+          "captureId": "67b3c277-5c66-5ef5-ace8-66aff1d3e736",
+          "sourceKey": "tru-about",
+          "sourceClass": "first_party",
+          "projectionArtifactId": "b4573767-03c2-55e9-a771-0385eeff5aa5",
+          "projectionDigest": "sha256:102c76510c12f523e3d67d8795ceb2b20c40e95f055c0038965e6da1e9cedbb4",
+          "transformationArtifactId": "37fc6dff-19ec-5292-aef3-b861b305a7ed",
+          "selector": {
+            "kind": "html",
+            "domPath": "1/0/2/5/0/0/0/2/0/2/2"
+          },
+          "selectedContentDigest": "sha256:442c2e1a7c9ac24dd696f11d4fe0da7afee7bb61457d9ce77f5e8b8e0c33b3d1",
+          "excerpt": "Results are available in your Provider Portal within 2–4 weeks from the date the lab receives the sample, including biological age, organ system–level ages, and aging speed, ready to review with your patient.",
+          "rights": "restricted internal preparation; not approved for provider upload or public redistribution",
+          "providerUploadAuthorized": false
+        }
+      ],
+      "expectation": {
+        "label": "contradicted",
+        "labelStatus": "engineering_expectation",
+        "expectedPolicy": "fail",
+        "expectedLocatorValid": true,
+        "support": "contradicted",
+        "authority": "interested_party_only",
+        "worldCorrectness": "unknown",
+        "rationale": "Engineering expectation for count_or_timeline_swap; human annotation and expert adjudication remain pending."
+      },
+      "independentObservation": false,
+      "humanGoldScoringEligible": false,
+      "adjudicationId": null
+    },
+    {
+      "schemaVersion": "verification-benchmark.v1",
+      "caseId": "tru-turnaround-product-source",
+      "caseDigest": "sha256:ad544bd72084af2537a5472b49eca3b515732fc8dbd539bed6a4c80539c9d347",
+      "partition": "development",
+      "inputManifestArtifactId": "6c913b0e-dfcc-54c8-a3eb-287cc9b0ca6b",
+      "goldArtifactId": "1fdff443-df6b-5256-a910-34ab2d7ab608",
+      "modality": "html",
+      "sourceFamily": "company:trudiagnostic",
+      "entityFamily": "company:trudiagnostic",
+      "reportCluster": "company:trudiagnostic",
+      "pairCluster": "tru-turnaround-product",
+      "tags": [
+        "timeline",
+        "literal_source_summary",
+        "first_party",
+        "provider_grant_d013",
+        "literal"
+      ],
+      "adversarialTransforms": [],
+      "assertion": "The personalized TruAge report is stated to be ready within 3–4 weeks after the lab receives the sample.",
+      "evidence": [
+        {
+          "fragmentId": "sha256:c1bfde422ac73486de6256d145c8854a135fc7230c24712da0aa99f5ad58433c",
+          "captureId": "ab5c8b0f-3f27-5ea4-ad00-9771148daa54",
+          "sourceKey": "tru-product",
+          "sourceClass": "first_party",
+          "projectionArtifactId": "42cef373-e401-523a-af45-eb586b235c8c",
+          "projectionDigest": "sha256:872f9fd5adfe086ea2a054a0337255dc2afb44333fa5a015788e8efe3cbea681",
+          "transformationArtifactId": "08044e5e-8be2-5981-a907-0e2214a744bf",
+          "selector": {
+            "kind": "html",
+            "domPath": "2/5/1/5/5/1/1/1/3/3"
+          },
+          "selectedContentDigest": "sha256:c6aa3a2075f69467f59dad54e4ba2953d9984eff2ded75511a5142c2651232b2",
+          "excerpt": "Your personalized TruAge   report will be ready in your secure results portal within 3–4 weeks after our lab receives your sample.",
+          "rights": "restricted internal preparation; not approved for provider upload or public redistribution",
+          "providerUploadAuthorized": false
+        }
+      ],
+      "expectation": {
+        "label": "supported_by_source",
+        "labelStatus": "engineering_expectation",
+        "expectedPolicy": "pass_with_warnings",
+        "expectedLocatorValid": true,
+        "support": "full",
+        "authority": "interested_party_only",
+        "worldCorrectness": "not_established",
+        "rationale": "The captured first-party fragment directly supports the bounded company-as-source statement; real-world correctness remains unestablished."
+      },
+      "independentObservation": false,
+      "humanGoldScoringEligible": false,
+      "adjudicationId": null
+    },
+    {
+      "schemaVersion": "verification-benchmark.v1",
+      "caseId": "tru-turnaround-product-mutated",
+      "caseDigest": "sha256:cc09a41738139ade8e7cf834a95b32d1f6ff74c8e7b54d2cd59cd9b4ce13290d",
+      "partition": "development",
+      "inputManifestArtifactId": "587707f3-10da-5932-a943-119b997ec5a0",
+      "goldArtifactId": "f7b67f27-33de-55a6-a82c-85d0ed4a83f5",
+      "modality": "html",
+      "sourceFamily": "company:trudiagnostic",
+      "entityFamily": "company:trudiagnostic",
+      "reportCluster": "company:trudiagnostic",
+      "pairCluster": "tru-turnaround-product",
+      "tags": [
+        "timeline",
+        "missing_start_event_qualifier",
+        "first_party",
+        "provider_grant_d013",
+        "adversarial"
+      ],
+      "adversarialTransforms": [
+        "missing_start_event_qualifier"
+      ],
+      "assertion": "Results are ready within 3–4 weeks after the customer orders the kit.",
+      "evidence": [
+        {
+          "fragmentId": "sha256:c1bfde422ac73486de6256d145c8854a135fc7230c24712da0aa99f5ad58433c",
+          "captureId": "ab5c8b0f-3f27-5ea4-ad00-9771148daa54",
+          "sourceKey": "tru-product",
+          "sourceClass": "first_party",
+          "projectionArtifactId": "42cef373-e401-523a-af45-eb586b235c8c",
+          "projectionDigest": "sha256:872f9fd5adfe086ea2a054a0337255dc2afb44333fa5a015788e8efe3cbea681",
+          "transformationArtifactId": "08044e5e-8be2-5981-a907-0e2214a744bf",
+          "selector": {
+            "kind": "html",
+            "domPath": "2/5/1/5/5/1/1/1/3/3"
+          },
+          "selectedContentDigest": "sha256:c6aa3a2075f69467f59dad54e4ba2953d9984eff2ded75511a5142c2651232b2",
+          "excerpt": "Your personalized TruAge   report will be ready in your secure results portal within 3–4 weeks after our lab receives your sample.",
+          "rights": "restricted internal preparation; not approved for provider upload or public redistribution",
+          "providerUploadAuthorized": false
+        }
+      ],
+      "expectation": {
+        "label": "partially_supported",
+        "labelStatus": "engineering_expectation",
+        "expectedPolicy": "review",
+        "expectedLocatorValid": true,
+        "support": "partial",
+        "authority": "interested_party_only",
+        "worldCorrectness": "unknown",
+        "rationale": "Engineering expectation for missing_start_event_qualifier; human annotation and expert adjudication remain pending."
+      },
+      "independentObservation": false,
+      "humanGoldScoringEligible": false,
+      "adjudicationId": null
+    },
+    {
+      "schemaVersion": "verification-benchmark.v1",
+      "caseId": "tru-sample-source",
+      "caseDigest": "sha256:47eca6ab4dc4dd542793a8e2a4310ee10f95b4aba6bbe4e56cf1f7948601a2bb",
+      "partition": "development",
+      "inputManifestArtifactId": "a5814e41-0375-53ea-a8ba-820d2f115681",
+      "goldArtifactId": "11c98cd4-d556-5777-ac26-6b7bcb97299d",
+      "modality": "html",
+      "sourceFamily": "company:trudiagnostic",
+      "entityFamily": "company:trudiagnostic",
+      "reportCluster": "company:trudiagnostic",
+      "pairCluster": "tru-sample",
+      "tags": [
+        "workflow",
+        "literal_source_summary",
+        "first_party",
+        "provider_grant_d013",
+        "literal"
+      ],
+      "adversarialTransforms": [],
+      "assertion": "The test uses a finger-stick blood collection.",
+      "evidence": [
+        {
+          "fragmentId": "sha256:7969ed8c9960cb2ed2bfa3b13d67b382ca55b00109e62859b56d58e93539a7e5",
+          "captureId": "67b3c277-5c66-5ef5-ace8-66aff1d3e736",
+          "sourceKey": "tru-about",
+          "sourceClass": "first_party",
+          "projectionArtifactId": "b4573767-03c2-55e9-a771-0385eeff5aa5",
+          "projectionDigest": "sha256:102c76510c12f523e3d67d8795ceb2b20c40e95f055c0038965e6da1e9cedbb4",
+          "transformationArtifactId": "37fc6dff-19ec-5292-aef3-b861b305a7ed",
+          "selector": {
+            "kind": "html",
+            "domPath": "1/0/2/5/0/0/0/2/0/1/2"
+          },
+          "selectedContentDigest": "sha256:79acaefef69a509b65f56115a190280a9d4c54c6356bf6ac0d7b16584c1a3e09",
+          "excerpt": "Each test includes a simple finger-stick blood collection that takes approximately 3 minutes. Patients follow the enclosed instructions and return their sample via USPS drop-off using the prepaid materials provided.",
+          "rights": "restricted internal preparation; not approved for provider upload or public redistribution",
+          "providerUploadAuthorized": false
+        }
+      ],
+      "expectation": {
+        "label": "supported_by_source",
+        "labelStatus": "engineering_expectation",
+        "expectedPolicy": "pass_with_warnings",
+        "expectedLocatorValid": true,
+        "support": "full",
+        "authority": "interested_party_only",
+        "worldCorrectness": "not_established",
+        "rationale": "The captured first-party fragment directly supports the bounded company-as-source statement; real-world correctness remains unestablished."
+      },
+      "independentObservation": false,
+      "humanGoldScoringEligible": false,
+      "adjudicationId": null
+    },
+    {
+      "schemaVersion": "verification-benchmark.v1",
+      "caseId": "tru-sample-mutated",
+      "caseDigest": "sha256:8805e4ab875286c526fa4ed2fa199deaff29e0c66f582adba98546dd2b3e1a9d",
+      "partition": "development",
+      "inputManifestArtifactId": "ba1d085e-ea14-54ed-a396-17062ffea97d",
+      "goldArtifactId": "029262d6-f5b5-5f9e-a408-6cffa360ec0a",
+      "modality": "html",
+      "sourceFamily": "company:trudiagnostic",
+      "entityFamily": "company:trudiagnostic",
+      "reportCluster": "company:trudiagnostic",
+      "pairCluster": "tru-sample",
+      "tags": [
+        "workflow",
+        "sample_type_swap",
+        "first_party",
+        "provider_grant_d013",
+        "adversarial"
+      ],
+      "adversarialTransforms": [
+        "sample_type_swap"
+      ],
+      "assertion": "The described collection uses a saliva sample.",
+      "evidence": [
+        {
+          "fragmentId": "sha256:7969ed8c9960cb2ed2bfa3b13d67b382ca55b00109e62859b56d58e93539a7e5",
+          "captureId": "67b3c277-5c66-5ef5-ace8-66aff1d3e736",
+          "sourceKey": "tru-about",
+          "sourceClass": "first_party",
+          "projectionArtifactId": "b4573767-03c2-55e9-a771-0385eeff5aa5",
+          "projectionDigest": "sha256:102c76510c12f523e3d67d8795ceb2b20c40e95f055c0038965e6da1e9cedbb4",
+          "transformationArtifactId": "37fc6dff-19ec-5292-aef3-b861b305a7ed",
+          "selector": {
+            "kind": "html",
+            "domPath": "1/0/2/5/0/0/0/2/0/1/2"
+          },
+          "selectedContentDigest": "sha256:79acaefef69a509b65f56115a190280a9d4c54c6356bf6ac0d7b16584c1a3e09",
+          "excerpt": "Each test includes a simple finger-stick blood collection that takes approximately 3 minutes. Patients follow the enclosed instructions and return their sample via USPS drop-off using the prepaid materials provided.",
+          "rights": "restricted internal preparation; not approved for provider upload or public redistribution",
+          "providerUploadAuthorized": false
+        }
+      ],
+      "expectation": {
+        "label": "contradicted",
+        "labelStatus": "engineering_expectation",
+        "expectedPolicy": "fail",
+        "expectedLocatorValid": true,
+        "support": "contradicted",
+        "authority": "interested_party_only",
+        "worldCorrectness": "unknown",
+        "rationale": "Engineering expectation for sample_type_swap; human annotation and expert adjudication remain pending."
+      },
+      "independentObservation": false,
+      "humanGoldScoringEligible": false,
+      "adjudicationId": null
+    },
+    {
+      "schemaVersion": "verification-benchmark.v1",
+      "caseId": "tru-sites-source",
+      "caseDigest": "sha256:88a4d052301b131325883c8ea62ed1371120a287cefce376ca6039af4c554a39",
+      "partition": "development",
+      "inputManifestArtifactId": "afab84cd-128c-59b5-a715-1e1125561908",
+      "goldArtifactId": "dd7837d1-81b6-58f4-a0d1-9529c1a4466c",
+      "modality": "html",
+      "sourceFamily": "company:trudiagnostic",
+      "entityFamily": "company:trudiagnostic",
+      "reportCluster": "company:trudiagnostic",
+      "pairCluster": "tru-sites",
+      "tags": [
+        "scoped_number",
+        "literal_source_summary",
+        "first_party",
+        "provider_grant_d013",
+        "literal"
+      ],
+      "adversarialTransforms": [],
+      "assertion": "The test is stated to analyze 1,000,000+ DNA methylation sites.",
+      "evidence": [
+        {
+          "fragmentId": "sha256:e1c1e7894c26bea07c6fc8bfdb23e297bad8e41657aaa28f69830cbe15f37fc7",
+          "captureId": "ab5c8b0f-3f27-5ea4-ad00-9771148daa54",
+          "sourceKey": "tru-product",
+          "sourceClass": "first_party",
+          "projectionArtifactId": "42cef373-e401-523a-af45-eb586b235c8c",
+          "projectionDigest": "sha256:872f9fd5adfe086ea2a054a0337255dc2afb44333fa5a015788e8efe3cbea681",
+          "transformationArtifactId": "08044e5e-8be2-5981-a907-0e2214a744bf",
+          "selector": {
+            "kind": "html",
+            "domPath": "2/5/1/5/1/3/4/1/0/3/1/3/2/1/4"
+          },
+          "selectedContentDigest": "sha256:2d7abb4de7f3e7016fd0fe461c810ec7c5528dde01fc64c06b44288bf49a27f6",
+          "excerpt": "TruAge™  is a medical-grade epigenetic age test — analyzing 1,000,000+ DNA methylation sites from a simple at-home test, developed with science from Harvard, Yale, and Duke. Discover your biological age, your aging speed, and the age of 11 organ systems.",
+          "rights": "restricted internal preparation; not approved for provider upload or public redistribution",
+          "providerUploadAuthorized": false
+        }
+      ],
+      "expectation": {
+        "label": "supported_by_source",
+        "labelStatus": "engineering_expectation",
+        "expectedPolicy": "pass_with_warnings",
+        "expectedLocatorValid": true,
+        "support": "full",
+        "authority": "interested_party_only",
+        "worldCorrectness": "not_established",
+        "rationale": "The captured first-party fragment directly supports the bounded company-as-source statement; real-world correctness remains unestablished."
+      },
+      "independentObservation": false,
+      "humanGoldScoringEligible": false,
+      "adjudicationId": null
+    },
+    {
+      "schemaVersion": "verification-benchmark.v1",
+      "caseId": "tru-sites-mutated",
+      "caseDigest": "sha256:794f407b33ae0c6a9d0e64d832aa218b20671d10f99ab4746b3caffb5299b59d",
+      "partition": "development",
+      "inputManifestArtifactId": "6ab83d00-80b0-5f6a-a525-f013c088248c",
+      "goldArtifactId": "e54de72a-3df5-51b8-a357-1a82528d3fda",
+      "modality": "html",
+      "sourceFamily": "company:trudiagnostic",
+      "entityFamily": "company:trudiagnostic",
+      "reportCluster": "company:trudiagnostic",
+      "pairCluster": "tru-sites",
+      "tags": [
+        "scoped_number",
+        "count_swap",
+        "first_party",
+        "provider_grant_d013",
+        "adversarial"
+      ],
+      "adversarialTransforms": [
+        "count_swap"
+      ],
+      "assertion": "The product page reports analysis of exactly 460 DNA methylation sites.",
+      "evidence": [
+        {
+          "fragmentId": "sha256:e1c1e7894c26bea07c6fc8bfdb23e297bad8e41657aaa28f69830cbe15f37fc7",
+          "captureId": "ab5c8b0f-3f27-5ea4-ad00-9771148daa54",
+          "sourceKey": "tru-product",
+          "sourceClass": "first_party",
+          "projectionArtifactId": "42cef373-e401-523a-af45-eb586b235c8c",
+          "projectionDigest": "sha256:872f9fd5adfe086ea2a054a0337255dc2afb44333fa5a015788e8efe3cbea681",
+          "transformationArtifactId": "08044e5e-8be2-5981-a907-0e2214a744bf",
+          "selector": {
+            "kind": "html",
+            "domPath": "2/5/1/5/1/3/4/1/0/3/1/3/2/1/4"
+          },
+          "selectedContentDigest": "sha256:2d7abb4de7f3e7016fd0fe461c810ec7c5528dde01fc64c06b44288bf49a27f6",
+          "excerpt": "TruAge™  is a medical-grade epigenetic age test — analyzing 1,000,000+ DNA methylation sites from a simple at-home test, developed with science from Harvard, Yale, and Duke. Discover your biological age, your aging speed, and the age of 11 organ systems.",
+          "rights": "restricted internal preparation; not approved for provider upload or public redistribution",
+          "providerUploadAuthorized": false
+        }
+      ],
+      "expectation": {
+        "label": "contradicted",
+        "labelStatus": "engineering_expectation",
+        "expectedPolicy": "fail",
+        "expectedLocatorValid": true,
+        "support": "contradicted",
+        "authority": "interested_party_only",
+        "worldCorrectness": "unknown",
+        "rationale": "Engineering expectation for count_swap; human annotation and expert adjudication remain pending."
+      },
+      "independentObservation": false,
+      "humanGoldScoringEligible": false,
+      "adjudicationId": null
+    },
+    {
+      "schemaVersion": "verification-benchmark.v1",
+      "caseId": "tru-biomarkers-source",
+      "caseDigest": "sha256:4e4a0f2717ba3522b859b0bfe9166d12d6cc7b4095bc5e5124505e986e361f4a",
+      "partition": "development",
+      "inputManifestArtifactId": "7f3327b6-ce0c-58c8-a880-1aa643cd769b",
+      "goldArtifactId": "ddb46bb8-53d1-5c38-ad32-b5909f8dbde6",
+      "modality": "html",
+      "sourceFamily": "company:trudiagnostic",
+      "entityFamily": "company:trudiagnostic",
+      "reportCluster": "company:trudiagnostic",
+      "pairCluster": "tru-biomarkers",
+      "tags": [
+        "scoped_number",
+        "literal_source_summary",
+        "first_party",
+        "provider_grant_d013",
+        "literal"
+      ],
+      "adversarialTransforms": [],
+      "assertion": "The page states that the test reports 75+ biomarkers.",
+      "evidence": [
+        {
+          "fragmentId": "sha256:7919c64c0a8f0d52e12c523bf990eecb4fdac9baf5a4c6586ec2e7cbfb3b5e8c",
+          "captureId": "ab5c8b0f-3f27-5ea4-ad00-9771148daa54",
+          "sourceKey": "tru-product",
+          "sourceClass": "first_party",
+          "projectionArtifactId": "42cef373-e401-523a-af45-eb586b235c8c",
+          "projectionDigest": "sha256:872f9fd5adfe086ea2a054a0337255dc2afb44333fa5a015788e8efe3cbea681",
+          "transformationArtifactId": "08044e5e-8be2-5981-a907-0e2214a744bf",
+          "selector": {
+            "kind": "html",
+            "domPath": "2/5/1/5/3/3/1/0/1"
+          },
+          "selectedContentDigest": "sha256:7e7f7294964926be111abca1b06be87ef7d828be2a5fa353d6efda173eda8d93",
+          "excerpt": "One finger prick,  75+ biomarkers — the full view of how you're aging.",
+          "rights": "restricted internal preparation; not approved for provider upload or public redistribution",
+          "providerUploadAuthorized": false
+        }
+      ],
+      "expectation": {
+        "label": "supported_by_source",
+        "labelStatus": "engineering_expectation",
+        "expectedPolicy": "pass_with_warnings",
+        "expectedLocatorValid": true,
+        "support": "full",
+        "authority": "interested_party_only",
+        "worldCorrectness": "not_established",
+        "rationale": "The captured first-party fragment directly supports the bounded company-as-source statement; real-world correctness remains unestablished."
+      },
+      "independentObservation": false,
+      "humanGoldScoringEligible": false,
+      "adjudicationId": null
+    },
+    {
+      "schemaVersion": "verification-benchmark.v1",
+      "caseId": "tru-biomarkers-mutated",
+      "caseDigest": "sha256:1fb031fb51dedbb13080d44722798fd3349a6af08fba4e0bc23b1ba0e3ca838b",
+      "partition": "development",
+      "inputManifestArtifactId": "b7e9d5ee-09fb-5f32-aeb6-e5c05c9205fd",
+      "goldArtifactId": "67d84ad5-4ed3-50c8-af66-f8f0ecef4efc",
+      "modality": "html",
+      "sourceFamily": "company:trudiagnostic",
+      "entityFamily": "company:trudiagnostic",
+      "reportCluster": "company:trudiagnostic",
+      "pairCluster": "tru-biomarkers",
+      "tags": [
+        "scoped_number",
+        "count_swap",
+        "first_party",
+        "provider_grant_d013",
+        "adversarial"
+      ],
+      "adversarialTransforms": [
+        "count_swap"
+      ],
+      "assertion": "The product page reports fewer than ten biomarkers.",
+      "evidence": [
+        {
+          "fragmentId": "sha256:7919c64c0a8f0d52e12c523bf990eecb4fdac9baf5a4c6586ec2e7cbfb3b5e8c",
+          "captureId": "ab5c8b0f-3f27-5ea4-ad00-9771148daa54",
+          "sourceKey": "tru-product",
+          "sourceClass": "first_party",
+          "projectionArtifactId": "42cef373-e401-523a-af45-eb586b235c8c",
+          "projectionDigest": "sha256:872f9fd5adfe086ea2a054a0337255dc2afb44333fa5a015788e8efe3cbea681",
+          "transformationArtifactId": "08044e5e-8be2-5981-a907-0e2214a744bf",
+          "selector": {
+            "kind": "html",
+            "domPath": "2/5/1/5/3/3/1/0/1"
+          },
+          "selectedContentDigest": "sha256:7e7f7294964926be111abca1b06be87ef7d828be2a5fa353d6efda173eda8d93",
+          "excerpt": "One finger prick,  75+ biomarkers — the full view of how you're aging.",
+          "rights": "restricted internal preparation; not approved for provider upload or public redistribution",
+          "providerUploadAuthorized": false
+        }
+      ],
+      "expectation": {
+        "label": "contradicted",
+        "labelStatus": "engineering_expectation",
+        "expectedPolicy": "fail",
+        "expectedLocatorValid": true,
+        "support": "contradicted",
+        "authority": "interested_party_only",
+        "worldCorrectness": "unknown",
+        "rationale": "Engineering expectation for count_swap; human annotation and expert adjudication remain pending."
+      },
+      "independentObservation": false,
+      "humanGoldScoringEligible": false,
+      "adjudicationId": null
+    },
+    {
+      "schemaVersion": "verification-benchmark.v1",
+      "caseId": "tru-symphony-source",
+      "caseDigest": "sha256:84b840c98c7770e22c754a7ef22fb5ec4d315722b3858c4e5f8c297de34bfd6e",
+      "partition": "development",
+      "inputManifestArtifactId": "faf3e88f-8029-548e-a864-e1711a1947f6",
+      "goldArtifactId": "603ab69e-9eea-5e59-a5e1-8cf0c0c54818",
+      "modality": "html",
+      "sourceFamily": "company:trudiagnostic",
+      "entityFamily": "company:trudiagnostic",
+      "reportCluster": "company:trudiagnostic",
+      "pairCluster": "tru-symphony",
+      "tags": [
+        "algorithm",
+        "literal_source_summary",
+        "first_party",
+        "provider_grant_d013",
+        "literal"
+      ],
+      "adversarialTransforms": [],
+      "assertion": "The SymphonyAge™ algorithm reveals the age of 11 organ systems key for longevity.",
+      "evidence": [
+        {
+          "fragmentId": "sha256:bf3e01045ea49a084d595c6a261fe2795103ce014b4132af1e420c126a37e765",
+          "captureId": "67b3c277-5c66-5ef5-ace8-66aff1d3e736",
+          "sourceKey": "tru-about",
+          "sourceClass": "first_party",
+          "projectionArtifactId": "b4573767-03c2-55e9-a771-0385eeff5aa5",
+          "projectionDigest": "sha256:102c76510c12f523e3d67d8795ceb2b20c40e95f055c0038965e6da1e9cedbb4",
+          "transformationArtifactId": "37fc6dff-19ec-5292-aef3-b861b305a7ed",
+          "selector": {
+            "kind": "html",
+            "domPath": "1/0/2/2/0/0/0/1/0/0/1/1"
+          },
+          "selectedContentDigest": "sha256:e514608fdf012933fb9a44d6f805760d5a1fd7a8ea3dd6e736a0998335e3a363",
+          "excerpt": "The SymphonyAge™ algorithm reveals the age of 11 organ systems key for longevity.",
+          "rights": "restricted internal preparation; not approved for provider upload or public redistribution",
+          "providerUploadAuthorized": false
+        }
+      ],
+      "expectation": {
+        "label": "supported_by_source",
+        "labelStatus": "engineering_expectation",
+        "expectedPolicy": "pass_with_warnings",
+        "expectedLocatorValid": true,
+        "support": "full",
+        "authority": "interested_party_only",
+        "worldCorrectness": "not_established",
+        "rationale": "The captured first-party fragment directly supports the bounded company-as-source statement; real-world correctness remains unestablished."
+      },
+      "independentObservation": false,
+      "humanGoldScoringEligible": false,
+      "adjudicationId": null
+    },
+    {
+      "schemaVersion": "verification-benchmark.v1",
+      "caseId": "tru-symphony-mutated",
+      "caseDigest": "sha256:175d13dcba5a01530885924a4b24489228896c0343ab028a2b4f6711f6a783f6",
+      "partition": "development",
+      "inputManifestArtifactId": "8e878cbd-6262-590e-a1b3-4a478040bd84",
+      "goldArtifactId": "0bb1ac2f-0f52-5f57-a187-4480359908a3",
+      "modality": "html",
+      "sourceFamily": "company:trudiagnostic",
+      "entityFamily": "company:trudiagnostic",
+      "reportCluster": "company:trudiagnostic",
+      "pairCluster": "tru-symphony",
+      "tags": [
+        "algorithm",
+        "algorithm_count_swap",
+        "first_party",
+        "provider_grant_d013",
+        "adversarial"
+      ],
+      "adversarialTransforms": [
+        "algorithm_count_swap"
+      ],
+      "assertion": "SymphonyAge is stated to reveal the age of 21 organ systems.",
+      "evidence": [
+        {
+          "fragmentId": "sha256:bf3e01045ea49a084d595c6a261fe2795103ce014b4132af1e420c126a37e765",
+          "captureId": "67b3c277-5c66-5ef5-ace8-66aff1d3e736",
+          "sourceKey": "tru-about",
+          "sourceClass": "first_party",
+          "projectionArtifactId": "b4573767-03c2-55e9-a771-0385eeff5aa5",
+          "projectionDigest": "sha256:102c76510c12f523e3d67d8795ceb2b20c40e95f055c0038965e6da1e9cedbb4",
+          "transformationArtifactId": "37fc6dff-19ec-5292-aef3-b861b305a7ed",
+          "selector": {
+            "kind": "html",
+            "domPath": "1/0/2/2/0/0/0/1/0/0/1/1"
+          },
+          "selectedContentDigest": "sha256:e514608fdf012933fb9a44d6f805760d5a1fd7a8ea3dd6e736a0998335e3a363",
+          "excerpt": "The SymphonyAge™ algorithm reveals the age of 11 organ systems key for longevity.",
+          "rights": "restricted internal preparation; not approved for provider upload or public redistribution",
+          "providerUploadAuthorized": false
+        }
+      ],
+      "expectation": {
+        "label": "contradicted",
+        "labelStatus": "engineering_expectation",
+        "expectedPolicy": "fail",
+        "expectedLocatorValid": true,
+        "support": "contradicted",
+        "authority": "interested_party_only",
+        "worldCorrectness": "unknown",
+        "rationale": "Engineering expectation for algorithm_count_swap; human annotation and expert adjudication remain pending."
+      },
+      "independentObservation": false,
+      "humanGoldScoringEligible": false,
+      "adjudicationId": null
+    },
+    {
+      "schemaVersion": "verification-benchmark.v1",
+      "caseId": "tru-omic-source",
+      "caseDigest": "sha256:e6f7511e783b6a9c103e441426ec9886ba1db333fd5b7b3204fbcb98418df7cc",
+      "partition": "development",
+      "inputManifestArtifactId": "f3e26a3f-69fb-5e82-af09-5d497b3e5865",
+      "goldArtifactId": "d160a01f-8b2d-515d-a957-5f0c3c4446d4",
+      "modality": "html",
+      "sourceFamily": "company:trudiagnostic",
+      "entityFamily": "company:trudiagnostic",
+      "reportCluster": "company:trudiagnostic",
+      "pairCluster": "tru-omic",
+      "tags": [
+        "algorithm",
+        "literal_source_summary",
+        "first_party",
+        "provider_grant_d013",
+        "literal"
+      ],
+      "adversarialTransforms": [],
+      "assertion": "OMICmAge is described as a multi-omic-informed methylation clock.",
+      "evidence": [
+        {
+          "fragmentId": "sha256:764fa99b84c7d3e70c2cda338e8312a025f5eb0cf0362c61cdcca5157ba1c616",
+          "captureId": "67b3c277-5c66-5ef5-ace8-66aff1d3e736",
+          "sourceKey": "tru-about",
+          "sourceClass": "first_party",
+          "projectionArtifactId": "b4573767-03c2-55e9-a771-0385eeff5aa5",
+          "projectionDigest": "sha256:102c76510c12f523e3d67d8795ceb2b20c40e95f055c0038965e6da1e9cedbb4",
+          "transformationArtifactId": "37fc6dff-19ec-5292-aef3-b861b305a7ed",
+          "selector": {
+            "kind": "html",
+            "domPath": "1/0/2/2/0/0/0/1/0/0/0/1"
+          },
+          "selectedContentDigest": "sha256:1c1fce4ffcd6ebb8a9c12ffdf5e415f7bae215b93c1cbbd0f9031ca481878322",
+          "excerpt": "The OMICmAge™ algorithm is a multi-omic–informed methylation clock that quantifies biological age against chronological age.",
+          "rights": "restricted internal preparation; not approved for provider upload or public redistribution",
+          "providerUploadAuthorized": false
+        }
+      ],
+      "expectation": {
+        "label": "supported_by_source",
+        "labelStatus": "engineering_expectation",
+        "expectedPolicy": "pass_with_warnings",
+        "expectedLocatorValid": true,
+        "support": "full",
+        "authority": "interested_party_only",
+        "worldCorrectness": "not_established",
+        "rationale": "The captured first-party fragment directly supports the bounded company-as-source statement; real-world correctness remains unestablished."
+      },
+      "independentObservation": false,
+      "humanGoldScoringEligible": false,
+      "adjudicationId": null
+    },
+    {
+      "schemaVersion": "verification-benchmark.v1",
+      "caseId": "tru-omic-mutated",
+      "caseDigest": "sha256:00cac98fc9983ca02874157823c486408126877a06b4e1ecf83a42da4e419c60",
+      "partition": "development",
+      "inputManifestArtifactId": "8275e866-4075-5bf3-a4f6-507c035fa9c6",
+      "goldArtifactId": "1b353af7-3923-5285-a0e7-687d0389239f",
+      "modality": "html",
+      "sourceFamily": "company:trudiagnostic",
+      "entityFamily": "company:trudiagnostic",
+      "reportCluster": "company:trudiagnostic",
+      "pairCluster": "tru-omic",
+      "tags": [
+        "algorithm",
+        "algorithm_definition_swap",
+        "first_party",
+        "provider_grant_d013",
+        "adversarial"
+      ],
+      "adversarialTransforms": [
+        "algorithm_definition_swap"
+      ],
+      "assertion": "The page defines OMICmAge as a direct measurement of chronological age from a saliva glucose test.",
+      "evidence": [
+        {
+          "fragmentId": "sha256:764fa99b84c7d3e70c2cda338e8312a025f5eb0cf0362c61cdcca5157ba1c616",
+          "captureId": "67b3c277-5c66-5ef5-ace8-66aff1d3e736",
+          "sourceKey": "tru-about",
+          "sourceClass": "first_party",
+          "projectionArtifactId": "b4573767-03c2-55e9-a771-0385eeff5aa5",
+          "projectionDigest": "sha256:102c76510c12f523e3d67d8795ceb2b20c40e95f055c0038965e6da1e9cedbb4",
+          "transformationArtifactId": "37fc6dff-19ec-5292-aef3-b861b305a7ed",
+          "selector": {
+            "kind": "html",
+            "domPath": "1/0/2/2/0/0/0/1/0/0/0/1"
+          },
+          "selectedContentDigest": "sha256:1c1fce4ffcd6ebb8a9c12ffdf5e415f7bae215b93c1cbbd0f9031ca481878322",
+          "excerpt": "The OMICmAge™ algorithm is a multi-omic–informed methylation clock that quantifies biological age against chronological age.",
+          "rights": "restricted internal preparation; not approved for provider upload or public redistribution",
+          "providerUploadAuthorized": false
+        }
+      ],
+      "expectation": {
+        "label": "contradicted",
+        "labelStatus": "engineering_expectation",
+        "expectedPolicy": "fail",
+        "expectedLocatorValid": true,
+        "support": "contradicted",
+        "authority": "interested_party_only",
+        "worldCorrectness": "unknown",
+        "rationale": "Engineering expectation for algorithm_definition_swap; human annotation and expert adjudication remain pending."
+      },
+      "independentObservation": false,
+      "humanGoldScoringEligible": false,
+      "adjudicationId": null
+    },
+    {
+      "schemaVersion": "verification-benchmark.v1",
+      "caseId": "tru-pace-source",
+      "caseDigest": "sha256:8fbb4d2a4bd00997c29f4ab9f1fe1b1f0396a9ee3d7b9eef2d8345c44cf69520",
+      "partition": "development",
+      "inputManifestArtifactId": "6cccc5ac-5eed-5331-a741-71236ae779e4",
+      "goldArtifactId": "5c0607c2-7d4e-5af4-afb0-35653fe410cd",
+      "modality": "html",
+      "sourceFamily": "company:trudiagnostic",
+      "entityFamily": "company:trudiagnostic",
+      "reportCluster": "company:trudiagnostic",
+      "pairCluster": "tru-pace",
+      "tags": [
+        "algorithm",
+        "literal_source_summary",
+        "first_party",
+        "provider_grant_d013",
+        "literal"
+      ],
+      "adversarialTransforms": [],
+      "assertion": "DunedinPACE is described as tracking how fast the body is aging.",
+      "evidence": [
+        {
+          "fragmentId": "sha256:eecb46671f32862e2f7493bd738e4872880b21485d679efcf5f154b208f7d529",
+          "captureId": "67b3c277-5c66-5ef5-ace8-66aff1d3e736",
+          "sourceKey": "tru-about",
+          "sourceClass": "first_party",
+          "projectionArtifactId": "b4573767-03c2-55e9-a771-0385eeff5aa5",
+          "projectionDigest": "sha256:102c76510c12f523e3d67d8795ceb2b20c40e95f055c0038965e6da1e9cedbb4",
+          "transformationArtifactId": "37fc6dff-19ec-5292-aef3-b861b305a7ed",
+          "selector": {
+            "kind": "html",
+            "domPath": "1/0/2/2/0/0/0/1/0/0/2/1"
+          },
+          "selectedContentDigest": "sha256:0f1d7b60297053d8c46479d624829ac8cc142e9511f9e4ca1c05d4007888e926",
+          "excerpt": "The DunedinPACE™ algorithm can track how fast the body is aging and the impact of lifestyle changes.",
+          "rights": "restricted internal preparation; not approved for provider upload or public redistribution",
+          "providerUploadAuthorized": false
+        }
+      ],
+      "expectation": {
+        "label": "supported_by_source",
+        "labelStatus": "engineering_expectation",
+        "expectedPolicy": "pass_with_warnings",
+        "expectedLocatorValid": true,
+        "support": "full",
+        "authority": "interested_party_only",
+        "worldCorrectness": "not_established",
+        "rationale": "The captured first-party fragment directly supports the bounded company-as-source statement; real-world correctness remains unestablished."
+      },
+      "independentObservation": false,
+      "humanGoldScoringEligible": false,
+      "adjudicationId": null
+    },
+    {
+      "schemaVersion": "verification-benchmark.v1",
+      "caseId": "tru-pace-mutated",
+      "caseDigest": "sha256:4719ac6e020dd03a5c4c96a7819986832ca8db1a81617f3d013cc9236e8ff063",
+      "partition": "development",
+      "inputManifestArtifactId": "14cf90de-7b12-54a0-a5ce-6c93aaec1146",
+      "goldArtifactId": "5a5a5ce4-c857-5d4a-a5ae-e9d82986982d",
+      "modality": "html",
+      "sourceFamily": "company:trudiagnostic",
+      "entityFamily": "company:trudiagnostic",
+      "reportCluster": "company:trudiagnostic",
+      "pairCluster": "tru-pace",
+      "tags": [
+        "algorithm",
+        "medical_overextension",
+        "first_party",
+        "provider_grant_d013",
+        "adversarial"
+      ],
+      "adversarialTransforms": [
+        "medical_overextension"
+      ],
+      "assertion": "The page states that DunedinPACE provides a definitive medical diagnosis.",
+      "evidence": [
+        {
+          "fragmentId": "sha256:eecb46671f32862e2f7493bd738e4872880b21485d679efcf5f154b208f7d529",
+          "captureId": "67b3c277-5c66-5ef5-ace8-66aff1d3e736",
+          "sourceKey": "tru-about",
+          "sourceClass": "first_party",
+          "projectionArtifactId": "b4573767-03c2-55e9-a771-0385eeff5aa5",
+          "projectionDigest": "sha256:102c76510c12f523e3d67d8795ceb2b20c40e95f055c0038965e6da1e9cedbb4",
+          "transformationArtifactId": "37fc6dff-19ec-5292-aef3-b861b305a7ed",
+          "selector": {
+            "kind": "html",
+            "domPath": "1/0/2/2/0/0/0/1/0/0/2/1"
+          },
+          "selectedContentDigest": "sha256:0f1d7b60297053d8c46479d624829ac8cc142e9511f9e4ca1c05d4007888e926",
+          "excerpt": "The DunedinPACE™ algorithm can track how fast the body is aging and the impact of lifestyle changes.",
+          "rights": "restricted internal preparation; not approved for provider upload or public redistribution",
+          "providerUploadAuthorized": false
+        }
+      ],
+      "expectation": {
+        "label": "unsupported",
+        "labelStatus": "engineering_expectation",
+        "expectedPolicy": "fail",
+        "expectedLocatorValid": true,
+        "support": "none",
+        "authority": "interested_party_only",
+        "worldCorrectness": "unknown",
+        "rationale": "Engineering expectation for medical_overextension; human annotation and expert adjudication remain pending."
+      },
+      "independentObservation": false,
+      "humanGoldScoringEligible": false,
+      "adjudicationId": null
+    },
+    {
+      "schemaVersion": "verification-benchmark.v1",
+      "caseId": "gl-systems-source",
+      "caseDigest": "sha256:3c971630d9a41e4f254b3a7c2d67131696c4d670064ba5084e8ee89980ffd801",
+      "partition": "development",
+      "inputManifestArtifactId": "fdb2ea51-4ef5-5611-a627-a1cf85ae17fa",
+      "goldArtifactId": "9feca9ce-e291-55e8-a9fe-bb89405460a1",
+      "modality": "html",
+      "sourceFamily": "company:generation-lab",
+      "entityFamily": "company:generation-lab",
+      "reportCluster": "company:generation-lab",
+      "pairCluster": "gl-systems",
+      "tags": [
+        "scoped_number",
+        "literal_source_summary",
+        "first_party",
+        "provider_grant_d013",
+        "literal"
+      ],
+      "adversarialTransforms": [],
+      "assertion": "The SystemAge page states that 460 epigenetic biomarkers are mapped across 21 body systems.",
+      "evidence": [
+        {
+          "fragmentId": "sha256:4b302c00160c8ebe9e650ad8a0bce4ebb10ea3466078d84614dd2cbb2f5b6115",
+          "captureId": "ed7c057c-ce78-5d78-a251-74575f694a52",
+          "sourceKey": "gl-science",
+          "sourceClass": "first_party",
+          "projectionArtifactId": "914e0ec1-023e-5f21-a353-c3d8555e26fa",
+          "projectionDigest": "sha256:2d59d02ac2dd964183173e7820448656bdbcd497bfa65a7884fcaee1f3bd70ee",
+          "transformationArtifactId": "47ccf319-74ba-5a1c-a422-85eef1de82b8",
+          "selector": {
+            "kind": "html",
+            "domPath": "1/5/3/4/0/2/0/0/0/0/1/0"
+          },
+          "selectedContentDigest": "sha256:3b5b10b12141230c1fd4b3bd7e111199d3388ce780f1b1b1b9c23b13c2ac31b3",
+          "excerpt": "The SystemAge™ Test analyzes 460 epigenetic biomarkers mapped across 21 body systems, selected not just for scale, but for biological relevance. Each biomarker was chosen to reflect meaningful changes in how aging unfolds across systems.",
+          "rights": "restricted internal preparation; not approved for provider upload or public redistribution",
+          "providerUploadAuthorized": false
+        }
+      ],
+      "expectation": {
+        "label": "supported_by_source",
+        "labelStatus": "engineering_expectation",
+        "expectedPolicy": "pass_with_warnings",
+        "expectedLocatorValid": true,
+        "support": "full",
+        "authority": "interested_party_only",
+        "worldCorrectness": "not_established",
+        "rationale": "The captured first-party fragment directly supports the bounded company-as-source statement; real-world correctness remains unestablished."
+      },
+      "independentObservation": true,
+      "humanGoldScoringEligible": false,
+      "adjudicationId": null
+    },
+    {
+      "schemaVersion": "verification-benchmark.v1",
+      "caseId": "gl-systems-mutated",
+      "caseDigest": "sha256:65195b1e433cda8915c86b79e0a13250f7d5fe131d398006e0f34227ecce3fc7",
+      "partition": "development",
+      "inputManifestArtifactId": "eaaf5cf9-f80b-5085-ae40-f1a901fa6f73",
+      "goldArtifactId": "a1b66401-66c6-5a78-a682-6dfdfed8dd15",
+      "modality": "html",
+      "sourceFamily": "company:generation-lab",
+      "entityFamily": "company:generation-lab",
+      "reportCluster": "company:generation-lab",
+      "pairCluster": "gl-systems",
+      "tags": [
+        "scoped_number",
+        "count_swap",
+        "first_party",
+        "provider_grant_d013",
+        "adversarial"
+      ],
+      "adversarialTransforms": [
+        "count_swap"
+      ],
+      "assertion": "The science page says 640 epigenetic biomarkers are mapped across 12 body systems.",
+      "evidence": [
+        {
+          "fragmentId": "sha256:4b302c00160c8ebe9e650ad8a0bce4ebb10ea3466078d84614dd2cbb2f5b6115",
+          "captureId": "ed7c057c-ce78-5d78-a251-74575f694a52",
+          "sourceKey": "gl-science",
+          "sourceClass": "first_party",
+          "projectionArtifactId": "914e0ec1-023e-5f21-a353-c3d8555e26fa",
+          "projectionDigest": "sha256:2d59d02ac2dd964183173e7820448656bdbcd497bfa65a7884fcaee1f3bd70ee",
+          "transformationArtifactId": "47ccf319-74ba-5a1c-a422-85eef1de82b8",
+          "selector": {
+            "kind": "html",
+            "domPath": "1/5/3/4/0/2/0/0/0/0/1/0"
+          },
+          "selectedContentDigest": "sha256:3b5b10b12141230c1fd4b3bd7e111199d3388ce780f1b1b1b9c23b13c2ac31b3",
+          "excerpt": "The SystemAge™ Test analyzes 460 epigenetic biomarkers mapped across 21 body systems, selected not just for scale, but for biological relevance. Each biomarker was chosen to reflect meaningful changes in how aging unfolds across systems.",
+          "rights": "restricted internal preparation; not approved for provider upload or public redistribution",
+          "providerUploadAuthorized": false
+        }
+      ],
+      "expectation": {
+        "label": "contradicted",
+        "labelStatus": "engineering_expectation",
+        "expectedPolicy": "fail",
+        "expectedLocatorValid": true,
+        "support": "contradicted",
+        "authority": "interested_party_only",
+        "worldCorrectness": "unknown",
+        "rationale": "Engineering expectation for count_swap; human annotation and expert adjudication remain pending."
+      },
+      "independentObservation": false,
+      "humanGoldScoringEligible": false,
+      "adjudicationId": null
+    },
+    {
+      "schemaVersion": "verification-benchmark.v1",
+      "caseId": "gl-historical-wording-source",
+      "caseDigest": "sha256:6f9fca1d81ce2823196c9c47872921109517b1daac758facfd98c3fdabbcb06a",
+      "partition": "development",
+      "inputManifestArtifactId": "758a4faf-1c1c-5326-ad7b-d787ef60ab43",
+      "goldArtifactId": "99f0d6d1-9786-5065-add0-b7f61b52d671",
+      "modality": "html",
+      "sourceFamily": "company:generation-lab",
+      "entityFamily": "company:generation-lab",
+      "reportCluster": "company:generation-lab",
+      "pairCluster": "gl-historical-wording",
+      "tags": [
+        "conflict",
+        "literal_source_summary",
+        "first_party_marketing",
+        "provider_grant_d013",
+        "literal"
+      ],
+      "adversarialTransforms": [],
+      "assertion": "The page states that the SystemAge report includes 19 critical systems.",
+      "evidence": [
+        {
+          "fragmentId": "sha256:79ba460c60eaf4e049c0d44ec80469a61f68f489f31d2add9c5364dd6a87f188",
+          "captureId": "8930d1e6-b8a1-5b4c-aabd-486efb0a051c",
+          "sourceKey": "gl-immune-age-19",
+          "sourceClass": "first_party_marketing",
+          "projectionArtifactId": "9042049b-c6ae-5b84-a6f3-7cb0e8259266",
+          "projectionDigest": "sha256:0864ec616615ebce64fa5f533a1ddd36a53cbd12698a7cf59e79ee690fdd80ff",
+          "transformationArtifactId": "96e045c7-5311-5f11-a255-00fba4eeeb9a",
+          "selector": {
+            "kind": "html",
+            "domPath": "1/5/2/0/0/1/1/0/16"
+          },
+          "selectedContentDigest": "sha256:47f923b1703a4c4894cb2e058f16e932865c045ec77abf07be96fa6c63cf5d53",
+          "excerpt": "Your SystemAge report includes biological age analysis for these 19 critical systems:",
+          "rights": "restricted internal preparation; not approved for provider upload or public redistribution",
+          "providerUploadAuthorized": false
+        }
+      ],
+      "expectation": {
+        "label": "supported_by_source",
+        "labelStatus": "engineering_expectation",
+        "expectedPolicy": "pass_with_warnings",
+        "expectedLocatorValid": true,
+        "support": "full",
+        "authority": "interested_party_only",
+        "worldCorrectness": "not_established",
+        "rationale": "The captured first-party fragment directly supports the bounded company-as-source statement; real-world correctness remains unestablished."
+      },
+      "independentObservation": false,
+      "humanGoldScoringEligible": false,
+      "adjudicationId": null
+    },
+    {
+      "schemaVersion": "verification-benchmark.v1",
+      "caseId": "gl-historical-wording-mutated",
+      "caseDigest": "sha256:3bb2a52940184f6a8220335220cfdb33e93cdbbdd500c8ac38d26d27f1f9ea8f",
+      "partition": "development",
+      "inputManifestArtifactId": "7294bccd-5f7c-50d5-a824-d4ca8b454765",
+      "goldArtifactId": "3ea874af-1881-5266-acfd-70df3179b811",
+      "modality": "html",
+      "sourceFamily": "company:generation-lab",
+      "entityFamily": "company:generation-lab",
+      "reportCluster": "company:generation-lab",
+      "pairCluster": "gl-historical-wording",
+      "tags": [
+        "conflict",
+        "cross_page_count_laundering",
+        "first_party_marketing",
+        "provider_grant_d013",
+        "adversarial"
+      ],
+      "adversarialTransforms": [
+        "cross_page_count_laundering"
+      ],
+      "assertion": "This captured paragraph says that the report includes 21 critical systems.",
+      "evidence": [
+        {
+          "fragmentId": "sha256:79ba460c60eaf4e049c0d44ec80469a61f68f489f31d2add9c5364dd6a87f188",
+          "captureId": "8930d1e6-b8a1-5b4c-aabd-486efb0a051c",
+          "sourceKey": "gl-immune-age-19",
+          "sourceClass": "first_party_marketing",
+          "projectionArtifactId": "9042049b-c6ae-5b84-a6f3-7cb0e8259266",
+          "projectionDigest": "sha256:0864ec616615ebce64fa5f533a1ddd36a53cbd12698a7cf59e79ee690fdd80ff",
+          "transformationArtifactId": "96e045c7-5311-5f11-a255-00fba4eeeb9a",
+          "selector": {
+            "kind": "html",
+            "domPath": "1/5/2/0/0/1/1/0/16"
+          },
+          "selectedContentDigest": "sha256:47f923b1703a4c4894cb2e058f16e932865c045ec77abf07be96fa6c63cf5d53",
+          "excerpt": "Your SystemAge report includes biological age analysis for these 19 critical systems:",
+          "rights": "restricted internal preparation; not approved for provider upload or public redistribution",
+          "providerUploadAuthorized": false
+        }
+      ],
+      "expectation": {
+        "label": "contradicted",
+        "labelStatus": "engineering_expectation",
+        "expectedPolicy": "fail",
+        "expectedLocatorValid": true,
+        "support": "contradicted",
+        "authority": "interested_party_only",
+        "worldCorrectness": "unknown",
+        "rationale": "Engineering expectation for cross_page_count_laundering; human annotation and expert adjudication remain pending."
+      },
+      "independentObservation": false,
+      "humanGoldScoringEligible": false,
+      "adjudicationId": null
+    },
+    {
+      "schemaVersion": "verification-benchmark.v1",
+      "caseId": "gl-same-page-footer-source",
+      "caseDigest": "sha256:fd4fed27144b87a5d57c3fcb829ee0ba03d86fc6bc36a2a46f42f03ebe462f0d",
+      "partition": "development",
+      "inputManifestArtifactId": "0edbb571-01e2-5df6-aba1-e0cd777a143b",
+      "goldArtifactId": "376085fa-185f-5cf9-aa08-8290f19c21b8",
+      "modality": "html",
+      "sourceFamily": "company:generation-lab",
+      "entityFamily": "company:generation-lab",
+      "reportCluster": "company:generation-lab",
+      "pairCluster": "gl-same-page-footer",
+      "tags": [
+        "conflict",
+        "literal_source_summary",
+        "first_party_marketing",
+        "provider_grant_d013",
+        "literal"
+      ],
+      "adversarialTransforms": [],
+      "assertion": "The same-page footer states 21 organs and systems.",
+      "evidence": [
+        {
+          "fragmentId": "sha256:289ac6ddff430dbea3b69ef766c3629aa1cd319db9ef20c51df94f58ce74a3e0",
+          "captureId": "8930d1e6-b8a1-5b4c-aabd-486efb0a051c",
+          "sourceKey": "gl-immune-age-19",
+          "sourceClass": "first_party_marketing",
+          "projectionArtifactId": "9042049b-c6ae-5b84-a6f3-7cb0e8259266",
+          "projectionDigest": "sha256:0864ec616615ebce64fa5f533a1ddd36a53cbd12698a7cf59e79ee690fdd80ff",
+          "transformationArtifactId": "96e045c7-5311-5f11-a255-00fba4eeeb9a",
+          "selector": {
+            "kind": "html",
+            "domPath": "1/5/3/0/0/0/0/1"
+          },
+          "selectedContentDigest": "sha256:3b47e081be2bbbe6b11b34d0ff0e5f82101ee73551c23f1627c5f371f0b61391",
+          "excerpt": "Slow your aging with the world's most accurate epigenetic test and personalized insights. 460 biomarkers, 21 organs and systems.",
+          "rights": "restricted internal preparation; not approved for provider upload or public redistribution",
+          "providerUploadAuthorized": false
+        }
+      ],
+      "expectation": {
+        "label": "supported_by_source",
+        "labelStatus": "engineering_expectation",
+        "expectedPolicy": "pass_with_warnings",
+        "expectedLocatorValid": true,
+        "support": "full",
+        "authority": "interested_party_only",
+        "worldCorrectness": "not_established",
+        "rationale": "The captured first-party fragment directly supports the bounded company-as-source statement; real-world correctness remains unestablished."
+      },
+      "independentObservation": false,
+      "humanGoldScoringEligible": false,
+      "adjudicationId": null
+    },
+    {
+      "schemaVersion": "verification-benchmark.v1",
+      "caseId": "gl-same-page-footer-mutated",
+      "caseDigest": "sha256:70d91a155cfd9cc6776c95a1ff7db622cd3d80dfe53aa168387393683b816d19",
+      "partition": "development",
+      "inputManifestArtifactId": "0cb23ac6-076c-5bb0-a8e4-9522be711279",
+      "goldArtifactId": "938c9e4d-f2a4-52cf-a420-54ceadc3e238",
+      "modality": "html",
+      "sourceFamily": "company:generation-lab",
+      "entityFamily": "company:generation-lab",
+      "reportCluster": "company:generation-lab",
+      "pairCluster": "gl-same-page-footer",
+      "tags": [
+        "conflict",
+        "conflict_erasure",
+        "first_party_marketing",
+        "provider_grant_d013",
+        "adversarial"
+      ],
+      "adversarialTransforms": [
+        "conflict_erasure"
+      ],
+      "assertion": "The captured article contains only 19-system wording and no conflicting 21-system wording.",
+      "evidence": [
+        {
+          "fragmentId": "sha256:289ac6ddff430dbea3b69ef766c3629aa1cd319db9ef20c51df94f58ce74a3e0",
+          "captureId": "8930d1e6-b8a1-5b4c-aabd-486efb0a051c",
+          "sourceKey": "gl-immune-age-19",
+          "sourceClass": "first_party_marketing",
+          "projectionArtifactId": "9042049b-c6ae-5b84-a6f3-7cb0e8259266",
+          "projectionDigest": "sha256:0864ec616615ebce64fa5f533a1ddd36a53cbd12698a7cf59e79ee690fdd80ff",
+          "transformationArtifactId": "96e045c7-5311-5f11-a255-00fba4eeeb9a",
+          "selector": {
+            "kind": "html",
+            "domPath": "1/5/3/0/0/0/0/1"
+          },
+          "selectedContentDigest": "sha256:3b47e081be2bbbe6b11b34d0ff0e5f82101ee73551c23f1627c5f371f0b61391",
+          "excerpt": "Slow your aging with the world's most accurate epigenetic test and personalized insights. 460 biomarkers, 21 organs and systems.",
+          "rights": "restricted internal preparation; not approved for provider upload or public redistribution",
+          "providerUploadAuthorized": false
+        }
+      ],
+      "expectation": {
+        "label": "contradicted",
+        "labelStatus": "engineering_expectation",
+        "expectedPolicy": "fail",
+        "expectedLocatorValid": true,
+        "support": "contradicted",
+        "authority": "interested_party_only",
+        "worldCorrectness": "unknown",
+        "rationale": "Engineering expectation for conflict_erasure; human annotation and expert adjudication remain pending."
+      },
+      "independentObservation": false,
+      "humanGoldScoringEligible": false,
+      "adjudicationId": null
+    },
+    {
+      "schemaVersion": "verification-benchmark.v1",
+      "caseId": "gl-triplicate-source",
+      "caseDigest": "sha256:75a4c59ead90cda1ee4e2b591a43baab97790fea0e57756fe06f6871570f539b",
+      "partition": "development",
+      "inputManifestArtifactId": "b386d002-b0d7-5b80-ac80-d5d6549369e1",
+      "goldArtifactId": "884b0971-e4a5-5333-a7f1-bfc2bd0b7726",
+      "modality": "html",
+      "sourceFamily": "company:generation-lab",
+      "entityFamily": "company:generation-lab",
+      "reportCluster": "company:generation-lab",
+      "pairCluster": "gl-triplicate",
+      "tags": [
+        "population_scope",
+        "literal_source_summary",
+        "first_party",
+        "provider_grant_d013",
+        "literal"
+      ],
+      "adversarialTransforms": [],
+      "assertion": "Triplicate testing from a single user sample is stated to show near-perfect agreement across runs.",
+      "evidence": [
+        {
+          "fragmentId": "sha256:5f84c43eb16fe6299272d8d02a6f001f8166e88dcd743df644068f0b3f76a8ab",
+          "captureId": "ed7c057c-ce78-5d78-a251-74575f694a52",
+          "sourceKey": "gl-science",
+          "sourceClass": "first_party",
+          "projectionArtifactId": "914e0ec1-023e-5f21-a353-c3d8555e26fa",
+          "projectionDigest": "sha256:2d59d02ac2dd964183173e7820448656bdbcd497bfa65a7884fcaee1f3bd70ee",
+          "transformationArtifactId": "47ccf319-74ba-5a1c-a422-85eef1de82b8",
+          "selector": {
+            "kind": "html",
+            "domPath": "1/5/3/6/0/2/0/1/1/0"
+          },
+          "selectedContentDigest": "sha256:5bd014938bdb0226d128a3b541f838845b96cc4e0a1b2dcb580d1c3a17222bdf",
+          "excerpt": "Triplicate testing of 460 CpG biomarkers from a single user sample shows near-perfect agreement across runs.",
+          "rights": "restricted internal preparation; not approved for provider upload or public redistribution",
+          "providerUploadAuthorized": false
+        }
+      ],
+      "expectation": {
+        "label": "supported_by_source",
+        "labelStatus": "engineering_expectation",
+        "expectedPolicy": "pass_with_warnings",
+        "expectedLocatorValid": true,
+        "support": "full",
+        "authority": "interested_party_only",
+        "worldCorrectness": "not_established",
+        "rationale": "The captured first-party fragment directly supports the bounded company-as-source statement; real-world correctness remains unestablished."
+      },
+      "independentObservation": false,
+      "humanGoldScoringEligible": false,
+      "adjudicationId": null
+    },
+    {
+      "schemaVersion": "verification-benchmark.v1",
+      "caseId": "gl-triplicate-mutated",
+      "caseDigest": "sha256:5ec5d86f32a39b09278ec3251fc40a900aa669c84f574f9b3d6ff5500aedf486",
+      "partition": "development",
+      "inputManifestArtifactId": "2e381e96-9d46-5325-a731-f0879f66bfee",
+      "goldArtifactId": "7faa168a-dfeb-53ec-aad6-9a9acc4f27db",
+      "modality": "html",
+      "sourceFamily": "company:generation-lab",
+      "entityFamily": "company:generation-lab",
+      "reportCluster": "company:generation-lab",
+      "pairCluster": "gl-triplicate",
+      "tags": [
+        "population_scope",
+        "single_sample_to_population",
+        "first_party",
+        "provider_grant_d013",
+        "adversarial"
+      ],
+      "adversarialTransforms": [
+        "single_sample_to_population"
+      ],
+      "assertion": "Triplicate testing proves near-perfect clinical accuracy across the general population.",
+      "evidence": [
+        {
+          "fragmentId": "sha256:5f84c43eb16fe6299272d8d02a6f001f8166e88dcd743df644068f0b3f76a8ab",
+          "captureId": "ed7c057c-ce78-5d78-a251-74575f694a52",
+          "sourceKey": "gl-science",
+          "sourceClass": "first_party",
+          "projectionArtifactId": "914e0ec1-023e-5f21-a353-c3d8555e26fa",
+          "projectionDigest": "sha256:2d59d02ac2dd964183173e7820448656bdbcd497bfa65a7884fcaee1f3bd70ee",
+          "transformationArtifactId": "47ccf319-74ba-5a1c-a422-85eef1de82b8",
+          "selector": {
+            "kind": "html",
+            "domPath": "1/5/3/6/0/2/0/1/1/0"
+          },
+          "selectedContentDigest": "sha256:5bd014938bdb0226d128a3b541f838845b96cc4e0a1b2dcb580d1c3a17222bdf",
+          "excerpt": "Triplicate testing of 460 CpG biomarkers from a single user sample shows near-perfect agreement across runs.",
+          "rights": "restricted internal preparation; not approved for provider upload or public redistribution",
+          "providerUploadAuthorized": false
+        }
+      ],
+      "expectation": {
+        "label": "unsupported",
+        "labelStatus": "engineering_expectation",
+        "expectedPolicy": "fail",
+        "expectedLocatorValid": true,
+        "support": "none",
+        "authority": "interested_party_only",
+        "worldCorrectness": "unknown",
+        "rationale": "Engineering expectation for single_sample_to_population; human annotation and expert adjudication remain pending."
+      },
+      "independentObservation": false,
+      "humanGoldScoringEligible": false,
+      "adjudicationId": null
+    },
+    {
+      "schemaVersion": "verification-benchmark.v1",
+      "caseId": "gl-repeatability-source",
+      "caseDigest": "sha256:857d1d63e8f8a77ee6efc20b2a4379ecaa00b7e8029b10e4d3b6f8f3c8d61fe2",
+      "partition": "development",
+      "inputManifestArtifactId": "fd5284c8-6894-5d01-a5df-835704a32772",
+      "goldArtifactId": "a3017acb-1f0b-5f91-a9a7-9f070e49288d",
+      "modality": "html",
+      "sourceFamily": "company:generation-lab",
+      "entityFamily": "company:generation-lab",
+      "reportCluster": "company:generation-lab",
+      "pairCluster": "gl-repeatability",
+      "tags": [
+        "population_scope",
+        "literal_source_summary",
+        "first_party",
+        "provider_grant_d013",
+        "literal"
+      ],
+      "adversarialTransforms": [],
+      "assertion": "The same sample is stated to produce consistent results across repeated runs.",
+      "evidence": [
+        {
+          "fragmentId": "sha256:09412e0160b4326e7531a00a57a698db3a9f4a3cbb63d8bc4d3cafe792342dc3",
+          "captureId": "ed7c057c-ce78-5d78-a251-74575f694a52",
+          "sourceKey": "gl-science",
+          "sourceClass": "first_party",
+          "projectionArtifactId": "914e0ec1-023e-5f21-a353-c3d8555e26fa",
+          "projectionDigest": "sha256:2d59d02ac2dd964183173e7820448656bdbcd497bfa65a7884fcaee1f3bd70ee",
+          "transformationArtifactId": "47ccf319-74ba-5a1c-a422-85eef1de82b8",
+          "selector": {
+            "kind": "html",
+            "domPath": "1/5/3/6/0/2/0/0/0/1/1"
+          },
+          "selectedContentDigest": "sha256:7eaeb932b7f34fddd589926576860358990fc7974569a12032e38bbfe335dfbf",
+          "excerpt": "The underlying assay demonstrates strong technical reproducibility: the same sample produces consistent results across repeated runs, offering confidence that measured changes reflect real biology, not instrument variation.",
+          "rights": "restricted internal preparation; not approved for provider upload or public redistribution",
+          "providerUploadAuthorized": false
+        }
+      ],
+      "expectation": {
+        "label": "supported_by_source",
+        "labelStatus": "engineering_expectation",
+        "expectedPolicy": "pass_with_warnings",
+        "expectedLocatorValid": true,
+        "support": "full",
+        "authority": "interested_party_only",
+        "worldCorrectness": "not_established",
+        "rationale": "The captured first-party fragment directly supports the bounded company-as-source statement; real-world correctness remains unestablished."
+      },
+      "independentObservation": false,
+      "humanGoldScoringEligible": false,
+      "adjudicationId": null
+    },
+    {
+      "schemaVersion": "verification-benchmark.v1",
+      "caseId": "gl-repeatability-mutated",
+      "caseDigest": "sha256:050f814d65687b59645a7966153f96b78f56c45d2f7787d975f6281ce7b11a0b",
+      "partition": "development",
+      "inputManifestArtifactId": "13a88cad-da5c-569d-a785-e7dd8c45c4ba",
+      "goldArtifactId": "90430472-ba88-5857-af5f-df5ac5552bb5",
+      "modality": "html",
+      "sourceFamily": "company:generation-lab",
+      "entityFamily": "company:generation-lab",
+      "reportCluster": "company:generation-lab",
+      "pairCluster": "gl-repeatability",
+      "tags": [
+        "population_scope",
+        "repeatability_to_accuracy",
+        "first_party",
+        "provider_grant_d013",
+        "adversarial"
+      ],
+      "adversarialTransforms": [
+        "repeatability_to_accuracy"
+      ],
+      "assertion": "The page's technical reproducibility statement independently proves disease-detection accuracy.",
+      "evidence": [
+        {
+          "fragmentId": "sha256:09412e0160b4326e7531a00a57a698db3a9f4a3cbb63d8bc4d3cafe792342dc3",
+          "captureId": "ed7c057c-ce78-5d78-a251-74575f694a52",
+          "sourceKey": "gl-science",
+          "sourceClass": "first_party",
+          "projectionArtifactId": "914e0ec1-023e-5f21-a353-c3d8555e26fa",
+          "projectionDigest": "sha256:2d59d02ac2dd964183173e7820448656bdbcd497bfa65a7884fcaee1f3bd70ee",
+          "transformationArtifactId": "47ccf319-74ba-5a1c-a422-85eef1de82b8",
+          "selector": {
+            "kind": "html",
+            "domPath": "1/5/3/6/0/2/0/0/0/1/1"
+          },
+          "selectedContentDigest": "sha256:7eaeb932b7f34fddd589926576860358990fc7974569a12032e38bbfe335dfbf",
+          "excerpt": "The underlying assay demonstrates strong technical reproducibility: the same sample produces consistent results across repeated runs, offering confidence that measured changes reflect real biology, not instrument variation.",
+          "rights": "restricted internal preparation; not approved for provider upload or public redistribution",
+          "providerUploadAuthorized": false
+        }
+      ],
+      "expectation": {
+        "label": "unsupported",
+        "labelStatus": "engineering_expectation",
+        "expectedPolicy": "fail",
+        "expectedLocatorValid": true,
+        "support": "none",
+        "authority": "interested_party_only",
+        "worldCorrectness": "unknown",
+        "rationale": "Engineering expectation for repeatability_to_accuracy; human annotation and expert adjudication remain pending."
+      },
+      "independentObservation": false,
+      "humanGoldScoringEligible": false,
+      "adjudicationId": null
+    },
+    {
+      "schemaVersion": "verification-benchmark.v1",
+      "caseId": "gl-no-diagnosis-source",
+      "caseDigest": "sha256:256fd5838e8e9baa39a8ac387e404a1b21b681efee12e893604a848e8c4c8385",
+      "partition": "development",
+      "inputManifestArtifactId": "bd492e7e-01b5-5951-aa83-305ba4ba37b4",
+      "goldArtifactId": "69295f97-a9a4-5bde-a781-3e086c0e4126",
+      "modality": "html",
+      "sourceFamily": "company:generation-lab",
+      "entityFamily": "company:generation-lab",
+      "reportCluster": "company:generation-lab",
+      "pairCluster": "gl-no-diagnosis",
+      "tags": [
+        "safety",
+        "literal_source_summary",
+        "first_party",
+        "provider_grant_d013",
+        "literal"
+      ],
+      "adversarialTransforms": [],
+      "assertion": "Generation Lab states that the report does not constitute diagnosis.",
+      "evidence": [
+        {
+          "fragmentId": "sha256:be7d8deb0c9a8a640843d3addbd0c241cdf2f7beec1d3d8fad7b24a2445cd6ff",
+          "captureId": "dc5210dc-7826-524e-ad73-27a3baf6c4ae",
+          "sourceKey": "gl-terms",
+          "sourceClass": "first_party",
+          "projectionArtifactId": "0d3a77f2-20eb-58e0-afac-b932bb55e172",
+          "projectionDigest": "sha256:f3c462cade3dde56db7d70f0e5141798cd18bde96f5cabc3b18923543a9ff896",
+          "transformationArtifactId": "3a281fe2-cd85-5cec-a90a-22a372d76d2d",
+          "selector": {
+            "kind": "html",
+            "domPath": "1/9/1/2/0/12"
+          },
+          "selectedContentDigest": "sha256:361bef9e89b2908bf5b5e1721686f53686399ae004fe42b5ae509d051a988a4c",
+          "excerpt": "Generation Lab does not practice medicine or provide medical advice. Nothing on the Platform — including the Report, any recommendations, provider matching, or communications — constitutes medical care, diagnosis, or treatment.",
+          "rights": "restricted internal preparation; not approved for provider upload or public redistribution",
+          "providerUploadAuthorized": false
+        }
+      ],
+      "expectation": {
+        "label": "supported_by_source",
+        "labelStatus": "engineering_expectation",
+        "expectedPolicy": "pass_with_warnings",
+        "expectedLocatorValid": true,
+        "support": "full",
+        "authority": "interested_party_only",
+        "worldCorrectness": "not_established",
+        "rationale": "The captured first-party fragment directly supports the bounded company-as-source statement; real-world correctness remains unestablished."
+      },
+      "independentObservation": false,
+      "humanGoldScoringEligible": false,
+      "adjudicationId": null
+    },
+    {
+      "schemaVersion": "verification-benchmark.v1",
+      "caseId": "gl-no-diagnosis-mutated",
+      "caseDigest": "sha256:bfc792fc571fcb956c903032e1fc647f4e7f80a8e0b12946172d36a8021bf19f",
+      "partition": "development",
+      "inputManifestArtifactId": "d24c3dae-3eb8-5eee-aa24-b5e0b0fad85f",
+      "goldArtifactId": "7ba5f91a-d718-5273-a896-64d2bea9b154",
+      "modality": "html",
+      "sourceFamily": "company:generation-lab",
+      "entityFamily": "company:generation-lab",
+      "reportCluster": "company:generation-lab",
+      "pairCluster": "gl-no-diagnosis",
+      "tags": [
+        "safety",
+        "negation_removal",
+        "first_party",
+        "provider_grant_d013",
+        "adversarial"
+      ],
+      "adversarialTransforms": [
+        "negation_removal"
+      ],
+      "assertion": "The platform's report constitutes medical diagnosis and treatment.",
+      "evidence": [
+        {
+          "fragmentId": "sha256:be7d8deb0c9a8a640843d3addbd0c241cdf2f7beec1d3d8fad7b24a2445cd6ff",
+          "captureId": "dc5210dc-7826-524e-ad73-27a3baf6c4ae",
+          "sourceKey": "gl-terms",
+          "sourceClass": "first_party",
+          "projectionArtifactId": "0d3a77f2-20eb-58e0-afac-b932bb55e172",
+          "projectionDigest": "sha256:f3c462cade3dde56db7d70f0e5141798cd18bde96f5cabc3b18923543a9ff896",
+          "transformationArtifactId": "3a281fe2-cd85-5cec-a90a-22a372d76d2d",
+          "selector": {
+            "kind": "html",
+            "domPath": "1/9/1/2/0/12"
+          },
+          "selectedContentDigest": "sha256:361bef9e89b2908bf5b5e1721686f53686399ae004fe42b5ae509d051a988a4c",
+          "excerpt": "Generation Lab does not practice medicine or provide medical advice. Nothing on the Platform — including the Report, any recommendations, provider matching, or communications — constitutes medical care, diagnosis, or treatment.",
+          "rights": "restricted internal preparation; not approved for provider upload or public redistribution",
+          "providerUploadAuthorized": false
+        }
+      ],
+      "expectation": {
+        "label": "contradicted",
+        "labelStatus": "engineering_expectation",
+        "expectedPolicy": "fail",
+        "expectedLocatorValid": true,
+        "support": "contradicted",
+        "authority": "interested_party_only",
+        "worldCorrectness": "unknown",
+        "rationale": "Engineering expectation for negation_removal; human annotation and expert adjudication remain pending."
+      },
+      "independentObservation": false,
+      "humanGoldScoringEligible": false,
+      "adjudicationId": null
+    },
+    {
+      "schemaVersion": "verification-benchmark.v1",
+      "caseId": "gl-consultation-source",
+      "caseDigest": "sha256:de71678dd060c6bcff1c6dd611876b7e38fd25e76e26305fa26d2e8a3634af9b",
+      "partition": "development",
+      "inputManifestArtifactId": "3a907cc3-51ac-5c5f-ac27-f01754c31a1b",
+      "goldArtifactId": "aa881ba8-995f-5ba7-a728-905f8510c0f8",
+      "modality": "html",
+      "sourceFamily": "company:generation-lab",
+      "entityFamily": "company:generation-lab",
+      "reportCluster": "company:generation-lab",
+      "pairCluster": "gl-consultation",
+      "tags": [
+        "safety",
+        "literal_source_summary",
+        "first_party",
+        "provider_grant_d013",
+        "literal"
+      ],
+      "adversarialTransforms": [],
+      "assertion": "The report states that pre-clinical recommendations should not be acted upon without first consulting a qualified healthcare provider.",
+      "evidence": [
+        {
+          "fragmentId": "sha256:c2503bfd016fea7803d7adb21ca6d427836c11a1b586ee5fa7da8c1cc644f35f",
+          "captureId": "dc5210dc-7826-524e-ad73-27a3baf6c4ae",
+          "sourceKey": "gl-terms",
+          "sourceClass": "first_party",
+          "projectionArtifactId": "0d3a77f2-20eb-58e0-afac-b932bb55e172",
+          "projectionDigest": "sha256:f3c462cade3dde56db7d70f0e5141798cd18bde96f5cabc3b18923543a9ff896",
+          "transformationArtifactId": "3a281fe2-cd85-5cec-a90a-22a372d76d2d",
+          "selector": {
+            "kind": "html",
+            "domPath": "1/9/1/2/0/13"
+          },
+          "selectedContentDigest": "sha256:6c8a7e0a04ef69459a758c9949efe45df6beacf888731243fb3b23d408c2c7d8",
+          "excerpt": "The Report contains personalized pre-clinical observations about biomarkers of aging and may surface common approaches associated with improving the health functions where you are showing signs of biological aging. These observations and approaches are informational and pre-clinical in nature. The Report clearly identifies these as pre-clinical recommendations that should not be acted upon without first consulting a qualified healthcare provider.",
+          "rights": "restricted internal preparation; not approved for provider upload or public redistribution",
+          "providerUploadAuthorized": false
+        }
+      ],
+      "expectation": {
+        "label": "supported_by_source",
+        "labelStatus": "engineering_expectation",
+        "expectedPolicy": "pass_with_warnings",
+        "expectedLocatorValid": true,
+        "support": "full",
+        "authority": "interested_party_only",
+        "worldCorrectness": "not_established",
+        "rationale": "The captured first-party fragment directly supports the bounded company-as-source statement; real-world correctness remains unestablished."
+      },
+      "independentObservation": false,
+      "humanGoldScoringEligible": false,
+      "adjudicationId": null
+    },
+    {
+      "schemaVersion": "verification-benchmark.v1",
+      "caseId": "gl-consultation-mutated",
+      "caseDigest": "sha256:cad6a4058ac003ada7ab6a3a55441a514413f639e822327ce19b20dbba9da7a3",
+      "partition": "development",
+      "inputManifestArtifactId": "8c28f2ba-1ee6-56ff-aaee-044da5ecafe4",
+      "goldArtifactId": "719199b2-de08-5389-a09f-9917beffb816",
+      "modality": "html",
+      "sourceFamily": "company:generation-lab",
+      "entityFamily": "company:generation-lab",
+      "reportCluster": "company:generation-lab",
+      "pairCluster": "gl-consultation",
+      "tags": [
+        "safety",
+        "safety_qualifier_reversal",
+        "first_party",
+        "provider_grant_d013",
+        "adversarial"
+      ],
+      "adversarialTransforms": [
+        "safety_qualifier_reversal"
+      ],
+      "assertion": "Pre-clinical recommendations may be acted on without consulting a healthcare provider.",
+      "evidence": [
+        {
+          "fragmentId": "sha256:c2503bfd016fea7803d7adb21ca6d427836c11a1b586ee5fa7da8c1cc644f35f",
+          "captureId": "dc5210dc-7826-524e-ad73-27a3baf6c4ae",
+          "sourceKey": "gl-terms",
+          "sourceClass": "first_party",
+          "projectionArtifactId": "0d3a77f2-20eb-58e0-afac-b932bb55e172",
+          "projectionDigest": "sha256:f3c462cade3dde56db7d70f0e5141798cd18bde96f5cabc3b18923543a9ff896",
+          "transformationArtifactId": "3a281fe2-cd85-5cec-a90a-22a372d76d2d",
+          "selector": {
+            "kind": "html",
+            "domPath": "1/9/1/2/0/13"
+          },
+          "selectedContentDigest": "sha256:6c8a7e0a04ef69459a758c9949efe45df6beacf888731243fb3b23d408c2c7d8",
+          "excerpt": "The Report contains personalized pre-clinical observations about biomarkers of aging and may surface common approaches associated with improving the health functions where you are showing signs of biological aging. These observations and approaches are informational and pre-clinical in nature. The Report clearly identifies these as pre-clinical recommendations that should not be acted upon without first consulting a qualified healthcare provider.",
+          "rights": "restricted internal preparation; not approved for provider upload or public redistribution",
+          "providerUploadAuthorized": false
+        }
+      ],
+      "expectation": {
+        "label": "contradicted",
+        "labelStatus": "engineering_expectation",
+        "expectedPolicy": "fail",
+        "expectedLocatorValid": true,
+        "support": "contradicted",
+        "authority": "interested_party_only",
+        "worldCorrectness": "unknown",
+        "rationale": "Engineering expectation for safety_qualifier_reversal; human annotation and expert adjudication remain pending."
+      },
+      "independentObservation": false,
+      "humanGoldScoringEligible": false,
+      "adjudicationId": null
+    },
+    {
+      "schemaVersion": "verification-benchmark.v1",
+      "caseId": "gl-informational-source",
+      "caseDigest": "sha256:227c76181a211c7e5eba4672a50e5fdcc9d3a6beef7da0c1307470d58bb3b9c4",
+      "partition": "development",
+      "inputManifestArtifactId": "a47979cf-a89a-52c5-a600-dc03271f5f6c",
+      "goldArtifactId": "469513e9-107a-5f63-a807-89c4b0b1a421",
+      "modality": "html",
+      "sourceFamily": "company:generation-lab",
+      "entityFamily": "company:generation-lab",
+      "reportCluster": "company:generation-lab",
+      "pairCluster": "gl-informational",
+      "tags": [
+        "safety",
+        "literal_source_summary",
+        "first_party",
+        "provider_grant_d013",
+        "literal"
+      ],
+      "adversarialTransforms": [],
+      "assertion": "Generation Lab states that the report is for informational purposes only.",
+      "evidence": [
+        {
+          "fragmentId": "sha256:01c43d9d9fefa19e525ccd70c20aff007c2c0daef3828038d88898aee4ce23ce",
+          "captureId": "dc5210dc-7826-524e-ad73-27a3baf6c4ae",
+          "sourceKey": "gl-terms",
+          "sourceClass": "first_party",
+          "projectionArtifactId": "0d3a77f2-20eb-58e0-afac-b932bb55e172",
+          "projectionDigest": "sha256:f3c462cade3dde56db7d70f0e5141798cd18bde96f5cabc3b18923543a9ff896",
+          "transformationArtifactId": "3a281fe2-cd85-5cec-a90a-22a372d76d2d",
+          "selector": {
+            "kind": "html",
+            "domPath": "1/9/1/2/0/17"
+          },
+          "selectedContentDigest": "sha256:c74d21b29ce8f4b92e030c0efb817d520e8dcbfcac8b20c370a99319b52b31a9",
+          "excerpt": "The Report is for informational purposes only. Generation Lab makes no representations or warranties regarding the completeness, accuracy, or fitness for any particular purpose of the Report or its contents beyond those expressly stated in these Terms.",
+          "rights": "restricted internal preparation; not approved for provider upload or public redistribution",
+          "providerUploadAuthorized": false
+        }
+      ],
+      "expectation": {
+        "label": "supported_by_source",
+        "labelStatus": "engineering_expectation",
+        "expectedPolicy": "pass_with_warnings",
+        "expectedLocatorValid": true,
+        "support": "full",
+        "authority": "interested_party_only",
+        "worldCorrectness": "not_established",
+        "rationale": "The captured first-party fragment directly supports the bounded company-as-source statement; real-world correctness remains unestablished."
+      },
+      "independentObservation": false,
+      "humanGoldScoringEligible": false,
+      "adjudicationId": null
+    },
+    {
+      "schemaVersion": "verification-benchmark.v1",
+      "caseId": "gl-informational-mutated",
+      "caseDigest": "sha256:a3697c0e7ec68403c1ebf9e297916d9d0d279832eda43d8e16e5207f0643e7f4",
+      "partition": "development",
+      "inputManifestArtifactId": "7e67fa5b-0cf8-53c8-a7b6-07a1f8580b07",
+      "goldArtifactId": "96fbce98-5a8b-54e5-ab4f-e4ef4197cae3",
+      "modality": "html",
+      "sourceFamily": "company:generation-lab",
+      "entityFamily": "company:generation-lab",
+      "reportCluster": "company:generation-lab",
+      "pairCluster": "gl-informational",
+      "tags": [
+        "safety",
+        "warranty_overextension",
+        "first_party",
+        "provider_grant_d013",
+        "adversarial"
+      ],
+      "adversarialTransforms": [
+        "warranty_overextension"
+      ],
+      "assertion": "Generation Lab warrants the report's completeness and fitness for every medical purpose.",
+      "evidence": [
+        {
+          "fragmentId": "sha256:01c43d9d9fefa19e525ccd70c20aff007c2c0daef3828038d88898aee4ce23ce",
+          "captureId": "dc5210dc-7826-524e-ad73-27a3baf6c4ae",
+          "sourceKey": "gl-terms",
+          "sourceClass": "first_party",
+          "projectionArtifactId": "0d3a77f2-20eb-58e0-afac-b932bb55e172",
+          "projectionDigest": "sha256:f3c462cade3dde56db7d70f0e5141798cd18bde96f5cabc3b18923543a9ff896",
+          "transformationArtifactId": "3a281fe2-cd85-5cec-a90a-22a372d76d2d",
+          "selector": {
+            "kind": "html",
+            "domPath": "1/9/1/2/0/17"
+          },
+          "selectedContentDigest": "sha256:c74d21b29ce8f4b92e030c0efb817d520e8dcbfcac8b20c370a99319b52b31a9",
+          "excerpt": "The Report is for informational purposes only. Generation Lab makes no representations or warranties regarding the completeness, accuracy, or fitness for any particular purpose of the Report or its contents beyond those expressly stated in these Terms.",
+          "rights": "restricted internal preparation; not approved for provider upload or public redistribution",
+          "providerUploadAuthorized": false
+        }
+      ],
+      "expectation": {
+        "label": "contradicted",
+        "labelStatus": "engineering_expectation",
+        "expectedPolicy": "fail",
+        "expectedLocatorValid": true,
+        "support": "contradicted",
+        "authority": "interested_party_only",
+        "worldCorrectness": "unknown",
+        "rationale": "Engineering expectation for warranty_overextension; human annotation and expert adjudication remain pending."
+      },
+      "independentObservation": false,
+      "humanGoldScoringEligible": false,
+      "adjudicationId": null
+    },
+    {
+      "schemaVersion": "verification-benchmark.v1",
+      "caseId": "pace-definition-source",
+      "caseDigest": "sha256:bf2319358545c6ff73a05f7a2af155541713211266fc7d385a091d137fce7704",
+      "partition": "development",
+      "inputManifestArtifactId": "ad041081-0273-5482-ab55-cd36f67b36c5",
+      "goldArtifactId": "2e6559db-93ef-5848-afa1-2c5f9b86969f",
+      "modality": "html",
+      "sourceFamily": "study:dunedinpace-1972-1973",
+      "entityFamily": "study:dunedinpace-1972-1973",
+      "reportCluster": "study:dunedinpace-1972-1973",
+      "pairCluster": "pace-definition",
+      "tags": [
+        "publication_scope",
+        "literal_source_summary",
+        "publication",
+        "provider_grant_d013",
+        "literal"
+      ],
+      "adversarialTransforms": [],
+      "assertion": "The paper introduces DunedinPACE as a DNA-methylation biomarker of Pace of Aging.",
+      "evidence": [
+        {
+          "fragmentId": "sha256:a2fda48762aa0e3c4f73beb7cd53ba7fe9757e0933fcb7e9def1932467fcf879",
+          "captureId": "60f7dd92-6f3f-5205-a08a-cea2d0770489",
+          "sourceKey": "paper-pace",
+          "sourceClass": "publication",
+          "projectionArtifactId": "cb9b6f63-800e-5079-afd1-f82fc2a43b06",
+          "projectionDigest": "sha256:87eee3598cf29dab59e1a8c7b70cef756b69a652c0c2787656d3fa02913d2af6",
+          "transformationArtifactId": "8fd5c39f-11e0-5598-a82c-59fc8d169031",
+          "selector": {
+            "kind": "html",
+            "domPath": "2/11/3/1/1/1/3/2/2/1/0/0/2/2"
+          },
+          "selectedContentDigest": "sha256:34df35a06c7a102de733fae08b73c10230ac48487c7f73b89b074dee73b3ecdc",
+          "excerpt": "Measures to quantify changes in the pace of biological aging in response to intervention are needed to evaluate geroprotective interventions for humans. Previously, we showed that quantification of the pace of biological aging from a DNA-methylation blood test was possible (Belsky et al., 2020). Here, we report a next-generation DNA-methylation biomarker of Pace of Aging, DunedinPACE (for Pace of Aging Calculated from the Epigenome).",
+          "rights": "restricted internal preparation; not approved for provider upload or public redistribution",
+          "providerUploadAuthorized": false
+        }
+      ],
+      "expectation": {
+        "label": "supported_by_source",
+        "labelStatus": "engineering_expectation",
+        "expectedPolicy": "pass_with_warnings",
+        "expectedLocatorValid": true,
+        "support": "full",
+        "authority": "sufficient",
+        "worldCorrectness": "not_established",
+        "rationale": "The captured publication directly supports this bounded method or study statement; commercial applicability remains separate."
+      },
+      "independentObservation": true,
+      "humanGoldScoringEligible": false,
+      "adjudicationId": null
+    },
+    {
+      "schemaVersion": "verification-benchmark.v1",
+      "caseId": "pace-definition-mutated",
+      "caseDigest": "sha256:c6c69fc72265fca63f6f215651a0b0032152ed222172be196945807055aae9cc",
+      "partition": "development",
+      "inputManifestArtifactId": "44383861-af3d-57e3-a1eb-822e9e0c510a",
+      "goldArtifactId": "38489772-d3ed-5be5-a511-d3cd1c086c06",
+      "modality": "html",
+      "sourceFamily": "study:dunedinpace-1972-1973",
+      "entityFamily": "study:dunedinpace-1972-1973",
+      "reportCluster": "study:dunedinpace-1972-1973",
+      "pairCluster": "pace-definition",
+      "tags": [
+        "publication_scope",
+        "method_to_product_validation",
+        "publication",
+        "provider_grant_d013",
+        "adversarial"
+      ],
+      "adversarialTransforms": [
+        "method_to_product_validation"
+      ],
+      "assertion": "This paragraph validates every commercial feature of TruAge and SystemAge.",
+      "evidence": [
+        {
+          "fragmentId": "sha256:a2fda48762aa0e3c4f73beb7cd53ba7fe9757e0933fcb7e9def1932467fcf879",
+          "captureId": "60f7dd92-6f3f-5205-a08a-cea2d0770489",
+          "sourceKey": "paper-pace",
+          "sourceClass": "publication",
+          "projectionArtifactId": "cb9b6f63-800e-5079-afd1-f82fc2a43b06",
+          "projectionDigest": "sha256:87eee3598cf29dab59e1a8c7b70cef756b69a652c0c2787656d3fa02913d2af6",
+          "transformationArtifactId": "8fd5c39f-11e0-5598-a82c-59fc8d169031",
+          "selector": {
+            "kind": "html",
+            "domPath": "2/11/3/1/1/1/3/2/2/1/0/0/2/2"
+          },
+          "selectedContentDigest": "sha256:34df35a06c7a102de733fae08b73c10230ac48487c7f73b89b074dee73b3ecdc",
+          "excerpt": "Measures to quantify changes in the pace of biological aging in response to intervention are needed to evaluate geroprotective interventions for humans. Previously, we showed that quantification of the pace of biological aging from a DNA-methylation blood test was possible (Belsky et al., 2020). Here, we report a next-generation DNA-methylation biomarker of Pace of Aging, DunedinPACE (for Pace of Aging Calculated from the Epigenome).",
+          "rights": "restricted internal preparation; not approved for provider upload or public redistribution",
+          "providerUploadAuthorized": false
+        }
+      ],
+      "expectation": {
+        "label": "unsupported",
+        "labelStatus": "engineering_expectation",
+        "expectedPolicy": "fail",
+        "expectedLocatorValid": true,
+        "support": "none",
+        "authority": "insufficient",
+        "worldCorrectness": "unknown",
+        "rationale": "Engineering expectation for method_to_product_validation; human annotation and expert adjudication remain pending."
+      },
+      "independentObservation": false,
+      "humanGoldScoringEligible": false,
+      "adjudicationId": null
+    },
+    {
+      "schemaVersion": "verification-benchmark.v1",
+      "caseId": "pace-cohort-source",
+      "caseDigest": "sha256:5dc3a36426d43884f8a1fa195527908f25051b705690e2fe54edf8fd4b20e7b4",
+      "partition": "development",
+      "inputManifestArtifactId": "15b6ab06-dcdd-5dc4-a3fe-6f28f4c4b430",
+      "goldArtifactId": "4d8069d6-3e77-5bbd-a385-1b1a4277fc93",
+      "modality": "html",
+      "sourceFamily": "study:dunedinpace-1972-1973",
+      "entityFamily": "study:dunedinpace-1972-1973",
+      "reportCluster": "study:dunedinpace-1972-1973",
+      "pairCluster": "pace-cohort",
+      "tags": [
+        "population_scope",
+        "literal_source_summary",
+        "publication",
+        "provider_grant_d013",
+        "literal"
+      ],
+      "adversarialTransforms": [],
+      "assertion": "The DunedinPACE model used within-individual decline in 19 indicators across four time points over two decades in the 1972–1973 Dunedin birth cohort.",
+      "evidence": [
+        {
+          "fragmentId": "sha256:a21b68a9fea2a3b97e6bddb8400e899647c802ae419291285d68581fc970dca0",
+          "captureId": "60f7dd92-6f3f-5205-a08a-cea2d0770489",
+          "sourceKey": "paper-pace",
+          "sourceClass": "publication",
+          "projectionArtifactId": "cb9b6f63-800e-5079-afd1-f82fc2a43b06",
+          "projectionDigest": "sha256:87eee3598cf29dab59e1a8c7b70cef756b69a652c0c2787656d3fa02913d2af6",
+          "transformationArtifactId": "8fd5c39f-11e0-5598-a82c-59fc8d169031",
+          "selector": {
+            "kind": "html",
+            "domPath": "2/11/3/1/1/1/3/2/2/1/0/0/3/2"
+          },
+          "selectedContentDigest": "sha256:84f372b15d2a79e402ba1be203425eee09f6106bb0cba719411fe1d5d14c4954",
+          "excerpt": "We used data from the Dunedin Study 1972–1973 birth cohort tracking within-individual decline in 19 indicators of organ-system integrity across four time points spanning two decades to model Pace of Aging. We distilled this two-decade Pace of Aging into a single-time-point DNA-methylation blood-test using elastic-net regression and a DNA-methylation dataset restricted to exclude probes with low test-retest reliability. We evaluated the resulting measure, named DunedinPACE, in five additional datasets.",
+          "rights": "restricted internal preparation; not approved for provider upload or public redistribution",
+          "providerUploadAuthorized": false
+        }
+      ],
+      "expectation": {
+        "label": "supported_by_source",
+        "labelStatus": "engineering_expectation",
+        "expectedPolicy": "pass_with_warnings",
+        "expectedLocatorValid": true,
+        "support": "full",
+        "authority": "sufficient",
+        "worldCorrectness": "not_established",
+        "rationale": "The captured publication directly supports this bounded method or study statement; commercial applicability remains separate."
+      },
+      "independentObservation": false,
+      "humanGoldScoringEligible": false,
+      "adjudicationId": null
+    },
+    {
+      "schemaVersion": "verification-benchmark.v1",
+      "caseId": "pace-cohort-mutated",
+      "caseDigest": "sha256:f1f77facfe64397e01d042402755011269fafa58bd3cf05028697c1005aea7a2",
+      "partition": "development",
+      "inputManifestArtifactId": "eebcaf16-c038-5bc8-a18a-5fc745be23cc",
+      "goldArtifactId": "952e5e40-ffac-58d5-a727-8fda505303e8",
+      "modality": "html",
+      "sourceFamily": "study:dunedinpace-1972-1973",
+      "entityFamily": "study:dunedinpace-1972-1973",
+      "reportCluster": "study:dunedinpace-1972-1973",
+      "pairCluster": "pace-cohort",
+      "tags": [
+        "population_scope",
+        "study_design_swap",
+        "publication",
+        "provider_grant_d013",
+        "adversarial"
+      ],
+      "adversarialTransforms": [
+        "study_design_swap"
+      ],
+      "assertion": "The paragraph describes a randomized intervention trial with only one measurement occasion.",
+      "evidence": [
+        {
+          "fragmentId": "sha256:a21b68a9fea2a3b97e6bddb8400e899647c802ae419291285d68581fc970dca0",
+          "captureId": "60f7dd92-6f3f-5205-a08a-cea2d0770489",
+          "sourceKey": "paper-pace",
+          "sourceClass": "publication",
+          "projectionArtifactId": "cb9b6f63-800e-5079-afd1-f82fc2a43b06",
+          "projectionDigest": "sha256:87eee3598cf29dab59e1a8c7b70cef756b69a652c0c2787656d3fa02913d2af6",
+          "transformationArtifactId": "8fd5c39f-11e0-5598-a82c-59fc8d169031",
+          "selector": {
+            "kind": "html",
+            "domPath": "2/11/3/1/1/1/3/2/2/1/0/0/3/2"
+          },
+          "selectedContentDigest": "sha256:84f372b15d2a79e402ba1be203425eee09f6106bb0cba719411fe1d5d14c4954",
+          "excerpt": "We used data from the Dunedin Study 1972–1973 birth cohort tracking within-individual decline in 19 indicators of organ-system integrity across four time points spanning two decades to model Pace of Aging. We distilled this two-decade Pace of Aging into a single-time-point DNA-methylation blood-test using elastic-net regression and a DNA-methylation dataset restricted to exclude probes with low test-retest reliability. We evaluated the resulting measure, named DunedinPACE, in five additional datasets.",
+          "rights": "restricted internal preparation; not approved for provider upload or public redistribution",
+          "providerUploadAuthorized": false
+        }
+      ],
+      "expectation": {
+        "label": "contradicted",
+        "labelStatus": "engineering_expectation",
+        "expectedPolicy": "fail",
+        "expectedLocatorValid": true,
+        "support": "contradicted",
+        "authority": "insufficient",
+        "worldCorrectness": "unknown",
+        "rationale": "Engineering expectation for study_design_swap; human annotation and expert adjudication remain pending."
+      },
+      "independentObservation": false,
+      "humanGoldScoringEligible": false,
+      "adjudicationId": null
+    },
+    {
+      "schemaVersion": "verification-benchmark.v1",
+      "caseId": "noise-method-source",
+      "caseDigest": "sha256:8116621c401664d739d230e0c9357e14b1679e9cce9e3f5e47434715806d4b9c",
+      "partition": "development",
+      "inputManifestArtifactId": "d91f7904-3903-5da4-a1f7-bea5dbaa36d5",
+      "goldArtifactId": "6041270c-3b63-55a3-aa32-f3ab6f355987",
+      "modality": "html",
+      "sourceFamily": "study:noise-barometer-multidataset",
+      "entityFamily": "study:noise-barometer-multidataset",
+      "reportCluster": "study:noise-barometer-multidataset",
+      "pairCluster": "noise-method",
+      "tags": [
+        "publication_scope",
+        "literal_source_summary",
+        "publication",
+        "provider_grant_d013",
+        "literal"
+      ],
+      "adversarialTransforms": [],
+      "assertion": "The paper describes a noise barometer as a measurement of biological age.",
+      "evidence": [
+        {
+          "fragmentId": "sha256:3948989bb045b9a2826f45acbb9f6c0a12462e82ac49d76be3f4f0131c0ff0af",
+          "captureId": "85d9b0d4-34b8-5720-ab3c-012c57b68b1b",
+          "sourceKey": "paper-noise",
+          "sourceClass": "publication",
+          "projectionArtifactId": "d1381f18-1073-5580-a9a9-e708017a7333",
+          "projectionDigest": "sha256:81a6d64be46c8af928412cc0216a2e51b0883dd94b72f52e258685ac0071827c",
+          "transformationArtifactId": "23041b41-2b62-5e80-a320-90429bdf007c",
+          "selector": {
+            "kind": "html",
+            "domPath": "2/11/3/1/1/1/3/2/2/1/0/1/17"
+          },
+          "selectedContentDigest": "sha256:0aa438675b8832b8db1669522e7d30187386867cce961a4387ed172f07870747",
+          "excerpt": "Here, we reveal the capacities and limitations of DNAme clocks of all generations, by expanding the n=1 experimental to a more systematic examination of clock performance on many different DNAme array datasets of healthy controls and patients with various diseases. Additionally, we show that even though EN regression models linearly predict age and risk of mortality from DNAme array data, the clocks are not based on any specific changes in DNA methylation with age, or dysregulation of such methylation, e.g., a change in SD of beta values. Lastly, we describe a conceptually different measurement (not a prediction) of persons’ biological age, which we term a noise barometer, reflecting the concept of pressure of aging and disease.",
+          "rights": "restricted internal preparation; not approved for provider upload or public redistribution",
+          "providerUploadAuthorized": false
+        }
+      ],
+      "expectation": {
+        "label": "supported_by_source",
+        "labelStatus": "engineering_expectation",
+        "expectedPolicy": "pass_with_warnings",
+        "expectedLocatorValid": true,
+        "support": "full",
+        "authority": "sufficient",
+        "worldCorrectness": "not_established",
+        "rationale": "The captured publication directly supports this bounded method or study statement; commercial applicability remains separate."
+      },
+      "independentObservation": true,
+      "humanGoldScoringEligible": false,
+      "adjudicationId": null
+    },
+    {
+      "schemaVersion": "verification-benchmark.v1",
+      "caseId": "noise-method-mutated",
+      "caseDigest": "sha256:045890db24d79ff5837af3dd5a72579832b44c1f819df457fda00156fd01ef60",
+      "partition": "development",
+      "inputManifestArtifactId": "500c63df-969a-5e42-a71c-580f7bd1c70b",
+      "goldArtifactId": "c8218487-80a1-5960-ab0f-0a7b8d2e4de2",
+      "modality": "html",
+      "sourceFamily": "study:noise-barometer-multidataset",
+      "entityFamily": "study:noise-barometer-multidataset",
+      "reportCluster": "study:noise-barometer-multidataset",
+      "pairCluster": "noise-method",
+      "tags": [
+        "publication_scope",
+        "invented_head_to_head",
+        "publication",
+        "provider_grant_d013",
+        "adversarial"
+      ],
+      "adversarialTransforms": [
+        "invented_head_to_head"
+      ],
+      "assertion": "This paragraph proves that SystemAge is superior to TruAge in an independent head-to-head clinical trial.",
+      "evidence": [
+        {
+          "fragmentId": "sha256:3948989bb045b9a2826f45acbb9f6c0a12462e82ac49d76be3f4f0131c0ff0af",
+          "captureId": "85d9b0d4-34b8-5720-ab3c-012c57b68b1b",
+          "sourceKey": "paper-noise",
+          "sourceClass": "publication",
+          "projectionArtifactId": "d1381f18-1073-5580-a9a9-e708017a7333",
+          "projectionDigest": "sha256:81a6d64be46c8af928412cc0216a2e51b0883dd94b72f52e258685ac0071827c",
+          "transformationArtifactId": "23041b41-2b62-5e80-a320-90429bdf007c",
+          "selector": {
+            "kind": "html",
+            "domPath": "2/11/3/1/1/1/3/2/2/1/0/1/17"
+          },
+          "selectedContentDigest": "sha256:0aa438675b8832b8db1669522e7d30187386867cce961a4387ed172f07870747",
+          "excerpt": "Here, we reveal the capacities and limitations of DNAme clocks of all generations, by expanding the n=1 experimental to a more systematic examination of clock performance on many different DNAme array datasets of healthy controls and patients with various diseases. Additionally, we show that even though EN regression models linearly predict age and risk of mortality from DNAme array data, the clocks are not based on any specific changes in DNA methylation with age, or dysregulation of such methylation, e.g., a change in SD of beta values. Lastly, we describe a conceptually different measurement (not a prediction) of persons’ biological age, which we term a noise barometer, reflecting the concept of pressure of aging and disease.",
+          "rights": "restricted internal preparation; not approved for provider upload or public redistribution",
+          "providerUploadAuthorized": false
+        }
+      ],
+      "expectation": {
+        "label": "unsupported",
+        "labelStatus": "engineering_expectation",
+        "expectedPolicy": "fail",
+        "expectedLocatorValid": true,
+        "support": "none",
+        "authority": "insufficient",
+        "worldCorrectness": "unknown",
+        "rationale": "Engineering expectation for invented_head_to_head; human annotation and expert adjudication remain pending."
+      },
+      "independentObservation": false,
+      "humanGoldScoringEligible": false,
+      "adjudicationId": null
+    },
+    {
+      "schemaVersion": "verification-benchmark.v1",
+      "caseId": "gl-interested-comparison-source",
+      "caseDigest": "sha256:56ada05e478c4f326cff2d17e63901e5d2244f8fcccf80edfa186d2e32f260c2",
+      "partition": "development",
+      "inputManifestArtifactId": "bbb7615e-8fb4-5795-a460-35cedb0f55c0",
+      "goldArtifactId": "79639ae0-6d88-5d33-a670-2d2a6057f38a",
+      "modality": "html",
+      "sourceFamily": "company:generation-lab",
+      "entityFamily": "company:generation-lab",
+      "reportCluster": "company:generation-lab",
+      "pairCluster": "gl-interested-comparison",
+      "tags": [
+        "authority",
+        "literal_source_summary",
+        "interested_party_comparison",
+        "provider_grant_d013",
+        "literal"
+      ],
+      "adversarialTransforms": [],
+      "assertion": "Generation Lab's comparison page calls SystemAge the most advanced and comprehensive aging-speed test in preventive healthcare.",
+      "evidence": [
+        {
+          "fragmentId": "sha256:da3f6832ec5dc380bb5a66581870c90fd913a4e259c25aff042c88297bce18d0",
+          "captureId": "090d82ef-687b-5230-a581-afd105b572ca",
+          "sourceKey": "gl-comparison",
+          "sourceClass": "interested_party_comparison",
+          "projectionArtifactId": "a466058e-f04a-56e1-a698-a72d74b6fb38",
+          "projectionDigest": "sha256:61ef5c94266f2866d39c304d7f98f859ef5c2d50e08e7554760da820f689a6d6",
+          "transformationArtifactId": "bd8b6119-ea1e-5201-ae1f-0a430431a0df",
+          "selector": {
+            "kind": "html",
+            "domPath": "1/5/2/0/0/1/1/0/0"
+          },
+          "selectedContentDigest": "sha256:7ee1cd1972ba8cd1701c79238567c493d37a5eae951cfa0f22481eaefc6a1af8",
+          "excerpt": "Used by thousands of people around the world, the SystemAge test by Generation Lab is the most advanced and comprehensive aging speed test in preventive healthcare.",
+          "rights": "restricted internal preparation; not approved for provider upload or public redistribution",
+          "providerUploadAuthorized": false
+        }
+      ],
+      "expectation": {
+        "label": "promotional_only",
+        "labelStatus": "engineering_expectation",
+        "expectedPolicy": "review",
+        "expectedLocatorValid": true,
+        "support": "full",
+        "authority": "interested_party_only",
+        "worldCorrectness": "not_established",
+        "rationale": "The exact interested-party source supports only that the company made the promotional statement; it does not independently establish the superlative."
+      },
+      "independentObservation": false,
+      "humanGoldScoringEligible": false,
+      "adjudicationId": null
+    },
+    {
+      "schemaVersion": "verification-benchmark.v1",
+      "caseId": "gl-interested-comparison-mutated",
+      "caseDigest": "sha256:e114941d49202d116ac31204ddc27b2a70964d67a8c669f0e6551de30e8557d3",
+      "partition": "development",
+      "inputManifestArtifactId": "767db310-8dd0-577c-a419-451c3c14498b",
+      "goldArtifactId": "3d28a7c2-1e13-5e71-a934-2877e4092d06",
+      "modality": "html",
+      "sourceFamily": "company:generation-lab",
+      "entityFamily": "company:generation-lab",
+      "reportCluster": "company:generation-lab",
+      "pairCluster": "gl-interested-comparison",
+      "tags": [
+        "authority",
+        "interested_party_to_independent",
+        "interested_party_comparison",
+        "provider_grant_d013",
+        "adversarial"
+      ],
+      "adversarialTransforms": [
+        "interested_party_to_independent"
+      ],
+      "assertion": "An independent clinical trial establishes that SystemAge is the most advanced and comprehensive aging test.",
+      "evidence": [
+        {
+          "fragmentId": "sha256:da3f6832ec5dc380bb5a66581870c90fd913a4e259c25aff042c88297bce18d0",
+          "captureId": "090d82ef-687b-5230-a581-afd105b572ca",
+          "sourceKey": "gl-comparison",
+          "sourceClass": "interested_party_comparison",
+          "projectionArtifactId": "a466058e-f04a-56e1-a698-a72d74b6fb38",
+          "projectionDigest": "sha256:61ef5c94266f2866d39c304d7f98f859ef5c2d50e08e7554760da820f689a6d6",
+          "transformationArtifactId": "bd8b6119-ea1e-5201-ae1f-0a430431a0df",
+          "selector": {
+            "kind": "html",
+            "domPath": "1/5/2/0/0/1/1/0/0"
+          },
+          "selectedContentDigest": "sha256:7ee1cd1972ba8cd1701c79238567c493d37a5eae951cfa0f22481eaefc6a1af8",
+          "excerpt": "Used by thousands of people around the world, the SystemAge test by Generation Lab is the most advanced and comprehensive aging speed test in preventive healthcare.",
+          "rights": "restricted internal preparation; not approved for provider upload or public redistribution",
+          "providerUploadAuthorized": false
+        }
+      ],
+      "expectation": {
+        "label": "unsupported",
+        "labelStatus": "engineering_expectation",
+        "expectedPolicy": "fail",
+        "expectedLocatorValid": true,
+        "support": "none",
+        "authority": "interested_party_only",
+        "worldCorrectness": "unknown",
+        "rationale": "Engineering expectation for interested_party_to_independent; human annotation and expert adjudication remain pending."
+      },
+      "independentObservation": false,
+      "humanGoldScoringEligible": false,
+      "adjudicationId": null
+    },
+    {
+      "schemaVersion": "verification-benchmark.v1",
+      "caseId": "tru-corrupted-locator",
+      "caseDigest": "sha256:06e6212c519f2b39f151758c36cb3d9a113b5310bff16a68f02cb03f6084b69e",
+      "partition": "development",
+      "inputManifestArtifactId": "118aad2a-b1ee-5122-ab95-7624672182b7",
+      "goldArtifactId": "4e2d67cf-1b65-55f2-a88a-52cdd2147dd4",
+      "modality": "html",
+      "sourceFamily": "company:trudiagnostic",
+      "entityFamily": "company:trudiagnostic",
+      "reportCluster": "company:trudiagnostic",
+      "pairCluster": "tru-corrupted-locator",
+      "tags": [
+        "locator",
+        "offline_mechanical"
+      ],
+      "adversarialTransforms": [
+        "corrupted_dom_path"
+      ],
+      "assertion": "Results are available within 2–4 weeks from the date the lab receives the sample.",
+      "evidence": [
+        {
+          "fragmentId": "sha256:a383de6dbe16655a6d53a01f5e629d3a7deee916ca489b44bcd6cd35875b00f3",
+          "captureId": "67b3c277-5c66-5ef5-ace8-66aff1d3e736",
+          "sourceKey": "tru-about",
+          "sourceClass": "first_party",
+          "projectionArtifactId": "b4573767-03c2-55e9-a771-0385eeff5aa5",
+          "projectionDigest": "sha256:102c76510c12f523e3d67d8795ceb2b20c40e95f055c0038965e6da1e9cedbb4",
+          "transformationArtifactId": "37fc6dff-19ec-5292-aef3-b861b305a7ed",
+          "selector": {
+            "kind": "html",
+            "domPath": "1/0/2/5/0/0/0/2/0/2/2/999999"
+          },
+          "selectedContentDigest": "sha256:442c2e1a7c9ac24dd696f11d4fe0da7afee7bb61457d9ce77f5e8b8e0c33b3d1",
+          "excerpt": "Results are available in your Provider Portal within 2–4 weeks from the date the lab receives the sample, including biological age, organ system–level ages, and aging speed, ready to review with your patient.",
+          "rights": "restricted internal preparation; not approved for provider upload or public redistribution",
+          "providerUploadAuthorized": false
+        }
+      ],
+      "expectation": {
+        "label": "locator_error",
+        "labelStatus": "engineering_expectation",
+        "expectedPolicy": "abstain",
+        "expectedLocatorValid": false,
+        "support": "not_applicable",
+        "authority": "not_applicable",
+        "worldCorrectness": "not_applicable",
+        "rationale": "The modified DOM path must fail closed before semantic evaluation."
+      },
+      "independentObservation": false,
+      "humanGoldScoringEligible": false,
+      "adjudicationId": null
+    },
+    {
+      "schemaVersion": "verification-benchmark.v1",
+      "caseId": "tru-pdf-graph-text-abstention",
+      "caseDigest": "sha256:50384e8d1a28b775a516da87a912ba4553b3e1ce5dd4bc86f820bc34c5e7035d",
+      "partition": "development",
+      "inputManifestArtifactId": "6f9444c9-c05a-5431-a873-f65a3e1301c7",
+      "goldArtifactId": "fd0f238f-f46c-54c9-a80d-79b99e2082a2",
+      "modality": "pdf",
+      "sourceFamily": "company:trudiagnostic",
+      "entityFamily": "company:trudiagnostic",
+      "reportCluster": "company:trudiagnostic",
+      "pairCluster": "tru-pdf-graph-text-abstention",
+      "tags": [
+        "pdf",
+        "graph",
+        "offline_mechanical"
+      ],
+      "adversarialTransforms": [],
+      "assertion": "Return the exact plotted graph value when no admitted text or geometry selector identifies it.",
+      "evidence": [],
+      "expectation": {
+        "label": "abstain",
+        "labelStatus": "engineering_expectation",
+        "expectedPolicy": "abstain",
+        "expectedLocatorValid": false,
+        "support": "not_applicable",
+        "authority": "not_applicable",
+        "worldCorrectness": "not_applicable",
+        "rationale": "A graph-only value without an admitted selector must abstain."
+      },
+      "independentObservation": false,
+      "humanGoldScoringEligible": false,
+      "adjudicationId": null
+    },
+    {
+      "schemaVersion": "verification-benchmark.v1",
+      "caseId": "gl-same-page-superlative-source",
+      "caseDigest": "sha256:cd677aea0594869e6f1b01a9475435c5d2d236c17105c14611dd9b50c028a115",
+      "partition": "development",
+      "inputManifestArtifactId": "b2ffc094-d71f-5cac-a765-4159f3c0edee",
+      "goldArtifactId": "bd919b5d-8d11-51f5-acc8-134475ded17b",
+      "modality": "html",
+      "sourceFamily": "company:generation-lab",
+      "entityFamily": "company:generation-lab",
+      "reportCluster": "company:generation-lab",
+      "pairCluster": "gl-same-page-superlative",
+      "tags": [
+        "authority",
+        "promotional",
+        "supplemental_review"
+      ],
+      "adversarialTransforms": [],
+      "assertion": "The same-page footer calls the product the world's most accurate epigenetic test.",
+      "evidence": [
+        {
+          "fragmentId": "sha256:289ac6ddff430dbea3b69ef766c3629aa1cd319db9ef20c51df94f58ce74a3e0",
+          "captureId": "8930d1e6-b8a1-5b4c-aabd-486efb0a051c",
+          "sourceKey": "gl-immune-age-19",
+          "sourceClass": "first_party_marketing",
+          "projectionArtifactId": "9042049b-c6ae-5b84-a6f3-7cb0e8259266",
+          "projectionDigest": "sha256:0864ec616615ebce64fa5f533a1ddd36a53cbd12698a7cf59e79ee690fdd80ff",
+          "transformationArtifactId": "96e045c7-5311-5f11-a255-00fba4eeeb9a",
+          "selector": {
+            "kind": "html",
+            "domPath": "1/5/3/0/0/0/0/1"
+          },
+          "selectedContentDigest": "sha256:3b47e081be2bbbe6b11b34d0ff0e5f82101ee73551c23f1627c5f371f0b61391",
+          "excerpt": "Slow your aging with the world's most accurate epigenetic test and personalized insights. 460 biomarkers, 21 organs and systems.",
+          "rights": "restricted internal preparation; not approved for provider upload or public redistribution",
+          "providerUploadAuthorized": false
+        }
+      ],
+      "expectation": {
+        "label": "promotional_only",
+        "labelStatus": "engineering_expectation",
+        "expectedPolicy": "review",
+        "expectedLocatorValid": true,
+        "support": "full",
+        "authority": "interested_party_only",
+        "worldCorrectness": "not_established",
+        "rationale": "The first-party page supports that the company made the superlative, not that the superlative is independently true."
+      },
+      "independentObservation": false,
+      "humanGoldScoringEligible": false,
+      "adjudicationId": null
+    }
+  ],
+  "createdAt": "2026-09-05T07:52:13.517Z",
+  "sealedAt": "2026-09-05T07:52:13.517Z"
+}

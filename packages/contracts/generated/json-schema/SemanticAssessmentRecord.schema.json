@@ -1,0 +1,235 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "assertionId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255
+    },
+    "assertionValueDigest": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "verdict": {
+      "type": "string",
+      "enum": [
+        "pending_semantic_review",
+        "directly_supported",
+        "supported_with_qualification",
+        "partially_supported",
+        "context_only",
+        "contradicted",
+        "mixed_or_conflicting",
+        "not_supported",
+        "insufficient_evidence",
+        "unverifiable",
+        "source_unavailable",
+        "locator_error",
+        "parser_error",
+        "derived_verified",
+        "derived_failed"
+      ]
+    },
+    "disposition": {
+      "type": "string",
+      "enum": [
+        "admit",
+        "review",
+        "abstain",
+        "fail"
+      ]
+    },
+    "evidenceSupport": {
+      "type": "string",
+      "enum": [
+        "satisfied",
+        "not_satisfied",
+        "unknown",
+        "not_assessed"
+      ]
+    },
+    "worldCorrectness": {
+      "type": "string",
+      "enum": [
+        "satisfied",
+        "not_satisfied",
+        "unknown",
+        "not_assessed"
+      ]
+    },
+    "attributionFaithfulness": {
+      "type": "string",
+      "enum": [
+        "satisfied",
+        "not_satisfied",
+        "unknown",
+        "not_assessed"
+      ]
+    },
+    "sourceAuthority": {
+      "type": "string",
+      "enum": [
+        "satisfied",
+        "not_satisfied",
+        "unknown",
+        "not_assessed"
+      ]
+    },
+    "provenanceIntegrity": {
+      "type": "string",
+      "enum": [
+        "satisfied",
+        "not_satisfied",
+        "unknown",
+        "not_assessed"
+      ]
+    },
+    "judgeIdentities": {
+      "maxItems": 3,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "deploymentId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255
+          },
+          "provider": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "family": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "model": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 160
+          },
+          "capability": {
+            "type": "string",
+            "enum": [
+              "trained_nli",
+              "llm_evidence_rubric"
+            ]
+          },
+          "graderVersion": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "promptDigest": {
+            "type": "string",
+            "pattern": "^sha256:[a-f0-9]{64}$"
+          },
+          "outputSchemaDigest": {
+            "type": "string",
+            "pattern": "^sha256:[a-f0-9]{64}$"
+          },
+          "configurationDigest": {
+            "type": "string",
+            "pattern": "^sha256:[a-f0-9]{64}$"
+          }
+        },
+        "required": [
+          "deploymentId",
+          "provider",
+          "family",
+          "model",
+          "capability",
+          "graderVersion",
+          "promptDigest",
+          "outputSchemaDigest",
+          "configurationDigest"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "supportingFragmentIds": {
+      "maxItems": 16,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 255
+      }
+    },
+    "contradictingFragmentIds": {
+      "maxItems": 16,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 255
+      }
+    },
+    "unsupportedFacets": {
+      "maxItems": 32,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 160
+      }
+    },
+    "reasonCodes": {
+      "maxItems": 32,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 120
+      }
+    },
+    "crossFamilySecondJudge": {
+      "type": "boolean"
+    },
+    "rawProviderConfidences": {
+      "maxItems": 3,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "deploymentId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255
+          },
+          "value": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          }
+        },
+        "required": [
+          "deploymentId",
+          "value"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "assertionId",
+    "verdict",
+    "disposition",
+    "evidenceSupport",
+    "worldCorrectness",
+    "attributionFaithfulness",
+    "sourceAuthority",
+    "provenanceIntegrity",
+    "judgeIdentities",
+    "supportingFragmentIds",
+    "contradictingFragmentIds",
+    "unsupportedFacets",
+    "reasonCodes",
+    "crossFamilySecondJudge",
+    "rawProviderConfidences"
+  ],
+  "additionalProperties": false
+}

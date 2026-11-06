@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "verification-benchmark-case-input.v1",
+  "sourceDatasetManifestDigest": "sha256:b625b311493f8c366ef43bf4047bf61f38d510fe7f3c340f50bca42de737dfe6",
+  "sourceCaseDigest": "sha256:1a6ce729119f4a8660f897d754baa51f58f5773ed7a8473cd4e85f53b26bab1c",
+  "caseId": "gl-historical-wording-mutated",
+  "assertion": "This captured paragraph says that the report includes 21 critical systems.",
+  "evidence": [
+    {
+      "fragmentId": "sha256:79ba460c60eaf4e049c0d44ec80469a61f68f489f31d2add9c5364dd6a87f188",
+      "captureId": "8930d1e6-b8a1-5b4c-aabd-486efb0a051c",
+      "sourceKey": "gl-immune-age-19",
+      "sourceClass": "first_party_marketing",
+      "projectionArtifactId": "9042049b-c6ae-5b84-a6f3-7cb0e8259266",
+      "projectionDigest": "sha256:0864ec616615ebce64fa5f533a1ddd36a53cbd12698a7cf59e79ee690fdd80ff",
+      "transformationArtifactId": "96e045c7-5311-5f11-a255-00fba4eeeb9a",
+      "selector": {
+        "kind": "html",
+        "domPath": "1/5/2/0/0/1/1/0/16"
+      },
+      "selectedContentDigest": "sha256:47f923b1703a4c4894cb2e058f16e932865c045ec77abf07be96fa6c63cf5d53",
+      "excerpt": "Your SystemAge report includes biological age analysis for these 19 critical systems:",
+      "rights": "restricted internal preparation; not approved for provider upload or public redistribution",
+      "originalProviderUploadAuthorized": false
+    }
+  ],
+  "intendedUse": "immutable_case_input; provider transmission requires a separately authenticated derived-input grant"
+}

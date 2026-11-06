@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "verification-benchmark-engineering-expectation.v1",
+  "sourceDatasetManifestDigest": "sha256:b625b311493f8c366ef43bf4047bf61f38d510fe7f3c340f50bca42de737dfe6",
+  "sourceCaseDigest": "sha256:1a6ce729119f4a8660f897d754baa51f58f5773ed7a8473cd4e85f53b26bab1c",
+  "caseId": "gl-historical-wording-mutated",
+  "provenance": "agent_reviewed_engineering_expectation",
+  "humanAnnotationCount": 0,
+  "expertAdjudicated": false,
+  "humanGoldScoringEligible": false,
+  "legacyGoldArtifactColumnSemantics": "engineering expectation artifact only; does not establish human-gold eligibility",
+  "expectation": {
+    "label": "contradicted",
+    "labelStatus": "engineering_expectation",
+    "expectedPolicy": "fail",
+    "expectedLocatorValid": true,
+    "support": "contradicted",
+    "authority": "interested_party_only",
+    "worldCorrectness": "unknown",
+    "rationale": "Engineering expectation for cross_page_count_laundering; human annotation and expert adjudication remain pending."
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "@aiengineer/knowledge-jev-service",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "bin": { "jev": "./dist/index.js" },
+  "scripts": {
+    "build": "tsup src/index.ts --format esm && tsc --emitDeclarationOnly --rootDir src --outDir dist",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --passWithNoTests"
+  },
+  "dependencies": {
+    "@aiengineer/knowledge-application": "workspace:*",
+    "@aiengineer/knowledge-client": "workspace:*",
+    "@aiengineer/knowledge-contracts": "workspace:*",
+    "@modelcontextprotocol/sdk": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": { "tsup": "catalog:", "typescript": "catalog:", "vitest": "catalog:" }
+}

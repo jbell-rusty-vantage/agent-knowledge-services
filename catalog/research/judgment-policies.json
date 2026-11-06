@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "research-judgment-policies.v1",
+  "id": "judgment-policies",
+  "version": "1.0.0",
+  "policies": [
+    {
+      "id": "governed-judgment",
+      "version": "1.0.0",
+      "kinds": ["recommendation", "forecast"],
+      "uses": [],
+      "audiences": [],
+      "useClasses": ["official", "consequential"],
+      "minimumAssumptions": 1,
+      "horizonRequired": false,
+      "uncertaintyLevels": ["low", "medium", "high"]
+    }
+  ]
+}

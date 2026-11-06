@@ -1,0 +1,6 @@
+{
+  "fact": ["rel:temporal.segment"],
+  "price": ["voc:temporal.stream_kind"],
+  "org": ["rel:corpus.organization"],
+  "entity": ["rel:corpus.entity"]
+}

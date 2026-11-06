@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "verification-benchmark-engineering-expectation.v1",
+  "sourceDatasetManifestDigest": "sha256:b625b311493f8c366ef43bf4047bf61f38d510fe7f3c340f50bca42de737dfe6",
+  "sourceCaseDigest": "sha256:29357e3286b243902b5768fa959a19a8504d9bbd6dc70266b48ac4e4d78c89a2",
+  "caseId": "gl-same-page-superlative-source",
+  "provenance": "agent_reviewed_engineering_expectation",
+  "humanAnnotationCount": 0,
+  "expertAdjudicated": false,
+  "humanGoldScoringEligible": false,
+  "legacyGoldArtifactColumnSemantics": "engineering expectation artifact only; does not establish human-gold eligibility",
+  "expectation": {
+    "label": "promotional_only",
+    "labelStatus": "engineering_expectation",
+    "expectedPolicy": "review",
+    "expectedLocatorValid": true,
+    "support": "full",
+    "authority": "interested_party_only",
+    "worldCorrectness": "not_established",
+    "rationale": "The first-party page supports that the company made the superlative, not that the superlative is independently true."
+  }
+}

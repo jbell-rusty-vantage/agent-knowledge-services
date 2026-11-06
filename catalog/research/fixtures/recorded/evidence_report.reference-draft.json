@@ -1,0 +1,112 @@
+{
+  "schemaVersion": "sv09-producer-draft.v1",
+  "task": "sv09-evidence-orion7",
+  "author": "SV-09 helper C, hand-authored reference draft (recorded producer response for T0; locked control body for paid evaluators)",
+  "findingsHeading": "Orion-7 is a 7.2-billion-parameter model released under Apache-2.0",
+  "findingsHeadingFactual": true,
+  "scope": "This report answers the frozen Orion-7 registry task from the locked fixture sources only.",
+  "assertions": [
+    {
+      "key": "parameters",
+      "obligations": ["finding.parameters"],
+      "sentence": "Orion-7 has 7.2 billion parameters.",
+      "kind": "source_report",
+      "subject": "Orion-7",
+      "value": { "valueType": "quantity", "amount": "7200000000", "unit": "parameters", "text": null, "bool": null },
+      "qualifiers": {
+        "entity": "Orion-7",
+        "unit": "parameters",
+        "negation": false,
+        "modality": "asserted",
+        "configuration": null,
+        "softwareVersion": null,
+        "benchmarkEnvironment": null
+      },
+      "evidence": [{ "source": "S1", "quote": "| Parameters | 7.2 billion |" }],
+      "contrary": []
+    },
+    {
+      "key": "license",
+      "obligations": ["finding.license"],
+      "sentence": "Orion-7 is released under the Apache-2.0 license.",
+      "kind": "source_report",
+      "subject": "Orion-7",
+      "value": { "valueType": "categorical", "amount": null, "unit": null, "text": "Apache-2.0", "bool": null },
+      "qualifiers": {
+        "entity": "Orion-7",
+        "unit": null,
+        "negation": false,
+        "modality": "asserted",
+        "configuration": null,
+        "softwareVersion": null,
+        "benchmarkEnvironment": null
+      },
+      "evidence": [{ "source": "S1", "quote": "| License | Apache-2.0 |" }],
+      "contrary": []
+    },
+    {
+      "key": "function_calling",
+      "obligations": ["finding.function_calling"],
+      "sentence": "Orion-7 supports function calling through a JSON tool schema.",
+      "kind": "source_report",
+      "subject": "Orion-7",
+      "value": { "valueType": "boolean", "amount": null, "unit": null, "text": null, "bool": true },
+      "qualifiers": {
+        "entity": "Orion-7",
+        "unit": null,
+        "negation": false,
+        "modality": "asserted",
+        "configuration": null,
+        "softwareVersion": null,
+        "benchmarkEnvironment": null
+      },
+      "evidence": [{ "source": "S1", "quote": "Orion-7 supports function calling through a JSON tool schema." }],
+      "contrary": [{ "source": "S2", "quote": "In our harness, Orion-7 does not support function calling" }]
+    },
+    {
+      "key": "training_data",
+      "obligations": ["finding.training_data"],
+      "sentence": "Orion-7 was not trained on proprietary customer data.",
+      "kind": "source_report",
+      "subject": "Orion-7",
+      "value": { "valueType": "none", "amount": null, "unit": null, "text": null, "bool": null },
+      "qualifiers": {
+        "entity": "Orion-7",
+        "unit": null,
+        "negation": true,
+        "modality": "asserted",
+        "configuration": null,
+        "softwareVersion": null,
+        "benchmarkEnvironment": null
+      },
+      "evidence": [{ "source": "S3", "quote": "Orion-7 was not trained on proprietary customer data." }],
+      "contrary": []
+    },
+    {
+      "key": "throughput",
+      "obligations": ["finding.throughput"],
+      "sentence": "Orion-7 serves 410 tokens per second on a single A100 80 GB GPU at batch size 1.",
+      "kind": "source_report",
+      "subject": "Orion-7",
+      "value": { "valueType": "quantity", "amount": "410", "unit": "tokens per second", "text": null, "bool": null },
+      "qualifiers": {
+        "entity": "Orion-7",
+        "unit": "tokens per second",
+        "negation": false,
+        "modality": "asserted",
+        "configuration": "single A100 80 GB GPU, batch size 1",
+        "softwareVersion": null,
+        "benchmarkEnvironment": null
+      },
+      "evidence": [
+        {
+          "source": "S4",
+          "quote": "Figure 2: Orion-7 serves 410 tokens per second on a single A100 80 GB GPU at batch size 1."
+        }
+      ],
+      "contrary": []
+    }
+  ],
+  "evidenceSummary": "Citations for each finding follow.",
+  "limitations": ["Only the locked fixture sources were consulted; no live source was searched."]
+}

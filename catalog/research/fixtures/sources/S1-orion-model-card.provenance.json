@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "sv09-fixture-provenance.v1",
+  "synthetic": true,
+  "realWorld": false,
+  "author": "SV-09 helper C (Claude Opus 5.5 agent), Sprint V session 2026-10-25",
+  "authoredAt": "2026-10-25",
+  "acquisition": "none: hand-authored text, no web acquisition, no real product, vendor, study or person",
+  "license": "disposable engineering fixture; no third-party content",
+  "mediaType": "text/markdown; charset=utf-8",
+  "id": "S1",
+  "file": "sources/S1-orion-model-card.md",
+  "description": "Synthetic vendor model card for the fictional model Orion-7.",
+  "planted": [
+    "table: Parameters 7.2 billion, License Apache-2.0",
+    "contradiction side A: supports function calling"
+  ],
+  "authorityFake": {
+    "verifiedOriginFamily": "northwind-orion7-card",
+    "doi": null,
+    "sourceKind": "vendor_documentation",
+    "studyDesign": null,
+    "directness": "direct",
+    "freshness": "current",
+    "qualifiers": {
+      "softwareVersion": null,
+      "runtime": null
+    }
+  },
+  "revisionFrontierFake": null
+}

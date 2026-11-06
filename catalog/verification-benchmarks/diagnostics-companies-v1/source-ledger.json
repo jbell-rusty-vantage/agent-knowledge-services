@@ -1,0 +1,166 @@
+{
+  "schemaVersion": "verification-benchmark-source-ledger.v1",
+  "sourcePreparationDigest": "sha256:50a3552cffc639a78d7789865be929baefd64d2342431e2de958e669c21f163e",
+  "sources": [
+    {
+      "sourceKey": "gl-comparison",
+      "url": "https://www.generationlab.com/blog/best-biological-age-test-systemage-vs-function-health-trudiagnostic-comparison",
+      "sourceClass": "interested_party_comparison",
+      "captureId": "090d82ef-687b-5230-a581-afd105b572ca",
+      "sourceArtifactDigest": "sha256:a5c8ba17b649cf7f45ac4ebe60f4c7c70d186879528fb31245882c9ec52ed08a",
+      "originalCapturedAt": "2026-09-05T01:58:39.210Z",
+      "rights": "restricted internal custody; no full-content redistribution; source-specific licensing and human benchmark approval remain separately recorded",
+      "goldStatus": "not_labeled"
+    },
+    {
+      "sourceKey": "gl-faq",
+      "url": "https://www.generationlab.com/FAQs",
+      "sourceClass": "first_party",
+      "captureId": "0ecd8e36-539c-57f3-a71f-9991db21e8ad",
+      "sourceArtifactDigest": "sha256:e118dec7cf4cd4231ada0607b137719995a22e3e81ab056ffc45d74f84d62811",
+      "originalCapturedAt": "2026-09-05T01:58:34.402Z",
+      "rights": "restricted internal custody; no full-content redistribution; source-specific licensing and human benchmark approval remain separately recorded",
+      "goldStatus": "not_labeled"
+    },
+    {
+      "sourceKey": "gl-research",
+      "url": "https://www.generationlab.com/published-research",
+      "sourceClass": "first_party",
+      "captureId": "8426be74-7e6f-559f-ab29-6b354dbed874",
+      "sourceArtifactDigest": "sha256:af634cd182a9961675be8c04edb7eaf906800f798046abb808819e17464e55f3",
+      "originalCapturedAt": "2026-09-05T01:58:35.835Z",
+      "rights": "restricted internal custody; no full-content redistribution; source-specific licensing and human benchmark approval remain separately recorded",
+      "goldStatus": "not_labeled"
+    },
+    {
+      "sourceKey": "gl-science",
+      "url": "https://www.generationlab.com/science",
+      "sourceClass": "first_party",
+      "captureId": "ed7c057c-ce78-5d78-a251-74575f694a52",
+      "sourceArtifactDigest": "sha256:f5fde5b580e60a3ab22495c05e9c8c25e9f849b8dc38579336c561c7614a44e9",
+      "originalCapturedAt": "2026-09-05T01:58:35.609Z",
+      "rights": "restricted internal custody; no full-content redistribution; source-specific licensing and human benchmark approval remain separately recorded",
+      "goldStatus": "not_labeled"
+    },
+    {
+      "sourceKey": "gl-terms",
+      "url": "https://www.generationlab.com/terms-of-service",
+      "sourceClass": "first_party",
+      "captureId": "dc5210dc-7826-524e-ad73-27a3baf6c4ae",
+      "sourceArtifactDigest": "sha256:c59e08a32cefaee8c45c8f46a2c5ce57c1bca264fe5ed5b5c937648b8f162fcb",
+      "originalCapturedAt": "2026-09-05T01:58:36.912Z",
+      "rights": "restricted internal custody; no full-content redistribution; source-specific licensing and human benchmark approval remain separately recorded",
+      "goldStatus": "not_labeled"
+    },
+    {
+      "sourceKey": "gl-test",
+      "url": "https://www.generationlab.com/the-systemage-test",
+      "sourceClass": "first_party",
+      "captureId": "884fa642-f443-52ce-afe4-098a28dc13bf",
+      "sourceArtifactDigest": "sha256:0e04600afd825c63947f71a32d4345cd681803eb1b06b26ddd0720e1f5c1ff6d",
+      "originalCapturedAt": "2026-09-05T01:58:32.235Z",
+      "rights": "restricted internal custody; no full-content redistribution; source-specific licensing and human benchmark approval remain separately recorded",
+      "goldStatus": "not_labeled"
+    },
+    {
+      "sourceKey": "paper-noise",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10522373/",
+      "sourceClass": "publication",
+      "captureId": "85d9b0d4-34b8-5720-ab3c-012c57b68b1b",
+      "sourceArtifactDigest": "sha256:df0e403f5358bd881f7863dda9b75da7bc98752d3c6a95dc25c2dc3bdc90c937",
+      "originalCapturedAt": "2026-09-05T01:58:40.833Z",
+      "rights": "restricted internal custody; no full-content redistribution; source-specific licensing and human benchmark approval remain separately recorded",
+      "goldStatus": "not_labeled"
+    },
+    {
+      "sourceKey": "paper-omic",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13004675/",
+      "sourceClass": "publication",
+      "captureId": "62ac51e4-d787-56da-a791-4289accab698",
+      "sourceArtifactDigest": "sha256:aa0dea7e8fb4746932941033bd96487dbcdd1f0478c8d5510446dcbe9df50674",
+      "originalCapturedAt": "2026-09-05T01:58:40.001Z",
+      "rights": "restricted internal custody; no full-content redistribution; source-specific licensing and human benchmark approval remain separately recorded",
+      "goldStatus": "not_labeled"
+    },
+    {
+      "sourceKey": "paper-pace",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8853656/",
+      "sourceClass": "publication",
+      "captureId": "60f7dd92-6f3f-5205-a08a-cea2d0770489",
+      "sourceArtifactDigest": "sha256:e85f225d3307a5c520105d5059cda3351c7ce8cfe6c18e42d0ca63975ad26a04",
+      "originalCapturedAt": "2026-09-05T01:58:38.560Z",
+      "rights": "restricted internal custody; no full-content redistribution; source-specific licensing and human benchmark approval remain separately recorded",
+      "goldStatus": "not_labeled"
+    },
+    {
+      "sourceKey": "paper-rectification",
+      "url": "https://link.springer.com/article/10.1007/s11357-024-01460-1",
+      "sourceClass": "publication",
+      "captureId": "1f25612c-deab-57eb-ae59-4014898874de",
+      "sourceArtifactDigest": "sha256:946ebc2c79cac9caf596f2bdd2c9d57993c8611e88c2914fafd9e0418232bade",
+      "originalCapturedAt": null,
+      "rights": "restricted internal custody; no full-content redistribution; source-specific licensing and human benchmark approval remain separately recorded",
+      "goldStatus": "not_labeled"
+    },
+    {
+      "sourceKey": "tru-about",
+      "url": "https://www.trudiagnostic.com/about-truage",
+      "sourceClass": "first_party",
+      "captureId": "67b3c277-5c66-5ef5-ace8-66aff1d3e736",
+      "sourceArtifactDigest": "sha256:b623cec22b5a340ef27eedfe32702485d2115ddf8b6b1b00e97458a519f319d5",
+      "originalCapturedAt": "2026-09-05T01:58:29.757Z",
+      "rights": "restricted internal custody; no full-content redistribution; source-specific licensing and human benchmark approval remain separately recorded",
+      "goldStatus": "not_labeled"
+    },
+    {
+      "sourceKey": "tru-education",
+      "url": "https://www.trudiagnostic.com/report-education",
+      "sourceClass": "first_party",
+      "captureId": "fc2f2733-12a1-566c-ab80-3639d5f4fa10",
+      "sourceArtifactDigest": "sha256:87054e5323302b5c12b2d4dcb171d395da5c31e0ba02bebc34aa7f0c233644a5",
+      "originalCapturedAt": "2026-09-05T01:58:29.572Z",
+      "rights": "restricted internal custody; no full-content redistribution; source-specific licensing and human benchmark approval remain separately recorded",
+      "goldStatus": "not_labeled"
+    },
+    {
+      "sourceKey": "tru-pace",
+      "url": "https://www.trudiagnostic.com/dunedin-pace",
+      "sourceClass": "first_party",
+      "captureId": "241d49f1-40d0-5b55-a845-f56ab6ce5cae",
+      "sourceArtifactDigest": "sha256:9e7e79fb07fd42a417c258499908ebf3c8b02132989325dcf3164d81a1df21ec",
+      "originalCapturedAt": "2026-09-05T01:58:31.385Z",
+      "rights": "restricted internal custody; no full-content redistribution; source-specific licensing and human benchmark approval remain separately recorded",
+      "goldStatus": "not_labeled"
+    },
+    {
+      "sourceKey": "tru-product",
+      "url": "https://shop.trudiagnostic.com/products/truage-complete-epigenetic-collection",
+      "sourceClass": "first_party",
+      "captureId": "ab5c8b0f-3f27-5ea4-ad00-9771148daa54",
+      "sourceArtifactDigest": "sha256:a6f49139619f5fbc3b9ee687eba4343899cb2e1d3f88ee7881cea5af6b032f31",
+      "originalCapturedAt": "2026-09-05T01:58:31.807Z",
+      "rights": "restricted internal custody; no full-content redistribution; source-specific licensing and human benchmark approval remain separately recorded",
+      "goldStatus": "not_labeled"
+    },
+    {
+      "sourceKey": "gl-immune-age-19",
+      "url": "https://www.generationlab.com/blog/immune-age-test",
+      "sourceClass": "first_party_marketing",
+      "captureId": "8930d1e6-b8a1-5b4c-aabd-486efb0a051c",
+      "sourceArtifactDigest": "sha256:9a50d3a6523796d94228dfd16db9fcdc7f5d296d11aaebb972c17ed212670072",
+      "originalCapturedAt": "2026-09-05T02:45:11.906Z",
+      "rights": "restricted internal custody; no full-content redistribution; source-specific licensing and human benchmark approval remain separately recorded",
+      "goldStatus": "not_labeled"
+    },
+    {
+      "sourceKey": "tru-sample-report",
+      "url": "https://cdn.prod.website-files.com/6690e254f4f07d1a469bb330/684b0280d60621d1be91641c_ExampleAdvancedTruAge.pdf",
+      "sourceClass": "first_party_sample_report",
+      "captureId": "94ae9318-030d-5505-a91f-c91cea22f4fc",
+      "sourceArtifactDigest": "sha256:b5d7f9798de00dd73dd6f287f95876f0dce09cb085c701e630d99f14bd4f4ea1",
+      "originalCapturedAt": "2026-09-05T02:01:45.518Z",
+      "rights": "restricted internal custody; no full-content redistribution; source-specific licensing and human benchmark approval remain separately recorded",
+      "goldStatus": "not_labeled"
+    }
+  ]
+}

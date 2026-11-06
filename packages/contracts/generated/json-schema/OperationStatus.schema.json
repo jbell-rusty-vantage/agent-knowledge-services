@@ -1,0 +1,389 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "operationId": {
+      "type": "string",
+      "format": "uuid",
+      "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+    },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "source_discovery",
+        "source_resolution",
+        "capture",
+        "capture_inspection",
+        "capture_comparison",
+        "source_vetting",
+        "vector_store_create",
+        "vector_store_documents",
+        "vector_store_ingestion",
+        "vector_store_search",
+        "vector_store_evaluation",
+        "document",
+        "document_version",
+        "representation",
+        "transformation",
+        "representation_inspection",
+        "representation_comparison",
+        "representation_decision",
+        "chunk_preview",
+        "chunk_comparison",
+        "chunk_set",
+        "chunk_set_inspection",
+        "promotion_proposal",
+        "promotion_decision",
+        "embedding_run",
+        "space_publication",
+        "publication_verification",
+        "publication_rollback",
+        "retrieval_run",
+        "evidence_packet",
+        "evaluation_dataset",
+        "experiment",
+        "evaluation_run",
+        "review",
+        "review_decision",
+        "verification_capture",
+        "verification_extraction",
+        "verification_replay",
+        "verification_parse_artifact",
+        "verification_benchmark",
+        "verification_benchmark_compare",
+        "verification_structured_extraction"
+      ]
+    },
+    "state": {
+      "type": "string",
+      "enum": [
+        "queued",
+        "running",
+        "needs_review",
+        "quarantined",
+        "succeeded",
+        "failed",
+        "cancelled"
+      ]
+    },
+    "context": {
+      "type": "object",
+      "properties": {
+        "tenantId": {
+          "type": "string",
+          "format": "uuid",
+          "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+        },
+        "projectId": {
+          "type": "string",
+          "format": "uuid",
+          "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+        },
+        "operationId": {
+          "type": "string",
+          "format": "uuid",
+          "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+        },
+        "attemptId": {
+          "type": "string",
+          "format": "uuid",
+          "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+        },
+        "workItemId": {
+          "type": "string",
+          "format": "uuid",
+          "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+        },
+        "missionId": {
+          "type": "string",
+          "format": "uuid",
+          "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+        },
+        "correlationId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "causationId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "actor": {
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "const": "human"
+                },
+                "id": {
+                  "type": "string",
+                  "format": "uuid",
+                  "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                },
+                "displayName": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "kind",
+                "id"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "const": "service"
+                },
+                "id": {
+                  "type": "string",
+                  "format": "uuid",
+                  "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                },
+                "serviceIdentity": {
+                  "type": "string",
+                  "enum": [
+                    "knowledge_api",
+                    "knowledge_worker",
+                    "acquisition_executor",
+                    "conversion_executor",
+                    "inspection_agent",
+                    "content_curator_agent",
+                    "embedding_executor",
+                    "retrieval_executor",
+                    "evaluation_executor",
+                    "human_reviewer",
+                    "mission_control_client",
+                    "retention_worker",
+                    "control_plane"
+                  ]
+                }
+              },
+              "required": [
+                "kind",
+                "id",
+                "serviceIdentity"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "const": "model"
+                },
+                "id": {
+                  "type": "string",
+                  "format": "uuid",
+                  "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                },
+                "serviceIdentity": {
+                  "type": "string",
+                  "enum": [
+                    "inspection_agent",
+                    "content_curator_agent"
+                  ]
+                },
+                "model": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "providerRunId": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "kind",
+                "id",
+                "serviceIdentity",
+                "model",
+                "providerRunId"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "capabilityVersion": {
+          "type": "string",
+          "minLength": 1
+        },
+        "idempotencyKey": {
+          "type": "string",
+          "minLength": 8,
+          "maxLength": 255
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "contractVersion": {
+          "type": "string",
+          "const": "v1"
+        },
+        "externalExecution": {
+          "type": "object",
+          "properties": {
+            "runtime": {
+              "type": "string",
+              "enum": [
+                "eve",
+                "vercel_workflow",
+                "mission_control",
+                "other"
+              ]
+            },
+            "runId": {
+              "type": "string",
+              "minLength": 1
+            },
+            "rootRunId": {
+              "type": "string",
+              "minLength": 1
+            },
+            "sessionId": {
+              "type": "string",
+              "minLength": 1
+            },
+            "turnId": {
+              "type": "string",
+              "minLength": 1
+            },
+            "toolCallId": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "runtime",
+            "runId"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "tenantId",
+        "operationId",
+        "attemptId",
+        "correlationId",
+        "actor",
+        "capabilityVersion",
+        "idempotencyKey",
+        "reason",
+        "contractVersion"
+      ],
+      "additionalProperties": false
+    },
+    "inputDigest": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "rowVersion": {
+      "type": "integer",
+      "exclusiveMinimum": 0,
+      "maximum": 9007199254740991
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z|([+-](?:[01]\\d|2[0-3]):[0-5]\\d)))$"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z|([+-](?:[01]\\d|2[0-3]):[0-5]\\d)))$"
+    },
+    "receiptIds": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "format": "uuid",
+        "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+      }
+    },
+    "failure": {
+      "type": "object",
+      "properties": {
+        "receiptId": {
+          "type": "string",
+          "format": "uuid",
+          "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+        },
+        "category": {
+          "type": "string",
+          "enum": [
+            "producer_contract_failure",
+            "capture_unavailable",
+            "capture_forbidden",
+            "capture_oversized",
+            "capture_drifted",
+            "locator_missing",
+            "locator_ambiguous",
+            "locator_invalid",
+            "parser_failure",
+            "conversion_failure",
+            "ocr_failure",
+            "extraction_schema_failure",
+            "extraction_value_failure",
+            "identity_missing",
+            "identity_ambiguous",
+            "identity_conflicted",
+            "metric_semantics_failure",
+            "unit_failure",
+            "period_failure",
+            "comparability_failure",
+            "computation_replay_failure",
+            "semantic_quality_failure",
+            "claim_decomposition_failure",
+            "judge_output_failure",
+            "provider_authentication_failure",
+            "provider_rate_limit",
+            "provider_timeout",
+            "provider_upstream_failure",
+            "harness_failure",
+            "persistence_failure",
+            "artifact_registration_failure",
+            "policy_rejection",
+            "human_review_timeout",
+            "cancelled"
+          ]
+        },
+        "errorClass": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Z0-9_]{2,79}$"
+        },
+        "retryable": {
+          "type": "boolean"
+        },
+        "qualityFailure": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "receiptId",
+        "category",
+        "errorClass",
+        "retryable",
+        "qualityFailure"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "operationId",
+    "kind",
+    "state",
+    "context",
+    "inputDigest",
+    "rowVersion",
+    "createdAt",
+    "updatedAt",
+    "receiptIds"
+  ],
+  "additionalProperties": false
+}

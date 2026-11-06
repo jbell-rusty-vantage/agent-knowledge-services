@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "verification-benchmark-case-input.v1",
+  "sourceDatasetManifestDigest": "sha256:b625b311493f8c366ef43bf4047bf61f38d510fe7f3c340f50bca42de737dfe6",
+  "sourceCaseDigest": "sha256:636d474ad0a2cfefea163e7447e1db69ee128129431f7113f03d390b7f37ff48",
+  "caseId": "tru-biomarkers-source",
+  "assertion": "The page states that the test reports 75+ biomarkers.",
+  "evidence": [
+    {
+      "fragmentId": "sha256:7919c64c0a8f0d52e12c523bf990eecb4fdac9baf5a4c6586ec2e7cbfb3b5e8c",
+      "captureId": "ab5c8b0f-3f27-5ea4-ad00-9771148daa54",
+      "sourceKey": "tru-product",
+      "sourceClass": "first_party",
+      "projectionArtifactId": "42cef373-e401-523a-af45-eb586b235c8c",
+      "projectionDigest": "sha256:872f9fd5adfe086ea2a054a0337255dc2afb44333fa5a015788e8efe3cbea681",
+      "transformationArtifactId": "08044e5e-8be2-5981-a907-0e2214a744bf",
+      "selector": {
+        "kind": "html",
+        "domPath": "2/5/1/5/3/3/1/0/1"
+      },
+      "selectedContentDigest": "sha256:7e7f7294964926be111abca1b06be87ef7d828be2a5fa353d6efda173eda8d93",
+      "excerpt": "One finger prick,  75+ biomarkers — the full view of how you're aging.",
+      "rights": "restricted internal preparation; not approved for provider upload or public redistribution",
+      "originalProviderUploadAuthorized": false
+    }
+  ],
+  "intendedUse": "immutable_case_input; provider transmission requires a separately authenticated derived-input grant"
+}

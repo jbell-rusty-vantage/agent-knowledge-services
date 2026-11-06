@@ -1,0 +1,131 @@
+{
+  "storeClass": "internal_exploratory",
+  "runKind": "bounded_live_judge_calibration",
+  "datasetManifestDigest": "sha256:46487a5d08d0720c085c5b2bb676028fc76c3a7044813c8cced404da0ae032ab",
+  "datasetCandidateManifestDigest": "sha256:cde7e540e00f05e4bebf9f163389c732bd2efc3f926d2693c7a66ae26d9d46fb",
+  "independentReviewArtifactDigest": "sha256:1988208b505406a9002c7369ff06b52399cebb6b99f8db3beb39ea1240adf469",
+  "sampleCaseIds": [
+    "heldout:rmvDxxNubIg:claim-id",
+    "heldout:rmvDxxNubIg:tool-capability",
+    "heldout:rmvDxxNubIg:code-api",
+    "heldout:rmvDxxNubIg:paper-caveat",
+    "heldout:rmvDxxNubIg:entity-exact",
+    "heldout:rmvDxxNubIg:model-capability",
+    "heldout:rmvDxxNubIg:benchmark-protocol",
+    "heldout:rmvDxxNubIg:section-title",
+    "calibration:bk0TmxoZlUY:negative-space",
+    "calibration:bk0TmxoZlUY:adversarial",
+    "dev:kTnfJszFxCg:entity-constraint",
+    "calibration:bk0TmxoZlUY:tool-code-hop"
+  ],
+  "sampleDigest": "sha256:558cd1480f8633712ccf5a71ce7928629de6268f607b16acc4556c8bda1039df",
+  "judge": {
+    "requestedModel": "openai/gpt-5.4-mini",
+    "observedModel": "openai/gpt-5.4-mini",
+    "deploymentIdentity": "vercel-ai-gateway-openai-route",
+    "temperature": 0,
+    "systemPromptDigest": "sha256:fbd8cd1dac8befca6150319553b7a7d4b0d5477034d07b34629cbdd9b12d6aaa",
+    "schemaDigest": "sha256:ead0fc31ec2a66027fd6bc62df5b9c64439944d74aa9231137d6538c1060b597",
+    "modelDiscoveryLatencyMs": 316.655
+  },
+  "response": {
+    "requestId": "gen_01M1N1RBAS70Z857EQ7VR4N86F",
+    "responseDigest": "sha256:2372eeab9556481ed4f7a179d398effb1e2cc5542ad184ef51cced22a53cbdd3",
+    "schemaValid": true,
+    "labelValidityRate": 0.8333333333333334,
+    "abstentionAgreement": 1,
+    "positiveEvidenceAgreement": 1,
+    "counts": {
+      "valid": 10,
+      "ambiguous": 0,
+      "invalid": 2
+    },
+    "judgments": [
+      {
+        "caseId": "heldout:rmvDxxNubIg:claim-id",
+        "labelQuality": "valid",
+        "shouldAbstain": false,
+        "relevantEvidenceSupported": true
+      },
+      {
+        "caseId": "heldout:rmvDxxNubIg:tool-capability",
+        "labelQuality": "valid",
+        "shouldAbstain": false,
+        "relevantEvidenceSupported": true
+      },
+      {
+        "caseId": "heldout:rmvDxxNubIg:code-api",
+        "labelQuality": "valid",
+        "shouldAbstain": false,
+        "relevantEvidenceSupported": true
+      },
+      {
+        "caseId": "heldout:rmvDxxNubIg:paper-caveat",
+        "labelQuality": "valid",
+        "shouldAbstain": false,
+        "relevantEvidenceSupported": true
+      },
+      {
+        "caseId": "heldout:rmvDxxNubIg:entity-exact",
+        "labelQuality": "valid",
+        "shouldAbstain": false,
+        "relevantEvidenceSupported": true
+      },
+      {
+        "caseId": "heldout:rmvDxxNubIg:model-capability",
+        "labelQuality": "valid",
+        "shouldAbstain": false,
+        "relevantEvidenceSupported": true
+      },
+      {
+        "caseId": "heldout:rmvDxxNubIg:benchmark-protocol",
+        "labelQuality": "valid",
+        "shouldAbstain": false,
+        "relevantEvidenceSupported": true
+      },
+      {
+        "caseId": "heldout:rmvDxxNubIg:section-title",
+        "labelQuality": "valid",
+        "shouldAbstain": false,
+        "relevantEvidenceSupported": true
+      },
+      {
+        "caseId": "calibration:bk0TmxoZlUY:negative-space",
+        "labelQuality": "invalid",
+        "shouldAbstain": true,
+        "relevantEvidenceSupported": false
+      },
+      {
+        "caseId": "calibration:bk0TmxoZlUY:adversarial",
+        "labelQuality": "invalid",
+        "shouldAbstain": true,
+        "relevantEvidenceSupported": false
+      },
+      {
+        "caseId": "dev:kTnfJszFxCg:entity-constraint",
+        "labelQuality": "valid",
+        "shouldAbstain": false,
+        "relevantEvidenceSupported": true
+      },
+      {
+        "caseId": "calibration:bk0TmxoZlUY:tool-code-hop",
+        "labelQuality": "valid",
+        "shouldAbstain": false,
+        "relevantEvidenceSupported": true
+      }
+    ]
+  },
+  "usage": {
+    "promptTokens": 5644,
+    "completionTokens": 710,
+    "totalTokens": 6354,
+    "costUsd": 0.007428,
+    "latencyMs": 4322.793
+  },
+  "safety": {
+    "apiKeyPersisted": false,
+    "rawVectorsSent": false,
+    "rawVectorsPersisted": false,
+    "fullResponseTextPersisted": false
+  }
+}

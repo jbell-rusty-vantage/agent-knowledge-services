@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "verificationContractVersion": {
+      "type": "string",
+      "const": "verification.v1"
+    },
+    "runId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255
+    },
+    "replayMode": {
+      "type": "string",
+      "enum": [
+        "deterministic_only",
+        "recorded_provider_outputs"
+      ]
+    }
+  },
+  "required": [
+    "verificationContractVersion",
+    "runId",
+    "replayMode"
+  ],
+  "additionalProperties": false
+}

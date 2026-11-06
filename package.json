@@ -1,0 +1,79 @@
+{
+  "name": "@aiengineer/knowledge-services",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.34.5",
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "10.34.5",
+      "onFail": "ignore"
+    }
+  },
+  "engines": {
+    "node": ">=24"
+  },
+  "dependencies": {
+    "@aiengineer/knowledge-acquisition": "workspace:*",
+    "@aiengineer/knowledge-application": "workspace:*",
+    "@aiengineer/knowledge-client": "workspace:*",
+    "@aiengineer/knowledge-contracts": "workspace:*",
+    "@aiengineer/knowledge-preparation": "workspace:*",
+    "@aiengineer/knowledge-core": "workspace:*",
+    "@aiengineer/knowledge-retrieval": "workspace:*",
+    "@aiengineer/knowledge-persistence": "workspace:*",
+    "@aiengineer/knowledge-testkit": "workspace:*",
+    "@aiengineer/knowledge-verification": "workspace:*"
+  },
+  "scripts": {
+    "build": "turbo run build",
+    "dev:api": "corepack pnpm --filter @aiengineer/knowledge-api dev",
+    "dev:mcp": "corepack pnpm --filter @aiengineer/knowledge-mcp dev",
+    "dev:worker": "corepack pnpm --filter @aiengineer/knowledge-worker dev",
+    "evaluate:bundles": "tsx scripts/evaluate-real-bundles.ts",
+    "evaluate:broad": "tsx scripts/evaluate-broad-corpus.ts",
+    "create:gate5-human-sample": "tsx scripts/create-gate5-human-review-sample.ts",
+    "validate:gate5-human": "tsx scripts/validate-gate5-human-review.ts",
+    "fixture:canonical": "tsx scripts/canonical-fixture.ts",
+    "prove:canonical-durability": "tsx scripts/prove-canonical-durability.ts",
+    "prove:durable-preparation": "tsx scripts/prove-durable-preparation.ts",
+    "prove:current-schema": "node scripts/prove-current-schema.mjs",
+    "prove:artifact-custody": "node scripts/prove-artifact-custody.mjs",
+    "prove:governed-indexing": "tsx scripts/prove-governed-indexing.ts",
+    "prove:hnsw-local": "tsx scripts/prove-local-hnsw.ts",
+    "prove:canonical-retrieval-api": "tsx scripts/prove-canonical-retrieval-api.ts",
+    "test": "turbo run test --concurrency=1 -- --maxWorkers=2",
+    "test:live:gateway": "tsx --env-file=.env scripts/live-gateway-embeddings.ts",
+    "test:live:judge": "tsx --env-file=.env scripts/live-gateway-judge.ts",
+    "test:live:gate1": "tsx --env-file=.env scripts/live-gate1.ts",
+    "test:live:docling": "tsx scripts/live-docling-conversion.ts",
+    "typecheck": "turbo run typecheck",
+    "format": "biome format --write .",
+    "format:check": "biome format .",
+    "lint": "node tools/quality/lint-ratchet.mjs",
+    "boundaries": "depcruise apps packages --config .dependency-cruiser.cjs --ignore-known tools/quality/boundaries-baseline.json",
+    "boundaries:baseline": "depcruise apps packages --config .dependency-cruiser.cjs --output-type baseline --output-to tools/quality/boundaries-baseline.json",
+    "verify": "corepack pnpm format:check && corepack pnpm lint && corepack pnpm typecheck && corepack pnpm test && corepack pnpm build && corepack pnpm boundaries && corepack pnpm examples:verification",
+    "experiment:model-card-verification": "tsx --env-file=.env scripts/experiments/model-card-verification/run.ts",
+    "examples:verification": "corepack pnpm --filter @aiengineer/knowledge-verification examples && corepack pnpm --filter @aiengineer/knowledge-verification-executor examples",
+    "jev:build": "turbo run build --filter=@aiengineer/knowledge-jev-service...",
+    "jev:serve": "node --env-file=.env apps/jev/dist/index.js serve",
+    "jev": "node apps/jev/dist/index.js",
+    "jev:test": "pnpm --filter @aiengineer/knowledge-jev --filter @aiengineer/knowledge-jev-service --filter @aiengineer/knowledge-client test",
+    "maintenance": "node tools/maintenance/cli.mjs",
+    "test:maintenance": "node --test tools/maintenance/*.test.mjs .github/maintenance/*.test.mjs",
+    "test:context": "node --test .agent-docs/retrieval.test.mjs"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.5.14",
+    "@types/node": "catalog:",
+    "dependency-cruiser": "18.4.0",
+    "ai": "^6.0.146",
+    "zod": "catalog:",
+    "turbo": "catalog:",
+    "tsx": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}

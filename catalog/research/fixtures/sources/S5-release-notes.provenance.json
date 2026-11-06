@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "sv09-fixture-provenance.v1",
+  "synthetic": true,
+  "realWorld": false,
+  "author": "SV-09 helper C (Claude Opus 5.5 agent), Sprint V session 2026-10-25",
+  "authoredAt": "2026-10-25",
+  "acquisition": "none: hand-authored text, no web acquisition, no real product, vendor, study or person",
+  "license": "disposable engineering fixture; no third-party content",
+  "mediaType": "text/markdown; charset=utf-8",
+  "id": "S5",
+  "file": "sources/S5-release-notes.md",
+  "description": "Synthetic release notes (distractor: context window history).",
+  "planted": [
+    "distractor"
+  ],
+  "authorityFake": {
+    "verifiedOriginFamily": "northwind-orion7-card",
+    "doi": null,
+    "sourceKind": "vendor_documentation",
+    "studyDesign": null,
+    "directness": "direct",
+    "freshness": "current",
+    "qualifiers": {
+      "softwareVersion": "1.1",
+      "runtime": null
+    }
+  },
+  "revisionFrontierFake": null
+}

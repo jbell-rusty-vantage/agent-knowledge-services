@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "sv09-fixture-provenance.v1",
+  "synthetic": true,
+  "realWorld": false,
+  "author": "SV-09 helper C (Claude Opus 5.5 agent), Sprint V session 2026-10-25",
+  "authoredAt": "2026-10-25",
+  "acquisition": "none: hand-authored text, no web acquisition, no real product, vendor, study or person",
+  "license": "disposable engineering fixture; no third-party content",
+  "mediaType": "text/markdown; charset=utf-8",
+  "id": "S6",
+  "file": "sources/S6-pair26-abstract.md",
+  "description": "Synthetic abstract of the fictional randomized trial PAIR-26 (study appraisal input).",
+  "planted": [
+    "five appraisal domains reported",
+    "negation: participants not blinded",
+    "result sentence is a distractor for the appraisal"
+  ],
+  "authorityFake": {
+    "verifiedOriginFamily": "pair-26",
+    "doi": "10.5555/sv09.pair26",
+    "sourceKind": "peer_reviewed_article",
+    "studyDesign": "randomized_controlled_trial",
+    "directness": "direct",
+    "freshness": "current",
+    "qualifiers": {
+      "species": "human",
+      "population": "professional software developers"
+    }
+  },
+  "revisionFrontierFake": {
+    "status": 200,
+    "body": {
+      "message": {
+        "DOI": "10.5555/sv09.pair26"
+      }
+    }
+  }
+}

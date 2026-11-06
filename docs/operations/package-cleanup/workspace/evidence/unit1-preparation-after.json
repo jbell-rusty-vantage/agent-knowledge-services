@@ -1,0 +1,1751 @@
+{
+  "schema": 1,
+  "layout": "after",
+  "group": "preparation",
+  "sourceCommit": "3bcecebc206fbdd1149bbe16babbf8495ce20c87",
+  "dirty": true,
+  "compilerVersion": "7.0.2",
+  "runtimeProvenance": "Built dist/index.js is untracked output; digest proves byte identity only, not source commit or successful build.",
+  "packages": {
+    "conversion": {
+      "group": "preparation",
+      "packageName": "@aiengineer/knowledge-preparation",
+      "sourceEntry": "packages/preparation/src/conversion/index.ts",
+      "sourceExports": [
+        {
+          "name": "ConversionAttemptOutcome",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/types.ts"
+          ]
+        },
+        {
+          "name": "ConversionFailureClass",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/types.ts"
+          ]
+        },
+        {
+          "name": "ConversionFetch",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/http/fetch.ts"
+          ]
+        },
+        {
+          "name": "ConversionLocator",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/types.ts"
+          ]
+        },
+        {
+          "name": "ConversionMetrics",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/types.ts"
+          ]
+        },
+        {
+          "name": "ConversionNode",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/types.ts"
+          ]
+        },
+        {
+          "name": "ConversionNodeKind",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/types.ts"
+          ]
+        },
+        {
+          "name": "ConversionOutput",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/types.ts"
+          ]
+        },
+        {
+          "name": "ConversionProfile",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/types.ts"
+          ]
+        },
+        {
+          "name": "ConversionRequest",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/types.ts"
+          ]
+        },
+        {
+          "name": "ConversionRouteAttempt",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/types.ts"
+          ]
+        },
+        {
+          "name": "ConversionRouteOptions",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/types.ts"
+          ]
+        },
+        {
+          "name": "ConversionRouter",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/route.ts"
+          ]
+        },
+        {
+          "name": "conversionRouterFromProviders",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/conversion/route.ts"
+          ]
+        },
+        {
+          "name": "ConversionRouterProviders",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/types.ts"
+          ]
+        },
+        {
+          "name": "ConversionRoutingReceipt",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/types.ts"
+          ]
+        },
+        {
+          "name": "convertTextToNodes",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/conversion/deterministic/nodes.ts"
+          ]
+        },
+        {
+          "name": "createDoclingServeClientFromEnvironment",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/conversion/docling/client.ts"
+          ]
+        },
+        {
+          "name": "DEFAULT_DOCLING_BASE_URL",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/conversion/constants.ts"
+          ]
+        },
+        {
+          "name": "DEFAULT_DOCLING_MAXIMUM_RESULT_BYTES",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/conversion/constants.ts"
+          ]
+        },
+        {
+          "name": "DEFAULT_DOCLING_REQUEST_TIMEOUT_MS",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/conversion/constants.ts"
+          ]
+        },
+        {
+          "name": "DEFAULT_UNSTRUCTURED_POLLS",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/conversion/constants.ts"
+          ]
+        },
+        {
+          "name": "DETERMINISTIC_PROVIDER_KEY",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/conversion/constants.ts"
+          ]
+        },
+        {
+          "name": "DETERMINISTIC_PROVIDER_VERSION",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/conversion/constants.ts"
+          ]
+        },
+        {
+          "name": "DeterministicTextConversionProvider",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/deterministic/provider.ts"
+          ]
+        },
+        {
+          "name": "DOCLING_PROVIDER_KEY",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/conversion/constants.ts"
+          ]
+        },
+        {
+          "name": "DoclingServeClient",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/docling/client.ts"
+          ]
+        },
+        {
+          "name": "DoclingServeEnvironment",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/docling/client.ts"
+          ]
+        },
+        {
+          "name": "DoclingServeHttpConfig",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/docling/client.ts"
+          ]
+        },
+        {
+          "name": "DoclingServeProvider",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/docling/provider.ts"
+          ]
+        },
+        {
+          "name": "DocumentConversionProvider",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/types.ts"
+          ]
+        },
+        {
+          "name": "FidelityFinding",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/types.ts"
+          ]
+        },
+        {
+          "name": "FidelityFindingDisposition",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/types.ts"
+          ]
+        },
+        {
+          "name": "FidelityGrade",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/types.ts"
+          ]
+        },
+        {
+          "name": "FidelityReport",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/types.ts"
+          ]
+        },
+        {
+          "name": "HttpDoclingServeClient",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/docling/client.ts"
+          ]
+        },
+        {
+          "name": "HttpUnstructuredTransformClient",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/unstructured/client.ts"
+          ]
+        },
+        {
+          "name": "inspectConversion",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/conversion/deterministic/inspect.ts"
+          ]
+        },
+        {
+          "name": "isDeterministicTextMediaType",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/conversion/media-type.ts"
+          ]
+        },
+        {
+          "name": "isDoclingMediaType",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/conversion/media-type.ts"
+          ]
+        },
+        {
+          "name": "isExclusiveTextMediaType",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/conversion/media-type.ts"
+          ]
+        },
+        {
+          "name": "isHtmlMediaType",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/conversion/media-type.ts"
+          ]
+        },
+        {
+          "name": "LOW_COVERAGE_THRESHOLD",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/conversion/constants.ts"
+          ]
+        },
+        {
+          "name": "normalizeMediaType",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/conversion/media-type.ts"
+          ]
+        },
+        {
+          "name": "REPEATED_BLOCK_REVIEW_RATIO",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/conversion/constants.ts"
+          ]
+        },
+        {
+          "name": "requiresAlternateConversion",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/conversion/deterministic/inspect.ts"
+          ]
+        },
+        {
+          "name": "SandboxedVerificationParser",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/verification-parser.ts"
+          ]
+        },
+        {
+          "name": "UNSTRUCTURED_PROVIDER_KEY",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/conversion/constants.ts"
+          ]
+        },
+        {
+          "name": "UnstructuredHttpConfig",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/unstructured/client.ts"
+          ]
+        },
+        {
+          "name": "UnstructuredTransformClient",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/unstructured/client.ts"
+          ]
+        },
+        {
+          "name": "UnstructuredTransformProvider",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/unstructured/provider.ts"
+          ]
+        },
+        {
+          "name": "VERIFICATION_PARSER_LIMITS",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/conversion/verification-parser.ts"
+          ]
+        },
+        {
+          "name": "VerificationParserOutput",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/verification-parser.ts"
+          ]
+        },
+        {
+          "name": "VerificationParserRequest",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/verification-parser.ts"
+          ]
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "packages/preparation/examples/conversion/examples.test.ts",
+          "originalPath": "packages/conversion/examples/examples.test.ts"
+        },
+        {
+          "path": "packages/preparation/src/conversion/conversion.test.ts",
+          "originalPath": "packages/conversion/src/conversion.test.ts"
+        },
+        {
+          "path": "packages/preparation/src/conversion/verification-parser.test.ts",
+          "originalPath": "packages/conversion/src/verification-parser.test.ts"
+        }
+      ],
+      "runtimeExports": {
+        "status": "present-unverified-build",
+        "sha256": "c0f8a49e61043cd0ffefb33f84293bbe629d001808c9996ffcc2778cb15491e8",
+        "names": [
+          "CHUNK_PROFILE_TABLE",
+          "chunkDocument",
+          "ChunkProfileRegistry",
+          "ConversionRouter",
+          "conversionRouterFromProviders",
+          "convertStructuralDocument",
+          "convertTextToNodes",
+          "createDoclingServeClientFromEnvironment",
+          "createSourceLocator",
+          "DEFAULT_DOCLING_BASE_URL",
+          "DEFAULT_DOCLING_MAXIMUM_RESULT_BYTES",
+          "DEFAULT_DOCLING_REQUEST_TIMEOUT_MS",
+          "DEFAULT_UNSTRUCTURED_POLLS",
+          "defaultChunkProfileRegistry",
+          "DETERMINISTIC_PROVIDER_KEY",
+          "DETERMINISTIC_PROVIDER_VERSION",
+          "DeterministicTextConversionProvider",
+          "deterministicUuid",
+          "DOCLING_PROVIDER_KEY",
+          "DoclingServeProvider",
+          "HttpDoclingServeClient",
+          "HttpUnstructuredTransformClient",
+          "inspectConversion",
+          "isDeterministicTextMediaType",
+          "isDoclingMediaType",
+          "isExclusiveTextMediaType",
+          "isHtmlMediaType",
+          "LOW_COVERAGE_THRESHOLD",
+          "normalizeDocumentText",
+          "normalizeMediaType",
+          "reconstructChunk",
+          "reconstructNodeSpan",
+          "REPEATED_BLOCK_REVIEW_RATIO",
+          "requiresAlternateConversion",
+          "SandboxedVerificationParser",
+          "tokenize",
+          "TOKENIZER_VERSION",
+          "UNSTRUCTURED_PROVIDER_KEY",
+          "UnstructuredTransformProvider",
+          "validateChunks",
+          "VERIFICATION_PARSER_LIMITS",
+          "verifyNodeLocators"
+        ]
+      }
+    },
+    "documents": {
+      "group": "preparation",
+      "packageName": "@aiengineer/knowledge-preparation",
+      "sourceEntry": "packages/preparation/src/documents/index.ts",
+      "sourceExports": [
+        {
+          "name": "convertStructuralDocument",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/documents/nodes/structural-document.ts"
+          ]
+        },
+        {
+          "name": "createSourceLocator",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/documents/locators/source-locator.ts"
+          ]
+        },
+        {
+          "name": "deterministicUuid",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/documents/identity/deterministic-uuid.ts"
+          ]
+        },
+        {
+          "name": "normalizeDocumentText",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/documents/nodes/structural-document.ts"
+          ]
+        },
+        {
+          "name": "reconstructNodeSpan",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/documents/locators/source-locator.ts"
+          ]
+        },
+        {
+          "name": "StructuralBlock",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/documents/types.ts"
+          ]
+        },
+        {
+          "name": "StructuralDocument",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/documents/types.ts"
+          ]
+        },
+        {
+          "name": "StructuralDocumentInput",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/documents/types.ts"
+          ]
+        },
+        {
+          "name": "verifyNodeLocators",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/documents/locators/source-locator.ts"
+          ]
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "packages/preparation/examples/documents/01-build-nodes-and-verify-locators.test.ts",
+          "originalPath": "packages/documents/examples/01-build-nodes-and-verify-locators.test.ts"
+        },
+        {
+          "path": "packages/preparation/examples/documents/02-reject-cycle-and-invalid-span.test.ts",
+          "originalPath": "packages/documents/examples/02-reject-cycle-and-invalid-span.test.ts"
+        },
+        {
+          "path": "packages/preparation/src/documents/identity/deterministic-uuid.test.ts",
+          "originalPath": "packages/documents/src/identity/deterministic-uuid.test.ts"
+        },
+        {
+          "path": "packages/preparation/src/documents/locators/source-locator.test.ts",
+          "originalPath": "packages/documents/src/locators/source-locator.test.ts"
+        },
+        {
+          "path": "packages/preparation/src/documents/nodes/structural-document.test.ts",
+          "originalPath": "packages/documents/src/nodes/structural-document.test.ts"
+        }
+      ],
+      "runtimeExports": {
+        "status": "present-unverified-build",
+        "sha256": "c0f8a49e61043cd0ffefb33f84293bbe629d001808c9996ffcc2778cb15491e8",
+        "names": [
+          "CHUNK_PROFILE_TABLE",
+          "chunkDocument",
+          "ChunkProfileRegistry",
+          "ConversionRouter",
+          "conversionRouterFromProviders",
+          "convertStructuralDocument",
+          "convertTextToNodes",
+          "createDoclingServeClientFromEnvironment",
+          "createSourceLocator",
+          "DEFAULT_DOCLING_BASE_URL",
+          "DEFAULT_DOCLING_MAXIMUM_RESULT_BYTES",
+          "DEFAULT_DOCLING_REQUEST_TIMEOUT_MS",
+          "DEFAULT_UNSTRUCTURED_POLLS",
+          "defaultChunkProfileRegistry",
+          "DETERMINISTIC_PROVIDER_KEY",
+          "DETERMINISTIC_PROVIDER_VERSION",
+          "DeterministicTextConversionProvider",
+          "deterministicUuid",
+          "DOCLING_PROVIDER_KEY",
+          "DoclingServeProvider",
+          "HttpDoclingServeClient",
+          "HttpUnstructuredTransformClient",
+          "inspectConversion",
+          "isDeterministicTextMediaType",
+          "isDoclingMediaType",
+          "isExclusiveTextMediaType",
+          "isHtmlMediaType",
+          "LOW_COVERAGE_THRESHOLD",
+          "normalizeDocumentText",
+          "normalizeMediaType",
+          "reconstructChunk",
+          "reconstructNodeSpan",
+          "REPEATED_BLOCK_REVIEW_RATIO",
+          "requiresAlternateConversion",
+          "SandboxedVerificationParser",
+          "tokenize",
+          "TOKENIZER_VERSION",
+          "UNSTRUCTURED_PROVIDER_KEY",
+          "UnstructuredTransformProvider",
+          "validateChunks",
+          "VERIFICATION_PARSER_LIMITS",
+          "verifyNodeLocators"
+        ]
+      }
+    },
+    "chunking": {
+      "group": "preparation",
+      "packageName": "@aiengineer/knowledge-preparation",
+      "sourceEntry": "packages/preparation/src/chunking/index.ts",
+      "sourceExports": [
+        {
+          "name": "CHUNK_PROFILE_TABLE",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/chunking/profiles/definitions.ts"
+          ]
+        },
+        {
+          "name": "chunkDocument",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/chunking/chunker/chunk-document.ts"
+          ]
+        },
+        {
+          "name": "ChunkingResult",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/chunking/types.ts"
+          ]
+        },
+        {
+          "name": "ChunkProfile",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/contracts/dist/chunking.d.ts"
+          ]
+        },
+        {
+          "name": "ChunkProfileRegistry",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/chunking/profiles/registry.ts"
+          ]
+        },
+        {
+          "name": "ChunkProfileTable",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/contracts/dist/chunking.d.ts"
+          ]
+        },
+        {
+          "name": "ChunkQaResult",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/chunking/types.ts"
+          ]
+        },
+        {
+          "name": "ChunkStrategy",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/contracts/dist/chunking.d.ts"
+          ]
+        },
+        {
+          "name": "defaultChunkProfileRegistry",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/chunking/profiles/registry.ts"
+          ]
+        },
+        {
+          "name": "PreparedChunk",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/chunking/types.ts"
+          ]
+        },
+        {
+          "name": "PreparedChunkSpan",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/chunking/types.ts"
+          ]
+        },
+        {
+          "name": "reconstructChunk",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/chunking/qa/validate-chunks.ts"
+          ]
+        },
+        {
+          "name": "tokenize",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/chunking/chunker/tokenizer.ts"
+          ]
+        },
+        {
+          "name": "TOKENIZER_VERSION",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/chunking/chunker/tokenizer.ts"
+          ]
+        },
+        {
+          "name": "validateChunks",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/chunking/qa/validate-chunks.ts"
+          ]
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "packages/preparation/examples/chunking/01-select-profiles-for-space.test.ts",
+          "originalPath": "packages/chunking/examples/01-select-profiles-for-space.test.ts"
+        },
+        {
+          "path": "packages/preparation/examples/chunking/02-chunk-and-reconstruct.test.ts",
+          "originalPath": "packages/chunking/examples/02-chunk-and-reconstruct.test.ts"
+        },
+        {
+          "path": "packages/preparation/examples/chunking/03-qa-failure-next-profile.test.ts",
+          "originalPath": "packages/chunking/examples/03-qa-failure-next-profile.test.ts"
+        },
+        {
+          "path": "packages/preparation/src/chunking/chunker/chunk-document.test.ts",
+          "originalPath": "packages/chunking/src/chunker/chunk-document.test.ts"
+        },
+        {
+          "path": "packages/preparation/src/chunking/profiles/registry.test.ts",
+          "originalPath": "packages/chunking/src/profiles/registry.test.ts"
+        },
+        {
+          "path": "packages/preparation/src/chunking/qa/validate-chunks.test.ts",
+          "originalPath": "packages/chunking/src/qa/validate-chunks.test.ts"
+        }
+      ],
+      "runtimeExports": {
+        "status": "present-unverified-build",
+        "sha256": "c0f8a49e61043cd0ffefb33f84293bbe629d001808c9996ffcc2778cb15491e8",
+        "names": [
+          "CHUNK_PROFILE_TABLE",
+          "chunkDocument",
+          "ChunkProfileRegistry",
+          "ConversionRouter",
+          "conversionRouterFromProviders",
+          "convertStructuralDocument",
+          "convertTextToNodes",
+          "createDoclingServeClientFromEnvironment",
+          "createSourceLocator",
+          "DEFAULT_DOCLING_BASE_URL",
+          "DEFAULT_DOCLING_MAXIMUM_RESULT_BYTES",
+          "DEFAULT_DOCLING_REQUEST_TIMEOUT_MS",
+          "DEFAULT_UNSTRUCTURED_POLLS",
+          "defaultChunkProfileRegistry",
+          "DETERMINISTIC_PROVIDER_KEY",
+          "DETERMINISTIC_PROVIDER_VERSION",
+          "DeterministicTextConversionProvider",
+          "deterministicUuid",
+          "DOCLING_PROVIDER_KEY",
+          "DoclingServeProvider",
+          "HttpDoclingServeClient",
+          "HttpUnstructuredTransformClient",
+          "inspectConversion",
+          "isDeterministicTextMediaType",
+          "isDoclingMediaType",
+          "isExclusiveTextMediaType",
+          "isHtmlMediaType",
+          "LOW_COVERAGE_THRESHOLD",
+          "normalizeDocumentText",
+          "normalizeMediaType",
+          "reconstructChunk",
+          "reconstructNodeSpan",
+          "REPEATED_BLOCK_REVIEW_RATIO",
+          "requiresAlternateConversion",
+          "SandboxedVerificationParser",
+          "tokenize",
+          "TOKENIZER_VERSION",
+          "UNSTRUCTURED_PROVIDER_KEY",
+          "UnstructuredTransformProvider",
+          "validateChunks",
+          "VERIFICATION_PARSER_LIMITS",
+          "verifyNodeLocators"
+        ]
+      }
+    }
+  },
+  "groupExports": {
+    "preparation": {
+      "source": [
+        {
+          "name": "CHUNK_PROFILE_TABLE",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/chunking/profiles/definitions.ts"
+          ]
+        },
+        {
+          "name": "chunkDocument",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/chunking/chunker/chunk-document.ts"
+          ]
+        },
+        {
+          "name": "ChunkingResult",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/chunking/types.ts"
+          ]
+        },
+        {
+          "name": "ChunkProfile",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/contracts/dist/chunking.d.ts"
+          ]
+        },
+        {
+          "name": "ChunkProfileRegistry",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/chunking/profiles/registry.ts"
+          ]
+        },
+        {
+          "name": "ChunkProfileTable",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/contracts/dist/chunking.d.ts"
+          ]
+        },
+        {
+          "name": "ChunkQaResult",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/chunking/types.ts"
+          ]
+        },
+        {
+          "name": "ChunkStrategy",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/contracts/dist/chunking.d.ts"
+          ]
+        },
+        {
+          "name": "ConversionAttemptOutcome",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/types.ts"
+          ]
+        },
+        {
+          "name": "ConversionFailureClass",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/types.ts"
+          ]
+        },
+        {
+          "name": "ConversionFetch",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/http/fetch.ts"
+          ]
+        },
+        {
+          "name": "ConversionLocator",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/types.ts"
+          ]
+        },
+        {
+          "name": "ConversionMetrics",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/types.ts"
+          ]
+        },
+        {
+          "name": "ConversionNode",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/types.ts"
+          ]
+        },
+        {
+          "name": "ConversionNodeKind",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/types.ts"
+          ]
+        },
+        {
+          "name": "ConversionOutput",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/types.ts"
+          ]
+        },
+        {
+          "name": "ConversionProfile",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/types.ts"
+          ]
+        },
+        {
+          "name": "ConversionRequest",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/types.ts"
+          ]
+        },
+        {
+          "name": "ConversionRouteAttempt",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/types.ts"
+          ]
+        },
+        {
+          "name": "ConversionRouteOptions",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/types.ts"
+          ]
+        },
+        {
+          "name": "ConversionRouter",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/route.ts"
+          ]
+        },
+        {
+          "name": "conversionRouterFromProviders",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/conversion/route.ts"
+          ]
+        },
+        {
+          "name": "ConversionRouterProviders",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/types.ts"
+          ]
+        },
+        {
+          "name": "ConversionRoutingReceipt",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/types.ts"
+          ]
+        },
+        {
+          "name": "convertStructuralDocument",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/documents/nodes/structural-document.ts"
+          ]
+        },
+        {
+          "name": "convertTextToNodes",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/conversion/deterministic/nodes.ts"
+          ]
+        },
+        {
+          "name": "createDoclingServeClientFromEnvironment",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/conversion/docling/client.ts"
+          ]
+        },
+        {
+          "name": "createSourceLocator",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/documents/locators/source-locator.ts"
+          ]
+        },
+        {
+          "name": "DEFAULT_DOCLING_BASE_URL",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/conversion/constants.ts"
+          ]
+        },
+        {
+          "name": "DEFAULT_DOCLING_MAXIMUM_RESULT_BYTES",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/conversion/constants.ts"
+          ]
+        },
+        {
+          "name": "DEFAULT_DOCLING_REQUEST_TIMEOUT_MS",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/conversion/constants.ts"
+          ]
+        },
+        {
+          "name": "DEFAULT_UNSTRUCTURED_POLLS",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/conversion/constants.ts"
+          ]
+        },
+        {
+          "name": "defaultChunkProfileRegistry",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/chunking/profiles/registry.ts"
+          ]
+        },
+        {
+          "name": "DETERMINISTIC_PROVIDER_KEY",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/conversion/constants.ts"
+          ]
+        },
+        {
+          "name": "DETERMINISTIC_PROVIDER_VERSION",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/conversion/constants.ts"
+          ]
+        },
+        {
+          "name": "DeterministicTextConversionProvider",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/deterministic/provider.ts"
+          ]
+        },
+        {
+          "name": "deterministicUuid",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/documents/identity/deterministic-uuid.ts"
+          ]
+        },
+        {
+          "name": "DOCLING_PROVIDER_KEY",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/conversion/constants.ts"
+          ]
+        },
+        {
+          "name": "DoclingServeClient",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/docling/client.ts"
+          ]
+        },
+        {
+          "name": "DoclingServeEnvironment",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/docling/client.ts"
+          ]
+        },
+        {
+          "name": "DoclingServeHttpConfig",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/docling/client.ts"
+          ]
+        },
+        {
+          "name": "DoclingServeProvider",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/docling/provider.ts"
+          ]
+        },
+        {
+          "name": "DocumentConversionProvider",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/types.ts"
+          ]
+        },
+        {
+          "name": "FidelityFinding",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/types.ts"
+          ]
+        },
+        {
+          "name": "FidelityFindingDisposition",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/types.ts"
+          ]
+        },
+        {
+          "name": "FidelityGrade",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/types.ts"
+          ]
+        },
+        {
+          "name": "FidelityReport",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/types.ts"
+          ]
+        },
+        {
+          "name": "HttpDoclingServeClient",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/docling/client.ts"
+          ]
+        },
+        {
+          "name": "HttpUnstructuredTransformClient",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/unstructured/client.ts"
+          ]
+        },
+        {
+          "name": "inspectConversion",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/conversion/deterministic/inspect.ts"
+          ]
+        },
+        {
+          "name": "isDeterministicTextMediaType",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/conversion/media-type.ts"
+          ]
+        },
+        {
+          "name": "isDoclingMediaType",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/conversion/media-type.ts"
+          ]
+        },
+        {
+          "name": "isExclusiveTextMediaType",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/conversion/media-type.ts"
+          ]
+        },
+        {
+          "name": "isHtmlMediaType",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/conversion/media-type.ts"
+          ]
+        },
+        {
+          "name": "LOW_COVERAGE_THRESHOLD",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/conversion/constants.ts"
+          ]
+        },
+        {
+          "name": "normalizeDocumentText",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/documents/nodes/structural-document.ts"
+          ]
+        },
+        {
+          "name": "normalizeMediaType",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/conversion/media-type.ts"
+          ]
+        },
+        {
+          "name": "PreparedChunk",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/chunking/types.ts"
+          ]
+        },
+        {
+          "name": "PreparedChunkSpan",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/chunking/types.ts"
+          ]
+        },
+        {
+          "name": "reconstructChunk",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/chunking/qa/validate-chunks.ts"
+          ]
+        },
+        {
+          "name": "reconstructNodeSpan",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/documents/locators/source-locator.ts"
+          ]
+        },
+        {
+          "name": "REPEATED_BLOCK_REVIEW_RATIO",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/conversion/constants.ts"
+          ]
+        },
+        {
+          "name": "requiresAlternateConversion",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/conversion/deterministic/inspect.ts"
+          ]
+        },
+        {
+          "name": "SandboxedVerificationParser",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/verification-parser.ts"
+          ]
+        },
+        {
+          "name": "StructuralBlock",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/documents/types.ts"
+          ]
+        },
+        {
+          "name": "StructuralDocument",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/documents/types.ts"
+          ]
+        },
+        {
+          "name": "StructuralDocumentInput",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/documents/types.ts"
+          ]
+        },
+        {
+          "name": "tokenize",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/chunking/chunker/tokenizer.ts"
+          ]
+        },
+        {
+          "name": "TOKENIZER_VERSION",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/chunking/chunker/tokenizer.ts"
+          ]
+        },
+        {
+          "name": "UNSTRUCTURED_PROVIDER_KEY",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/conversion/constants.ts"
+          ]
+        },
+        {
+          "name": "UnstructuredHttpConfig",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/unstructured/client.ts"
+          ]
+        },
+        {
+          "name": "UnstructuredTransformClient",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/unstructured/client.ts"
+          ]
+        },
+        {
+          "name": "UnstructuredTransformProvider",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/unstructured/provider.ts"
+          ]
+        },
+        {
+          "name": "validateChunks",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/chunking/qa/validate-chunks.ts"
+          ]
+        },
+        {
+          "name": "VERIFICATION_PARSER_LIMITS",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/conversion/verification-parser.ts"
+          ]
+        },
+        {
+          "name": "VerificationParserOutput",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/verification-parser.ts"
+          ]
+        },
+        {
+          "name": "VerificationParserRequest",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/preparation/src/conversion/verification-parser.ts"
+          ]
+        },
+        {
+          "name": "verifyNodeLocators",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/preparation/src/documents/locators/source-locator.ts"
+          ]
+        }
+      ],
+      "runtime": {
+        "status": "present-unverified-build",
+        "sha256": "c0f8a49e61043cd0ffefb33f84293bbe629d001808c9996ffcc2778cb15491e8",
+        "names": [
+          "CHUNK_PROFILE_TABLE",
+          "chunkDocument",
+          "ChunkProfileRegistry",
+          "ConversionRouter",
+          "conversionRouterFromProviders",
+          "convertStructuralDocument",
+          "convertTextToNodes",
+          "createDoclingServeClientFromEnvironment",
+          "createSourceLocator",
+          "DEFAULT_DOCLING_BASE_URL",
+          "DEFAULT_DOCLING_MAXIMUM_RESULT_BYTES",
+          "DEFAULT_DOCLING_REQUEST_TIMEOUT_MS",
+          "DEFAULT_UNSTRUCTURED_POLLS",
+          "defaultChunkProfileRegistry",
+          "DETERMINISTIC_PROVIDER_KEY",
+          "DETERMINISTIC_PROVIDER_VERSION",
+          "DeterministicTextConversionProvider",
+          "deterministicUuid",
+          "DOCLING_PROVIDER_KEY",
+          "DoclingServeProvider",
+          "HttpDoclingServeClient",
+          "HttpUnstructuredTransformClient",
+          "inspectConversion",
+          "isDeterministicTextMediaType",
+          "isDoclingMediaType",
+          "isExclusiveTextMediaType",
+          "isHtmlMediaType",
+          "LOW_COVERAGE_THRESHOLD",
+          "normalizeDocumentText",
+          "normalizeMediaType",
+          "reconstructChunk",
+          "reconstructNodeSpan",
+          "REPEATED_BLOCK_REVIEW_RATIO",
+          "requiresAlternateConversion",
+          "SandboxedVerificationParser",
+          "tokenize",
+          "TOKENIZER_VERSION",
+          "UNSTRUCTURED_PROVIDER_KEY",
+          "UnstructuredTransformProvider",
+          "validateChunks",
+          "VERIFICATION_PARSER_LIMITS",
+          "verifyNodeLocators"
+        ]
+      }
+    }
+  },
+  "collisions": {
+    "preparation": []
+  },
+  "manifestGraph": {
+    "packageCount": 23,
+    "edges": [
+      {
+        "from": "@aiengineer/knowledge-acquisition",
+        "to": [
+          "@aiengineer/knowledge-domain",
+          "@aiengineer/knowledge-runtime"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-api",
+        "to": [
+          "@aiengineer/knowledge-application",
+          "@aiengineer/knowledge-client",
+          "@aiengineer/knowledge-config",
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-db",
+          "@aiengineer/knowledge-domain",
+          "@aiengineer/knowledge-persistence",
+          "@aiengineer/knowledge-retrieval",
+          "@aiengineer/knowledge-runtime",
+          "@aiengineer/knowledge-testkit"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-application",
+        "to": [
+          "@aiengineer/knowledge-acquisition",
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-domain",
+          "@aiengineer/knowledge-evaluation",
+          "@aiengineer/knowledge-jev",
+          "@aiengineer/knowledge-policy",
+          "@aiengineer/knowledge-preparation",
+          "@aiengineer/knowledge-retrieval",
+          "@aiengineer/knowledge-runtime",
+          "@aiengineer/knowledge-testkit",
+          "@aiengineer/knowledge-verification"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-cli",
+        "to": [
+          "@aiengineer/knowledge-application",
+          "@aiengineer/knowledge-client",
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-verification"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-client",
+        "to": [
+          "@aiengineer/knowledge-contracts"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-config",
+        "to": [
+          "@aiengineer/knowledge-contracts"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-contracts",
+        "to": []
+      },
+      {
+        "from": "@aiengineer/knowledge-db",
+        "to": [
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-domain",
+          "@aiengineer/knowledge-persistence",
+          "@aiengineer/knowledge-preparation",
+          "@aiengineer/knowledge-runtime"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-domain",
+        "to": [
+          "@aiengineer/knowledge-contracts"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-evaluation",
+        "to": [
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-domain",
+          "@aiengineer/knowledge-verification"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-jev",
+        "to": [
+          "@aiengineer/knowledge-contracts"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-jev-service",
+        "to": [
+          "@aiengineer/knowledge-application",
+          "@aiengineer/knowledge-client",
+          "@aiengineer/knowledge-contracts"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-mcp",
+        "to": [
+          "@aiengineer/knowledge-application",
+          "@aiengineer/knowledge-client",
+          "@aiengineer/knowledge-config",
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-persistence"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-observability",
+        "to": [
+          "@aiengineer/knowledge-domain"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-persistence",
+        "to": [
+          "@aiengineer/knowledge-application",
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-domain",
+          "@aiengineer/knowledge-runtime",
+          "@aiengineer/knowledge-verification"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-policy",
+        "to": [
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-domain",
+          "@aiengineer/knowledge-verification"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-preparation",
+        "to": [
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-domain",
+          "@aiengineer/knowledge-runtime"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-retrieval",
+        "to": [
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-domain",
+          "@aiengineer/knowledge-preparation"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-runtime",
+        "to": [
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-domain"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-testkit",
+        "to": [
+          "@aiengineer/knowledge-domain",
+          "@aiengineer/knowledge-evaluation",
+          "@aiengineer/knowledge-retrieval"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-verification",
+        "to": [
+          "@aiengineer/knowledge-contracts"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-verification-executor",
+        "to": [
+          "@aiengineer/knowledge-application",
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-db",
+          "@aiengineer/knowledge-domain",
+          "@aiengineer/knowledge-persistence",
+          "@aiengineer/knowledge-policy",
+          "@aiengineer/knowledge-preparation",
+          "@aiengineer/knowledge-runtime",
+          "@aiengineer/knowledge-verification"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-worker",
+        "to": [
+          "@aiengineer/knowledge-acquisition",
+          "@aiengineer/knowledge-application",
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-domain",
+          "@aiengineer/knowledge-evaluation",
+          "@aiengineer/knowledge-persistence",
+          "@aiengineer/knowledge-policy",
+          "@aiengineer/knowledge-preparation",
+          "@aiengineer/knowledge-retrieval",
+          "@aiengineer/knowledge-runtime",
+          "@aiengineer/knowledge-verification"
+        ]
+      }
+    ],
+    "cycles": []
+  }
+}

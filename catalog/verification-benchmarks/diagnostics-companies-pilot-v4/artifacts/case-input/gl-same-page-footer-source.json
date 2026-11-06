@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "verification-benchmark-case-input.v1",
+  "sourceDatasetManifestDigest": "sha256:b625b311493f8c366ef43bf4047bf61f38d510fe7f3c340f50bca42de737dfe6",
+  "sourceCaseDigest": "sha256:559092b2cc56e050b5a30776018a7ca68c526d4ba67996cd73af42c0cf188100",
+  "caseId": "gl-same-page-footer-source",
+  "assertion": "The same-page footer states 21 organs and systems.",
+  "evidence": [
+    {
+      "fragmentId": "sha256:289ac6ddff430dbea3b69ef766c3629aa1cd319db9ef20c51df94f58ce74a3e0",
+      "captureId": "8930d1e6-b8a1-5b4c-aabd-486efb0a051c",
+      "sourceKey": "gl-immune-age-19",
+      "sourceClass": "first_party_marketing",
+      "projectionArtifactId": "9042049b-c6ae-5b84-a6f3-7cb0e8259266",
+      "projectionDigest": "sha256:0864ec616615ebce64fa5f533a1ddd36a53cbd12698a7cf59e79ee690fdd80ff",
+      "transformationArtifactId": "96e045c7-5311-5f11-a255-00fba4eeeb9a",
+      "selector": {
+        "kind": "html",
+        "domPath": "1/5/3/0/0/0/0/1"
+      },
+      "selectedContentDigest": "sha256:3b47e081be2bbbe6b11b34d0ff0e5f82101ee73551c23f1627c5f371f0b61391",
+      "excerpt": "Slow your aging with the world's most accurate epigenetic test and personalized insights. 460 biomarkers, 21 organs and systems.",
+      "rights": "restricted internal preparation; not approved for provider upload or public redistribution",
+      "originalProviderUploadAuthorized": false
+    }
+  ],
+  "intendedUse": "immutable_case_input; provider transmission requires a separately authenticated derived-input grant"
+}

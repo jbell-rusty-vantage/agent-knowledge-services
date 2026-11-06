@@ -1,0 +1,45 @@
+{
+  "name": "@aiengineer/knowledge-application",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./jev": {
+      "types": "./dist/jev.d.ts",
+      "import": "./dist/jev.js"
+    },
+    "./testing": {
+      "types": "./dist/testing.d.ts",
+      "import": "./dist/testing.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup src/index.ts src/jev.ts src/testing.ts --format esm && tsc --emitDeclarationOnly --rootDir src --outDir dist",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@aiengineer/knowledge-acquisition": "workspace:*",
+    "@aiengineer/knowledge-contracts": "workspace:*",
+    "@aiengineer/knowledge-core": "workspace:*",
+    "@aiengineer/knowledge-evaluation": "workspace:*",
+    "@aiengineer/knowledge-jev": "workspace:*",
+    "@aiengineer/knowledge-operation-protocol": "workspace:*",
+    "@aiengineer/knowledge-policy": "workspace:*",
+    "@aiengineer/knowledge-preparation": "workspace:*",
+    "@aiengineer/knowledge-research-core": "workspace:*",
+    "@aiengineer/knowledge-retrieval": "workspace:*",
+    "@aiengineer/knowledge-verification": "workspace:*",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@aiengineer/knowledge-testkit": "workspace:*",
+    "tsup": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}

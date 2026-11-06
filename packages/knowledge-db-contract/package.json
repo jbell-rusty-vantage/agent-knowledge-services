@@ -1,0 +1,33 @@
+{
+  "name": "@aiengineer/knowledge-db-contract",
+  "version": "2.5.0",
+  "private": true,
+  "type": "module",
+  "description": "K09: the common Knowledge Services verification/admission SQL component (schema knowledge_verification), its fail-closed installer and manifest. Installed in each application's PostgreSQL before domain bindings.",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "bin": {
+    "knowledge-db": "./dist/cli.js"
+  },
+  "files": ["dist", "component"],
+  "scripts": {
+    "build": "tsup src/index.ts src/cli.ts --format esm && tsc --emitDeclarationOnly --rootDir src --outDir dist",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "manifest": "tsx src/cli.ts manifest"
+  },
+  "dependencies": {
+    "pg": "8.16.3"
+  },
+  "devDependencies": {
+    "@types/pg": "8.15.5",
+    "tsup": "catalog:",
+    "tsx": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}

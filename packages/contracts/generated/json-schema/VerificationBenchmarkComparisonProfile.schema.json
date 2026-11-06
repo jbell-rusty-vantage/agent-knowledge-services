@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "verification-benchmark-comparison-profile.v1"
+    },
+    "verificationContractVersion": {
+      "type": "string",
+      "const": "verification.v1"
+    },
+    "tenantId": {
+      "type": "string",
+      "format": "uuid",
+      "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+    },
+    "profileId": {
+      "type": "string",
+      "enum": [
+        "paired_default",
+        "regression_gate"
+      ]
+    },
+    "version": {
+      "type": "integer",
+      "exclusiveMinimum": 0,
+      "maximum": 9007199254740991
+    },
+    "armPairs": {
+      "minItems": 1,
+      "maxItems": 16,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "pairId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255
+          },
+          "baselineArmId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255
+          },
+          "candidateArmId": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255
+          }
+        },
+        "required": [
+          "pairId",
+          "baselineArmId",
+          "candidateArmId"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "clusterUnit": {
+      "type": "string",
+      "enum": [
+        "source_family",
+        "report_cluster"
+      ]
+    },
+    "seed": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 4294967295
+    },
+    "bootstrapReplicates": {
+      "type": "integer",
+      "minimum": 100,
+      "maximum": 10000
+    },
+    "correction": {
+      "type": "string",
+      "const": "holm"
+    },
+    "primaryMetric": {
+      "type": "string",
+      "enum": [
+        "schema_validity",
+        "locator_resolution_validity",
+        "locator_expectation_agreement",
+        "field_mechanics",
+        "support_agreement",
+        "authority_agreement",
+        "world_correctness_agreement",
+        "policy_agreement",
+        "engineering_expectation_agreement"
+      ]
+    },
+    "regressionGate": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "maximumAllowedObservedDecrease": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            }
+          },
+          "required": [
+            "maximumAllowedObservedDecrease"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "verificationContractVersion",
+    "tenantId",
+    "profileId",
+    "version",
+    "armPairs",
+    "clusterUnit",
+    "seed",
+    "bootstrapReplicates",
+    "correction",
+    "primaryMetric",
+    "regressionGate"
+  ],
+  "additionalProperties": false
+}

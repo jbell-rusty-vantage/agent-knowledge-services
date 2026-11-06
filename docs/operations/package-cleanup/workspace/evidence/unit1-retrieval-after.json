@@ -1,0 +1,1859 @@
+{
+  "schema": 1,
+  "layout": "after",
+  "group": "retrieval",
+  "sourceCommit": "6e816582369fdfb7787c7d7deeebb37de3db50c1",
+  "dirty": true,
+  "compilerVersion": "7.0.2",
+  "runtimeProvenance": "Built dist/index.js is untracked output; digest proves byte identity only, not source commit or successful build.",
+  "packages": {
+    "retrieval": {
+      "group": "retrieval",
+      "packageName": "@aiengineer/knowledge-retrieval",
+      "sourceEntry": "packages/retrieval/src/search/index.ts",
+      "sourceExports": [
+        {
+          "name": "AdvancedRetrievalPlan",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/search/types.ts"
+          ]
+        },
+        {
+          "name": "buildRetrievalPlan",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/retrieval/src/search/plan/build-plan.ts"
+          ]
+        },
+        {
+          "name": "EvidenceMember",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/search/types.ts"
+          ]
+        },
+        {
+          "name": "FilterValue",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/search/types.ts"
+          ]
+        },
+        {
+          "name": "GraphEdge",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/search/types.ts"
+          ]
+        },
+        {
+          "name": "ImmutableEvidencePacket",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/search/types.ts"
+          ]
+        },
+        {
+          "name": "Reranker",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/search/types.ts"
+          ]
+        },
+        {
+          "name": "RetrievalChannel",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/search/types.ts"
+          ]
+        },
+        {
+          "name": "RetrievalFilter",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/search/types.ts"
+          ]
+        },
+        {
+          "name": "RetrievalFlags",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/search/types.ts"
+          ]
+        },
+        {
+          "name": "RetrievalIntent",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/search/types.ts"
+          ]
+        },
+        {
+          "name": "RetrievalPolicy",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/search/types.ts"
+          ]
+        },
+        {
+          "name": "RetrievalRecord",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/search/types.ts"
+          ]
+        },
+        {
+          "name": "RetrievalStages",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/search/types.ts"
+          ]
+        },
+        {
+          "name": "RetrievalSubquery",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/search/types.ts"
+          ]
+        },
+        {
+          "name": "retrieve",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/retrieval/src/search/retrieve.ts"
+          ]
+        },
+        {
+          "name": "RetrievedCandidate",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/search/types.ts"
+          ]
+        },
+        {
+          "name": "RetrieveOptions",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/search/types.ts"
+          ]
+        },
+        {
+          "name": "StageContribution",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/search/types.ts"
+          ]
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "packages/retrieval/examples/search/01-plan-and-admission.test.ts",
+          "originalPath": "packages/retrieval/examples/01-plan-and-admission.test.ts"
+        },
+        {
+          "path": "packages/retrieval/examples/search/02-fuse-channels.test.ts",
+          "originalPath": "packages/retrieval/examples/02-fuse-channels.test.ts"
+        },
+        {
+          "path": "packages/retrieval/examples/search/03-abstain-and-omit.test.ts",
+          "originalPath": "packages/retrieval/examples/03-abstain-and-omit.test.ts"
+        },
+        {
+          "path": "packages/retrieval/src/search/graph/expand.test.ts",
+          "originalPath": "packages/retrieval/src/graph/expand.test.ts"
+        },
+        {
+          "path": "packages/retrieval/src/search/lexical/scoring.test.ts",
+          "originalPath": "packages/retrieval/src/lexical/scoring.test.ts"
+        },
+        {
+          "path": "packages/retrieval/src/search/plan/build-plan.test.ts",
+          "originalPath": "packages/retrieval/src/plan/build-plan.test.ts"
+        },
+        {
+          "path": "packages/retrieval/src/search/rerank/fuse.test.ts",
+          "originalPath": "packages/retrieval/src/rerank/fuse.test.ts"
+        },
+        {
+          "path": "packages/retrieval/src/search/retrieve.test.ts",
+          "originalPath": "packages/retrieval/src/retrieve.test.ts"
+        },
+        {
+          "path": "packages/retrieval/src/search/semantic/cosine.test.ts",
+          "originalPath": "packages/retrieval/src/semantic/cosine.test.ts"
+        },
+        {
+          "path": "packages/retrieval/src/search/spaces/admission.test.ts",
+          "originalPath": "packages/retrieval/src/spaces/admission.test.ts"
+        }
+      ],
+      "runtimeExports": {
+        "status": "present-unverified-build",
+        "sha256": "a283ff4bea73f55293c3afff6ea90a80ebef089381630e6b14e9875f41c11471",
+        "names": [
+          "AI_GATEWAY_BASE_URL",
+          "buildRetrievalPlan",
+          "CANONICAL_EMBEDDING_DIMENSIONS",
+          "classifyProjectionSpaces",
+          "createGatewayEmbeddingAdapterFromEnvironment",
+          "createProjection",
+          "DEFAULT_EMBEDDING_DIMENSIONS",
+          "DEFAULT_EMBEDDING_MODEL",
+          "DeterministicFakeEmbeddingAdapter",
+          "ExploratoryPublicationCoordinator",
+          "InMemoryExactCosineBackend",
+          "InMemoryPublicationRepository",
+          "MemoryEmbeddingCache",
+          "PostgresVectorSearchBackend",
+          "publicProjectionSpaces",
+          "retrieve",
+          "serializeHalfVector",
+          "validateEmbedding",
+          "validateEvidenceSupport",
+          "validateSearchLimit",
+          "validateVector",
+          "validateVectorItemEntityLink",
+          "VectorBackendError",
+          "vectorDigest",
+          "VercelAiGatewayEmbeddingAdapter"
+        ]
+      }
+    },
+    "projections": {
+      "group": "retrieval",
+      "packageName": "@aiengineer/knowledge-retrieval",
+      "sourceEntry": "packages/retrieval/src/projections/index.ts",
+      "sourceExports": [
+        {
+          "name": "ClassificationProposal",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/projections/types.ts"
+          ]
+        },
+        {
+          "name": "classifyProjectionSpaces",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/retrieval/src/projections/classification/disposition-spaces.ts"
+          ]
+        },
+        {
+          "name": "createProjection",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/retrieval/src/projections/projection/create-projection.ts"
+          ]
+        },
+        {
+          "name": "DomainDisposition",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/projections/types.ts"
+          ]
+        },
+        {
+          "name": "EvidenceSupport",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/projections/types.ts"
+          ]
+        },
+        {
+          "name": "EvidenceValidationResult",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/projections/types.ts"
+          ]
+        },
+        {
+          "name": "ProjectionInput",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/projections/types.ts"
+          ]
+        },
+        {
+          "name": "publicProjectionSpaces",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/retrieval/src/projections/classification/disposition-spaces.ts"
+          ]
+        },
+        {
+          "name": "SupportedAssertion",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/projections/types.ts"
+          ]
+        },
+        {
+          "name": "validateEvidenceSupport",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/retrieval/src/projections/validation/evidence-support.ts"
+          ]
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "packages/retrieval/examples/projections/01-validate-and-build.test.ts",
+          "originalPath": "packages/projections/examples/01-validate-and-build.test.ts"
+        },
+        {
+          "path": "packages/retrieval/examples/projections/02-source-native-fidelity.test.ts",
+          "originalPath": "packages/projections/examples/02-source-native-fidelity.test.ts"
+        },
+        {
+          "path": "packages/retrieval/examples/projections/03-classify-dispositions.test.ts",
+          "originalPath": "packages/projections/examples/03-classify-dispositions.test.ts"
+        },
+        {
+          "path": "packages/retrieval/src/projections/classification/disposition-spaces.test.ts",
+          "originalPath": "packages/projections/src/classification/disposition-spaces.test.ts"
+        },
+        {
+          "path": "packages/retrieval/src/projections/projection/create-projection.test.ts",
+          "originalPath": "packages/projections/src/projection/create-projection.test.ts"
+        },
+        {
+          "path": "packages/retrieval/src/projections/validation/evidence-support.test.ts",
+          "originalPath": "packages/projections/src/validation/evidence-support.test.ts"
+        }
+      ],
+      "runtimeExports": {
+        "status": "present-unverified-build",
+        "sha256": "a283ff4bea73f55293c3afff6ea90a80ebef089381630e6b14e9875f41c11471",
+        "names": [
+          "AI_GATEWAY_BASE_URL",
+          "buildRetrievalPlan",
+          "CANONICAL_EMBEDDING_DIMENSIONS",
+          "classifyProjectionSpaces",
+          "createGatewayEmbeddingAdapterFromEnvironment",
+          "createProjection",
+          "DEFAULT_EMBEDDING_DIMENSIONS",
+          "DEFAULT_EMBEDDING_MODEL",
+          "DeterministicFakeEmbeddingAdapter",
+          "ExploratoryPublicationCoordinator",
+          "InMemoryExactCosineBackend",
+          "InMemoryPublicationRepository",
+          "MemoryEmbeddingCache",
+          "PostgresVectorSearchBackend",
+          "publicProjectionSpaces",
+          "retrieve",
+          "serializeHalfVector",
+          "validateEmbedding",
+          "validateEvidenceSupport",
+          "validateSearchLimit",
+          "validateVector",
+          "validateVectorItemEntityLink",
+          "VectorBackendError",
+          "vectorDigest",
+          "VercelAiGatewayEmbeddingAdapter"
+        ]
+      }
+    },
+    "embeddings": {
+      "group": "retrieval",
+      "packageName": "@aiengineer/knowledge-retrieval",
+      "sourceEntry": "packages/retrieval/src/embeddings/index.ts",
+      "sourceExports": [
+        {
+          "name": "AI_GATEWAY_BASE_URL",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/retrieval/src/embeddings/types.ts"
+          ]
+        },
+        {
+          "name": "createGatewayEmbeddingAdapterFromEnvironment",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/retrieval/src/embeddings/gateway.ts"
+          ]
+        },
+        {
+          "name": "DEFAULT_EMBEDDING_DIMENSIONS",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/retrieval/src/embeddings/types.ts"
+          ]
+        },
+        {
+          "name": "DEFAULT_EMBEDDING_MODEL",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/retrieval/src/embeddings/types.ts"
+          ]
+        },
+        {
+          "name": "DeterministicFakeEmbeddingAdapter",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/embeddings/fake.ts"
+          ]
+        },
+        {
+          "name": "EmbedBatchReceipt",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/embeddings/types.ts"
+          ]
+        },
+        {
+          "name": "EmbeddedItem",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/embeddings/types.ts"
+          ]
+        },
+        {
+          "name": "EmbeddingAdapter",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/embeddings/types.ts"
+          ]
+        },
+        {
+          "name": "EmbeddingCache",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/embeddings/types.ts"
+          ]
+        },
+        {
+          "name": "EmbedInput",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/embeddings/types.ts"
+          ]
+        },
+        {
+          "name": "EmbedManyRequest",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/embeddings/types.ts"
+          ]
+        },
+        {
+          "name": "EmbedOneRequest",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/embeddings/types.ts"
+          ]
+        },
+        {
+          "name": "EmbedReceipt",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/embeddings/types.ts"
+          ]
+        },
+        {
+          "name": "EmbedRequestBase",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/embeddings/types.ts"
+          ]
+        },
+        {
+          "name": "GatewayAdapterOptions",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/embeddings/types.ts"
+          ]
+        },
+        {
+          "name": "MemoryEmbeddingCache",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/embeddings/cache.ts"
+          ]
+        },
+        {
+          "name": "ModelDescriptor",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/embeddings/types.ts"
+          ]
+        },
+        {
+          "name": "RetryAttempt",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/embeddings/types.ts"
+          ]
+        },
+        {
+          "name": "validateVector",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/retrieval/src/embeddings/vectors.ts"
+          ]
+        },
+        {
+          "name": "vectorDigest",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/retrieval/src/embeddings/vectors.ts"
+          ]
+        },
+        {
+          "name": "VercelAiGatewayEmbeddingAdapter",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/embeddings/gateway.ts"
+          ]
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "packages/retrieval/examples/embeddings/01-deterministic-batch.test.ts",
+          "originalPath": "packages/embeddings/examples/01-deterministic-batch.test.ts"
+        },
+        {
+          "path": "packages/retrieval/examples/embeddings/02-cache-and-retry.test.ts",
+          "originalPath": "packages/embeddings/examples/02-cache-and-retry.test.ts"
+        },
+        {
+          "path": "packages/retrieval/examples/embeddings/03-reject-bad-output.test.ts",
+          "originalPath": "packages/embeddings/examples/03-reject-bad-output.test.ts"
+        },
+        {
+          "path": "packages/retrieval/src/embeddings/cache.test.ts",
+          "originalPath": "packages/embeddings/src/cache.test.ts"
+        },
+        {
+          "path": "packages/retrieval/src/embeddings/fake.test.ts",
+          "originalPath": "packages/embeddings/src/fake.test.ts"
+        },
+        {
+          "path": "packages/retrieval/src/embeddings/gateway.test.ts",
+          "originalPath": "packages/embeddings/src/gateway.test.ts"
+        },
+        {
+          "path": "packages/retrieval/src/embeddings/vectors.test.ts",
+          "originalPath": "packages/embeddings/src/vectors.test.ts"
+        }
+      ],
+      "runtimeExports": {
+        "status": "present-unverified-build",
+        "sha256": "a283ff4bea73f55293c3afff6ea90a80ebef089381630e6b14e9875f41c11471",
+        "names": [
+          "AI_GATEWAY_BASE_URL",
+          "buildRetrievalPlan",
+          "CANONICAL_EMBEDDING_DIMENSIONS",
+          "classifyProjectionSpaces",
+          "createGatewayEmbeddingAdapterFromEnvironment",
+          "createProjection",
+          "DEFAULT_EMBEDDING_DIMENSIONS",
+          "DEFAULT_EMBEDDING_MODEL",
+          "DeterministicFakeEmbeddingAdapter",
+          "ExploratoryPublicationCoordinator",
+          "InMemoryExactCosineBackend",
+          "InMemoryPublicationRepository",
+          "MemoryEmbeddingCache",
+          "PostgresVectorSearchBackend",
+          "publicProjectionSpaces",
+          "retrieve",
+          "serializeHalfVector",
+          "validateEmbedding",
+          "validateEvidenceSupport",
+          "validateSearchLimit",
+          "validateVector",
+          "validateVectorItemEntityLink",
+          "VectorBackendError",
+          "vectorDigest",
+          "VercelAiGatewayEmbeddingAdapter"
+        ]
+      }
+    },
+    "vector-backends": {
+      "group": "retrieval",
+      "packageName": "@aiengineer/knowledge-retrieval",
+      "sourceEntry": "packages/retrieval/src/vector-backends/index.ts",
+      "sourceExports": [
+        {
+          "name": "ActivePublicationPointer",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/spaces/version.ts"
+          ]
+        },
+        {
+          "name": "CANONICAL_EMBEDDING_DIMENSIONS",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/types.ts"
+          ]
+        },
+        {
+          "name": "Digest",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/publication/types.ts"
+          ]
+        },
+        {
+          "name": "ExactVectorItem",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/types.ts"
+          ]
+        },
+        {
+          "name": "ExploratoryPublication",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/publication/types.ts"
+          ]
+        },
+        {
+          "name": "ExploratoryPublicationCoordinator",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/publication/coordinator.ts"
+          ]
+        },
+        {
+          "name": "InMemoryExactCosineBackend",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/backends/in-memory-exact.ts"
+          ]
+        },
+        {
+          "name": "InMemoryPublicationRepository",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/publication/repository.ts"
+          ]
+        },
+        {
+          "name": "PostgresRpcClient",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/backends/postgres.ts"
+          ]
+        },
+        {
+          "name": "PostgresRpcResult",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/backends/postgres.ts"
+          ]
+        },
+        {
+          "name": "PostgresVectorSearchBackend",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/backends/postgres.ts"
+          ]
+        },
+        {
+          "name": "PublicationEvent",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/spaces/version.ts"
+          ]
+        },
+        {
+          "name": "PublicationInspection",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/publication/types.ts"
+          ]
+        },
+        {
+          "name": "PublicationInspector",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/publication/types.ts"
+          ]
+        },
+        {
+          "name": "PublicationManifests",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/publication/types.ts"
+          ]
+        },
+        {
+          "name": "PublicationReconciliationReport",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/publication/types.ts"
+          ]
+        },
+        {
+          "name": "PublicationRepository",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/publication/types.ts"
+          ]
+        },
+        {
+          "name": "PublicationState",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/spaces/version.ts"
+          ]
+        },
+        {
+          "name": "PublicationTransaction",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/publication/types.ts"
+          ]
+        },
+        {
+          "name": "PublishExploratoryRequest",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/publication/types.ts"
+          ]
+        },
+        {
+          "name": "ReconciliationFinding",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/publication/types.ts"
+          ]
+        },
+        {
+          "name": "RollbackPublicationRequest",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/publication/types.ts"
+          ]
+        },
+        {
+          "name": "serializeHalfVector",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/backends/postgres.ts"
+          ]
+        },
+        {
+          "name": "validateEmbedding",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/types.ts"
+          ]
+        },
+        {
+          "name": "validateSearchLimit",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/types.ts"
+          ]
+        },
+        {
+          "name": "validateVectorItemEntityLink",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/spaces/link.ts"
+          ]
+        },
+        {
+          "name": "VectorBackendError",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/types.ts"
+          ]
+        },
+        {
+          "name": "VectorItemEntityLink",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/spaces/link.ts"
+          ]
+        },
+        {
+          "name": "VectorSearchBackend",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/types.ts"
+          ]
+        },
+        {
+          "name": "VectorSearchCandidate",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/types.ts"
+          ]
+        },
+        {
+          "name": "VectorSearchRequest",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/types.ts"
+          ]
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "packages/retrieval/examples/vector-backends/01-exact-search.test.ts",
+          "originalPath": "packages/vector-backends/examples/01-exact-search.test.ts"
+        },
+        {
+          "path": "packages/retrieval/examples/vector-backends/02-publish-and-rollback.test.ts",
+          "originalPath": "packages/vector-backends/examples/02-publish-and-rollback.test.ts"
+        },
+        {
+          "path": "packages/retrieval/examples/vector-backends/03-reconcile-drift.test.ts",
+          "originalPath": "packages/vector-backends/examples/03-reconcile-drift.test.ts"
+        },
+        {
+          "path": "packages/retrieval/src/vector-backends/backends/in-memory-exact.test.ts",
+          "originalPath": "packages/vector-backends/src/backends/in-memory-exact.test.ts"
+        },
+        {
+          "path": "packages/retrieval/src/vector-backends/backends/postgres.test.ts",
+          "originalPath": "packages/vector-backends/src/backends/postgres.test.ts"
+        },
+        {
+          "path": "packages/retrieval/src/vector-backends/publication/coordinator.test.ts",
+          "originalPath": "packages/vector-backends/src/publication/coordinator.test.ts"
+        },
+        {
+          "path": "packages/retrieval/src/vector-backends/publication/verification.test.ts",
+          "originalPath": "packages/vector-backends/src/publication/verification.test.ts"
+        },
+        {
+          "path": "packages/retrieval/src/vector-backends/spaces/link.test.ts",
+          "originalPath": "packages/vector-backends/src/spaces/link.test.ts"
+        }
+      ],
+      "runtimeExports": {
+        "status": "present-unverified-build",
+        "sha256": "a283ff4bea73f55293c3afff6ea90a80ebef089381630e6b14e9875f41c11471",
+        "names": [
+          "AI_GATEWAY_BASE_URL",
+          "buildRetrievalPlan",
+          "CANONICAL_EMBEDDING_DIMENSIONS",
+          "classifyProjectionSpaces",
+          "createGatewayEmbeddingAdapterFromEnvironment",
+          "createProjection",
+          "DEFAULT_EMBEDDING_DIMENSIONS",
+          "DEFAULT_EMBEDDING_MODEL",
+          "DeterministicFakeEmbeddingAdapter",
+          "ExploratoryPublicationCoordinator",
+          "InMemoryExactCosineBackend",
+          "InMemoryPublicationRepository",
+          "MemoryEmbeddingCache",
+          "PostgresVectorSearchBackend",
+          "publicProjectionSpaces",
+          "retrieve",
+          "serializeHalfVector",
+          "validateEmbedding",
+          "validateEvidenceSupport",
+          "validateSearchLimit",
+          "validateVector",
+          "validateVectorItemEntityLink",
+          "VectorBackendError",
+          "vectorDigest",
+          "VercelAiGatewayEmbeddingAdapter"
+        ]
+      }
+    }
+  },
+  "groupExports": {
+    "retrieval": {
+      "source": [
+        {
+          "name": "ActivePublicationPointer",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/spaces/version.ts"
+          ]
+        },
+        {
+          "name": "AdvancedRetrievalPlan",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/search/types.ts"
+          ]
+        },
+        {
+          "name": "AI_GATEWAY_BASE_URL",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/retrieval/src/embeddings/types.ts"
+          ]
+        },
+        {
+          "name": "buildRetrievalPlan",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/retrieval/src/search/plan/build-plan.ts"
+          ]
+        },
+        {
+          "name": "CANONICAL_EMBEDDING_DIMENSIONS",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/types.ts"
+          ]
+        },
+        {
+          "name": "ClassificationProposal",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/projections/types.ts"
+          ]
+        },
+        {
+          "name": "classifyProjectionSpaces",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/retrieval/src/projections/classification/disposition-spaces.ts"
+          ]
+        },
+        {
+          "name": "createGatewayEmbeddingAdapterFromEnvironment",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/retrieval/src/embeddings/gateway.ts"
+          ]
+        },
+        {
+          "name": "createProjection",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/retrieval/src/projections/projection/create-projection.ts"
+          ]
+        },
+        {
+          "name": "DEFAULT_EMBEDDING_DIMENSIONS",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/retrieval/src/embeddings/types.ts"
+          ]
+        },
+        {
+          "name": "DEFAULT_EMBEDDING_MODEL",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/retrieval/src/embeddings/types.ts"
+          ]
+        },
+        {
+          "name": "DeterministicFakeEmbeddingAdapter",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/embeddings/fake.ts"
+          ]
+        },
+        {
+          "name": "Digest",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/publication/types.ts"
+          ]
+        },
+        {
+          "name": "DomainDisposition",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/projections/types.ts"
+          ]
+        },
+        {
+          "name": "EmbedBatchReceipt",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/embeddings/types.ts"
+          ]
+        },
+        {
+          "name": "EmbeddedItem",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/embeddings/types.ts"
+          ]
+        },
+        {
+          "name": "EmbeddingAdapter",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/embeddings/types.ts"
+          ]
+        },
+        {
+          "name": "EmbeddingCache",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/embeddings/types.ts"
+          ]
+        },
+        {
+          "name": "EmbedInput",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/embeddings/types.ts"
+          ]
+        },
+        {
+          "name": "EmbedManyRequest",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/embeddings/types.ts"
+          ]
+        },
+        {
+          "name": "EmbedOneRequest",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/embeddings/types.ts"
+          ]
+        },
+        {
+          "name": "EmbedReceipt",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/embeddings/types.ts"
+          ]
+        },
+        {
+          "name": "EmbedRequestBase",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/embeddings/types.ts"
+          ]
+        },
+        {
+          "name": "EvidenceMember",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/search/types.ts"
+          ]
+        },
+        {
+          "name": "EvidenceSupport",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/projections/types.ts"
+          ]
+        },
+        {
+          "name": "EvidenceValidationResult",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/projections/types.ts"
+          ]
+        },
+        {
+          "name": "ExactVectorItem",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/types.ts"
+          ]
+        },
+        {
+          "name": "ExploratoryPublication",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/publication/types.ts"
+          ]
+        },
+        {
+          "name": "ExploratoryPublicationCoordinator",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/publication/coordinator.ts"
+          ]
+        },
+        {
+          "name": "FilterValue",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/search/types.ts"
+          ]
+        },
+        {
+          "name": "GatewayAdapterOptions",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/embeddings/types.ts"
+          ]
+        },
+        {
+          "name": "GraphEdge",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/search/types.ts"
+          ]
+        },
+        {
+          "name": "ImmutableEvidencePacket",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/search/types.ts"
+          ]
+        },
+        {
+          "name": "InMemoryExactCosineBackend",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/backends/in-memory-exact.ts"
+          ]
+        },
+        {
+          "name": "InMemoryPublicationRepository",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/publication/repository.ts"
+          ]
+        },
+        {
+          "name": "MemoryEmbeddingCache",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/embeddings/cache.ts"
+          ]
+        },
+        {
+          "name": "ModelDescriptor",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/embeddings/types.ts"
+          ]
+        },
+        {
+          "name": "PostgresRpcClient",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/backends/postgres.ts"
+          ]
+        },
+        {
+          "name": "PostgresRpcResult",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/backends/postgres.ts"
+          ]
+        },
+        {
+          "name": "PostgresVectorSearchBackend",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/backends/postgres.ts"
+          ]
+        },
+        {
+          "name": "ProjectionInput",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/projections/types.ts"
+          ]
+        },
+        {
+          "name": "PublicationEvent",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/spaces/version.ts"
+          ]
+        },
+        {
+          "name": "PublicationInspection",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/publication/types.ts"
+          ]
+        },
+        {
+          "name": "PublicationInspector",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/publication/types.ts"
+          ]
+        },
+        {
+          "name": "PublicationManifests",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/publication/types.ts"
+          ]
+        },
+        {
+          "name": "PublicationReconciliationReport",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/publication/types.ts"
+          ]
+        },
+        {
+          "name": "PublicationRepository",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/publication/types.ts"
+          ]
+        },
+        {
+          "name": "PublicationState",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/spaces/version.ts"
+          ]
+        },
+        {
+          "name": "PublicationTransaction",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/publication/types.ts"
+          ]
+        },
+        {
+          "name": "publicProjectionSpaces",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/retrieval/src/projections/classification/disposition-spaces.ts"
+          ]
+        },
+        {
+          "name": "PublishExploratoryRequest",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/publication/types.ts"
+          ]
+        },
+        {
+          "name": "ReconciliationFinding",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/publication/types.ts"
+          ]
+        },
+        {
+          "name": "Reranker",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/search/types.ts"
+          ]
+        },
+        {
+          "name": "RetrievalChannel",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/search/types.ts"
+          ]
+        },
+        {
+          "name": "RetrievalFilter",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/search/types.ts"
+          ]
+        },
+        {
+          "name": "RetrievalFlags",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/search/types.ts"
+          ]
+        },
+        {
+          "name": "RetrievalIntent",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/search/types.ts"
+          ]
+        },
+        {
+          "name": "RetrievalPolicy",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/search/types.ts"
+          ]
+        },
+        {
+          "name": "RetrievalRecord",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/search/types.ts"
+          ]
+        },
+        {
+          "name": "RetrievalStages",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/search/types.ts"
+          ]
+        },
+        {
+          "name": "RetrievalSubquery",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/search/types.ts"
+          ]
+        },
+        {
+          "name": "retrieve",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/retrieval/src/search/retrieve.ts"
+          ]
+        },
+        {
+          "name": "RetrievedCandidate",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/search/types.ts"
+          ]
+        },
+        {
+          "name": "RetrieveOptions",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/search/types.ts"
+          ]
+        },
+        {
+          "name": "RetryAttempt",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/embeddings/types.ts"
+          ]
+        },
+        {
+          "name": "RollbackPublicationRequest",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/publication/types.ts"
+          ]
+        },
+        {
+          "name": "serializeHalfVector",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/backends/postgres.ts"
+          ]
+        },
+        {
+          "name": "StageContribution",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/search/types.ts"
+          ]
+        },
+        {
+          "name": "SupportedAssertion",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/projections/types.ts"
+          ]
+        },
+        {
+          "name": "validateEmbedding",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/types.ts"
+          ]
+        },
+        {
+          "name": "validateEvidenceSupport",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/retrieval/src/projections/validation/evidence-support.ts"
+          ]
+        },
+        {
+          "name": "validateSearchLimit",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/types.ts"
+          ]
+        },
+        {
+          "name": "validateVector",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/retrieval/src/embeddings/vectors.ts"
+          ]
+        },
+        {
+          "name": "validateVectorItemEntityLink",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/spaces/link.ts"
+          ]
+        },
+        {
+          "name": "VectorBackendError",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/types.ts"
+          ]
+        },
+        {
+          "name": "vectorDigest",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/retrieval/src/embeddings/vectors.ts"
+          ]
+        },
+        {
+          "name": "VectorItemEntityLink",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/spaces/link.ts"
+          ]
+        },
+        {
+          "name": "VectorSearchBackend",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/types.ts"
+          ]
+        },
+        {
+          "name": "VectorSearchCandidate",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/types.ts"
+          ]
+        },
+        {
+          "name": "VectorSearchRequest",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/vector-backends/types.ts"
+          ]
+        },
+        {
+          "name": "VercelAiGatewayEmbeddingAdapter",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/retrieval/src/embeddings/gateway.ts"
+          ]
+        }
+      ],
+      "runtime": {
+        "status": "present-unverified-build",
+        "sha256": "a283ff4bea73f55293c3afff6ea90a80ebef089381630e6b14e9875f41c11471",
+        "names": [
+          "AI_GATEWAY_BASE_URL",
+          "buildRetrievalPlan",
+          "CANONICAL_EMBEDDING_DIMENSIONS",
+          "classifyProjectionSpaces",
+          "createGatewayEmbeddingAdapterFromEnvironment",
+          "createProjection",
+          "DEFAULT_EMBEDDING_DIMENSIONS",
+          "DEFAULT_EMBEDDING_MODEL",
+          "DeterministicFakeEmbeddingAdapter",
+          "ExploratoryPublicationCoordinator",
+          "InMemoryExactCosineBackend",
+          "InMemoryPublicationRepository",
+          "MemoryEmbeddingCache",
+          "PostgresVectorSearchBackend",
+          "publicProjectionSpaces",
+          "retrieve",
+          "serializeHalfVector",
+          "validateEmbedding",
+          "validateEvidenceSupport",
+          "validateSearchLimit",
+          "validateVector",
+          "validateVectorItemEntityLink",
+          "VectorBackendError",
+          "vectorDigest",
+          "VercelAiGatewayEmbeddingAdapter"
+        ]
+      }
+    }
+  },
+  "collisions": {
+    "retrieval": []
+  },
+  "manifestGraph": {
+    "packageCount": 25,
+    "edges": [
+      {
+        "from": "@aiengineer/knowledge-acquisition",
+        "to": [
+          "@aiengineer/knowledge-domain",
+          "@aiengineer/knowledge-runtime"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-api",
+        "to": [
+          "@aiengineer/knowledge-application",
+          "@aiengineer/knowledge-client",
+          "@aiengineer/knowledge-config",
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-db",
+          "@aiengineer/knowledge-domain",
+          "@aiengineer/knowledge-persistence",
+          "@aiengineer/knowledge-retrieval",
+          "@aiengineer/knowledge-runtime",
+          "@aiengineer/knowledge-testkit"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-application",
+        "to": [
+          "@aiengineer/knowledge-acquisition",
+          "@aiengineer/knowledge-chunking",
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-conversion",
+          "@aiengineer/knowledge-documents",
+          "@aiengineer/knowledge-domain",
+          "@aiengineer/knowledge-evaluation",
+          "@aiengineer/knowledge-jev",
+          "@aiengineer/knowledge-policy",
+          "@aiengineer/knowledge-retrieval",
+          "@aiengineer/knowledge-runtime",
+          "@aiengineer/knowledge-testkit",
+          "@aiengineer/knowledge-verification"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-chunking",
+        "to": [
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-documents",
+          "@aiengineer/knowledge-domain"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-cli",
+        "to": [
+          "@aiengineer/knowledge-application",
+          "@aiengineer/knowledge-client",
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-verification"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-client",
+        "to": [
+          "@aiengineer/knowledge-contracts"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-config",
+        "to": [
+          "@aiengineer/knowledge-contracts"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-contracts",
+        "to": []
+      },
+      {
+        "from": "@aiengineer/knowledge-conversion",
+        "to": [
+          "@aiengineer/knowledge-domain",
+          "@aiengineer/knowledge-runtime"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-db",
+        "to": [
+          "@aiengineer/knowledge-chunking",
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-documents",
+          "@aiengineer/knowledge-domain",
+          "@aiengineer/knowledge-persistence",
+          "@aiengineer/knowledge-runtime"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-documents",
+        "to": [
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-domain"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-domain",
+        "to": [
+          "@aiengineer/knowledge-contracts"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-evaluation",
+        "to": [
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-domain",
+          "@aiengineer/knowledge-verification"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-jev",
+        "to": [
+          "@aiengineer/knowledge-contracts"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-jev-service",
+        "to": [
+          "@aiengineer/knowledge-application",
+          "@aiengineer/knowledge-client",
+          "@aiengineer/knowledge-contracts"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-mcp",
+        "to": [
+          "@aiengineer/knowledge-application",
+          "@aiengineer/knowledge-client",
+          "@aiengineer/knowledge-config",
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-persistence"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-observability",
+        "to": [
+          "@aiengineer/knowledge-domain"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-persistence",
+        "to": [
+          "@aiengineer/knowledge-application",
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-domain",
+          "@aiengineer/knowledge-runtime",
+          "@aiengineer/knowledge-verification"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-policy",
+        "to": [
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-domain",
+          "@aiengineer/knowledge-verification"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-retrieval",
+        "to": [
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-documents",
+          "@aiengineer/knowledge-domain"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-runtime",
+        "to": [
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-domain"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-testkit",
+        "to": [
+          "@aiengineer/knowledge-domain",
+          "@aiengineer/knowledge-evaluation",
+          "@aiengineer/knowledge-retrieval"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-verification",
+        "to": [
+          "@aiengineer/knowledge-contracts"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-verification-executor",
+        "to": [
+          "@aiengineer/knowledge-application",
+          "@aiengineer/knowledge-chunking",
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-db",
+          "@aiengineer/knowledge-documents",
+          "@aiengineer/knowledge-domain",
+          "@aiengineer/knowledge-persistence",
+          "@aiengineer/knowledge-policy",
+          "@aiengineer/knowledge-runtime",
+          "@aiengineer/knowledge-verification"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-worker",
+        "to": [
+          "@aiengineer/knowledge-acquisition",
+          "@aiengineer/knowledge-application",
+          "@aiengineer/knowledge-chunking",
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-conversion",
+          "@aiengineer/knowledge-documents",
+          "@aiengineer/knowledge-domain",
+          "@aiengineer/knowledge-evaluation",
+          "@aiengineer/knowledge-persistence",
+          "@aiengineer/knowledge-policy",
+          "@aiengineer/knowledge-retrieval",
+          "@aiengineer/knowledge-runtime",
+          "@aiengineer/knowledge-verification"
+        ]
+      }
+    ],
+    "cycles": []
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "$id": "https://belllabs.local/knowledge-operation-protocol/evaluator-identity.v2.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "role": {
+      "type": "string",
+      "enum": [
+        "producer",
+        "judge",
+        "second_family_judge",
+        "auditor",
+        "human_reviewer"
+      ]
+    },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "model",
+        "deterministic",
+        "human"
+      ]
+    },
+    "provider": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_.-]{0,119}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "family": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_.-]{0,119}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "model": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@-]{0,199}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "deployment": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@-]{0,199}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "reviewerId": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:/@-]{0,199}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "methodVersion": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_.-]*\\.v[0-9]+$"
+    },
+    "promptDigest": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "configDigest": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    }
+  },
+  "required": [
+    "role",
+    "kind",
+    "provider",
+    "family",
+    "model",
+    "deployment",
+    "reviewerId",
+    "methodVersion",
+    "promptDigest",
+    "configDigest"
+  ],
+  "additionalProperties": false
+}

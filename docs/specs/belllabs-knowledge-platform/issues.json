@@ -1,0 +1,1913 @@
+{
+  "schemaVersion": "belllabs.knowledge-platform-plan/v1",
+  "date": "2026-10-10",
+  "status": "authorized_boundaries_with_explicit_owner_decision_gates",
+  "deferred": [
+    "V15: attribution-sensitivity audit and new media/modality qualification; outside this release, unsupported media remains explicitly unsupported."
+  ],
+  "issues": [
+    {
+      "id": "F01",
+      "title": "Describe and validate an application-bound knowledge installation",
+      "depends": [],
+      "owner": "Shared KS contracts/application and domain service owners",
+      "delivers": "An operator or consumer can describe exactly which modules, native contracts and domain procedures are executable for one authenticated application.",
+      "criteria": [
+        "Resolve application/tenant from trusted identity and reject attempts to select another binding or credentials.",
+        "Return schema, profile, policy, query, skill and operation versions plus explicit required/optional availability.",
+        "Preserve native UID/UUID and payload canonicalization semantics in common envelopes.",
+        "Exercise HTTP/client and MCP describe against both application profiles; missing required dependencies fail before provider effects.",
+        "Inventory current AI Engineer coupling and expose narrow ports without changing existing read/write behavior.",
+        "Describe native consumer routes and supported consistency/artifact semantics; do not require a universal SQL/Cypher query AST."
+      ],
+      "adrs": [
+        "0005",
+        "0006",
+        "0010",
+        "0014",
+        "0015"
+      ],
+      "milestone": "M1",
+      "order": 1,
+      "priority": 2,
+      "status": "ready-for-agent",
+      "implementationState": "not_started",
+      "source": "DOMAIN-SURFACES.md",
+      "outOfScope": "Unrelated refactors, accepting the entire Biotech ontology, altering immutable historical receipts, and running either complete application fixture before F99."
+    },
+    {
+      "id": "D01",
+      "title": "Reconcile a complete per-application capability assembly",
+      "depends": [
+        "F01"
+      ],
+      "owner": "Mission Control capability owner and domain release owners",
+      "delivers": "An operator sees every domain skill, MCP server/tool and CLI entrypoint with a truthful registration/readiness disposition.",
+      "criteria": [
+        "Inventory owned and vendored domain skills including operational skills, registered tools and binary/subcommand bindings.",
+        "Map to existing supported asset kinds; design a versioned CLI binding extension only if required.",
+        "Detect missing/extra/drifted/proposed/admitted/revoked/retired assets and unresolved provider dependencies.",
+        "Separate public-download guidance from private rubrics and secrets.",
+        "Produce a read-only deterministic assembly manifest and diff without modifying live catalogs.",
+        "Inventory owned/vendored Neo4j skills and proprietary native schema/read/ingest contracts; GraphQL is not an agent dependency."
+      ],
+      "adrs": [
+        "0010",
+        "0013",
+        "0014",
+        "0015"
+      ],
+      "milestone": "M1",
+      "order": 2,
+      "priority": 2,
+      "status": "ready-for-agent",
+      "implementationState": "not_started",
+      "source": "DELIVERY-CAPABILITIES.md",
+      "outOfScope": "Unrelated refactors, accepting the entire Biotech ontology, altering immutable historical receipts, and running either complete application fixture before F99."
+    },
+    {
+      "id": "F02",
+      "title": "Authorize one scoped knowledge read for product and external consumers",
+      "depends": [
+        "F01"
+      ],
+      "owner": "Product identity and domain API owners",
+      "delivers": "A user and their external agent read the same permitted entity through the same application use case.",
+      "criteria": [
+        "Validate audience, application, tenant, actor and grants in the service layer; API-key presence is not end-user authorization.",
+        "Apply object/field visibility and entitlements before retrieval and return consistent not-found/denied behavior.",
+        "Separate knowledge grants from product entitlement; a content link does not grant source access.",
+        "Test cross-app/tenant denial, expired credentials, revocation, pagination and bounded reads through HTTP and MCP.",
+        "Keep generated database mutations and unrestricted diagnostic SQL/Cypher off the product surface.",
+        "Keep Biotech product GraphQL, AI Engineer custom API and native agent authorization paths explicit; shared scope does not mean a shared query protocol."
+      ],
+      "adrs": [
+        "0005",
+        "0006",
+        "0010",
+        "0014",
+        "0015"
+      ],
+      "milestone": "M1",
+      "order": 3,
+      "priority": 2,
+      "status": "ready-for-agent",
+      "implementationState": "not_started",
+      "source": "DOMAIN-SURFACES.md",
+      "outOfScope": "Unrelated refactors, accepting the entire Biotech ontology, altering immutable historical receipts, and running either complete application fixture before F99."
+    },
+    {
+      "id": "V01",
+      "title": "Verify a versioned claim with explicit obligations and support sets",
+      "depends": [
+        "F01"
+      ],
+      "owner": "KS contracts/application",
+      "delivers": "versioned task, occurrence, support-set and use-binding envelope; retain v1 compatibility.",
+      "criteria": [
+        "Round-trip schemas.",
+        "reject unknown/duplicate/foreign refs.",
+        "conjunctive two-premise set fails when one premise missing.",
+        "independently sufficient alternative succeeds while conflict retained.",
+        "cyclic ungrounded derivation rejected.",
+        "all occurrence spans bind report digest."
+      ],
+      "adrs": [
+        "0007",
+        "0008",
+        "0009",
+        "0012"
+      ],
+      "milestone": "M1",
+      "order": 4,
+      "priority": 2,
+      "status": "ready-for-agent",
+      "implementationState": "not_started",
+      "source": "VERIFICATION.md",
+      "outOfScope": "Unrelated refactors, accepting the entire Biotech ontology, altering immutable historical receipts, and running either complete application fixture before F99."
+    },
+    {
+      "id": "D02",
+      "title": "Publish and materialize an exact app-scoped skill bundle",
+      "depends": [
+        "D01"
+      ],
+      "owner": "Mission Control catalog/custody owner",
+      "delivers": "An authorized publisher registers a proposed capability whose exact bytes can be inspected and materialized by the correct consumer.",
+      "criteria": [
+        "Wire the real custody service through publish/inspect/render public routes; do not rely solely on seed scripts.",
+        "Upload immutable per-file digest/size manifests to the correct app bucket and register exact version pins.",
+        "Repeat upload/register is resumable; corruption, foreign application, traversal and external symlinks fail.",
+        "Prove actual consumer write restrictions and secret-reference projection for each claimed host.",
+        "Keep proposed/admitted/granted states distinct and never modify immutable released seeds."
+      ],
+      "adrs": [
+        "0010",
+        "0012"
+      ],
+      "milestone": "M1",
+      "order": 5,
+      "priority": 2,
+      "status": "ready-for-agent",
+      "implementationState": "not_started",
+      "source": "DELIVERY-CAPABILITIES.md",
+      "outOfScope": "Unrelated refactors, accepting the entire Biotech ontology, altering immutable historical receipts, and running either complete application fixture before F99."
+    },
+    {
+      "id": "V02",
+      "title": "Reject a report that omits material assertions or original obligations",
+      "depends": [
+        "V01"
+      ],
+      "owner": "KS report/application",
+      "delivers": "independent final assertion census and obligation gate, using existing decomposition validators.",
+      "criteria": [
+        "Human-reviewed report fixture with uncited heading, table cell, caption, missing negation and omitted original question.",
+        "all remain in denominator.",
+        "post-check edit fails binding.",
+        "duplicate paraphrases cannot improve productivity."
+      ],
+      "adrs": [
+        "0007",
+        "0008",
+        "0009",
+        "0012"
+      ],
+      "milestone": "M1",
+      "order": 6,
+      "priority": 2,
+      "status": "ready-for-agent",
+      "implementationState": "not_started",
+      "source": "VERIFICATION.md",
+      "outOfScope": "Unrelated refactors, accepting the entire Biotech ontology, altering immutable historical receipts, and running either complete application fixture before F99."
+    },
+    {
+      "id": "V03",
+      "title": "Route verification through pinned education, engineering and science policies",
+      "depends": [
+        "V01"
+      ],
+      "owner": "KS policy/application",
+      "delivers": "explicit rule router and frozen domain rubric registry; education/engineering/science truth tables.",
+      "criteria": [
+        "Caller lowers risk.",
+        "critical use still escalates. Missing second judge, expired calibration, unsupported media and exhausted challenge budget hold. Qualified source report can pass while generalized clinical/product/causal claim holds. Literal extraction never becomes a canonical world-fact exemption."
+      ],
+      "adrs": [
+        "0007",
+        "0008",
+        "0009",
+        "0012"
+      ],
+      "milestone": "M1",
+      "order": 7,
+      "priority": 2,
+      "status": "ready-for-agent",
+      "implementationState": "not_started",
+      "source": "VERIFICATION.md",
+      "outOfScope": "Unrelated refactors, accepting the entire Biotech ontology, altering immutable historical receipts, and running either complete application fixture before F99."
+    },
+    {
+      "id": "V04",
+      "title": "Persist standalone and mission-linked verification through one owned SQL component",
+      "depends": [
+        "V01"
+      ],
+      "owner": "Common SQL component contract + current DB owner",
+      "delivers": "operational owned-object inventory, migration extraction/compatibility design, nullable MC linkage.",
+      "criteria": [
+        "Fresh disposable schema and supported upgrade preserve immutable digests/history/RLS.",
+        "standalone run works with no MC IDs.",
+        "linked held result maps to execution completed + review required.",
+        "foreign-tenant correlations rejected. Migration authority remains explicit until release."
+      ],
+      "adrs": [
+        "0007",
+        "0008",
+        "0009",
+        "0012"
+      ],
+      "milestone": "M1",
+      "order": 8,
+      "priority": 2,
+      "status": "ready-for-agent",
+      "implementationState": "not_started",
+      "source": "VERIFICATION.md",
+      "outOfScope": "Unrelated refactors, accepting the entire Biotech ontology, altering immutable historical receipts, and running either complete application fixture before F99."
+    },
+    {
+      "id": "R01",
+      "title": "Answer familiar AI Engineer questions through direct and Fast retrieval",
+      "depends": [
+        "F02"
+      ],
+      "owner": "AI Engineer domain binding",
+      "delivers": "A consumer opens an entity/content version directly or receives a bounded evidence-based answer without a schema sandbox.",
+      "criteria": [
+        "Direct reads call approved named queries with zero model calls and explicit snapshots/truncation.",
+        "Fast combines admitted retrieval channels and optional synthesis; unsupported graph features reject rather than disappear.",
+        "Return citations, unsupported facets, freshness and the actual route; no silent external acquisition.",
+        "Cache keys bind authorization, query/profile and data/publication versions; revocation is rechecked.",
+        "Measure warm/cold p50/p95, full cost and answer support over a fixed representative question set.",
+        "Expose application entity reads through the custom PostgreSQL-backed API and typed client, preserving named queries and native clocks; the separate evidence retrieval executor must not be confused with skipped db-read retrieval operations."
+      ],
+      "adrs": [
+        "0005",
+        "0006",
+        "0014",
+        "0015"
+      ],
+      "milestone": "M3",
+      "order": 9,
+      "priority": 3,
+      "status": "ready-for-agent",
+      "implementationState": "not_started",
+      "source": "DOMAIN-SURFACES.md",
+      "outOfScope": "Unrelated refactors, accepting the entire Biotech ontology, altering immutable historical receipts, and running either complete application fixture before F99."
+    },
+    {
+      "id": "D05",
+      "title": "Capture provider and fallback results with truthful evidence contracts",
+      "depends": [
+        "F01",
+        "V01"
+      ],
+      "owner": "Shared acquisition/preparation and domain guidance owners",
+      "delivers": "A domain agent acquires a source through an admitted upstream provider or an explicit lower-cost fallback and can verify what was captured.",
+      "criteria": [
+        "Keep upstream skills/providers independently owned; adapters normalize custody, content, completeness and provenance where useful.",
+        "Capture actual tool schemas/artifact versions and dependency requirements without credentials in manifests.",
+        "Fallback HTTP/browser/parser selection is explicit; missing rendered content yields an incomplete result.",
+        "Test provider timeout, partial content, unsupported media, duplicate capture and malformed outputs through published operations.",
+        "Record provider cost/route and retain bytes for verification; no copied external tool becomes an unowned internal service."
+      ],
+      "adrs": [
+        "0005",
+        "0009",
+        "0010"
+      ],
+      "milestone": "M4",
+      "order": 10,
+      "priority": 3,
+      "status": "ready-for-agent",
+      "implementationState": "not_started",
+      "source": "DELIVERY-CAPABILITIES.md",
+      "outOfScope": "Unrelated refactors, accepting the entire Biotech ontology, altering immutable historical receipts, and running either complete application fixture before F99."
+    },
+    {
+      "id": "V05",
+      "title": "Evaluate source authority, applicability and bounded counterevidence",
+      "depends": [
+        "V01",
+        "V03"
+      ],
+      "owner": "KS authority/challenge",
+      "delivers": "admitted authority observations, source-origin grouping and bounded counterevidence; bind domain rubric, correction/retraction frontier.",
+      "criteria": [
+        "Three syndicated sources remain one origin.",
+        "unknown origin remains unknown.",
+        "official API spec sufficient for its interface.",
+        "method paper cannot validate product.",
+        "population/endpoint/baseline mismatch holds.",
+        "new rescue evidence requires capture+L0 and never repairs old citation retroactively."
+      ],
+      "adrs": [
+        "0007",
+        "0008",
+        "0009",
+        "0012"
+      ],
+      "milestone": "M1",
+      "order": 11,
+      "priority": 2,
+      "status": "ready-for-agent",
+      "implementationState": "not_started",
+      "source": "VERIFICATION.md",
+      "outOfScope": "Unrelated refactors, accepting the entire Biotech ontology, altering immutable historical receipts, and running either complete application fixture before F99."
+    },
+    {
+      "id": "V06",
+      "title": "Admit an exact verified knowledge effect into AI Engineer PostgreSQL",
+      "depends": [
+        "V01",
+        "V03",
+        "V04"
+      ],
+      "owner": "AI Engineer `knowledge-db` + oracle",
+      "delivers": "exact extended claim/use/effect/epoch admission.",
+      "criteria": [
+        "Tampered qualifier, subject ID, normalized SQL value, intended use, rubric/calibration ref, report revision or revoked decision requires re-verification/hold. Independent admitted proposal can proceed while held dependency closure cannot. Preserve existing authoritative-hydration tests."
+      ],
+      "adrs": [
+        "0007",
+        "0008",
+        "0009",
+        "0012"
+      ],
+      "milestone": "M1",
+      "order": 12,
+      "priority": 2,
+      "status": "ready-for-agent",
+      "implementationState": "not_started",
+      "source": "VERIFICATION.md",
+      "outOfScope": "Unrelated refactors, accepting the entire Biotech ontology, altering immutable historical receipts, and running either complete application fixture before F99."
+    },
+    {
+      "id": "V10",
+      "title": "Reuse evidence-bound observations without inventing fresh verification",
+      "depends": [
+        "V01",
+        "V04"
+      ],
+      "owner": "KS provenance/application",
+      "delivers": "evidence-bound observation cache and replay.",
+      "criteria": [
+        "Change each cache-key component independently (qualifier, entity, context, role/order/set, selected bytes, parser, model/config/prompt/schema/rubric/use).",
+        "no unsafe hit. Tenant/rights/expiry/revocation fail closed. Warm/cold deterministic results match.",
+        "reused judge never counts as independent vote.",
+        "recorded replay requires no live provider."
+      ],
+      "adrs": [
+        "0007",
+        "0008",
+        "0009",
+        "0012"
+      ],
+      "milestone": "M2",
+      "order": 13,
+      "priority": 2,
+      "status": "ready-for-agent",
+      "implementationState": "not_started",
+      "source": "VERIFICATION.md",
+      "outOfScope": "Unrelated refactors, accepting the entire Biotech ontology, altering immutable historical receipts, and running either complete application fixture before F99."
+    },
+    {
+      "id": "J01",
+      "title": "Use an AI Engineer Jev recipe in an executable domain procedure",
+      "depends": [
+        "F01",
+        "R01"
+      ],
+      "owner": "AI Engineer domain skills and Jev consumer",
+      "delivers": "An installed agent classifies a learning/research item with a pinned closed-choice recipe and handles uncertainty correctly.",
+      "criteria": [
+        "Define one concrete taxonomy/routing recipe with labels, criteria, captured inputs and Noul/insufficient-evidence outcomes.",
+        "Skill shows actual CLI/MCP invocation, result interpretation, rejected input and escalation.",
+        "Evaluate recipe on independent labeled cases; raw confidence is not calibrated admission.",
+        "Persist result/recipe provenance; retries preserve captured input and disclose possible provider rebilling.",
+        "Keep canonical writes and permissions outside Jev and preserve current queue deployment constraints."
+      ],
+      "adrs": [
+        "0010"
+      ],
+      "milestone": "M3",
+      "order": 14,
+      "priority": 3,
+      "status": "ready-for-agent",
+      "implementationState": "not_started",
+      "source": "DOMAIN-SURFACES.md",
+      "outOfScope": "Unrelated refactors, accepting the entire Biotech ontology, altering immutable historical receipts, and running either complete application fixture before F99."
+    },
+    {
+      "id": "V09",
+      "title": "Import independent labels and publish honest calibration state",
+      "depends": [
+        "V01",
+        "V03",
+        "V05"
+      ],
+      "owner": "KS semantic/benchmark + domain reviewers",
+      "delivers": "label import, calibration profiles and honest benchmark projection.",
+      "criteria": [
+        "Synthetic labels cannot be imported as human.",
+        "training/report/source-family leakage rejected.",
+        "unknown support/authority stays unassessed.",
+        "domain-shift profile cannot silently reuse threshold.",
+        "benchmark quality flags stay false until qualifying artifacts exist."
+      ],
+      "adrs": [
+        "0007",
+        "0008",
+        "0009",
+        "0012"
+      ],
+      "milestone": "M2",
+      "order": 15,
+      "priority": 2,
+      "status": "ready-for-agent",
+      "implementationState": "not_started",
+      "source": "VERIFICATION.md",
+      "outOfScope": "Unrelated refactors, accepting the entire Biotech ontology, altering immutable historical receipts, and running either complete application fixture before F99."
+    },
+    {
+      "id": "V11",
+      "title": "Batch and schedule semantic checks within isolated budgets",
+      "depends": [
+        "V03",
+        "V04",
+        "V10"
+      ],
+      "owner": "KS execution/provider",
+      "delivers": "isolated semantic batches, bounded concurrency, reservations and cancellation.",
+      "criteria": [
+        "Single/batch parity, missing/duplicate/cross-case output IDs, cross-case injection, mixed case failure, cancelled/late reply, parallel quota contention, worker crash and retry. Budgets/artifacts preserved.",
+        "no silent context truncation or additional calls after hard stop."
+      ],
+      "adrs": [
+        "0007",
+        "0008",
+        "0009",
+        "0012"
+      ],
+      "milestone": "M2",
+      "order": 16,
+      "priority": 2,
+      "status": "ready-for-agent",
+      "implementationState": "not_started",
+      "source": "VERIFICATION.md",
+      "outOfScope": "Unrelated refactors, accepting the entire Biotech ontology, altering immutable historical receipts, and running either complete application fixture before F99."
+    },
+    {
+      "id": "C01",
+      "title": "Create and publish an evidence-bound AI Engineer learning artifact",
+      "depends": [
+        "V06",
+        "V02",
+        "R01"
+      ],
+      "owner": "AI Engineer content and product owners",
+      "delivers": "An author creates a versioned lesson/challenge/project draft, validates its learning and runnable properties, and publishes the exact reviewed version.",
+      "criteria": [
+        "Keep private drafts separate from official knowledge and require expected revision/idempotency.",
+        "Bind learning objectives, prerequisites, claims, sources and runnable test/rubric versions.",
+        "Use assertion census and verification admission; model praise cannot replace deterministic project tests.",
+        "Review and publication bind exact content/evidence versions; post-review edits invalidate approval.",
+        "Expose draft/read/revise/submit-review on API, MCP and CLI. Official publish/withdraw use authorized reviewer HTTP/CLI; ordinary MCP returns its explicit publication exclusion. Do not widen existing vector-publication grants.",
+        "A challenge/project binds a runnable test command and trusted workspace artifact; deterministic test execution, timeout and failure are attributable to its exact content version."
+      ],
+      "adrs": [
+        "0009",
+        "0011"
+      ],
+      "milestone": "M3",
+      "order": 17,
+      "priority": 3,
+      "status": "ready-for-agent",
+      "implementationState": "not_started",
+      "source": "DOMAIN-SURFACES.md",
+      "outOfScope": "Unrelated refactors, accepting the entire Biotech ontology, altering immutable historical receipts, and running either complete application fixture before F99."
+    },
+    {
+      "id": "P01",
+      "title": "Compose AI Engineer user state and knowledge into a product API",
+      "depends": [
+        "F02",
+        "C01",
+        "R01"
+      ],
+      "owner": "AI Engineer product API owner",
+      "delivers": "Web, mobile and agents can read a learner's saved work/progress with the authorized version of learning content.",
+      "criteria": [
+        "Provide typed user profile/preferences, saved-content/notes and progress/attempt operations with scoped revisions.",
+        "Keep progress/notes out of canonical knowledge; private user content remains private.",
+        "Expose content + progress composition through a generated client and minimal reference consumer view.",
+        "Handle pagination, conflict, duplicate progress submission and offline/stale evidence explicitly.",
+        "Document ownership and release contract for the new product host; do not claim a full absent learner application already exists.",
+        "Implement product.project.test.request/status through an admitted execution capability with bounded workspace, exact test/rubric version, progress, cancellation and attributable result; integrate an actual external editor/workspace handoff rather than a simulated coding pane."
+      ],
+      "adrs": [
+        "0005",
+        "0006",
+        "0011"
+      ],
+      "milestone": "M3",
+      "order": 18,
+      "priority": 3,
+      "status": "ready-for-agent",
+      "implementationState": "not_started",
+      "source": "DOMAIN-SURFACES.md",
+      "outOfScope": "Unrelated refactors, accepting the entire Biotech ontology, altering immutable historical receipts, and running either complete application fixture before F99."
+    },
+    {
+      "id": "G00",
+      "title": "Reconcile the deployed GraphQL service with schema and Fly configuration",
+      "depends": [],
+      "owner": "Biotech GraphQL/Fly operator",
+      "delivers": "An operator can distinguish the deployed API, current graph compatibility and unaccepted v2 candidate from local configuration.",
+      "criteria": [
+        "Read back image/release, Machine topology/resources and runtime feature/schema versions through the documented Fly wrapper; report inaccessible evidence explicitly.",
+        "Reconcile health source digest, executable-schema identity, current graph/index compatibility and local pins without claiming that healthy connectivity proves migration.",
+        "Inventory current supported consumers/operations and collect a baseline measurement plan with no production load benchmark or index mutation.",
+        "Correct stale deployment documentation and record source-versus-live evidence with no secrets."
+      ],
+      "adrs": [
+        "0014",
+        "0015"
+      ],
+      "milestone": "M7",
+      "order": 19,
+      "priority": 3,
+      "status": "ready-for-agent",
+      "implementationState": "not_started",
+      "source": "GRAPHQL-CLIENT.md",
+      "outOfScope": "Implicit v2 acceptance, unreviewed ontology/vector choices, routing agents through GraphQL, unrelated refactors, and either complete application fixture before F99."
+    },
+    {
+      "id": "Q01",
+      "title": "Interview and record the staged v2 schema adoption boundary",
+      "depends": [
+        "G00"
+      ],
+      "owner": "Biotech schema owner with product and ingestion owners",
+      "delivers": "The owner selects the v2 subset or full candidate to accept, preserving explicit exclusions and migration authority.",
+      "criteria": [
+        "Use the newer v2 assembly as the review candidate as confirmed by the owner; do not treat that selection as acceptance.",
+        "Resolve or retain the candidate OD/R owner decisions, including pair metric, remaining question/fixture errors and planner compatibility; link existing decision IDs.",
+        "Select the first entity/evidence read and ingestion case, identity/time/evidence mapping and legacy migration/retention strategy.",
+        "Record the owner answer and exact accepted pin/scope before closing; update dependent acceptance criteria and triage labels. No migration or complete fixture runs during the interview."
+      ],
+      "adrs": [
+        "0014",
+        "0015"
+      ],
+      "milestone": "M1",
+      "order": 20,
+      "priority": 2,
+      "status": "ready-for-human",
+      "implementationState": "not_started",
+      "source": "CLARIFICATIONS.md",
+      "outOfScope": "Implicit v2 acceptance, unreviewed ontology/vector choices, routing agents through GraphQL, unrelated refactors, and either complete application fixture before F99."
+    },
+    {
+      "id": "Q02",
+      "title": "Interview and select native agent read and write artifact semantics",
+      "depends": [],
+      "owner": "Owner with Biotech agent/executor maintainer",
+      "delivers": "Agents retain a clear native path with the minimum necessary read abstraction and explicit canonical-write authority.",
+      "criteria": [
+        "Compare one representative question in existing typed reads and a parameterized Cypher artifact; bring cost/expressiveness/failure evidence without introducing GraphQL.",
+        "Decide named/typed/native Cypher routing, directly configured Neo4j skill scope, read-only enforcement and which artifacts must be retained.",
+        "Distinguish deterministic query compilation, retained-result replay and rerunning against changing graph state; define supported snapshot/precondition expectations.",
+        "Preserve intent+original-plan replay, admission and atomic canonical writes; record the owner decision and amend N01/N02/R03/X01 and skill contracts."
+      ],
+      "adrs": [
+        "0014",
+        "0015"
+      ],
+      "milestone": "M1",
+      "order": 21,
+      "priority": 2,
+      "status": "ready-for-human",
+      "implementationState": "not_started",
+      "source": "CLARIFICATIONS.md",
+      "outOfScope": "Implicit v2 acceptance, unreviewed ontology/vector choices, routing agents through GraphQL, unrelated refactors, and either complete application fixture before F99."
+    },
+    {
+      "id": "Q03",
+      "title": "Interview and select the Biotech corpus embedding and GraphRAG contract",
+      "depends": [
+        "Q01"
+      ],
+      "owner": "Owner with Biotech corpus/schema/retrieval maintainer",
+      "delivers": "The first corpus, index generation and scientific retrieval profile have explicit accepted semantics.",
+      "criteria": [
+        "Review v2 Chunk/SourceSnapshot/SourceLocator/MENTIONS with existing entity vectors and PostgreSQL spaces as separate representation, scope and index axes.",
+        "Resolve OD-44 model/dimensions and FU-07 deployment DDL for selected scope; choose embedding targets and physical storage or explicitly exclude vectors from the first release.",
+        "Choose corpus ACL, eligible versions, re-embedding/correction/deletion/historical replay behavior and graph-index reconciliation ownership.",
+        "Freeze representative questions, expected evidence and quality/cost gates; record the owner decision before N04/N05 or product vector activation."
+      ],
+      "adrs": [
+        "0014",
+        "0015"
+      ],
+      "milestone": "M1",
+      "order": 22,
+      "priority": 2,
+      "status": "ready-for-human",
+      "implementationState": "not_started",
+      "source": "CLARIFICATIONS.md",
+      "outOfScope": "Implicit v2 acceptance, unreviewed ontology/vector choices, routing agents through GraphQL, unrelated refactors, and either complete application fixture before F99."
+    },
+    {
+      "id": "Q04",
+      "title": "Interview and freeze first web and Expo operations and access rules",
+      "depends": [],
+      "owner": "Owner with Biotech product/API maintainer",
+      "delivers": "A small real web/Expo product contract defines the typed client, authorization and measured performance goals.",
+      "criteria": [
+        "Retain confirmed TypeScript web + React Native/Expo target; select entity card and paginated evidence/relationship use cases.",
+        "Choose verified end-user GraphQL access versus product BFF; record public/member/private visibility and current verification/publication policy.",
+        "Choose operation registry policy, optional client cache adapter, offline/reconnect semantics and supported older-mobile compatibility.",
+        "Record workload/SLO/cost targets grounded in the baseline and owner answers; no service API key may ship in a client."
+      ],
+      "adrs": [
+        "0014",
+        "0015"
+      ],
+      "milestone": "M1",
+      "order": 23,
+      "priority": 2,
+      "status": "ready-for-human",
+      "implementationState": "not_started",
+      "source": "CLARIFICATIONS.md",
+      "outOfScope": "Implicit v2 acceptance, unreviewed ontology/vector choices, routing agents through GraphQL, unrelated refactors, and either complete application fixture before F99."
+    },
+    {
+      "id": "G01",
+      "title": "Export a reviewed executable GraphQL read contract for one product slice",
+      "depends": [
+        "Q01",
+        "Q04"
+      ],
+      "owner": "Biotech schema and GraphQL owners",
+      "delivers": "A client developer obtains the exact bounded read schema for the accepted first product operations.",
+      "criteria": [
+        "Derive a versioned read projection from the approved upstream schema with feature/source/executable digests and compatibility metadata; never edit pinned SDL by hand.",
+        "Inventory type/field query, mutation, nested-operation, filter/sort/select/aggregate and deprecated controls against installed library semantics.",
+        "Remove unused generated write families and review deprecated/aggregate compatibility; aggregate:false alone must not be claimed to remove aggregation filters.",
+        "Export the same executable schema used by the server without production secrets/provider calls; validate the first real operations and report build/size evidence separately from database migration."
+      ],
+      "adrs": [
+        "0014",
+        "0015"
+      ],
+      "milestone": "M7",
+      "order": 24,
+      "priority": 3,
+      "status": "needs-info",
+      "implementationState": "not_started",
+      "source": "GRAPHQL-CLIENT.md",
+      "outOfScope": "Implicit v2 acceptance, unreviewed ontology/vector choices, routing agents through GraphQL, unrelated refactors, and either complete application fixture before F99."
+    },
+    {
+      "id": "G02",
+      "title": "Bound the first product GraphQL operations using actual schema semantics",
+      "depends": [
+        "G01",
+        "Q04"
+      ],
+      "owner": "Biotech GraphQL owner",
+      "delivers": "Supported product queries have enforced execution bounds even on union relationships and expensive input shapes.",
+      "criteria": [
+        "Implement declared operation admission and variable policies; a persisted hash registry must be trusted and server-enforced rather than confused with APQ caching.",
+        "Handle union-target @limit exclusions, defaults, nested fanout, aliases/fragments, filter recursion, variable/input arrays, offsets, counts/aggregates and response bytes.",
+        "Exercise rejects before database/provider effects and compare actual selected-query execution with cost assumptions; keep stable ordering and explicit truncation.",
+        "Bound pool/retry/transaction and whole-request time; demonstrate what cancellation actually terminates."
+      ],
+      "adrs": [
+        "0014",
+        "0015"
+      ],
+      "milestone": "M7",
+      "order": 25,
+      "priority": 3,
+      "status": "ready-for-agent",
+      "implementationState": "not_started",
+      "source": "GRAPHQL-CLIENT.md",
+      "outOfScope": "Implicit v2 acceptance, unreviewed ontology/vector choices, routing agents through GraphQL, unrelated refactors, and either complete application fixture before F99."
+    },
+    {
+      "id": "N01",
+      "title": "Execute and retain a native agent read under the selected artifact contract",
+      "depends": [
+        "F01",
+        "Q02"
+      ],
+      "owner": "Biotech native read and domain skill owner",
+      "delivers": "An agent asks one representative graph question without GraphQL or an unnecessary query translation.",
+      "criteria": [
+        "Implement the selected native Cypher/named/typed read route and worked skill examples, with schema/request/parameter contract pins and trusted authority.",
+        "Enforce read-only authority, procedure policy and server work/row/byte/time bounds; a lexical guard or post-materialization slice alone is insufficient.",
+        "Separate stable request/result identity from elapsed telemetry; preserve legacy receipt compatibility and define ordering/ties/truncation.",
+        "Return retained results, source references and supported consistency honestly; bookmarks/touched nodes are not global historical snapshots."
+      ],
+      "adrs": [
+        "0014",
+        "0015"
+      ],
+      "milestone": "M3",
+      "order": 26,
+      "priority": 3,
+      "status": "needs-info",
+      "implementationState": "not_started",
+      "source": "NATIVE-RETRIEVAL-INGESTION.md",
+      "outOfScope": "Implicit v2 acceptance, unreviewed ontology/vector choices, routing agents through GraphQL, unrelated refactors, and either complete application fixture before F99."
+    },
+    {
+      "id": "N02",
+      "title": "Make native ingestion snapshot preconditions and lost-response replay truthful",
+      "depends": [
+        "F01",
+        "Q02"
+      ],
+      "owner": "Biotech plan/apply contract owner",
+      "delivers": "A stale proposal fails according to its declared contract and an identical original intent/plan recovers one authoritative receipt.",
+      "criteria": [
+        "Resolve inputSnapshot reference validation versus explicitly limited precondition semantics selected at Q02; a digest-bound unused reference cannot imply enforced snapshot isolation.",
+        "Preserve same normalized intent/schema/rules/graph/injected clock determinism; original intent AND original plan recover after lost response.",
+        "Test relevant concurrent updates/new relationships and the actual scope of touched-node preconditions; unsupported closure semantics reject or remain explicit.",
+        "Preserve atomic marker/effect/receipt and admission checks; update JSON Schema/Python contracts and skill guidance compatibly when wire semantics change."
+      ],
+      "adrs": [
+        "0014",
+        "0015"
+      ],
+      "milestone": "M3",
+      "order": 27,
+      "priority": 3,
+      "status": "needs-info",
+      "implementationState": "not_started",
+      "source": "NATIVE-RETRIEVAL-INGESTION.md",
+      "outOfScope": "Implicit v2 acceptance, unreviewed ontology/vector choices, routing agents through GraphQL, unrelated refactors, and either complete application fixture before F99."
+    },
+    {
+      "id": "R02",
+      "title": "Answer familiar Biotech questions through bounded graph and evidence reads",
+      "depends": [
+        "F02",
+        "N01"
+      ],
+      "owner": "Biotech domain service",
+      "delivers": "A consumer resolves a public entity and gets a scoped answer grounded in graph assertions and retained sources.",
+      "criteria": [
+        "Direct routes use native bounded resolve/card/trace queries and preserve hu identifiers.",
+        "Add an evidence retrieval contract that returns source snapshots/locators, assertion qualifiers and scoped omissions.",
+        "Approved scientific comparison patterns preserve population/material/dose/context rather than treating adjacency as support.",
+        "Implement application/tenant access plus cost/row/hop/time caps without exposing unrestricted generated mutations.",
+        "Measure fixed questions and authority-aware cache invalidation; missing evidence remains explicit.",
+        "Use the approved native agent read path, preserving current pinned-schema support without requiring v2 for ordinary reads; product entity clients use the separate GraphQL track.",
+        "New Biotech corpus/vector/GraphRAG behavior belongs to Q03/N04/N05; until qualified return unsupported rather than implying vector or evidence-channel completeness."
+      ],
+      "adrs": [
+        "0005",
+        "0006",
+        "0007",
+        "0014",
+        "0015"
+      ],
+      "milestone": "M3",
+      "order": 28,
+      "priority": 3,
+      "status": "ready-for-agent",
+      "implementationState": "not_started",
+      "source": "DOMAIN-SURFACES.md",
+      "outOfScope": "Unrelated refactors, accepting the entire Biotech ontology, altering immutable historical receipts, and running either complete application fixture before F99."
+    },
+    {
+      "id": "V07",
+      "title": "Admit a verified Biotech effect through a minimal versioned graph binding",
+      "depends": [
+        "V01",
+        "V03",
+        "V04",
+        "Q01"
+      ],
+      "owner": "Biotech contracts + `kg-ops`",
+      "delivers": "trusted admission witness and immutable graph verification-binding kernel extension.",
+      "criteria": [
+        "Existing locator UID or caller confidence alone cannot authorize accepted effect.",
+        "mutated predicate/object/value/validity/schema PIN fails.",
+        "same admitted intent and read snapshot gives identical plan digest.",
+        "all evidence/assessment/marker writes roll back together on injected transaction failure.",
+        "Resolve the exact owner-approved minimal graph binding/pin before implementation; newer v2 review selection is not full-schema acceptance."
+      ],
+      "adrs": [
+        "0007",
+        "0008",
+        "0009",
+        "0012",
+        "0014",
+        "0015"
+      ],
+      "milestone": "M1",
+      "order": 29,
+      "priority": 2,
+      "status": "needs-info",
+      "implementationState": "not_started",
+      "source": "VERIFICATION.md",
+      "outOfScope": "Unrelated refactors, accepting the entire Biotech ontology, altering immutable historical receipts, and running either complete application fixture before F99."
+    },
+    {
+      "id": "J02",
+      "title": "Use a Biotech Jev recipe for scientific applicability triage",
+      "depends": [
+        "F01",
+        "R02",
+        "V03"
+      ],
+      "owner": "Biotech domain skills and Jev consumer",
+      "delivers": "An installed agent triages study/product/protocol applicability while preserving insufficient evidence and scientific qualifiers.",
+      "criteria": [
+        "Specify a closed recipe for material/population/endpoint comparability with domain-owned labels and rubric.",
+        "Skill distinguishes routing/classification from evidence verification and canonical admission.",
+        "Demonstrate incomparable formulation, missing dose/context, contradictory evidence and uncertain identity outcomes.",
+        "Evaluate separately from AI Engineer labels; domain shift cannot reuse confidence thresholds implicitly.",
+        "Use captured immutable state and explicit escalation to verification or review rather than fallback invented labels."
+      ],
+      "adrs": [
+        "0009",
+        "0010"
+      ],
+      "milestone": "M3",
+      "order": 30,
+      "priority": 3,
+      "status": "ready-for-agent",
+      "implementationState": "not_started",
+      "source": "DOMAIN-SURFACES.md",
+      "outOfScope": "Unrelated refactors, accepting the entire Biotech ontology, altering immutable historical receipts, and running either complete application fixture before F99."
+    },
+    {
+      "id": "R03",
+      "title": "Explore unfamiliar questions with bounded schema slices",
+      "depends": [
+        "R01",
+        "R02",
+        "Q02",
+        "N01"
+      ],
+      "owner": "Shared question routing and both domain adapters",
+      "delivers": "A user explores a relationship or comparison using only the necessary versioned schema and approved operations.",
+      "criteria": [
+        "Build indexes/task slices at schema release and select exact identifiers/templates before model planning.",
+        "Expose a route receipt with required facets and step/hop/row/token/spend ceilings.",
+        "Compare SQL and graph results without promising identical backend consistency guarantees.",
+        "Preserve graph path predicates and supporting assertions; cap-triggered omissions cannot become complete answers.",
+        "Return needs_budget or unsupported rather than upgrading to Research automatically.",
+        "Choose the approved native Cypher/named/typed artifact route and preserve native semantics; no mandatory new read DSL and no agent GraphQL adapter."
+      ],
+      "adrs": [
+        "0005",
+        "0006",
+        "0014",
+        "0015"
+      ],
+      "milestone": "M3",
+      "order": 31,
+      "priority": 3,
+      "status": "ready-for-agent",
+      "implementationState": "not_started",
+      "source": "DOMAIN-SURFACES.md",
+      "outOfScope": "Unrelated refactors, accepting the entire Biotech ontology, altering immutable historical receipts, and running either complete application fixture before F99."
+    },
+    {
+      "id": "X01",
+      "title": "Fold bounded database operations into canonical application surfaces",
+      "depends": [
+        "R01",
+        "R02",
+        "N01",
+        "N02"
+      ],
+      "owner": "Shared KS application/transports and domain adapters",
+      "delivers": "Consumers invoke schema/read/plan/apply/receipt operations through the canonical operation catalog without losing native behavior.",
+      "criteria": [
+        "Move an additive complete vertical operation family through application, HTTP, MCP and CLI with parity.",
+        "Retain native snapshot, authority, idempotency and receipt semantics; no internal cross-repository imports.",
+        "Declared/unsupported operations remain fail-closed; replace executor-only exclusions only after real implementations exist.",
+        "Migrate all configured callers with exact pins before legacy removal.",
+        "Preserve replay/artifact bytes and existing tests; record the known missing historical receipt separately.",
+        "Canonical discovery/composition preserves native agent contracts; replacing a language requires demonstrated equivalence and explicit migration, not a GraphQL wrapper."
+      ],
+      "adrs": [
+        "0005",
+        "0006",
+        "0013",
+        "0014",
+        "0015"
+      ],
+      "milestone": "M4",
+      "order": 32,
+      "priority": 3,
+      "status": "ready-for-agent",
+      "implementationState": "not_started",
+      "source": "DELIVERY-CAPABILITIES.md",
+      "outOfScope": "Unrelated refactors, accepting the entire Biotech ontology, altering immutable historical receipts, and running either complete application fixture before F99."
+    },
+    {
+      "id": "V08",
+      "title": "Recover cross-store result delivery and prevent stale official use",
+      "depends": [
+        "V04",
+        "V06",
+        "V07"
+      ],
+      "owner": "KS + graph adapters",
+      "delivers": "decision/outbox commit before dispatch, pending graph projection, verified acknowledgment and authoritative use checks.",
+      "criteria": [
+        "Crash before/after PostgreSQL outbox commit, graph commit and acknowledgment.",
+        "duplicated/reordered event.",
+        "Neo4j unavailable.",
+        "concurrent PostgreSQL revocation between dispatch check and graph commit.",
+        "authority unavailable. A physical stale projection may exist, but a check observing revocation cannot serve it officially or admit a new use.",
+        "unavailable checks hold. No duplicate assertion episode.",
+        "replayed acknowledgment cannot revive revoked eligibility."
+      ],
+      "adrs": [
+        "0007",
+        "0008",
+        "0009",
+        "0012"
+      ],
+      "milestone": "M1",
+      "order": 33,
+      "priority": 2,
+      "status": "ready-for-agent",
+      "implementationState": "not_started",
+      "source": "VERIFICATION.md",
+      "outOfScope": "Unrelated refactors, accepting the entire Biotech ontology, altering immutable historical receipts, and running either complete application fixture before F99."
+    },
+    {
+      "id": "C02",
+      "title": "Create and publish an evidence-bound Biotech research artifact",
+      "depends": [
+        "V07",
+        "V02",
+        "V05",
+        "R02"
+      ],
+      "owner": "Biotech content and product owners",
+      "delivers": "An author creates a report/article/protocol edition or timeline view with explicit scientific context and traceable assertions.",
+      "criteria": [
+        "Version domain payloads independently of shared content lifecycle; no whole-ontology acceptance prerequisite.",
+        "Preserve material, population, dose, duration, endpoint, uncertainty and valid/recorded times where relevant.",
+        "Keep source fidelity distinct from support/world correctness and require intended-use admission.",
+        "Publish only exact reviewed versions; withdrawals and supersessions retain historical evidence.",
+        "Demonstrate one complete content-kind path and validate contract schemas for all declared initial kinds without pretending all UI screens exist.",
+        "Official publish/withdraw use reviewer-authorized HTTP/CLI with explicit ordinary-MCP exclusion; draft and submit-review remain agent-accessible within grants."
+      ],
+      "adrs": [
+        "0007",
+        "0009",
+        "0011"
+      ],
+      "milestone": "M3",
+      "order": 34,
+      "priority": 3,
+      "status": "ready-for-agent",
+      "implementationState": "not_started",
+      "source": "DOMAIN-SURFACES.md",
+      "outOfScope": "Unrelated refactors, accepting the entire Biotech ontology, altering immutable historical receipts, and running either complete application fixture before F99."
+    },
+    {
+      "id": "X03",
+      "title": "Expose Jev through the canonical CLI without replacing its queue implicitly",
+      "depends": [
+        "J01",
+        "J02"
+      ],
+      "owner": "Shared KS Jev/CLI and domain consumer owners",
+      "delivers": "Domain skills invoke a working canonical Jev command with stable captured-input and worker behavior.",
+      "criteria": [
+        "Deliver ks Jev submission/status/cancel/result bindings and equivalent advertised MCP/HTTP behavior.",
+        "Preserve the current SQLite single-host queue, captured inputs, restart and idempotency semantics until a separate backend change is justified.",
+        "Keep supervisor startup explicit and normal host import free from unintended Jev processes.",
+        "Installed recipes work against the released CLI and report unavailable provider/configuration honestly.",
+        "Migrate dedicated-binary consumers with a tested compatibility/deprecation policy; no operator data removal."
+      ],
+      "adrs": [
+        "0010",
+        "0013"
+      ],
+      "milestone": "M4",
+      "order": 35,
+      "priority": 3,
+      "status": "ready-for-agent",
+      "implementationState": "not_started",
+      "source": "DELIVERY-CAPABILITIES.md",
+      "outOfScope": "Unrelated refactors, accepting the entire Biotech ontology, altering immutable historical receipts, and running either complete application fixture before F99."
+    },
+    {
+      "id": "V12",
+      "title": "Revalidate affected claims and uses after evidence or content revision",
+      "depends": [
+        "V02",
+        "V05",
+        "V08"
+      ],
+      "owner": "KS dependency/recovery/report + backend adapters",
+      "delivers": "correction closure and revision preservation.",
+      "criteria": [
+        "Source correction changes affected computation/report/use only.",
+        "superseded decision cannot authorize current effect.",
+        "omission repair retains original failure denominator.",
+        "final census discovers new unsupported text.",
+        "seeded dependency precision/recall recorded."
+      ],
+      "adrs": [
+        "0007",
+        "0008",
+        "0009",
+        "0012"
+      ],
+      "milestone": "M2",
+      "order": 36,
+      "priority": 2,
+      "status": "ready-for-agent",
+      "implementationState": "not_started",
+      "source": "VERIFICATION.md",
+      "outOfScope": "Unrelated refactors, accepting the entire Biotech ontology, altering immutable historical receipts, and running either complete application fixture before F99."
+    },
+    {
+      "id": "V14",
+      "title": "Expose equivalent verification admission and recovery across API MCP and CLI",
+      "depends": [
+        "V01",
+        "V03",
+        "V06",
+        "V07",
+        "V08"
+      ],
+      "owner": "KS transports/consumer docs",
+      "delivers": "API/MCP/CLI parity, capability negotiation and operator recovery.",
+      "criteria": [
+        "Identical tenant/actor/use/admission/error envelopes across surfaces.",
+        "v1 clients retain current semantics.",
+        "unsupported new features explicit.",
+        "human-review grant and version binding.",
+        "MC cancellation/infrastructure retry distinct from semantic hold."
+      ],
+      "adrs": [
+        "0007",
+        "0008",
+        "0009",
+        "0012"
+      ],
+      "milestone": "M2",
+      "order": 37,
+      "priority": 2,
+      "status": "ready-for-agent",
+      "implementationState": "not_started",
+      "source": "VERIFICATION.md",
+      "outOfScope": "Unrelated refactors, accepting the entire Biotech ontology, altering immutable historical receipts, and running either complete application fixture before F99."
+    },
+    {
+      "id": "V13",
+      "title": "Qualify verification quality and full cost on paired domain evaluations",
+      "depends": [
+        "V02",
+        "V03",
+        "V09",
+        "V10",
+        "V11",
+        "V12"
+      ],
+      "owner": "KS evaluation + domain reviewers",
+      "delivers": "paired B0\u2013B4 comparison and release qualification bundle.",
+      "criteria": [
+        "Locked/shift evaluation with human anchor, sampling weights and preregistered intervals.",
+        "full-cost/candidate/released/coverage metrics present.",
+        "insufficient precision remains not-established.",
+        "no model self-certification or literature savings claim."
+      ],
+      "adrs": [
+        "0007",
+        "0008",
+        "0009",
+        "0012"
+      ],
+      "milestone": "M2",
+      "order": 38,
+      "priority": 2,
+      "status": "ready-for-agent",
+      "implementationState": "not_started",
+      "source": "VERIFICATION.md",
+      "outOfScope": "Unrelated refactors, accepting the entire Biotech ontology, altering immutable historical receipts, and running either complete application fixture before F99."
+    },
+    {
+      "id": "A01",
+      "title": "Delegate a Research request to a durable mission and reconnect",
+      "depends": [
+        "R03",
+        "V14",
+        "D05"
+      ],
+      "owner": "Product agent and Mission Control adapters",
+      "delivers": "A user escalates a scoped knowledge gap to research and can reconnect, inspect progress or cancel through the product surface.",
+      "criteria": [
+        "Inspect existing corpus and evidence gaps before external acquisition.",
+        "Submit an admitted native request with immutable inputs, budget and exact capability bindings.",
+        "Project authoritative mission/task progress with cursor replay after reconnect; do not reissue side effects from chat history.",
+        "Keep execution completion, semantic hold, domain application and publication distinct.",
+        "Cancellation and timeout reconcile already committed effects through native receipts."
+      ],
+      "adrs": [
+        "0005",
+        "0006",
+        "0012"
+      ],
+      "milestone": "M3",
+      "order": 39,
+      "priority": 3,
+      "status": "ready-for-agent",
+      "implementationState": "not_started",
+      "source": "DOMAIN-SURFACES.md",
+      "outOfScope": "Unrelated refactors, accepting the entire Biotech ontology, altering immutable historical receipts, and running either complete application fixture before F99."
+    },
+    {
+      "id": "X02",
+      "title": "Unify verification hosts and transports while preserving sealed replay",
+      "depends": [
+        "V14",
+        "V10",
+        "V11"
+      ],
+      "owner": "Shared KS verification/host/transports",
+      "delivers": "Local and server verification use the maintained application/host seams with truthful capability negotiation.",
+      "criteria": [
+        "Fold transitional executor composition without changing immutable identities, seals, use admission or replay semantics.",
+        "Keep remote CLI from silently falling back to local execution; preserve local/server capability differences.",
+        "Retain API/MCP direct application calls and bounded provider dispatch.",
+        "Run installed-package conformance, existing deterministic/registered replay and targeted recovery checks; report missing baseline receipt honestly.",
+        "Retire the old seam only after replacement consumers and fixtures at component level pass."
+      ],
+      "adrs": [
+        "0005",
+        "0009",
+        "0013"
+      ],
+      "milestone": "M4",
+      "order": 40,
+      "priority": 3,
+      "status": "ready-for-agent",
+      "implementationState": "not_started",
+      "source": "DELIVERY-CAPABILITIES.md",
+      "outOfScope": "Unrelated refactors, accepting the entire Biotech ontology, altering immutable historical receipts, and running either complete application fixture before F99."
+    },
+    {
+      "id": "D03",
+      "title": "Install the complete AI Engineer domain skill and MCP assembly",
+      "depends": [
+        "D02",
+        "V14",
+        "C01",
+        "J01",
+        "X01",
+        "X02",
+        "X03",
+        "A01",
+        "P01"
+      ],
+      "owner": "AI Engineer domain release and Mission Control catalog owners",
+      "delivers": "An external agent discovers and invokes the installed AI Engineer procedures through its app-local PostgreSQL capability catalog.",
+      "criteria": [
+        "Register every released AI Engineer domain skill/server/tool/CLI binding with exact bytes/contracts/dependencies.",
+        "Guidance includes retrieval, research, ingestion, verification, content creation, Jev and recovery with executable examples.",
+        "Apply explicit per-tenant grants and effect classes; wrong-app/revoked operations deny.",
+        "Exercise actual packaged skill loader and installed CLI/MCP behavior with zero silent skips.",
+        "Read back and reconcile application-specific installation receipts; no placeholder tool schemas or test stand-ins qualify production."
+      ],
+      "adrs": [
+        "0010",
+        "0013"
+      ],
+      "milestone": "M4",
+      "order": 41,
+      "priority": 3,
+      "status": "ready-for-agent",
+      "implementationState": "not_started",
+      "source": "DELIVERY-CAPABILITIES.md",
+      "outOfScope": "Unrelated refactors, accepting the entire Biotech ontology, altering immutable historical receipts, and running either complete application fixture before F99."
+    },
+    {
+      "id": "G03",
+      "title": "Serve an authorized product entity and evidence view through GraphQL",
+      "depends": [
+        "G01",
+        "F02",
+        "V08",
+        "Q04"
+      ],
+      "owner": "Biotech product identity and GraphQL owners",
+      "delivers": "A web/Expo actor reads only the selected eligible entity/evidence view through the approved access topology.",
+      "criteria": [
+        "Implement verified user-token or BFF access selected at Q04; service credentials never enter web/native artifacts.",
+        "Enforce actor/audience/application visibility across fields, nested relations, filters/sorts, counts and aggregates; CORS and context.token are not substitutes.",
+        "Apply current publication/admission eligibility for official knowledge and explicit policy for historical/held research navigation; do not bypass PostgreSQL revocation authority.",
+        "Verify expired/revoked credentials, wrong scope, private-field inference and current-use denial through the actual product operation."
+      ],
+      "adrs": [
+        "0014",
+        "0015"
+      ],
+      "milestone": "M7",
+      "order": 42,
+      "priority": 3,
+      "status": "needs-info",
+      "implementationState": "not_started",
+      "source": "GRAPHQL-CLIENT.md",
+      "outOfScope": "Implicit v2 acceptance, unreviewed ontology/vector choices, routing agents through GraphQL, unrelated refactors, and either complete application fixture before F99."
+    },
+    {
+      "id": "G04",
+      "title": "Ship a transport-neutral typed GraphQL client for the approved operations",
+      "depends": [
+        "G01",
+        "G02",
+        "G03"
+      ],
+      "owner": "Biotech client package owner",
+      "delivers": "Web and Expo consumers can install a versioned package and execute typed approved queries without server dependencies.",
+      "criteria": [
+        "Generate operation-specific TypedDocumentNode, variables/results, fragments and strict scalar mappings from the executable read schema with deterministic codegen.",
+        "Export an injected transport/auth supplier, abort/deadline, typed errors and explicit partial-data semantics; retries are bounded eligible reads.",
+        "Package ESM/types and compatibility metadata; exclude Neo4j/server libraries, Node-only modules, schema snapshots and secrets from runtime exports.",
+        "Compile and run the packed package outside the monorepo for web and Expo; validate documents and schema compatibility in CI."
+      ],
+      "adrs": [
+        "0014",
+        "0015"
+      ],
+      "milestone": "M7",
+      "order": 43,
+      "priority": 3,
+      "status": "ready-for-agent",
+      "implementationState": "not_started",
+      "source": "GRAPHQL-CLIENT.md",
+      "outOfScope": "Implicit v2 acceptance, unreviewed ontology/vector choices, routing agents through GraphQL, unrelated refactors, and either complete application fixture before F99."
+    },
+    {
+      "id": "G05",
+      "title": "Consume one entity and evidence page in web and Expo",
+      "depends": [
+        "G04",
+        "Q04"
+      ],
+      "owner": "Biotech web/mobile product owner",
+      "delivers": "Both product platforms use the same typed operation contract with correct paging and session lifecycle.",
+      "criteria": [
+        "Implement a minimal real consumer in each target using the selected optional adapter; keep the core SDK framework-neutral.",
+        "Define uid/typename identity, abstract types and argument-sensitive page merging; verify ties and changing filters.",
+        "Handle auth refresh/logout cache clearing, cancellation, reconnect, offline age and GraphQL partial errors truthfully.",
+        "Use component/consumer checks only, not the final full application fixture; no agent GraphQL route is added."
+      ],
+      "adrs": [
+        "0014",
+        "0015"
+      ],
+      "milestone": "M7",
+      "order": 44,
+      "priority": 3,
+      "status": "ready-for-agent",
+      "implementationState": "not_started",
+      "source": "GRAPHQL-CLIENT.md",
+      "outOfScope": "Implicit v2 acceptance, unreviewed ontology/vector choices, routing agents through GraphQL, unrelated refactors, and either complete application fixture before F99."
+    },
+    {
+      "id": "G06",
+      "title": "Optimize selected GraphQL reads against measured plans and indexes",
+      "depends": [
+        "G02",
+        "G03"
+      ],
+      "owner": "Biotech GraphQL and database performance owner",
+      "delivers": "The approved entity/evidence workload meets agreed targets with documented schema and index choices.",
+      "criteria": [
+        "Freeze operation/data-cardinality/workload baseline and inspect generated Cypher with EXPLAIN and isolated PROFILE, preserving correct results.",
+        "Measure supported filter/sort/pagination plans, index applicability and N+1 behavior only where custom resolvers exist.",
+        "Measure build bytes/types/time, process RSS/heap, translation, pool wait, database/provider/serialization time, response bytes and p50/p95/p99/error/cost.",
+        "Apply only demonstrated optimizations under reviewed compatibility; no blind enabling of all directives or automatic replacement of legacy indexes."
+      ],
+      "adrs": [
+        "0014",
+        "0015"
+      ],
+      "milestone": "M7",
+      "order": 45,
+      "priority": 3,
+      "status": "ready-for-agent",
+      "implementationState": "not_started",
+      "source": "GRAPHQL-CLIENT.md",
+      "outOfScope": "Implicit v2 acceptance, unreviewed ontology/vector choices, routing agents through GraphQL, unrelated refactors, and either complete application fixture before F99."
+    },
+    {
+      "id": "N03",
+      "title": "Migrate and ingest one approved v2 entity assertion and evidence case",
+      "depends": [
+        "Q01",
+        "Q02",
+        "N02",
+        "V07"
+      ],
+      "owner": "Biotech schema owner and native ingestion maintainer",
+      "delivers": "An agent emits a valid accepted-domain proposal that the native executor admits, applies and reads back through the new binding.",
+      "criteria": [
+        "Implement only the owner-approved v2 case with upstream schema decision/re-pin, versioned DDL/mapping and legacy compatibility; do not assume full candidate planner compatibility.",
+        "Teach exact intent vocabulary and decision points in schema/query/ingest skills, including entity ambiguity, source locator, qualifiers and held evidence.",
+        "Demonstrate dry plan, exact verification/admission, stale-state rejection, atomic apply, duplicate/lost-response recovery and readback in a disposable graph.",
+        "Keep agents off GraphQL and canonical writes out of generated mutations; additional domain migrations require explicit context-sized slices."
+      ],
+      "adrs": [
+        "0014",
+        "0015"
+      ],
+      "milestone": "M4",
+      "order": 46,
+      "priority": 3,
+      "status": "needs-info",
+      "implementationState": "not_started",
+      "source": "NATIVE-RETRIEVAL-INGESTION.md",
+      "outOfScope": "Implicit v2 acceptance, unreviewed ontology/vector choices, routing agents through GraphQL, unrelated refactors, and either complete application fixture before F99."
+    },
+    {
+      "id": "N04",
+      "title": "Ingest one approved source into a versioned searchable corpus",
+      "depends": [
+        "Q03",
+        "N03",
+        "D05"
+      ],
+      "owner": "Biotech corpus ingestion/index owner",
+      "delivers": "One accepted source becomes eligible for retrieval with traceable representation/chunks and the selected index generation.",
+      "criteria": [
+        "Implement the chosen snapshot/text/chunk/locator/entity-link contract with stable IDs, model/chunker/extractor versions and truthful partial-capture handling.",
+        "If embeddings are selected, validate model/dimensions and index generation/coverage; if excluded, prove the approved lexical/entity route and explicit vector unavailability.",
+        "Demonstrate graph/index reconciliation, failed indexing, duplicate ingestion, correction, supersession and deletion/replay behavior; no distributed atomicity claim.",
+        "Promote serving eligibility only after accepted coverage/admission checks; source overlap or MENTIONS is not evidence support."
+      ],
+      "adrs": [
+        "0014",
+        "0015"
+      ],
+      "milestone": "M4",
+      "order": 47,
+      "priority": 3,
+      "status": "needs-info",
+      "implementationState": "not_started",
+      "source": "NATIVE-RETRIEVAL-INGESTION.md",
+      "outOfScope": "Implicit v2 acceptance, unreviewed ontology/vector choices, routing agents through GraphQL, unrelated refactors, and either complete application fixture before F99."
+    },
+    {
+      "id": "N05",
+      "title": "Retrieve scientific evidence through the selected native graph profile",
+      "depends": [
+        "N04",
+        "N01",
+        "F02"
+      ],
+      "owner": "Biotech retrieval and evaluation owner",
+      "delivers": "A native agent answers the first approved scientific question class with bounded graph context and replayable evidence.",
+      "criteria": [
+        "Run selected entity/lexical/vector candidates, bounded graph expansion and evidence resolution through native tools, never GraphQL.",
+        "Preserve study/population/material/dose/endpoint/time qualifiers, contradictions and source locators; adjacency/similarity is discovery rather than support.",
+        "Compare approved available baseline channels on frozen questions/evidence for recall, citation/support correctness, cost and latency; unsupported channels remain explicit.",
+        "Bind corpus/index/model/query versions, ACL/current eligibility and retained result packets; ANN rerun is not exact historical replay."
+      ],
+      "adrs": [
+        "0014",
+        "0015"
+      ],
+      "milestone": "M3",
+      "order": 48,
+      "priority": 3,
+      "status": "needs-info",
+      "implementationState": "not_started",
+      "source": "NATIVE-RETRIEVAL-INGESTION.md",
+      "outOfScope": "Implicit v2 acceptance, unreviewed ontology/vector choices, routing agents through GraphQL, unrelated refactors, and either complete application fixture before F99."
+    },
+    {
+      "id": "P02",
+      "title": "Compose Biotech saved research and knowledge into a product API",
+      "depends": [
+        "F02",
+        "C02",
+        "R02",
+        "G05"
+      ],
+      "owner": "Biotech product API owner",
+      "delivers": "Web, mobile and agents can save research and inspect a report/protocol/timeline with authorized graph evidence.",
+      "criteria": [
+        "Store private profile/preferences/notes/saved-research in app-owned PostgreSQL, not the public research graph.",
+        "Return versioned content with its evidence, qualification and review state through typed clients.",
+        "Implement idempotent save/revise and expected-revision conflict semantics.",
+        "Use a minimal reference consumer view for report/protocol comparison and freshness display.",
+        "Test tenant/entitlement/source-access separation and reconnect without replaying writes.",
+        "Compose user-state services with Biotech entity reads through the qualified Neo4j GraphQL product contract; agent tools continue to use native executor/skills."
+      ],
+      "adrs": [
+        "0005",
+        "0006",
+        "0011",
+        "0014",
+        "0015"
+      ],
+      "milestone": "M3",
+      "order": 49,
+      "priority": 3,
+      "status": "ready-for-agent",
+      "implementationState": "not_started",
+      "source": "DOMAIN-SURFACES.md",
+      "outOfScope": "Unrelated refactors, accepting the entire Biotech ontology, altering immutable historical receipts, and running either complete application fixture before F99."
+    },
+    {
+      "id": "D04",
+      "title": "Install the complete Biotech domain skill and MCP assembly",
+      "depends": [
+        "D02",
+        "V14",
+        "C02",
+        "J02",
+        "X01",
+        "X02",
+        "X03",
+        "A01",
+        "P02",
+        "N03",
+        "N05"
+      ],
+      "owner": "Biotech domain release and Mission Control catalog owners",
+      "delivers": "An external agent discovers and invokes the installed Biotech procedures through its app-local PostgreSQL capability catalog.",
+      "criteria": [
+        "Register every released Biotech domain skill/server/tool/CLI binding, including ingestion and literature workflows missing from current seeds.",
+        "Pin graph schema/verification binding, scientific policies and supported tools independently of AI Engineer.",
+        "Encode exact schema/query/research/content/Jev/verification/recovery procedures with uncertainty outcomes.",
+        "Validate installed loaders/CLI/MCP and grant denial using real released artifacts.",
+        "Record Biotech installation/custody/binding receipts separately and retain graph write authority in the domain executor.",
+        "Register native Neo4j skills and exact selected read/ingest artifact examples; canonical ingestion and diagnostic Cypher grants stay distinct."
+      ],
+      "adrs": [
+        "0007",
+        "0010",
+        "0013",
+        "0014",
+        "0015"
+      ],
+      "milestone": "M4",
+      "order": 50,
+      "priority": 3,
+      "status": "ready-for-agent",
+      "implementationState": "not_started",
+      "source": "DELIVERY-CAPABILITIES.md",
+      "outOfScope": "Unrelated refactors, accepting the entire Biotech ontology, altering immutable historical receipts, and running either complete application fixture before F99."
+    },
+    {
+      "id": "P03",
+      "title": "Run the client-facing Deep Agent with both domain assemblies",
+      "depends": [
+        "A01",
+        "D03",
+        "D04",
+        "P01",
+        "P02"
+      ],
+      "owner": "Product agent runtime owner",
+      "delivers": "A conversation uses the correct domain's guidance and tools, answers bounded questions quickly, and follows durable research tasks.",
+      "criteria": [
+        "Configure application-specific skills/tool allowlists and route profiles from authenticated bindings.",
+        "Use lightweight state for ordinary reads; instantiate a sandbox only when admitted work needs execution.",
+        "Keep conversation state separate from mission authority and app-isolate checkpoints/memory.",
+        "Exercise partial answers, skill loading, tool denial, budget escalation, reconnect and cancellation in component tests.",
+        "The user sees evidence/route/task state; prompts cannot grant publication or cross-app authority.",
+        "The Biotech client-facing Deep Agent uses native skills/read/ingest operations; it does not consume the product GraphQL SDK."
+      ],
+      "adrs": [
+        "0005",
+        "0006",
+        "0010",
+        "0014",
+        "0015"
+      ],
+      "milestone": "M3",
+      "order": 51,
+      "priority": 3,
+      "status": "ready-for-agent",
+      "implementationState": "not_started",
+      "source": "DOMAIN-SURFACES.md",
+      "outOfScope": "Unrelated refactors, accepting the entire Biotech ontology, altering immutable historical receipts, and running either complete application fixture before F99."
+    },
+    {
+      "id": "P04",
+      "title": "Accept scoped external-agent progress and artifact handshakes",
+      "depends": [
+        "P01",
+        "P02",
+        "D03",
+        "D04"
+      ],
+      "owner": "Product external-consumer adapters",
+      "delivers": "A user works in their own agent environment and returns attributable progress or research artifacts to the product.",
+      "criteria": [
+        "Issue short-lived audience/actor/content/attempt-scoped handshakes without embedding tokens in skills.",
+        "Validate bound artifact/test evidence and retain review state; agent completion alone cannot pass grading or publication.",
+        "Duplicate submission returns the existing receipt; wrong audience/tenant or changed bytes fail.",
+        "Expose receipt lookup and progress through product API and external MCP/CLI guidance.",
+        "Cover one learning attempt and one saved-research artifact without running the final full app workflows.",
+        "Register and qualify the handshake/progress/test capability delta in each app catalog after the base assembly, and reconcile the final assembly digest before D06.",
+        "Launch or link a real supported editor/workspace with the pinned challenge/project and return trusted test artifacts; building a full embedded IDE is outside this release."
+      ],
+      "adrs": [
+        "0010",
+        "0011",
+        "0012"
+      ],
+      "milestone": "M3",
+      "order": 52,
+      "priority": 3,
+      "status": "ready-for-agent",
+      "implementationState": "not_started",
+      "source": "DOMAIN-SURFACES.md",
+      "outOfScope": "Unrelated refactors, accepting the entire Biotech ontology, altering immutable historical receipts, and running either complete application fixture before F99."
+    },
+    {
+      "id": "D06",
+      "title": "Qualify external MCP, CLI and skill consumers for both applications",
+      "depends": [
+        "D03",
+        "D04",
+        "D05",
+        "P04"
+      ],
+      "owner": "Domain consumer conformance owner",
+      "delivers": "A clean external environment installs the released domain assembly and sees precisely its authorized procedures and operations.",
+      "criteria": [
+        "Capture actual MCP initialization/tools-list schemas and run installed CLI commands outside the source tree.",
+        "Validate OAuth/audience/scopes, API/MCP/CLI parity and forbidden-tool absence.",
+        "Exercise all declared operation classes, including restricted writes/recovery, with appropriate isolated test principals.",
+        "Qualify every claimed execution lane with zero metadata skips and immutable byte checks.",
+        "Distinguish mocked protocol tests, live reachability and semantic quality; do not run complete app fixtures.",
+        "Qualify native agent transports independently from GraphQL product clients; capability parity never means identical query languages."
+      ],
+      "adrs": [
+        "0010",
+        "0013",
+        "0014",
+        "0015"
+      ],
+      "milestone": "M4",
+      "order": 53,
+      "priority": 3,
+      "status": "ready-for-agent",
+      "implementationState": "not_started",
+      "source": "DELIVERY-CAPABILITIES.md",
+      "outOfScope": "Unrelated refactors, accepting the entire Biotech ontology, altering immutable historical receipts, and running either complete application fixture before F99."
+    },
+    {
+      "id": "G08",
+      "title": "Report truthful GraphQL vector capability and qualified search availability",
+      "depends": [
+        "Q03",
+        "G01",
+        "N04"
+      ],
+      "owner": "Biotech search and GraphQL owners",
+      "delivers": "The product sees either a qualified selected vector/phrase search capability or an explicit supported exclusion.",
+      "criteria": [
+        "Separate configured flag, index ONLINE state, compatible model/dimensions/similarity, populated coverage and authorized serving eligibility.",
+        "If selected, qualify exact product indexes and supplied-vector versus provider phrase behavior with budgets; phrase encoding does not populate stored embeddings.",
+        "If not selected, return unsupported without provider calls; v2 lacking @vector must not silently inherit original entity-vector endpoints.",
+        "Keep DDL in reviewed deployment migrations, preserve legacy indexes until explicit transition and avoid credentials in logs or client exports."
+      ],
+      "adrs": [
+        "0014",
+        "0015"
+      ],
+      "milestone": "M7",
+      "order": 54,
+      "priority": 3,
+      "status": "ready-for-agent",
+      "implementationState": "not_started",
+      "source": "GRAPHQL-CLIENT.md",
+      "outOfScope": "Implicit v2 acceptance, unreviewed ontology/vector choices, routing agents through GraphQL, unrelated refactors, and either complete application fixture before F99."
+    },
+    {
+      "id": "G07",
+      "title": "Qualify Fly capacity and compatible product API rollout",
+      "depends": [
+        "G00",
+        "G05",
+        "G06",
+        "G08"
+      ],
+      "owner": "Biotech Fly/API release owner",
+      "delivers": "An operator deploys a measured compatible API/client release with observable readiness and recovery.",
+      "criteria": [
+        "Read actual Machine/Aura topology and benchmark approved load; select memory/heap, shared/performance CPU, locality and replica/pool budgets from evidence.",
+        "Keep the existing 4GB baseline until measurements justify change; distinguish minimum-running configuration from high availability.",
+        "Qualify startup, liveness/readiness, graceful drain, bounded product smoke/canary and old-mobile operation compatibility.",
+        "Pin image/library/schema/projection/index/auth/registry/SDK versions and document rollback versus forward data repair; no final full application fixture runs here."
+      ],
+      "adrs": [
+        "0014",
+        "0015"
+      ],
+      "milestone": "M7",
+      "order": 55,
+      "priority": 3,
+      "status": "ready-for-agent",
+      "implementationState": "not_started",
+      "source": "GRAPHQL-CLIENT.md",
+      "outOfScope": "Implicit v2 acceptance, unreviewed ontology/vector choices, routing agents through GraphQL, unrelated refactors, and either complete application fixture before F99."
+    },
+    {
+      "id": "D07",
+      "title": "Upgrade a compatible application release with in-flight work",
+      "depends": [
+        "V13",
+        "D06",
+        "P03",
+        "X01",
+        "X02",
+        "X03",
+        "G07"
+      ],
+      "owner": "Platform/domain release and database owners",
+      "delivers": "An operator installs a pinned compatible release and preserves in-flight knowledge operations across service/worker upgrades.",
+      "criteria": [
+        "Machine-validate service/client/native schema/query/policy/rubric/skill/provider/catalog and worker version compatibility.",
+        "Consume common KS operational SQL through its single owner while preserving AI Engineer and Biotech schema authority.",
+        "Use versioned workers/queues or compatible handlers so old work never replays against incompatible code.",
+        "Prove additive upgrade, grants/custody, lease/cancellation/lost callback recovery and forward-repair/rollback limits in disposable environments.",
+        "Keep interactive read capacity separate from heavy work and enforce per-app budgets/authority.",
+        "Include qualified GraphQL executable-schema/operation-registry/SDK and v2 migration evidence; source SDL digest alone is not API or graph compatibility."
+      ],
+      "adrs": [
+        "0008",
+        "0012",
+        "0013",
+        "0014",
+        "0015"
+      ],
+      "milestone": "M5",
+      "order": 56,
+      "priority": 3,
+      "status": "ready-for-agent",
+      "implementationState": "not_started",
+      "source": "DELIVERY-CAPABILITIES.md",
+      "outOfScope": "Unrelated refactors, accepting the entire Biotech ontology, altering immutable historical receipts, and running either complete application fixture before F99."
+    },
+    {
+      "id": "D08",
+      "title": "Route maintenance proposals through affected-domain compatibility checks",
+      "depends": [
+        "D01",
+        "D07"
+      ],
+      "owner": "Shared KS maintenance owner",
+      "delivers": "A public contract change produces a bounded maintenance proposal and checks the affected domain assemblies before acceptance.",
+      "criteria": [
+        "Bind proposed changes and checks to exact immutable source/release fingerprints; stale source invalidates the proposal.",
+        "Select affected consumers, skills, catalogs and release matrices from changed contracts.",
+        "Retain independent deterministic validation even when a reviewer reports no findings.",
+        "Preserve all retained worktrees/ignored artifacts and existing operator model policy; maintenance does not auto-deploy or mutate catalogs.",
+        "Demonstrate changed-contract and domain-only cases using disposable Git/tooling tests."
+      ],
+      "adrs": [
+        "0010",
+        "0013"
+      ],
+      "milestone": "M5",
+      "order": 57,
+      "priority": 3,
+      "status": "ready-for-agent",
+      "implementationState": "not_started",
+      "source": "DELIVERY-CAPABILITIES.md",
+      "outOfScope": "Unrelated refactors, accepting the entire Biotech ontology, altering immutable historical receipts, and running either complete application fixture before F99."
+    },
+    {
+      "id": "D09",
+      "title": "Retire obsolete executor and capability versions after consumer migration",
+      "depends": [
+        "D06",
+        "D07",
+        "X01",
+        "X02",
+        "X03"
+      ],
+      "owner": "Shared KS and Mission Control/domain consumer owners",
+      "delivers": "Consumers use the current supported interfaces and old capability versions remain inspectable but cannot be newly bound.",
+      "criteria": [
+        "Prove complete old-to-new operation and skill reference coverage before retirement.",
+        "Migrate exact caller pins and check active configurations plus in-flight work.",
+        "Record replacement/no-replacement and reason; old names produce explicit diagnostics rather than accidental aliases.",
+        "Preserve historical bindings, receipts and sealed bytes; physical deletion is a separate retention action.",
+        "Replace retired research-agent readiness ownership with current platform/domain consumer tests."
+      ],
+      "adrs": [
+        "0010",
+        "0013"
+      ],
+      "milestone": "M5",
+      "order": 58,
+      "priority": 3,
+      "status": "ready-for-agent",
+      "implementationState": "not_started",
+      "source": "DELIVERY-CAPABILITIES.md",
+      "outOfScope": "Unrelated refactors, accepting the entire Biotech ontology, altering immutable historical receipts, and running either complete application fixture before F99."
+    },
+    {
+      "id": "D10",
+      "title": "Qualify both application installations before final workflows",
+      "depends": [
+        "F01",
+        "D01",
+        "F02",
+        "V01",
+        "D02",
+        "V02",
+        "V03",
+        "V04",
+        "R01",
+        "R02",
+        "D05",
+        "V05",
+        "V06",
+        "V07",
+        "V10",
+        "J01",
+        "J02",
+        "R03",
+        "X01",
+        "V08",
+        "V09",
+        "V11",
+        "C01",
+        "C02",
+        "X03",
+        "V12",
+        "V14",
+        "P01",
+        "P02",
+        "V13",
+        "A01",
+        "X02",
+        "D03",
+        "D04",
+        "P03",
+        "P04",
+        "D06",
+        "D07",
+        "D08",
+        "D09",
+        "G00",
+        "Q01",
+        "Q02",
+        "Q03",
+        "Q04",
+        "G01",
+        "G02",
+        "G03",
+        "G04",
+        "G05",
+        "G06",
+        "G08",
+        "G07",
+        "N01",
+        "N02",
+        "N03",
+        "N04",
+        "N05"
+      ],
+      "owner": "Release operators and independent acceptance owner",
+      "delivers": "Both applications have complete, inspectable service/schema/capability/worker/provider readiness before final fixture admission.",
+      "criteria": [
+        "Reconcile actual target identity and release receipts; documentation and lockfiles are not live installation proof.",
+        "Read back every required domain skill/server/tool and admitted grant/binding in its respective PostgreSQL catalog.",
+        "Verify graph/relational schema compatibility, object policies, provider/worker availability and product consumer contracts.",
+        "Complete all implementation and required quality/conformance evidence with no hidden skipped mandatory gate.",
+        "Keep complete application fixture execution disabled until this gate and every program prerequisite are complete.",
+        "Verify owner decision records, accepted schema and native mappings, actual GraphQL release, typed web/Expo client and chosen corpus/index eligibility; no proposal is installation evidence."
+      ],
+      "adrs": [
+        "0008",
+        "0010",
+        "0012",
+        "0013"
+      ],
+      "milestone": "M5",
+      "order": 59,
+      "priority": 3,
+      "status": "ready-for-agent",
+      "implementationState": "not_started",
+      "source": "DELIVERY-CAPABILITIES.md",
+      "outOfScope": "Unrelated refactors, accepting the entire Biotech ontology, altering immutable historical receipts, and running either complete application fixture before F99."
+    },
+    {
+      "id": "F99",
+      "title": "Run the final AI Engineer and Biotech application fixtures",
+      "depends": [
+        "F01",
+        "D01",
+        "F02",
+        "V01",
+        "D02",
+        "V02",
+        "V03",
+        "V04",
+        "R01",
+        "R02",
+        "D05",
+        "V05",
+        "V06",
+        "V07",
+        "V10",
+        "J01",
+        "J02",
+        "R03",
+        "X01",
+        "V08",
+        "V09",
+        "V11",
+        "C01",
+        "C02",
+        "X03",
+        "V12",
+        "V14",
+        "P01",
+        "P02",
+        "V13",
+        "A01",
+        "X02",
+        "D03",
+        "D04",
+        "P03",
+        "P04",
+        "D06",
+        "D07",
+        "D08",
+        "D09",
+        "D10",
+        "G00",
+        "Q01",
+        "Q02",
+        "Q03",
+        "Q04",
+        "G01",
+        "G02",
+        "G03",
+        "G04",
+        "G05",
+        "G06",
+        "G08",
+        "G07",
+        "N01",
+        "N02",
+        "N03",
+        "N04",
+        "N05"
+      ],
+      "owner": "Release acceptance owner with both domain operators",
+      "delivers": "After every implementation and readiness gate is complete, execute and retain the two full application acceptance scenarios against the exact released assemblies.",
+      "criteria": [
+        "Admission checks every prerequisite issue and release evidence; one open, failed or unqualified mandatory prerequisite blocks both fixtures.",
+        "AI Engineer scenario proves product/external-agent retrieval, research, Jev uncertainty, content creation, verification, native PostgreSQL admission, publication and readback.",
+        "Biotech scenario proves the equivalent scientific-context procedure with graph adjudications, evidence locators, native receipts and current-authority serving checks.",
+        "Both scenarios use real admitted per-app capability catalog rows and installed skills/MCP/CLI, never placeholder fixture capabilities.",
+        "Include bounded failure/recovery/cancellation and duplicate delivery; retain scoped immutable receipts and exact release/configuration hashes without secrets.",
+        "Report correctness, evidence coverage, latency and full cost with passed/failed/blocked/unrun distinctions; a failure reopens its owning issue before a final rerun.",
+        "No complete application fixture executes during earlier slices; component tests, frozen quality evaluations and disposable adapter checks remain required throughout.",
+        "Exercise product Biotech GraphQL/typed client and native agent tools as distinct paths, plus AI Engineer custom API; no agent GraphQL substitution.",
+        "Every mandatory Q/G/N decision and implementation slice must be complete; unresolved owner decisions block both complete fixtures."
+      ],
+      "adrs": [
+        "0013"
+      ],
+      "milestone": "M6",
+      "order": 60,
+      "priority": 3,
+      "status": "ready-for-agent",
+      "implementationState": "not_started",
+      "source": "DOMAIN-SURFACES.md",
+      "outOfScope": "Starting while any prerequisite is incomplete, bypassing failed quality gates, or expanding into unrelated product features."
+    }
+  ],
+  "revision": "2026-10-10-native-agent-graphql-amendment"
+}

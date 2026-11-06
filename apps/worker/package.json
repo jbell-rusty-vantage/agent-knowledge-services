@@ -1,0 +1,33 @@
+{
+  "name": "@aiengineer/knowledge-worker",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsup src/index.ts --format esm --sourcemap",
+    "dev": "tsx watch src/index.ts",
+    "start": "node dist/index.js",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@aiengineer/knowledge-acquisition": "workspace:*",
+    "@aiengineer/knowledge-application": "workspace:*",
+    "@aiengineer/knowledge-contracts": "workspace:*",
+    "@aiengineer/knowledge-core": "workspace:*",
+    "@aiengineer/knowledge-evaluation": "workspace:*",
+    "@aiengineer/knowledge-host": "workspace:*",
+    "@aiengineer/knowledge-persistence": "workspace:*",
+    "@aiengineer/knowledge-policy": "workspace:*",
+    "@aiengineer/knowledge-preparation": "workspace:*",
+    "@aiengineer/knowledge-retrieval": "workspace:*",
+    "@aiengineer/knowledge-verification": "workspace:*",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "tsup": "catalog:",
+    "tsx": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}

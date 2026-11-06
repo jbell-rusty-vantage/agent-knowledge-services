@@ -1,0 +1,29 @@
+{
+  "name": "@aiengineer/knowledge-operation-protocol",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "description": "K01: the Knowledge Operation Protocol. Origin, effect identity, operation envelopes, handles, status, receipts, capability descriptors, typed errors, canonical digests, published JSON Schemas and golden vectors. No SDK, persistence, policy or domain-store imports.",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": ["dist", "schemas", "fixtures"],
+  "scripts": {
+    "generate": "tsx scripts/generate-schemas.ts",
+    "build": "tsup src/index.ts --format esm && tsc --emitDeclarationOnly --rootDir src --outDir dist",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "tsup": "catalog:",
+    "tsx": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}

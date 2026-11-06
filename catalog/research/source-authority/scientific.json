@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "research-source-authority.v1",
+  "id": "scientific",
+  "version": "1.0.0",
+  "profile": "scientific.v2",
+  "fitness": [
+    { "id": "source-report-any-design", "when": { "claimClasses": ["source_report"] }, "fitness": "fit", "rationale": "A source report states what the study reported; methodological weight belongs to the appraisal, not to the report claim." },
+    { "id": "causal-generalized-randomized", "when": { "claimClasses": ["generalized"], "causalClaims": ["causal"], "studyDesigns": ["randomized_controlled_trial", "systematic_review"] }, "fitness": "fit", "rationale": "Randomized or systematically reviewed evidence can support a generalized causal claim." },
+    { "id": "causal-generalized-observational", "when": { "claimClasses": ["generalized"], "causalClaims": ["causal"], "studyDesigns": ["cohort", "case_control", "cross_sectional"] }, "fitness": "fit_with_limitations", "rationale": "Observational designs support a causal generalization only with stated confounding limits." },
+    { "id": "causal-generalized-weak-design", "when": { "claimClasses": ["generalized"], "causalClaims": ["causal"], "studyDesigns": ["case_report", "in_vitro", "animal", "modeling", "analytical_validation", "other"] }, "fitness": "unfit", "rationale": "Case reports, preclinical and modeling designs cannot alone support a generalized human causal claim." },
+    { "id": "association-generalized", "when": { "claimClasses": ["generalized"], "causalClaims": ["association", "none"], "studyDesigns": ["randomized_controlled_trial", "systematic_review", "cohort", "case_control", "cross_sectional"] }, "fitness": "fit_with_limitations", "rationale": "Population studies support an association with their population limits." }
+  ],
+  "defaultFitness": "unknown",
+  "applicability": {
+    "matchQualifiers": ["species", "population"],
+    "onMatch": "applicable",
+    "onPartial": "partially_applicable",
+    "onMismatch": "not_applicable",
+    "onUnknown": "unknown"
+  },
+  "revisionFrontierRequired": true
+}

@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "knowledge-live-docling-receipt/v1",
+  "generatedAt": "2026-09-04T16:01:28.124Z",
+  "startedAt": "2026-09-04T16:01:26.067Z",
+  "nonCanonical": true,
+  "tenantId": "00000000-0000-7000-8000-000000000001",
+  "provider": {
+    "key": "docling-serve",
+    "version": "ghcr.io/docling-project/docling-serve@sha256:f8b324448e7c9e66083049727aaa90e3e65e88f0d7796624597a29d04183198b",
+    "image": "ghcr.io/docling-project/docling-serve@sha256:f8b324448e7c9e66083049727aaa90e3e65e88f0d7796624597a29d04183198b"
+  },
+  "endpoint": "http://127.0.0.1:5001",
+  "input": {
+    "mediaType": "text/markdown",
+    "artifactDigest": "sha256:ec536bb93ac52d00cdd88c2b868fb0d29e0a85390b43972af0e92a397e101109",
+    "sizeBytes": 245
+  },
+  "output": {
+    "requestDigest": "sha256:7d85bf00e87a7641137071018ba3b1831607c4e6484cbdad8eab5f55e611642c",
+    "profileDigest": "sha256:bb7ef7593779afbea7026e7a25f0291680172c2284b901d448c96934857cb5dc",
+    "receiptDigest": "sha256:1aaf38d2848dc14c1868139d0fa3fb5576e97a82f69deccc08b39c6699c74ffe",
+    "providerNativeDigest": "sha256:4ebd6bdcb77f2dcbded998b699997aa66471a2e80c537ce8e6c64c22fa0a7b6d",
+    "markdownDigest": "sha256:d210816f70e0813684139b538cc9d339cb92ffbac27a3d48da7674d3c93eb57b",
+    "plainTextDigest": "sha256:d210816f70e0813684139b538cc9d339cb92ffbac27a3d48da7674d3c93eb57b",
+    "nodeCount": 5,
+    "nodeKinds": [
+      "code_block",
+      "document",
+      "heading",
+      "paragraph",
+      "table"
+    ],
+    "metrics": {
+      "inputCharacters": 311,
+      "outputCharacters": 311,
+      "characterCoverage": 1,
+      "headings": 1,
+      "tables": 1,
+      "figures": 0,
+      "codeBlocks": 1,
+      "citations": 0,
+      "emptyNodes": 0,
+      "repeatedBlockRatio": 0,
+      "locatorResolvability": 1,
+      "encodingAnomalies": 0
+    },
+    "fidelity": "high"
+  },
+  "receiptDigest": "sha256:6b4145d46ceafbbd06ec01de69d416eab18a78063a3fcf0c3a38f743ab22c81c"
+}

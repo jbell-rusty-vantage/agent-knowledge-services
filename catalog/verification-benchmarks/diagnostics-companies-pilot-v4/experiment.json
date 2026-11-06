@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "diagnostics-benchmark-experiment.v2",
+  "datasetManifestDigest": "sha256:a6bc1cf3ecbb335e4f5ef49165798d29ce937a9324f2a1ba7d9768f23ad7feee",
+  "status": "sealed_pending_live_review",
+  "pilotRepetitions": 1,
+  "networkPolicy": "allow_listed_providers",
+  "cachePolicy": "exact_request_only_with_cross_arm_attribution",
+  "providerRetryPolicy": "none",
+  "clusterUnit": "source_family",
+  "arms": [
+    "luna-baseline",
+    "interfaze",
+    "interfaze-haiku-cascade",
+    "luna-interfaze-haiku-consensus-abstention"
+  ],
+  "auxiliaryControl": "deterministic-mechanics-only",
+  "smokeCaseDisposition": {
+    "caseId": "tru-turnaround-product-mutated",
+    "datasetVersion": 3,
+    "status": "protocol_only_excluded_from_v4_live_dispatch"
+  },
+  "promotionEligible": false,
+  "budgetCarryForward": {
+    "originalCeilingCostMicros": 20000000,
+    "preResetLiabilityCostMicros": 2071833,
+    "successorCeilingCostMicros": 17928167,
+    "successorBudgetId": "5890d523-561b-55db-a724-890d642885d9",
+    "successorBudgetKey": "ws07-pilot-recovery-20260905"
+  },
+  "experimentDefinitionDigest": "sha256:3e5b9c5084f0e5c3de06153f650c4dc2c2b5dfca2a74854f2ca5ccebda5d1c11"
+}

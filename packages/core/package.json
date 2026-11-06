@@ -1,0 +1,26 @@
+{
+  "name": "@aiengineer/knowledge-core",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Provides shared digest, identity, runtime ledger, artifact, and observability primitives.",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format esm && tsc --emitDeclarationOnly --rootDir src --outDir dist",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@aiengineer/knowledge-contracts": "workspace:*"
+  },
+  "devDependencies": {
+    "tsup": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}

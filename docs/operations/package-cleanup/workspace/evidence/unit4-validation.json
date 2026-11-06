@@ -1,0 +1,127 @@
+{
+  "schema": 1,
+  "unit": 4,
+  "branch": "refactor/ks-unit-4-application-order-and-catalog",
+  "base": "de8e6da",
+  "implementationHead": "edd4533",
+  "commits": {
+    "c995cbc": "application use cases grouped into knowledge and verification folders",
+    "d187c4e": "product benchmark split from its diagnostics",
+    "e44da60": "diagnostics quarantined behind the barrel (test)",
+    "677fd48": "A2A task binding moved into the API",
+    "95561dd": "demo evaluation bundles loaded through an explicit port (testkit off the API runtime)",
+    "577864d": "packages/acquisition renamed to packages/sources",
+    "8e81d51": "packages/client-typescript renamed to packages/client",
+    "f428a69": "services/verification-parser renamed to services/parser",
+    "e0e032d": "operation catalog parity across API, MCP, CLI and the executor",
+    "edd4533": "review fixes"
+  },
+  "environment": {
+    "node": "v24.18.0",
+    "pnpm": "10.34.5",
+    "os": "Windows 11"
+  },
+  "entryGate": {
+    "registeredReplay": "28 passed, 1 failed: SEALED_CHECKPOINT_MISSING:records/25-gl-repeatability-mutated-haiku_judge-failure.json",
+    "receiptSearch": "no copy found under the workspace (node_modules excluded)",
+    "decision": "continue Unit 4 under the same exact exception; Unit 4 does not touch benchmark replay"
+  },
+  "commands": {
+    "install": {
+      "command": "corepack pnpm install --frozen-lockfile",
+      "exit": 0,
+      "result": "22 workspace projects, lockfile up to date"
+    },
+    "staleCompiledTests": {
+      "command": "search packages/*/dist, apps/*/dist, services/*/dist for *.test.js",
+      "result": "none found; nothing preserved or removed"
+    },
+    "test": {
+      "command": "corepack pnpm exec turbo run test --continue=always --concurrency=1 --force -- --maxWorkers=2",
+      "exit": 1,
+      "tasks": "36/37 successful, 0 cached",
+      "passed": 2929,
+      "skipped": 126,
+      "failed": 1,
+      "failures": [
+        "packages/application/src/verification/benchmark/verification-benchmark-registered-replay.test.ts :: registered benchmark replay replays all seven actual captured schema failures exactly once in memory (SEALED_CHECKPOINT_MISSING, retained exception)"
+      ],
+      "skips": {
+        "@aiengineer/knowledge-persistence": "29: postgres.test.ts 11, checkpoints.integration 9, source-discovery.integration 6, vector-store 2, preparation 1",
+        "@aiengineer/knowledge-db": "32: ingestion/tests/executor.integration 10, ingestion/reports/service.integration 7, db-read/artifacts-reconciliation.integration 5, db-read/read-executor.integration 5, db-read/snapshot.integration 2, test/ingestion/temporal.integration 2, test/ingestion/current-schema.integration 1",
+        "@aiengineer/knowledge-verification-executor": "39: store-custody.integration 7, knowledge/promotion-publication.integration 6, knowledge/recovery-durable-cases.integration 6, knowledge/promotion-publication-invalidation.integration 4, knowledge/recovery-host.integration 3, root-host-selection.integration 2, knowledge/content-links.integration 2, and one each in root-host, admission, checkpoints-host, provenance, record-materialization, recovery-routing, recovery-unadmitted, report-assessment, source-discovery integration files",
+        "@aiengineer/knowledge-api": "20: retrieval-history.integration 13, durable-server 4, consumer-transports.integration 2, a2a-durable 1",
+        "@aiengineer/knowledge-worker": "5: worker.test.ts",
+        "@aiengineer/knowledge-mcp": "1: tests/index.test.ts"
+      },
+      "notes": "Expected total 2,929 = Unit 3's 2,888 plus the 41 added tests. An earlier forced run on e0e032d had the same single failure; a run on edd4533 before this one was stopped partway by host memory pressure and is not acceptance evidence. Skipped tests need a disposable database or providers that were not configured; they are not passing evidence."
+    },
+    "examples": {
+      "command": "corepack pnpm examples:verification",
+      "exit": 0,
+      "offline": "11 receipts, 0 providers, mechanical and extraction passed, semantic judged 0, policy review"
+    },
+    "acquisitionExamples": {
+      "command": "corepack pnpm --filter @aiengineer/knowledge-acquisition examples",
+      "exit": 0,
+      "result": "tsc --noEmit -p tsconfig.examples.json in packages/sources"
+    },
+    "skills": {
+      "command": "node skills/check.mjs",
+      "exit": 0,
+      "result": "12 skills, 42 executor operations, 58 executor MCP tools, 78 platform commands, 70 platform MCP tools, 6 Jev MCP tools, 9 Jev commands"
+    },
+    "sandboxPack": {
+      "command": "corepack pnpm --filter @aiengineer/knowledge-verification-executor pack:sandbox",
+      "exit": 0,
+      "tarball": "apps/verification-executor/dist/sandbox/knowledge-verify-0.1.0.tgz",
+      "tarballSha256": "d084469473e66567d26a4835fc53995197aa530cb8ac646ab9698ab2eebceb50",
+      "runtimeDependencies": ["@modelcontextprotocol/sdk", "pg", "zod"]
+    },
+    "installedSmoke": "fresh npm project under %TEMP%/ks-unit4-final/installed-smoke, outside the workspace: install exit 0; knowledge-verify --help and knowledge --help exit 0 with content; installed skills/knowledge-verify/examples/offline.mjs against installed dist/index.js exit 0, 11 receipts, 0 providers, policy review",
+    "agentDocs": {
+      "command": "node .agent-docs/cli.mjs check --repo .",
+      "result": "clean; 340 selected inputs (after a rebuild refreshed provenance hashes for documents edited after the last build and the two test files changed in edd4533)"
+    },
+    "diffCheck": {
+      "command": "git diff --check",
+      "exit": 0
+    }
+  },
+  "inventory": {
+    "script": "unit4-inventory.mjs",
+    "before": "unit4-before.json",
+    "after": "unit4-after.json",
+    "beforeSource": "de8e6da (dirty: authored documentation only)",
+    "afterSource": "edd4533 (dirty: authored documentation and evidence only)",
+    "compareExit": 1,
+    "compare": {
+      "missingTests": 0,
+      "changedOutcomes": 0,
+      "addedTests": 41,
+      "addedTestsByFile": {
+        "apps/mcp/src/tests/operation-catalog.test.ts": 36,
+        "apps/api/src/tests/demo-evaluation-bundles.test.ts": 3,
+        "apps/api/src/tests/server.test.ts": 1,
+        "packages/application/src/diagnostics/verification-diagnostics-quarantine.test.ts": 1
+      },
+      "movedTests": "three A2A binding tests mapped to apps/api/src/tests/a2a-adapter.test.ts; two sender tests mapped to packages/application/src/operations/a2a-callbacks.test.ts; folder moves and renames mapped by prefix",
+      "applicationExportsRemoved": 0,
+      "applicationExportsMoved": ["A2AKnowledgeAdapter", "operationEnvelopeForA2ATask", "operationInputForA2ATask", "operationKindForA2ATask"],
+      "applicationExportsAddedAsRecorded": ["callbackEnvelopeForA2ATask"],
+      "applicationExportsAddedOther": 0,
+      "otherExportsAddedOrRemoved": { "host": 0, "persistence": 0, "sources": 0, "client": 0 },
+      "cycles": 0,
+      "hostImportsApps": 0,
+      "applicationOrPersistenceDependOnHost": 0,
+      "applicationHostImports": 0,
+      "persistenceHostImports": 0,
+      "mcpClientImports": 0,
+      "apiRuntimeDependsOnTestkit": false,
+      "apiTestkitImports": ["apps/api/src/demo-evaluation-bundles.ts"],
+      "catalog": "unchanged: operation kinds, API routes, MCP tools and CLI commands identical before and after"
+    },
+    "compareExitExplanation": "The only non-empty blocking key is apiTestkitImports. apps/api/src/demo-evaluation-bundles.ts holds the recorded Unit 4 demo port: a lazy, fallible import('@aiengineer/knowledge-testkit') run only when POST /v1/demo/evaluations executes, composed by the API entrypoint (index.ts); server.ts imports no test fixtures. testkit is a devDependency only, and the built apps/api/dist/index.js keeps it external (a single dynamic import specifier, no inlined fixture code). No test is missing, no outcome changed, application exports differ only by the recorded A2A move, and the catalog is unchanged."
+  },
+  "logs": "%TEMP%/ks-unit4-final (diagnostic convenience; this record is the durable evidence)"
+}

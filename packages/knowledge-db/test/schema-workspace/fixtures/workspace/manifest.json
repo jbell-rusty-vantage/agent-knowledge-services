@@ -1,0 +1,14 @@
+{
+  "format": "ai-engineer-schema-workspace/3",
+  "build": {
+    "contract_version": "0.3.0",
+    "migration_head": "20260912020000",
+    "renderer_version": "3.0.0-fixture",
+    "fingerprint": "sha256:fixture0000000000000000000000000000000000000000000000000000000000",
+    "workspace_fingerprint": "sha256:fixturews00000000000000000000000000000000000000000000000000000000",
+    "volatile": { "introspected_at": "2026-09-11T00:00:00Z", "source": { "kind": "fixture" } }
+  },
+  "scope": null,
+  "layers": { "domains": 2, "relations": 3, "functions": 1, "tasks": 1, "queries": 7 },
+  "entry_points": ["START_HERE.md", "INDEX.md", "relations.txt", "queries/README.md"]
+}

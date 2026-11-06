@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "operationId": {
+      "type": "string",
+      "format": "uuid",
+      "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+    },
+    "state": {
+      "type": "string",
+      "const": "queued"
+    },
+    "contractVersion": {
+      "type": "string",
+      "const": "v1"
+    },
+    "statusUrl": {
+      "type": "string",
+      "format": "uri"
+    },
+    "eventStreamUrl": {
+      "type": "string",
+      "format": "uri"
+    },
+    "cancellationUrl": {
+      "type": "string",
+      "format": "uri"
+    },
+    "retryUrl": {
+      "type": "string",
+      "format": "uri"
+    },
+    "reconcileUrl": {
+      "type": "string",
+      "format": "uri"
+    }
+  },
+  "required": [
+    "operationId",
+    "state",
+    "contractVersion",
+    "statusUrl",
+    "eventStreamUrl",
+    "cancellationUrl",
+    "retryUrl",
+    "reconcileUrl"
+  ],
+  "additionalProperties": false
+}

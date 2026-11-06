@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "verification-benchmark-case-input.v1",
+  "sourceDatasetManifestDigest": "sha256:b625b311493f8c366ef43bf4047bf61f38d510fe7f3c340f50bca42de737dfe6",
+  "sourceCaseDigest": "sha256:fcee790fafa068517afe2eb25b44a0fb2be5d24fd87f0db93a6583808fe19371",
+  "caseId": "gl-consultation-source",
+  "assertion": "The report states that pre-clinical recommendations should not be acted upon without first consulting a qualified healthcare provider.",
+  "evidence": [
+    {
+      "fragmentId": "sha256:c2503bfd016fea7803d7adb21ca6d427836c11a1b586ee5fa7da8c1cc644f35f",
+      "captureId": "dc5210dc-7826-524e-ad73-27a3baf6c4ae",
+      "sourceKey": "gl-terms",
+      "sourceClass": "first_party",
+      "projectionArtifactId": "0d3a77f2-20eb-58e0-afac-b932bb55e172",
+      "projectionDigest": "sha256:f3c462cade3dde56db7d70f0e5141798cd18bde96f5cabc3b18923543a9ff896",
+      "transformationArtifactId": "3a281fe2-cd85-5cec-a90a-22a372d76d2d",
+      "selector": {
+        "kind": "html",
+        "domPath": "1/9/1/2/0/13"
+      },
+      "selectedContentDigest": "sha256:6c8a7e0a04ef69459a758c9949efe45df6beacf888731243fb3b23d408c2c7d8",
+      "excerpt": "The Report contains personalized pre-clinical observations about biomarkers of aging and may surface common approaches associated with improving the health functions where you are showing signs of biological aging. These observations and approaches are informational and pre-clinical in nature. The Report clearly identifies these as pre-clinical recommendations that should not be acted upon without first consulting a qualified healthcare provider.",
+      "rights": "restricted internal preparation; not approved for provider upload or public redistribution",
+      "originalProviderUploadAuthorized": false
+    }
+  ],
+  "intendedUse": "immutable_case_input; provider transmission requires a separately authenticated derived-input grant"
+}

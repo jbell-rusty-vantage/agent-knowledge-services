@@ -1,0 +1,113 @@
+{
+  "schema": 1,
+  "unit": "5A",
+  "topic": "Entry evidence and the R1 knowledge-db → persistence inversion",
+  "branch": "refactor/ks-unit-5a-r1-inversion",
+  "base": "f4c1174",
+  "implementationHead": "2c474ad",
+  "commits": {
+    "4dd7510": "persistence: postgresContentAdmission adapter; TenantPostgres and adapter unit tests",
+    "8ec3f3c": "knowledge-db owns its transaction and content-admission ports; production persistence edge removed; executor composition injects the adapters",
+    "2c474ad": "review fixes: strict ContentAdmission members, pinned summary input type, lockfile limited to the importer change"
+  },
+  "environment": {
+    "node": "v24.18.0",
+    "pnpm": "10.34.5",
+    "os": "Windows 11"
+  },
+  "entryGate": {
+    "registeredReplay": "28 passed, 1 failed: SEALED_CHECKPOINT_MISSING:records/25-gl-repeatability-mutated-haiku_judge-failure.json",
+    "receiptSearch": "no copy found under C:/Users/Pinda/Proyectos (node_modules excluded)",
+    "decision": "continue 5A under the same exact exception; 5A does not touch benchmark replay. No test, skip predicate or receipt changed."
+  },
+  "commands": {
+    "install": {
+      "command": "corepack pnpm install --frozen-lockfile",
+      "exit": 0,
+      "result": "22 workspace projects, lockfile up to date"
+    },
+    "typecheck": {
+      "command": "corepack pnpm exec turbo run typecheck --force --concurrency=2",
+      "exit": 0,
+      "tasks": "36/36 successful, 0 cached (on 2c474ad)"
+    },
+    "build": {
+      "command": "corepack pnpm exec turbo run build --force --concurrency=2",
+      "exit": 0,
+      "tasks": "21/21 successful, 0 cached (on 2c474ad)"
+    },
+    "staleCompiledTests": {
+      "command": "search apps/*/dist, packages/*/dist, services/*/dist for *.test.js",
+      "result": "none found; nothing preserved or removed"
+    },
+    "test": {
+      "command": "corepack pnpm exec turbo run test --continue=always --concurrency=1 --force -- --maxWorkers=2",
+      "exit": 1,
+      "tasks": "36/37 successful, 0 cached",
+      "passed": 2940,
+      "skipped": 126,
+      "failed": 1,
+      "failures": [
+        "packages/application/src/verification/benchmark/verification-benchmark-registered-replay.test.ts :: registered benchmark replay replays all seven actual captured schema failures exactly once in memory (SEALED_CHECKPOINT_MISSING, retained exception)"
+      ],
+      "skips": {
+        "@aiengineer/knowledge-persistence": "29: postgres.test.ts 11, checkpoints.integration 9, source-discovery.integration 6, vector-store 2, preparation 1",
+        "@aiengineer/knowledge-db": "32: ingestion/tests/executor.integration 10, ingestion/reports/service.integration 7, db-read/artifacts-reconciliation.integration 5, db-read/read-executor.integration 5, db-read/snapshot.integration 2, test/ingestion/temporal.integration 2, test/ingestion/current-schema.integration 1",
+        "@aiengineer/knowledge-verification-executor": "39: unchanged from Unit 4 (database/Storage integration files)",
+        "@aiengineer/knowledge-api": "20: retrieval-history.integration 13, durable-server 4, consumer-transports.integration 2, a2a-durable 1",
+        "@aiengineer/knowledge-worker": "5: worker.test.ts",
+        "@aiengineer/knowledge-mcp": "1: tests/index.test.ts"
+      },
+      "perPackage": "contracts 203, jev 9, verification 285, core 22, client 25, preparation 83, acquisition 43, evaluation 55, policy 47, retrieval 136, testkit 11, application 442+1 failed, jev-service 6, persistence 340/29 skipped, host 56, knowledge-db 411/32, cli 52, executor 237/39, mcp 216/1, worker 141/5, api 120/20",
+      "notes": "Expected total 2,940 = Unit 4's 2,929 plus the 11 added tests (9 persistence adapter tests, 2 executor port-conformance tests). Skipped tests need a disposable database or providers that were not configured; they are not passing evidence. Log: %TEMP%/ks-unit5a-full-graph.log (diagnostic only)."
+    },
+    "examples": {
+      "command": "corepack pnpm examples:verification",
+      "exit": 0,
+      "result": "mechanical and extraction passed, semanticJudged 0, policy review, providersCalled 0, receipts 11"
+    },
+    "packageExamples": {
+      "command": "corepack pnpm --filter knowledge-acquisition --filter knowledge-preparation --filter knowledge-retrieval --if-present examples",
+      "exit": 0
+    },
+    "skills": {
+      "command": "node skills/check.mjs",
+      "exit": 0,
+      "result": "12 skills, 42 executor operations, 58 executor MCP tools, 78 platform commands, 70 platform MCP tools, 6 Jev MCP tools, 9 Jev commands"
+    },
+    "packagingSmoke": {
+      "command": "corepack pnpm --filter @aiengineer/knowledge-verification-executor pack:sandbox; npm install of the tarball in %TEMP%/ks-unit5a-installed outside the workspace",
+      "exit": 0,
+      "tarballSha256": "faa3c176afe9c46a87cdbaa4726477d5e050cc53fb0a5a71e4e3c653995170c5",
+      "runtimeDependencies": ["@modelcontextprotocol/sdk", "pg", "zod"],
+      "result": "installed knowledge-verify --help and knowledge --help exit 0 with output; packaged offline example against installed dist/index.js: 11 receipts, 0 provider calls, policy review",
+      "reason": "the executor tarball bundles knowledge-db, whose manifest dependencies changed"
+    },
+    "docs": {
+      "command": "node .agent-docs/cli.mjs build --repo . && node .agent-docs/cli.mjs check --repo .; git diff --check",
+      "exit": 0
+    }
+  },
+  "inventory": {
+    "script": "unit5a-inventory.mjs (catalog: unit5-catalog-snapshot.ts)",
+    "before": "unit5a-before.json at f4c1174 (source unchanged; dirty only by the new evidence files and a pre-existing unrelated untracked folder)",
+    "after": "unit5a-after.json at 2c474ad",
+    "compare": "exit 0: 0 missing test identities, 0 changed outcomes, 11 added; exports unchanged except the recorded persistence postgresContentAdmission; manifest cycles none (with and without devDependencies); knowledge-db → persistence production edge removed, test-only edge retained; no knowledge-db production source imports persistence; host imports no app; application and persistence import no host; catalog kinds, API routes, MCP tools, CLI commands and all 156 operation rows unchanged; Eve consumer inventory unchanged",
+    "identityNormalization": "the executor evidence-reader boundary test embeds a fresh randomUUID in its title; identities are compared with UUIDs normalized",
+    "suites": {
+      "packages/knowledge-db": "before 411 passed / 32 skipped; after identical",
+      "packages/persistence": "before 331/29; after 340/29 (+9 adapter tests)",
+      "packages/host": "56/0 before and after",
+      "apps/verification-executor": "before 235/39; after 237/39 (+2 conformance tests)",
+      "apps/mcp": "216/1 before and after (catalog parity included)"
+    }
+  },
+  "decisions": {
+    "hostInjection": "host does not compose knowledge-db before 5D1; the executor composition (knowledge/context.ts, knowledge/promotion-selection.ts) is today's only composition root and injects TenantPostgres and postgresContentAdmission. 5D1 moves that composition and the conformance test into host.",
+    "testOnlyEdge": "persistence stays a knowledge-db devDependency for the seven DB integration tests, test/ingestion fixtures and content-links/sources.test.ts (which runs the real adapter against its fake client). Turbo/pnpm order builds over devDependencies, so 5D1 must remove this edge before adding application → knowledge-db; recorded in UNIT-5-SLICES.md 5D1.",
+    "catalog": "no surface changed; no catalog row changed",
+    "branchRule": "one branch per slice confirmed by the developer's 5A instruction"
+  },
+  "review": "one read-only reviewer: nothing blocking; applied strict ContentAdmission members, summary input pin, lockfile trim; CODE-MAP refreshed by the docs build",
+  "notPerformed": ["remote push", "deployment", "paid provider call", "shared-database mutation", "sibling repository edit"]
+}

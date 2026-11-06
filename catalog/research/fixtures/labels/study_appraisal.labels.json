@@ -1,0 +1,116 @@
+{
+  "schemaVersion": "sv09-labels.v1",
+  "task": "sv09-appraisal-pair26",
+  "labelSource": "synthetic: authored with the fixture by SV-09 helper C before any model call; not independent human labels",
+  "obligations": {
+    "design.trial": { "expected": "supported", "sources": ["S6"], "planted": null, "keyFacts": ["randomized controlled trial", "240"] },
+    "domain.selection": {
+      "expected": "supported",
+      "sources": ["S6"],
+      "planted": null,
+      "keyFacts": ["allocation was concealed"],
+      "judgments": ["low"]
+    },
+    "domain.performance": {
+      "expected": "supported",
+      "sources": ["S6"],
+      "planted": "negation: participants were not blinded",
+      "negation": true,
+      "keyFacts": ["not blinded"],
+      "judgments": ["high", "some_concerns"]
+    },
+    "domain.detection": {
+      "expected": "supported",
+      "sources": ["S6"],
+      "planted": null,
+      "keyFacts": ["assessors", "blinded"],
+      "judgments": ["low"]
+    },
+    "domain.attrition": {
+      "expected": "supported",
+      "sources": ["S6"],
+      "planted": null,
+      "keyFacts": ["29 of 240", "12%"],
+      "judgments": ["low", "some_concerns"]
+    },
+    "domain.reporting": {
+      "expected": "supported",
+      "sources": ["S6"],
+      "planted": null,
+      "keyFacts": ["pre-registered"],
+      "judgments": ["low"]
+    }
+  },
+  "distractors": ["S6 result sentence (effect size, not asked; must not become a body-of-evidence rating)"],
+  "expectedReportDecision": ["admitted", "held"],
+  "census": {
+    "body": "recorded/study_appraisal.reference-draft.json",
+    "occurrences": [
+      {
+        "id": "L1",
+        "path": "study/p1",
+        "quote": "PAIR-26 was a randomized controlled trial in 240 professional software developers comparing an AI pair-programming assistant against unassisted work.",
+        "assertionKey": "design",
+        "note": null
+      },
+      {
+        "id": "L2",
+        "path": "domains/t1/r0/c1",
+        "quote": "PAIR-26 concealed allocation through central web-based randomization.",
+        "assertionKey": "selection",
+        "note": "table cell"
+      },
+      {
+        "id": "L3",
+        "path": "domains/t1/r1/c1",
+        "quote": "PAIR-26 participants and their team leads were not blinded to group assignment.",
+        "assertionKey": "performance",
+        "note": "negated table cell"
+      },
+      {
+        "id": "L4",
+        "path": "domains/t1/r2/c1",
+        "quote": "PAIR-26 outcome assessors were blinded to group assignment.",
+        "assertionKey": "detection",
+        "note": "table cell"
+      },
+      {
+        "id": "L5",
+        "path": "domains/t1/r3/c1",
+        "quote": "PAIR-26 lost 29 of 240 participants (12%) before the final assessment, balanced across groups.",
+        "assertionKey": "attrition",
+        "note": "table cell"
+      },
+      {
+        "id": "L6",
+        "path": "domains/t1/r4/c1",
+        "quote": "PAIR-26 pre-registered its primary outcome and reported all registered outcomes.",
+        "assertionKey": "reporting",
+        "note": "table cell"
+      }
+    ],
+    "expectedUnitExplanations": [
+      "domains/t1/r0/c0",
+      "domains/t1/r1/c0",
+      "domains/t1/r2/c0",
+      "domains/t1/r3/c0",
+      "domains/t1/r4/c0"
+    ],
+    "expectedHolds": []
+  },
+  "t0Expected": {
+    "reportDisposition": "admitted",
+    "censusHolds": [],
+    "assertionDispositions": {
+      "design": "admitted",
+      "selection": "admitted",
+      "performance": "admitted",
+      "detection": "admitted",
+      "attrition": "admitted",
+      "reporting": "admitted"
+    },
+    "nativeAdmitted": 7,
+    "nativeRefused": 0,
+    "nativeSkippedNoProposal": 0
+  }
+}

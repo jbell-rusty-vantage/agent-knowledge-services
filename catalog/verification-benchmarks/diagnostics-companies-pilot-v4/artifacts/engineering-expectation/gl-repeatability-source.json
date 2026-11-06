@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "verification-benchmark-engineering-expectation.v1",
+  "sourceDatasetManifestDigest": "sha256:b625b311493f8c366ef43bf4047bf61f38d510fe7f3c340f50bca42de737dfe6",
+  "sourceCaseDigest": "sha256:fc33a3496a32451390d1b8fc03dc7d823b79dc7673683ae91b0cc76162af68c5",
+  "caseId": "gl-repeatability-source",
+  "provenance": "agent_reviewed_engineering_expectation",
+  "humanAnnotationCount": 0,
+  "expertAdjudicated": false,
+  "humanGoldScoringEligible": false,
+  "legacyGoldArtifactColumnSemantics": "engineering expectation artifact only; does not establish human-gold eligibility",
+  "expectation": {
+    "label": "supported_by_source",
+    "labelStatus": "engineering_expectation",
+    "expectedPolicy": "pass_with_warnings",
+    "expectedLocatorValid": true,
+    "support": "full",
+    "authority": "interested_party_only",
+    "worldCorrectness": "not_established",
+    "rationale": "The captured first-party fragment directly supports the bounded company-as-source statement; real-world correctness remains unestablished."
+  }
+}

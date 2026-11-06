@@ -1,0 +1,29 @@
+{
+  "name": "@aiengineer/knowledge-retrieval",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Provides embedding adapters, vector publication, evidence-bound projections, and policy-scoped retrieval.",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format esm && tsc --emitDeclarationOnly --rootDir src --outDir dist",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "examples": "tsc --noEmit -p tsconfig.examples.json"
+  },
+  "dependencies": {
+    "@aiengineer/knowledge-contracts": "workspace:*",
+    "@aiengineer/knowledge-core": "workspace:*",
+    "@aiengineer/knowledge-preparation": "workspace:*"
+  },
+  "devDependencies": {
+    "tsup": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}

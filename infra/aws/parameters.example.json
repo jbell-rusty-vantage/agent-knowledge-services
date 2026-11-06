@@ -1,0 +1,10 @@
+[
+  { "ParameterKey": "VpcId", "ParameterValue": "vpc-REPLACE" },
+  { "ParameterKey": "PrivateSubnetIds", "ParameterValue": "subnet-REPLACE,subnet-REPLACE" },
+  { "ParameterKey": "PrivateHostedZoneId", "ParameterValue": "ZREPLACE" },
+  { "ParameterKey": "DoclingPrivateDnsName", "ParameterValue": "docling.knowledge.internal" },
+  { "ParameterKey": "DoclingCertificateArn", "ParameterValue": "arn:aws:acm:us-east-1:000000000000:certificate/REPLACE" },
+  { "ParameterKey": "WorkerImageUri", "ParameterValue": "000000000000.dkr.ecr.us-east-1.amazonaws.com/knowledge-worker@sha256:REPLACE_WITH_64_HEX_CHARACTERS" },
+  { "ParameterKey": "DatabaseSecretArn", "ParameterValue": "arn:aws:secretsmanager:us-east-1:000000000000:secret:knowledge-database-REPLACE" },
+  { "ParameterKey": "WorkerRuntimeSecretArn", "ParameterValue": "arn:aws:secretsmanager:us-east-1:000000000000:secret:knowledge-worker-REPLACE" }
+]

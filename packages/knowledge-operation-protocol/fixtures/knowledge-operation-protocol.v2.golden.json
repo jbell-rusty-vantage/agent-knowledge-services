@@ -1,0 +1,1055 @@
+{
+  "format": "kop-golden.v2",
+  "protocolVersion": "ks.knowledge_operation.v2",
+  "canonicalization": "kop-canonical-json.v1",
+  "payload": {
+    "base64": "eyJzY2hlbWFWZXJzaW9uIjoia25vd2xlZGdlLWluZ2VzdGlvbi1pbnRlbnQudjEiLCJpbnRlbnRJZCI6InN2LWdvbGRlbiIsIm5vdGVzIjoiQ2Fmw6kgdnMgQ2FmZcyBIOKAlCDwn6eqIHN0YXlzIGV4YWN0bHkgYXMgc2VudCJ9Cg==",
+    "payloadDigest": "sha256:3677bf49dfd71aac89f67b157f99e8bf5f02830f0cdf2c8377b265ac564e7ca1",
+    "payloadBytes": 130
+  },
+  "vectors": [
+    {
+      "id": "canonical-unicode",
+      "value": {
+        "s": "Café vs Café — 🧪",
+        "n": 42,
+        "nested": {
+          "b": [
+            1,
+            2
+          ],
+          "a": null
+        },
+        "crlf": "a\r\nb"
+      },
+      "canonical": "{\"crlf\":\"a\\r\\nb\",\"n\":42,\"nested\":{\"a\":null,\"b\":[1,2]},\"s\":\"Café vs Café — 🧪\"}",
+      "digest": "sha256:d0659989a728590a3852d50af925a1a78d5b81a2763584c828ddd996ccc7a914"
+    },
+    {
+      "id": "origin-identity",
+      "origin": {
+        "kind": "mission_invocation",
+        "installationId": "00000000-0000-7000-8000-000000000001",
+        "applicationId": "ai-engineer",
+        "tenantId": "00000000-0000-7000-8000-0000000000aa",
+        "issuer": "mission-control",
+        "subject": "mission-control-runtime",
+        "mission": {
+          "missionId": "mission-1",
+          "runId": "run-1",
+          "activationId": "activation-1",
+          "operationId": "op-research-1",
+          "operationAttempt": 1,
+          "executionGeneration": 1,
+          "lane": "deep_agents"
+        },
+        "recoveryAuthorityRef": null,
+        "invocationId": "inv-0001",
+        "authenticatedAt": "2026-10-24T20:00:00Z"
+      },
+      "identity": {
+        "kind": "mission_invocation",
+        "installationId": "00000000-0000-7000-8000-000000000001",
+        "applicationId": "ai-engineer",
+        "tenantId": "00000000-0000-7000-8000-0000000000aa",
+        "issuer": "mission-control",
+        "subject": "mission-control-runtime",
+        "mission": {
+          "missionId": "mission-1",
+          "runId": "run-1",
+          "activationId": "activation-1",
+          "operationId": "op-research-1",
+          "operationAttempt": 1,
+          "executionGeneration": 1,
+          "lane": "deep_agents"
+        },
+        "recoveryAuthorityRef": null
+      },
+      "canonical": "{\"applicationId\":\"ai-engineer\",\"installationId\":\"00000000-0000-7000-8000-000000000001\",\"issuer\":\"mission-control\",\"kind\":\"mission_invocation\",\"mission\":{\"activationId\":\"activation-1\",\"executionGeneration\":1,\"lane\":\"deep_agents\",\"missionId\":\"mission-1\",\"operationAttempt\":1,\"operationId\":\"op-research-1\",\"runId\":\"run-1\"},\"recoveryAuthorityRef\":null,\"subject\":\"mission-control-runtime\",\"tenantId\":\"00000000-0000-7000-8000-0000000000aa\"}",
+      "digest": "sha256:5af888db7f34b128bcdefd1e6fc1c89dadbc3516e3e3b930578691c177c50782",
+      "retryOriginDigest": "sha256:dac93a91f8f0df0c0b7a3ab169eb093a80502a26cc8711229e45043a8d11e92e",
+      "recoveryOriginDigest": "sha256:10e7d6933e5640bf042727779c237a7178ad97ff7dbf27d3a5a53007814d8013"
+    },
+    {
+      "id": "effect-binding",
+      "effect": {
+        "effectKey": "effect-0001",
+        "semanticPayloadDigest": "sha256:3677bf49dfd71aac89f67b157f99e8bf5f02830f0cdf2c8377b265ac564e7ca1",
+        "originatingOrigin": {
+          "kind": "mission_invocation",
+          "installationId": "00000000-0000-7000-8000-000000000001",
+          "applicationId": "ai-engineer",
+          "tenantId": "00000000-0000-7000-8000-0000000000aa",
+          "issuer": "mission-control",
+          "subject": "mission-control-runtime",
+          "mission": {
+            "missionId": "mission-1",
+            "runId": "run-1",
+            "activationId": "activation-1",
+            "operationId": "op-research-1",
+            "operationAttempt": 1,
+            "executionGeneration": 1,
+            "lane": "deep_agents"
+          },
+          "recoveryAuthorityRef": null,
+          "invocationId": "inv-0001",
+          "authenticatedAt": "2026-10-24T20:00:00Z"
+        },
+        "boundEffectDigest": "sha256:8f1a8c038b91ee6f4f0e17243785b17c95a8a6a59c5b79e15b9e6b3a41df4307",
+        "canonicalization": "kop-canonical-json.v1"
+      },
+      "boundEffectInput": {
+        "canonicalization": "kop-canonical-json.v1",
+        "payloadDigest": "sha256:3677bf49dfd71aac89f67b157f99e8bf5f02830f0cdf2c8377b265ac564e7ca1",
+        "originatingOrigin": {
+          "kind": "mission_invocation",
+          "installationId": "00000000-0000-7000-8000-000000000001",
+          "applicationId": "ai-engineer",
+          "tenantId": "00000000-0000-7000-8000-0000000000aa",
+          "issuer": "mission-control",
+          "subject": "mission-control-runtime",
+          "mission": {
+            "missionId": "mission-1",
+            "runId": "run-1",
+            "activationId": "activation-1",
+            "operationId": "op-research-1",
+            "operationAttempt": 1,
+            "executionGeneration": 1,
+            "lane": "deep_agents"
+          },
+          "recoveryAuthorityRef": null
+        }
+      }
+    },
+    {
+      "id": "apply-envelope",
+      "envelope": {
+        "protocolVersion": "ks.knowledge_operation.v2",
+        "requestId": "req-0001",
+        "dispatchId": "dispatch-0001",
+        "tenant": "00000000-0000-7000-8000-0000000000aa",
+        "application": "ai-engineer",
+        "binding": "aiengineer-postgres",
+        "operation": "knowledge.apply",
+        "effect": {
+          "effectKey": "effect-0001",
+          "semanticPayloadDigest": "sha256:3677bf49dfd71aac89f67b157f99e8bf5f02830f0cdf2c8377b265ac564e7ca1",
+          "originatingOrigin": {
+            "kind": "mission_invocation",
+            "installationId": "00000000-0000-7000-8000-000000000001",
+            "applicationId": "ai-engineer",
+            "tenantId": "00000000-0000-7000-8000-0000000000aa",
+            "issuer": "mission-control",
+            "subject": "mission-control-runtime",
+            "mission": {
+              "missionId": "mission-1",
+              "runId": "run-1",
+              "activationId": "activation-1",
+              "operationId": "op-research-1",
+              "operationAttempt": 1,
+              "executionGeneration": 1,
+              "lane": "deep_agents"
+            },
+            "recoveryAuthorityRef": null,
+            "invocationId": "inv-0001",
+            "authenticatedAt": "2026-10-24T20:00:00Z"
+          },
+          "boundEffectDigest": "sha256:8f1a8c038b91ee6f4f0e17243785b17c95a8a6a59c5b79e15b9e6b3a41df4307",
+          "canonicalization": "kop-canonical-json.v1"
+        },
+        "target": {
+          "handle": null,
+          "effectKey": null
+        },
+        "cancelRequestId": null,
+        "input": {
+          "nativeContract": {
+            "name": "knowledge-ingestion-intent",
+            "version": "v1"
+          },
+          "payloadDigest": "sha256:3677bf49dfd71aac89f67b157f99e8bf5f02830f0cdf2c8377b265ac564e7ca1",
+          "payloadBytes": 130,
+          "payloadRef": {
+            "kind": "artifact",
+            "id": "artifact-intent-0001",
+            "version": "artifact.v1",
+            "digest": "sha256:3677bf49dfd71aac89f67b157f99e8bf5f02830f0cdf2c8377b265ac564e7ca1",
+            "tenant": "00000000-0000-7000-8000-0000000000aa",
+            "binding": "aiengineer-postgres"
+          },
+          "inlinePayload": null,
+          "upstream": []
+        },
+        "governors": {
+          "deadline": "2026-10-24T20:10:00Z",
+          "maxItems": 64,
+          "partialResults": "forbid",
+          "budget": {
+            "calls": 0,
+            "tokens": 0,
+            "costUsd": "0"
+          }
+        },
+        "requiredCapabilities": [
+          "knowledge.apply",
+          "receiptLookup:by_effect_key"
+        ],
+        "pinnedSchema": {
+          "name": "aiengineer-database-contract",
+          "version": "aiengineer-database-contract.v1",
+          "digest": "sha256:0000000000000000000000000000000000000000000000000000000000000001"
+        },
+        "issuedAt": "2026-10-24T20:00:01Z"
+      },
+      "envelopeDigest": "sha256:57e4ce3e16ad667372c9ea86b3c0e8e773a42b4e822059037251c250e8741f7d"
+    },
+    {
+      "id": "canonical-key-order-utf16",
+      "value": {
+        "｡": 1,
+        "😀": 2,
+        "b": 3,
+        "a": 4,
+        "é": 5
+      },
+      "canonical": "{\"a\":4,\"b\":3,\"é\":5,\"😀\":2,\"｡\":1}",
+      "digest": "sha256:d6cb278df75e78a1539b82c7fa8a9c956c518920b1d393d2f30d41761338e04d"
+    },
+    {
+      "id": "canonical-lone-surrogate-refusal",
+      "value": {
+        "s": "a\ud800b"
+      },
+      "refusal": "CANONICAL_VALUE_UNSUPPORTED"
+    },
+    {
+      "id": "effect-scoped-recovery-dispatch",
+      "envelope": {
+        "protocolVersion": "ks.knowledge_operation.v2",
+        "requestId": "req-0001",
+        "dispatchId": "dispatch-0002",
+        "tenant": "00000000-0000-7000-8000-0000000000aa",
+        "application": "ai-engineer",
+        "binding": "aiengineer-postgres",
+        "operation": "knowledge.apply",
+        "effect": {
+          "effectKey": "effect-0001",
+          "semanticPayloadDigest": "sha256:3677bf49dfd71aac89f67b157f99e8bf5f02830f0cdf2c8377b265ac564e7ca1",
+          "originatingOrigin": {
+            "kind": "mission_invocation",
+            "installationId": "00000000-0000-7000-8000-000000000001",
+            "applicationId": "ai-engineer",
+            "tenantId": "00000000-0000-7000-8000-0000000000aa",
+            "issuer": "mission-control",
+            "subject": "mission-control-runtime",
+            "mission": {
+              "missionId": "mission-1",
+              "runId": "run-1",
+              "activationId": "activation-1",
+              "operationId": "op-research-1",
+              "operationAttempt": 1,
+              "executionGeneration": 1,
+              "lane": "deep_agents"
+            },
+            "recoveryAuthorityRef": null,
+            "invocationId": "inv-0001",
+            "authenticatedAt": "2026-10-24T20:00:00Z"
+          },
+          "boundEffectDigest": "sha256:8f1a8c038b91ee6f4f0e17243785b17c95a8a6a59c5b79e15b9e6b3a41df4307",
+          "canonicalization": "kop-canonical-json.v1"
+        },
+        "target": {
+          "handle": null,
+          "effectKey": null
+        },
+        "cancelRequestId": null,
+        "input": {
+          "nativeContract": {
+            "name": "knowledge-ingestion-intent",
+            "version": "v1"
+          },
+          "payloadDigest": "sha256:3677bf49dfd71aac89f67b157f99e8bf5f02830f0cdf2c8377b265ac564e7ca1",
+          "payloadBytes": 130,
+          "payloadRef": {
+            "kind": "artifact",
+            "id": "artifact-intent-0001",
+            "version": "artifact.v1",
+            "digest": "sha256:3677bf49dfd71aac89f67b157f99e8bf5f02830f0cdf2c8377b265ac564e7ca1",
+            "tenant": "00000000-0000-7000-8000-0000000000aa",
+            "binding": "aiengineer-postgres"
+          },
+          "inlinePayload": null,
+          "upstream": []
+        },
+        "governors": {
+          "deadline": "2026-10-24T20:10:00Z",
+          "maxItems": 64,
+          "partialResults": "forbid",
+          "budget": {
+            "calls": 0,
+            "tokens": 0,
+            "costUsd": "0"
+          }
+        },
+        "requiredCapabilities": [
+          "knowledge.apply",
+          "receiptLookup:by_effect_key"
+        ],
+        "pinnedSchema": {
+          "name": "aiengineer-database-contract",
+          "version": "aiengineer-database-contract.v1",
+          "digest": "sha256:0000000000000000000000000000000000000000000000000000000000000001"
+        },
+        "issuedAt": "2026-10-24T20:05:01Z"
+      },
+      "envelopeDigest": "sha256:2b305e52aa6da743f0613ccbdaae20b90fb7c2ae532ae1ec64ce1afaf0318c44",
+      "credentialClaims": {
+        "typ": "ks-knowledge-operation+jwt",
+        "iss": "mission-control",
+        "aud": "knowledge-services",
+        "sub": "mission-control-runtime",
+        "jti": "jti-recovery-0002",
+        "iat": 1792872300,
+        "nbf": 1792872300,
+        "exp": 1792872600,
+        "tenant": "00000000-0000-7000-8000-0000000000aa",
+        "application": "ai-engineer",
+        "binding": "aiengineer-postgres",
+        "origin": {
+          "kind": "mission_invocation",
+          "installationId": "00000000-0000-7000-8000-000000000001",
+          "applicationId": "ai-engineer",
+          "tenantId": "00000000-0000-7000-8000-0000000000aa",
+          "issuer": "mission-control",
+          "subject": "mission-control-runtime",
+          "mission": {
+            "missionId": "mission-1",
+            "runId": "run-1",
+            "activationId": "activation-1",
+            "operationId": "op-research-1",
+            "operationAttempt": 2,
+            "executionGeneration": 1,
+            "lane": "deep_agents"
+          },
+          "recoveryAuthorityRef": null,
+          "invocationId": "inv-0002",
+          "authenticatedAt": "2026-10-24T20:05:00Z"
+        },
+        "operations": [
+          "knowledge.apply"
+        ],
+        "effect": {
+          "effectKey": "effect-0001",
+          "boundEffectDigest": "sha256:8f1a8c038b91ee6f4f0e17243785b17c95a8a6a59c5b79e15b9e6b3a41df4307"
+        },
+        "dispatchId": "dispatch-0002",
+        "recovery": {
+          "scope": "effect",
+          "authorityRef": "recovery-grant-7",
+          "effectKey": "effect-0001",
+          "boundEffectDigest": "sha256:8f1a8c038b91ee6f4f0e17243785b17c95a8a6a59c5b79e15b9e6b3a41df4307"
+        }
+      },
+      "currentCallerOriginDigest": "sha256:dac93a91f8f0df0c0b7a3ab169eb093a80502a26cc8711229e45043a8d11e92e",
+      "originatingOriginDigest": "sha256:5af888db7f34b128bcdefd1e6fc1c89dadbc3516e3e3b930578691c177c50782",
+      "admission": {
+        "admitted": true,
+        "mode": "recovery"
+      },
+      "admissionWithoutGrant": {
+        "admitted": false,
+        "code": "ORIGIN_MISMATCH",
+        "reason": "a different caller requires effect-scoped host recovery authority for this exact effect key and digest"
+      }
+    },
+    {
+      "id": "read-only-recovery-lookup",
+      "envelope": {
+        "protocolVersion": "ks.knowledge_operation.v2",
+        "requestId": "req-0009",
+        "dispatchId": "dispatch-0009",
+        "tenant": "00000000-0000-7000-8000-0000000000aa",
+        "application": "ai-engineer",
+        "binding": "aiengineer-postgres",
+        "operation": "receipt.get",
+        "effect": null,
+        "target": {
+          "handle": null,
+          "effectKey": "effect-0001"
+        },
+        "cancelRequestId": null,
+        "input": null,
+        "governors": {
+          "deadline": "2026-10-24T20:10:00Z",
+          "maxItems": 64,
+          "partialResults": "forbid",
+          "budget": {
+            "calls": 0,
+            "tokens": 0,
+            "costUsd": "0"
+          }
+        },
+        "requiredCapabilities": [
+          "receiptLookup:by_effect_key"
+        ],
+        "pinnedSchema": {
+          "name": "aiengineer-database-contract",
+          "version": "aiengineer-database-contract.v1",
+          "digest": "sha256:0000000000000000000000000000000000000000000000000000000000000001"
+        },
+        "issuedAt": "2026-10-24T20:30:01Z"
+      },
+      "envelopeDigest": "sha256:27237903999c1c770e3dafc2088ee001baee7834499af396cdb9442322866c2f",
+      "credentialClaims": {
+        "typ": "ks-knowledge-operation+jwt",
+        "iss": "mission-control",
+        "aud": "knowledge-services",
+        "sub": "mission-control-reconciler",
+        "jti": "jti-recovery-0009",
+        "iat": 1792873800,
+        "nbf": 1792873800,
+        "exp": 1792874100,
+        "tenant": "00000000-0000-7000-8000-0000000000aa",
+        "application": "ai-engineer",
+        "binding": "aiengineer-postgres",
+        "origin": {
+          "kind": "recovery",
+          "installationId": "00000000-0000-7000-8000-000000000001",
+          "applicationId": "ai-engineer",
+          "tenantId": "00000000-0000-7000-8000-0000000000aa",
+          "issuer": "mission-control",
+          "subject": "mission-control-reconciler",
+          "mission": null,
+          "recoveryAuthorityRef": "recovery-grant-7",
+          "invocationId": "inv-0009",
+          "authenticatedAt": "2026-10-24T20:30:00Z"
+        },
+        "operations": [
+          "receipt.get"
+        ],
+        "effect": null,
+        "dispatchId": "dispatch-0009",
+        "recovery": {
+          "scope": "read_only",
+          "authorityRef": "recovery-grant-7",
+          "effectKey": "effect-0001",
+          "boundEffectDigest": "sha256:8f1a8c038b91ee6f4f0e17243785b17c95a8a6a59c5b79e15b9e6b3a41df4307"
+        }
+      }
+    },
+    {
+      "id": "apply-envelope-declared-use",
+      "envelope": {
+        "protocolVersion": "ks.knowledge_operation.v2",
+        "requestId": "req-0001",
+        "dispatchId": "dispatch-0001",
+        "tenant": "00000000-0000-7000-8000-0000000000aa",
+        "application": "ai-engineer",
+        "binding": "aiengineer-postgres",
+        "operation": "knowledge.apply",
+        "effect": {
+          "effectKey": "effect-0001",
+          "semanticPayloadDigest": "sha256:3677bf49dfd71aac89f67b157f99e8bf5f02830f0cdf2c8377b265ac564e7ca1",
+          "originatingOrigin": {
+            "kind": "mission_invocation",
+            "installationId": "00000000-0000-7000-8000-000000000001",
+            "applicationId": "ai-engineer",
+            "tenantId": "00000000-0000-7000-8000-0000000000aa",
+            "issuer": "mission-control",
+            "subject": "mission-control-runtime",
+            "mission": {
+              "missionId": "mission-1",
+              "runId": "run-1",
+              "activationId": "activation-1",
+              "operationId": "op-research-1",
+              "operationAttempt": 1,
+              "executionGeneration": 1,
+              "lane": "deep_agents"
+            },
+            "recoveryAuthorityRef": null,
+            "invocationId": "inv-0001",
+            "authenticatedAt": "2026-10-24T20:00:00Z"
+          },
+          "boundEffectDigest": "sha256:8f1a8c038b91ee6f4f0e17243785b17c95a8a6a59c5b79e15b9e6b3a41df4307",
+          "canonicalization": "kop-canonical-json.v1"
+        },
+        "target": {
+          "handle": null,
+          "effectKey": null
+        },
+        "cancelRequestId": null,
+        "input": {
+          "nativeContract": {
+            "name": "knowledge-ingestion-intent",
+            "version": "v1"
+          },
+          "payloadDigest": "sha256:3677bf49dfd71aac89f67b157f99e8bf5f02830f0cdf2c8377b265ac564e7ca1",
+          "payloadBytes": 130,
+          "payloadRef": {
+            "kind": "artifact",
+            "id": "artifact-intent-0001",
+            "version": "artifact.v1",
+            "digest": "sha256:3677bf49dfd71aac89f67b157f99e8bf5f02830f0cdf2c8377b265ac564e7ca1",
+            "tenant": "00000000-0000-7000-8000-0000000000aa",
+            "binding": "aiengineer-postgres"
+          },
+          "inlinePayload": null,
+          "upstream": []
+        },
+        "governors": {
+          "deadline": "2026-10-24T20:10:00Z",
+          "maxItems": 64,
+          "partialResults": "forbid",
+          "budget": {
+            "calls": 0,
+            "tokens": 0,
+            "costUsd": "0"
+          }
+        },
+        "requiredCapabilities": [
+          "knowledge.apply",
+          "receiptLookup:by_effect_key"
+        ],
+        "pinnedSchema": {
+          "name": "aiengineer-database-contract",
+          "version": "aiengineer-database-contract.v1",
+          "digest": "sha256:0000000000000000000000000000000000000000000000000000000000000001"
+        },
+        "issuedAt": "2026-10-24T20:00:01Z",
+        "use": "knowledge_ingestion.apply",
+        "audience": "official"
+      },
+      "envelopeDigest": "sha256:165a219f6326671c6f39db825608db49b1e2475024a47705078a0ac171af5b40"
+    },
+    {
+      "id": "receipt-lookup-pending-dispatch-delivery",
+      "receiptLookup": {
+        "disposition": "found",
+        "receipt": {
+          "handle": {
+            "protocolVersion": "ks.knowledge_operation.v2",
+            "tenant": "00000000-0000-7000-8000-0000000000aa",
+            "application": "biotech",
+            "binding": "biotech-graph",
+            "operationId": "op-effect-bg-0001"
+          },
+          "effect": {
+            "effectKey": "effect-bg-0001",
+            "semanticPayloadDigest": "sha256:3677bf49dfd71aac89f67b157f99e8bf5f02830f0cdf2c8377b265ac564e7ca1",
+            "originatingOrigin": {
+              "kind": "mission_invocation",
+              "installationId": "00000000-0000-7000-8000-000000000001",
+              "applicationId": "biotech",
+              "tenantId": "00000000-0000-7000-8000-0000000000aa",
+              "issuer": "mission-control",
+              "subject": "mission-control-runtime",
+              "mission": {
+                "missionId": "mission-1",
+                "runId": "run-1",
+                "activationId": "activation-1",
+                "operationId": "op-research-1",
+                "operationAttempt": 1,
+                "executionGeneration": 1,
+                "lane": "deep_agents"
+              },
+              "recoveryAuthorityRef": null,
+              "invocationId": "inv-0001",
+              "authenticatedAt": "2026-10-24T20:00:00Z"
+            },
+            "boundEffectDigest": "sha256:d348988cdab2de6c0368fe644690ab19b2795188e4b6812f679fee7f99b14bb0",
+            "canonicalization": "kop-canonical-json.v1",
+            "currentCallerOrigin": {
+              "kind": "mission_invocation",
+              "installationId": "00000000-0000-7000-8000-000000000001",
+              "applicationId": "biotech",
+              "tenantId": "00000000-0000-7000-8000-0000000000aa",
+              "issuer": "mission-control",
+              "subject": "mission-control-runtime",
+              "mission": {
+                "missionId": "mission-1",
+                "runId": "run-1",
+                "activationId": "activation-1",
+                "operationId": "op-research-1",
+                "operationAttempt": 1,
+                "executionGeneration": 1,
+                "lane": "deep_agents"
+              },
+              "recoveryAuthorityRef": null,
+              "invocationId": "inv-0001",
+              "authenticatedAt": "2026-10-24T20:00:00Z"
+            },
+            "dispatchId": "dispatch-bg-0001",
+            "envelopeDigest": "sha256:a94a85bad6641f964b2873d2318583c82d298e59258e97d446e8573535d903dd",
+            "dispatchSequence": 1
+          },
+          "outcome": "pending_dispatch",
+          "nativeReceiptRef": {
+            "kind": "receipt",
+            "id": "dsp-bg-0001",
+            "version": "knowledge-verification.dispatch_outbox.v1",
+            "digest": "sha256:e3199981a3ee6e2e90c782ac1ff93c91e5976d0ba71b0670c57325f86f4923e2",
+            "tenant": "00000000-0000-7000-8000-0000000000aa",
+            "binding": "biotech-graph"
+          },
+          "affectedRefs": [],
+          "concurrencyToken": {
+            "before": null,
+            "after": null
+          },
+          "processedRevocationEpoch": 0,
+          "itemOutcomes": [],
+          "appliedAt": "2026-10-24T20:01:00Z",
+          "details": {
+            "receiptState": "pending_dispatch",
+            "dispatchId": "dsp-bg-0001"
+          },
+          "digest": "sha256:7e0a331aa83168351ed8e97048249eed7bc87f0a6e4450baf92f50bd3c4f85b9"
+        },
+        "delivery": {
+          "state": "applied",
+          "dispatchId": "dsp-bg-0001",
+          "targetBinding": "biotech-graph",
+          "nativeState": "acknowledged",
+          "ackDigest": "sha256:8fdeee332be517aabd04945b3a513bac4a51dc754d50784c100b8c5047a99eff",
+          "ackedAt": "2026-10-24T20:02:00Z",
+          "graphTxRef": "neo4j-tx-0001",
+          "checkedAt": "2026-10-24T20:03:00Z"
+        }
+      },
+      "receiptLookupDigest": "sha256:56f38ebea68be565767e5db79bccfa889c9fc56282b156afd8b8788de2380c30"
+    },
+    {
+      "id": "selected-report-read-members",
+      "nativeContract": {
+        "name": "selected-report-read",
+        "version": "v2"
+      },
+      "read": {
+        "report": {
+          "kind": "report",
+          "id": "report-7-r1",
+          "version": "research-report.v2",
+          "digest": "sha256:196867870c7a6fdade2cbe8cc89105e4e4ac33d9658e3a7c82dece6dd0a43b60",
+          "tenant": "00000000-0000-7000-8000-0000000000aa",
+          "binding": "aiengineer-postgres"
+        },
+        "exact": true,
+        "purpose": "evaluation_evidence",
+        "selection": {
+          "mode": "members",
+          "assertions": [
+            {
+              "kind": "assertion",
+              "id": "assertion-a-1",
+              "version": "research-core.assertion.v2",
+              "digest": "sha256:da09d2597d7f666d42761fc84eb30ebfaf124580f5dec00c45511a5d9439bf87",
+              "tenant": "00000000-0000-7000-8000-0000000000aa",
+              "binding": "aiengineer-postgres"
+            }
+          ],
+          "evidence": [
+            {
+              "kind": "fragment",
+              "id": "fragment-e-1",
+              "version": "research-core.fragment.v2",
+              "digest": "sha256:0156bfff551d456ade8e8670131d3ad259d334af391e708c02616c0eecce03fa",
+              "tenant": "00000000-0000-7000-8000-0000000000aa",
+              "binding": "aiengineer-postgres"
+            }
+          ]
+        }
+      },
+      "canonical": "{\"exact\":true,\"purpose\":\"evaluation_evidence\",\"report\":{\"binding\":\"aiengineer-postgres\",\"digest\":\"sha256:196867870c7a6fdade2cbe8cc89105e4e4ac33d9658e3a7c82dece6dd0a43b60\",\"id\":\"report-7-r1\",\"kind\":\"report\",\"tenant\":\"00000000-0000-7000-8000-0000000000aa\",\"version\":\"research-report.v2\"},\"selection\":{\"assertions\":[{\"binding\":\"aiengineer-postgres\",\"digest\":\"sha256:da09d2597d7f666d42761fc84eb30ebfaf124580f5dec00c45511a5d9439bf87\",\"id\":\"assertion-a-1\",\"kind\":\"assertion\",\"tenant\":\"00000000-0000-7000-8000-0000000000aa\",\"version\":\"research-core.assertion.v2\"}],\"evidence\":[{\"binding\":\"aiengineer-postgres\",\"digest\":\"sha256:0156bfff551d456ade8e8670131d3ad259d334af391e708c02616c0eecce03fa\",\"id\":\"fragment-e-1\",\"kind\":\"fragment\",\"tenant\":\"00000000-0000-7000-8000-0000000000aa\",\"version\":\"research-core.fragment.v2\"}],\"mode\":\"members\"}}",
+      "digest": "sha256:aff52ecb399773c1a3aedeae96210aeced39c497cde7683b995bb49a26346b1f"
+    },
+    {
+      "id": "selected-report-read-revision",
+      "nativeContract": {
+        "name": "selected-report-read",
+        "version": "v2"
+      },
+      "read": {
+        "report": {
+          "kind": "report",
+          "id": "report-7-r1",
+          "version": "research-report.v2",
+          "digest": "sha256:196867870c7a6fdade2cbe8cc89105e4e4ac33d9658e3a7c82dece6dd0a43b60",
+          "tenant": "00000000-0000-7000-8000-0000000000aa",
+          "binding": "aiengineer-postgres"
+        },
+        "exact": true,
+        "purpose": "evaluation_subject",
+        "selection": {
+          "mode": "revision"
+        }
+      },
+      "canonical": "{\"exact\":true,\"purpose\":\"evaluation_subject\",\"report\":{\"binding\":\"aiengineer-postgres\",\"digest\":\"sha256:196867870c7a6fdade2cbe8cc89105e4e4ac33d9658e3a7c82dece6dd0a43b60\",\"id\":\"report-7-r1\",\"kind\":\"report\",\"tenant\":\"00000000-0000-7000-8000-0000000000aa\",\"version\":\"research-report.v2\"},\"selection\":{\"mode\":\"revision\"}}",
+      "digest": "sha256:ef1e2c47fd5ab6be8dc294e0dce4b044ce2b00bf7ababb5b67c8f1a18660e811"
+    },
+    {
+      "id": "research-report-package-members",
+      "package": {
+        "schema": "research-report-package.v2",
+        "report": {
+          "kind": "report",
+          "id": "report-7-r1",
+          "version": "research-report.v2",
+          "digest": "sha256:196867870c7a6fdade2cbe8cc89105e4e4ac33d9658e3a7c82dece6dd0a43b60",
+          "tenant": "00000000-0000-7000-8000-0000000000aa",
+          "binding": "aiengineer-postgres"
+        },
+        "revision": "report-7-r1",
+        "kind": {
+          "kind": "report_kind",
+          "id": "evidence_report",
+          "version": "research-report-kind.v1",
+          "digest": "sha256:7faa8981b140fc2f68c2c52f2a2fa2b41e515985f1a9d9e479360501ca0f0112",
+          "tenant": "00000000-0000-7000-8000-0000000000aa",
+          "binding": "aiengineer-postgres"
+        },
+        "purpose": "evaluation_evidence",
+        "request": "sha256:aff52ecb399773c1a3aedeae96210aeced39c497cde7683b995bb49a26346b1f",
+        "selection": {
+          "mode": "members",
+          "assertions": [
+            {
+              "kind": "assertion",
+              "id": "assertion-a-1",
+              "version": "research-core.assertion.v2",
+              "digest": "sha256:da09d2597d7f666d42761fc84eb30ebfaf124580f5dec00c45511a5d9439bf87",
+              "tenant": "00000000-0000-7000-8000-0000000000aa",
+              "binding": "aiengineer-postgres"
+            }
+          ],
+          "evidence": [
+            {
+              "kind": "fragment",
+              "id": "fragment-e-1",
+              "version": "research-core.fragment.v2",
+              "digest": "sha256:0156bfff551d456ade8e8670131d3ad259d334af391e708c02616c0eecce03fa",
+              "tenant": "00000000-0000-7000-8000-0000000000aa",
+              "binding": "aiengineer-postgres"
+            }
+          ]
+        },
+        "body": null,
+        "ledger": null,
+        "assertions": [
+          {
+            "handle": {
+              "kind": "assertion",
+              "id": "assertion-a-1",
+              "version": "research-core.assertion.v2",
+              "digest": "sha256:da09d2597d7f666d42761fc84eb30ebfaf124580f5dec00c45511a5d9439bf87",
+              "tenant": "00000000-0000-7000-8000-0000000000aa",
+              "binding": "aiengineer-postgres"
+            },
+            "record": {
+              "schemaVersion": "research-core.assertion.v2",
+              "id": "assertion-a-1",
+              "tenant": "00000000-0000-7000-8000-0000000000aa",
+              "binding": "aiengineer-postgres",
+              "proposition": "The cited trial enrolled 412 participants."
+            }
+          }
+        ],
+        "evidence": [
+          {
+            "handle": {
+              "kind": "fragment",
+              "id": "fragment-e-1",
+              "version": "research-core.fragment.v2",
+              "digest": "sha256:0156bfff551d456ade8e8670131d3ad259d334af391e708c02616c0eecce03fa",
+              "tenant": "00000000-0000-7000-8000-0000000000aa",
+              "binding": "aiengineer-postgres"
+            },
+            "record": {
+              "schemaVersion": "research-core.fragment.v2",
+              "id": "fragment-e-1",
+              "tenant": "00000000-0000-7000-8000-0000000000aa",
+              "binding": "aiengineer-postgres",
+              "selectedDigest": "sha256:aa30dc29b682f4f671e04bfbc5a0ff9c7cb6f2cd1e7ab8f494690e5b2fd7607b"
+            }
+          }
+        ]
+      },
+      "canonical": "{\"assertions\":[{\"handle\":{\"binding\":\"aiengineer-postgres\",\"digest\":\"sha256:da09d2597d7f666d42761fc84eb30ebfaf124580f5dec00c45511a5d9439bf87\",\"id\":\"assertion-a-1\",\"kind\":\"assertion\",\"tenant\":\"00000000-0000-7000-8000-0000000000aa\",\"version\":\"research-core.assertion.v2\"},\"record\":{\"binding\":\"aiengineer-postgres\",\"id\":\"assertion-a-1\",\"proposition\":\"The cited trial enrolled 412 participants.\",\"schemaVersion\":\"research-core.assertion.v2\",\"tenant\":\"00000000-0000-7000-8000-0000000000aa\"}}],\"body\":null,\"evidence\":[{\"handle\":{\"binding\":\"aiengineer-postgres\",\"digest\":\"sha256:0156bfff551d456ade8e8670131d3ad259d334af391e708c02616c0eecce03fa\",\"id\":\"fragment-e-1\",\"kind\":\"fragment\",\"tenant\":\"00000000-0000-7000-8000-0000000000aa\",\"version\":\"research-core.fragment.v2\"},\"record\":{\"binding\":\"aiengineer-postgres\",\"id\":\"fragment-e-1\",\"schemaVersion\":\"research-core.fragment.v2\",\"selectedDigest\":\"sha256:aa30dc29b682f4f671e04bfbc5a0ff9c7cb6f2cd1e7ab8f494690e5b2fd7607b\",\"tenant\":\"00000000-0000-7000-8000-0000000000aa\"}}],\"kind\":{\"binding\":\"aiengineer-postgres\",\"digest\":\"sha256:7faa8981b140fc2f68c2c52f2a2fa2b41e515985f1a9d9e479360501ca0f0112\",\"id\":\"evidence_report\",\"kind\":\"report_kind\",\"tenant\":\"00000000-0000-7000-8000-0000000000aa\",\"version\":\"research-report-kind.v1\"},\"ledger\":null,\"purpose\":\"evaluation_evidence\",\"report\":{\"binding\":\"aiengineer-postgres\",\"digest\":\"sha256:196867870c7a6fdade2cbe8cc89105e4e4ac33d9658e3a7c82dece6dd0a43b60\",\"id\":\"report-7-r1\",\"kind\":\"report\",\"tenant\":\"00000000-0000-7000-8000-0000000000aa\",\"version\":\"research-report.v2\"},\"request\":\"sha256:aff52ecb399773c1a3aedeae96210aeced39c497cde7683b995bb49a26346b1f\",\"revision\":\"report-7-r1\",\"schema\":\"research-report-package.v2\",\"selection\":{\"assertions\":[{\"binding\":\"aiengineer-postgres\",\"digest\":\"sha256:da09d2597d7f666d42761fc84eb30ebfaf124580f5dec00c45511a5d9439bf87\",\"id\":\"assertion-a-1\",\"kind\":\"assertion\",\"tenant\":\"00000000-0000-7000-8000-0000000000aa\",\"version\":\"research-core.assertion.v2\"}],\"evidence\":[{\"binding\":\"aiengineer-postgres\",\"digest\":\"sha256:0156bfff551d456ade8e8670131d3ad259d334af391e708c02616c0eecce03fa\",\"id\":\"fragment-e-1\",\"kind\":\"fragment\",\"tenant\":\"00000000-0000-7000-8000-0000000000aa\",\"version\":\"research-core.fragment.v2\"}],\"mode\":\"members\"}}",
+      "digest": "sha256:8fdb91b8b47cc2de2bce89437354e832a30e1a818b8765fd966cebce7f74467d",
+      "memberRecordDigests": [
+        "sha256:da09d2597d7f666d42761fc84eb30ebfaf124580f5dec00c45511a5d9439bf87",
+        "sha256:0156bfff551d456ade8e8670131d3ad259d334af391e708c02616c0eecce03fa"
+      ]
+    },
+    {
+      "id": "evaluator-credential-judge",
+      "claims": {
+        "typ": "ks-knowledge-operation+jwt",
+        "iss": "mission-control",
+        "aud": "knowledge-services",
+        "sub": "mission-control-judge",
+        "jti": "jti-judge-0001",
+        "iat": 1793131200,
+        "nbf": 1793131200,
+        "exp": 1793131500,
+        "tenant": "00000000-0000-7000-8000-0000000000aa",
+        "application": "ai-engineer",
+        "binding": "aiengineer-postgres",
+        "origin": {
+          "kind": "mission_invocation",
+          "installationId": "00000000-0000-7000-8000-000000000001",
+          "applicationId": "ai-engineer",
+          "tenantId": "00000000-0000-7000-8000-0000000000aa",
+          "issuer": "mission-control",
+          "subject": "mission-control-judge",
+          "mission": {
+            "missionId": "mission-1",
+            "runId": "run-1",
+            "activationId": "activation-1",
+            "operationId": "op-research-1",
+            "operationAttempt": 1,
+            "executionGeneration": 1,
+            "lane": "deep_agents"
+          },
+          "recoveryAuthorityRef": null,
+          "invocationId": "invocation-judge-0001",
+          "authenticatedAt": "2026-10-24T20:00:00Z"
+        },
+        "operations": [
+          "report.observe"
+        ],
+        "effect": null,
+        "dispatchId": "dispatch-judge-0001",
+        "recovery": null,
+        "evaluation": {
+          "role": "judge",
+          "credentialRef": "judge.default",
+          "provider": "openai",
+          "family": "gpt-6"
+        }
+      },
+      "canonical": "{\"application\":\"ai-engineer\",\"aud\":\"knowledge-services\",\"binding\":\"aiengineer-postgres\",\"dispatchId\":\"dispatch-judge-0001\",\"effect\":null,\"evaluation\":{\"credentialRef\":\"judge.default\",\"family\":\"gpt-6\",\"provider\":\"openai\",\"role\":\"judge\"},\"exp\":1793131500,\"iat\":1793131200,\"iss\":\"mission-control\",\"jti\":\"jti-judge-0001\",\"nbf\":1793131200,\"operations\":[\"report.observe\"],\"origin\":{\"applicationId\":\"ai-engineer\",\"authenticatedAt\":\"2026-10-24T20:00:00Z\",\"installationId\":\"00000000-0000-7000-8000-000000000001\",\"invocationId\":\"invocation-judge-0001\",\"issuer\":\"mission-control\",\"kind\":\"mission_invocation\",\"mission\":{\"activationId\":\"activation-1\",\"executionGeneration\":1,\"lane\":\"deep_agents\",\"missionId\":\"mission-1\",\"operationAttempt\":1,\"operationId\":\"op-research-1\",\"runId\":\"run-1\"},\"recoveryAuthorityRef\":null,\"subject\":\"mission-control-judge\",\"tenantId\":\"00000000-0000-7000-8000-0000000000aa\"},\"recovery\":null,\"sub\":\"mission-control-judge\",\"tenant\":\"00000000-0000-7000-8000-0000000000aa\",\"typ\":\"ks-knowledge-operation+jwt\"}",
+      "digest": "sha256:272892cc3a5e56464884e5833523d8996121f90c7b0a3552ed68cfc19baedf41"
+    },
+    {
+      "id": "report-use-official",
+      "nativeContract": {
+        "name": "report-use",
+        "version": "v1"
+      },
+      "request": {
+        "schema": "report-use.v1",
+        "report": {
+          "kind": "report",
+          "id": "report-7-r1",
+          "version": "research-report.v2",
+          "digest": "sha256:196867870c7a6fdade2cbe8cc89105e4e4ac33d9658e3a7c82dece6dd0a43b60",
+          "tenant": "00000000-0000-7000-8000-0000000000aa",
+          "binding": "aiengineer-postgres"
+        },
+        "subject": {
+          "kind": "report",
+          "id": "report-7-r1",
+          "version": "research-report.v2",
+          "digest": "sha256:196867870c7a6fdade2cbe8cc89105e4e4ac33d9658e3a7c82dece6dd0a43b60",
+          "tenant": "00000000-0000-7000-8000-0000000000aa",
+          "binding": "aiengineer-postgres"
+        },
+        "use": "report_consumption",
+        "audience": "official",
+        "purpose": "official",
+        "boundEffectDigest": "sha256:b528dd3a82c7e3a34ec4e386d00b618e432a46d9edc2e7a36a1633ba02594891",
+        "targetSchema": "research-report.v2",
+        "normalizedValues": {},
+        "policy": {
+          "kind": "policy",
+          "id": "report-use-policy",
+          "version": "policy.v1",
+          "digest": "sha256:148de9c5a7a44d19e56cd9ae1a554bf67847afb0c58f6e12fa29ac7ddfca9940",
+          "tenant": "00000000-0000-7000-8000-0000000000aa",
+          "binding": "aiengineer-postgres"
+        },
+        "rubric": {
+          "kind": "rubric",
+          "id": "report-use-rubric",
+          "version": "rubric.v1",
+          "digest": "sha256:454349e422f05297191ead13e21d3db520e5abef52055e4964b82fb213f593a1",
+          "tenant": "00000000-0000-7000-8000-0000000000aa",
+          "binding": "aiengineer-postgres"
+        },
+        "expiresAt": null
+      },
+      "canonical": "{\"audience\":\"official\",\"boundEffectDigest\":\"sha256:b528dd3a82c7e3a34ec4e386d00b618e432a46d9edc2e7a36a1633ba02594891\",\"expiresAt\":null,\"normalizedValues\":{},\"policy\":{\"binding\":\"aiengineer-postgres\",\"digest\":\"sha256:148de9c5a7a44d19e56cd9ae1a554bf67847afb0c58f6e12fa29ac7ddfca9940\",\"id\":\"report-use-policy\",\"kind\":\"policy\",\"tenant\":\"00000000-0000-7000-8000-0000000000aa\",\"version\":\"policy.v1\"},\"purpose\":\"official\",\"report\":{\"binding\":\"aiengineer-postgres\",\"digest\":\"sha256:196867870c7a6fdade2cbe8cc89105e4e4ac33d9658e3a7c82dece6dd0a43b60\",\"id\":\"report-7-r1\",\"kind\":\"report\",\"tenant\":\"00000000-0000-7000-8000-0000000000aa\",\"version\":\"research-report.v2\"},\"rubric\":{\"binding\":\"aiengineer-postgres\",\"digest\":\"sha256:454349e422f05297191ead13e21d3db520e5abef52055e4964b82fb213f593a1\",\"id\":\"report-use-rubric\",\"kind\":\"rubric\",\"tenant\":\"00000000-0000-7000-8000-0000000000aa\",\"version\":\"rubric.v1\"},\"schema\":\"report-use.v1\",\"subject\":{\"binding\":\"aiengineer-postgres\",\"digest\":\"sha256:196867870c7a6fdade2cbe8cc89105e4e4ac33d9658e3a7c82dece6dd0a43b60\",\"id\":\"report-7-r1\",\"kind\":\"report\",\"tenant\":\"00000000-0000-7000-8000-0000000000aa\",\"version\":\"research-report.v2\"},\"targetSchema\":\"research-report.v2\",\"use\":\"report_consumption\"}",
+      "digest": "sha256:2ecaf12bc66e44eefb195c5821052936d4201e0aed4e5b9f4bdf9380ad82aee7"
+    },
+    {
+      "id": "report-review-approve",
+      "nativeContract": {
+        "name": "report-review",
+        "version": "v1"
+      },
+      "request": {
+        "schema": "report-review.v1",
+        "decision": {
+          "kind": "use_decision",
+          "id": "ud-run-7-0123456789abcdef",
+          "version": "research-core.use_decision.v2",
+          "digest": "sha256:05d5a24d7d5a1f25581112b12973611fefcfda7f18287e03a347b2ec5374a0dd",
+          "tenant": "00000000-0000-7000-8000-0000000000aa",
+          "binding": "aiengineer-postgres"
+        },
+        "outcome": "approve",
+        "boundEffectDigest": "sha256:b528dd3a82c7e3a34ec4e386d00b618e432a46d9edc2e7a36a1633ba02594891",
+        "qualifiersDigest": null,
+        "rationale": "Premises, assumptions and stated uncertainty reviewed against the sealed evidence."
+      },
+      "canonical": "{\"boundEffectDigest\":\"sha256:b528dd3a82c7e3a34ec4e386d00b618e432a46d9edc2e7a36a1633ba02594891\",\"decision\":{\"binding\":\"aiengineer-postgres\",\"digest\":\"sha256:05d5a24d7d5a1f25581112b12973611fefcfda7f18287e03a347b2ec5374a0dd\",\"id\":\"ud-run-7-0123456789abcdef\",\"kind\":\"use_decision\",\"tenant\":\"00000000-0000-7000-8000-0000000000aa\",\"version\":\"research-core.use_decision.v2\"},\"outcome\":\"approve\",\"qualifiersDigest\":null,\"rationale\":\"Premises, assumptions and stated uncertainty reviewed against the sealed evidence.\",\"schema\":\"report-review.v1\"}",
+      "digest": "sha256:bf4968bea087a7b5bbd511e07c57d6a8fdae8f03575a093842ae36dc06ea0444"
+    },
+    {
+      "id": "decision-resolve",
+      "nativeContract": {
+        "name": "decision-resolve",
+        "version": "v1"
+      },
+      "request": {
+        "schema": "decision-resolve.v1",
+        "decision": {
+          "kind": "use_decision",
+          "id": "ud-run-7-0123456789abcdef",
+          "version": "research-core.use_decision.v2",
+          "digest": "sha256:05d5a24d7d5a1f25581112b12973611fefcfda7f18287e03a347b2ec5374a0dd",
+          "tenant": "00000000-0000-7000-8000-0000000000aa",
+          "binding": "aiengineer-postgres"
+        }
+      },
+      "canonical": "{\"decision\":{\"binding\":\"aiengineer-postgres\",\"digest\":\"sha256:05d5a24d7d5a1f25581112b12973611fefcfda7f18287e03a347b2ec5374a0dd\",\"id\":\"ud-run-7-0123456789abcdef\",\"kind\":\"use_decision\",\"tenant\":\"00000000-0000-7000-8000-0000000000aa\",\"version\":\"research-core.use_decision.v2\"},\"schema\":\"decision-resolve.v1\"}",
+      "digest": "sha256:c2b835a497d64cd8d3121f9849924ce909b09d0ad76673e1f3d965bdd4c0befb"
+    },
+    {
+      "id": "read-intent-request",
+      "nativeContract": {
+        "name": "knowledge-read-intent",
+        "version": "v1"
+      },
+      "request": {
+        "schemaVersion": "knowledge-read-intent-request.v1",
+        "purpose": "discovery",
+        "persist": false,
+        "atKnowledgeSeq": null,
+        "operations": [
+          {
+            "opId": "head",
+            "kind": "named_query",
+            "query": "knowledge.head",
+            "params": {}
+          },
+          {
+            "opId": "find",
+            "kind": "named_query",
+            "query": "entity.resolve",
+            "params": {
+              "text": "LangGraph"
+            },
+            "limit": 5
+          },
+          {
+            "opId": "where",
+            "kind": "schema_search",
+            "query": "entity",
+            "limit": 3
+          },
+          {
+            "opId": "page",
+            "kind": "schema_get",
+            "id": "rel:knowledge.entity",
+            "maxBytes": 4096
+          }
+        ]
+      },
+      "canonical": "{\"atKnowledgeSeq\":null,\"operations\":[{\"kind\":\"named_query\",\"opId\":\"head\",\"params\":{},\"query\":\"knowledge.head\"},{\"kind\":\"named_query\",\"limit\":5,\"opId\":\"find\",\"params\":{\"text\":\"LangGraph\"},\"query\":\"entity.resolve\"},{\"kind\":\"schema_search\",\"limit\":3,\"opId\":\"where\",\"query\":\"entity\"},{\"id\":\"rel:knowledge.entity\",\"kind\":\"schema_get\",\"maxBytes\":4096,\"opId\":\"page\"}],\"persist\":false,\"purpose\":\"discovery\",\"schemaVersion\":\"knowledge-read-intent-request.v1\"}",
+      "payloadDigest": "sha256:b141338e0abd3c616ba92256fb006b7bdac646e738838ad6bcbf1511a8efcc7e"
+    },
+    {
+      "id": "read-intent-result",
+      "nativeRows": [
+        {
+          "entity_id": "e-1",
+          "name": "LangGraph",
+          "confidence": 0.85,
+          "seq": 7
+        }
+      ],
+      "wireRows": [
+        {
+          "entity_id": "e-1",
+          "name": "LangGraph",
+          "confidence": "0.85",
+          "seq": 7
+        }
+      ],
+      "result": {
+        "schemaVersion": "knowledge-read-intent-result.v1",
+        "operationId": "op-read_intent-0123456789abcdef0123456789abcdef",
+        "snapshotId": "019a0000-0000-7000-8000-000000000001",
+        "snapshotDigest": "sha256:0f7ed22131ec954aad5443c00034f7322ddc592888a884173d937da619e0054e",
+        "knowledgeHead": {
+          "knowledgeSeq": 12,
+          "updatedAt": "2026-10-31T10:00:00Z"
+        },
+        "atKnowledgeSeq": 12,
+        "contract": {
+          "migrationHead": "20261031000000",
+          "catalogVersion": "1.0.0"
+        },
+        "operations": [
+          {
+            "opId": "find",
+            "kind": "named_query",
+            "query": "entity.resolve",
+            "status": "ok",
+            "rowCount": 1,
+            "truncated": false,
+            "contentDigest": "sha256:7341abe9a8740abb5a5f814800e736681d90b327fc8e390ad73b4b41e58885d1",
+            "bodyWithheld": false,
+            "columns": [
+              "entity_id",
+              "name",
+              "confidence",
+              "seq"
+            ],
+            "rows": [
+              {
+                "entity_id": "e-1",
+                "name": "LangGraph",
+                "confidence": "0.85",
+                "seq": 7
+              }
+            ]
+          },
+          {
+            "opId": "page",
+            "kind": "schema_get",
+            "query": "rel:knowledge.entity",
+            "status": "error",
+            "rowCount": 0,
+            "truncated": false,
+            "contentDigest": "sha256:74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+            "bodyWithheld": false,
+            "error": {
+              "code": "PAGE_NOT_FOUND",
+              "message": "no page for rel:knowledge.entity"
+            }
+          }
+        ],
+        "retainedRef": null
+      },
+      "contentDigests": [
+        "sha256:7341abe9a8740abb5a5f814800e736681d90b327fc8e390ad73b4b41e58885d1",
+        "sha256:74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b"
+      ],
+      "snapshotDigest": "sha256:0f7ed22131ec954aad5443c00034f7322ddc592888a884173d937da619e0054e",
+      "canonical": "{\"atKnowledgeSeq\":12,\"contract\":{\"catalogVersion\":\"1.0.0\",\"migrationHead\":\"20261031000000\"},\"knowledgeHead\":{\"knowledgeSeq\":12,\"updatedAt\":\"2026-10-31T10:00:00Z\"},\"operationId\":\"op-read_intent-0123456789abcdef0123456789abcdef\",\"operations\":[{\"bodyWithheld\":false,\"columns\":[\"entity_id\",\"name\",\"confidence\",\"seq\"],\"contentDigest\":\"sha256:7341abe9a8740abb5a5f814800e736681d90b327fc8e390ad73b4b41e58885d1\",\"kind\":\"named_query\",\"opId\":\"find\",\"query\":\"entity.resolve\",\"rowCount\":1,\"rows\":[{\"confidence\":\"0.85\",\"entity_id\":\"e-1\",\"name\":\"LangGraph\",\"seq\":7}],\"status\":\"ok\",\"truncated\":false},{\"bodyWithheld\":false,\"contentDigest\":\"sha256:74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b\",\"error\":{\"code\":\"PAGE_NOT_FOUND\",\"message\":\"no page for rel:knowledge.entity\"},\"kind\":\"schema_get\",\"opId\":\"page\",\"query\":\"rel:knowledge.entity\",\"rowCount\":0,\"status\":\"error\",\"truncated\":false}],\"retainedRef\":null,\"schemaVersion\":\"knowledge-read-intent-result.v1\",\"snapshotDigest\":\"sha256:0f7ed22131ec954aad5443c00034f7322ddc592888a884173d937da619e0054e\",\"snapshotId\":\"019a0000-0000-7000-8000-000000000001\"}",
+      "digest": "sha256:dc1f3695e04fd713fcb9d34d9d36e47c14cc1198c2b663cf0c8432cbbded9b9d"
+    }
+  ]
+}

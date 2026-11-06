@@ -1,0 +1,140 @@
+{
+  "schema": 1,
+  "layout": "after",
+  "group": "core",
+  "sourceCommit": "4aa5d382b0f2af091da852911b8e3c2e71fbc2b5",
+  "dirty": true,
+  "command": "node node_modules/vitest/vitest.mjs run --maxWorkers=2 --reporter=json",
+  "runs": [
+    {
+      "package": "core",
+      "exitCode": 0,
+      "counts": {
+        "passed": 22,
+        "failed": 0,
+        "skipped": 0,
+        "total": 22
+      },
+      "files": [
+        {
+          "file": "packages/core/src/domain/domain.test.ts",
+          "originalFile": "packages/domain/src/domain.test.ts",
+          "tests": [
+            {
+              "name": "domain invariants allows only explicit state transitions with optimistic guards",
+              "status": "passed"
+            },
+            {
+              "name": "domain invariants canonicalizes objects and derives stable digests/idempotency keys",
+              "status": "passed"
+            },
+            {
+              "name": "domain invariants enforces append-only, idempotency, and authority boundaries",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/core/src/observability/index.test.ts",
+          "originalFile": "packages/observability/src/index.test.ts",
+          "tests": [
+            {
+              "name": "observability detects publication drift deterministically",
+              "status": "passed"
+            },
+            {
+              "name": "observability reports SLO latency, error, degradation and cost",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/core/src/runtime/artifacts-missing-object.test.ts",
+          "originalFile": "packages/runtime/src/artifacts-missing-object.test.ts",
+          "tests": [
+            {
+              "name": "Supabase structured missing objects does not turn a missing bucket, denied request or generic 400 into a cache miss",
+              "status": "passed"
+            },
+            {
+              "name": "Supabase structured missing objects recognizes the Storage NoSuchKey 404 carried by HTTP 400",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/core/src/runtime/eve-runtime-attestation.test.ts",
+          "originalFile": "packages/runtime/src/eve-runtime-attestation.test.ts",
+          "tests": [
+            {
+              "name": "Eve runtime attestation rejects a tampered signature, wrong key and expired header",
+              "status": "passed"
+            },
+            {
+              "name": "Eve runtime attestation rejects non-Ed25519 signing and verification keys",
+              "status": "passed"
+            },
+            {
+              "name": "Eve runtime attestation rejects noncanonical and duplicate-key encodings before authority verification",
+              "status": "passed"
+            },
+            {
+              "name": "Eve runtime attestation round-trips a canonical signed Eve lineage",
+              "status": "passed"
+            }
+          ]
+        },
+        {
+          "file": "packages/core/src/runtime/runtime.test.ts",
+          "originalFile": "packages/runtime/src/runtime.test.ts",
+          "tests": [
+            {
+              "name": "in-memory durable primitives content-addresses and isolates artifacts",
+              "status": "passed"
+            },
+            {
+              "name": "in-memory durable primitives deduplicates operations and activity receipts",
+              "status": "passed"
+            },
+            {
+              "name": "in-memory durable primitives detects local artifact tampering on read and idempotent write",
+              "status": "passed"
+            },
+            {
+              "name": "in-memory durable primitives fails closed on missing collision metadata without an overwrite",
+              "status": "passed"
+            },
+            {
+              "name": "in-memory durable primitives reclaims expired leases",
+              "status": "passed"
+            },
+            {
+              "name": "in-memory durable primitives rejects operation identity reuse under another idempotency key",
+              "status": "passed"
+            },
+            {
+              "name": "in-memory durable primitives rejects Supabase path traversal, oversize content and remote digest mismatch",
+              "status": "passed"
+            },
+            {
+              "name": "in-memory durable primitives repairs stale local Storage metadata only when explicitly enabled",
+              "status": "passed"
+            },
+            {
+              "name": "in-memory durable primitives round-trips the local content-addressed implementation",
+              "status": "passed"
+            },
+            {
+              "name": "in-memory durable primitives uses private digest-addressed Supabase objects without exposing credentials",
+              "status": "passed"
+            },
+            {
+              "name": "in-memory durable primitives verifies local Storage's 400 duplicate response as an idempotent replay",
+              "status": "passed"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

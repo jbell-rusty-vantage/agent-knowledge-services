@@ -1,0 +1,32 @@
+{
+  "schema_version": "knowledge-testkit-embedding-bundle-fixture/1",
+  "fixture_version": "embedding-bundle-seed-2026-09-01",
+  "source_catalog_sha256": "5a200074d295e6fba4471bcbac013ea0a1d437531f33a8bb958b54889f07a6c5",
+  "scope": "Three complete embedding bundles only; database receipts and unrelated research outputs excluded.",
+  "bundles": [
+    {
+      "video_id": "kTnfJszFxCg",
+      "path": "videos/kTnfJszFxCg/embedding-bundle.json",
+      "source_sha256": "1612d8d454698fab0ab7c642a85e181435e00c44193576001df76bb977300125",
+      "fixture_sha256": "1612d8d454698fab0ab7c642a85e181435e00c44193576001df76bb977300125",
+      "selected_document_count": 18,
+      "engineering_claim_count": 14
+    },
+    {
+      "video_id": "bk0TmxoZlUY",
+      "path": "videos/bk0TmxoZlUY/embedding-bundle.json",
+      "source_sha256": "f4f43613b3618eb55a110a0b150ee587b12a4265c770f096f4925499b2c25aaf",
+      "fixture_sha256": "f4f43613b3618eb55a110a0b150ee587b12a4265c770f096f4925499b2c25aaf",
+      "selected_document_count": 12,
+      "engineering_claim_count": 15
+    },
+    {
+      "video_id": "rmvDxxNubIg",
+      "path": "videos/rmvDxxNubIg/embedding-bundle.json",
+      "source_sha256": "e047e59c03291ec81295a6a6f9fafb4bca60daee897c2244808a8bc5756c0033",
+      "fixture_sha256": "e047e59c03291ec81295a6a6f9fafb4bca60daee897c2244808a8bc5756c0033",
+      "selected_document_count": 7,
+      "engineering_claim_count": 12
+    }
+  ]
+}

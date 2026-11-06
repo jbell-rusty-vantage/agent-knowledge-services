@@ -1,0 +1,227 @@
+{
+  "schema": 1,
+  "sourceCommit": "3e18fd6e15ec950da7e96a3e83f4460772017ccc",
+  "scope": "catalog/verification-semantic-fixtures",
+  "attributes": [
+    "catalog/verification-semantic-fixtures/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol",
+    "catalog/verification-semantic-fixtures/**/*.bin binary"
+  ],
+  "trackedFiles": 1181,
+  "manifests": [
+    {
+      "manifest": "catalog/verification-semantic-fixtures/7067f432979212167ca1d7b797e37e6d0b5f5b180dc5919a210010017860c82c/manifest.json",
+      "artifacts": 524
+    },
+    {
+      "manifest": "catalog/verification-semantic-fixtures/768721ef0648e5ca6beddf5606ee533dac40c194c081af159d4738513b95f058/manifest.json",
+      "artifacts": 498
+    },
+    {
+      "manifest": "catalog/verification-semantic-fixtures/a035191eb769dd706b47ef784ce6654a1cf8ec9ab07e4fea07a627520b3faabc/manifest.json",
+      "artifacts": 36
+    },
+    {
+      "manifest": "catalog/verification-semantic-fixtures/c63055da4dee19de98bfdaf8fafa7884fef6ae9f127964041b2dc4d97d561352/manifest.json",
+      "artifacts": 19
+    },
+    {
+      "manifest": "catalog/verification-semantic-fixtures/cedad3b42fc7d04c05cee35fff30bb75521cdf95f9d3280859abfa517956b495/manifest.json",
+      "artifacts": 18
+    },
+    {
+      "manifest": "catalog/verification-semantic-fixtures/e54beb937d9deb3f66e0facb2f7066d623a22077d045e1635297a616b9064b5d/manifest.json",
+      "artifacts": 77
+    }
+  ],
+  "manifestListedArtifacts": 1172,
+  "postRecoverySha256AndLengthMismatches": 0,
+  "freshCheckout": {
+    "checked": [
+      "catalog/verification-semantic-fixtures/7067f432979212167ca1d7b797e37e6d0b5f5b180dc5919a210010017860c82c/artifacts/076bf358-540b-5db1-a02c-1a7becfecbc4.bin",
+      "catalog/verification-semantic-fixtures/c63055da4dee19de98bfdaf8fafa7884fef6ae9f127964041b2dc4d97d561352/artifacts/87cf263e-3e29-5bcb-a187-cc068dc3b122.bin"
+    ],
+    "allExact": true
+  },
+  "recoveredAssets": [
+    {
+      "file": "catalog/verification-semantic-fixtures/7067f432979212167ca1d7b797e37e6d0b5f5b180dc5919a210010017860c82c/artifacts/076bf358-540b-5db1-a02c-1a7becfecbc4.bin",
+      "originalGitBlobBytes": 272723,
+      "originalGitBlobSha256": "sha256:1578a1538a53dddbe08860f12c43e47ba63daa4d24badd372741beda7af2b415",
+      "recoveredBytes": 273069,
+      "recoveredSha256": "sha256:9a50d3a6523796d94228dfd16db9fcdc7f5d296d11aaebb972c17ed212670072",
+      "manifestBytes": 273069,
+      "manifestSha256": "sha256:9a50d3a6523796d94228dfd16db9fcdc7f5d296d11aaebb972c17ed212670072"
+    },
+    {
+      "file": "catalog/verification-semantic-fixtures/7067f432979212167ca1d7b797e37e6d0b5f5b180dc5919a210010017860c82c/artifacts/36ebae54-2dc6-522a-a017-1856c5af33b6.bin",
+      "originalGitBlobBytes": 2600339,
+      "originalGitBlobSha256": "sha256:400a433854d0214231d1992b0e4b3ad095fd61acaadd28695ab8d54200fd27bf",
+      "recoveredBytes": 2607269,
+      "recoveredSha256": "sha256:a6f49139619f5fbc3b9ee687eba4343899cb2e1d3f88ee7881cea5af6b032f31",
+      "manifestBytes": 2607269,
+      "manifestSha256": "sha256:a6f49139619f5fbc3b9ee687eba4343899cb2e1d3f88ee7881cea5af6b032f31"
+    },
+    {
+      "file": "catalog/verification-semantic-fixtures/7067f432979212167ca1d7b797e37e6d0b5f5b180dc5919a210010017860c82c/artifacts/587fb9f3-bdcf-5c03-a679-254e99f3eea7.bin",
+      "originalGitBlobBytes": 651686,
+      "originalGitBlobSha256": "sha256:7979fa6d6cc42c0f9967bc27900660a81cd5998e6b9b2281f26483c62ba3e003",
+      "recoveredBytes": 652038,
+      "recoveredSha256": "sha256:f5fde5b580e60a3ab22495c05e9c8c25e9f849b8dc38579336c561c7614a44e9",
+      "manifestBytes": 652038,
+      "manifestSha256": "sha256:f5fde5b580e60a3ab22495c05e9c8c25e9f849b8dc38579336c561c7614a44e9"
+    },
+    {
+      "file": "catalog/verification-semantic-fixtures/7067f432979212167ca1d7b797e37e6d0b5f5b180dc5919a210010017860c82c/artifacts/7743a3f2-8230-500e-afc7-98e984ac8fb0.bin",
+      "originalGitBlobBytes": 414177,
+      "originalGitBlobSha256": "sha256:3678763cf892c46c185c1689657a6f11f7c8bee8239d2276f70e086043924962",
+      "recoveredBytes": 414567,
+      "recoveredSha256": "sha256:e85f225d3307a5c520105d5059cda3351c7ce8cfe6c18e42d0ca63975ad26a04",
+      "manifestBytes": 414567,
+      "manifestSha256": "sha256:e85f225d3307a5c520105d5059cda3351c7ce8cfe6c18e42d0ca63975ad26a04"
+    },
+    {
+      "file": "catalog/verification-semantic-fixtures/7067f432979212167ca1d7b797e37e6d0b5f5b180dc5919a210010017860c82c/artifacts/87cf263e-3e29-5bcb-a187-cc068dc3b122.bin",
+      "originalGitBlobBytes": 180930,
+      "originalGitBlobSha256": "sha256:c69005aa98b4c10a9883017180c8badeae6af77a2927770e96a36df925c0ae12",
+      "recoveredBytes": 181306,
+      "recoveredSha256": "sha256:b623cec22b5a340ef27eedfe32702485d2115ddf8b6b1b00e97458a519f319d5",
+      "manifestBytes": 181306,
+      "manifestSha256": "sha256:b623cec22b5a340ef27eedfe32702485d2115ddf8b6b1b00e97458a519f319d5"
+    },
+    {
+      "file": "catalog/verification-semantic-fixtures/7067f432979212167ca1d7b797e37e6d0b5f5b180dc5919a210010017860c82c/artifacts/8a94d5ef-2713-55ac-a7bf-9816c8ab4133.bin",
+      "originalGitBlobBytes": 265523,
+      "originalGitBlobSha256": "sha256:15a9046d39ff60d0b02eba84e8cdc7caf4608fcb36158aca42afab7522d29cdc",
+      "recoveredBytes": 265869,
+      "recoveredSha256": "sha256:a5c8ba17b649cf7f45ac4ebe60f4c7c70d186879528fb31245882c9ec52ed08a",
+      "manifestBytes": 265869,
+      "manifestSha256": "sha256:a5c8ba17b649cf7f45ac4ebe60f4c7c70d186879528fb31245882c9ec52ed08a"
+    },
+    {
+      "file": "catalog/verification-semantic-fixtures/7067f432979212167ca1d7b797e37e6d0b5f5b180dc5919a210010017860c82c/artifacts/abfc3da6-be6c-5e66-a471-14d8076c7142.bin",
+      "originalGitBlobBytes": 260073,
+      "originalGitBlobSha256": "sha256:d85c9978f80fda2839ad3feac51414e19241fdcfffaa12b5792236e4513391ad",
+      "recoveredBytes": 260077,
+      "recoveredSha256": "sha256:df0e403f5358bd881f7863dda9b75da7bc98752d3c6a95dc25c2dc3bdc90c937",
+      "manifestBytes": 260077,
+      "manifestSha256": "sha256:df0e403f5358bd881f7863dda9b75da7bc98752d3c6a95dc25c2dc3bdc90c937"
+    },
+    {
+      "file": "catalog/verification-semantic-fixtures/7067f432979212167ca1d7b797e37e6d0b5f5b180dc5919a210010017860c82c/artifacts/b51914d0-3435-5e4b-ae97-d9511630316c.bin",
+      "originalGitBlobBytes": 187910,
+      "originalGitBlobSha256": "sha256:ff59e971dccf29fb087b73bebf77a936c57bb8bb74fb5f5d5ba942f0fae7bfeb",
+      "recoveredBytes": 188256,
+      "recoveredSha256": "sha256:c59e08a32cefaee8c45c8f46a2c5ce57c1bca264fe5ed5b5c937648b8f162fcb",
+      "manifestBytes": 188256,
+      "manifestSha256": "sha256:c59e08a32cefaee8c45c8f46a2c5ce57c1bca264fe5ed5b5c937648b8f162fcb"
+    },
+    {
+      "file": "catalog/verification-semantic-fixtures/768721ef0648e5ca6beddf5606ee533dac40c194c081af159d4738513b95f058/artifacts/076bf358-540b-5db1-a02c-1a7becfecbc4.bin",
+      "originalGitBlobBytes": 272723,
+      "originalGitBlobSha256": "sha256:1578a1538a53dddbe08860f12c43e47ba63daa4d24badd372741beda7af2b415",
+      "recoveredBytes": 273069,
+      "recoveredSha256": "sha256:9a50d3a6523796d94228dfd16db9fcdc7f5d296d11aaebb972c17ed212670072",
+      "manifestBytes": 273069,
+      "manifestSha256": "sha256:9a50d3a6523796d94228dfd16db9fcdc7f5d296d11aaebb972c17ed212670072"
+    },
+    {
+      "file": "catalog/verification-semantic-fixtures/768721ef0648e5ca6beddf5606ee533dac40c194c081af159d4738513b95f058/artifacts/36ebae54-2dc6-522a-a017-1856c5af33b6.bin",
+      "originalGitBlobBytes": 2600339,
+      "originalGitBlobSha256": "sha256:400a433854d0214231d1992b0e4b3ad095fd61acaadd28695ab8d54200fd27bf",
+      "recoveredBytes": 2607269,
+      "recoveredSha256": "sha256:a6f49139619f5fbc3b9ee687eba4343899cb2e1d3f88ee7881cea5af6b032f31",
+      "manifestBytes": 2607269,
+      "manifestSha256": "sha256:a6f49139619f5fbc3b9ee687eba4343899cb2e1d3f88ee7881cea5af6b032f31"
+    },
+    {
+      "file": "catalog/verification-semantic-fixtures/768721ef0648e5ca6beddf5606ee533dac40c194c081af159d4738513b95f058/artifacts/587fb9f3-bdcf-5c03-a679-254e99f3eea7.bin",
+      "originalGitBlobBytes": 651686,
+      "originalGitBlobSha256": "sha256:7979fa6d6cc42c0f9967bc27900660a81cd5998e6b9b2281f26483c62ba3e003",
+      "recoveredBytes": 652038,
+      "recoveredSha256": "sha256:f5fde5b580e60a3ab22495c05e9c8c25e9f849b8dc38579336c561c7614a44e9",
+      "manifestBytes": 652038,
+      "manifestSha256": "sha256:f5fde5b580e60a3ab22495c05e9c8c25e9f849b8dc38579336c561c7614a44e9"
+    },
+    {
+      "file": "catalog/verification-semantic-fixtures/768721ef0648e5ca6beddf5606ee533dac40c194c081af159d4738513b95f058/artifacts/7743a3f2-8230-500e-afc7-98e984ac8fb0.bin",
+      "originalGitBlobBytes": 414177,
+      "originalGitBlobSha256": "sha256:3678763cf892c46c185c1689657a6f11f7c8bee8239d2276f70e086043924962",
+      "recoveredBytes": 414567,
+      "recoveredSha256": "sha256:e85f225d3307a5c520105d5059cda3351c7ce8cfe6c18e42d0ca63975ad26a04",
+      "manifestBytes": 414567,
+      "manifestSha256": "sha256:e85f225d3307a5c520105d5059cda3351c7ce8cfe6c18e42d0ca63975ad26a04"
+    },
+    {
+      "file": "catalog/verification-semantic-fixtures/768721ef0648e5ca6beddf5606ee533dac40c194c081af159d4738513b95f058/artifacts/87cf263e-3e29-5bcb-a187-cc068dc3b122.bin",
+      "originalGitBlobBytes": 180930,
+      "originalGitBlobSha256": "sha256:c69005aa98b4c10a9883017180c8badeae6af77a2927770e96a36df925c0ae12",
+      "recoveredBytes": 181306,
+      "recoveredSha256": "sha256:b623cec22b5a340ef27eedfe32702485d2115ddf8b6b1b00e97458a519f319d5",
+      "manifestBytes": 181306,
+      "manifestSha256": "sha256:b623cec22b5a340ef27eedfe32702485d2115ddf8b6b1b00e97458a519f319d5"
+    },
+    {
+      "file": "catalog/verification-semantic-fixtures/768721ef0648e5ca6beddf5606ee533dac40c194c081af159d4738513b95f058/artifacts/8a94d5ef-2713-55ac-a7bf-9816c8ab4133.bin",
+      "originalGitBlobBytes": 265523,
+      "originalGitBlobSha256": "sha256:15a9046d39ff60d0b02eba84e8cdc7caf4608fcb36158aca42afab7522d29cdc",
+      "recoveredBytes": 265869,
+      "recoveredSha256": "sha256:a5c8ba17b649cf7f45ac4ebe60f4c7c70d186879528fb31245882c9ec52ed08a",
+      "manifestBytes": 265869,
+      "manifestSha256": "sha256:a5c8ba17b649cf7f45ac4ebe60f4c7c70d186879528fb31245882c9ec52ed08a"
+    },
+    {
+      "file": "catalog/verification-semantic-fixtures/768721ef0648e5ca6beddf5606ee533dac40c194c081af159d4738513b95f058/artifacts/abfc3da6-be6c-5e66-a471-14d8076c7142.bin",
+      "originalGitBlobBytes": 260073,
+      "originalGitBlobSha256": "sha256:d85c9978f80fda2839ad3feac51414e19241fdcfffaa12b5792236e4513391ad",
+      "recoveredBytes": 260077,
+      "recoveredSha256": "sha256:df0e403f5358bd881f7863dda9b75da7bc98752d3c6a95dc25c2dc3bdc90c937",
+      "manifestBytes": 260077,
+      "manifestSha256": "sha256:df0e403f5358bd881f7863dda9b75da7bc98752d3c6a95dc25c2dc3bdc90c937"
+    },
+    {
+      "file": "catalog/verification-semantic-fixtures/768721ef0648e5ca6beddf5606ee533dac40c194c081af159d4738513b95f058/artifacts/b51914d0-3435-5e4b-ae97-d9511630316c.bin",
+      "originalGitBlobBytes": 187910,
+      "originalGitBlobSha256": "sha256:ff59e971dccf29fb087b73bebf77a936c57bb8bb74fb5f5d5ba942f0fae7bfeb",
+      "recoveredBytes": 188256,
+      "recoveredSha256": "sha256:c59e08a32cefaee8c45c8f46a2c5ce57c1bca264fe5ed5b5c937648b8f162fcb",
+      "manifestBytes": 188256,
+      "manifestSha256": "sha256:c59e08a32cefaee8c45c8f46a2c5ce57c1bca264fe5ed5b5c937648b8f162fcb"
+    },
+    {
+      "file": "catalog/verification-semantic-fixtures/a035191eb769dd706b47ef784ce6654a1cf8ec9ab07e4fea07a627520b3faabc/artifacts/587fb9f3-bdcf-5c03-a679-254e99f3eea7.bin",
+      "originalGitBlobBytes": 651686,
+      "originalGitBlobSha256": "sha256:7979fa6d6cc42c0f9967bc27900660a81cd5998e6b9b2281f26483c62ba3e003",
+      "recoveredBytes": 652038,
+      "recoveredSha256": "sha256:f5fde5b580e60a3ab22495c05e9c8c25e9f849b8dc38579336c561c7614a44e9",
+      "manifestBytes": 652038,
+      "manifestSha256": "sha256:f5fde5b580e60a3ab22495c05e9c8c25e9f849b8dc38579336c561c7614a44e9"
+    },
+    {
+      "file": "catalog/verification-semantic-fixtures/a035191eb769dd706b47ef784ce6654a1cf8ec9ab07e4fea07a627520b3faabc/artifacts/8a94d5ef-2713-55ac-a7bf-9816c8ab4133.bin",
+      "originalGitBlobBytes": 265523,
+      "originalGitBlobSha256": "sha256:15a9046d39ff60d0b02eba84e8cdc7caf4608fcb36158aca42afab7522d29cdc",
+      "recoveredBytes": 265869,
+      "recoveredSha256": "sha256:a5c8ba17b649cf7f45ac4ebe60f4c7c70d186879528fb31245882c9ec52ed08a",
+      "manifestBytes": 265869,
+      "manifestSha256": "sha256:a5c8ba17b649cf7f45ac4ebe60f4c7c70d186879528fb31245882c9ec52ed08a"
+    },
+    {
+      "file": "catalog/verification-semantic-fixtures/c63055da4dee19de98bfdaf8fafa7884fef6ae9f127964041b2dc4d97d561352/artifacts/87cf263e-3e29-5bcb-a187-cc068dc3b122.bin",
+      "originalGitBlobBytes": 180930,
+      "originalGitBlobSha256": "sha256:c69005aa98b4c10a9883017180c8badeae6af77a2927770e96a36df925c0ae12",
+      "recoveredBytes": 181306,
+      "recoveredSha256": "sha256:b623cec22b5a340ef27eedfe32702485d2115ddf8b6b1b00e97458a519f319d5",
+      "manifestBytes": 181306,
+      "manifestSha256": "sha256:b623cec22b5a340ef27eedfe32702485d2115ddf8b6b1b00e97458a519f319d5"
+    },
+    {
+      "file": "catalog/verification-semantic-fixtures/cedad3b42fc7d04c05cee35fff30bb75521cdf95f9d3280859abfa517956b495/artifacts/87cf263e-3e29-5bcb-a187-cc068dc3b122.bin",
+      "originalGitBlobBytes": 180930,
+      "originalGitBlobSha256": "sha256:c69005aa98b4c10a9883017180c8badeae6af77a2927770e96a36df925c0ae12",
+      "recoveredBytes": 181306,
+      "recoveredSha256": "sha256:b623cec22b5a340ef27eedfe32702485d2115ddf8b6b1b00e97458a519f319d5",
+      "manifestBytes": 181306,
+      "manifestSha256": "sha256:b623cec22b5a340ef27eedfe32702485d2115ddf8b6b1b00e97458a519f319d5"
+    }
+  ]
+}

@@ -1,0 +1,2890 @@
+{
+  "schemaVersion": "verification-benchmark-v1-candidate-pool.v1",
+  "status": "unlabeled_unfrozen_candidates",
+  "sourcePreparationDigest": "sha256:50a3552cffc639a78d7789865be929baefd64d2342431e2de958e669c21f163e",
+  "count": 180,
+  "independentObservationCount": 0,
+  "limitation": "Rows are unique source-bound fragment candidates, not independent cases or gold labels. Case atomization, split assignment, two human annotations, expert adjudication and sealing remain pending.",
+  "candidates": [
+    {
+      "candidateId": "benchmark-v1-candidate-001",
+      "fragmentId": "sha256:0bb11004b5b25e4664163801986d7f6c27feb272fe3778683ac2698b4b111557",
+      "sourceKey": "gl-comparison",
+      "sourceClass": "interested_party_comparison",
+      "captureId": "090d82ef-687b-5230-a581-afd105b572ca",
+      "projectionArtifactId": "a466058e-f04a-56e1-a698-a72d74b6fb38",
+      "projectionDigest": "sha256:61ef5c94266f2866d39c304d7f98f859ef5c2d50e08e7554760da820f689a6d6",
+      "selector": {
+        "domPath": "1/5/2/0/0/1/0/0",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:be425710e0b3f2a2f1a74f29c1fa14d1c1c6e3256e9a1f7d130531935104525d",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-002",
+      "fragmentId": "sha256:1672d61630ab7bb22b8bd26c0e74ffc31af87e2d56e25948218e09464dcfacb8",
+      "sourceKey": "gl-faq",
+      "sourceClass": "first_party",
+      "captureId": "0ecd8e36-539c-57f3-a71f-9991db21e8ad",
+      "projectionArtifactId": "7d89347a-a8f9-5cc0-a2f8-d3e99be59e40",
+      "projectionDigest": "sha256:6e719a8615733e1fed8c8772c96daa8542352b66cf69f4c69947caafc757cef1",
+      "selector": {
+        "domPath": "1/5/3/0/1",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:115126a15064336655e9f31ee9d7c500ff7b801cd104f8b8b747798412fd2959",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-003",
+      "fragmentId": "sha256:fd246a67a5680799090c16945dcdc9464854fbf9ad078c5e8edd7b4c620230cb",
+      "sourceKey": "gl-immune-age-19",
+      "sourceClass": "first_party_marketing",
+      "captureId": "8930d1e6-b8a1-5b4c-aabd-486efb0a051c",
+      "projectionArtifactId": "9042049b-c6ae-5b84-a6f3-7cb0e8259266",
+      "projectionDigest": "sha256:0864ec616615ebce64fa5f533a1ddd36a53cbd12698a7cf59e79ee690fdd80ff",
+      "selector": {
+        "domPath": "1/5/2/0/0/1/0/0",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:482832ae5c1d97c4904b7d121c6950e3fca1bf3f1110cfa2f337afe59f4bf3b9",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-004",
+      "fragmentId": "sha256:1b031c57181f2179469cb0efc2c0d0e5824c490dd97ae6ad76966561d998a871",
+      "sourceKey": "gl-research",
+      "sourceClass": "first_party",
+      "captureId": "8426be74-7e6f-559f-ab29-6b354dbed874",
+      "projectionArtifactId": "15949997-2572-5ed3-acaa-b9b8aa447e1d",
+      "projectionDigest": "sha256:df3a0b3fa20b870c96fefb32bf292bf5cbb816b0dfc51fc5d38c38821ff5b00b",
+      "selector": {
+        "domPath": "1/5/2/0/0/2/0/1/0/0/0/0/1/1",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:0702ccc09f15b1a17bb61689fa359c87c1355de73a9ca4acce8c38a76086d868",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-005",
+      "fragmentId": "sha256:5705e44bbc91411e2a9351845148c5378f4b4c37ea9bcf5b7b71586db7c0c987",
+      "sourceKey": "gl-science",
+      "sourceClass": "first_party",
+      "captureId": "ed7c057c-ce78-5d78-a251-74575f694a52",
+      "projectionArtifactId": "914e0ec1-023e-5f21-a353-c3d8555e26fa",
+      "projectionDigest": "sha256:2d59d02ac2dd964183173e7820448656bdbcd497bfa65a7884fcaee1f3bd70ee",
+      "selector": {
+        "domPath": "1/5/2/2/0/0",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:10c4e3ec36d611b0c820afa970fe5f2fba6c2d63b82b3eba3db2230ad24770f0",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-006",
+      "fragmentId": "sha256:38bb41b57067ccf8746418be0f3296c1c26eff94d9aaef2b2d43f6aac22b7a8f",
+      "sourceKey": "gl-terms",
+      "sourceClass": "first_party",
+      "captureId": "dc5210dc-7826-524e-ad73-27a3baf6c4ae",
+      "projectionArtifactId": "0d3a77f2-20eb-58e0-afac-b932bb55e172",
+      "projectionDigest": "sha256:f3c462cade3dde56db7d70f0e5141798cd18bde96f5cabc3b18923543a9ff896",
+      "selector": {
+        "domPath": "1/9/1/2/0/7",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:af6e4b4888d9f30383ceba5d088a6cb4cf191f3798f1e194d927c94d2570bad5",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-007",
+      "fragmentId": "sha256:685385f6afb981be3a6106b0e129d6f3dfc7f58f7b7db4d1be46784f697a9ac9",
+      "sourceKey": "gl-test",
+      "sourceClass": "first_party",
+      "captureId": "884fa642-f443-52ce-afe4-098a28dc13bf",
+      "projectionArtifactId": "38f22bd9-45ca-5649-af5e-aa6e3a04c0bd",
+      "projectionDigest": "sha256:27ab99e9df6524d9c083ed7b882bb42393d358a3bfdd99cbd61e5a1803ad4c84",
+      "selector": {
+        "domPath": "1/5/3/0/0/0/0/1",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:3b47e081be2bbbe6b11b34d0ff0e5f82101ee73551c23f1627c5f371f0b61391",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-008",
+      "fragmentId": "sha256:d025b4e615f55b9023c0725283eb6ca2c4e4e2692cf507f3bf80a43ab2bf3c9b",
+      "sourceKey": "paper-noise",
+      "sourceClass": "publication",
+      "captureId": "85d9b0d4-34b8-5720-ab3c-012c57b68b1b",
+      "projectionArtifactId": "d1381f18-1073-5580-a9a9-e708017a7333",
+      "projectionDigest": "sha256:81a6d64be46c8af928412cc0216a2e51b0883dd94b72f52e258685ac0071827c",
+      "selector": {
+        "domPath": "2/3/1/3/1/1/3/1",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:22993da17cb46167aaf2311c173f1b5d949b88105ee0c721d7ff967fb99e1b72",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-009",
+      "fragmentId": "sha256:04a1847d862a01396200f3db4429c3559deafbb9c4b0933791e615db7c405e52",
+      "sourceKey": "paper-omic",
+      "sourceClass": "publication",
+      "captureId": "62ac51e4-d787-56da-a791-4289accab698",
+      "projectionArtifactId": "ca332019-b525-58b3-adc5-51e4830222c0",
+      "projectionDigest": "sha256:9bd090b93b9a9f2ac8f527c6b6c303ff92a5451d245abbf6b8a9332bd18efb9b",
+      "selector": {
+        "domPath": "2/3/1/3/1/1/3/1",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:22993da17cb46167aaf2311c173f1b5d949b88105ee0c721d7ff967fb99e1b72",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-010",
+      "fragmentId": "sha256:be901f984f4008e155409c077016169106c566069f25f7fd9db5c6a27728d211",
+      "sourceKey": "paper-pace",
+      "sourceClass": "publication",
+      "captureId": "60f7dd92-6f3f-5205-a08a-cea2d0770489",
+      "projectionArtifactId": "cb9b6f63-800e-5079-afd1-f82fc2a43b06",
+      "projectionDigest": "sha256:87eee3598cf29dab59e1a8c7b70cef756b69a652c0c2787656d3fa02913d2af6",
+      "selector": {
+        "domPath": "2/3/1/3/1/1/3/1",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:22993da17cb46167aaf2311c173f1b5d949b88105ee0c721d7ff967fb99e1b72",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-011",
+      "fragmentId": "sha256:a21cab794297fc48b648be26b52d4a33998420a9c478ad683abecb1d2b47675c",
+      "sourceKey": "paper-rectification",
+      "sourceClass": "publication",
+      "captureId": "1f25612c-deab-57eb-ae59-4014898874de",
+      "projectionArtifactId": "6ee4d5c1-7ba4-5f1b-aa37-fdfdfa0843f7",
+      "projectionDigest": "sha256:f1938efb12883570665e191b4cc9fa1f50b5587d875e2105c303b46430e286f1",
+      "selector": {
+        "domPath": "2/12/1/1/1/1/3",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:0702ccc09f15b1a17bb61689fa359c87c1355de73a9ca4acce8c38a76086d868",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-012",
+      "fragmentId": "sha256:7e82626f07407eb1f9ec091c617b6f9a970d6c972f7b2f51e5a5688454af2db5",
+      "sourceKey": "tru-about",
+      "sourceClass": "first_party",
+      "captureId": "67b3c277-5c66-5ef5-ace8-66aff1d3e736",
+      "projectionArtifactId": "b4573767-03c2-55e9-a771-0385eeff5aa5",
+      "projectionDigest": "sha256:102c76510c12f523e3d67d8795ceb2b20c40e95f055c0038965e6da1e9cedbb4",
+      "selector": {
+        "domPath": "1/0/1/0/0/0/0/0",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:60b1bea9ae97f92670afe3246843055e76b5526686ad1d1cbfe16db1f84ba92d",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-013",
+      "fragmentId": "sha256:a4da61c24f031a534cf9b2c14b60b4ab1aaa0fefffe3b9c409850271bff630d6",
+      "sourceKey": "tru-education",
+      "sourceClass": "first_party",
+      "captureId": "fc2f2733-12a1-566c-ab80-3639d5f4fa10",
+      "projectionArtifactId": "388033a3-c3a4-5b03-af16-f060ba7ac557",
+      "projectionDigest": "sha256:921b6af4badf737907c4b3681d203eba65fab74da2008008e9cb1839a5316b4f",
+      "selector": {
+        "domPath": "1/0/1/0/0/0/0/0",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:60b1bea9ae97f92670afe3246843055e76b5526686ad1d1cbfe16db1f84ba92d",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-014",
+      "fragmentId": "sha256:cbc102c9580df9d18d2e2b48786fc1e104858079e810dc8cfb779c31ea743236",
+      "sourceKey": "tru-pace",
+      "sourceClass": "first_party",
+      "captureId": "241d49f1-40d0-5b55-a845-f56ab6ce5cae",
+      "projectionArtifactId": "59edaaf6-4919-557c-adb1-10da3dedf52c",
+      "projectionDigest": "sha256:6c4c064c4fa77753ca726f6f784c24cbcc604342bc6a747dfdf1d13e8d7b8eb2",
+      "selector": {
+        "domPath": "1/0/1/0/0/0/0/0",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:60b1bea9ae97f92670afe3246843055e76b5526686ad1d1cbfe16db1f84ba92d",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-015",
+      "fragmentId": "sha256:db0f20021b1bc15862b0bf666c0f332ebdf33d7a2911a39c75940fa25bb994c7",
+      "sourceKey": "tru-product",
+      "sourceClass": "first_party",
+      "captureId": "ab5c8b0f-3f27-5ea4-ad00-9771148daa54",
+      "projectionArtifactId": "42cef373-e401-523a-af45-eb586b235c8c",
+      "projectionDigest": "sha256:872f9fd5adfe086ea2a054a0337255dc2afb44333fa5a015788e8efe3cbea681",
+      "selector": {
+        "domPath": "2/5/1/1/0/0/0",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:ca29ac7a5ff02d7a7124261c36a1dd0f97e3effb0d7ac27ccf5f75ced3b335bb",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-016",
+      "fragmentId": "sha256:da3f6832ec5dc380bb5a66581870c90fd913a4e259c25aff042c88297bce18d0",
+      "sourceKey": "gl-comparison",
+      "sourceClass": "interested_party_comparison",
+      "captureId": "090d82ef-687b-5230-a581-afd105b572ca",
+      "projectionArtifactId": "a466058e-f04a-56e1-a698-a72d74b6fb38",
+      "projectionDigest": "sha256:61ef5c94266f2866d39c304d7f98f859ef5c2d50e08e7554760da820f689a6d6",
+      "selector": {
+        "domPath": "1/5/2/0/0/1/1/0/0",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:7ee1cd1972ba8cd1701c79238567c493d37a5eae951cfa0f22481eaefc6a1af8",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-017",
+      "fragmentId": "sha256:119aea9d6ac0779e7d82ef504f30b179cffc27707a2215407f9c4cd3595a6d50",
+      "sourceKey": "gl-faq",
+      "sourceClass": "first_party",
+      "captureId": "0ecd8e36-539c-57f3-a71f-9991db21e8ad",
+      "projectionArtifactId": "7d89347a-a8f9-5cc0-a2f8-d3e99be59e40",
+      "projectionDigest": "sha256:6e719a8615733e1fed8c8772c96daa8542352b66cf69f4c69947caafc757cef1",
+      "selector": {
+        "domPath": "1/5/4/0/0/2/0/0/1/0/0/0",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:6a2839ab895a7add9d8cf60114107b271bd30e989172fd6a4d579bd9e6f2e34d",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-018",
+      "fragmentId": "sha256:8e8a9cefaaf41d3b3203dc8570171022e61ab78fa9fd9fad0e117e0ab3abffb6",
+      "sourceKey": "gl-immune-age-19",
+      "sourceClass": "first_party_marketing",
+      "captureId": "8930d1e6-b8a1-5b4c-aabd-486efb0a051c",
+      "projectionArtifactId": "9042049b-c6ae-5b84-a6f3-7cb0e8259266",
+      "projectionDigest": "sha256:0864ec616615ebce64fa5f533a1ddd36a53cbd12698a7cf59e79ee690fdd80ff",
+      "selector": {
+        "domPath": "1/5/2/0/0/1/1/0/0",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:56210f07b7b1a7b613ca1a2fd9a86e5ad4555d94e019759644bf36eadbd0973a",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-019",
+      "fragmentId": "sha256:21d9378fe6623afcd8477087442e6a2a91e212ac250c400d49e3f68da46c02f6",
+      "sourceKey": "gl-research",
+      "sourceClass": "first_party",
+      "captureId": "8426be74-7e6f-559f-ab29-6b354dbed874",
+      "projectionArtifactId": "15949997-2572-5ed3-acaa-b9b8aa447e1d",
+      "projectionDigest": "sha256:df3a0b3fa20b870c96fefb32bf292bf5cbb816b0dfc51fc5d38c38821ff5b00b",
+      "selector": {
+        "domPath": "1/5/2/0/0/2/0/1/0/1/0/0/1/1",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:a2ab7ef75a535477a1f762d8e0fdf029c7a97d3fcf988c23043e6bfa406d4c3f",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-020",
+      "fragmentId": "sha256:d4df3c3cc6353adee0218ab6889dee909fcd8f8d179a83b6ca9c4ec422991b88",
+      "sourceKey": "gl-science",
+      "sourceClass": "first_party",
+      "captureId": "ed7c057c-ce78-5d78-a251-74575f694a52",
+      "projectionArtifactId": "914e0ec1-023e-5f21-a353-c3d8555e26fa",
+      "projectionDigest": "sha256:2d59d02ac2dd964183173e7820448656bdbcd497bfa65a7884fcaee1f3bd70ee",
+      "selector": {
+        "domPath": "1/5/2/2/0/1",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:5cbc3cdab3290ff326ec4c20778f069cd4ca137ae298dc258d168e09b2ba186c",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-021",
+      "fragmentId": "sha256:c70c2d11faedbbba933cf12eaae29ef4f45054518715b49fcf55383fec55b951",
+      "sourceKey": "gl-terms",
+      "sourceClass": "first_party",
+      "captureId": "dc5210dc-7826-524e-ad73-27a3baf6c4ae",
+      "projectionArtifactId": "0d3a77f2-20eb-58e0-afac-b932bb55e172",
+      "projectionDigest": "sha256:f3c462cade3dde56db7d70f0e5141798cd18bde96f5cabc3b18923543a9ff896",
+      "selector": {
+        "domPath": "1/9/1/2/0/10",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:3d759d775f25d396c96efa00489207308efc9cfd40a1afcbd7f26aa593d6d60d",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-022",
+      "fragmentId": "sha256:bb77eba2a2159369227073c3c4e843f13bda75d85a13cfbb18f71089e243dd90",
+      "sourceKey": "paper-noise",
+      "sourceClass": "publication",
+      "captureId": "85d9b0d4-34b8-5720-ab3c-012c57b68b1b",
+      "projectionArtifactId": "d1381f18-1073-5580-a9a9-e708017a7333",
+      "projectionDigest": "sha256:81a6d64be46c8af928412cc0216a2e51b0883dd94b72f52e258685ac0071827c",
+      "selector": {
+        "domPath": "2/11/3/1/1/1/3/2/2/0/1/0/1/0",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:e123796ee4b72ae64d91e8922ce0ba28594b7308a0069f4858156a1d953a9b7d",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-023",
+      "fragmentId": "sha256:5cdcf7ec308b22371545548579f30ab84874a434bade0e3dd52a21669f25f7b3",
+      "sourceKey": "paper-omic",
+      "sourceClass": "publication",
+      "captureId": "62ac51e4-d787-56da-a791-4289accab698",
+      "projectionArtifactId": "ca332019-b525-58b3-adc5-51e4830222c0",
+      "projectionDigest": "sha256:9bd090b93b9a9f2ac8f527c6b6c303ff92a5451d245abbf6b8a9332bd18efb9b",
+      "selector": {
+        "domPath": "2/11/3/1/1/1/3/2/2/0/1/0/1/0",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:13086a8afd75864d6fb3a95844b33a98dadb36492be9225a12652a9c02ab8e69",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-024",
+      "fragmentId": "sha256:9bf456d80f606a11f7afd357a22ae3c52163b9222e7155afad5b921a4b20a4e0",
+      "sourceKey": "paper-pace",
+      "sourceClass": "publication",
+      "captureId": "60f7dd92-6f3f-5205-a08a-cea2d0770489",
+      "projectionArtifactId": "cb9b6f63-800e-5079-afd1-f82fc2a43b06",
+      "projectionDigest": "sha256:87eee3598cf29dab59e1a8c7b70cef756b69a652c0c2787656d3fa02913d2af6",
+      "selector": {
+        "domPath": "2/11/3/1/1/1/3/2/2/0/1/0/1/0",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:f20cb32d57519d487716a7f43fc21394b944fa361a9a0ef714d322a762409e93",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-025",
+      "fragmentId": "sha256:6da9509d0ca4c0475edc6f7054966e13f520f3f154d683a42e719668b640da32",
+      "sourceKey": "paper-rectification",
+      "sourceClass": "publication",
+      "captureId": "1f25612c-deab-57eb-ae59-4014898874de",
+      "projectionArtifactId": "6ee4d5c1-7ba4-5f1b-aa37-fdfdfa0843f7",
+      "projectionDigest": "sha256:f1938efb12883570665e191b4cc9fa1f50b5587d875e2105c303b46430e286f1",
+      "selector": {
+        "domPath": "2/12/3/1/5/1/0/1/0",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:10e903fd669d512acd44b46eb9758366f6c979e57a246dd53be688e21bd23a7c",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-026",
+      "fragmentId": "sha256:78a7291ed7415aa83b10dbb8cd18d2ecff5fdc739ba8d4a0f2b22d34d24c32bb",
+      "sourceKey": "tru-about",
+      "sourceClass": "first_party",
+      "captureId": "67b3c277-5c66-5ef5-ace8-66aff1d3e736",
+      "projectionArtifactId": "b4573767-03c2-55e9-a771-0385eeff5aa5",
+      "projectionDigest": "sha256:102c76510c12f523e3d67d8795ceb2b20c40e95f055c0038965e6da1e9cedbb4",
+      "selector": {
+        "domPath": "1/0/2/0/0/0/0/0/1/0/0",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:fa426175db16c7a1be0f8fd329bc81995b73295a8acafdf79e0e3c5ac11524a9",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-027",
+      "fragmentId": "sha256:e88b316950db7f683134fb890b06803bd9f0735fac68d6642c6149251f31d5a4",
+      "sourceKey": "tru-education",
+      "sourceClass": "first_party",
+      "captureId": "fc2f2733-12a1-566c-ab80-3639d5f4fa10",
+      "projectionArtifactId": "388033a3-c3a4-5b03-af16-f060ba7ac557",
+      "projectionDigest": "sha256:921b6af4badf737907c4b3681d203eba65fab74da2008008e9cb1839a5316b4f",
+      "selector": {
+        "domPath": "1/0/2/1/0/0/0/0/0/1",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:9a78707eef45fffe2724c31fd87b400f3559c5a8d56690b1b97eba1b08a81c56",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-028",
+      "fragmentId": "sha256:c59999c3d7ea07d1f76f5507d5f838a8cd59dbd0027ac52668fb3b3468d593ce",
+      "sourceKey": "tru-pace",
+      "sourceClass": "first_party",
+      "captureId": "241d49f1-40d0-5b55-a845-f56ab6ce5cae",
+      "projectionArtifactId": "59edaaf6-4919-557c-adb1-10da3dedf52c",
+      "projectionDigest": "sha256:6c4c064c4fa77753ca726f6f784c24cbcc604342bc6a747dfdf1d13e8d7b8eb2",
+      "selector": {
+        "domPath": "1/0/2/1/0/0/0/0/2",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:852ab39d792cd1516d875160b98e520ab23e1921696f1cd90856b4884f01c871",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-029",
+      "fragmentId": "sha256:4dd604d042c8d50e470709698200e681152f65bc54eeacf2d15c2a1da9d01879",
+      "sourceKey": "tru-product",
+      "sourceClass": "first_party",
+      "captureId": "ab5c8b0f-3f27-5ea4-ad00-9771148daa54",
+      "projectionArtifactId": "42cef373-e401-523a-af45-eb586b235c8c",
+      "projectionDigest": "sha256:872f9fd5adfe086ea2a054a0337255dc2afb44333fa5a015788e8efe3cbea681",
+      "selector": {
+        "domPath": "2/5/1/2/2/1/3/1/2/1/1/1/1",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:8368701ee8611859a4c210add47ed27cad525969a351bbe264ec653e63a86638",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-030",
+      "fragmentId": "sha256:cc230ae2daf4ff549e7ced488d8c3cddf131045d5dec8b4361812dea00f90fc4",
+      "sourceKey": "gl-comparison",
+      "sourceClass": "interested_party_comparison",
+      "captureId": "090d82ef-687b-5230-a581-afd105b572ca",
+      "projectionArtifactId": "a466058e-f04a-56e1-a698-a72d74b6fb38",
+      "projectionDigest": "sha256:61ef5c94266f2866d39c304d7f98f859ef5c2d50e08e7554760da820f689a6d6",
+      "selector": {
+        "domPath": "1/5/2/0/0/1/1/0/1",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:31cfa483e9143540b91d70a2e69a07e640eb1a24b3e41b04529503b42c4fcba1",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-031",
+      "fragmentId": "sha256:3c25a0c255d2b2d76174d39cfa86739da48617dd56f7c5e4917a8140c4d0d5a5",
+      "sourceKey": "gl-faq",
+      "sourceClass": "first_party",
+      "captureId": "0ecd8e36-539c-57f3-a71f-9991db21e8ad",
+      "projectionArtifactId": "7d89347a-a8f9-5cc0-a2f8-d3e99be59e40",
+      "projectionDigest": "sha256:6e719a8615733e1fed8c8772c96daa8542352b66cf69f4c69947caafc757cef1",
+      "selector": {
+        "domPath": "1/5/4/0/0/2/0/0/1/0/1/0",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:5231d19e6d95c32fb7e2ec3258c1feff9b032fd5875d20b7ed338c032aa82f95",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-032",
+      "fragmentId": "sha256:e72ac9e3e0ac7d325e73f7413232476f95c157a9ea1142108d1e07a30e2882d3",
+      "sourceKey": "gl-immune-age-19",
+      "sourceClass": "first_party_marketing",
+      "captureId": "8930d1e6-b8a1-5b4c-aabd-486efb0a051c",
+      "projectionArtifactId": "9042049b-c6ae-5b84-a6f3-7cb0e8259266",
+      "projectionDigest": "sha256:0864ec616615ebce64fa5f533a1ddd36a53cbd12698a7cf59e79ee690fdd80ff",
+      "selector": {
+        "domPath": "1/5/2/0/0/1/1/0/1",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:eae5b37909218933bdcbd2c76cbe7ae8c04e738baf4de6b7b5546b1acb37faf4",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-033",
+      "fragmentId": "sha256:2e91ae59090396ae65b85bc963801ed166eff030e89dafeb3b4ae1da945e1c0c",
+      "sourceKey": "gl-research",
+      "sourceClass": "first_party",
+      "captureId": "8426be74-7e6f-559f-ab29-6b354dbed874",
+      "projectionArtifactId": "15949997-2572-5ed3-acaa-b9b8aa447e1d",
+      "projectionDigest": "sha256:df3a0b3fa20b870c96fefb32bf292bf5cbb816b0dfc51fc5d38c38821ff5b00b",
+      "selector": {
+        "domPath": "1/5/2/0/0/2/0/1/0/2/0/0/1/1",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:e123796ee4b72ae64d91e8922ce0ba28594b7308a0069f4858156a1d953a9b7d",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-034",
+      "fragmentId": "sha256:7be04d226a2a2622082dda43703b081db15798abd94173910f20c260639a4704",
+      "sourceKey": "gl-science",
+      "sourceClass": "first_party",
+      "captureId": "ed7c057c-ce78-5d78-a251-74575f694a52",
+      "projectionArtifactId": "914e0ec1-023e-5f21-a353-c3d8555e26fa",
+      "projectionDigest": "sha256:2d59d02ac2dd964183173e7820448656bdbcd497bfa65a7884fcaee1f3bd70ee",
+      "selector": {
+        "domPath": "1/5/3/0/0/0/1",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:4379037ad34e24656c829873a3683d4b8a6adf81212f96b8b291123728bffade",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-035",
+      "fragmentId": "sha256:be7d8deb0c9a8a640843d3addbd0c241cdf2f7beec1d3d8fad7b24a2445cd6ff",
+      "sourceKey": "gl-terms",
+      "sourceClass": "first_party",
+      "captureId": "dc5210dc-7826-524e-ad73-27a3baf6c4ae",
+      "projectionArtifactId": "0d3a77f2-20eb-58e0-afac-b932bb55e172",
+      "projectionDigest": "sha256:f3c462cade3dde56db7d70f0e5141798cd18bde96f5cabc3b18923543a9ff896",
+      "selector": {
+        "domPath": "1/9/1/2/0/12",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:361bef9e89b2908bf5b5e1721686f53686399ae004fe42b5ae509d051a988a4c",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-036",
+      "fragmentId": "sha256:8a176e9b2de4803a3e9d32fe4250cf5cbddf56b76cbdf30f3949bbb72e6d2ecd",
+      "sourceKey": "paper-noise",
+      "sourceClass": "publication",
+      "captureId": "85d9b0d4-34b8-5720-ab3c-012c57b68b1b",
+      "projectionArtifactId": "d1381f18-1073-5580-a9a9-e708017a7333",
+      "projectionDigest": "sha256:81a6d64be46c8af928412cc0216a2e51b0883dd94b72f52e258685ac0071827c",
+      "selector": {
+        "domPath": "2/11/3/1/1/1/3/2/2/1/0/0/2",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:00956bf892c2331dcf7c7a36efa5f78a0d3b1f701762028bdf98f1e18e391ff5",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-037",
+      "fragmentId": "sha256:d6e3c5ef389f85ea6b34770fab54c93b3dc0579c7528e5ac600259a01c07ce52",
+      "sourceKey": "paper-omic",
+      "sourceClass": "publication",
+      "captureId": "62ac51e4-d787-56da-a791-4289accab698",
+      "projectionArtifactId": "ca332019-b525-58b3-adc5-51e4830222c0",
+      "projectionDigest": "sha256:9bd090b93b9a9f2ac8f527c6b6c303ff92a5451d245abbf6b8a9332bd18efb9b",
+      "selector": {
+        "domPath": "2/11/3/1/1/1/3/2/2/1/0/0/2",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:0affea83238151a006194f7789ea06151a9ad56cab228454b13a4d77eb01e554",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-038",
+      "fragmentId": "sha256:a2fda48762aa0e3c4f73beb7cd53ba7fe9757e0933fcb7e9def1932467fcf879",
+      "sourceKey": "paper-pace",
+      "sourceClass": "publication",
+      "captureId": "60f7dd92-6f3f-5205-a08a-cea2d0770489",
+      "projectionArtifactId": "cb9b6f63-800e-5079-afd1-f82fc2a43b06",
+      "projectionDigest": "sha256:87eee3598cf29dab59e1a8c7b70cef756b69a652c0c2787656d3fa02913d2af6",
+      "selector": {
+        "domPath": "2/11/3/1/1/1/3/2/2/1/0/0/2/2",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:34df35a06c7a102de733fae08b73c10230ac48487c7f73b89b074dee73b3ecdc",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-039",
+      "fragmentId": "sha256:854f07e02066917bc43b85d5325148dedd063409350b64c5973c38dcc25e943c",
+      "sourceKey": "paper-rectification",
+      "sourceClass": "publication",
+      "captureId": "1f25612c-deab-57eb-ae59-4014898874de",
+      "projectionArtifactId": "6ee4d5c1-7ba4-5f1b-aa37-fdfdfa0843f7",
+      "projectionDigest": "sha256:f1938efb12883570665e191b4cc9fa1f50b5587d875e2105c303b46430e286f1",
+      "selector": {
+        "domPath": "2/12/3/1/5/5/3/1/1/3/1",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:66c3a01c74364651834e3b1a1e92faa77eddc082552f1587c6ab90a0ff903328",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-040",
+      "fragmentId": "sha256:764fa99b84c7d3e70c2cda338e8312a025f5eb0cf0362c61cdcca5157ba1c616",
+      "sourceKey": "tru-about",
+      "sourceClass": "first_party",
+      "captureId": "67b3c277-5c66-5ef5-ace8-66aff1d3e736",
+      "projectionArtifactId": "b4573767-03c2-55e9-a771-0385eeff5aa5",
+      "projectionDigest": "sha256:102c76510c12f523e3d67d8795ceb2b20c40e95f055c0038965e6da1e9cedbb4",
+      "selector": {
+        "domPath": "1/0/2/2/0/0/0/1/0/0/0/1",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:1c1fce4ffcd6ebb8a9c12ffdf5e415f7bae215b93c1cbbd0f9031ca481878322",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-041",
+      "fragmentId": "sha256:09cd0d58a05cd0f1bb89ef9580f160ec37c2acccee8608a938146e2c8932b089",
+      "sourceKey": "tru-education",
+      "sourceClass": "first_party",
+      "captureId": "fc2f2733-12a1-566c-ab80-3639d5f4fa10",
+      "projectionArtifactId": "388033a3-c3a4-5b03-af16-f060ba7ac557",
+      "projectionDigest": "sha256:921b6af4badf737907c4b3681d203eba65fab74da2008008e9cb1839a5316b4f",
+      "selector": {
+        "domPath": "1/0/2/1/0/0/0/1/0/1/2/1/1/0/0/0",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:c75240f7af8d55c81a1a72025339f3434d63e2a9eb76228f6b6a494df26ee953",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-042",
+      "fragmentId": "sha256:083c881f96764f1106f455f9a0050d2707f2ddaffa4d16c5311bbb84c9278f94",
+      "sourceKey": "tru-pace",
+      "sourceClass": "first_party",
+      "captureId": "241d49f1-40d0-5b55-a845-f56ab6ce5cae",
+      "projectionArtifactId": "59edaaf6-4919-557c-adb1-10da3dedf52c",
+      "projectionDigest": "sha256:6c4c064c4fa77753ca726f6f784c24cbcc604342bc6a747dfdf1d13e8d7b8eb2",
+      "selector": {
+        "domPath": "1/0/2/2/0/0/0/1/1/0",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:8d61d48b369e97474c87db1409ab04b51fb9f8395f5dfa843f31d3b1e14fa2d7",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-043",
+      "fragmentId": "sha256:0b1a5d44ba4e07d2813fae483dcb177c47560ac2b3a4200ec981e5795f0a037a",
+      "sourceKey": "tru-product",
+      "sourceClass": "first_party",
+      "captureId": "ab5c8b0f-3f27-5ea4-ad00-9771148daa54",
+      "projectionArtifactId": "42cef373-e401-523a-af45-eb586b235c8c",
+      "projectionDigest": "sha256:872f9fd5adfe086ea2a054a0337255dc2afb44333fa5a015788e8efe3cbea681",
+      "selector": {
+        "domPath": "2/5/1/2/2/1/3/1/2/1/1/1/1/2/1/1/0",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:55f41b95852f17551629f7fb725c572cbca20d142cbfcb3e1713fbf0b5a7a198",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-044",
+      "fragmentId": "sha256:c15da841e8156bb7237f461f142f2db2ed08c24234665009619f24e9bf2871f1",
+      "sourceKey": "gl-comparison",
+      "sourceClass": "interested_party_comparison",
+      "captureId": "090d82ef-687b-5230-a581-afd105b572ca",
+      "projectionArtifactId": "a466058e-f04a-56e1-a698-a72d74b6fb38",
+      "projectionDigest": "sha256:61ef5c94266f2866d39c304d7f98f859ef5c2d50e08e7554760da820f689a6d6",
+      "selector": {
+        "domPath": "1/5/2/0/0/1/1/0/2",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:8980655ef37e12728c4209e2049344419865a122a8724dc444b16a28866f679e",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-045",
+      "fragmentId": "sha256:0eacebafe87d5ac3120b87d546f07b771dd94282b20c7c300a8b7b37c1768786",
+      "sourceKey": "gl-faq",
+      "sourceClass": "first_party",
+      "captureId": "0ecd8e36-539c-57f3-a71f-9991db21e8ad",
+      "projectionArtifactId": "7d89347a-a8f9-5cc0-a2f8-d3e99be59e40",
+      "projectionDigest": "sha256:6e719a8615733e1fed8c8772c96daa8542352b66cf69f4c69947caafc757cef1",
+      "selector": {
+        "domPath": "1/5/4/0/0/2/0/0/1/2/0/0",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:3917e498d7141cd699f8c976aa9ad2ddb0b42613786031d7de5bc56213c1b030",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-046",
+      "fragmentId": "sha256:a420d15279a2c7e993aee61d5a594f36b35e6d5a0f429b6eb7e0da698cc461f2",
+      "sourceKey": "gl-immune-age-19",
+      "sourceClass": "first_party_marketing",
+      "captureId": "8930d1e6-b8a1-5b4c-aabd-486efb0a051c",
+      "projectionArtifactId": "9042049b-c6ae-5b84-a6f3-7cb0e8259266",
+      "projectionDigest": "sha256:0864ec616615ebce64fa5f533a1ddd36a53cbd12698a7cf59e79ee690fdd80ff",
+      "selector": {
+        "domPath": "1/5/2/0/0/1/1/0/2",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:d8296fcce6b53c8156dad4b76702b02f83c94a7960797e92a9f3ae3c4e2fe31d",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-047",
+      "fragmentId": "sha256:ca894cd314e34db5d61cf00f15d604040069a4dd48c5bdfcce49e36730c849d7",
+      "sourceKey": "gl-research",
+      "sourceClass": "first_party",
+      "captureId": "8426be74-7e6f-559f-ab29-6b354dbed874",
+      "projectionArtifactId": "15949997-2572-5ed3-acaa-b9b8aa447e1d",
+      "projectionDigest": "sha256:df3a0b3fa20b870c96fefb32bf292bf5cbb816b0dfc51fc5d38c38821ff5b00b",
+      "selector": {
+        "domPath": "1/5/2/0/0/2/0/1/0/5/0/0/1/1",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:4ddb634c994de15c9985e5e22430da9008e399c1ee1e8c5ae89dcfbd0bee473c",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-048",
+      "fragmentId": "sha256:1aaa6b1d0d6190770de785698959c82b22e20f2a0b05e88c537f4727172c5d35",
+      "sourceKey": "gl-science",
+      "sourceClass": "first_party",
+      "captureId": "ed7c057c-ce78-5d78-a251-74575f694a52",
+      "projectionArtifactId": "914e0ec1-023e-5f21-a353-c3d8555e26fa",
+      "projectionDigest": "sha256:2d59d02ac2dd964183173e7820448656bdbcd497bfa65a7884fcaee1f3bd70ee",
+      "selector": {
+        "domPath": "1/5/3/2/1/1/0/0/1/1",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:4c30dc3c0570f6d121229e46d40d988fa1d76fcae25a0ad82d27632cd39dac98",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-049",
+      "fragmentId": "sha256:c2503bfd016fea7803d7adb21ca6d427836c11a1b586ee5fa7da8c1cc644f35f",
+      "sourceKey": "gl-terms",
+      "sourceClass": "first_party",
+      "captureId": "dc5210dc-7826-524e-ad73-27a3baf6c4ae",
+      "projectionArtifactId": "0d3a77f2-20eb-58e0-afac-b932bb55e172",
+      "projectionDigest": "sha256:f3c462cade3dde56db7d70f0e5141798cd18bde96f5cabc3b18923543a9ff896",
+      "selector": {
+        "domPath": "1/9/1/2/0/13",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:6c8a7e0a04ef69459a758c9949efe45df6beacf888731243fb3b23d408c2c7d8",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-050",
+      "fragmentId": "sha256:c539140aac89a8511a62840bab0fcf097f3e80c9ba02f4cfc513395f2674f6b1",
+      "sourceKey": "paper-noise",
+      "sourceClass": "publication",
+      "captureId": "85d9b0d4-34b8-5720-ab3c-012c57b68b1b",
+      "projectionArtifactId": "d1381f18-1073-5580-a9a9-e708017a7333",
+      "projectionDigest": "sha256:81a6d64be46c8af928412cc0216a2e51b0883dd94b72f52e258685ac0071827c",
+      "selector": {
+        "domPath": "2/11/3/1/1/1/3/2/2/1/0/0/4/0",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:b010e4c5df24b2de0f4838918da147e8f57886821e0f41a349b6845b2ce941fa",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-051",
+      "fragmentId": "sha256:853fc73545d42a757076fb353f6b5f056755b8b55ac498b2850794ac50651b36",
+      "sourceKey": "paper-omic",
+      "sourceClass": "publication",
+      "captureId": "62ac51e4-d787-56da-a791-4289accab698",
+      "projectionArtifactId": "ca332019-b525-58b3-adc5-51e4830222c0",
+      "projectionDigest": "sha256:9bd090b93b9a9f2ac8f527c6b6c303ff92a5451d245abbf6b8a9332bd18efb9b",
+      "selector": {
+        "domPath": "2/11/3/1/1/1/3/2/2/1/0/1/2",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:9dc2fe8fa67f8c2c0f8088135603beda18379727ef97ae6f9db04d9afa559258",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-052",
+      "fragmentId": "sha256:a21b68a9fea2a3b97e6bddb8400e899647c802ae419291285d68581fc970dca0",
+      "sourceKey": "paper-pace",
+      "sourceClass": "publication",
+      "captureId": "60f7dd92-6f3f-5205-a08a-cea2d0770489",
+      "projectionArtifactId": "cb9b6f63-800e-5079-afd1-f82fc2a43b06",
+      "projectionDigest": "sha256:87eee3598cf29dab59e1a8c7b70cef756b69a652c0c2787656d3fa02913d2af6",
+      "selector": {
+        "domPath": "2/11/3/1/1/1/3/2/2/1/0/0/3/2",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:84f372b15d2a79e402ba1be203425eee09f6106bb0cba719411fe1d5d14c4954",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-053",
+      "fragmentId": "sha256:4c43963fffab198ec1f3ff39eecd29e5d36c683b59f70ee4cad18b0214c23f1e",
+      "sourceKey": "paper-rectification",
+      "sourceClass": "publication",
+      "captureId": "1f25612c-deab-57eb-ae59-4014898874de",
+      "projectionArtifactId": "6ee4d5c1-7ba4-5f1b-aa37-fdfdfa0843f7",
+      "projectionDigest": "sha256:f1938efb12883570665e191b4cc9fa1f50b5587d875e2105c303b46430e286f1",
+      "selector": {
+        "domPath": "2/12/3/1/5/5/3/3/1/3/1",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:559251db7b846b7aa8bc31603a1be690c54f72d6d7663230265598369e3df523",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-054",
+      "fragmentId": "sha256:bf3e01045ea49a084d595c6a261fe2795103ce014b4132af1e420c126a37e765",
+      "sourceKey": "tru-about",
+      "sourceClass": "first_party",
+      "captureId": "67b3c277-5c66-5ef5-ace8-66aff1d3e736",
+      "projectionArtifactId": "b4573767-03c2-55e9-a771-0385eeff5aa5",
+      "projectionDigest": "sha256:102c76510c12f523e3d67d8795ceb2b20c40e95f055c0038965e6da1e9cedbb4",
+      "selector": {
+        "domPath": "1/0/2/2/0/0/0/1/0/0/1/1",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:e514608fdf012933fb9a44d6f805760d5a1fd7a8ea3dd6e736a0998335e3a363",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-055",
+      "fragmentId": "sha256:8a5db3f95bf25668d4893850115e8166e9f41af4edfca21455537e38122d4cc2",
+      "sourceKey": "tru-education",
+      "sourceClass": "first_party",
+      "captureId": "fc2f2733-12a1-566c-ab80-3639d5f4fa10",
+      "projectionArtifactId": "388033a3-c3a4-5b03-af16-f060ba7ac557",
+      "projectionDigest": "sha256:921b6af4badf737907c4b3681d203eba65fab74da2008008e9cb1839a5316b4f",
+      "selector": {
+        "domPath": "1/0/2/1/0/0/0/1/0/1/2/1/1/2/0/0",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:aecff6bf6e8987075a9ea74b77a5fb4112366d77556719f1c17be0ba5f41fb34",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-056",
+      "fragmentId": "sha256:014ea7ad304e93dc576d2bacc103618eee56ef33325b0ae18c45c96f9fcc2750",
+      "sourceKey": "tru-pace",
+      "sourceClass": "first_party",
+      "captureId": "241d49f1-40d0-5b55-a845-f56ab6ce5cae",
+      "projectionArtifactId": "59edaaf6-4919-557c-adb1-10da3dedf52c",
+      "projectionDigest": "sha256:6c4c064c4fa77753ca726f6f784c24cbcc604342bc6a747dfdf1d13e8d7b8eb2",
+      "selector": {
+        "domPath": "1/0/2/3/0/0/0/1/0",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:8edb6e65d567252084ce14cf54c943579fc0e39b541a60276fad27281ddef054",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-057",
+      "fragmentId": "sha256:65a8815adec70c73ad69de841a68b1474dd3f735e406025db922895a9dce4421",
+      "sourceKey": "tru-product",
+      "sourceClass": "first_party",
+      "captureId": "ab5c8b0f-3f27-5ea4-ad00-9771148daa54",
+      "projectionArtifactId": "42cef373-e401-523a-af45-eb586b235c8c",
+      "projectionDigest": "sha256:872f9fd5adfe086ea2a054a0337255dc2afb44333fa5a015788e8efe3cbea681",
+      "selector": {
+        "domPath": "2/5/1/2/2/1/3/1/2/1/1/1/1/2/1/1/1",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:9cf2fdabe30b188a2495d284ce990f004dbd9152747132ff0adb68bb08592a67",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-058",
+      "fragmentId": "sha256:237473c1bad9da85a30652eaa1459015ed2e8b9fe689eb68d5f74e60006caa3b",
+      "sourceKey": "gl-comparison",
+      "sourceClass": "interested_party_comparison",
+      "captureId": "090d82ef-687b-5230-a581-afd105b572ca",
+      "projectionArtifactId": "a466058e-f04a-56e1-a698-a72d74b6fb38",
+      "projectionDigest": "sha256:61ef5c94266f2866d39c304d7f98f859ef5c2d50e08e7554760da820f689a6d6",
+      "selector": {
+        "domPath": "1/5/2/0/0/1/1/0/3",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:8190277f671c668b277c036f825dc610ce09ba6a64322ee99b44b7825ba163f6",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-059",
+      "fragmentId": "sha256:5eb79bc0142586b32ef95e7e5edf9f26fe068a11482e4a1c290972aabf145609",
+      "sourceKey": "gl-faq",
+      "sourceClass": "first_party",
+      "captureId": "0ecd8e36-539c-57f3-a71f-9991db21e8ad",
+      "projectionArtifactId": "7d89347a-a8f9-5cc0-a2f8-d3e99be59e40",
+      "projectionDigest": "sha256:6e719a8615733e1fed8c8772c96daa8542352b66cf69f4c69947caafc757cef1",
+      "selector": {
+        "domPath": "1/5/4/0/0/2/0/0/1/3/0/0",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:5030165d9267888b873293538f5afe37c7e983d06de7c115d6660220d50ca7ba",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-060",
+      "fragmentId": "sha256:28d81a2f44c14713f28bb740e0f819af06690ad41c83ab9b9e2d6e9d020ce089",
+      "sourceKey": "gl-immune-age-19",
+      "sourceClass": "first_party_marketing",
+      "captureId": "8930d1e6-b8a1-5b4c-aabd-486efb0a051c",
+      "projectionArtifactId": "9042049b-c6ae-5b84-a6f3-7cb0e8259266",
+      "projectionDigest": "sha256:0864ec616615ebce64fa5f533a1ddd36a53cbd12698a7cf59e79ee690fdd80ff",
+      "selector": {
+        "domPath": "1/5/2/0/0/1/1/0/4",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:6482cc6a1a9cf355acd5fb7e8fb170374e468d6f1688ef80ae3ae164e1d3c7d6",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-061",
+      "fragmentId": "sha256:7abd52cea9fa479801c5e73a79df515b6b09742e100d5bf61a3610fb822d7f95",
+      "sourceKey": "gl-research",
+      "sourceClass": "first_party",
+      "captureId": "8426be74-7e6f-559f-ab29-6b354dbed874",
+      "projectionArtifactId": "15949997-2572-5ed3-acaa-b9b8aa447e1d",
+      "projectionDigest": "sha256:df3a0b3fa20b870c96fefb32bf292bf5cbb816b0dfc51fc5d38c38821ff5b00b",
+      "selector": {
+        "domPath": "1/5/3/0/0/0/0/1",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:3b47e081be2bbbe6b11b34d0ff0e5f82101ee73551c23f1627c5f371f0b61391",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-062",
+      "fragmentId": "sha256:f42519e9629d4ac56f30ef89135da2072e840cf5d5f95d98bbd5f65b3a3191d4",
+      "sourceKey": "gl-science",
+      "sourceClass": "first_party",
+      "captureId": "ed7c057c-ce78-5d78-a251-74575f694a52",
+      "projectionArtifactId": "914e0ec1-023e-5f21-a353-c3d8555e26fa",
+      "projectionDigest": "sha256:2d59d02ac2dd964183173e7820448656bdbcd497bfa65a7884fcaee1f3bd70ee",
+      "selector": {
+        "domPath": "1/5/3/2/1/1/0/1/1/0",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:ef3ed326e82c48ef4512b2ce198e84012a50f60d6f946e921131bbbf7a774186",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-063",
+      "fragmentId": "sha256:1433a067e9309fdc8f12a57e3a673b371ea94b8b9d2fed292289090e7f2bcfe1",
+      "sourceKey": "gl-terms",
+      "sourceClass": "first_party",
+      "captureId": "dc5210dc-7826-524e-ad73-27a3baf6c4ae",
+      "projectionArtifactId": "0d3a77f2-20eb-58e0-afac-b932bb55e172",
+      "projectionDigest": "sha256:f3c462cade3dde56db7d70f0e5141798cd18bde96f5cabc3b18923543a9ff896",
+      "selector": {
+        "domPath": "1/9/1/2/0/16",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:ef8ec4c319ca007bbf6873909a172a63d5f59e3d3992b40bc6e65f05c9bade2c",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-064",
+      "fragmentId": "sha256:96db8302b1a7052d3ecece0af23501e7fa9e55cb601da25f9b0910316595d512",
+      "sourceKey": "paper-noise",
+      "sourceClass": "publication",
+      "captureId": "85d9b0d4-34b8-5720-ab3c-012c57b68b1b",
+      "projectionArtifactId": "d1381f18-1073-5580-a9a9-e708017a7333",
+      "projectionDigest": "sha256:81a6d64be46c8af928412cc0216a2e51b0883dd94b72f52e258685ac0071827c",
+      "selector": {
+        "domPath": "2/11/3/1/1/1/3/2/2/1/0/1/2",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:6441a486ee1122cfed7910729a0a4992cad9fcc0633a25ecce9f38d8fd67e08b",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-065",
+      "fragmentId": "sha256:42162c801f530ced38ba7c790753aff778dbe3dd9ee1426e270db016e2f8f2d8",
+      "sourceKey": "paper-omic",
+      "sourceClass": "publication",
+      "captureId": "62ac51e4-d787-56da-a791-4289accab698",
+      "projectionArtifactId": "ca332019-b525-58b3-adc5-51e4830222c0",
+      "projectionDigest": "sha256:9bd090b93b9a9f2ac8f527c6b6c303ff92a5451d245abbf6b8a9332bd18efb9b",
+      "selector": {
+        "domPath": "2/11/3/1/1/1/3/2/2/1/0/2/2",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:75128e19d88420ab2f933dd57bda6ed676f439eefd39246ac11b4b99954b0163",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-066",
+      "fragmentId": "sha256:a1bee53ef11c648f8e169fb14169e6ab55c1eadb783f9e58aeff69194b3072aa",
+      "sourceKey": "paper-pace",
+      "sourceClass": "publication",
+      "captureId": "60f7dd92-6f3f-5205-a08a-cea2d0770489",
+      "projectionArtifactId": "cb9b6f63-800e-5079-afd1-f82fc2a43b06",
+      "projectionDigest": "sha256:87eee3598cf29dab59e1a8c7b70cef756b69a652c0c2787656d3fa02913d2af6",
+      "selector": {
+        "domPath": "2/11/3/1/1/1/3/2/2/1/0/0/4/2",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:ba65099c30b7cbad8260061d3887440c940d0c972bc2ef267c5334e4a1cb1590",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-067",
+      "fragmentId": "sha256:33e9e566ee63f267910c489db42850493c01a8de977025408a46c374c76ec592",
+      "sourceKey": "paper-rectification",
+      "sourceClass": "publication",
+      "captureId": "1f25612c-deab-57eb-ae59-4014898874de",
+      "projectionArtifactId": "6ee4d5c1-7ba4-5f1b-aa37-fdfdfa0843f7",
+      "projectionDigest": "sha256:f1938efb12883570665e191b4cc9fa1f50b5587d875e2105c303b46430e286f1",
+      "selector": {
+        "domPath": "2/12/3/1/5/5/3/5/1/3/1",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:4ef84abef2615087bfcf9942d21023b37b22a2678283608598f629eda0af4c55",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-068",
+      "fragmentId": "sha256:eecb46671f32862e2f7493bd738e4872880b21485d679efcf5f154b208f7d529",
+      "sourceKey": "tru-about",
+      "sourceClass": "first_party",
+      "captureId": "67b3c277-5c66-5ef5-ace8-66aff1d3e736",
+      "projectionArtifactId": "b4573767-03c2-55e9-a771-0385eeff5aa5",
+      "projectionDigest": "sha256:102c76510c12f523e3d67d8795ceb2b20c40e95f055c0038965e6da1e9cedbb4",
+      "selector": {
+        "domPath": "1/0/2/2/0/0/0/1/0/0/2/1",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:0f1d7b60297053d8c46479d624829ac8cc142e9511f9e4ca1c05d4007888e926",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-069",
+      "fragmentId": "sha256:7ad3ffbb7a9e1615958043819002c824b830037ea4157cf63ee0e74f2e91c4fa",
+      "sourceKey": "tru-education",
+      "sourceClass": "first_party",
+      "captureId": "fc2f2733-12a1-566c-ab80-3639d5f4fa10",
+      "projectionArtifactId": "388033a3-c3a4-5b03-af16-f060ba7ac557",
+      "projectionDigest": "sha256:921b6af4badf737907c4b3681d203eba65fab74da2008008e9cb1839a5316b4f",
+      "selector": {
+        "domPath": "1/0/2/1/0/0/0/1/0/1/3/1/1/0/0/0",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:3421aa9b56b5339654048cda7b873dcce5f984086983f00722c955d0cb74b31e",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-070",
+      "fragmentId": "sha256:70f6aca5f4993cf420572025f6a46664106a06e14880949569d0eb02eebceaa7",
+      "sourceKey": "tru-pace",
+      "sourceClass": "first_party",
+      "captureId": "241d49f1-40d0-5b55-a845-f56ab6ce5cae",
+      "projectionArtifactId": "59edaaf6-4919-557c-adb1-10da3dedf52c",
+      "projectionDigest": "sha256:6c4c064c4fa77753ca726f6f784c24cbcc604342bc6a747dfdf1d13e8d7b8eb2",
+      "selector": {
+        "domPath": "1/0/2/3/0/0/0/2/0/1/2/0",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:75ff5ef678006c98e6c24114ee52e7d2be5500a4fa99f20af544c2f5e3d9907a",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-071",
+      "fragmentId": "sha256:72ebea902639cf73f38dc1787d1a0d5e96faf1f80948e0200a46813d37a06d62",
+      "sourceKey": "tru-product",
+      "sourceClass": "first_party",
+      "captureId": "ab5c8b0f-3f27-5ea4-ad00-9771148daa54",
+      "projectionArtifactId": "42cef373-e401-523a-af45-eb586b235c8c",
+      "projectionDigest": "sha256:872f9fd5adfe086ea2a054a0337255dc2afb44333fa5a015788e8efe3cbea681",
+      "selector": {
+        "domPath": "2/5/1/2/4/1/1/1/1/3/0/2",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:85a83c48b382e34df2d4caa1735dc67cce772d79b1cab573848c11a2627afe9d",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-072",
+      "fragmentId": "sha256:7a00e8432e3714cec4588df7d33a501142057b9fdfb5cd481559ac130468741a",
+      "sourceKey": "gl-comparison",
+      "sourceClass": "interested_party_comparison",
+      "captureId": "090d82ef-687b-5230-a581-afd105b572ca",
+      "projectionArtifactId": "a466058e-f04a-56e1-a698-a72d74b6fb38",
+      "projectionDigest": "sha256:61ef5c94266f2866d39c304d7f98f859ef5c2d50e08e7554760da820f689a6d6",
+      "selector": {
+        "domPath": "1/5/2/0/0/1/1/0/4",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:5c996d4a2aeee0041026a76a593475e25f81219c3171d483acb5a47ef1446377",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-073",
+      "fragmentId": "sha256:8649c46f8e7d353a8817215a46c189558304b03a03bb96843b4a1da7b25ab67e",
+      "sourceKey": "gl-faq",
+      "sourceClass": "first_party",
+      "captureId": "0ecd8e36-539c-57f3-a71f-9991db21e8ad",
+      "projectionArtifactId": "7d89347a-a8f9-5cc0-a2f8-d3e99be59e40",
+      "projectionDigest": "sha256:6e719a8615733e1fed8c8772c96daa8542352b66cf69f4c69947caafc757cef1",
+      "selector": {
+        "domPath": "1/5/4/0/0/2/0/0/1/4/0/0",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:ddb8f4fb278dcaf4bb1e8cc1bf8de3c703ddea3ae83f7171d6d1618d15c96e53",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-074",
+      "fragmentId": "sha256:19f9f896682f47c15bb8ca112afc8ea09e23f9b29d3debcd2433cfcd65c5f931",
+      "sourceKey": "gl-immune-age-19",
+      "sourceClass": "first_party_marketing",
+      "captureId": "8930d1e6-b8a1-5b4c-aabd-486efb0a051c",
+      "projectionArtifactId": "9042049b-c6ae-5b84-a6f3-7cb0e8259266",
+      "projectionDigest": "sha256:0864ec616615ebce64fa5f533a1ddd36a53cbd12698a7cf59e79ee690fdd80ff",
+      "selector": {
+        "domPath": "1/5/2/0/0/1/1/0/5",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:774c13f2124f46fd049b0ad6357207992df5fd5eec716c582fcc8389d48a0b97",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-075",
+      "fragmentId": "sha256:47058d58ca63255529e6a5f96a89835e88ade371c10207b6dc986fbb466302c3",
+      "sourceKey": "gl-science",
+      "sourceClass": "first_party",
+      "captureId": "ed7c057c-ce78-5d78-a251-74575f694a52",
+      "projectionArtifactId": "914e0ec1-023e-5f21-a353-c3d8555e26fa",
+      "projectionDigest": "sha256:2d59d02ac2dd964183173e7820448656bdbcd497bfa65a7884fcaee1f3bd70ee",
+      "selector": {
+        "domPath": "1/5/3/2/1/1/0/1/1/1",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:f5a62ff9ea0a32557c743fda3d7f69e7214debbef84d29b2c0c50c66caa93248",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-076",
+      "fragmentId": "sha256:01c43d9d9fefa19e525ccd70c20aff007c2c0daef3828038d88898aee4ce23ce",
+      "sourceKey": "gl-terms",
+      "sourceClass": "first_party",
+      "captureId": "dc5210dc-7826-524e-ad73-27a3baf6c4ae",
+      "projectionArtifactId": "0d3a77f2-20eb-58e0-afac-b932bb55e172",
+      "projectionDigest": "sha256:f3c462cade3dde56db7d70f0e5141798cd18bde96f5cabc3b18923543a9ff896",
+      "selector": {
+        "domPath": "1/9/1/2/0/17",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:c74d21b29ce8f4b92e030c0efb817d520e8dcbfcac8b20c370a99319b52b31a9",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-077",
+      "fragmentId": "sha256:26a39bf95cace30951628e169fc56f2e403b583fdb2b969f910991ea632c0cb2",
+      "sourceKey": "paper-noise",
+      "sourceClass": "publication",
+      "captureId": "85d9b0d4-34b8-5720-ab3c-012c57b68b1b",
+      "projectionArtifactId": "d1381f18-1073-5580-a9a9-e708017a7333",
+      "projectionDigest": "sha256:81a6d64be46c8af928412cc0216a2e51b0883dd94b72f52e258685ac0071827c",
+      "selector": {
+        "domPath": "2/11/3/1/1/1/3/2/2/1/0/1/4/6/0",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:cda368c2b3a0e385ffcbda3cefda410925f63915cdfe00247054d2c1261fca79",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-078",
+      "fragmentId": "sha256:0d604f67df86e8f8e8036c16be75739552ab477ea4dbf903636d537f91c64926",
+      "sourceKey": "paper-omic",
+      "sourceClass": "publication",
+      "captureId": "62ac51e4-d787-56da-a791-4289accab698",
+      "projectionArtifactId": "ca332019-b525-58b3-adc5-51e4830222c0",
+      "projectionDigest": "sha256:9bd090b93b9a9f2ac8f527c6b6c303ff92a5451d245abbf6b8a9332bd18efb9b",
+      "selector": {
+        "domPath": "2/11/3/1/1/1/3/2/2/1/0/2/4",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:a8bb7dc05e474bca5fb5a330b93ef9915cdd04c4bdbb565b237533b2dcf7e20c",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-079",
+      "fragmentId": "sha256:cb1e6c5497677614ce8f736d72e143880a6766be0f09ad81a0c63381b07bc3e5",
+      "sourceKey": "paper-pace",
+      "sourceClass": "publication",
+      "captureId": "60f7dd92-6f3f-5205-a08a-cea2d0770489",
+      "projectionArtifactId": "cb9b6f63-800e-5079-afd1-f82fc2a43b06",
+      "projectionDigest": "sha256:87eee3598cf29dab59e1a8c7b70cef756b69a652c0c2787656d3fa02913d2af6",
+      "selector": {
+        "domPath": "2/11/3/1/1/1/3/2/2/1/0/0/5/2",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:140970e322e1110d6560f3c0a55055df80f76f921f4c14f169ac898741cddef3",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-080",
+      "fragmentId": "sha256:073353e63cac70b0f17877d32c0d1d0f4abe5550766bed45e00174db3b8eb182",
+      "sourceKey": "paper-rectification",
+      "sourceClass": "publication",
+      "captureId": "1f25612c-deab-57eb-ae59-4014898874de",
+      "projectionArtifactId": "6ee4d5c1-7ba4-5f1b-aa37-fdfdfa0843f7",
+      "projectionDigest": "sha256:f1938efb12883570665e191b4cc9fa1f50b5587d875e2105c303b46430e286f1",
+      "selector": {
+        "domPath": "2/12/3/1/5/9/5/3",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:3d7644bbdbe9df12a0d9ad59c0bc8fca278b35dc7097e42ab009c84df963584b",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-081",
+      "fragmentId": "sha256:836b41a6080b2787f239c4e13566986580f9e7b21df2aec874022474cec7ed21",
+      "sourceKey": "tru-about",
+      "sourceClass": "first_party",
+      "captureId": "67b3c277-5c66-5ef5-ace8-66aff1d3e736",
+      "projectionArtifactId": "b4573767-03c2-55e9-a771-0385eeff5aa5",
+      "projectionDigest": "sha256:102c76510c12f523e3d67d8795ceb2b20c40e95f055c0038965e6da1e9cedbb4",
+      "selector": {
+        "domPath": "1/0/2/3/0/0/0/2/0/1/0/0/0/0/2",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:0ca94af92962879740d36dee33aedf688bb880ce4cb579e116af4bc000112a94",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-082",
+      "fragmentId": "sha256:2cea7a71d18f5058049fd85972d099f768252c4b735398ed9e0ee28939cd08a0",
+      "sourceKey": "tru-education",
+      "sourceClass": "first_party",
+      "captureId": "fc2f2733-12a1-566c-ab80-3639d5f4fa10",
+      "projectionArtifactId": "388033a3-c3a4-5b03-af16-f060ba7ac557",
+      "projectionDigest": "sha256:921b6af4badf737907c4b3681d203eba65fab74da2008008e9cb1839a5316b4f",
+      "selector": {
+        "domPath": "1/0/2/1/0/0/0/1/0/1/3/1/1/2/0/0",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:bd5b9b62499dce5ef16bb2cf6abfe0f327e2ef06c18b622d7b0797533e0c30fb",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-083",
+      "fragmentId": "sha256:aa844a0d248c56d12dd055c64020286599b6c41151fe9dea265c0bd046528840",
+      "sourceKey": "tru-pace",
+      "sourceClass": "first_party",
+      "captureId": "241d49f1-40d0-5b55-a845-f56ab6ce5cae",
+      "projectionArtifactId": "59edaaf6-4919-557c-adb1-10da3dedf52c",
+      "projectionDigest": "sha256:6c4c064c4fa77753ca726f6f784c24cbcc604342bc6a747dfdf1d13e8d7b8eb2",
+      "selector": {
+        "domPath": "1/0/2/4/0/0/0/0/1/0",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:16b46055601ccb4dc0c279ce1564ca5d1459675a8b8c1f694025d5da6a951dc4",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-084",
+      "fragmentId": "sha256:7be7e7def39ca458e1cd7b3c4120c1d0937c6620973094b01f7fce5406b3323f",
+      "sourceKey": "tru-product",
+      "sourceClass": "first_party",
+      "captureId": "ab5c8b0f-3f27-5ea4-ad00-9771148daa54",
+      "projectionArtifactId": "42cef373-e401-523a-af45-eb586b235c8c",
+      "projectionDigest": "sha256:872f9fd5adfe086ea2a054a0337255dc2afb44333fa5a015788e8efe3cbea681",
+      "selector": {
+        "domPath": "2/5/1/2/4/1/1/1/1/3/0/2/1/3/1",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:b389f83ba924a0b5c83eda62acf55dadda344995810f8e00e2b05bc3b3807c0f",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-085",
+      "fragmentId": "sha256:3a3d023c089c5fff97734390ac984af9fcb6d9dc1430daf4aa8e24dd903cee08",
+      "sourceKey": "gl-comparison",
+      "sourceClass": "interested_party_comparison",
+      "captureId": "090d82ef-687b-5230-a581-afd105b572ca",
+      "projectionArtifactId": "a466058e-f04a-56e1-a698-a72d74b6fb38",
+      "projectionDigest": "sha256:61ef5c94266f2866d39c304d7f98f859ef5c2d50e08e7554760da820f689a6d6",
+      "selector": {
+        "domPath": "1/5/2/0/0/1/1/0/6",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:5750efed2091634d7f26090895ecafab840e7b8de96744e11de08923549fa61c",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-086",
+      "fragmentId": "sha256:ce46d9b2cc6df4a26bd6689161bfeab8c982701f5e385c97c924af0081baa453",
+      "sourceKey": "gl-faq",
+      "sourceClass": "first_party",
+      "captureId": "0ecd8e36-539c-57f3-a71f-9991db21e8ad",
+      "projectionArtifactId": "7d89347a-a8f9-5cc0-a2f8-d3e99be59e40",
+      "projectionDigest": "sha256:6e719a8615733e1fed8c8772c96daa8542352b66cf69f4c69947caafc757cef1",
+      "selector": {
+        "domPath": "1/5/4/0/0/2/0/0/1/6/0/0",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:40a7cb42ca8ba444036ad1327ea53bea8a9d21b6e604959bf03a3b0109440bc3",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-087",
+      "fragmentId": "sha256:1255afba680ab32295afb4c9797b9c842a338f5a4876d8c85a25c857d96a1450",
+      "sourceKey": "gl-immune-age-19",
+      "sourceClass": "first_party_marketing",
+      "captureId": "8930d1e6-b8a1-5b4c-aabd-486efb0a051c",
+      "projectionArtifactId": "9042049b-c6ae-5b84-a6f3-7cb0e8259266",
+      "projectionDigest": "sha256:0864ec616615ebce64fa5f533a1ddd36a53cbd12698a7cf59e79ee690fdd80ff",
+      "selector": {
+        "domPath": "1/5/2/0/0/1/1/0/7/5",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:905efbc71ac527963aa7867be6c4e95b4a005923e0709cdf7497537c93db340c",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-088",
+      "fragmentId": "sha256:2e9e3db506beaa2d04d34f234142cd4be2aee2281c9243734c62c66d5f6caef1",
+      "sourceKey": "gl-science",
+      "sourceClass": "first_party",
+      "captureId": "ed7c057c-ce78-5d78-a251-74575f694a52",
+      "projectionArtifactId": "914e0ec1-023e-5f21-a353-c3d8555e26fa",
+      "projectionDigest": "sha256:2d59d02ac2dd964183173e7820448656bdbcd497bfa65a7884fcaee1f3bd70ee",
+      "selector": {
+        "domPath": "1/5/3/2/1/1/1/1/2",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:5f8d0e145c584fc7a097d9017f9611da210db77aae44600c31af5eb36ff2e58a",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-089",
+      "fragmentId": "sha256:3213da8c6f14fb0c43c7e861c708c5b2333129a2b8a949d9921286a1e657cedc",
+      "sourceKey": "gl-terms",
+      "sourceClass": "first_party",
+      "captureId": "dc5210dc-7826-524e-ad73-27a3baf6c4ae",
+      "projectionArtifactId": "0d3a77f2-20eb-58e0-afac-b932bb55e172",
+      "projectionDigest": "sha256:f3c462cade3dde56db7d70f0e5141798cd18bde96f5cabc3b18923543a9ff896",
+      "selector": {
+        "domPath": "1/9/1/2/0/21/2",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:09976a980d62ff6a813978aeab0e2bbe8b975e246c0b1340a02d37c227cfd64a",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-090",
+      "fragmentId": "sha256:bd268507ec907f6a62e68ac8991a1caa67c03efa0ac37319f4a3d48343046f9c",
+      "sourceKey": "paper-noise",
+      "sourceClass": "publication",
+      "captureId": "85d9b0d4-34b8-5720-ab3c-012c57b68b1b",
+      "projectionArtifactId": "d1381f18-1073-5580-a9a9-e708017a7333",
+      "projectionDigest": "sha256:81a6d64be46c8af928412cc0216a2e51b0883dd94b72f52e258685ac0071827c",
+      "selector": {
+        "domPath": "2/11/3/1/1/1/3/2/2/1/0/1/5",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:9d2e0cbd7ef7200e8de84a5cd001d005d7962a341d3468fea773454b862c538a",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-091",
+      "fragmentId": "sha256:628a5fec2538969cb92a2eb6629fd9ab52bfd4e6297ecbd6a4cf0820f60d6f40",
+      "sourceKey": "paper-omic",
+      "sourceClass": "publication",
+      "captureId": "62ac51e4-d787-56da-a791-4289accab698",
+      "projectionArtifactId": "ca332019-b525-58b3-adc5-51e4830222c0",
+      "projectionDigest": "sha256:9bd090b93b9a9f2ac8f527c6b6c303ff92a5451d245abbf6b8a9332bd18efb9b",
+      "selector": {
+        "domPath": "2/11/3/1/1/1/3/2/2/1/0/2/6",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:cf19535af74391ad5173221293e711d9513c7ce4a5725eb97ae4f5ef39da9eff",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-092",
+      "fragmentId": "sha256:76c13a59ec091e73a70b5fdb650d833d916027506ccde6b1cc89283394ffbe64",
+      "sourceKey": "paper-pace",
+      "sourceClass": "publication",
+      "captureId": "60f7dd92-6f3f-5205-a08a-cea2d0770489",
+      "projectionArtifactId": "cb9b6f63-800e-5079-afd1-f82fc2a43b06",
+      "projectionDigest": "sha256:87eee3598cf29dab59e1a8c7b70cef756b69a652c0c2787656d3fa02913d2af6",
+      "selector": {
+        "domPath": "2/11/3/1/1/1/3/2/2/1/0/0/7/0",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:688648c1fa267c3852f2f60d3167f120f6c1b9f2c918b06eb5c734c5bba39f37",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-093",
+      "fragmentId": "sha256:585203062a252c9f98475d1e9e1a5f6e63dea74f0c7f8eb9b9c1faf242d75b05",
+      "sourceKey": "paper-rectification",
+      "sourceClass": "publication",
+      "captureId": "1f25612c-deab-57eb-ae59-4014898874de",
+      "projectionArtifactId": "6ee4d5c1-7ba4-5f1b-aa37-fdfdfa0843f7",
+      "projectionDigest": "sha256:f1938efb12883570665e191b4cc9fa1f50b5587d875e2105c303b46430e286f1",
+      "selector": {
+        "domPath": "2/12/3/1/5/9/5/5",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:8afd2482faaef1ee43a9b7ee01f4c625dc50aa0c8de7b9fcf2e237a535361937",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-094",
+      "fragmentId": "sha256:319ac61401e96a4a0d6ff593404f265fba4581ecc413a89e6f64e6c1d9e16233",
+      "sourceKey": "tru-about",
+      "sourceClass": "first_party",
+      "captureId": "67b3c277-5c66-5ef5-ace8-66aff1d3e736",
+      "projectionArtifactId": "b4573767-03c2-55e9-a771-0385eeff5aa5",
+      "projectionDigest": "sha256:102c76510c12f523e3d67d8795ceb2b20c40e95f055c0038965e6da1e9cedbb4",
+      "selector": {
+        "domPath": "1/0/2/3/0/0/0/2/0/1/1/0/0/0/0",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:d171725da209493868c082380dcad9c735d3c26ac5247c23b406476df9e2a3a1",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-095",
+      "fragmentId": "sha256:717fb66f55286f20103aeedd3a687977dcd0aec61336ad43fea4792a71746d82",
+      "sourceKey": "tru-education",
+      "sourceClass": "first_party",
+      "captureId": "fc2f2733-12a1-566c-ab80-3639d5f4fa10",
+      "projectionArtifactId": "388033a3-c3a4-5b03-af16-f060ba7ac557",
+      "projectionDigest": "sha256:921b6af4badf737907c4b3681d203eba65fab74da2008008e9cb1839a5316b4f",
+      "selector": {
+        "domPath": "1/0/2/2/0/0/0/2/0/0/2/0",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:3a65d6f90e4b6699782084617705ee28b16aa456fa256be79367650d7b99c39e",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-096",
+      "fragmentId": "sha256:6fb98e5cd128a3510330522e677be30171103efe7ba466b34672ee95a740fdcc",
+      "sourceKey": "tru-pace",
+      "sourceClass": "first_party",
+      "captureId": "241d49f1-40d0-5b55-a845-f56ab6ce5cae",
+      "projectionArtifactId": "59edaaf6-4919-557c-adb1-10da3dedf52c",
+      "projectionDigest": "sha256:6c4c064c4fa77753ca726f6f784c24cbcc604342bc6a747dfdf1d13e8d7b8eb2",
+      "selector": {
+        "domPath": "1/0/2/4/0/0/0/0/2/0",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:01861152600865a834bbd9f9c80d8e3a2970659433bfb8a1b915d0ed520a045b",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-097",
+      "fragmentId": "sha256:d3d09dacaa1205226c5877922b470e4d8d6073e6ce98ea7641333b3a7363afcb",
+      "sourceKey": "tru-product",
+      "sourceClass": "first_party",
+      "captureId": "ab5c8b0f-3f27-5ea4-ad00-9771148daa54",
+      "projectionArtifactId": "42cef373-e401-523a-af45-eb586b235c8c",
+      "projectionDigest": "sha256:872f9fd5adfe086ea2a054a0337255dc2afb44333fa5a015788e8efe3cbea681",
+      "selector": {
+        "domPath": "2/5/1/2/4/1/1/1/1/3/0/2/1/3/1/1/3/0",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:e2ced6696dc0a2482d5e450e70bdae5e09b31b12b481a69a5e6d88225720e7b2",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-098",
+      "fragmentId": "sha256:c70f625192bcd6bb4f7e330331260f01fdf9a3186b99ed37f7da4d6b3b895eee",
+      "sourceKey": "gl-comparison",
+      "sourceClass": "interested_party_comparison",
+      "captureId": "090d82ef-687b-5230-a581-afd105b572ca",
+      "projectionArtifactId": "a466058e-f04a-56e1-a698-a72d74b6fb38",
+      "projectionDigest": "sha256:61ef5c94266f2866d39c304d7f98f859ef5c2d50e08e7554760da820f689a6d6",
+      "selector": {
+        "domPath": "1/5/2/0/0/1/1/0/7",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:e28df3e9b06339192427d5da743841e698ca76d46e1ea3d70feda71667cbbd84",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-099",
+      "fragmentId": "sha256:68c791f8a787e1ab5cbdf0dcb8f315db149529f9f05b1ca61a8a06854f1a3f27",
+      "sourceKey": "gl-faq",
+      "sourceClass": "first_party",
+      "captureId": "0ecd8e36-539c-57f3-a71f-9991db21e8ad",
+      "projectionArtifactId": "7d89347a-a8f9-5cc0-a2f8-d3e99be59e40",
+      "projectionDigest": "sha256:6e719a8615733e1fed8c8772c96daa8542352b66cf69f4c69947caafc757cef1",
+      "selector": {
+        "domPath": "1/5/4/0/0/2/0/0/1/9/0/0",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:e69e7d54c8981d3a70a9c5b58b2992aad2a3e7be1e69e41cbca40220053b74c1",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-100",
+      "fragmentId": "sha256:5a5ac875a5b13dac1b9ffb1ab3c9e4a3d72c6bce1d34bf696147552f1437c425",
+      "sourceKey": "gl-immune-age-19",
+      "sourceClass": "first_party_marketing",
+      "captureId": "8930d1e6-b8a1-5b4c-aabd-486efb0a051c",
+      "projectionArtifactId": "9042049b-c6ae-5b84-a6f3-7cb0e8259266",
+      "projectionDigest": "sha256:0864ec616615ebce64fa5f533a1ddd36a53cbd12698a7cf59e79ee690fdd80ff",
+      "selector": {
+        "domPath": "1/5/2/0/0/1/1/0/7/7",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:37e9797ca605cb8411d333a48222bdfbb1bc5f8fcabc64891dfeed7c3e5846eb",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-101",
+      "fragmentId": "sha256:9d92f74ba288f71ad1992df97bf591d419529ede6649cd7ca3668e3ae97a9947",
+      "sourceKey": "gl-science",
+      "sourceClass": "first_party",
+      "captureId": "ed7c057c-ce78-5d78-a251-74575f694a52",
+      "projectionArtifactId": "914e0ec1-023e-5f21-a353-c3d8555e26fa",
+      "projectionDigest": "sha256:2d59d02ac2dd964183173e7820448656bdbcd497bfa65a7884fcaee1f3bd70ee",
+      "selector": {
+        "domPath": "1/5/3/3/0/2/0/0/0/1/0",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:0416231df52cb936301977c09c074d9a2ba0562bc880692bfff73a5e9336f9f2",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-102",
+      "fragmentId": "sha256:ba72901a3f9fd32889fd39a5fe55e3a25590d34bfbc9d609615776b5f93b5cc2",
+      "sourceKey": "gl-terms",
+      "sourceClass": "first_party",
+      "captureId": "dc5210dc-7826-524e-ad73-27a3baf6c4ae",
+      "projectionArtifactId": "0d3a77f2-20eb-58e0-afac-b932bb55e172",
+      "projectionDigest": "sha256:f3c462cade3dde56db7d70f0e5141798cd18bde96f5cabc3b18923543a9ff896",
+      "selector": {
+        "domPath": "1/9/1/2/0/24",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:0e3a69e0907164ac6e25c8b728ee6cd12a7b6cb9dab15b35c84ac4f782842e4e",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-103",
+      "fragmentId": "sha256:111781dead9453bfcf07b03c20857726c78d2686ec0fc53657f5c65a8ac7b005",
+      "sourceKey": "paper-noise",
+      "sourceClass": "publication",
+      "captureId": "85d9b0d4-34b8-5720-ab3c-012c57b68b1b",
+      "projectionArtifactId": "d1381f18-1073-5580-a9a9-e708017a7333",
+      "projectionDigest": "sha256:81a6d64be46c8af928412cc0216a2e51b0883dd94b72f52e258685ac0071827c",
+      "selector": {
+        "domPath": "2/11/3/1/1/1/3/2/2/1/0/1/7",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:bd5c6895eade4faf837e1859b30bb2b02f7bdc1a415ce9ea4f5679f3c251d61a",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-104",
+      "fragmentId": "sha256:01a5a0a30f62e695428b9d262dcaf63865da47a4382104607b8ffe11e6448f35",
+      "sourceKey": "paper-omic",
+      "sourceClass": "publication",
+      "captureId": "62ac51e4-d787-56da-a791-4289accab698",
+      "projectionArtifactId": "ca332019-b525-58b3-adc5-51e4830222c0",
+      "projectionDigest": "sha256:9bd090b93b9a9f2ac8f527c6b6c303ff92a5451d245abbf6b8a9332bd18efb9b",
+      "selector": {
+        "domPath": "2/11/3/1/1/1/3/2/2/1/0/2/8",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:7c60a49154756d1ef8069a7d2cbcf6bd7d6c7df64377477d16ed7dc4b8a142e0",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-105",
+      "fragmentId": "sha256:a0d255f691ef9d31aeea8df8a185f915cceb2c791ca561b2165c096007d9585b",
+      "sourceKey": "paper-pace",
+      "sourceClass": "publication",
+      "captureId": "60f7dd92-6f3f-5205-a08a-cea2d0770489",
+      "projectionArtifactId": "cb9b6f63-800e-5079-afd1-f82fc2a43b06",
+      "projectionDigest": "sha256:87eee3598cf29dab59e1a8c7b70cef756b69a652c0c2787656d3fa02913d2af6",
+      "selector": {
+        "domPath": "2/11/3/1/1/1/3/2/2/1/0/1/2",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:9c27cb857040fd022d46a29e3279274e6ec8985f9993d25764ec2430ebebf6eb",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-106",
+      "fragmentId": "sha256:4a3985032fe7bae71350af26a4d97eafc5908a8f7b38cfbe8a0ab51f3cfdefcc",
+      "sourceKey": "paper-rectification",
+      "sourceClass": "publication",
+      "captureId": "1f25612c-deab-57eb-ae59-4014898874de",
+      "projectionArtifactId": "6ee4d5c1-7ba4-5f1b-aa37-fdfdfa0843f7",
+      "projectionDigest": "sha256:f1938efb12883570665e191b4cc9fa1f50b5587d875e2105c303b46430e286f1",
+      "selector": {
+        "domPath": "2/12/3/1/5/9/5/9",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:c9c30a863e26a51abee0891bffc558e4f3236278208be7dd6a769c70bff654ac",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-107",
+      "fragmentId": "sha256:7ecf3917c6493c112cecccb6e9e933b0146e9a19a41ed7a3d03f8dac08f7611d",
+      "sourceKey": "tru-about",
+      "sourceClass": "first_party",
+      "captureId": "67b3c277-5c66-5ef5-ace8-66aff1d3e736",
+      "projectionArtifactId": "b4573767-03c2-55e9-a771-0385eeff5aa5",
+      "projectionDigest": "sha256:102c76510c12f523e3d67d8795ceb2b20c40e95f055c0038965e6da1e9cedbb4",
+      "selector": {
+        "domPath": "1/0/2/3/0/0/0/2/0/1/1/0/0/0/2",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:093d0d13ad69e36a599dbc8ce5603cbd504d951b84f191849301e125be34370f",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-108",
+      "fragmentId": "sha256:2221cb5d3deaa08bce7649a50a998ec2f4f709291bfe35513320256573d5f837",
+      "sourceKey": "tru-education",
+      "sourceClass": "first_party",
+      "captureId": "fc2f2733-12a1-566c-ab80-3639d5f4fa10",
+      "projectionArtifactId": "388033a3-c3a4-5b03-af16-f060ba7ac557",
+      "projectionDigest": "sha256:921b6af4badf737907c4b3681d203eba65fab74da2008008e9cb1839a5316b4f",
+      "selector": {
+        "domPath": "1/0/2/2/0/0/0/2/0/1/2/0",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:978aa96d1a5b3346a5c6a1edd98e8cf2ab2a9735db758001467be99d65460a91",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-109",
+      "fragmentId": "sha256:cf496a57a76719f5a33c28870de33f3e5abeded446ab62b1926653084848cced",
+      "sourceKey": "tru-pace",
+      "sourceClass": "first_party",
+      "captureId": "241d49f1-40d0-5b55-a845-f56ab6ce5cae",
+      "projectionArtifactId": "59edaaf6-4919-557c-adb1-10da3dedf52c",
+      "projectionDigest": "sha256:6c4c064c4fa77753ca726f6f784c24cbcc604342bc6a747dfdf1d13e8d7b8eb2",
+      "selector": {
+        "domPath": "1/0/2/5/0/0/0/0/1/0",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:6d9df62cff17fa99fe0c1ee07b142da259f580a03194f5d135441c1ad4d17df6",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-110",
+      "fragmentId": "sha256:c77cb21c399e266177244525dc60823a2633ca1259f668cb36f69c4f0b3d2d79",
+      "sourceKey": "tru-product",
+      "sourceClass": "first_party",
+      "captureId": "ab5c8b0f-3f27-5ea4-ad00-9771148daa54",
+      "projectionArtifactId": "42cef373-e401-523a-af45-eb586b235c8c",
+      "projectionDigest": "sha256:872f9fd5adfe086ea2a054a0337255dc2afb44333fa5a015788e8efe3cbea681",
+      "selector": {
+        "domPath": "2/5/1/2/4/1/1/1/1/3/0/2/1/3/1/1/3/1",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:c9c84da30dde28c5c3377de0d1ad3918f20e0125e4d8e58284918e0bb0e4605b",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-111",
+      "fragmentId": "sha256:702fd9b3ac2a9b08014fb0a87450220dd83b5626dee92fa2f74e007a1b7ddb4a",
+      "sourceKey": "gl-comparison",
+      "sourceClass": "interested_party_comparison",
+      "captureId": "090d82ef-687b-5230-a581-afd105b572ca",
+      "projectionArtifactId": "a466058e-f04a-56e1-a698-a72d74b6fb38",
+      "projectionDigest": "sha256:61ef5c94266f2866d39c304d7f98f859ef5c2d50e08e7554760da820f689a6d6",
+      "selector": {
+        "domPath": "1/5/2/0/0/1/1/0/8",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:9064135e27f32e9df7caa40221c79101abc8d165d49e9caca93bd23de82ef936",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-112",
+      "fragmentId": "sha256:475ed3d8dde46948f6249d0ada81377fb35a6b0255836d7a20e9e20b78467aad",
+      "sourceKey": "gl-faq",
+      "sourceClass": "first_party",
+      "captureId": "0ecd8e36-539c-57f3-a71f-9991db21e8ad",
+      "projectionArtifactId": "7d89347a-a8f9-5cc0-a2f8-d3e99be59e40",
+      "projectionDigest": "sha256:6e719a8615733e1fed8c8772c96daa8542352b66cf69f4c69947caafc757cef1",
+      "selector": {
+        "domPath": "1/5/4/0/0/2/0/0/1/11/0/0",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:a5d9680a3e03a8e9c1743a36fd135cd12391a7a41b8b19b8f466ce89915879cd",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-113",
+      "fragmentId": "sha256:44bcd05fedd324798abf9395afd7e25ea5010084d3c4dd344cece8e1ca876b9c",
+      "sourceKey": "gl-immune-age-19",
+      "sourceClass": "first_party_marketing",
+      "captureId": "8930d1e6-b8a1-5b4c-aabd-486efb0a051c",
+      "projectionArtifactId": "9042049b-c6ae-5b84-a6f3-7cb0e8259266",
+      "projectionDigest": "sha256:0864ec616615ebce64fa5f533a1ddd36a53cbd12698a7cf59e79ee690fdd80ff",
+      "selector": {
+        "domPath": "1/5/2/0/0/1/1/0/9",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:872e103ff812c9616ffccc6a8fa71cbce93a3a397e78397e2f0a7e70f7c75e2f",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-114",
+      "fragmentId": "sha256:3be87a3d41c64d76bc825f1783fc8789a2756efad2fb08c31b460e79feb7b319",
+      "sourceKey": "gl-science",
+      "sourceClass": "first_party",
+      "captureId": "ed7c057c-ce78-5d78-a251-74575f694a52",
+      "projectionArtifactId": "914e0ec1-023e-5f21-a353-c3d8555e26fa",
+      "projectionDigest": "sha256:2d59d02ac2dd964183173e7820448656bdbcd497bfa65a7884fcaee1f3bd70ee",
+      "selector": {
+        "domPath": "1/5/3/3/0/2/0/0/0/1/1",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:9f8436a87b13bbc226826d90234ee40927443df8669592a3b6d4e55e4ea18081",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-115",
+      "fragmentId": "sha256:47404612d16ae1835b3b82b10412a316a649092fbf61a8ed173a72a4ded2c4c6",
+      "sourceKey": "gl-terms",
+      "sourceClass": "first_party",
+      "captureId": "dc5210dc-7826-524e-ad73-27a3baf6c4ae",
+      "projectionArtifactId": "0d3a77f2-20eb-58e0-afac-b932bb55e172",
+      "projectionDigest": "sha256:f3c462cade3dde56db7d70f0e5141798cd18bde96f5cabc3b18923543a9ff896",
+      "selector": {
+        "domPath": "1/9/1/2/0/25",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:aa948020e4243fce44a1b00161dac39b899e66aac997e75818222993c56bbc02",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-116",
+      "fragmentId": "sha256:a568cf39cba915c07a00c9c2f9fb2fa153e8afb4a818b1ad2a86eb372d723e65",
+      "sourceKey": "paper-noise",
+      "sourceClass": "publication",
+      "captureId": "85d9b0d4-34b8-5720-ab3c-012c57b68b1b",
+      "projectionArtifactId": "d1381f18-1073-5580-a9a9-e708017a7333",
+      "projectionDigest": "sha256:81a6d64be46c8af928412cc0216a2e51b0883dd94b72f52e258685ac0071827c",
+      "selector": {
+        "domPath": "2/11/3/1/1/1/3/2/2/1/0/1/9",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:7dcc6a422e5b190588004e593cbb6c83e03bb8efebdcf8d1ebf7e7eac8661d43",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-117",
+      "fragmentId": "sha256:d0406f9453dade19f7ede79a8ffa24474bc655c3e9b4a996548c2f3f45068ea0",
+      "sourceKey": "paper-omic",
+      "sourceClass": "publication",
+      "captureId": "62ac51e4-d787-56da-a791-4289accab698",
+      "projectionArtifactId": "ca332019-b525-58b3-adc5-51e4830222c0",
+      "projectionDigest": "sha256:9bd090b93b9a9f2ac8f527c6b6c303ff92a5451d245abbf6b8a9332bd18efb9b",
+      "selector": {
+        "domPath": "2/11/3/1/1/1/3/2/2/1/0/2/10",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:a5e712bf63b49f34375317b9fa43158aca17eaedaadca30d1fa7aa01e7542566",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-118",
+      "fragmentId": "sha256:2b812dd7d7cb2f6e92248b761522e436ecd1bbcaca3d07b1ea6abb0c5a1ed38c",
+      "sourceKey": "paper-pace",
+      "sourceClass": "publication",
+      "captureId": "60f7dd92-6f3f-5205-a08a-cea2d0770489",
+      "projectionArtifactId": "cb9b6f63-800e-5079-afd1-f82fc2a43b06",
+      "projectionDigest": "sha256:87eee3598cf29dab59e1a8c7b70cef756b69a652c0c2787656d3fa02913d2af6",
+      "selector": {
+        "domPath": "2/11/3/1/1/1/3/2/2/1/0/1/4",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:8e1857bef946db4f2cd3eabafaee099e183cd8d7eef11ad614b65b59ae29beb9",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-119",
+      "fragmentId": "sha256:693ef8bd7dcb18722eb9f710e2ecb4d6d9efa964cfbb1e384fea54dcd9ece49d",
+      "sourceKey": "paper-rectification",
+      "sourceClass": "publication",
+      "captureId": "1f25612c-deab-57eb-ae59-4014898874de",
+      "projectionArtifactId": "6ee4d5c1-7ba4-5f1b-aa37-fdfdfa0843f7",
+      "projectionDigest": "sha256:f1938efb12883570665e191b4cc9fa1f50b5587d875e2105c303b46430e286f1",
+      "selector": {
+        "domPath": "2/12/3/1/5/11/1/0/1/0",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:83b73212663b24be6e9ebea82c7fb62fb07bf13774472cce5c15b74f6a8374c7",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-120",
+      "fragmentId": "sha256:c7c8dd7ecf5c77f0555db3c86a580ee55678bc2a2a2f3ef010491ecf261cc8bc",
+      "sourceKey": "tru-about",
+      "sourceClass": "first_party",
+      "captureId": "67b3c277-5c66-5ef5-ace8-66aff1d3e736",
+      "projectionArtifactId": "b4573767-03c2-55e9-a771-0385eeff5aa5",
+      "projectionDigest": "sha256:102c76510c12f523e3d67d8795ceb2b20c40e95f055c0038965e6da1e9cedbb4",
+      "selector": {
+        "domPath": "1/0/2/3/0/0/0/2/0/1/2/0/0/0/2",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:64d1c60220416e0b47504e38db3aad2967ec62ae0575fe7e57a5ed98ea8acbd6",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-121",
+      "fragmentId": "sha256:7934bc6781384781a04db96282dcde973a8ca328c461bd599157828bdd59d925",
+      "sourceKey": "tru-education",
+      "sourceClass": "first_party",
+      "captureId": "fc2f2733-12a1-566c-ab80-3639d5f4fa10",
+      "projectionArtifactId": "388033a3-c3a4-5b03-af16-f060ba7ac557",
+      "projectionDigest": "sha256:921b6af4badf737907c4b3681d203eba65fab74da2008008e9cb1839a5316b4f",
+      "selector": {
+        "domPath": "1/0/2/3/0/0/0/2/1/0/0/2",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:9e503a84a27a48d611b791861a256ee3f5edf2eb6d27c67458d9139632daa4f2",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-122",
+      "fragmentId": "sha256:e1c1e7894c26bea07c6fc8bfdb23e297bad8e41657aaa28f69830cbe15f37fc7",
+      "sourceKey": "tru-product",
+      "sourceClass": "first_party",
+      "captureId": "ab5c8b0f-3f27-5ea4-ad00-9771148daa54",
+      "projectionArtifactId": "42cef373-e401-523a-af45-eb586b235c8c",
+      "projectionDigest": "sha256:872f9fd5adfe086ea2a054a0337255dc2afb44333fa5a015788e8efe3cbea681",
+      "selector": {
+        "domPath": "2/5/1/5/1/3/4/1/0/3/1/3/2/1/4",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:2d7abb4de7f3e7016fd0fe461c810ec7c5528dde01fc64c06b44288bf49a27f6",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-123",
+      "fragmentId": "sha256:e4acbe4a55bf95d5c0e97d5d7ba5abbeb2200e2d7011ca193bc7fa2f2190fdd5",
+      "sourceKey": "gl-comparison",
+      "sourceClass": "interested_party_comparison",
+      "captureId": "090d82ef-687b-5230-a581-afd105b572ca",
+      "projectionArtifactId": "a466058e-f04a-56e1-a698-a72d74b6fb38",
+      "projectionDigest": "sha256:61ef5c94266f2866d39c304d7f98f859ef5c2d50e08e7554760da820f689a6d6",
+      "selector": {
+        "domPath": "1/5/2/0/0/1/1/0/9",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:44a6cc82886ce8726866e93b58649a37c535cbf1e818eec2a9d83ef8ec36a171",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-124",
+      "fragmentId": "sha256:320f4c785991c1cf7107abe6f1ee836a67a2052d02b2485b43c313a5f3db9d62",
+      "sourceKey": "gl-faq",
+      "sourceClass": "first_party",
+      "captureId": "0ecd8e36-539c-57f3-a71f-9991db21e8ad",
+      "projectionArtifactId": "7d89347a-a8f9-5cc0-a2f8-d3e99be59e40",
+      "projectionDigest": "sha256:6e719a8615733e1fed8c8772c96daa8542352b66cf69f4c69947caafc757cef1",
+      "selector": {
+        "domPath": "1/5/4/0/0/2/0/0/1/12/0/0",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:c238fb03326f17333178c9a845595ed9c06591d811fd65b12fe16661fab01019",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-125",
+      "fragmentId": "sha256:15d11f44487c6034c2618d9fb1373529d6ec40eec65c665dbad83a7aff07c6db",
+      "sourceKey": "gl-immune-age-19",
+      "sourceClass": "first_party_marketing",
+      "captureId": "8930d1e6-b8a1-5b4c-aabd-486efb0a051c",
+      "projectionArtifactId": "9042049b-c6ae-5b84-a6f3-7cb0e8259266",
+      "projectionDigest": "sha256:0864ec616615ebce64fa5f533a1ddd36a53cbd12698a7cf59e79ee690fdd80ff",
+      "selector": {
+        "domPath": "1/5/2/0/0/1/1/0/10",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:f03529bb46312c1c2848f45a3eeed2daea8f42c7f25c92fa50a465fe21276afb",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-126",
+      "fragmentId": "sha256:133cdd1ec74320ad7c2214658ea4a17582b40284423d2749f04e29a99d3baa82",
+      "sourceKey": "gl-science",
+      "sourceClass": "first_party",
+      "captureId": "ed7c057c-ce78-5d78-a251-74575f694a52",
+      "projectionArtifactId": "914e0ec1-023e-5f21-a353-c3d8555e26fa",
+      "projectionDigest": "sha256:2d59d02ac2dd964183173e7820448656bdbcd497bfa65a7884fcaee1f3bd70ee",
+      "selector": {
+        "domPath": "1/5/3/3/0/2/0/0/1/1/0",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:2de5f117a880b217f2fac94c8799d1a98d8a995ac1a043d8c13581006ce4e865",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-127",
+      "fragmentId": "sha256:f9124b124f1d16b4a2f2c4073e9910ec21e9da188ad5cd14df93b74fc5ac1cd6",
+      "sourceKey": "gl-terms",
+      "sourceClass": "first_party",
+      "captureId": "dc5210dc-7826-524e-ad73-27a3baf6c4ae",
+      "projectionArtifactId": "0d3a77f2-20eb-58e0-afac-b932bb55e172",
+      "projectionDigest": "sha256:f3c462cade3dde56db7d70f0e5141798cd18bde96f5cabc3b18923543a9ff896",
+      "selector": {
+        "domPath": "1/9/1/2/0/28/0",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:6527cff0bd44559fa22168c799138b155dca2301de615c5c944959754db03a57",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-128",
+      "fragmentId": "sha256:2b4f4d2667d1355550807df7d7c6ca7fae62cdb62624018465677742d90aeb6c",
+      "sourceKey": "paper-noise",
+      "sourceClass": "publication",
+      "captureId": "85d9b0d4-34b8-5720-ab3c-012c57b68b1b",
+      "projectionArtifactId": "d1381f18-1073-5580-a9a9-e708017a7333",
+      "projectionDigest": "sha256:81a6d64be46c8af928412cc0216a2e51b0883dd94b72f52e258685ac0071827c",
+      "selector": {
+        "domPath": "2/11/3/1/1/1/3/2/2/1/0/1/11",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:57bbff1894fec1cf5f094972770c428b1bd3fdd682a6d32cfb75d5f6f7f31e87",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-129",
+      "fragmentId": "sha256:d2372bbc71864c5b03d78d6009cd195e98a1b59ab95796b9fa5acc595fb0d5dd",
+      "sourceKey": "paper-omic",
+      "sourceClass": "publication",
+      "captureId": "62ac51e4-d787-56da-a791-4289accab698",
+      "projectionArtifactId": "ca332019-b525-58b3-adc5-51e4830222c0",
+      "projectionDigest": "sha256:9bd090b93b9a9f2ac8f527c6b6c303ff92a5451d245abbf6b8a9332bd18efb9b",
+      "selector": {
+        "domPath": "2/11/3/1/1/1/3/2/2/1/0/2/12",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:e738b23df4a938b0bd989dcddb89ceddbb2b47e0f1bf6f066ff3fe32c73c0d26",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-130",
+      "fragmentId": "sha256:75bb2136f8c4ab6f26b9be6d7f6753fa906e3c414ad1b3b4b8029a7b691507c1",
+      "sourceKey": "paper-pace",
+      "sourceClass": "publication",
+      "captureId": "60f7dd92-6f3f-5205-a08a-cea2d0770489",
+      "projectionArtifactId": "cb9b6f63-800e-5079-afd1-f82fc2a43b06",
+      "projectionDigest": "sha256:87eee3598cf29dab59e1a8c7b70cef756b69a652c0c2787656d3fa02913d2af6",
+      "selector": {
+        "domPath": "2/11/3/1/1/1/3/2/2/1/0/1/6",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:afc8d132c5b805dd99146cca40d80d72f9ff5a2b88bf1d514044be5f6cf358a4",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-131",
+      "fragmentId": "sha256:f3a4cf2b7422ad1168e23403be806072a620d778fd72513d66ddae10a9045596",
+      "sourceKey": "paper-rectification",
+      "sourceClass": "publication",
+      "captureId": "1f25612c-deab-57eb-ae59-4014898874de",
+      "projectionArtifactId": "6ee4d5c1-7ba4-5f1b-aa37-fdfdfa0843f7",
+      "projectionDigest": "sha256:f1938efb12883570665e191b4cc9fa1f50b5587d875e2105c303b46430e286f1",
+      "selector": {
+        "domPath": "2/12/3/1/5/11/1/0/1/1",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:72b4bc9eeda5d235e67facd6b2ee9603d148cab51c9e9966dbb8f59d29e79a09",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-132",
+      "fragmentId": "sha256:2fb5ec4e455f122dd9fd4b54be143358758a461e7e2f2fb6ab7fce93f8adea3d",
+      "sourceKey": "tru-about",
+      "sourceClass": "first_party",
+      "captureId": "67b3c277-5c66-5ef5-ace8-66aff1d3e736",
+      "projectionArtifactId": "b4573767-03c2-55e9-a771-0385eeff5aa5",
+      "projectionDigest": "sha256:102c76510c12f523e3d67d8795ceb2b20c40e95f055c0038965e6da1e9cedbb4",
+      "selector": {
+        "domPath": "1/0/2/3/0/0/0/2/0/1/3/0/0/0/2",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:aa53973ac023c1a2dbbd12a7cb2f72fc8ab22e8d8f2860837cff52e77047381e",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-133",
+      "fragmentId": "sha256:704f864de8031c2c91e99f8d4a257dc766f587bbc84e3829ab7007a5377e48ab",
+      "sourceKey": "tru-education",
+      "sourceClass": "first_party",
+      "captureId": "fc2f2733-12a1-566c-ab80-3639d5f4fa10",
+      "projectionArtifactId": "388033a3-c3a4-5b03-af16-f060ba7ac557",
+      "projectionDigest": "sha256:921b6af4badf737907c4b3681d203eba65fab74da2008008e9cb1839a5316b4f",
+      "selector": {
+        "domPath": "1/0/2/3/0/0/0/2/1/0/1/2",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:3da488fb3aae97257ae34187f76e63b04c4a615fb5b9c395bdf168c6d877aeeb",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-134",
+      "fragmentId": "sha256:710c8272f631400526cab31395a395cc220825e93176a7d2ac616c6bf2060ad4",
+      "sourceKey": "tru-product",
+      "sourceClass": "first_party",
+      "captureId": "ab5c8b0f-3f27-5ea4-ad00-9771148daa54",
+      "projectionArtifactId": "42cef373-e401-523a-af45-eb586b235c8c",
+      "projectionDigest": "sha256:872f9fd5adfe086ea2a054a0337255dc2afb44333fa5a015788e8efe3cbea681",
+      "selector": {
+        "domPath": "2/5/1/5/1/3/4/1/0/3/1/3/5/1/3/1/1",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:66120f61e3bc4ab012a7bf1a6d173a1ae7e47d6318ed588756676181a79253dc",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-135",
+      "fragmentId": "sha256:7b2f76f59dfa52f5a1760de0c0c79be2d70136923c4b1550976993e55df66519",
+      "sourceKey": "gl-comparison",
+      "sourceClass": "interested_party_comparison",
+      "captureId": "090d82ef-687b-5230-a581-afd105b572ca",
+      "projectionArtifactId": "a466058e-f04a-56e1-a698-a72d74b6fb38",
+      "projectionDigest": "sha256:61ef5c94266f2866d39c304d7f98f859ef5c2d50e08e7554760da820f689a6d6",
+      "selector": {
+        "domPath": "1/5/2/0/0/1/1/0/10",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:3b96e14876642814599bff88abd9d8b72552dd40a80535afc90998f68c6f2c00",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-136",
+      "fragmentId": "sha256:032c922af94d8f7d2c00d1c139116f13ac68a5bee71e3438176424aa57b57f51",
+      "sourceKey": "gl-faq",
+      "sourceClass": "first_party",
+      "captureId": "0ecd8e36-539c-57f3-a71f-9991db21e8ad",
+      "projectionArtifactId": "7d89347a-a8f9-5cc0-a2f8-d3e99be59e40",
+      "projectionDigest": "sha256:6e719a8615733e1fed8c8772c96daa8542352b66cf69f4c69947caafc757cef1",
+      "selector": {
+        "domPath": "1/5/4/0/0/2/0/0/1/13/0/0",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:f809ba38d77d6ebe1d9382269091c89e2c11068346f681cb23cb3ce62c0887fd",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-137",
+      "fragmentId": "sha256:86aaf84e2aedd65558a227b33ee5ed24e6dce760391fcc238c2a6c62823355e4",
+      "sourceKey": "gl-immune-age-19",
+      "sourceClass": "first_party_marketing",
+      "captureId": "8930d1e6-b8a1-5b4c-aabd-486efb0a051c",
+      "projectionArtifactId": "9042049b-c6ae-5b84-a6f3-7cb0e8259266",
+      "projectionDigest": "sha256:0864ec616615ebce64fa5f533a1ddd36a53cbd12698a7cf59e79ee690fdd80ff",
+      "selector": {
+        "domPath": "1/5/2/0/0/1/1/0/11",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:ff8073ea677bb874f5450209f5176a3d192721b0a6ca85c86aca82ce8547269c",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-138",
+      "fragmentId": "sha256:4ac852b179adbe160e378a6924b325103a6ca902dd2504deabfcb7ef19a802f1",
+      "sourceKey": "gl-science",
+      "sourceClass": "first_party",
+      "captureId": "ed7c057c-ce78-5d78-a251-74575f694a52",
+      "projectionArtifactId": "914e0ec1-023e-5f21-a353-c3d8555e26fa",
+      "projectionDigest": "sha256:2d59d02ac2dd964183173e7820448656bdbcd497bfa65a7884fcaee1f3bd70ee",
+      "selector": {
+        "domPath": "1/5/3/3/0/2/0/1/0",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:2af665412a7773e44db674472b0d423a3dc8d79e1ec55df49f118311324921bd",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-139",
+      "fragmentId": "sha256:81a8bbca7383d06059dc64bfe5aec9b78efc0551ed31f24e901ca21ece56d180",
+      "sourceKey": "gl-terms",
+      "sourceClass": "first_party",
+      "captureId": "dc5210dc-7826-524e-ad73-27a3baf6c4ae",
+      "projectionArtifactId": "0d3a77f2-20eb-58e0-afac-b932bb55e172",
+      "projectionDigest": "sha256:f3c462cade3dde56db7d70f0e5141798cd18bde96f5cabc3b18923543a9ff896",
+      "selector": {
+        "domPath": "1/9/1/2/0/28/1",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:4152c8afc6b8d67f597b26c78806bbba0e881d7295f976aa5b0894ef36c91d3b",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-140",
+      "fragmentId": "sha256:0438feb1b154584be24d08f10ad13bea252036060e3e5b4665510d166472447d",
+      "sourceKey": "paper-noise",
+      "sourceClass": "publication",
+      "captureId": "85d9b0d4-34b8-5720-ab3c-012c57b68b1b",
+      "projectionArtifactId": "d1381f18-1073-5580-a9a9-e708017a7333",
+      "projectionDigest": "sha256:81a6d64be46c8af928412cc0216a2e51b0883dd94b72f52e258685ac0071827c",
+      "selector": {
+        "domPath": "2/11/3/1/1/1/3/2/2/1/0/1/13",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:e4c99ee47df98a0220238796c4aeee26434ed524cb25cea8a39bd261bbaf99f2",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-141",
+      "fragmentId": "sha256:20ec884c1aa785ed6b27cd5c0133d007050657d3e52ac7406398b7e4e781af66",
+      "sourceKey": "paper-omic",
+      "sourceClass": "publication",
+      "captureId": "62ac51e4-d787-56da-a791-4289accab698",
+      "projectionArtifactId": "ca332019-b525-58b3-adc5-51e4830222c0",
+      "projectionDigest": "sha256:9bd090b93b9a9f2ac8f527c6b6c303ff92a5451d245abbf6b8a9332bd18efb9b",
+      "selector": {
+        "domPath": "2/11/3/1/1/1/3/2/2/1/0/3/2/2",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:124f20a623b5f7e1a01ada908e12e04486a935a179a1573ab03d54b1bbf62b54",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-142",
+      "fragmentId": "sha256:5344651aa323a276f07a0472af6eefbd8c160e0332c1eb105e9a639f7e10b240",
+      "sourceKey": "paper-pace",
+      "sourceClass": "publication",
+      "captureId": "60f7dd92-6f3f-5205-a08a-cea2d0770489",
+      "projectionArtifactId": "cb9b6f63-800e-5079-afd1-f82fc2a43b06",
+      "projectionDigest": "sha256:87eee3598cf29dab59e1a8c7b70cef756b69a652c0c2787656d3fa02913d2af6",
+      "selector": {
+        "domPath": "2/11/3/1/1/1/3/2/2/1/0/1/8",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:50c6fc49a1e582fedbfd9487cf36ef105de8318ec979994284a1d1663e9d624c",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-143",
+      "fragmentId": "sha256:045080bca67f1f8572e62c3444850e71af8f1ccd4a2a55712e15fc062857650c",
+      "sourceKey": "paper-rectification",
+      "sourceClass": "publication",
+      "captureId": "1f25612c-deab-57eb-ae59-4014898874de",
+      "projectionArtifactId": "6ee4d5c1-7ba4-5f1b-aa37-fdfdfa0843f7",
+      "projectionDigest": "sha256:f1938efb12883570665e191b4cc9fa1f50b5587d875e2105c303b46430e286f1",
+      "selector": {
+        "domPath": "2/12/3/1/5/11/1/0/1/2",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:2905bc5d08c60d794d34b826bed21d899dd1fb0ad2cc89af11203a407aeaa900",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-144",
+      "fragmentId": "sha256:02de42e0769ddec7f128a2cd23c975d844109505eee57cca1174fb19cd818644",
+      "sourceKey": "tru-about",
+      "sourceClass": "first_party",
+      "captureId": "67b3c277-5c66-5ef5-ace8-66aff1d3e736",
+      "projectionArtifactId": "b4573767-03c2-55e9-a771-0385eeff5aa5",
+      "projectionDigest": "sha256:102c76510c12f523e3d67d8795ceb2b20c40e95f055c0038965e6da1e9cedbb4",
+      "selector": {
+        "domPath": "1/0/2/4/0/0/0/1/0",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:a6b39900bbf2b8213023a5cd66e948173eb1abde99dabfe2555202482e64fc20",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-145",
+      "fragmentId": "sha256:04116b29a61d7c84d9b8d73d7797537d6a7f5d9258c0dc35479bf1107de23588",
+      "sourceKey": "tru-education",
+      "sourceClass": "first_party",
+      "captureId": "fc2f2733-12a1-566c-ab80-3639d5f4fa10",
+      "projectionArtifactId": "388033a3-c3a4-5b03-af16-f060ba7ac557",
+      "projectionDigest": "sha256:921b6af4badf737907c4b3681d203eba65fab74da2008008e9cb1839a5316b4f",
+      "selector": {
+        "domPath": "1/0/2/3/0/0/0/2/1/0/2/2",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:cb3a3bdab5968674d32823086ad62064c19921c75d3846ee1d7ce7ecb256d352",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-146",
+      "fragmentId": "sha256:88c26090f01668190c7bbf40af049c4408d20aed4fe01ae8a57bc420dd9a493c",
+      "sourceKey": "tru-product",
+      "sourceClass": "first_party",
+      "captureId": "ab5c8b0f-3f27-5ea4-ad00-9771148daa54",
+      "projectionArtifactId": "42cef373-e401-523a-af45-eb586b235c8c",
+      "projectionDigest": "sha256:872f9fd5adfe086ea2a054a0337255dc2afb44333fa5a015788e8efe3cbea681",
+      "selector": {
+        "domPath": "2/5/1/5/1/3/4/1/0/3/1/3/5/1/3/1/3",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:764df2ffae65e43d4dc79427bc289644e0341835e6d3340e5698595146bd9423",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-147",
+      "fragmentId": "sha256:e2402c99e4b793a337a9f765f2e7c04f46aef2781fbfe78105f50c057e76be38",
+      "sourceKey": "gl-comparison",
+      "sourceClass": "interested_party_comparison",
+      "captureId": "090d82ef-687b-5230-a581-afd105b572ca",
+      "projectionArtifactId": "a466058e-f04a-56e1-a698-a72d74b6fb38",
+      "projectionDigest": "sha256:61ef5c94266f2866d39c304d7f98f859ef5c2d50e08e7554760da820f689a6d6",
+      "selector": {
+        "domPath": "1/5/2/0/0/1/1/0/11",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:3da4b87317c06dec8ae399ebe92a0bb703c0e7b07e3c30146dbf7d9e321abf43",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-148",
+      "fragmentId": "sha256:9ca6f8ad691357fc4ffc7128942d7ffb367d1821b1b350ac0557580f368a6fb3",
+      "sourceKey": "gl-faq",
+      "sourceClass": "first_party",
+      "captureId": "0ecd8e36-539c-57f3-a71f-9991db21e8ad",
+      "projectionArtifactId": "7d89347a-a8f9-5cc0-a2f8-d3e99be59e40",
+      "projectionDigest": "sha256:6e719a8615733e1fed8c8772c96daa8542352b66cf69f4c69947caafc757cef1",
+      "selector": {
+        "domPath": "1/5/4/0/0/2/0/0/1/14/0/0",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:a5ab645fa26a95910c7a8253d0ba0708798d145def92ce64c2befd54376a79b7",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-149",
+      "fragmentId": "sha256:74f22d3df65df0b15daf801385d5716fb379eca94bbdeebddf720d41eb31af7c",
+      "sourceKey": "gl-immune-age-19",
+      "sourceClass": "first_party_marketing",
+      "captureId": "8930d1e6-b8a1-5b4c-aabd-486efb0a051c",
+      "projectionArtifactId": "9042049b-c6ae-5b84-a6f3-7cb0e8259266",
+      "projectionDigest": "sha256:0864ec616615ebce64fa5f533a1ddd36a53cbd12698a7cf59e79ee690fdd80ff",
+      "selector": {
+        "domPath": "1/5/2/0/0/1/1/0/13",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:1f1c0c2f161062fcf1c8dabfd2911fc0394f577bd61a3d1d826282fa00634ca3",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-150",
+      "fragmentId": "sha256:826c41261ed54ae4e36406e29d0c931f79ea667ee4a42207d13b03f4dedc4eb1",
+      "sourceKey": "gl-science",
+      "sourceClass": "first_party",
+      "captureId": "ed7c057c-ce78-5d78-a251-74575f694a52",
+      "projectionArtifactId": "914e0ec1-023e-5f21-a353-c3d8555e26fa",
+      "projectionDigest": "sha256:2d59d02ac2dd964183173e7820448656bdbcd497bfa65a7884fcaee1f3bd70ee",
+      "selector": {
+        "domPath": "1/5/3/3/0/2/0/1/1/0",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:33ccb4402072fadd0725388ce044a914bb8a6a8cd4955576bf828ce9424b8df8",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-151",
+      "fragmentId": "sha256:cc5de7c45da084bdae94f2226ae9327b4b172ce50f600c523a716ea5e688a8ea",
+      "sourceKey": "gl-terms",
+      "sourceClass": "first_party",
+      "captureId": "dc5210dc-7826-524e-ad73-27a3baf6c4ae",
+      "projectionArtifactId": "0d3a77f2-20eb-58e0-afac-b932bb55e172",
+      "projectionDigest": "sha256:f3c462cade3dde56db7d70f0e5141798cd18bde96f5cabc3b18923543a9ff896",
+      "selector": {
+        "domPath": "1/9/1/2/0/29",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:9e506c24107c68e0c0ab8a5dae4fb61df55d4707c57d660e63443a552e73dac0",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-152",
+      "fragmentId": "sha256:f061c5ed16f8816d5bec36d5c6a3e7492e954a1a079bb301962cc6fe5292106d",
+      "sourceKey": "paper-noise",
+      "sourceClass": "publication",
+      "captureId": "85d9b0d4-34b8-5720-ab3c-012c57b68b1b",
+      "projectionArtifactId": "d1381f18-1073-5580-a9a9-e708017a7333",
+      "projectionDigest": "sha256:81a6d64be46c8af928412cc0216a2e51b0883dd94b72f52e258685ac0071827c",
+      "selector": {
+        "domPath": "2/11/3/1/1/1/3/2/2/1/0/1/15",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:9e7f10c6532bbafdfa42b78378de3b701a3b1c0468da2e2ffa881c8e44f708af",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-153",
+      "fragmentId": "sha256:993f3ff329986a81dc7017d1a1187c151b0ea611be15734c0335381e83edcd65",
+      "sourceKey": "paper-omic",
+      "sourceClass": "publication",
+      "captureId": "62ac51e4-d787-56da-a791-4289accab698",
+      "projectionArtifactId": "ca332019-b525-58b3-adc5-51e4830222c0",
+      "projectionDigest": "sha256:9bd090b93b9a9f2ac8f527c6b6c303ff92a5451d245abbf6b8a9332bd18efb9b",
+      "selector": {
+        "domPath": "2/11/3/1/1/1/3/2/2/1/0/3/2/4/0",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:9431d4714e559d31c5df27d1de28a796e121ea9c951f97d463087b9d84e447b5",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-154",
+      "fragmentId": "sha256:b1bf15f7d2c32d05ed16c031d0749a82979459666342f09f66a31c105ffe30dd",
+      "sourceKey": "paper-pace",
+      "sourceClass": "publication",
+      "captureId": "60f7dd92-6f3f-5205-a08a-cea2d0770489",
+      "projectionArtifactId": "cb9b6f63-800e-5079-afd1-f82fc2a43b06",
+      "projectionDigest": "sha256:87eee3598cf29dab59e1a8c7b70cef756b69a652c0c2787656d3fa02913d2af6",
+      "selector": {
+        "domPath": "2/11/3/1/1/1/3/2/2/1/0/1/10",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:37b652dbb09a0ad59bc666f9c757594fc3a3cfde2db9ce993082c409cdd92ff8",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-155",
+      "fragmentId": "sha256:15eb6ae8a52d156ccd00c012ee4c2bc96cee5b760b7fac76ed854b6b0f3604c0",
+      "sourceKey": "paper-rectification",
+      "sourceClass": "publication",
+      "captureId": "1f25612c-deab-57eb-ae59-4014898874de",
+      "projectionArtifactId": "6ee4d5c1-7ba4-5f1b-aa37-fdfdfa0843f7",
+      "projectionDigest": "sha256:f1938efb12883570665e191b4cc9fa1f50b5587d875e2105c303b46430e286f1",
+      "selector": {
+        "domPath": "2/12/3/1/5/11/1/0/1/3",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:3cd4f971f2f63310bfba49475e1afaeaceaaacdf5bae2c796dff75f67c2d1779",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-156",
+      "fragmentId": "sha256:9e00ab0879c93cd57cce682d51c5e001d05fc943950e8d796888ad0ea0c89881",
+      "sourceKey": "tru-about",
+      "sourceClass": "first_party",
+      "captureId": "67b3c277-5c66-5ef5-ace8-66aff1d3e736",
+      "projectionArtifactId": "b4573767-03c2-55e9-a771-0385eeff5aa5",
+      "projectionDigest": "sha256:102c76510c12f523e3d67d8795ceb2b20c40e95f055c0038965e6da1e9cedbb4",
+      "selector": {
+        "domPath": "1/0/2/4/0/0/0/2/0/0/0/1/0",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:b9197b54f59a33cf38073efcc3e5ae85b9674efd91b9f2c87f882c9482b47cf5",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-157",
+      "fragmentId": "sha256:f460ec5f640778320f34f3fe538d745e63a0ceed5e68c985544c308f8264f909",
+      "sourceKey": "tru-education",
+      "sourceClass": "first_party",
+      "captureId": "fc2f2733-12a1-566c-ab80-3639d5f4fa10",
+      "projectionArtifactId": "388033a3-c3a4-5b03-af16-f060ba7ac557",
+      "projectionDigest": "sha256:921b6af4badf737907c4b3681d203eba65fab74da2008008e9cb1839a5316b4f",
+      "selector": {
+        "domPath": "1/0/2/4/0/0/0/1/0",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:784648976764b609865851fd391b9cb54dbe00aca213cb013309121c188ed1aa",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-158",
+      "fragmentId": "sha256:65bcdf2ab5778c397a7dfdecb767df714b999540041888efd7d09873980a1d14",
+      "sourceKey": "tru-product",
+      "sourceClass": "first_party",
+      "captureId": "ab5c8b0f-3f27-5ea4-ad00-9771148daa54",
+      "projectionArtifactId": "42cef373-e401-523a-af45-eb586b235c8c",
+      "projectionDigest": "sha256:872f9fd5adfe086ea2a054a0337255dc2afb44333fa5a015788e8efe3cbea681",
+      "selector": {
+        "domPath": "2/5/1/5/1/3/4/1/0/3/1/3/5/1/3/1/5",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:86d385dec9055f9545ea52f66ba2491ecb64018baedcb396f8dc350a5f8c4edd",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-159",
+      "fragmentId": "sha256:dab3b06cabe6e09d96fc6ca0e9999f95f84b8b17832c0d7383d4cf5e383482e5",
+      "sourceKey": "gl-comparison",
+      "sourceClass": "interested_party_comparison",
+      "captureId": "090d82ef-687b-5230-a581-afd105b572ca",
+      "projectionArtifactId": "a466058e-f04a-56e1-a698-a72d74b6fb38",
+      "projectionDigest": "sha256:61ef5c94266f2866d39c304d7f98f859ef5c2d50e08e7554760da820f689a6d6",
+      "selector": {
+        "domPath": "1/5/2/0/0/1/1/0/13",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:99621d4eeee3d879222fe29548f2e7e96640a2a4d0c31b27e5c1cec8725d9ba4",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-160",
+      "fragmentId": "sha256:2ec9f2a98d11be20a1f531164e27288edec1878041bb7c12c4e7822ab06037b1",
+      "sourceKey": "gl-faq",
+      "sourceClass": "first_party",
+      "captureId": "0ecd8e36-539c-57f3-a71f-9991db21e8ad",
+      "projectionArtifactId": "7d89347a-a8f9-5cc0-a2f8-d3e99be59e40",
+      "projectionDigest": "sha256:6e719a8615733e1fed8c8772c96daa8542352b66cf69f4c69947caafc757cef1",
+      "selector": {
+        "domPath": "1/5/4/0/0/2/0/0/1/15/0/0",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:f23bc83e77f79cc0b63b3b007aeb68779fa2b38ac3657cdc51d6db0b05af5427",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-161",
+      "fragmentId": "sha256:9de30ba72a5eb0e8069280589ed40fd4a42a5bb715fd27915f06947ef271d7e0",
+      "sourceKey": "gl-immune-age-19",
+      "sourceClass": "first_party_marketing",
+      "captureId": "8930d1e6-b8a1-5b4c-aabd-486efb0a051c",
+      "projectionArtifactId": "9042049b-c6ae-5b84-a6f3-7cb0e8259266",
+      "projectionDigest": "sha256:0864ec616615ebce64fa5f533a1ddd36a53cbd12698a7cf59e79ee690fdd80ff",
+      "selector": {
+        "domPath": "1/5/2/0/0/1/1/0/15",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:ef912244ead944f3e6cc803c9302470f8c33aa56bd4779aaaa5f22843f39f6f7",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-162",
+      "fragmentId": "sha256:9968891513136c399a655591aea94e6fb5b6da46b698ce30d16ef7b8f9653414",
+      "sourceKey": "gl-science",
+      "sourceClass": "first_party",
+      "captureId": "ed7c057c-ce78-5d78-a251-74575f694a52",
+      "projectionArtifactId": "914e0ec1-023e-5f21-a353-c3d8555e26fa",
+      "projectionDigest": "sha256:2d59d02ac2dd964183173e7820448656bdbcd497bfa65a7884fcaee1f3bd70ee",
+      "selector": {
+        "domPath": "1/5/3/3/0/2/0/1/1/1",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:0dfea71734beca5a3165847c21df982ca900726e6dc15752f630d947f7884494",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-163",
+      "fragmentId": "sha256:8af870542930ff64338dd4c327abf7288176b0748cf40189340ba6deca141f0b",
+      "sourceKey": "gl-terms",
+      "sourceClass": "first_party",
+      "captureId": "dc5210dc-7826-524e-ad73-27a3baf6c4ae",
+      "projectionArtifactId": "0d3a77f2-20eb-58e0-afac-b932bb55e172",
+      "projectionDigest": "sha256:f3c462cade3dde56db7d70f0e5141798cd18bde96f5cabc3b18923543a9ff896",
+      "selector": {
+        "domPath": "1/9/1/2/0/35",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:a7b7e69e66c8c64565cf62afd3f553fcbcadede2136ac30c60b036380e4a76e0",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-164",
+      "fragmentId": "sha256:3948989bb045b9a2826f45acbb9f6c0a12462e82ac49d76be3f4f0131c0ff0af",
+      "sourceKey": "paper-noise",
+      "sourceClass": "publication",
+      "captureId": "85d9b0d4-34b8-5720-ab3c-012c57b68b1b",
+      "projectionArtifactId": "d1381f18-1073-5580-a9a9-e708017a7333",
+      "projectionDigest": "sha256:81a6d64be46c8af928412cc0216a2e51b0883dd94b72f52e258685ac0071827c",
+      "selector": {
+        "domPath": "2/11/3/1/1/1/3/2/2/1/0/1/17",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:0aa438675b8832b8db1669522e7d30187386867cce961a4387ed172f07870747",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-165",
+      "fragmentId": "sha256:6acdc89e6468df80a38cea1b399bfebfdc54647da856dba7a3bdf2783cd8f204",
+      "sourceKey": "paper-omic",
+      "sourceClass": "publication",
+      "captureId": "62ac51e4-d787-56da-a791-4289accab698",
+      "projectionArtifactId": "ca332019-b525-58b3-adc5-51e4830222c0",
+      "projectionDigest": "sha256:9bd090b93b9a9f2ac8f527c6b6c303ff92a5451d245abbf6b8a9332bd18efb9b",
+      "selector": {
+        "domPath": "2/11/3/1/1/1/3/2/2/1/0/3/2/4/6/0",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:dd51301767ca2b7143ce6dbf93253b09f09db72edc48c928c5df530849150ad8",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-166",
+      "fragmentId": "sha256:4ddc96e2aa6a4b8d7416321525e311827f1c39a1da7359ecf478075b2b35b838",
+      "sourceKey": "paper-pace",
+      "sourceClass": "publication",
+      "captureId": "60f7dd92-6f3f-5205-a08a-cea2d0770489",
+      "projectionArtifactId": "cb9b6f63-800e-5079-afd1-f82fc2a43b06",
+      "projectionDigest": "sha256:87eee3598cf29dab59e1a8c7b70cef756b69a652c0c2787656d3fa02913d2af6",
+      "selector": {
+        "domPath": "2/11/3/1/1/1/3/2/2/1/0/2/4",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:535223b43599426f16aebdd1b0ff526250f5a38fa1c1289ec9c1cd0d36c86c5c",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-167",
+      "fragmentId": "sha256:b501f52c11c334b3ee06706ad167360195fc368fc4bb01bee549ac767f6fe958",
+      "sourceKey": "paper-rectification",
+      "sourceClass": "publication",
+      "captureId": "1f25612c-deab-57eb-ae59-4014898874de",
+      "projectionArtifactId": "6ee4d5c1-7ba4-5f1b-aa37-fdfdfa0843f7",
+      "projectionDigest": "sha256:f1938efb12883570665e191b4cc9fa1f50b5587d875e2105c303b46430e286f1",
+      "selector": {
+        "domPath": "2/12/3/1/5/11/1/0/1/4",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:c1b7a701b9333f99f80f9178cf5f5603c3f66fd0f1b6046491d566ed260d52ed",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-168",
+      "fragmentId": "sha256:fd2d8c4e04bfa74e74bfba26c305d06cc1ee6702762103b403fc8dca754d2e29",
+      "sourceKey": "tru-about",
+      "sourceClass": "first_party",
+      "captureId": "67b3c277-5c66-5ef5-ace8-66aff1d3e736",
+      "projectionArtifactId": "b4573767-03c2-55e9-a771-0385eeff5aa5",
+      "projectionDigest": "sha256:102c76510c12f523e3d67d8795ceb2b20c40e95f055c0038965e6da1e9cedbb4",
+      "selector": {
+        "domPath": "1/0/2/4/0/0/0/2/0/0/3/1/0",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:95ce4efeac0790d5ca508135c37202970ca66984bf34a927a35862ec212b4f28",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-169",
+      "fragmentId": "sha256:ac455f98e856a7746dc8e354cc67d7eaf1f730f38c0007a08fd42b6d1e2f658c",
+      "sourceKey": "tru-education",
+      "sourceClass": "first_party",
+      "captureId": "fc2f2733-12a1-566c-ab80-3639d5f4fa10",
+      "projectionArtifactId": "388033a3-c3a4-5b03-af16-f060ba7ac557",
+      "projectionDigest": "sha256:921b6af4badf737907c4b3681d203eba65fab74da2008008e9cb1839a5316b4f",
+      "selector": {
+        "domPath": "1/0/2/4/0/0/0/2/0/0/2/0",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:5740171b8d0e5aa5bb23de6b0bfc585a95a0f770e4cb55addb4981987600e14b",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-170",
+      "fragmentId": "sha256:7139948cc5f37e898cf20f297141659f72ade900c9eac2568a43bbe2f2979bfc",
+      "sourceKey": "tru-product",
+      "sourceClass": "first_party",
+      "captureId": "ab5c8b0f-3f27-5ea4-ad00-9771148daa54",
+      "projectionArtifactId": "42cef373-e401-523a-af45-eb586b235c8c",
+      "projectionDigest": "sha256:872f9fd5adfe086ea2a054a0337255dc2afb44333fa5a015788e8efe3cbea681",
+      "selector": {
+        "domPath": "2/5/1/5/1/3/4/1/0/3/1/3/5/1/3/1/19",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:78359571ff024943664f6295a42a227ee24f95f8a171d31adb0d64e7d2d75be4",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-171",
+      "fragmentId": "sha256:1e36418b58bbc20216018b0bda3496ae7b27378b158b53c9d7eb95dc001a208e",
+      "sourceKey": "gl-comparison",
+      "sourceClass": "interested_party_comparison",
+      "captureId": "090d82ef-687b-5230-a581-afd105b572ca",
+      "projectionArtifactId": "a466058e-f04a-56e1-a698-a72d74b6fb38",
+      "projectionDigest": "sha256:61ef5c94266f2866d39c304d7f98f859ef5c2d50e08e7554760da820f689a6d6",
+      "selector": {
+        "domPath": "1/5/2/0/0/1/1/0/15",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:9c020a6c0494d5c009685c6dcd72a6c7c901e9047d01dfb9291eebc7c8512f74",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-172",
+      "fragmentId": "sha256:e08743d07ce30865e083943c09549a85dabaadbd68f3cd7d65c024360908cade",
+      "sourceKey": "gl-faq",
+      "sourceClass": "first_party",
+      "captureId": "0ecd8e36-539c-57f3-a71f-9991db21e8ad",
+      "projectionArtifactId": "7d89347a-a8f9-5cc0-a2f8-d3e99be59e40",
+      "projectionDigest": "sha256:6e719a8615733e1fed8c8772c96daa8542352b66cf69f4c69947caafc757cef1",
+      "selector": {
+        "domPath": "1/5/4/0/0/2/0/0/1/16/0/0",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:50c700126e008cd310e948ed5344706dc30d8150f02f70780d59ddc504456bb0",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-173",
+      "fragmentId": "sha256:79ba460c60eaf4e049c0d44ec80469a61f68f489f31d2add9c5364dd6a87f188",
+      "sourceKey": "gl-immune-age-19",
+      "sourceClass": "first_party_marketing",
+      "captureId": "8930d1e6-b8a1-5b4c-aabd-486efb0a051c",
+      "projectionArtifactId": "9042049b-c6ae-5b84-a6f3-7cb0e8259266",
+      "projectionDigest": "sha256:0864ec616615ebce64fa5f533a1ddd36a53cbd12698a7cf59e79ee690fdd80ff",
+      "selector": {
+        "domPath": "1/5/2/0/0/1/1/0/16",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:47f923b1703a4c4894cb2e058f16e932865c045ec77abf07be96fa6c63cf5d53",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-174",
+      "fragmentId": "sha256:62a8fce25fcf38ed30238fa5cb85108f1d9791e2956b1af1256707a886a78a94",
+      "sourceKey": "gl-science",
+      "sourceClass": "first_party",
+      "captureId": "ed7c057c-ce78-5d78-a251-74575f694a52",
+      "projectionArtifactId": "914e0ec1-023e-5f21-a353-c3d8555e26fa",
+      "projectionDigest": "sha256:2d59d02ac2dd964183173e7820448656bdbcd497bfa65a7884fcaee1f3bd70ee",
+      "selector": {
+        "domPath": "1/5/3/3/0/2/0/1/1/2",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:473d7a7d8749078172aecea3f5d92349b6c6e5869212de7bcc72f95629cac168",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-175",
+      "fragmentId": "sha256:d9c01ed558e6abc20fb68b5bae8013f659a8ac22726ceebeee53ab7c06f4354b",
+      "sourceKey": "gl-terms",
+      "sourceClass": "first_party",
+      "captureId": "dc5210dc-7826-524e-ad73-27a3baf6c4ae",
+      "projectionArtifactId": "0d3a77f2-20eb-58e0-afac-b932bb55e172",
+      "projectionDigest": "sha256:f3c462cade3dde56db7d70f0e5141798cd18bde96f5cabc3b18923543a9ff896",
+      "selector": {
+        "domPath": "1/9/1/2/0/37",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:2f0d8cc08b1cfadd54c75afc82926eb520396d0e1a3ea7f11a009da0044afec4",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-176",
+      "fragmentId": "sha256:b06eee9fde7afa86bc493a1045ee105d1a96d3e093af24fda477962361cd29ed",
+      "sourceKey": "paper-noise",
+      "sourceClass": "publication",
+      "captureId": "85d9b0d4-34b8-5720-ab3c-012c57b68b1b",
+      "projectionArtifactId": "d1381f18-1073-5580-a9a9-e708017a7333",
+      "projectionDigest": "sha256:81a6d64be46c8af928412cc0216a2e51b0883dd94b72f52e258685ac0071827c",
+      "selector": {
+        "domPath": "2/11/3/1/1/1/3/2/2/1/0/2/2/2",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:d5698c21e3d356bbd21ddfd0361f6aa98bca9919e97bb3b90560ba10c4010f4b",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-177",
+      "fragmentId": "sha256:f9c1f7177174470715a87f4cbbeab3aea04e20c0949b980a7009313b91daa3bd",
+      "sourceKey": "paper-omic",
+      "sourceClass": "publication",
+      "captureId": "62ac51e4-d787-56da-a791-4289accab698",
+      "projectionArtifactId": "ca332019-b525-58b3-adc5-51e4830222c0",
+      "projectionDigest": "sha256:9bd090b93b9a9f2ac8f527c6b6c303ff92a5451d245abbf6b8a9332bd18efb9b",
+      "selector": {
+        "domPath": "2/11/3/1/1/1/3/2/2/1/0/3/3/5/6/0",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:a0426cbca00d82ca6e7f330d5a54b4612b92a38138e99f8215ae06a1b9fe3962",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-178",
+      "fragmentId": "sha256:060534622db01f160ce73db7d6460d783d9f82c677b0d48759f99fcc3e8b128e",
+      "sourceKey": "paper-pace",
+      "sourceClass": "publication",
+      "captureId": "60f7dd92-6f3f-5205-a08a-cea2d0770489",
+      "projectionArtifactId": "cb9b6f63-800e-5079-afd1-f82fc2a43b06",
+      "projectionDigest": "sha256:87eee3598cf29dab59e1a8c7b70cef756b69a652c0c2787656d3fa02913d2af6",
+      "selector": {
+        "domPath": "2/11/3/1/1/1/3/2/2/1/0/2/6/0",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:2d6c29ffa69042d515721ce22d6aafe614765c5e12bb3dc9442f1f747f5c459e",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-179",
+      "fragmentId": "sha256:880ce9b9c67b4cb26baefec80930885167f67e75a5949e203ca3f51b098ec1ea",
+      "sourceKey": "paper-rectification",
+      "sourceClass": "publication",
+      "captureId": "1f25612c-deab-57eb-ae59-4014898874de",
+      "projectionArtifactId": "6ee4d5c1-7ba4-5f1b-aa37-fdfdfa0843f7",
+      "projectionDigest": "sha256:f1938efb12883570665e191b4cc9fa1f50b5587d875e2105c303b46430e286f1",
+      "selector": {
+        "domPath": "2/12/3/1/5/11/2/0/1/1",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:d799b72521e5c604d2c6034c2522b9826ea26db55912b38f2e07e67d463bf118",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    },
+    {
+      "candidateId": "benchmark-v1-candidate-180",
+      "fragmentId": "sha256:7969ed8c9960cb2ed2bfa3b13d67b382ca55b00109e62859b56d58e93539a7e5",
+      "sourceKey": "tru-about",
+      "sourceClass": "first_party",
+      "captureId": "67b3c277-5c66-5ef5-ace8-66aff1d3e736",
+      "projectionArtifactId": "b4573767-03c2-55e9-a771-0385eeff5aa5",
+      "projectionDigest": "sha256:102c76510c12f523e3d67d8795ceb2b20c40e95f055c0038965e6da1e9cedbb4",
+      "selector": {
+        "domPath": "1/0/2/5/0/0/0/2/0/1/2",
+        "kind": "html"
+      },
+      "selectedContentDigest": "sha256:79acaefef69a509b65f56115a190280a9d4c54c6356bf6ac0d7b16584c1a3e09",
+      "labelStatus": "annotation_pending",
+      "independentObservation": false
+    }
+  ]
+}

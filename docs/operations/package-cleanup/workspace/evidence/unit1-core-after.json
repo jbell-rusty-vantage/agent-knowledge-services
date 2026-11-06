@@ -1,0 +1,1226 @@
+{
+  "schema": 1,
+  "layout": "after",
+  "group": "core",
+  "sourceCommit": "4aa5d382b0f2af091da852911b8e3c2e71fbc2b5",
+  "dirty": true,
+  "compilerVersion": "7.0.2",
+  "runtimeProvenance": "Built dist/index.js is untracked output; digest proves byte identity only, not source commit or successful build.",
+  "packages": {
+    "domain": {
+      "group": "core",
+      "packageName": "@aiengineer/knowledge-core",
+      "sourceEntry": "packages/core/src/domain/index.ts",
+      "sourceExports": [
+        {
+          "name": "assertAppendOnly",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/core/src/domain/invariants.ts"
+          ]
+        },
+        {
+          "name": "assertAuthorityCompatible",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/core/src/domain/invariants.ts"
+          ]
+        },
+        {
+          "name": "assertCanonicalPublicationAuthority",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/core/src/domain/authority.ts"
+          ]
+        },
+        {
+          "name": "assertDecisionAuthority",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/core/src/domain/authority.ts"
+          ]
+        },
+        {
+          "name": "assertIdempotentReplay",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/core/src/domain/idempotency.ts"
+          ]
+        },
+        {
+          "name": "assertSourceNativeIntegrity",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/core/src/domain/invariants.ts"
+          ]
+        },
+        {
+          "name": "canonicalJson",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/core/src/domain/digest.ts"
+          ]
+        },
+        {
+          "name": "createIdempotencyKey",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/core/src/domain/idempotency.ts"
+          ]
+        },
+        {
+          "name": "deepFreeze",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/core/src/domain/digest.ts"
+          ]
+        },
+        {
+          "name": "DomainInvariantError",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/core/src/domain/errors.ts"
+          ]
+        },
+        {
+          "name": "IdempotencyIdentity",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/core/src/domain/idempotency.ts"
+          ]
+        },
+        {
+          "name": "KNOWLEDGE_SERVICE_NAME",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/core/src/domain/state-machines.ts"
+          ]
+        },
+        {
+          "name": "KnowledgeOperationState",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/core/src/domain/state-machines.ts"
+          ]
+        },
+        {
+          "name": "knowledgeOperationStates",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/core/src/domain/state-machines.ts"
+          ]
+        },
+        {
+          "name": "PromotionState",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/core/src/domain/state-machines.ts"
+          ]
+        },
+        {
+          "name": "promotionStates",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/core/src/domain/state-machines.ts"
+          ]
+        },
+        {
+          "name": "PublicationState",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/core/src/domain/state-machines.ts"
+          ]
+        },
+        {
+          "name": "publicationStates",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/core/src/domain/state-machines.ts"
+          ]
+        },
+        {
+          "name": "sha256Digest",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/core/src/domain/digest.ts"
+          ]
+        },
+        {
+          "name": "TransitionGuard",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/core/src/domain/state-machines.ts"
+          ]
+        },
+        {
+          "name": "transitionOperation",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/core/src/domain/state-machines.ts"
+          ]
+        },
+        {
+          "name": "transitionPromotion",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/core/src/domain/state-machines.ts"
+          ]
+        },
+        {
+          "name": "transitionPublication",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/core/src/domain/state-machines.ts"
+          ]
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "packages/core/src/domain/domain.test.ts",
+          "originalPath": "packages/domain/src/domain.test.ts"
+        }
+      ],
+      "runtimeExports": {
+        "status": "present-unverified-build",
+        "sha256": "d481308bd618fcf48573fccf06bd29edef94bfedce90dbc430d5cd69b93bd640",
+        "names": [
+          "assertAppendOnly",
+          "assertAuthorityCompatible",
+          "assertCanonicalPublicationAuthority",
+          "assertDecisionAuthority",
+          "assertIdempotentReplay",
+          "assertSourceNativeIntegrity",
+          "canonicalJson",
+          "createEveRuntimeAttestation",
+          "createIdempotencyKey",
+          "deepFreeze",
+          "deterministicUuid",
+          "digestBytes",
+          "DomainInvariantError",
+          "InMemoryArtifactStore",
+          "InMemoryOperationLedger",
+          "InMemoryTelemetry",
+          "KNOWLEDGE_SERVICE_NAME",
+          "knowledgeOperationStates",
+          "LocalArtifactStore",
+          "parseEveRuntimeAttestation",
+          "promotionStates",
+          "publicationStates",
+          "reconcileManifests",
+          "sha256Digest",
+          "SupabaseArtifactStore",
+          "transitionOperation",
+          "transitionPromotion",
+          "transitionPublication",
+          "verifyEveRuntimeAttestation"
+        ]
+      }
+    },
+    "runtime": {
+      "group": "core",
+      "packageName": "@aiengineer/knowledge-core",
+      "sourceEntry": "packages/core/src/runtime/index.ts",
+      "sourceExports": [
+        {
+          "name": "ActivityReceipt",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/core/src/runtime/ledger.ts"
+          ]
+        },
+        {
+          "name": "ArtifactDigest",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/core/src/runtime/artifacts.ts"
+          ]
+        },
+        {
+          "name": "ArtifactFetch",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/core/src/runtime/artifacts.ts"
+          ]
+        },
+        {
+          "name": "ArtifactStore",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/core/src/runtime/artifacts.ts"
+          ]
+        },
+        {
+          "name": "Clock",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/core/src/runtime/ledger.ts"
+          ]
+        },
+        {
+          "name": "createEveRuntimeAttestation",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/core/src/runtime/eve-runtime-attestation.ts"
+          ]
+        },
+        {
+          "name": "deterministicUuid",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/core/src/runtime/artifacts.ts"
+          ]
+        },
+        {
+          "name": "digestBytes",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/core/src/runtime/artifacts.ts"
+          ]
+        },
+        {
+          "name": "InMemoryArtifactStore",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/core/src/runtime/artifacts.ts"
+          ]
+        },
+        {
+          "name": "InMemoryOperationLedger",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/core/src/runtime/ledger.ts"
+          ]
+        },
+        {
+          "name": "LedgerEvent",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/core/src/runtime/ledger.ts"
+          ]
+        },
+        {
+          "name": "LocalArtifactStore",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/core/src/runtime/artifacts.ts"
+          ]
+        },
+        {
+          "name": "OperationContext",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/core/src/runtime/ledger.ts"
+          ]
+        },
+        {
+          "name": "OperationLedgerSnapshot",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/core/src/runtime/ledger.ts"
+          ]
+        },
+        {
+          "name": "OperationRecord",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/core/src/runtime/ledger.ts"
+          ]
+        },
+        {
+          "name": "OperationState",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/core/src/runtime/ledger.ts"
+          ]
+        },
+        {
+          "name": "parseEveRuntimeAttestation",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/core/src/runtime/eve-runtime-attestation.ts"
+          ]
+        },
+        {
+          "name": "PutArtifact",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/core/src/runtime/artifacts.ts"
+          ]
+        },
+        {
+          "name": "StepRecord",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/core/src/runtime/ledger.ts"
+          ]
+        },
+        {
+          "name": "StepState",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/core/src/runtime/ledger.ts"
+          ]
+        },
+        {
+          "name": "StoredArtifact",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/core/src/runtime/artifacts.ts"
+          ]
+        },
+        {
+          "name": "SupabaseArtifactStore",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/core/src/runtime/artifacts.ts"
+          ]
+        },
+        {
+          "name": "SupabaseArtifactStoreConfig",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/core/src/runtime/artifacts.ts"
+          ]
+        },
+        {
+          "name": "verifyEveRuntimeAttestation",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/core/src/runtime/eve-runtime-attestation.ts"
+          ]
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "packages/core/src/runtime/artifacts-missing-object.test.ts",
+          "originalPath": "packages/runtime/src/artifacts-missing-object.test.ts"
+        },
+        {
+          "path": "packages/core/src/runtime/eve-runtime-attestation.test.ts",
+          "originalPath": "packages/runtime/src/eve-runtime-attestation.test.ts"
+        },
+        {
+          "path": "packages/core/src/runtime/runtime.test.ts",
+          "originalPath": "packages/runtime/src/runtime.test.ts"
+        }
+      ],
+      "runtimeExports": {
+        "status": "present-unverified-build",
+        "sha256": "d481308bd618fcf48573fccf06bd29edef94bfedce90dbc430d5cd69b93bd640",
+        "names": [
+          "assertAppendOnly",
+          "assertAuthorityCompatible",
+          "assertCanonicalPublicationAuthority",
+          "assertDecisionAuthority",
+          "assertIdempotentReplay",
+          "assertSourceNativeIntegrity",
+          "canonicalJson",
+          "createEveRuntimeAttestation",
+          "createIdempotencyKey",
+          "deepFreeze",
+          "deterministicUuid",
+          "digestBytes",
+          "DomainInvariantError",
+          "InMemoryArtifactStore",
+          "InMemoryOperationLedger",
+          "InMemoryTelemetry",
+          "KNOWLEDGE_SERVICE_NAME",
+          "knowledgeOperationStates",
+          "LocalArtifactStore",
+          "parseEveRuntimeAttestation",
+          "promotionStates",
+          "publicationStates",
+          "reconcileManifests",
+          "sha256Digest",
+          "SupabaseArtifactStore",
+          "transitionOperation",
+          "transitionPromotion",
+          "transitionPublication",
+          "verifyEveRuntimeAttestation"
+        ]
+      }
+    },
+    "observability": {
+      "group": "core",
+      "packageName": "@aiengineer/knowledge-core",
+      "sourceEntry": "packages/core/src/observability/index.ts",
+      "sourceExports": [
+        {
+          "name": "InMemoryTelemetry",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/core/src/observability/index.ts"
+          ]
+        },
+        {
+          "name": "OperationMetric",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/core/src/observability/index.ts"
+          ]
+        },
+        {
+          "name": "reconcileManifests",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/core/src/observability/index.ts"
+          ]
+        },
+        {
+          "name": "ReconciliationFinding",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/core/src/observability/index.ts"
+          ]
+        },
+        {
+          "name": "ServiceSloSnapshot",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/core/src/observability/index.ts"
+          ]
+        }
+      ],
+      "testFiles": [
+        {
+          "path": "packages/core/src/observability/index.test.ts",
+          "originalPath": "packages/observability/src/index.test.ts"
+        }
+      ],
+      "runtimeExports": {
+        "status": "present-unverified-build",
+        "sha256": "d481308bd618fcf48573fccf06bd29edef94bfedce90dbc430d5cd69b93bd640",
+        "names": [
+          "assertAppendOnly",
+          "assertAuthorityCompatible",
+          "assertCanonicalPublicationAuthority",
+          "assertDecisionAuthority",
+          "assertIdempotentReplay",
+          "assertSourceNativeIntegrity",
+          "canonicalJson",
+          "createEveRuntimeAttestation",
+          "createIdempotencyKey",
+          "deepFreeze",
+          "deterministicUuid",
+          "digestBytes",
+          "DomainInvariantError",
+          "InMemoryArtifactStore",
+          "InMemoryOperationLedger",
+          "InMemoryTelemetry",
+          "KNOWLEDGE_SERVICE_NAME",
+          "knowledgeOperationStates",
+          "LocalArtifactStore",
+          "parseEveRuntimeAttestation",
+          "promotionStates",
+          "publicationStates",
+          "reconcileManifests",
+          "sha256Digest",
+          "SupabaseArtifactStore",
+          "transitionOperation",
+          "transitionPromotion",
+          "transitionPublication",
+          "verifyEveRuntimeAttestation"
+        ]
+      }
+    }
+  },
+  "groupExports": {
+    "core": {
+      "source": [
+        {
+          "name": "ActivityReceipt",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/core/src/runtime/ledger.ts"
+          ]
+        },
+        {
+          "name": "ArtifactDigest",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/core/src/runtime/artifacts.ts"
+          ]
+        },
+        {
+          "name": "ArtifactFetch",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/core/src/runtime/artifacts.ts"
+          ]
+        },
+        {
+          "name": "ArtifactStore",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/core/src/runtime/artifacts.ts"
+          ]
+        },
+        {
+          "name": "assertAppendOnly",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/core/src/domain/invariants.ts"
+          ]
+        },
+        {
+          "name": "assertAuthorityCompatible",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/core/src/domain/invariants.ts"
+          ]
+        },
+        {
+          "name": "assertCanonicalPublicationAuthority",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/core/src/domain/authority.ts"
+          ]
+        },
+        {
+          "name": "assertDecisionAuthority",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/core/src/domain/authority.ts"
+          ]
+        },
+        {
+          "name": "assertIdempotentReplay",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/core/src/domain/idempotency.ts"
+          ]
+        },
+        {
+          "name": "assertSourceNativeIntegrity",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/core/src/domain/invariants.ts"
+          ]
+        },
+        {
+          "name": "canonicalJson",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/core/src/domain/digest.ts"
+          ]
+        },
+        {
+          "name": "Clock",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/core/src/runtime/ledger.ts"
+          ]
+        },
+        {
+          "name": "createEveRuntimeAttestation",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/core/src/runtime/eve-runtime-attestation.ts"
+          ]
+        },
+        {
+          "name": "createIdempotencyKey",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/core/src/domain/idempotency.ts"
+          ]
+        },
+        {
+          "name": "deepFreeze",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/core/src/domain/digest.ts"
+          ]
+        },
+        {
+          "name": "deterministicUuid",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/core/src/runtime/artifacts.ts"
+          ]
+        },
+        {
+          "name": "digestBytes",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/core/src/runtime/artifacts.ts"
+          ]
+        },
+        {
+          "name": "DomainInvariantError",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/core/src/domain/errors.ts"
+          ]
+        },
+        {
+          "name": "IdempotencyIdentity",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/core/src/domain/idempotency.ts"
+          ]
+        },
+        {
+          "name": "InMemoryArtifactStore",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/core/src/runtime/artifacts.ts"
+          ]
+        },
+        {
+          "name": "InMemoryOperationLedger",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/core/src/runtime/ledger.ts"
+          ]
+        },
+        {
+          "name": "InMemoryTelemetry",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/core/src/observability/index.ts"
+          ]
+        },
+        {
+          "name": "KNOWLEDGE_SERVICE_NAME",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/core/src/domain/state-machines.ts"
+          ]
+        },
+        {
+          "name": "KnowledgeOperationState",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/core/src/domain/state-machines.ts"
+          ]
+        },
+        {
+          "name": "knowledgeOperationStates",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/core/src/domain/state-machines.ts"
+          ]
+        },
+        {
+          "name": "LedgerEvent",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/core/src/runtime/ledger.ts"
+          ]
+        },
+        {
+          "name": "LocalArtifactStore",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/core/src/runtime/artifacts.ts"
+          ]
+        },
+        {
+          "name": "OperationContext",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/core/src/runtime/ledger.ts"
+          ]
+        },
+        {
+          "name": "OperationLedgerSnapshot",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/core/src/runtime/ledger.ts"
+          ]
+        },
+        {
+          "name": "OperationMetric",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/core/src/observability/index.ts"
+          ]
+        },
+        {
+          "name": "OperationRecord",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/core/src/runtime/ledger.ts"
+          ]
+        },
+        {
+          "name": "OperationState",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/core/src/runtime/ledger.ts"
+          ]
+        },
+        {
+          "name": "parseEveRuntimeAttestation",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/core/src/runtime/eve-runtime-attestation.ts"
+          ]
+        },
+        {
+          "name": "PromotionState",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/core/src/domain/state-machines.ts"
+          ]
+        },
+        {
+          "name": "promotionStates",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/core/src/domain/state-machines.ts"
+          ]
+        },
+        {
+          "name": "PublicationState",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/core/src/domain/state-machines.ts"
+          ]
+        },
+        {
+          "name": "publicationStates",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/core/src/domain/state-machines.ts"
+          ]
+        },
+        {
+          "name": "PutArtifact",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/core/src/runtime/artifacts.ts"
+          ]
+        },
+        {
+          "name": "reconcileManifests",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/core/src/observability/index.ts"
+          ]
+        },
+        {
+          "name": "ReconciliationFinding",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/core/src/observability/index.ts"
+          ]
+        },
+        {
+          "name": "ServiceSloSnapshot",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/core/src/observability/index.ts"
+          ]
+        },
+        {
+          "name": "sha256Digest",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/core/src/domain/digest.ts"
+          ]
+        },
+        {
+          "name": "StepRecord",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/core/src/runtime/ledger.ts"
+          ]
+        },
+        {
+          "name": "StepState",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/core/src/runtime/ledger.ts"
+          ]
+        },
+        {
+          "name": "StoredArtifact",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/core/src/runtime/artifacts.ts"
+          ]
+        },
+        {
+          "name": "SupabaseArtifactStore",
+          "value": true,
+          "type": true,
+          "declaredAt": [
+            "packages/core/src/runtime/artifacts.ts"
+          ]
+        },
+        {
+          "name": "SupabaseArtifactStoreConfig",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/core/src/runtime/artifacts.ts"
+          ]
+        },
+        {
+          "name": "TransitionGuard",
+          "value": false,
+          "type": true,
+          "declaredAt": [
+            "packages/core/src/domain/state-machines.ts"
+          ]
+        },
+        {
+          "name": "transitionOperation",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/core/src/domain/state-machines.ts"
+          ]
+        },
+        {
+          "name": "transitionPromotion",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/core/src/domain/state-machines.ts"
+          ]
+        },
+        {
+          "name": "transitionPublication",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/core/src/domain/state-machines.ts"
+          ]
+        },
+        {
+          "name": "verifyEveRuntimeAttestation",
+          "value": true,
+          "type": false,
+          "declaredAt": [
+            "packages/core/src/runtime/eve-runtime-attestation.ts"
+          ]
+        }
+      ],
+      "runtime": {
+        "status": "present-unverified-build",
+        "sha256": "d481308bd618fcf48573fccf06bd29edef94bfedce90dbc430d5cd69b93bd640",
+        "names": [
+          "assertAppendOnly",
+          "assertAuthorityCompatible",
+          "assertCanonicalPublicationAuthority",
+          "assertDecisionAuthority",
+          "assertIdempotentReplay",
+          "assertSourceNativeIntegrity",
+          "canonicalJson",
+          "createEveRuntimeAttestation",
+          "createIdempotencyKey",
+          "deepFreeze",
+          "deterministicUuid",
+          "digestBytes",
+          "DomainInvariantError",
+          "InMemoryArtifactStore",
+          "InMemoryOperationLedger",
+          "InMemoryTelemetry",
+          "KNOWLEDGE_SERVICE_NAME",
+          "knowledgeOperationStates",
+          "LocalArtifactStore",
+          "parseEveRuntimeAttestation",
+          "promotionStates",
+          "publicationStates",
+          "reconcileManifests",
+          "sha256Digest",
+          "SupabaseArtifactStore",
+          "transitionOperation",
+          "transitionPromotion",
+          "transitionPublication",
+          "verifyEveRuntimeAttestation"
+        ]
+      }
+    }
+  },
+  "collisions": {
+    "core": []
+  },
+  "manifestGraph": {
+    "packageCount": 21,
+    "edges": [
+      {
+        "from": "@aiengineer/knowledge-acquisition",
+        "to": [
+          "@aiengineer/knowledge-core"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-api",
+        "to": [
+          "@aiengineer/knowledge-application",
+          "@aiengineer/knowledge-client",
+          "@aiengineer/knowledge-config",
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-core",
+          "@aiengineer/knowledge-db",
+          "@aiengineer/knowledge-persistence",
+          "@aiengineer/knowledge-retrieval",
+          "@aiengineer/knowledge-testkit"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-application",
+        "to": [
+          "@aiengineer/knowledge-acquisition",
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-core",
+          "@aiengineer/knowledge-evaluation",
+          "@aiengineer/knowledge-jev",
+          "@aiengineer/knowledge-policy",
+          "@aiengineer/knowledge-preparation",
+          "@aiengineer/knowledge-retrieval",
+          "@aiengineer/knowledge-testkit",
+          "@aiengineer/knowledge-verification"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-cli",
+        "to": [
+          "@aiengineer/knowledge-application",
+          "@aiengineer/knowledge-client",
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-verification"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-client",
+        "to": [
+          "@aiengineer/knowledge-contracts"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-config",
+        "to": [
+          "@aiengineer/knowledge-contracts"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-contracts",
+        "to": []
+      },
+      {
+        "from": "@aiengineer/knowledge-core",
+        "to": [
+          "@aiengineer/knowledge-contracts"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-db",
+        "to": [
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-core",
+          "@aiengineer/knowledge-persistence",
+          "@aiengineer/knowledge-preparation"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-evaluation",
+        "to": [
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-core",
+          "@aiengineer/knowledge-verification"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-jev",
+        "to": [
+          "@aiengineer/knowledge-contracts"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-jev-service",
+        "to": [
+          "@aiengineer/knowledge-application",
+          "@aiengineer/knowledge-client",
+          "@aiengineer/knowledge-contracts"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-mcp",
+        "to": [
+          "@aiengineer/knowledge-application",
+          "@aiengineer/knowledge-client",
+          "@aiengineer/knowledge-config",
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-persistence"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-persistence",
+        "to": [
+          "@aiengineer/knowledge-application",
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-core",
+          "@aiengineer/knowledge-verification"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-policy",
+        "to": [
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-core",
+          "@aiengineer/knowledge-verification"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-preparation",
+        "to": [
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-core"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-retrieval",
+        "to": [
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-core",
+          "@aiengineer/knowledge-preparation"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-testkit",
+        "to": [
+          "@aiengineer/knowledge-core",
+          "@aiengineer/knowledge-evaluation",
+          "@aiengineer/knowledge-retrieval"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-verification",
+        "to": [
+          "@aiengineer/knowledge-contracts"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-verification-executor",
+        "to": [
+          "@aiengineer/knowledge-application",
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-core",
+          "@aiengineer/knowledge-db",
+          "@aiengineer/knowledge-persistence",
+          "@aiengineer/knowledge-policy",
+          "@aiengineer/knowledge-preparation",
+          "@aiengineer/knowledge-verification"
+        ]
+      },
+      {
+        "from": "@aiengineer/knowledge-worker",
+        "to": [
+          "@aiengineer/knowledge-acquisition",
+          "@aiengineer/knowledge-application",
+          "@aiengineer/knowledge-contracts",
+          "@aiengineer/knowledge-core",
+          "@aiengineer/knowledge-evaluation",
+          "@aiengineer/knowledge-persistence",
+          "@aiengineer/knowledge-policy",
+          "@aiengineer/knowledge-preparation",
+          "@aiengineer/knowledge-retrieval",
+          "@aiengineer/knowledge-verification"
+        ]
+      }
+    ],
+    "cycles": []
+  }
+}

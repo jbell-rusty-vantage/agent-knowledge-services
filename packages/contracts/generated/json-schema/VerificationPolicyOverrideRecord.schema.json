@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "verification-policy-override.v1"
+    },
+    "overrideId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255
+    },
+    "policyVersion": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160
+    },
+    "runId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255
+    },
+    "decisionDigest": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "before": {
+      "type": "string",
+      "enum": [
+        "pass",
+        "pass_with_warnings",
+        "review",
+        "fail",
+        "abstain"
+      ]
+    },
+    "after": {
+      "type": "string",
+      "enum": [
+        "pass",
+        "pass_with_warnings",
+        "review",
+        "fail",
+        "abstain"
+      ]
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1000
+    },
+    "actorPrincipalId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255
+    },
+    "actorAuthority": {
+      "type": "string",
+      "const": "verification_policy_override"
+    },
+    "recordedAt": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z|([+-](?:[01]\\d|2[0-3]):[0-5]\\d)))$"
+    },
+    "previousOverrideDigest": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "overrideId",
+    "policyVersion",
+    "runId",
+    "decisionDigest",
+    "before",
+    "after",
+    "reason",
+    "actorPrincipalId",
+    "actorAuthority",
+    "recordedAt"
+  ],
+  "additionalProperties": false
+}

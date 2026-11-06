@@ -1,0 +1,123 @@
+{
+  "schema": 1,
+  "unit": "5B",
+  "topic": "Local host profile and capability matrix",
+  "branch": "refactor/ks-unit-5b-local-profile",
+  "base": "1eb80ea",
+  "implementationHead": "e5deaa6",
+  "commits": {
+    "7357b1f": "host: createHost({ profile: \"local\" }), capability matrix, admission error, lazy lifecycle and tests",
+    "ace142c": "executor: file-backed services for the local profile (typed 5D3 seam), host devDependency, offline host test",
+    "a393a7b": "mcp: catalog local-profile rows report the local host's admission (server only / offline / provider)",
+    "e5deaa6": "review fixes: pure pre-construction document gate sharing captureFile's media-type resolution, close() drains running operations, satisfies checks, stronger ambient-credential assertions, remote-CLI check moved to apps/cli"
+  },
+  "environment": {
+    "node": "v24.18.0",
+    "pnpm": "10.34.5",
+    "os": "Windows 11"
+  },
+  "entryGate": {
+    "registeredReplay": "28 passed, 1 failed: SEALED_CHECKPOINT_MISSING:records/25-gl-repeatability-mutated-haiku_judge-failure.json",
+    "receiptSearch": "no copy found under C:/Users/Pinda/Proyectos (node_modules excluded)",
+    "decision": "continue 5B under the same exact exception; 5B does not touch benchmark replay. No test, skip predicate or receipt changed."
+  },
+  "commands": {
+    "install": {
+      "command": "corepack pnpm install --frozen-lockfile",
+      "exit": 0,
+      "result": "lockfile up to date; the only lockfile change is the executor importer's host devDependency link (unrelated vitest peer churn from pnpm was not kept)"
+    },
+    "typecheck": {
+      "command": "corepack pnpm exec turbo run typecheck --force --concurrency=2",
+      "exit": 0,
+      "tasks": "36/36 successful, 0 cached (on e5deaa6)"
+    },
+    "build": {
+      "command": "corepack pnpm exec turbo run build --force --concurrency=2",
+      "exit": 0,
+      "tasks": "21/21 successful, 0 cached (on e5deaa6)"
+    },
+    "staleCompiledTests": {
+      "command": "search apps/*/dist, packages/*/dist, services/*/dist for *.test.js",
+      "result": "none found; nothing preserved or removed"
+    },
+    "test": {
+      "command": "corepack pnpm exec turbo run test --continue=always --concurrency=1 --force -- --maxWorkers=2",
+      "exit": 1,
+      "tasks": "36/37 successful, 0 cached (on e5deaa6)",
+      "passed": 2962,
+      "skipped": 126,
+      "failed": 1,
+      "failures": [
+        "packages/application/src/verification/benchmark/verification-benchmark-registered-replay.test.ts :: registered benchmark replay replays all seven actual captured schema failures exactly once in memory (SEALED_CHECKPOINT_MISSING, retained exception)"
+      ],
+      "skips": {
+        "@aiengineer/knowledge-persistence": "29: unchanged from 5A (database integration files)",
+        "@aiengineer/knowledge-db": "32: unchanged from 5A",
+        "@aiengineer/knowledge-verification-executor": "39: unchanged from 5A (database/Storage integration files)",
+        "@aiengineer/knowledge-api": "20: unchanged from 5A",
+        "@aiengineer/knowledge-worker": "5: worker.test.ts",
+        "@aiengineer/knowledge-mcp": "1: tests/index.test.ts"
+      },
+      "perPackage": "contracts 203, client 25, verification 285, core 22, jev 9, preparation 83, acquisition 43, evaluation 55, policy 47, retrieval 136, testkit 11, application 442+1 failed, persistence 340/29 skipped, jev-service 6, knowledge-db 411/32, host 72, cli 54, mcp 217/1, worker 141/5, api 120/20, executor 240/39",
+      "notes": "2,962 = 5A's 2,940 + 22 added tests (host 16 net, CLI 2, MCP 1, executor 3). Skipped tests need a disposable database or providers that were not configured; they are not passing evidence. Log: %TEMP%/ks-unit5b-full-graph.log (diagnostic only)."
+    },
+    "examples": {
+      "command": "corepack pnpm examples:verification",
+      "exit": 0,
+      "result": "mechanical and extraction passed, semanticJudged 0, policy review, providersCalled 0, receipts 11"
+    },
+    "packageExamples": {
+      "command": "corepack pnpm --filter knowledge-acquisition --filter knowledge-preparation --filter knowledge-retrieval --if-present examples",
+      "exit": 0
+    },
+    "skills": {
+      "command": "node skills/check.mjs",
+      "exit": 0,
+      "result": "12 skills, 42 executor operations, 58 executor MCP tools, 78 platform commands, 70 platform MCP tools, 6 Jev MCP tools, 9 Jev commands"
+    },
+    "packagingSmoke": {
+      "command": "corepack pnpm --filter @aiengineer/knowledge-verification-executor pack:sandbox; npm install of the tarball in %TEMP%/ks-unit5b-installed outside the workspace, database/provider/executor environment removed",
+      "exit": 0,
+      "tarballSha256": "2a109d860e3f34115754332babd95c777a53d687b4ad71a64c57324ecba0b662",
+      "runtimeDependencies": ["@modelcontextprotocol/sdk", "pg", "zod"],
+      "result": "knowledge-verify help and knowledge help exit 0; offline example against the installed dist/index.js: 11 receipts, 0 providers"
+    },
+    "docs": {
+      "command": "node .agent-docs/cli.mjs build --repo . && node .agent-docs/cli.mjs check --repo .; git diff --check",
+      "exit": 0
+    }
+  },
+  "inventory": {
+    "script": "docs/operations/package-cleanup/workspace/evidence/unit5b-inventory.mjs (copy of unit5a-inventory.mjs; suites host, application, executor, mcp)",
+    "before": "unit5b-before.json (1eb80ea plus uncommitted new source that no suite imported yet; dirty flag true)",
+    "after": "unit5b-after.json",
+    "compareExit": 0,
+    "missingTests": [],
+    "changedOutcomes": [],
+    "replacedTests": {
+      "packages/host/src/tests/composition.test.ts :: host import and profile admission rejects the reserved local profile explicitly without reaching the network or a database": "packages/host/src/tests/composition.test.ts :: host import and profile admission composes the local profile lazily without reaching the network or a database (the slice's stated surface change; a new sibling test keeps the HOST_PROFILE_UNAVAILABLE rejection for profiles host does not compose)"
+    },
+    "addedTests": "21 in the inventoried suites (including the replacement above) plus 2 in apps/cli/src/tests/remote-profile.test.ts, outside the inventoried suites and counted in the graph",
+    "exports": "host adds HostCapabilityNotAdmittedError, createLocalHost, isLocalOperation, localVerificationOperations, profileAvailability (recorded); nothing removed; application unchanged",
+    "graph": "no manifest cycles with or without devDependencies; host imports no app; application and persistence import no host; executor -> host is a devDependency with a type-only production import (local-services.ts); the CLI has no host dependency or production import; knowledge-db -> persistence remains test-only (5D1)",
+    "catalog": "kinds, API routes, MCP tools, CLI commands and all 156 row definitions unchanged. Derived state: 98 platform rows local.* unavailable -> server only; 58 executor rows stay executor only on ks transports; local host state: 140 server only, 14 offline, 1 capture provider (verify_capture_source), 1 semantic provider (verify_judge_semantics). Server states unchanged; declared rows still fail closed.",
+    "eve": "unchanged (read-only)"
+  },
+  "review": {
+    "reviewer": "independent read-only subagent; no suites run",
+    "blocking": 0,
+    "applied": [
+      "document gate before construction with one shared media-type resolver",
+      "close() drains running operations",
+      "satisfies checks on the seam",
+      "ambient-credential assertions (auto capture method, gateway authorization header)",
+      "remote-CLI check moved to apps/cli; 5C replaces it with a module-graph check"
+    ],
+    "notApplied": [
+      "gating captureSource method=firecrawl without a key (the executor fails closed with FIRECRAWL_API_KEY_REQUIRED before any call)",
+      "narrowing profileAvailability's return type per profile"
+    ]
+  },
+  "notDone": ["no push, deployment, paid provider call, shared-database mutation or .jev state change"]
+}

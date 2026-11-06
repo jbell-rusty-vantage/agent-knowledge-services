@@ -1,0 +1,10 @@
+{
+  "group": "preparation",
+  "layout": "before",
+  "sourceCommit": "99aeaa61483cec0ba720f21bce25b659cb302aab",
+  "probeFile": "docs/operations/package-cleanup/workspace/evidence/unit1-preparation-consumer-probe-before.ts",
+  "symbolCount": 78,
+  "exitCode": 0,
+  "stdout": "",
+  "stderr": ""
+}

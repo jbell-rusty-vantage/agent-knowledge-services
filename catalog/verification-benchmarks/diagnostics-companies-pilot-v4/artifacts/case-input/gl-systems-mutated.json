@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "verification-benchmark-case-input.v1",
+  "sourceDatasetManifestDigest": "sha256:b625b311493f8c366ef43bf4047bf61f38d510fe7f3c340f50bca42de737dfe6",
+  "sourceCaseDigest": "sha256:f3f1d58b9786dc1c478ebec3271c39a908cc1fde6aa3fdd9cf3723a14512c924",
+  "caseId": "gl-systems-mutated",
+  "assertion": "The science page says 640 epigenetic biomarkers are mapped across 12 body systems.",
+  "evidence": [
+    {
+      "fragmentId": "sha256:4b302c00160c8ebe9e650ad8a0bce4ebb10ea3466078d84614dd2cbb2f5b6115",
+      "captureId": "ed7c057c-ce78-5d78-a251-74575f694a52",
+      "sourceKey": "gl-science",
+      "sourceClass": "first_party",
+      "projectionArtifactId": "914e0ec1-023e-5f21-a353-c3d8555e26fa",
+      "projectionDigest": "sha256:2d59d02ac2dd964183173e7820448656bdbcd497bfa65a7884fcaee1f3bd70ee",
+      "transformationArtifactId": "47ccf319-74ba-5a1c-a422-85eef1de82b8",
+      "selector": {
+        "kind": "html",
+        "domPath": "1/5/3/4/0/2/0/0/0/0/1/0"
+      },
+      "selectedContentDigest": "sha256:3b5b10b12141230c1fd4b3bd7e111199d3388ce780f1b1b1b9c23b13c2ac31b3",
+      "excerpt": "The SystemAge™ Test analyzes 460 epigenetic biomarkers mapped across 21 body systems, selected not just for scale, but for biological relevance. Each biomarker was chosen to reflect meaningful changes in how aging unfolds across systems.",
+      "rights": "restricted internal preparation; not approved for provider upload or public redistribution",
+      "originalProviderUploadAuthorized": false
+    }
+  ],
+  "intendedUse": "immutable_case_input; provider transmission requires a separately authenticated derived-input grant"
+}

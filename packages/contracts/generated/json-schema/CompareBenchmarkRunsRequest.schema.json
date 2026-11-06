@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "verificationContractVersion": {
+      "type": "string",
+      "const": "verification.v1"
+    },
+    "baselineRunId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255
+    },
+    "candidateRunId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255
+    },
+    "comparisonProfile": {
+      "type": "string",
+      "enum": [
+        "paired_default",
+        "regression_gate"
+      ]
+    }
+  },
+  "required": [
+    "verificationContractVersion",
+    "baselineRunId",
+    "candidateRunId",
+    "comparisonProfile"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "verification-benchmark-catalog-manifest.v1",
+  "datasetManifestDigest": "sha256:e3529d2d27e3f473d4f6eb9da633b404c14c48f20b9db8c1d7a428220d538d9e",
+  "sourcePreparationDigest": "sha256:50a3552cffc639a78d7789865be929baefd64d2342431e2de958e669c21f163e",
+  "proposalDigest": "sha256:ae9bce06f634715b7a6f8ff278839347433e7f4889cac6f9b25fa1bcd49823c8",
+  "fragmentCandidateDigest": "sha256:d1781f1c5b32dff5fff3a27251c9072386f1673e98d4fb9210090fc4ef6b9831",
+  "files": [
+    {
+      "name": "annotation-guidelines.json",
+      "digest": "sha256:c7ce3d536f9f3549656dea535cf0b63100753df54cae0bd863ded42979df3962",
+      "bytes": 667
+    },
+    {
+      "name": "dataset.json",
+      "digest": "sha256:ce24de78901573bfe7ec0bdd243e7721a64509cc5fee8067aba633986750aac3",
+      "bytes": 104973
+    },
+    {
+      "name": "derived-input-grant.json",
+      "digest": "sha256:0f2b6f022a2d7178b6a64be27df76a77b16e0354b2d81e6c9dcfe491b04913db",
+      "bytes": 21219
+    },
+    {
+      "name": "annotation-queue.json",
+      "digest": "sha256:36041f7c78d2ceaa170ccdce707476de5bd7fc24a8d7dcf8ae9f04fada9c0c53",
+      "bytes": 8154
+    },
+    {
+      "name": "source-ledger.json",
+      "digest": "sha256:473cd99d45f8d6425c02330a6a81d0cb285926c32e3d70297f11385b1420444a",
+      "bytes": 9367
+    },
+    {
+      "name": "experiment.json",
+      "digest": "sha256:ff6b6d4d149c0dcd2919944573c1b459d8350f17aaf8b93e34cafcebd337e499",
+      "bytes": 814
+    },
+    {
+      "name": "benchmark-v1-candidate-pool.json",
+      "digest": "sha256:442214adecc5d468afd3e9cf9a08c2d9d5a1ed74b0edff21264a64c0cb84b6e1",
+      "bytes": 134601
+    }
+  ],
+  "manifestDigest": "sha256:fc927c53f8bc308227fe3e9f1f5d321e3075986140a25ce07755208c86ac09e1"
+}
