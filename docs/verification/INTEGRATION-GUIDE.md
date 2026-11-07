@@ -168,9 +168,9 @@ Shapes checked against Zod in `packages/contracts/src/verification/requests.ts`.
 
 ### Mission Control
 
-Capability dispatch adapter: `../ai-engineer-mission-control/apps/api/src/verification-temporal.ts` and `verificationWorkflow`. Launch uses `REJECT_DUPLICATE`. The future parent mission/node workflow replaces harness-seeded orchestration rows. Do not copy verification algorithms into MC.
+Capability dispatch: Mission Control (`BellLabs/platform/mission-control`) calls the verification executor's K01 surface (`/knowledge-operation/v2`, adapter `src/mission_control/adapters/knowledge/http_client.py`). The earlier `verificationWorkflow` adapter and its dashboard configuration lived in the retired `ai-engineer-mission-control` repository and are historical, not entrypoints. Do not copy verification algorithms into MC.
 
-Keep execution state separate from admission disposition. Dashboard configuration: `../ai-engineer-mission-control/docs/VERIFICATION-CPH-RECEIPTS.md`. The internal drift revalidation queue (`/v1/system/verification-drift-*`, scope `verification.drift.consume`) was retired in SV-17 with its AIDB outbox; Mission Control's KNOWLEDGE_* settings for K01 are in `platform/mission-control/docs/MISSION_CONTROL_LOCAL_API.md`.
+Keep execution state separate from admission disposition. The internal drift revalidation queue (`/v1/system/verification-drift-*`, scope `verification.drift.consume`) was retired in SV-17 with its AIDB outbox; Mission Control's KNOWLEDGE_* settings for K01 are in `platform/mission-control/docs/MISSION_CONTROL_LOCAL_API.md`.
 
 Propagate `missionId`, `workItemId`, `attemptId`, and `externalExecution` (`runtime: "mission_control"`) as hint headers.
 

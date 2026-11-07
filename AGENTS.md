@@ -4,7 +4,7 @@ Follow the [BellLabs owner goal and reporting directive](../../AGENTS.md#owner-g
 
 Canonical: `BellLabs/platform/knowledge-services`; `@aiengineer/*` names and the pinned schema binding remain. Use [boundaries](knowledge/service-boundaries.md) and [neighbors](README.md#neighbor-systems) for platform/domain ownership and planned services. Retired `ai-engineer-mission-control` and `research_ingestion_systems_agent` are not entrypoints; do not recreate or repoint them.
 
-Sprint V agents: [start here for repositories, database roles and claim order](../mission-control/docs/specs/provider-consolidation-2026-10/sprint-v/START-HERE.md). The accepted full refactor changes shared operational schema ownership through one explicit cutover; the current binding and target component are distinguished there.
+Sprint V (finished; archived in Mission Control): [repositories, database roles and claim order](../mission-control/docs/specs/archive/provider-consolidation-2026-10/sprint-v/START-HERE.md); current Mission Control work starts at the [Sprint OC board](../mission-control/docs/specs/provider-consolidation-2026-10/sprint-oc/NEXT-SESSION.md). The accepted full refactor changes shared operational schema ownership through one explicit cutover; the current binding and target component are distinguished there.
 
 Before editing, run `git status --short`, `git branch --show-current`, and `git worktree list` here. Preserve dirty work; `.git/maintenance/jobs/` worktrees are not the primary source. Edit registered sources and build this repository only. Deeper guides: [README map](README.md#documentation-map), [code map](docs/agents/CODE-MAP.md).
 

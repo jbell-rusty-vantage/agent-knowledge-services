@@ -310,10 +310,10 @@ The owner chose a full refactor, with existing application data/history treated 
 AI Engineer's PostgreSQL knowledge graph first, then Biotech's versioned Neo4j GraphQL SDL immediately
 after, in the same sprint. BKS becomes the explicit schema author. Evidence report and study appraisal
 are the first complete report kinds over one extensible core. Recorded decisions: SV-D6..14 in the
-[Sprint V answers](../../../../mission-control/docs/specs/provider-consolidation-2026-10/answers/sprint-v/codex-gpt-6-2026-10-24/ANSWERS.md).
+[Sprint V answers](../../../../mission-control/docs/specs/archive/provider-consolidation-2026-10/answer-sets/sprint-v/codex-gpt-6-2026-10-24/ANSWERS.md).
 
-The [plan](../../../../mission-control/docs/specs/provider-consolidation-2026-10/SPRINT-V-PLAN.md) and
-[contract projection](../../../../mission-control/docs/specs/provider-consolidation-2026-10/SPRINT-V-DESIGN.md)
+The [plan](../../../../mission-control/docs/specs/archive/provider-consolidation-2026-10/sessions/SPRINT-V-PLAN.md) and
+[contract projection](../../../../mission-control/docs/specs/archive/provider-consolidation-2026-10/specs/SPRINT-V-DESIGN.md)
 were accepted by the owner in SV-D13. They specify V01..V08 in full, including the common operational component and both native admission bindings.
 They retain amendments A1..A5, add report v2 and post-semantic aggregation, independent census, exact-use
 human adjudication and correction/revocation closure. V09 label/profile infrastructure and V14 parity

@@ -1,5 +1,7 @@
 # DeepAgents readiness for real KS fixtures
 
+**Superseded (2026-11-07):** the [BellLabs Knowledge Platform delivery capabilities](../../specs/belllabs-knowledge-platform/DELIVERY-CAPABILITIES.md) replace this placement and sequence; `research_ingestion_systems_agent` is retired and absent, and consumer fixtures now run through Mission Control (`BellLabs/platform/mission-control`). Kept as the record of the 2026-09-29 proposal that the unit documents link to.
+
 Status: **proposed**, 2026-09-29. Implementation belongs to `research_ingestion_systems_agent/agents/deepagents-stage`, not a KS cleanup slice. One readiness slice per session and branch, `feat/deepagents-dr1-model-routing` through similarly named DR2–DR5 branches. Read that repository's AGENTS.md before implementation. Preserve the uncommitted proof on `exp/deepagents-stage-proof`; establish an integrated baseline explicitly before branching. No code or agents are run by this documentation change.
 
 ## Accepted decisions and evidence boundary

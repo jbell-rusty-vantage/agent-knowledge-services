@@ -13,7 +13,7 @@ Processes, environment, rollout, and rollback for the verification module. Runti
 
 `services/docling` is a separate conversion boundary, not the verification parser.
 
-Mission Control / Temporal (`../ai-engineer-mission-control`) dispatches KS capabilities. The Temporal namespace is operator-provisioned. Credentials stay in server/activity configuration; source bytes and bearer tokens do not belong in workflow history.
+Mission Control / Temporal (`BellLabs/platform/mission-control`) dispatches KS capabilities through the K01 knowledge-operation surface (the retired `ai-engineer-mission-control` is not a deployment target). The Temporal namespace is operator-provisioned. Credentials stay in server/activity configuration; source bytes and bearer tokens do not belong in workflow history.
 
 ## Environment variable matrix
 

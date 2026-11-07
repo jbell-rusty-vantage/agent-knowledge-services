@@ -4,7 +4,7 @@ Status: reference; operational coordination for the accepted [final layout](../F
 
 Start with [PROGRESS.md](./PROGRESS.md), then [FINAL-REVIEW.md](../FINAL-REVIEW.md), then the current unit specification. This workspace is the execution ledger for the seven-unit cleanup and its baseline prerequisite. Historical S0–S7 ledgers in meta remain history/feature records; they do not determine this cleanup's next task. This ledger does not redefine product scope, grant provider/database access, or prove deployment.
 
-Delegated execution: [COORDINATOR-INSTRUCTIONS.md](../COORDINATOR-INSTRUCTIONS.md) is the developer-requested brief for GPT 6 Astra to coordinate GPT 6 Sol workers. It defines mostly sequential assignments, review ownership, and restart discipline.
+Delegated execution used a one-off GPT 6 Astra/Sol coordinator brief (mostly sequential assignments, review ownership, restart discipline); it was deleted on 2026-11-07 after the program was integrated on `main` (2026-10-24).
 
 ## Working rules
 

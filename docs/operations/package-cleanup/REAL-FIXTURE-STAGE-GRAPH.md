@@ -1,5 +1,7 @@
 # Real fixture stage graph on DeepAgents
 
+**Superseded (2026-11-07):** the [BellLabs Knowledge Platform delivery capabilities](../../specs/belllabs-knowledge-platform/DELIVERY-CAPABILITIES.md) replace this placement and sequence; `research_ingestion_systems_agent` is retired and absent, and consumer fixtures now run through Mission Control (`BellLabs/platform/mission-control`). Kept as the record of the 2026-09-29 proposal that the unit documents link to.
+
 Status: **proposed**, 2026-09-29. Runnable implementation is future work in `research_ingestion_systems_agent/agents/deepagents-stage`. Entry gates: KS cleanup/readiness (including 5H and Unit 6), [DR1–DR5](./DEEPAGENTS-READINESS.md), frozen fixture inputs and disposable KS database/storage. Unit 7 may follow the bounded experiment under the existing sequencing exception.
 
 This resembles the research-and-ingestion mission in [OPENAI_FIXTURE §5](../../../../../aiengineer/ai-engineer-meta/ai-engineer-architecture/specs/knowledge-services-pre-mission-control/OPENAI_FIXTURE.md). That meta document's Eve harness wording is pending a later edit. The fixture uses a real DeepAgents parent and real config-composed children; mock tools, narrated delegation and coordinator-only execution cannot satisfy the delegation gate. See [config construction and execution modes](./DEEPAGENTS-READINESS.md#config-driven-parent-and-real-children).

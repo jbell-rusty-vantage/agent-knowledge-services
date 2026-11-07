@@ -4,7 +4,7 @@ Knowledge Services owns an independent evidence compiler and policy-controlled v
 
 **SV-17 cutover (2026-10-25).** The `knowledge_verification` component (2.4.0, migration 0007) is the only authority for verification runs, claims and seals; callers reach it through `ks.knowledge_operation.v2` (K01) with K07 issuer credentials. The legacy `verification.v1` claims, report, metric, adjudication, audit-bundle, semantic, run/case read, drift and recovery surfaces were removed from every transport, and their AIDB tables were withdrawn by contract 0.5.0. What remains of `verification.v1` is listed under [operation kinds and use cases](#operation-kinds-and-use-cases). See [admission](../../knowledge/verification-and-admission.md) for the exact-use path.
 
-This guide describes the **as-built** module. The workspace folder `docs/workspaces/verification-module/` is a historical ledger, not current truth. Source of truth: code plus `docs/workspaces/verification-module/stabilization-20260908/AS-BUILT-INVENTORY.md`.
+This guide describes the **as-built** module. Source of truth: code and tests. The 2026-09 workspace ledger (`docs/workspaces/verification-module/`, with its engineering handoff, acceptance matrix and as-built inventory) is no longer in this repository; references to it in older documents are historical.
 
 ## What it is
 
@@ -60,7 +60,7 @@ apps/api | apps/cli | apps/mcp | apps/worker
 
 - Persistence, knowledge-db and verification executor currently pin the vendored `@aiengineer/database-contract` **0.6.0** (`vendor/aiengineer-database-contract-0.6.0.tgz`, tracked in git; migration head `20261031010000`, which adds `orchestration.operation_receipt_target`, the origin digest and Mission Control coordinates on the native ledger, `evidence.claim.producer_origin_digest` and `orchestration.mission_run_effects`; contract 0.5.0 at `20261025010000` withdrew the legacy verification run/finding/assessment/case tables, the drift outbox, the report package seal/assessment/ingestion-link tables and `knowledge_service.recovery_*`); inspect the [persistence manifest](../../packages/persistence/package.json), [knowledge-db manifest](../../packages/knowledge-db/package.json) and [executor manifest](../../apps/verification-executor/package.json). Migrations live in `../../aiengineer/ai-engineer-db-contract`. The package pin does not attest a live database's migration head; verify the target head through the contract workspace before operating. Apps do not own a second schema tree.
 - Object storage bucket: `VERIFICATION_STORAGE_BUCKET` (default `ai-engineer-cloud-bucket`). Object key: `{tenantId}/{digest[7:9]}/{digest[7:]}` where digest is the hex after `sha256:`.
-- Mission Control / Temporal in `../ai-engineer-mission-control` is the cross-service orchestrator (`verificationWorkflow`, launch `REJECT_DUPLICATE`). KS owns algorithms and durable execution; MC owns dispatch, cancellation, and retry classification.
+- Mission Control / Temporal in `BellLabs/platform/mission-control` is the cross-service orchestrator: it calls the verification executor's K01 surface (`POST /knowledge-operation/v2/invoke`, status and cancel; MC `src/mission_control/adapters/knowledge/http_client.py`). KS owns algorithms and durable execution; MC owns dispatch, cancellation, and retry classification. The earlier `verificationWorkflow` adapter lived in the retired `ai-engineer-mission-control` and is historical.
 
 Parser jobs run in the pinned Docker image at `services/parser`. Docling (`services/docling`) is a separate conversion boundary.
 
@@ -111,10 +111,6 @@ Claim atomization, report consistency checks and run sealing now run inside the 
 | [INTEGRATION-GUIDE.md](INTEGRATION-GUIDE.md) | Mission Control, Eve, Cursor Cloud, dashboards |
 | [../../packages/verification/README.md](../../packages/verification/README.md) | Algorithm package facade and invariants |
 | [../specifications/verification-module.md](../specifications/verification-module.md) | Design vocabulary and intent (not as-built topology) |
-| [../workspaces/verification-module/](../workspaces/verification-module/) | Historical workspace ledger |
-| [../workspaces/verification-module/ENGINEERING-HANDOFF-20260908.md](../workspaces/verification-module/ENGINEERING-HANDOFF-20260908.md) | Current engineering acceptance state |
-| [../workspaces/verification-module/ACCEPTANCE-MATRIX.md](../workspaces/verification-module/ACCEPTANCE-MATRIX.md) | 46-row completion matrix |
-| [../workspaces/verification-module/stabilization-20260908/](../workspaces/verification-module/stabilization-20260908/) | As-built inventory and stabilization ledgers |
 
 ## Spec deviations / deferred
 

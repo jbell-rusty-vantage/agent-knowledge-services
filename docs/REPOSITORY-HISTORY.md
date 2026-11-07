@@ -18,6 +18,23 @@ only, no rollbacks to earlier commits.
   branches, tags, recovery refs or stashes on the new remote.
 - The old `Overton77/ai-engineer-knowledge-services` repository is legacy and no longer the source of truth. Do not push to it or open PRs there.
 
+## Sibling repositories (as of 2026-11-07)
+
+The other BellLabs repositories moved the same way (clean slate, `main` only). Links to `Overton77/...` in older documents
+point at the legacy account; use these homes instead.
+
+| Checkout (BellLabs workspace) | GitHub home |
+| --- | --- |
+| `platform/mission-control` | [`jbell-rusty-vantage/agentic-mission-control`](https://github.com/jbell-rusty-vantage/agentic-mission-control) |
+| `platform/agentic-sdlc` | [`jbell-rusty-vantage/agentic-sdlc`](https://github.com/jbell-rusty-vantage/agentic-sdlc) |
+| `aiengineer/ai-engineer-db-contract` (schema authority this repository pins) | [`jbell-rusty-vantage/agent-engineer-db-contract`](https://github.com/jbell-rusty-vantage/agent-engineer-db-contract) |
+| `aiengineer/ai-engineer-service` | [`jbell-rusty-vantage/ai-engineer-services`](https://github.com/jbell-rusty-vantage/ai-engineer-services) |
+| `aiengineer/ai-engineer-industry-cloud-automated-research` (being renamed) | [`jbell-rusty-vantage/ai-engineer-cloud-agent-knowledge-repo`](https://github.com/jbell-rusty-vantage/ai-engineer-cloud-agent-knowledge-repo) |
+| `biotech/biotech-knowledge-services` | [`jbell-rusty-vantage/biotech-knowledge-services`](https://github.com/jbell-rusty-vantage/biotech-knowledge-services) |
+| `biotech/biotech-postgres-db-contract` | [`jbell-rusty-vantage/biotech-postgres-db-contract`](https://github.com/jbell-rusty-vantage/biotech-postgres-db-contract) |
+
+Workspace status and the move recipe: [worktree routing](../../../docs/navigation/WORKTREES.md#github-move-and-clean-slate-2026-11-06).
+
 ## Commit IDs in older documents
 
 Specs, ledgers, handoffs, ADRs, receipts and evidence files written before the move cite commit IDs and links to the old

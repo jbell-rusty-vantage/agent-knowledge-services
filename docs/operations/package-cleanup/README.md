@@ -6,10 +6,11 @@ Current continuation: [NEXT-PACKAGE-CLEANUP.md](./NEXT-PACKAGE-CLEANUP.md). Unit
 
 ## Start here
 
-1. [COORDINATOR-INSTRUCTIONS.md](./COORDINATOR-INSTRUCTIONS.md): attach to a GPT 6 Astra session; delegate bounded implementation to GPT 6 Sol.
-2. [FINAL-LAYOUT.md](./FINAL-LAYOUT.md): accepted layout, transport rules, and seven-unit sequence.
-3. [workspace/PROGRESS.md](./workspace/PROGRESS.md): current state, validation evidence, and next task.
-4. [workspace/README.md](./workspace/README.md): ledger ownership and handoff rules.
+1. [FINAL-LAYOUT.md](./FINAL-LAYOUT.md): accepted layout, transport rules, and seven-unit sequence.
+2. [workspace/PROGRESS.md](./workspace/PROGRESS.md): current state, validation evidence, and next task.
+3. [workspace/README.md](./workspace/README.md): ledger ownership and handoff rules.
+
+The one-off GPT 6 Astra/Sol coordinator brief for the 2026-09 cleanup sessions was deleted on 2026-11-07; the program was integrated on `main` on 2026-10-24 ([NEXT-PACKAGE-CLEANUP](./NEXT-PACKAGE-CLEANUP.md)).
 
 ## Implementation references
 
@@ -22,8 +23,8 @@ Current continuation: [NEXT-PACKAGE-CLEANUP.md](./NEXT-PACKAGE-CLEANUP.md). Unit
 - [UNIT-5-EXECUTOR-FOLD-CLI-AND-EVE.md](./UNIT-5-EXECUTOR-FOLD-CLI-AND-EVE.md): next bounded specification. [UNIT-5-SLICES.md](./UNIT-5-SLICES.md) divides it into sessions (5A–5H), one branch each. 5A–5B are delivered; 5C's implementation is committed on its branch and awaits validation evidence, ledger entry and local merge; then Q0, 5P and **5D1**. 5E1/5E2 are superseded. Write full specifications for units 6–7 as their turn arrives.
 - [APP-AND-SKILL-QUALITY.md](./APP-AND-SKILL-QUALITY.md): proposed app and skill quality plan (2026-09-29) — close 5C, then Q0 quality gates and 5P transport structure before 5D1; per-slice quality additions; proposed Unit 8 worker extraction and service hardening.
 - [UNIT-6-SKILLS-DIRECTION.md](./UNIT-6-SKILLS-DIRECTION.md): proposed canonical eight skills and DeepAgents parser conformance.
-- [DEEPAGENTS-READINESS.md](./DEEPAGENTS-READINESS.md): proposed DR1–DR5, config-composed sync/async agents, model routes, artifacts and budget.
-- [REAL-FIXTURE-STAGE-GRAPH.md](./REAL-FIXTURE-STAGE-GRAPH.md): proposed seven-stage mission, validators, operator continuation and $25 allocation.
+- [DEEPAGENTS-READINESS.md](./DEEPAGENTS-READINESS.md): superseded proposal (DR1–DR5, config-composed sync/async agents, model routes, artifacts and budget).
+- [REAL-FIXTURE-STAGE-GRAPH.md](./REAL-FIXTURE-STAGE-GRAPH.md): superseded proposal (seven-stage mission, validators, operator continuation and $25 allocation).
 
 No live consumers require compatibility support. Order: KS cleanup/readiness → DeepAgents readiness → real fixtures → Mission Control. Eve adaptation is superseded; its repository code stays untouched. Preserve stored evidence and the populated shared database.
 

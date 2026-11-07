@@ -2,7 +2,7 @@
 
 Archived 2026-09-27. These documents record the 2026-09-19 proposal and phase-review work. Their bodies are preserved unchanged. Statements such as “source of truth,” “single merged sequence,” “approval required,” or “not implemented” describe that historical proposal, not current execution instructions.
 
-Use the [current index](../README.md), [accepted final layout](../FINAL-LAYOUT.md), [coordinator instructions](../COORDINATOR-INSTRUCTIONS.md), and [execution ledger](../workspace/PROGRESS.md) for active work. Historical source paths and status claims may be stale. This archive does not replace the actual pre–Mission Control test plan in its owning repository.
+Use the [current index](../README.md), [accepted final layout](../FINAL-LAYOUT.md), and [execution ledger](../workspace/PROGRESS.md) for active work. Historical source paths and status claims may be stale. This archive does not replace the actual pre–Mission Control test plan in its owning repository.
 
 | Document | Historical role |
 |---|---|

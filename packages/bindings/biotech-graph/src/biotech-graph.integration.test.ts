@@ -34,7 +34,7 @@ import { StubBksExecutor } from "./testing.js";
  *   bks   (T1 graph proof): the BKS native executor over HTTP against the disposable Neo4j; selected by
  *         BIOTECH_GRAPH_T1_EXECUTOR_URL / _TOKEN (service) / _READ_TOKEN (reader) and a pre-installed database
  *         BIOTECH_GRAPH_T1_DATABASE + BIOTECH_GRAPH_T1_TENANT + BIOTECH_GRAPH_T1_INSTALLATION (the executor's
- *         BKS_VERIFICATION_DSN must point at that database). BIOTECH_GRAPH_T1_EXECUTOR_DOWN_URL: a second executor
+ *         BKS_BIOTECH_DB_VERIFICATION_DSN must point at that database). BIOTECH_GRAPH_T1_EXECUTOR_DOWN_URL: a second executor
  *         whose Neo4j is unreachable (graph-unavailable case).
  * Requires KS_AIENG_DB_ADMIN_DSN (disposable admin DSN). Engineering fixtures only; no model calls.
  */
