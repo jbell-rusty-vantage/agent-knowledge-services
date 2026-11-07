@@ -442,7 +442,7 @@ try {
             load("admission/dispatch.ts"),
             import(pathToFileURL(resolve(bks, "scripts/fixtures/qualia/native-intent.ts")).href),
           ]);
-        fixture.assertQualiaTarget(process.env.NEO4J_URI);
+        fixture.assertQualiaTarget(process.env.BKS_BIOTECH_GRAPH_URI);
         const graph = GraphClient.fromEnv({ ...process.env, BKS_TARGET: "production" });
         const authority = new PgVerificationAuthority({ connectionString: connection.toString(), timeoutMs: 5000 });
         try {
