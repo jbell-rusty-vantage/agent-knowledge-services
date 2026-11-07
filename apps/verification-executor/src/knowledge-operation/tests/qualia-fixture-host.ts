@@ -67,7 +67,7 @@ const root = resolve(import.meta.dirname, "../../../../..");
 const binding = "biotech-graph";
 const scope: AuthScope = { tenant: origin.tenantId, application: "biotech", binding, origin, grants: [] };
 const database = `qualia_fixture_${randomBytes(6).toString("hex")}`;
-const adminDsn = requireLoopback("KNOWLEDGE_DB_CONTRACT_ADMIN_DSN", process.env.KNOWLEDGE_DB_CONTRACT_ADMIN_DSN);
+const adminDsn = requireLoopback("KS_AIENG_DB_ADMIN_DSN", process.env.KS_AIENG_DB_ADMIN_DSN);
 const connection = new URL(adminDsn);
 connection.pathname = `/${database}`;
 mkdirSync(config.evidenceRoot, { recursive: true });

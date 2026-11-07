@@ -46,6 +46,6 @@ describe("disposable database identity", () => {
       expect(() => validateDisposableTarget({ ...target(), databaseUrl })).toThrow(/URL_DENIED/);
     }
     expect(() => disposableDatabaseUrl({ KS_REQUIRE_CURRENT_SCHEMA: "1" })).toThrow(/URL_REQUIRED/);
-    expect(disposableDatabaseUrl({ POSTGRES_URL: "postgresql://shared" })).toBeUndefined();
+    expect(disposableDatabaseUrl({ KS_AIENG_DB_RUNTIME_DSN: "postgresql://shared" })).toBeUndefined();
   });
 });

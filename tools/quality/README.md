@@ -12,7 +12,7 @@ Mechanical gates that keep the code base from getting worse. They run in `pnpm v
 
 ## Store-backed tests
 
-The turbo `test` task forwards (and hashes) `KNOWLEDGE_DB_CONTRACT_ADMIN_DSN`, `KS_TEST_DATABASE_URL`,
+The turbo `test` task forwards (and hashes) `KS_AIENG_DB_ADMIN_DSN`, `KS_TEST_DATABASE_URL`,
 `KS_TEST_PROJECT_DIR`, `KS_REQUIRE_CONFORMANCE_STORE` and `CI`, so `pnpm verify` runs the disposable-database suites when
 they are set. Without the DSN the knowledge backend conformance checks that need a store are visible skips; with `CI` or
 `KS_REQUIRE_CONFORMANCE_STORE=1` they fail.

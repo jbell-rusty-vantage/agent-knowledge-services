@@ -46,7 +46,7 @@ import { pinSealSigningKey, setSealSigningKeyStatus } from "./seal-keys.js";
  * CAS and on every load (tampered manifest bytes / family bytes refuse), reviewer grant -> adjudication -> successor
  * decision with scoped grants enforced by SQL, and correction closure over dependency_edge.
  */
-const ADMIN = process.env.KNOWLEDGE_DB_CONTRACT_ADMIN_DSN;
+const ADMIN = process.env.KS_AIENG_DB_ADMIN_DSN;
 const describeDb = ADMIN ? describe : describe.skip;
 const TENANT = "00000000-0000-7000-8000-0000000000aa";
 const BINDING = "aiengineer-postgres";

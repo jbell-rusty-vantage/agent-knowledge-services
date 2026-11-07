@@ -30,7 +30,7 @@ CLI demo / attestation / benchmark diff --> application / verification (frozen f
 | API | KS server with Postgres | application use cases, then persistence | `KnowledgeClient` (no self-HTTP) |
 | MCP | KS server with Postgres | the same application functions the API uses | `KnowledgeClient` / the sibling API (the temporary shim was removed in cleanup unit 3) |
 | Workers | KS server | application | HTTP API for their own use cases |
-| CLI remote | Operator laptop, no DB | `KnowledgeClient` → HTTP API | application persistence, `POSTGRES_URL` |
+| CLI remote | Operator laptop, no DB | `KnowledgeClient` → HTTP API | application persistence, `KS_AIENG_DB_RUNTIME_DSN` |
 | CLI local (`demo`, `attestation-*`, `benchmark diff`) | Laptop, offline | application / verification on frozen files | HTTP, tokens, the remote catalog |
 | Eve / Mission Control / other repos | Another process | `KnowledgeClient` → HTTP API | KS internal packages |
 

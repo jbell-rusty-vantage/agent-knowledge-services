@@ -14,7 +14,7 @@ describe("local knowledge host composition", () => {
   it("composes the exact-use admission oracle and the K08 use classes for the same default tenant", async () => {
     const root = await mkdtemp(join(tmpdir(), "ks-host-composition-"));
     const env = {
-      KNOWLEDGE_DB_URL: "postgresql://localhost:1/unused",
+      KS_AIENG_DB_RUNTIME_DSN: "postgresql://localhost:1/unused",
       SCHEMA_WORKSPACE_DIR: fileURLToPath(
         new URL("../../../../../aiengineer/ai-engineer-db-contract/workspace", import.meta.url),
       ),

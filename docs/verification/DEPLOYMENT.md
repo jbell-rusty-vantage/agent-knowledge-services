@@ -142,8 +142,8 @@ Host configuration (`@aiengineer/knowledge-host/config`, formerly `packages/conf
 
 | Name | Process | Purpose |
 | --- | --- | --- |
-| `POSTGRES_URL` | api, worker, mcp | canonical DB |
-| `SUPABASE_URL`, `SUPABASE_SECRET_KEY` | api, worker | artifact store |
+| `KS_AIENG_DB_RUNTIME_DSN` | api, worker, mcp | canonical DB |
+| `KS_AIENG_DB_URL`, `KS_AIENG_DB_SECRET_KEY` | api, worker | artifact store |
 | `KNOWLEDGE_API_IDENTITIES` | api, mcp | bearer map |
 | `KNOWLEDGE_API_URL` | api (public origin), mcp, cli | public origin / client |
 | `KNOWLEDGE_API_TOKEN` | cli | client bearer |

@@ -1,7 +1,7 @@
 import { PostgresCanonicalRepository } from "@aiengineer/knowledge-persistence";
 import { CanonicalDurableKnowledgeWorker } from "./canonical-worker.js";
 
-const connectionString = process.env.POSTGRES_URL;
+const connectionString = process.env.KS_AIENG_DB_RUNTIME_DSN;
 const tenantId = process.env.WORKER_TENANT_ID;
 const operationId = process.env.WORKER_OPERATION_ID;
 const mode = process.env.WORKER_RESTART_FIXTURE_MODE;

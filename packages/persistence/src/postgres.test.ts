@@ -22,8 +22,8 @@ describe.skipIf(process.env.RUN_LOCAL_PERSISTENCE_TESTS !== "1")(
     const tenantId = randomUUID();
 
     beforeAll(() => {
-      const connectionString = process.env.POSTGRES_URL;
-      if (!connectionString) throw new Error("POSTGRES_URL_REQUIRED");
+      const connectionString = process.env.KS_AIENG_DB_RUNTIME_DSN;
+      if (!connectionString) throw new Error("KS_AIENG_DB_RUNTIME_DSN_REQUIRED");
       database = new PostgresCanonicalRepository({ connectionString, localOnly: true });
     });
 

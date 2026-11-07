@@ -12,7 +12,7 @@ export const KNOWLEDGE_HELP = `knowledge — schema workspace, bounded database 
 Usage: knowledge <group> <command> [positionals] [--flag value]...
 
 Modes
-  local   (default)                 needs POSTGRES_URL (or KNOWLEDGE_DB_URL) and SCHEMA_WORKSPACE_DIR
+  local   (default)                 needs KS_AIENG_DB_RUNTIME_DSN and SCHEMA_WORKSPACE_DIR
   remote  KNOWLEDGE_EXECUTOR_URL    forward every command to a running executor (\`knowledge serve\` / \`knowledge-verify serve\`)
                                     (or --remote <url>; --token / KNOWLEDGE_EXECUTOR_TOKEN for bearer auth)
 
@@ -168,7 +168,7 @@ interface Invocation {
 async function invokeLocal(invocation: Invocation, services: KnowledgeServices | undefined): Promise<unknown> {
   if (!services)
     throw new UsageError(
-      "local mode needs POSTGRES_URL (or KNOWLEDGE_DB_URL) and a schema workspace; or set KNOWLEDGE_EXECUTOR_URL for remote mode",
+      "local mode needs KS_AIENG_DB_RUNTIME_DSN and a schema workspace; or set KNOWLEDGE_EXECUTOR_URL for remote mode",
     );
   const { output } = await knowledgeOperations.invoke(invocation.operation.name, invocation.input, services);
   const gate = invocation.operation.gate?.(output);

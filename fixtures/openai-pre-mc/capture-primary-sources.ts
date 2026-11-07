@@ -4,7 +4,7 @@
  * sandbox parser. It intentionally neither fetches arbitrary URLs nor labels
  * claims. Run only against the coordinator-reserved disposable custody target.
  *
- * Required environment: POSTGRES_URL, SUPABASE_URL, SUPABASE_SECRET_KEY and
+ * Required environment: KS_AIENG_DB_RUNTIME_DSN, KS_AIENG_DB_URL, KS_AIENG_DB_SECRET_KEY and
  * VERIFICATION_PARSER_IMAGE_DIGEST. The script writes a compact receipt only;
  * raw source bytes remain in the configured artifact store.
  */
@@ -52,15 +52,15 @@ type CapturedSource = {
 };
 
 const fixtureDir = resolve(import.meta.dirname);
-const required = ["POSTGRES_URL", "SUPABASE_URL", "SUPABASE_SECRET_KEY", "VERIFICATION_PARSER_IMAGE_DIGEST"] as const;
+const required = ["KS_AIENG_DB_RUNTIME_DSN", "KS_AIENG_DB_URL", "KS_AIENG_DB_SECRET_KEY", "VERIFICATION_PARSER_IMAGE_DIGEST"] as const;
 for (const name of required) assert.ok(process.env[name]?.trim(), `MISSING_${name}`);
 assert.equal(process.env.P6_CAPTURE_TARGET, "disposable-ks-p0-p1", "P6_DISPOSABLE_TARGET_REQUIRED");
-assert.equal(new URL(process.env.SUPABASE_URL!).hostname, "127.0.0.1", "LOCAL_SUPABASE_REQUIRED");
+assert.equal(new URL(process.env.KS_AIENG_DB_URL!).hostname, "127.0.0.1", "LOCAL_SUPABASE_REQUIRED");
 assert.match(process.env.VERIFICATION_PARSER_IMAGE_DIGEST!, /^sha256:[a-f0-9]{64}$/u, "PARSER_IMAGE_DIGEST_REQUIRED");
-const guardedEnvironment = { ...process.env, KS_TEST_DATABASE_URL: process.env.POSTGRES_URL!,
-  KS_TEST_SUPABASE_URL: process.env.SUPABASE_URL!, KS_TEST_SUPABASE_SECRET_KEY: process.env.SUPABASE_SECRET_KEY!,
+const guardedEnvironment = { ...process.env, KS_TEST_DATABASE_URL: process.env.KS_AIENG_DB_RUNTIME_DSN!,
+  KS_TEST_SUPABASE_URL: process.env.KS_AIENG_DB_URL!, KS_TEST_SUPABASE_SECRET_KEY: process.env.KS_AIENG_DB_SECRET_KEY!,
   KS_TEST_PROJECT_DIR: resolve(fixtureDir, "../../../internal/disposable-ks-p0-p1"), KS_REQUIRE_CURRENT_SCHEMA: "1" };
-assert.equal(disposableDatabaseUrl(guardedEnvironment), process.env.POSTGRES_URL);
+assert.equal(disposableDatabaseUrl(guardedEnvironment), process.env.KS_AIENG_DB_RUNTIME_DSN);
 assert.ok(disposableStorageConfig(guardedEnvironment), "GUARDED_STORAGE_REQUIRED");
 
 const requestedSeeds = process.argv.slice(2).filter(value => value.startsWith("--seeds=")).flatMap(value => value.slice("--seeds=".length).split(",")).filter(Boolean);
@@ -85,10 +85,10 @@ const workItemId = randomUUID();
 const attemptId = randomUUID();
 const bucket = "ai-engineer-cloud-bucket";
 const now = () => new Date().toISOString();
-const database = new PostgresCanonicalRepository({ connectionString: process.env.POSTGRES_URL! });
+const database = new PostgresCanonicalRepository({ connectionString: process.env.KS_AIENG_DB_RUNTIME_DSN! });
 const repository = new PostgresVerificationRepository(
   database,
-  new SupabaseArtifactStore({ projectUrl: process.env.SUPABASE_URL!, serviceRoleKey: process.env.SUPABASE_SECRET_KEY!, bucket, maximumBytes: 8_000_000 }),
+  new SupabaseArtifactStore({ projectUrl: process.env.KS_AIENG_DB_URL!, serviceRoleKey: process.env.KS_AIENG_DB_SECRET_KEY!, bucket, maximumBytes: 8_000_000 }),
   { async authorize(input) { assert.equal(input.tenantId, tenantId); } },
 );
 const sourceIds = new Map(selected.map(item => [item.seedId, randomUUID()]));

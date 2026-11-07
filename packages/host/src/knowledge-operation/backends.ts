@@ -1,3 +1,4 @@
+import { resolveComponentDsn } from "../config/database.js";
 import type { ExternalCustodyReader } from "@aiengineer/knowledge-research-core";
 import {
   type AuditorDiscovery,
@@ -85,7 +86,8 @@ export function verifiedReceipt(document: unknown, scope: AuthScope, effectKey: 
 }
 
 /**
- * The PostgreSQL DSN a binding configuration names by variable (`databaseUrlEnv`), never logged. `null` when the
+ * The component DSN a binding configuration names by variable (`databaseUrlEnv`, one of
+ * `KS_{AIENG,BIOTECH}_DB_COMPONENT_DSN`), resolved by the database config module and never logged. `null` when the
  * configuration names no variable; a named variable that is unset or empty refuses `KNOWLEDGE_BINDING_DATABASE_REQUIRED`.
  */
 export function bindingConnectionString(
@@ -94,9 +96,9 @@ export function bindingConnectionString(
 ): string | null {
   const variable = config.databaseUrlEnv;
   if (!variable) return null;
-  const value = env[variable]?.trim();
-  if (!value) throw new Error(`KNOWLEDGE_BINDING_DATABASE_REQUIRED: ${variable} is not set`);
-  return value;
+  const { dsn } = resolveComponentDsn(env, variable, config.application);
+  if (!dsn) throw new Error(`KNOWLEDGE_BINDING_DATABASE_REQUIRED: ${variable} is not set`);
+  return dsn;
 }
 
 export interface ResearchBackendOptions {

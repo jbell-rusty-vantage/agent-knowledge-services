@@ -17,14 +17,25 @@ export interface CanonicalPersistence {
 
 export type CanonicalPersistenceEnvironment = Readonly<Record<string, string | undefined>>;
 
-function required(environment: CanonicalPersistenceEnvironment, name: string): string {
-  const value = environment[name]?.trim();
-  if (!value) throw new Error(`${name}_REQUIRED`);
-  return value;
+/**
+ * The resolved database selection of one plane (built by the host's `loadKsDatabaseConfig`, the only reader of the
+ * `KS_<PLANE>_DB_*` variables). `names` only labels the `*_REQUIRED` refusals.
+ */
+export interface CanonicalDatabaseSelection {
+  readonly runtimeDsn?: string | undefined;
+  readonly url?: string | undefined;
+  readonly secretKey?: string | undefined;
+  readonly names: { readonly RUNTIME_DSN: string; readonly URL: string; readonly SECRET_KEY: string };
+}
+
+function required(value: string | undefined, name: string): string {
+  if (!value?.trim()) throw new Error(`${name}_REQUIRED`);
+  return value.trim();
 }
 
 /** Parse the one admitted Postgres + private Storage configuration used by deployed processes. */
 export function canonicalPersistenceConfigFromEnvironment(
+  database: CanonicalDatabaseSelection,
   environment: CanonicalPersistenceEnvironment,
 ): CanonicalPersistenceConfig {
   const storageBucket = environment.SUPABASE_STORAGE_BUCKET?.trim() || "source-captures";
@@ -36,11 +47,11 @@ export function canonicalPersistenceConfigFromEnvironment(
     throw new Error("INVALID_MAXIMUM_ARTIFACT_BYTES");
   return {
     postgres: {
-      connectionString: required(environment, "POSTGRES_URL"),
+      connectionString: required(database.runtimeDsn, database.names.RUNTIME_DSN),
       ...(environment.CANONICAL_LOCAL_ONLY === "1" ? { localOnly: true } : {}),
     },
-    supabaseUrl: required(environment, "SUPABASE_URL"),
-    supabaseSecretKey: required(environment, "SUPABASE_SECRET_KEY"),
+    supabaseUrl: required(database.url, database.names.URL),
+    supabaseSecretKey: required(database.secretKey, database.names.SECRET_KEY),
     storageBucket,
     ...(maximumArtifactBytes === undefined ? {} : { maximumArtifactBytes }),
   };
@@ -58,7 +69,8 @@ export function createCanonicalPersistence(config: CanonicalPersistenceConfig): 
 }
 
 export function createCanonicalPersistenceFromEnvironment(
+  database: CanonicalDatabaseSelection,
   environment: CanonicalPersistenceEnvironment = process.env,
 ): CanonicalPersistence {
-  return createCanonicalPersistence(canonicalPersistenceConfigFromEnvironment(environment));
+  return createCanonicalPersistence(canonicalPersistenceConfigFromEnvironment(database, environment));
 }

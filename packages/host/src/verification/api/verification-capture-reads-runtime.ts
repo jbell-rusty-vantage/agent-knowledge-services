@@ -1,3 +1,4 @@
+import { loadKsDatabaseConfig } from "../../config/database.js";
 import {
   VerificationAdmissionService,
   VerificationCaptureReadApplicationService,
@@ -20,8 +21,9 @@ export function createVerificationCaptureReads(
   const enabled = environment.VERIFICATION_CAPTURE_READS_ENABLED?.trim();
   if (enabled && enabled !== "0" && enabled !== "1") throw new Error("INVALID_VERIFICATION_CAPTURE_READS_ENABLED");
   if (enabled !== "1") return undefined;
-  const projectUrl = environment.SUPABASE_URL?.trim(),
-    serviceRoleKey = environment.SUPABASE_SECRET_KEY?.trim(),
+  const ksDatabase = loadKsDatabaseConfig(environment),
+    projectUrl = ksDatabase.url,
+    serviceRoleKey = ksDatabase.secretKey,
     grants = environment.VERIFICATION_SERVICE_OWNERSHIP_GRANTS_JSON?.trim(),
     imageDigest = environment.VERIFICATION_PARSER_IMAGE_DIGEST?.trim();
   if (

@@ -1,3 +1,4 @@
+import { loadKsDatabaseConfig } from "../config/database.js";
 import { CanonicalRetrievalExecutor } from "@aiengineer/knowledge-application";
 import {
   EvidencePacketSchema,
@@ -22,8 +23,9 @@ export interface KnowledgeServices {
 
 function composeCitationReplay(database: PostgresCanonicalRepository, environment: HostEnvironment) {
   // Citation replay reads sealed bytes from remote object custody, never from producer files.
-  const projectUrl = environment.SUPABASE_URL?.trim(),
-    serviceRoleKey = environment.SUPABASE_SECRET_KEY?.trim();
+  const ksDatabase = loadKsDatabaseConfig(environment),
+    projectUrl = ksDatabase.url,
+    serviceRoleKey = ksDatabase.secretKey;
   if (!projectUrl || !serviceRoleKey) return undefined;
   const buckets = (environment.KNOWLEDGE_RETRIEVAL_ARTIFACT_BUCKETS?.trim() || "ai-engineer-cloud-bucket")
     .split(",")

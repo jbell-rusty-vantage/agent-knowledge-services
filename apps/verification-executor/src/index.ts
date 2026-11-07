@@ -35,7 +35,7 @@ Modes
 
 Serving
   serve [--port 4310] [--host 127.0.0.1]     HTTP: /mcp (Streamable HTTP MCP), /artifacts, /captures, /health,
-                                             /knowledge/:operation (schema_*, db_*, ingest_*, artifact_get when POSTGRES_URL is set)
+                                             /knowledge/:operation (schema_*, db_*, ingest_*, artifact_get when KS_AIENG_DB_RUNTIME_DSN is set)
                                              /knowledge-operation/v2/* (K01 v2 + K07 issuer credential, when KS_KNOWLEDGE_ISSUER is set)
   mcp-stdio                                  MCP over stdio (for local agent harnesses)
   health                                     remote: GET /health; local: store info

@@ -14,9 +14,9 @@ import { install } from "./installer.js";
  * the dispatch journal (idempotent, DISPATCH_CONFLICT, EFFECT_CONFLICT before any native write, dense sequence),
  * the native commit stamp (one per effect: EFFECT_ALREADY_COMMITTED rolls the second native transaction back),
  * the protocol receipt bound to the committing dispatch (RECEIPT_DISPATCH_MISMATCH), immutability and tenant RLS.
- * Needs `KNOWLEDGE_DB_CONTRACT_ADMIN_DSN` (loopback); skips (never fakes) without it.
+ * Needs `KS_AIENG_DB_ADMIN_DSN` (loopback); skips (never fakes) without it.
  */
-const ADMIN = process.env.KNOWLEDGE_DB_CONTRACT_ADMIN_DSN;
+const ADMIN = process.env.KS_AIENG_DB_ADMIN_DSN;
 const describeDb = ADMIN ? describe : describe.skip;
 const TENANT = "00000000-0000-7000-8000-0000000005aa";
 const OTHER = "00000000-0000-7000-8000-0000000005bb";

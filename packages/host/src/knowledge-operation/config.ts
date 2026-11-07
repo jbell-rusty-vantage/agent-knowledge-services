@@ -1,3 +1,4 @@
+import { KS_DB_COMPONENT_DSN_VARIABLES } from "../config/database.js";
 import type { ExternalCustodyReader } from "@aiengineer/knowledge-research-core";
 import { existsSync, readFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
@@ -31,7 +32,8 @@ import { KnowledgeOperationService } from "./service.js";
  *  KS_KNOWLEDGE_JWKS_FILE | _URL  the issuer's public JWKS (file path, or https/loopback http URL)
  *  KS_KNOWLEDGE_BINDINGS_JSON     installed bindings: JSON array of
  *                                 {application, binding, installationId, databaseUrlEnv?, tenants?}
- *                                 `databaseUrlEnv` is the NAME of the variable holding that binding's PostgreSQL DSN
+ *                                 `databaseUrlEnv` is `KS_AIENG_DB_COMPONENT_DSN` or `KS_BIOTECH_DB_COMPONENT_DSN` (the NAME of the
+ *                                 variable holding that binding's component DSN; read by the database config module)
  *  KS_KNOWLEDGE_SEAL_KEY_ID + KS_KNOWLEDGE_SEAL_KEY_FILE   optional K07 run-seal key (PKCS#8 PEM); unset, sealing refuses
  *  KS_KNOWLEDGE_SEAL_ISSUER       descriptor `signingIssuer` (default `knowledge-services`)
  *  KS_KNOWLEDGE_AUDITOR_SCRIPT_FILE  optional scripted census auditor (deterministic test double); refused at
@@ -54,10 +56,7 @@ const BindingConfigSchema = z.strictObject({
   application: z.string().regex(/^[a-z][a-z0-9_.-]{0,119}$/),
   binding: z.string().regex(/^[a-z][a-z0-9-]{0,63}$/),
   installationId: z.string().min(1).max(200),
-  databaseUrlEnv: z
-    .string()
-    .regex(/^[A-Z][A-Z0-9_]{0,127}$/)
-    .optional(),
+  databaseUrlEnv: z.enum(KS_DB_COMPONENT_DSN_VARIABLES).optional(),
   tenants: z.array(z.string().min(1).max(200)).min(1).optional(),
 });
 export type BindingConfig = z.infer<typeof BindingConfigSchema>;

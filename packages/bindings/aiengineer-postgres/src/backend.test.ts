@@ -40,14 +40,14 @@ describe("aiengineer-postgres BACKEND", () => {
           application: "ai-engineer",
           binding: "aiengineer-postgres",
           installationId: "00000000-0000-7000-8000-000000000001",
-          databaseUrlEnv: "KS_UNUSED_DSN",
+          databaseUrlEnv: "KS_AIENG_DB_COMPONENT_DSN",
         },
         {
           kinds: {} as never,
           auditor: null,
           seal: null,
           apply: OTHER_CONTRACT,
-          env: { KS_UNUSED_DSN: "postgresql://unused@127.0.0.1:1/unused" },
+          env: { KS_AIENG_DB_COMPONENT_DSN: "postgresql://unused@127.0.0.1:1/unused" },
         },
       ),
     ).rejects.toThrow(/BACKEND_APPLY_CONTRACT_MISMATCH/);

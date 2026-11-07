@@ -1,3 +1,4 @@
+import { loadKsDatabaseConfig } from "../../config/database.js";
 import { createPublicKey, verify } from "node:crypto";
 import { VerificationBenchmarkComparisonReadService } from "@aiengineer/knowledge-application";
 import {
@@ -22,8 +23,9 @@ export function createVerificationBenchmarkComparisonReads(
       return key !== undefined && verify(null, input.payload, key, Buffer.from(input.signatureBase64, "base64"));
     },
   };
-  const projectUrl = environment.SUPABASE_URL?.trim(),
-    serviceRoleKey = environment.SUPABASE_SECRET_KEY?.trim();
+  const ksDatabase = loadKsDatabaseConfig(environment),
+    projectUrl = ksDatabase.url,
+    serviceRoleKey = ksDatabase.secretKey;
   if (!database || !projectUrl || !serviceRoleKey) throw new Error("BENCHMARK_COMPARISON_READS_STORAGE_REQUIRED");
   const store = new SupabaseArtifactStore({
     projectUrl,

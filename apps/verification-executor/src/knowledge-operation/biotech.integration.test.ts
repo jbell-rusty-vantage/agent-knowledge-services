@@ -62,7 +62,7 @@ import {
  * Trusted in-process setup only where K01 has no operation: the independent judge observation, the seal and the
  * report use decision. Engineering fixtures only; no model calls.
  */
-const ADMIN = process.env.KNOWLEDGE_DB_CONTRACT_ADMIN_DSN;
+const ADMIN = process.env.KS_AIENG_DB_ADMIN_DSN;
 const describeDb = ADMIN ? describe : describe.skip;
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "../../../..");
 const TENANT = randomUUID();
@@ -109,7 +109,7 @@ describeDb("ks.knowledge_operation.v2 over the Biotech graph binding (K06, stub 
         KS_KNOWLEDGE_ISSUER: TEST_ISSUER,
         KS_KNOWLEDGE_AUDIENCE: TEST_AUDIENCE,
         KS_KNOWLEDGE_JWKS_FILE: jwksFile,
-        KS_BIOTECH_COMPONENT_DSN: dsn(),
+        KS_BIOTECH_DB_COMPONENT_DSN: dsn(),
         KS_KNOWLEDGE_SEAL_KEY_ID: "ks-sv16-biotech-seal",
         KS_KNOWLEDGE_SEAL_KEY_FILE: sealFile,
         KS_KNOWLEDGE_REPORT_KINDS_DIR: resolve(ROOT, "catalog/research/report-kinds"),
@@ -118,7 +118,7 @@ describeDb("ks.knowledge_operation.v2 over the Biotech graph binding (K06, stub 
             application: "biotech",
             binding: BINDING,
             installationId: INSTALLATION,
-            databaseUrlEnv: "KS_BIOTECH_COMPONENT_DSN",
+            databaseUrlEnv: "KS_BIOTECH_DB_COMPONENT_DSN",
           },
         ]),
       },

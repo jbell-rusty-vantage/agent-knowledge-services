@@ -101,11 +101,11 @@ Exit lattice for `knowledge`: 0 ok · 1 domain outcome (`PARAMS_INVALID`, `VOCAB
 
 ### Environment (knowledge)
 
-`POSTGRES_URL` or `KNOWLEDGE_DB_URL` (enables the knowledge tools; the pool connects as the login user and `set local role` switches to
+`KS_AIENG_DB_RUNTIME_DSN` (enables the knowledge tools; the pool connects as the login user and `set local role` switches to
 `pipeline_agent`/`app_reader` for reads and `executor_service` for ingestion inside each transaction)
 `SCHEMA_WORKSPACE_DIR` (default: the pinned `@aiengineer/database-contract` `workspace/`)
 `KNOWLEDGE_TENANT_ID` (default tenant for CLI/MCP calls) `KNOWLEDGE_ARTIFACT_DIR` (default `.knowledge-artifacts`; ledger rows are `storage_state='pending'` until bucket upload)
-`KNOWLEDGE_ARTIFACT_STORAGE=supabase` + `SUPABASE_URL` + `SUPABASE_SECRET_KEY` (upload to `research-ingestion-intents`)
+`KNOWLEDGE_ARTIFACT_STORAGE=supabase` + `KS_AIENG_DB_URL` + `KS_AIENG_DB_SECRET_KEY` (upload to `research-ingestion-intents`)
 `KNOWLEDGE_ALLOW_STALE=1` (experiments only: run when workspace head ≠ database head)
 `KNOWLEDGE_USE_CLASSES_FILE` (the K08 use-class registry; default the repository's `catalog/research/use-classes.json`). Ingestion admits a cited run only through an `exactUse` binding (`exactUseEvidenceOracle`); an official or consequential use without it is `REVIEW_REQUIRED`. The co-hosted capture store must serve the same tenant (`KNOWLEDGE_TENANT_MISMATCH`). See [verification and admission](../../knowledge/verification-and-admission.md).
 `KNOWLEDGE_EXECUTOR_URL` / `KNOWLEDGE_EXECUTOR_TOKEN` (remote mode for the `knowledge` CLI; `VERIFY_EXECUTOR_URL` is honoured too).

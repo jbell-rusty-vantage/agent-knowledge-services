@@ -96,7 +96,7 @@ async function handleKnowledge(
       error: "KNOWLEDGE_UNAVAILABLE",
       code: "KNOWLEDGE_UNAVAILABLE",
       exit: 2,
-      hint: "set POSTGRES_URL (or KNOWLEDGE_DB_URL) and SCHEMA_WORKSPACE_DIR",
+      hint: "set KS_AIENG_DB_RUNTIME_DSN and SCHEMA_WORKSPACE_DIR",
     });
     return true;
   }

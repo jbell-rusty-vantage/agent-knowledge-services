@@ -1,3 +1,4 @@
+import { loadKsDatabaseConfig } from "../../config/database.js";
 import { z } from "zod";
 import {
   ActorSchema,
@@ -44,8 +45,9 @@ export function createVerificationProviderReconciliationService(
   if (new Set(identities).size !== identities.length) throw new Error("RECONCILIATION_DUPLICATE_GRANT");
   const keys = environment.VERIFICATION_PROVIDER_RECONCILIATION_PUBLIC_KEYS_JSON?.trim(),
     ownership = environment.VERIFICATION_SERVICE_OWNERSHIP_GRANTS_JSON?.trim();
-  const projectUrl = environment.SUPABASE_URL?.trim(),
-    serviceRoleKey = environment.SUPABASE_SECRET_KEY?.trim();
+  const ksDatabase = loadKsDatabaseConfig(environment),
+    projectUrl = ksDatabase.url,
+    serviceRoleKey = ksDatabase.secretKey;
   if (!database || !keys || !ownership || !projectUrl || !serviceRoleKey)
     throw new Error("RECONCILIATION_STORAGE_KEYS_OWNERSHIP_REQUIRED");
   const verifier = createEd25519Verifier(parseBenchmarkReadPublicKeys(keys)),

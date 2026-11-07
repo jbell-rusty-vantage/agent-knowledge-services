@@ -59,7 +59,7 @@ import {
 } from "./tests/test-support.js";
 
 // Selecting this proof without its explicit local target fails, never silently skips.
-const ADMIN = () => requireLoopback("KNOWLEDGE_DB_CONTRACT_ADMIN_DSN", process.env.KNOWLEDGE_DB_CONTRACT_ADMIN_DSN);
+const ADMIN = () => requireLoopback("KS_AIENG_DB_ADMIN_DSN", process.env.KS_AIENG_DB_ADMIN_DSN);
 const TENANT = "00000000-0000-7000-8000-0000000000aa";
 const ROOT = resolve(import.meta.dirname, "../../../..");
 const KINDS = ReportKindCatalog.fromDirectory(resolve(ROOT, "catalog/research/report-kinds"));

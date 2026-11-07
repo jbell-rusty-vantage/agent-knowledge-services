@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 export * from "./auth.js";
+export * from "./database.js";
 
 const ServerConfigSchema = z.object({
   NODE_ENV: z.enum(["development", "test", "production"]).default("development"),

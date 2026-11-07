@@ -33,7 +33,7 @@ vi.mock("@aiengineer/knowledge-persistence", async (importOriginal) => {
   };
 });
 
-const database = { POSTGRES_URL: "postgres://user:secret@127.0.0.1:54322/knowledge", CANONICAL_LOCAL_ONLY: "1" };
+const database = { KS_AIENG_DB_RUNTIME_DSN: "postgres://user:secret@127.0.0.1:54322/knowledge", CANONICAL_LOCAL_ONLY: "1" };
 const noPublicOrigin = () => undefined;
 
 let fetchSpy: ReturnType<typeof vi.spyOn>;
@@ -172,7 +172,7 @@ describe("MCP host composition", () => {
     const resolveApiOrigin = () => "http://127.0.0.1:4100";
     await expect(
       createHost({ profile: "server", role: "mcp", environment: { NODE_ENV: "test" }, resolveApiOrigin }),
-    ).rejects.toThrow("POSTGRES_URL_REQUIRED");
+    ).rejects.toThrow("KS_AIENG_DB_RUNTIME_DSN_REQUIRED");
     await expect(
       createHost({
         profile: "server",
@@ -260,8 +260,8 @@ describe("worker host composition", () => {
     NODE_ENV: "test",
     ...database,
     WORKER_TENANT_ID: "00000000-0000-4000-8000-000000000001",
-    SUPABASE_URL: "http://127.0.0.1:54321",
-    SUPABASE_SECRET_KEY: "test-secret-key",
+    KS_AIENG_DB_URL: "http://127.0.0.1:54321",
+    KS_AIENG_DB_SECRET_KEY: "test-secret-key",
   };
   const execution = (overrides: { reconcile?: () => Promise<number>; build?: () => void } = {}) => {
     const phases: string[] = [];

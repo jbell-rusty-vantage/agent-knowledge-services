@@ -19,6 +19,7 @@ import {
 } from "@aiengineer/knowledge-application";
 import { LocalArtifactStore, SupabaseArtifactStore, type ArtifactStore } from "@aiengineer/knowledge-core";
 import { loadWorkspace, resolveWorkspaceDir, type Workspace } from "@aiengineer/knowledge-db";
+import { loadKsDatabaseConfig } from "@aiengineer/knowledge-host/config";
 import { loadExecutorConfig, type VerificationExecutor } from "../executor.js";
 import { createExecutorCustody } from "../store-custody-postgres.js";
 import { createSourceDiscoveryHost, type DiscoveryHostConfig } from "./source-discovery-host.js";
@@ -86,14 +87,15 @@ export function defaultUseClassesFile(): string {
 /** `undefined` when no database URL is configured: the executor then serves capture and artifact tools only. */
 export function loadKnowledgeConfig(env: Env = process.env): KnowledgeConfig | undefined {
   const executor = loadExecutorConfig(env);
-  const databaseUrl = env.KNOWLEDGE_DB_URL?.trim() || env.POSTGRES_URL?.trim();
+  const ksDatabase = loadKsDatabaseConfig(env);
+  const databaseUrl = ksDatabase.runtimeDsn;
   if (!databaseUrl) {
     if (env.KNOWLEDGE_ARTIFACT_STORAGE === "supabase")
       throw new Error("REMOTE_ARTIFACT_DATABASE_CONFIGURATION_REQUIRED");
     return undefined;
   }
-  const secretKey = env.SUPABASE_SECRET_KEY?.trim() || env.SUPABASE_SERVICE_ROLE_KEY?.trim();
-  const projectUrl = env.SUPABASE_URL?.trim();
+  const secretKey = ksDatabase.secretKey;
+  const projectUrl = ksDatabase.url;
   if (env.KNOWLEDGE_ARTIFACT_STORAGE === "supabase" && (!projectUrl || !secretKey))
     throw new Error("REMOTE_ARTIFACT_STORAGE_CONFIGURATION_REQUIRED");
   return {

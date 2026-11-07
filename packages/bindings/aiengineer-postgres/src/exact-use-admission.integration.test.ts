@@ -24,7 +24,7 @@ import { currentRevocationEpoch, recordInvalidation, closeInvalidation, recordUs
  * the bound effect, the epoch-locked admission, a domain write and the effect receipt commit or roll back together.
  * The domain write here is a disposable stand-in table; the AIDB executor path is `knowledge-db` ingestion's own test.
  */
-const ADMIN = process.env.KNOWLEDGE_DB_CONTRACT_ADMIN_DSN;
+const ADMIN = process.env.KS_AIENG_DB_ADMIN_DSN;
 const describeDb = ADMIN ? describe : describe.skip;
 const TENANT = "00000000-0000-7000-8000-0000000000aa";
 

@@ -135,14 +135,14 @@ describe("worker bootstrap", () => {
         },
         host,
       ),
-    ).rejects.toThrow("POSTGRES_URL_REQUIRED");
+    ).rejects.toThrow("KS_AIENG_DB_RUNTIME_DSN_REQUIRED");
   });
 });
 
 describe.skipIf(process.env.RUN_LOCAL_PERSISTENCE_TESTS !== "1")("worker process restart", () => {
   it("executes a PostgreSQL-admitted vector-store creation with immutable actor ownership", async () => {
-    const connectionString = process.env.POSTGRES_URL;
-    if (!connectionString) throw new Error("POSTGRES_URL_REQUIRED");
+    const connectionString = process.env.KS_AIENG_DB_RUNTIME_DSN;
+    if (!connectionString) throw new Error("KS_AIENG_DB_RUNTIME_DSN_REQUIRED");
     const tenantId = randomUUID(),
       operationId = randomUUID(),
       actorId = randomUUID(),
@@ -205,8 +205,8 @@ describe.skipIf(process.env.RUN_LOCAL_PERSISTENCE_TESTS !== "1")("worker process
   });
 
   it("executes a PostgreSQL-admitted source-vetting operation through the production registry", async () => {
-    const connectionString = process.env.POSTGRES_URL;
-    if (!connectionString) throw new Error("POSTGRES_URL_REQUIRED");
+    const connectionString = process.env.KS_AIENG_DB_RUNTIME_DSN;
+    if (!connectionString) throw new Error("KS_AIENG_DB_RUNTIME_DSN_REQUIRED");
     const tenantId = randomUUID();
     const operationId = randomUUID();
     const repository = new PostgresCanonicalRepository({ connectionString, localOnly: true });
@@ -279,8 +279,8 @@ describe.skipIf(process.env.RUN_LOCAL_PERSISTENCE_TESTS !== "1")("worker process
   });
 
   it("fails an unimplemented canonical activity once without recording a false success", async () => {
-    const connectionString = process.env.POSTGRES_URL;
-    if (!connectionString) throw new Error("POSTGRES_URL_REQUIRED");
+    const connectionString = process.env.KS_AIENG_DB_RUNTIME_DSN;
+    if (!connectionString) throw new Error("KS_AIENG_DB_RUNTIME_DSN_REQUIRED");
     const tenantId = randomUUID();
     const operationId = randomUUID();
     const repository = new PostgresCanonicalRepository({ connectionString, localOnly: true });
@@ -331,8 +331,8 @@ describe.skipIf(process.env.RUN_LOCAL_PERSISTENCE_TESTS !== "1")("worker process
   });
 
   it("does not lease API-owned retrieval runs from the production worker queue", async () => {
-    const connectionString = process.env.POSTGRES_URL;
-    if (!connectionString) throw new Error("POSTGRES_URL_REQUIRED");
+    const connectionString = process.env.KS_AIENG_DB_RUNTIME_DSN;
+    if (!connectionString) throw new Error("KS_AIENG_DB_RUNTIME_DSN_REQUIRED");
     const tenantId = randomUUID();
     const operationId = randomUUID();
     const repository = new PostgresCanonicalRepository({ connectionString, localOnly: true });
@@ -371,8 +371,8 @@ describe.skipIf(process.env.RUN_LOCAL_PERSISTENCE_TESTS !== "1")("worker process
   });
 
   it("reclaims an abandoned PostgreSQL lease in a fresh OS process", async () => {
-    const connectionString = process.env.POSTGRES_URL;
-    if (!connectionString) throw new Error("POSTGRES_URL_REQUIRED");
+    const connectionString = process.env.KS_AIENG_DB_RUNTIME_DSN;
+    if (!connectionString) throw new Error("KS_AIENG_DB_RUNTIME_DSN_REQUIRED");
     const tenantId = randomUUID();
     const operationId = randomUUID();
     const repository = new PostgresCanonicalRepository({ connectionString, localOnly: true });
@@ -392,7 +392,7 @@ describe.skipIf(process.env.RUN_LOCAL_PERSISTENCE_TESTS !== "1")("worker process
         promisify(execFile)(process.execPath, ["--import", "tsx", fixture], {
           env: {
             ...process.env,
-            POSTGRES_URL: connectionString,
+            KS_AIENG_DB_RUNTIME_DSN: connectionString,
             WORKER_TENANT_ID: tenantId,
             WORKER_OPERATION_ID: operationId,
             WORKER_RESTART_FIXTURE_MODE: mode,

@@ -19,7 +19,7 @@ Auth: `Authorization: Bearer` via `resolveIdentity` plus `x-tenant-id`, except p
 | GET | `/v1/verification/benchmarks/:runId` | — | none | 200 `VerificationBenchmarkRunSummaryResourceSchema` | `VERIFICATION_BENCHMARK_READ_PUBLIC_KEYS_JSON` |
 | GET | `/v1/verification/benchmarks/:runId/manifest` | — | none | 200 `VerificationBenchmarkRunManifestResourceSchema` | same |
 | GET | `/v1/verification/runs/:runId` | — | none | 200 `VerificationRunSummaryResourceSchema` | `VERIFICATION_READS_ENABLED=1` |
-| GET | `/v1/verification/operations/:id` | — | none | 200 operation record or 404 | `POSTGRES_URL` + ownership/attempt (verification op service, else generic fallback) |
+| GET | `/v1/verification/operations/:id` | — | none | 200 operation record or 404 | `KS_AIENG_DB_RUNTIME_DSN` + ownership/attempt (verification op service, else generic fallback) |
 
 ### Mutations (`operation.submit` unless noted)
 
@@ -119,7 +119,7 @@ The local profile serves the capture and artifact tools over a non-authoritative
 
 ## MCP
 
-Transport: Streamable HTTP, `POST`/`GET`/… `/mcp`. Auth: Bearer resolved by `createLocalIdentityResolver(KNOWLEDGE_API_IDENTITIES)`. Default listen `PORT` fallback **4101**. Needs `POSTGRES_URL`, `KNOWLEDGE_API_URL`. Verification tools proxy `KnowledgeClient` (same bearer) to the HTTP API.
+Transport: Streamable HTTP, `POST`/`GET`/… `/mcp`. Auth: Bearer resolved by `createLocalIdentityResolver(KNOWLEDGE_API_IDENTITIES)`. Default listen `PORT` fallback **4101**. Needs `KS_AIENG_DB_RUNTIME_DSN`, `KNOWLEDGE_API_URL`. Verification tools proxy `KnowledgeClient` (same bearer) to the HTTP API.
 
 `GET /health` → `{ "status": "ok" }`.
 

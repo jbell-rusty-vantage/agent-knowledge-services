@@ -19,8 +19,8 @@ const otherActor = {
 };
 const environment = {
   VERIFICATION_CAPTURE_READS_ENABLED: "1",
-  SUPABASE_URL: "http://127.0.0.1:54321",
-  SUPABASE_SECRET_KEY: "unit-test-service-role-key",
+  KS_AIENG_DB_URL: "http://127.0.0.1:54321",
+  KS_AIENG_DB_SECRET_KEY: "unit-test-service-role-key",
   VERIFICATION_PARSER_IMAGE_DIGEST: digest,
   VERIFICATION_SERVICE_OWNERSHIP_GRANTS_JSON: JSON.stringify([
     {

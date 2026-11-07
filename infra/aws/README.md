@@ -17,8 +17,8 @@ The required secret JSON keys are:
 
 | Secret parameter | JSON keys |
 | --- | --- |
-| `DatabaseSecretArn` | `POSTGRES_URL` |
-| `WorkerRuntimeSecretArn` | `SUPABASE_URL`, `SUPABASE_SECRET_KEY`, `AI_GATEWAY_API_KEY` |
+| `DatabaseSecretArn` | `KS_AIENG_DB_RUNTIME_DSN` |
+| `WorkerRuntimeSecretArn` | `KS_AIENG_DB_URL`, `KS_AIENG_DB_SECRET_KEY`, `AI_GATEWAY_API_KEY` |
 
 Both container image parameters require immutable `@sha256:` references. Build and push the worker from the repository root so the workspace-aware Dockerfile can construct the production closure:
 

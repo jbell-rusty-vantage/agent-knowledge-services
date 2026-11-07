@@ -150,7 +150,7 @@ export function describeRunning(running: RunningExecutor, auth: "bearer" | "none
           useClasses: running.knowledge.useClasses.registry,
           allowStale: running.knowledge.config.allowStale,
         }
-      : "disabled (set POSTGRES_URL and SCHEMA_WORKSPACE_DIR)",
+      : "disabled (set KS_AIENG_DB_RUNTIME_DSN and SCHEMA_WORKSPACE_DIR)",
   };
 }
 

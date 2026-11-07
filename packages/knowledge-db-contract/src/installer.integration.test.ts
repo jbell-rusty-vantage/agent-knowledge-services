@@ -6,9 +6,9 @@ import { InstallRefused, inspect, install } from "./installer.js";
 
 /**
  * Two disposable app-local installs (ai-engineer, biotech) plus the component's seam proofs. Needs a loopback
- * PostgreSQL 17 administrator DSN in `KNOWLEDGE_DB_CONTRACT_ADMIN_DSN`; skips (never fakes) without it.
+ * PostgreSQL 17 administrator DSN in `KS_AIENG_DB_ADMIN_DSN`; skips (never fakes) without it.
  */
-const ADMIN = process.env.KNOWLEDGE_DB_CONTRACT_ADMIN_DSN;
+const ADMIN = process.env.KS_AIENG_DB_ADMIN_DSN;
 const describeDb = ADMIN ? describe : describe.skip;
 
 const TENANT_A = "00000000-0000-7000-8000-0000000000aa";

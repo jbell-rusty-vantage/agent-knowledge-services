@@ -255,7 +255,7 @@ Environment variable names (values are never logged):
 | `KS_KNOWLEDGE_ISSUER` | Pinned issuer |
 | `KS_KNOWLEDGE_AUDIENCE` | This executor's audience |
 | `KS_KNOWLEDGE_JWKS_FILE` or `KS_KNOWLEDGE_JWKS_URL` | Issuer JWKS (https, or http on loopback) |
-| `KS_KNOWLEDGE_BINDINGS_JSON` | `[{application, binding, installationId, databaseUrlEnv?, tenants?}]`. `databaseUrlEnv` is the name of the variable that holds the component DSN |
+| `KS_KNOWLEDGE_BINDINGS_JSON` | `[{application, binding, installationId, databaseUrlEnv?, tenants?}]`. `databaseUrlEnv` is `KS_AIENG_DB_COMPONENT_DSN` or `KS_BIOTECH_DB_COMPONENT_DSN` (the plane of the binding's application); the database config module reads it |
 | `KS_KNOWLEDGE_SEAL_KEY_ID`, `KS_KNOWLEDGE_SEAL_KEY_FILE`, `KS_KNOWLEDGE_SEAL_ISSUER` | Optional run-seal key. Its public half must be pinned under the same id and issuer: `knowledge-db seal-key --admin-dsn-env <NAME> --key-id <id> --key-file <pem> [--issuer <name>] [--retire <old id,...>]` (idempotent; a conflicting key for the id refuses `SEAL_KEY_CONFLICT`; prints only the public key's SHA-256) |
 | `KS_KNOWLEDGE_AUDITOR_SCRIPT_FILE` | Scripted census auditor (disposable proofs only) |
 | `KS_KNOWLEDGE_REPORT_KINDS_DIR`, `KS_KNOWLEDGE_QUALIFICATION_FILE` | Report-kind catalogue and advertised qualification receipts |

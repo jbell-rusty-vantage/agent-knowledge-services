@@ -1,3 +1,4 @@
+import { loadKsDatabaseConfig } from "../config/database.js";
 import {
   apiOwnedOperationKinds,
   VerificationOperationApplicationService,
@@ -45,8 +46,9 @@ export interface McpHost {
 export async function createMcpHost(options: McpHostOptions): Promise<McpHost> {
   const { environment } = options;
   const config = loadServerConfig({ ...environment, PORT: environment.PORT ?? "4101" });
-  const connectionString = environment.POSTGRES_URL?.trim();
-  if (!connectionString) throw new Error("POSTGRES_URL_REQUIRED");
+  const ksDatabase = loadKsDatabaseConfig(environment);
+  const connectionString = ksDatabase.runtimeDsn;
+  if (!connectionString) throw new Error(`${ksDatabase.names.RUNTIME_DSN}_REQUIRED`);
   const apiOrigin = options.resolveApiOrigin(config);
   const { value, resources } = await constructWithResources((resources) => {
     const database = openCanonicalRepository(resources, connectionString, environment);

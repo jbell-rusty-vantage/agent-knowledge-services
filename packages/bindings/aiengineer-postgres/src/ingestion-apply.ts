@@ -20,7 +20,7 @@ import {
 /**
  * `knowledge.apply` of the AI Engineer binding (moved home from the host's `native-ports.ts`, Sprint OC R5): the
  * knowledge-db `IngestionExecutor` (SV-08 exact-use admission inside the native AI Engineer ingestion transaction). It
- * needs the AI Engineer knowledge database (`KNOWLEDGE_DB_URL`/`POSTGRES_URL` + `SCHEMA_WORKSPACE_DIR`), so the
+ * needs the AI Engineer knowledge database (`KS_AIENG_DB_RUNTIME_DSN` + `SCHEMA_WORKSPACE_DIR`), so the
  * executable builds it and injects it (`HostInjection.apply`); without it `knowledge.apply` answers SCHEMA_UNSUPPORTED.
  */
 export const INGESTION_APPLY_CONTRACT = { name: "knowledge-ingestion-intent", version: "v1" } as const;

@@ -7,7 +7,7 @@ Practical local procedures. Commands below exist in this repository. On Windows 
 - Node.js **>= 24** (`package.json` `engines.node`)
 - pnpm **10.34.5** via Corepack (`packageManager`)
 - Docker, for the verification parser image (`services/parser`)
-- Local Postgres / Supabase (`POSTGRES_URL`, `SUPABASE_URL`, `SUPABASE_SECRET_KEY`)
+- Local Postgres / Supabase (`KS_AIENG_DB_RUNTIME_DSN`, `KS_AIENG_DB_URL`, `KS_AIENG_DB_SECRET_KEY`)
 - Do not load the Knowledge Services `.env` file for local proofs. Export only the vars a profile needs. Never print grants, PEMs, or tokens.
 
 ## Build and verify
@@ -79,7 +79,7 @@ These are `tsx watch src/index.ts` for `@aiengineer/knowledge-api`, `@aiengineer
 - MCP default `PORT` fallback **4101**
 - Worker loop: `WORKER_TENANT_ID`, `WORKER_ID`, `WORKER_POLL_MS`, `WORKER_LEASE_MS`, `KNOWLEDGE_PERSISTENCE_MODE`
 
-Shared non-verification deps for durable surfaces: `POSTGRES_URL`, `SUPABASE_URL`, `SUPABASE_SECRET_KEY`, `KNOWLEDGE_API_IDENTITIES`, `KNOWLEDGE_API_URL`. Optional `CANONICAL_LOCAL_ONLY=1` for loopback Postgres.
+Shared non-verification deps for durable surfaces: `KS_AIENG_DB_RUNTIME_DSN`, `KS_AIENG_DB_URL`, `KS_AIENG_DB_SECRET_KEY`, `KNOWLEDGE_API_IDENTITIES`, `KNOWLEDGE_API_URL`. Optional `CANONICAL_LOCAL_ONLY=1` for loopback Postgres.
 
 Parser image (required when any verification worker block is on):
 
@@ -132,7 +132,7 @@ Reads flags + public keys. API only; worker not required.
 | `VERIFICATION_STRUCTURED_EXTRACTION_READ_PUBLIC_KEYS_JSON` | JSON keys                                              |
 
 
-Plus `POSTGRES_URL`, `SUPABASE_`*, `KNOWLEDGE_API_IDENTITIES`.
+Plus `KS_AIENG_DB_RUNTIME_DSN`, `KS_AIENG_DB_URL`, `KS_AIENG_DB_SECRET_KEY`, `KNOWLEDGE_API_IDENTITIES`.
 
 Smoke: `GET /health` is always `{ "status": "ok" }`. A capability-off probe is any enabled-flag GET, e.g. `GET /v1/verification/captures/:operationId` returns **503** `CAPABILITY_NOT_ADMITTED` when `VERIFICATION_CAPTURE_READS_ENABLED` is not `1`.
 

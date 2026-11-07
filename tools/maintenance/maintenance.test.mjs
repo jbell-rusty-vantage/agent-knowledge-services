@@ -387,7 +387,8 @@ test("Cursor-only child environment does not forward other provider or database 
   assert.equal(env.KS_MAINTENANCE_CHILD, "1");
   assert.equal(env.OPENAI_API_KEY, undefined);
   assert.equal(env.ANTHROPIC_API_KEY, undefined);
-  assert.equal(env.POSTGRES_URL, undefined);
+  assert.equal(env.KS_AIENG_DB_RUNTIME_DSN, undefined);
+  assert.equal(env.KS_BIOTECH_DB_RUNTIME_DSN, undefined);
   assert.equal(env.UNRELATED_SECRET, undefined);
   assert.ok(cursorApiKey(engine.repo));
 });

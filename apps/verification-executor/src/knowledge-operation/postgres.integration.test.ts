@@ -43,12 +43,12 @@ import {
 } from "./tests/test-support.js";
 
 /**
- * SV-16 T1-KS over the disposable PostgreSQL 17 (`KNOWLEDGE_DB_CONTRACT_ADMIN_DSN`, container sprint-v-pg17): the K05
+ * SV-16 T1-KS over the disposable PostgreSQL 17 (`KS_AIENG_DB_ADMIN_DSN`, container sprint-v-pg17): the K05
  * binding over component `knowledge_verification` 2.2.0, reached only through the K01 routes with K07 credentials.
  * report.register -> report.assess handle -> status terminal -> receipt.get, then a NEW service instance over the same
  * database (an executor restart) still answers the handle, the receipt and the exact read. Engineering fixtures only.
  */
-const ADMIN = process.env.KNOWLEDGE_DB_CONTRACT_ADMIN_DSN;
+const ADMIN = process.env.KS_AIENG_DB_ADMIN_DSN;
 const describeDb = ADMIN ? describe : describe.skip;
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "../../../..");
 const KINDS = ReportKindCatalog.fromDirectory(resolve(ROOT, "catalog/research/report-kinds"));

@@ -44,9 +44,9 @@ import {
 
 /**
  * One complete evidence -> assertion -> verification -> seal -> decision -> receipt path through the binding, on a
- * fresh disposable database with the component installed. Needs `KNOWLEDGE_DB_CONTRACT_ADMIN_DSN` (loopback PG17).
+ * fresh disposable database with the component installed. Needs `KS_AIENG_DB_ADMIN_DSN` (loopback PG17).
  */
-const ADMIN = process.env.KNOWLEDGE_DB_CONTRACT_ADMIN_DSN;
+const ADMIN = process.env.KS_AIENG_DB_ADMIN_DSN;
 const describeDb = ADMIN ? describe : describe.skip;
 const TENANT = "00000000-0000-7000-8000-0000000000aa";
 

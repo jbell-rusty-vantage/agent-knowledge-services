@@ -36,7 +36,7 @@ import { pinSealSigningKey } from "./seal-keys.js";
  * independent census and the durable `report.assess` operation; operation compare-and-set under concurrency; the
  * atomic, deterministic seal under failure injection and concurrency. Engineering fixtures only.
  */
-const ADMIN = process.env.KNOWLEDGE_DB_CONTRACT_ADMIN_DSN;
+const ADMIN = process.env.KS_AIENG_DB_ADMIN_DSN;
 const describeDb = ADMIN ? describe : describe.skip;
 const TENANT = "00000000-0000-7000-8000-0000000000aa";
 const OTHER_TENANT = "00000000-0000-7000-8000-0000000000bb";

@@ -140,9 +140,9 @@
             { "Name": "DOCLING_VERSION", "Value": "sha256:f8b324448e7c9e66083049727aaa90e3e65e88f0d7796624597a29d04183198b" }
           ],
           "Secrets": [
-            { "Name": "POSTGRES_URL", "ValueFrom": { "Fn::Sub": "${DatabaseSecretArn}:POSTGRES_URL::" } },
-            { "Name": "SUPABASE_URL", "ValueFrom": { "Fn::Sub": "${WorkerRuntimeSecretArn}:SUPABASE_URL::" } },
-            { "Name": "SUPABASE_SECRET_KEY", "ValueFrom": { "Fn::Sub": "${WorkerRuntimeSecretArn}:SUPABASE_SECRET_KEY::" } },
+            { "Name": "KS_AIENG_DB_RUNTIME_DSN", "ValueFrom": { "Fn::Sub": "${DatabaseSecretArn}:KS_AIENG_DB_RUNTIME_DSN::" } },
+            { "Name": "KS_AIENG_DB_URL", "ValueFrom": { "Fn::Sub": "${WorkerRuntimeSecretArn}:KS_AIENG_DB_URL::" } },
+            { "Name": "KS_AIENG_DB_SECRET_KEY", "ValueFrom": { "Fn::Sub": "${WorkerRuntimeSecretArn}:KS_AIENG_DB_SECRET_KEY::" } },
             { "Name": "AI_GATEWAY_API_KEY", "ValueFrom": { "Fn::Sub": "${WorkerRuntimeSecretArn}:AI_GATEWAY_API_KEY::" } }
           ],
           "LogConfiguration": { "LogDriver": "awslogs", "Options": { "awslogs-group": { "Ref": "WorkerLogGroup" }, "awslogs-region": { "Ref": "AWS::Region" }, "awslogs-stream-prefix": "worker" } }

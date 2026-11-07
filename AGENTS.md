@@ -10,6 +10,11 @@ Before editing, run `git status --short`, `git branch --show-current`, and `git 
 
 GitHub: public [`jbell-rusty-vantage/agent-knowledge-services`](https://github.com/jbell-rusty-vantage/agent-knowledge-services), `main` only. History starts at the 2026-11-06 clean-slate baseline, so commit IDs and `Overton77/ai-engineer-knowledge-services` links in older documents do not resolve here ([repository history](docs/REPOSITORY-HISTORY.md)).
 
+## Environment
+
+Database variables are `KS_{AIENG,BIOTECH}_DB_{PROJECT_REF,URL,SECRET_KEY,ADMIN_DSN,RUNTIME_DSN,COMPONENT_DSN}`; plane = the binding/operation application (`ai-engineer` -> AIENG, none -> AIENG). Only `packages/host/src/config/database.ts` reads them; no aliases or fallback to old names.
+Registry `config/env.registry.yaml` and [docs/ENVIRONMENT.md](docs/ENVIRONMENT.md) list every name and reader; `.env` is owner-managed (never edit or print it). Values: `BellLabs/.secrets/aieng-db.env` and `biotech-db.env`, with the `KS_` prefix.
+
 ---
 
 ## Engineering planning and delivery

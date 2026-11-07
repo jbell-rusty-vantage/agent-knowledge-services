@@ -1,3 +1,4 @@
+import { loadKsDatabaseConfig } from "../../config/database.js";
 import { VerificationStructuredExtractionReadService } from "@aiengineer/knowledge-application";
 import {
   PostgresStructuredExtractionReadRepository,
@@ -17,8 +18,9 @@ export function createVerificationStructuredExtractionReads(
   const raw = environment.VERIFICATION_STRUCTURED_EXTRACTION_READ_PUBLIC_KEYS_JSON?.trim();
   if (!raw) return undefined;
   const verifier = createEd25519Verifier(parseBenchmarkReadPublicKeys(raw));
-  const projectUrl = environment.SUPABASE_URL?.trim(),
-    serviceRoleKey = environment.SUPABASE_SECRET_KEY?.trim(),
+  const ksDatabase = loadKsDatabaseConfig(environment),
+    projectUrl = ksDatabase.url,
+    serviceRoleKey = ksDatabase.secretKey,
     grants = environment.VERIFICATION_SERVICE_OWNERSHIP_GRANTS_JSON?.trim();
   if (!database || !projectUrl || !serviceRoleKey || !grants)
     throw new Error("STRUCTURED_EXTRACTION_READS_STORAGE_AND_OWNERSHIP_REQUIRED");

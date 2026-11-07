@@ -1,3 +1,4 @@
+import { loadKsDatabaseConfig } from "../config/database.js";
 import {
   apiOwnedOperationKinds,
   type CallbackReplayStore,
@@ -51,8 +52,9 @@ export async function createApiHost(options: ApiHostOptions): Promise<ApiHost> {
   const { environment } = options;
   const config = loadServerConfig(environment as NodeJS.ProcessEnv);
   const production = config.NODE_ENV === "production";
-  const connectionString = environment.POSTGRES_URL?.trim();
-  if (production && !connectionString) throw new Error("POSTGRES_URL_REQUIRED");
+  const ksDatabase = loadKsDatabaseConfig(environment);
+  const connectionString = ksDatabase.runtimeDsn;
+  if (production && !connectionString) throw new Error(`${ksDatabase.names.RUNTIME_DSN}_REQUIRED`);
   const publicOrigin = options.resolvePublicOrigin(config);
   const { value, resources } = await constructWithResources((resources) => {
     const database = connectionString ? openCanonicalRepository(resources, connectionString, environment) : undefined;

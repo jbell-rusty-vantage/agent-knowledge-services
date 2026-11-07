@@ -36,9 +36,9 @@ import { StubBksExecutor } from "./testing.js";
  *         BIOTECH_GRAPH_T1_DATABASE + BIOTECH_GRAPH_T1_TENANT + BIOTECH_GRAPH_T1_INSTALLATION (the executor's
  *         BKS_VERIFICATION_DSN must point at that database). BIOTECH_GRAPH_T1_EXECUTOR_DOWN_URL: a second executor
  *         whose Neo4j is unreachable (graph-unavailable case).
- * Requires KNOWLEDGE_DB_CONTRACT_ADMIN_DSN (disposable admin DSN). Engineering fixtures only; no model calls.
+ * Requires KS_AIENG_DB_ADMIN_DSN (disposable admin DSN). Engineering fixtures only; no model calls.
  */
-const ADMIN = process.env.KNOWLEDGE_DB_CONTRACT_ADMIN_DSN;
+const ADMIN = process.env.KS_AIENG_DB_ADMIN_DSN;
 const describeDb = ADMIN ? describe : describe.skip;
 const EXECUTOR_URL = process.env.BIOTECH_GRAPH_T1_EXECUTOR_URL;
 const MODE: "stub" | "bks" = EXECUTOR_URL ? "bks" : "stub";

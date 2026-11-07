@@ -1,3 +1,4 @@
+import { loadKsDatabaseConfig } from "../config/database.js";
 import {
   BoundedManualUploadAdapter,
   ExactHttpAcquisitionAdapter,
@@ -120,7 +121,7 @@ function composePostgresAdapters(
 ): PostgresWorkerAdapters {
   const tenantId = environment.WORKER_TENANT_ID?.trim();
   if (!tenantId) throw new Error("WORKER_TENANT_ID_REQUIRED");
-  const persistenceConfig = canonicalPersistenceConfigFromEnvironment(environment);
+  const persistenceConfig = canonicalPersistenceConfigFromEnvironment(loadKsDatabaseConfig(environment), environment);
   const persistence = resources.own("canonical-persistence", createCanonicalPersistence(persistenceConfig), (owned) =>
     owned.close(),
   );

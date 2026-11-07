@@ -51,7 +51,7 @@ import { KNOWLEDGE_BACKENDS } from "../serve.js";
 /**
  * Sprint OC R5 (OVE-199): the backend conformance suite (host `knowledge-operation/conformance`) against every
  * registration this executable composes (`KNOWLEDGE_BACKENDS`), each on its own disposable store: a fresh database
- * with the component installed on the disposable PostgreSQL 17 (`KNOWLEDGE_DB_CONTRACT_ADMIN_DSN`, container
+ * with the component installed on the disposable PostgreSQL 17 (`KS_AIENG_DB_ADMIN_DSN`, container
  * `sprint-v-pg17`) for both PostgreSQL bindings. Without that DSN the store-backed checks of both PostgreSQL bindings
  * are visible skips naming the variable; with `CI` or `KS_REQUIRE_CONFORMANCE_STORE=1` set they fail instead.
  *
@@ -60,17 +60,18 @@ import { KNOWLEDGE_BACKENDS } from "../serve.js";
  * `IngestionExecutor` ledger path is exercised only by `aidb-apply.integration.test.ts`, which needs a local
  * Supabase project and was not run for R5. Engineering fixtures only; no model or network calls.
  */
-const ADMIN = process.env.KNOWLEDGE_DB_CONTRACT_ADMIN_DSN;
+const ADMIN = process.env.KS_AIENG_DB_ADMIN_DSN;
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "../../../..");
 const KINDS = ReportKindCatalog.fromDirectory(resolve(ROOT, "catalog/research/report-kinds"));
-const DSN_VARIABLE = "KS_CONFORMANCE_COMPONENT_DSN";
+const DSN_VARIABLE = "KS_AIENG_DB_COMPONENT_DSN";
+const BIOTECH_DSN_VARIABLE = "KS_BIOTECH_DB_COMPONENT_DSN";
 const WRITER = { role: "knowledge_verification_writer" as const };
 
 /** Without the disposable PostgreSQL the store-backed checks are visible skips (failures where the store is required). */
 const STORE_UNAVAILABLE: BackendConformance["storeUnavailable"] = ADMIN
   ? undefined
   : {
-      reason: "skipped: KNOWLEDGE_DB_CONTRACT_ADMIN_DSN is unset (disposable PostgreSQL 17, container sprint-v-pg17)",
+      reason: "skipped: KS_AIENG_DB_ADMIN_DSN is unset (disposable PostgreSQL 17, container sprint-v-pg17)",
       required: Boolean(process.env.CI) || process.env.KS_REQUIRE_CONFORMANCE_STORE === "1",
     };
 
@@ -453,8 +454,8 @@ const BIOTECH_GRAPH: BackendConformance = {
     const store = await componentDatabase("biotech", "biotech-graph", installationId);
     const admission = new BiotechGraphAdmission(store.db, { installationId, applicationId: "biotech" });
     return {
-      config: { application: "biotech", binding: "biotech-graph", installationId, databaseUrlEnv: DSN_VARIABLE },
-      env: { [DSN_VARIABLE]: store.dsn },
+      config: { application: "biotech", binding: "biotech-graph", installationId, databaseUrlEnv: BIOTECH_DSN_VARIABLE },
+      env: { [BIOTECH_DSN_VARIABLE]: store.dsn },
       injection: { seal: FIXTURE_SEAL_KEYS },
       apply: {
         plan: ({ scope, runId, revision, suffix }) => {

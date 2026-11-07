@@ -97,7 +97,7 @@ export const BACKEND: BackendRegistration = {
       return createUnwiredBackend({
         application: config.application,
         binding: config.binding,
-        reason: "the biotech-graph binding has no component database configured (databaseUrlEnv)",
+        reason: "the biotech-graph binding has no component database configured (KS_BIOTECH_DB_COMPONENT_DSN)",
       });
     }
     return createBiotechGraphPostgresBackend(

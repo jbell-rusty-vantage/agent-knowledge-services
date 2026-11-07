@@ -73,7 +73,7 @@ than pasting whole receipts into the conversation.
 
 ## Preflight
 
-Env: `KNOWLEDGE_API_URL` (or CLI `--base-url`), `KNOWLEDGE_API_TOKEN`. MCP also needs `POSTGRES_URL` and bearer identities from `KNOWLEDGE_API_IDENTITIES` (server-side; do not print secrets).
+Env: `KNOWLEDGE_API_URL` (or CLI `--base-url`), `KNOWLEDGE_API_TOKEN`. MCP also needs `KS_AIENG_DB_RUNTIME_DSN` and bearer identities from `KNOWLEDGE_API_IDENTITIES` (server-side; do not print secrets).
 
 CLI `--context` is full `OperationContextSchema` (`packages/contracts/src/identity.ts`): required `tenantId`, `operationId`, `attemptId`, `correlationId`, `actor`, `capabilityVersion`, `idempotencyKey` (8–255), `reason`, `contractVersion` (`v1`). Schema-optional: `projectId`, `missionId`, `workItemId`, `causationId`, `externalExecution`.
 

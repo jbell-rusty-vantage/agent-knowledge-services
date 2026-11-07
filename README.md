@@ -135,7 +135,7 @@ Honest status from the code map and accepted docs. “Implemented” means the m
 |---|---|
 | Node.js **≥ 24** | `package.json` `engines` |
 | pnpm **10.34.5** | Corepack (`packageManager`) |
-| Postgres / Supabase | Durable API, MCP, worker, and executor knowledge tools. `POSTGRES_URL` or `KNOWLEDGE_DB_URL` |
+| Postgres / Supabase | Durable API, MCP, worker, and executor knowledge tools. `KS_AIENG_DB_RUNTIME_DSN` |
 | [`ai-engineer-db-contract`](../../aiengineer/ai-engineer-db-contract) | Canonical migrations and generated types. Schema workspace fails closed on migration-head mismatch unless an experiment-only stale flag is set. |
 | Identity | `KNOWLEDGE_API_IDENTITIES` (token → actor + tenant grants) for the platform API |
 | Optional conversion | Docker Docling on port 5001; Unstructured keys if that adapter is admitted |

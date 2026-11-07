@@ -59,7 +59,7 @@ describe("API deployment bootstrap", () => {
         NODE_ENV: "production",
         KNOWLEDGE_API_URL: "https://knowledge.example",
       }),
-    ).rejects.toThrow("POSTGRES_URL_REQUIRED");
+    ).rejects.toThrow("KS_AIENG_DB_RUNTIME_DSN_REQUIRED");
     expect(() => validateApiPublicOrigin("http://knowledge.example", true)).toThrow("INVALID_KNOWLEDGE_API_URL");
     expect(validateApiPublicOrigin("https://knowledge.example/", true)).toBe("https://knowledge.example");
   });

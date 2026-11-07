@@ -10,7 +10,7 @@ import {
 
 const TENANT = "7f3e2d1c-0b9a-4876-9543-210fedcba987";
 const FLAGS = {
-  "database-url-env": "KS_AI_ENGINEER_COMPONENT_DSN",
+  "database-url-env": "KS_AIENG_DB_COMPONENT_DSN",
   tenant: TENANT,
   reviewer: "reviewer:sprint-oc",
   "granted-by": "operator:sprint-oc",
@@ -56,7 +56,7 @@ describe("grant-reviewer", () => {
       reportKinds: ["evidence_report"],
     });
     const fresh = recording(null);
-    const env = { KS_AI_ENGINEER_COMPONENT_DSN: "postgresql://login@127.0.0.1:5432/db" };
+    const env = { KS_AIENG_DB_COMPONENT_DSN: "postgresql://login@127.0.0.1:5432/db" };
     const granted = await provisionReviewerGrant(request, env, () => fresh.db);
     expect(granted.status).toBe("granted");
     expect(fresh.scopes).toEqual([{ tenantId: TENANT, role: REVIEWER_ROLE }]);
@@ -84,7 +84,7 @@ describe("grant-reviewer", () => {
   it("refuses typed and never prints the DSN", async () => {
     const request = parseReviewerGrant(FLAGS);
     await expect(provisionReviewerGrant(request, {}, () => recording(null).db)).rejects.toThrow(
-      /^DATABASE_URL_MISSING: KS_AI_ENGINEER_COMPONENT_DSN is not set$/,
+      /^DATABASE_URL_MISSING: KS_AIENG_DB_COMPONENT_DSN is not set$/,
     );
     for (const [name, value, code] of [
       ["tenant", "not-a-uuid", "ARGUMENT_INVALID"],

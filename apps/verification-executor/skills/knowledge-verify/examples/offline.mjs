@@ -13,7 +13,7 @@ const directory = await mkdtemp(join(tmpdir(), "verification-example-"));
 const run = "offline-example";
 const env = {
   ...Object.fromEntries(
-    Object.entries(process.env).filter(([key]) => !/^(VERIFY_|KNOWLEDGE_|POSTGRES_|SUPABASE_|AI_GATEWAY_|FIRECRAWL_)/i.test(key)),
+    Object.entries(process.env).filter(([key]) => !/^(VERIFY_|KNOWLEDGE_|KS_(?:AIENG|BIOTECH)_DB_|AI_GATEWAY_|FIRECRAWL_)/i.test(key)),
   ),
   VERIFY_STORE_DIR: join(directory, "store"),
 };

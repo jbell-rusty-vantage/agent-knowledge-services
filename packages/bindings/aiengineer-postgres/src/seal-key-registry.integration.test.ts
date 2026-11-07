@@ -28,14 +28,14 @@ import { ComponentDatabase } from "./client.js";
 import { PostgresResearchBinding } from "./research-binding.js";
 
 /**
- * OVE-169 W1 D25 on a disposable PostgreSQL 17 (`KNOWLEDGE_DB_CONTRACT_ADMIN_DSN`; skips without it): the executor's
+ * OVE-169 W1 D25 on a disposable PostgreSQL 17 (`KS_AIENG_DB_ADMIN_DSN`; skips without it): the executor's
  * seal key is not in `knowledge_verification.seal_signing_key` (the state of both remotes), so the seal refuses typed
  * (`SEAL_KEY_UNREGISTERED` naming the key id, never an untyped component `SEAL_INVALID`); the key ceremony
  * (`knowledge-db seal-key` = `registerSealKey`, the installers' `seal-key` step) pins the PUBLIC half derived from the
  * executor's PEM, is `current` on repeat, refuses another key under the same id, retires an earlier key; then the
  * exact same seal succeeds.
  */
-const ADMIN = process.env.KNOWLEDGE_DB_CONTRACT_ADMIN_DSN;
+const ADMIN = process.env.KS_AIENG_DB_ADMIN_DSN;
 const describeDb = ADMIN ? describe : describe.skip;
 const TENANT = "00000000-0000-7000-8000-0000000000aa";
 const BINDING = "aiengineer-postgres";

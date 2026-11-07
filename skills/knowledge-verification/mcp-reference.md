@@ -7,7 +7,7 @@ Package: `@aiengineer/knowledge-mcp`. Tools proxy `KnowledgeClient` (same bearer
 - Streamable HTTP via Fastify `app.all("/mcp", …)` (`apps/mcp/src/index.ts`).
 - Default listen: `PORT` fallback **4101** (`createMcpRuntime` sets `PORT` to `environment.PORT ?? "4101"`). `HOST` comes from `loadServerConfig` (default `127.0.0.1`).
 - Auth: `Authorization: Bearer …` resolved by `createLocalIdentityResolver(KNOWLEDGE_API_IDENTITIES)`. Missing/unknown bearer → `401` `{code:"UNAUTHORIZED"}`.
-- Process needs `POSTGRES_URL` and `KNOWLEDGE_API_URL` (public API origin; pathname `/` only). Optional `CANONICAL_LOCAL_ONLY=1`.
+- Process needs `KS_AIENG_DB_RUNTIME_DSN` and `KNOWLEDGE_API_URL` (public API origin; pathname `/` only). Optional `CANONICAL_LOCAL_ONLY=1`.
 - Also: `GET /health` → `{status:"ok"}`.
 
 Do not print identity maps or tokens.

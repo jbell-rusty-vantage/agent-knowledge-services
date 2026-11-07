@@ -260,8 +260,8 @@ describe.skipIf(process.env.RUN_LOCAL_PERSISTENCE_TESTS !== "1")("MCP durable Po
   let workerRepository: PostgresCanonicalRepository;
 
   beforeAll(() => {
-    const connectionString = process.env.POSTGRES_URL;
-    if (!connectionString) throw new Error("POSTGRES_URL_REQUIRED");
+    const connectionString = process.env.KS_AIENG_DB_RUNTIME_DSN;
+    if (!connectionString) throw new Error("KS_AIENG_DB_RUNTIME_DSN_REQUIRED");
     mcpRepository = new PostgresCanonicalRepository({
       connectionString,
       localOnly: true,

@@ -113,7 +113,7 @@ const TENANT = "00000000-0000-7000-8000-0000000009c9";
 const INSTALLATION = "0192a4f0-0000-7000-8000-000000000909";
 const BINDING = "aiengineer-postgres";
 const ADMIN_DSN =
-  process.env.KNOWLEDGE_DB_CONTRACT_ADMIN_DSN ?? "postgresql://sprintv:sprintv-disposable@127.0.0.1:55433/postgres";
+  process.env.KS_AIENG_DB_ADMIN_DSN ?? "postgresql://sprintv:sprintv-disposable@127.0.0.1:55433/postgres";
 const KINDS = ReportKindCatalog.fromDirectory(join(KS_ROOT, "catalog/research/report-kinds"));
 const AUTHORITY = SourceAuthorityCatalog.fromDirectory(join(KS_ROOT, "catalog/research/source-authority"));
 const SEAL = testSealKeys("sv09-harness-seal-1");
@@ -968,7 +968,7 @@ async function main(): Promise<void> {
     harnessDigest: harness,
     harnessFiles: Object.fromEntries(HARNESS_FILES.map((name) => [name, sha(readFileSync(join(here, name)))])),
     database:
-      "disposable PostgreSQL 17 (sprint-v-pg17); admin DSN from KNOWLEDGE_DB_CONTRACT_ADMIN_DSN or the documented throwaway default (not printed)",
+      "disposable PostgreSQL 17 (sprint-v-pg17); admin DSN from KS_AIENG_DB_ADMIN_DSN or the documented throwaway default (not printed)",
     startedAt: new Date().toISOString(),
   });
   const calls: CallRecord[] = [];

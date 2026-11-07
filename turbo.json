@@ -12,12 +12,12 @@
     "test": {
       "dependsOn": ["^build"],
       "outputs": [],
-      "env": ["KNOWLEDGE_DB_CONTRACT_ADMIN_DSN", "KS_TEST_DATABASE_URL", "KS_TEST_PROJECT_DIR", "KS_REQUIRE_CONFORMANCE_STORE", "CI"]
+      "env": ["KS_AIENG_DB_ADMIN_DSN", "KS_TEST_DATABASE_URL", "KS_TEST_PROJECT_DIR", "KS_REQUIRE_CONFORMANCE_STORE", "CI"]
     },
     "@aiengineer/knowledge-cli#test": {
       "dependsOn": ["build"],
       "outputs": [],
-      "env": ["KNOWLEDGE_DB_CONTRACT_ADMIN_DSN", "KS_TEST_DATABASE_URL", "KS_TEST_PROJECT_DIR", "KS_REQUIRE_CONFORMANCE_STORE", "CI"]
+      "env": ["KS_AIENG_DB_ADMIN_DSN", "KS_TEST_DATABASE_URL", "KS_TEST_PROJECT_DIR", "KS_REQUIRE_CONFORMANCE_STORE", "CI"]
     },
     "dev": {
       "cache": false,

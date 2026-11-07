@@ -25,7 +25,7 @@ vi.mock("@aiengineer/knowledge-host", async (importOriginal) => {
 const { createMcpRuntime } = await import("../index.js");
 const environment = {
   NODE_ENV: "test",
-  POSTGRES_URL: "postgres://user:secret@127.0.0.1:54322/knowledge",
+  KS_AIENG_DB_RUNTIME_DSN: "postgres://user:secret@127.0.0.1:54322/knowledge",
   CANONICAL_LOCAL_ONLY: "1",
   KNOWLEDGE_API_URL: "http://127.0.0.1:4100",
 };

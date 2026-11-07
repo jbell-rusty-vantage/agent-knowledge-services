@@ -1,3 +1,4 @@
+import { KS_DB_COMPONENT_DSN_VARIABLES, resolveComponentDsn } from "@aiengineer/knowledge-host/config";
 import {
   ComponentDatabase,
   type SqlClient,
@@ -26,7 +27,6 @@ import {
 export const REVIEWER_ROLE = "knowledge_verification_reviewer" as const;
 const ID = /^[A-Za-z0-9][A-Za-z0-9._:/@-]{0,199}$/;
 const NAME = /^(\*|[a-z][a-z0-9_.-]{0,119})$/;
-const ENV_NAME = /^[A-Z][A-Z0-9_]{0,127}$/;
 
 export interface ReviewerGrantScope {
   readonly uses: readonly string[];
@@ -91,8 +91,11 @@ function names(flags: Flags, name: string, allowWildcard: boolean): string[] {
 export function parseReviewerGrant(flags: Flags): ReviewerGrantRequest {
   const wildcard = flags["allow-wildcard"] === true;
   const databaseUrlEnv = flag(flags, "database-url-env");
-  if (!ENV_NAME.test(databaseUrlEnv)) {
-    throw new ReviewerGrantRefused("ARGUMENT_INVALID", "--database-url-env names an environment variable");
+  if (!KS_DB_COMPONENT_DSN_VARIABLES.includes(databaseUrlEnv)) {
+    throw new ReviewerGrantRefused(
+      "ARGUMENT_INVALID",
+      `--database-url-env must be one of ${KS_DB_COMPONENT_DSN_VARIABLES.join(", ")}`,
+    );
   }
   const tenantId = flag(flags, "tenant");
   try {
@@ -135,7 +138,7 @@ export async function provisionReviewerGrant(
   open: (connectionString: string) => GrantDatabase = (connectionString) =>
     new ComponentDatabase({ connectionString, applicationName: "knowledge-verify-grant-reviewer" }),
 ): Promise<ReviewerGrantResult> {
-  const dsn = env[request.databaseUrlEnv]?.trim();
+  const dsn = resolveComponentDsn(env, request.databaseUrlEnv).dsn;
   if (!dsn) throw new ReviewerGrantRefused("DATABASE_URL_MISSING", `${request.databaseUrlEnv} is not set`);
   const db = open(dsn);
   try {

@@ -14,7 +14,7 @@ Availability is verified after upload/readback. A metadata-only registration loo
 
 ## Configuration and public access
 
-Configure `KNOWLEDGE_ARTIFACT_STORAGE=supabase`, the existing `SUPABASE_URL` and secret-key environment binding, and `KNOWLEDGE_DB_URL`/`POSTGRES_URL` in the trusted executor host. Configure the normal bearer protection for the host. No secret belongs in an agent artifact or checkpoint. `KNOWLEDGE_PRODUCER_ATTEMPT_ID` and `KNOWLEDGE_MISSION_ID`, when supplied by the host, must match a real tenant-bound attempt/work-item relationship. Otherwise standalone producer metadata is retained without inventing those records.
+Configure `KNOWLEDGE_ARTIFACT_STORAGE=supabase`, `KS_AIENG_DB_URL` and `KS_AIENG_DB_SECRET_KEY`, and `KS_AIENG_DB_RUNTIME_DSN` in the trusted executor host. Configure the normal bearer protection for the host. No secret belongs in an agent artifact or checkpoint. `KNOWLEDGE_PRODUCER_ATTEMPT_ID` and `KNOWLEDGE_MISSION_ID`, when supplied by the host, must match a real tenant-bound attempt/work-item relationship. Otherwise standalone producer metadata is retained without inventing those records.
 
 When remote custody is configured, executor artifact writes await remote verified registration before returning. Existing `GET /artifacts/:artifactId` and verification artifact operations can hydrate missing local bytes and exact handles from the registered remote object. Digest-only lookup cannot select a unique provenance identity; use artifact IDs for durable references. A local-only executor remains useful for offline work but does not meet the remote custody gate.
 

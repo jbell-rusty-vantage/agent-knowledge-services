@@ -48,9 +48,9 @@ import {
  *   - Rollback on a stale decision: no commit, no outbox row, receipt.get not_found.
  *   - Two concurrent different-bytes applies of one key in two processes: one commits, the other EFFECT_CONFLICT.
  *   - Separate readback: marker/Activity/Report counts read from Neo4j by another process, outbox rows from PostgreSQL.
- * Needs KNOWLEDGE_DB_CONTRACT_ADMIN_DSN (loopback), WI05_BKS_ROOT, NEO4J_TEST_URI, NEO4J_TEST_PASSWORD; skips without.
+ * Needs KS_AIENG_DB_ADMIN_DSN (loopback), WI05_BKS_ROOT, NEO4J_TEST_URI, NEO4J_TEST_PASSWORD; skips without.
  */
-const ADMIN = process.env.KNOWLEDGE_DB_CONTRACT_ADMIN_DSN;
+const ADMIN = process.env.KS_AIENG_DB_ADMIN_DSN;
 const BKS_ROOT = process.env.WI05_BKS_ROOT;
 const NEO4J = process.env.NEO4J_TEST_URI;
 const enabled = Boolean(ADMIN && BKS_ROOT && NEO4J && process.env.NEO4J_TEST_PASSWORD);

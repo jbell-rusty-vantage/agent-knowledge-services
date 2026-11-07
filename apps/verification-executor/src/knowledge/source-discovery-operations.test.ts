@@ -29,7 +29,7 @@ describe("source discovery public operation catalog", () => {
     expect(() =>
       loadKnowledgeConfig({
         KNOWLEDGE_ARTIFACT_STORAGE: "supabase",
-        KNOWLEDGE_DB_URL: "postgresql://localhost:1/unused",
+        KS_AIENG_DB_RUNTIME_DSN: "postgresql://localhost:1/unused",
       }),
     ).toThrow("REMOTE_ARTIFACT_STORAGE_CONFIGURATION_REQUIRED");
     expect(loadKnowledgeConfig({})).toBeUndefined();

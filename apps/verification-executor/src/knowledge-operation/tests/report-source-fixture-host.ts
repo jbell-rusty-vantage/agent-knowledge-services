@@ -80,7 +80,7 @@ if (!["ai-engineer", "biotech"].includes(application)) throw new Error("unsuppor
 const binding = application === "ai-engineer" ? "aiengineer-postgres" : "biotech-graph";
 const tenant = origin.tenantId;
 const scope: AuthScope = { tenant, application, binding, origin, grants: [] };
-const adminDsn = requireLoopback("KNOWLEDGE_DB_CONTRACT_ADMIN_DSN", process.env.KNOWLEDGE_DB_CONTRACT_ADMIN_DSN);
+const adminDsn = requireLoopback("KS_AIENG_DB_ADMIN_DSN", process.env.KS_AIENG_DB_ADMIN_DSN);
 const database = `foundation_join_${randomBytes(5).toString("hex")}`;
 const connection = new URL(adminDsn);
 connection.pathname = `/${database}`;
