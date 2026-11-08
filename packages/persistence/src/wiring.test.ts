@@ -27,12 +27,12 @@ describe("canonical persistence environment", () => {
     expect(() => canonicalPersistenceConfigFromEnvironment({ ...database, secretKey: "" }, environment)).toThrow(
       "KS_AIENG_DB_SECRET_KEY_REQUIRED",
     );
-    expect(() => canonicalPersistenceConfigFromEnvironment({ ...database, runtimeDsn: undefined }, environment)).toThrow(
-      "KS_AIENG_DB_RUNTIME_DSN_REQUIRED",
-    );
     expect(() =>
-      canonicalPersistenceConfigFromEnvironment(database, { SUPABASE_STORAGE_BUCKET: "public" }),
-    ).toThrow("CANONICAL_STORAGE_BUCKET_REQUIRED");
+      canonicalPersistenceConfigFromEnvironment({ ...database, runtimeDsn: undefined }, environment),
+    ).toThrow("KS_AIENG_DB_RUNTIME_DSN_REQUIRED");
+    expect(() => canonicalPersistenceConfigFromEnvironment(database, { SUPABASE_STORAGE_BUCKET: "public" })).toThrow(
+      "CANONICAL_STORAGE_BUCKET_REQUIRED",
+    );
     expect(() =>
       canonicalPersistenceConfigFromEnvironment(database, { ...environment, MAXIMUM_ARTIFACT_BYTES: "0" }),
     ).toThrow("INVALID_MAXIMUM_ARTIFACT_BYTES");

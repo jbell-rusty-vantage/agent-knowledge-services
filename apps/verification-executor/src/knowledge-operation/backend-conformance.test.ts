@@ -454,7 +454,12 @@ const BIOTECH_GRAPH: BackendConformance = {
     const store = await componentDatabase("biotech", "biotech-graph", installationId);
     const admission = new BiotechGraphAdmission(store.db, { installationId, applicationId: "biotech" });
     return {
-      config: { application: "biotech", binding: "biotech-graph", installationId, databaseUrlEnv: BIOTECH_DSN_VARIABLE },
+      config: {
+        application: "biotech",
+        binding: "biotech-graph",
+        installationId,
+        databaseUrlEnv: BIOTECH_DSN_VARIABLE,
+      },
       env: { [BIOTECH_DSN_VARIABLE]: store.dsn },
       injection: { seal: FIXTURE_SEAL_KEYS },
       apply: {

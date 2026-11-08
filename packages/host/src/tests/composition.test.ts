@@ -33,7 +33,10 @@ vi.mock("@aiengineer/knowledge-persistence", async (importOriginal) => {
   };
 });
 
-const database = { KS_AIENG_DB_RUNTIME_DSN: "postgres://user:secret@127.0.0.1:54322/knowledge", CANONICAL_LOCAL_ONLY: "1" };
+const database = {
+  KS_AIENG_DB_RUNTIME_DSN: "postgres://user:secret@127.0.0.1:54322/knowledge",
+  CANONICAL_LOCAL_ONLY: "1",
+};
 const noPublicOrigin = () => undefined;
 
 let fetchSpy: ReturnType<typeof vi.spyOn>;

@@ -53,7 +53,10 @@ const dsn = optional.refine(
   (value) => value === undefined || /^postgres(?:ql)?:\/\//i.test(value),
   "must be a postgres:// or postgresql:// DSN",
 );
-const httpUrl = optional.refine((value) => value === undefined || /^https?:\/\//i.test(value), "must be an http(s) URL");
+const httpUrl = optional.refine(
+  (value) => value === undefined || /^https?:\/\//i.test(value),
+  "must be an http(s) URL",
+);
 const projectRef = optional.refine(
   (value) => value === undefined || /^[a-z0-9][a-z0-9-]{0,62}$/.test(value),
   "must be a project ref (lowercase letters, digits, hyphen)",
@@ -183,7 +186,10 @@ export function resolveComponentDsn(
   application?: string,
 ): { readonly variable: string; readonly dsn: string | undefined } {
   const plane = KS_DB_PLANES.find((candidate) => ksDbVariable(candidate, "COMPONENT_DSN") === variable);
-  if (!plane) throw new Error(`KS_DB_COMPONENT_VARIABLE_UNKNOWN: ${variable} is not one of ${KS_DB_COMPONENT_DSN_VARIABLES.join(", ")}`);
+  if (!plane)
+    throw new Error(
+      `KS_DB_COMPONENT_VARIABLE_UNKNOWN: ${variable} is not one of ${KS_DB_COMPONENT_DSN_VARIABLES.join(", ")}`,
+    );
   if (application !== undefined && KS_DB_PLANE_APPLICATIONS[plane] !== application && isKnownApplication(application))
     throw new Error(`KS_DB_COMPONENT_VARIABLE_PLANE_MISMATCH: ${variable} does not serve application ${application}`);
   return { variable, dsn: loadKsDatabaseConfig(environment, KS_DB_PLANE_APPLICATIONS[plane]).componentDsn };
