@@ -16,8 +16,10 @@ import type { KnowledgeSqlClient } from "../ports.js";
  * native domain write and the effect receipt commit or roll back together:
  *  - `admitExactUseWithin` (native ingestion, `IngestionExecutor.applyOnce`) binds the effect, admits the exact
  *    decision/effect/normalized-values digests and, on an ai-engineer installation with the AIDB projection, also runs
- *    `research.assert_admitted_use(..., p_normalized_values_digest)` so AIDB's same-transaction commit guards accept the
- *    receipt (on ai-engineer the guard is required, never skipped); any non-admitted
+ *    the AIDB guard `verification.assert_admitted_use(..., p_normalized_values_digest)` (AIDB 20261108120000 moved it
+ *    from `research.`; the `research.` form is used only where it is the installed one, e.g. the vendored contract
+ *    0.6.0) so AIDB's same-transaction commit guards accept the receipt (on ai-engineer the guard is required, never
+ *    skipped); any non-admitted
  *    outcome throws a typed error and the whole transaction rolls back;
  *  - `evaluateExactUse` returns the outcome without throwing (the binding's diagnostic `admitExactUse`);
  *  - `recordExactUseReceipt` writes the effect receipt (and the decision -> effect dependency edge) before commit.
@@ -200,8 +202,25 @@ export async function bindExactEffect(
   }
 }
 
-/** The AIDB native guard signature since AIDB migration 20261024010200 (normalized-values digest forwarded). */
-export const AIDB_GUARD_SIGNATURE = "research.assert_admitted_use(uuid,text,text,bigint,text)";
+/**
+ * The AIDB native guard signatures, in preference order: `verification.` since AIDB migration 20261108120000 (R2 moved
+ * the guard out of `research`), `research.` since 20261024010200 (normalized-values digest forwarded; still the form of
+ * the vendored database contract 0.6.0). The first one installed is the one called; never both.
+ */
+export const AIDB_GUARD_SIGNATURES = [
+  "verification.assert_admitted_use(uuid,text,text,bigint,text)",
+  "research.assert_admitted_use(uuid,text,text,bigint,text)",
+] as const;
+export type AidbGuardSignature = (typeof AIDB_GUARD_SIGNATURES)[number];
+/** The current AIDB guard signature (kept for callers and messages that name one). */
+export const AIDB_GUARD_SIGNATURE: AidbGuardSignature = AIDB_GUARD_SIGNATURES[0];
+
+const GUARD_CALL: Readonly<Record<AidbGuardSignature, string>> = {
+  "verification.assert_admitted_use(uuid,text,text,bigint,text)":
+    "select * from verification.assert_admitted_use($1, $2, $3, $4, $5)",
+  "research.assert_admitted_use(uuid,text,text,bigint,text)":
+    "select * from research.assert_admitted_use($1, $2, $3, $4, $5)",
+};
 
 /** An installation fact that makes native admission impossible (infrastructure, not a domain refusal). */
 export class AdmissionInstallationError extends Error {
@@ -212,14 +231,22 @@ export class AdmissionInstallationError extends Error {
   }
 }
 
-/** Which installation this database serves and whether the AIDB native guard (5-argument form) is installed. */
-export async function aidbGuardStatus(client: KnowledgeSqlClient): Promise<{ aiEngineer: boolean; guard: boolean }> {
-  const rows = await client.query<{ guard: boolean; ai_engineer: boolean }>(
-    `select to_regprocedure($1) is not null as guard,
+/**
+ * Which installation this database serves and which AIDB native guard (5-argument form) is installed: the
+ * `verification.` form when present, else the `research.` form, else none (`guard` false, `signature` null).
+ */
+export async function aidbGuardStatus(
+  client: KnowledgeSqlClient,
+): Promise<{ aiEngineer: boolean; guard: boolean; signature: AidbGuardSignature | null }> {
+  const rows = await client.query<{ current: boolean; legacy: boolean; ai_engineer: boolean }>(
+    `select to_regprocedure($1) is not null as current,
+            to_regprocedure($2) is not null as legacy,
             exists (select 1 from knowledge_verification.installation where application_id = 'ai-engineer') as ai_engineer`,
-    [AIDB_GUARD_SIGNATURE],
+    [AIDB_GUARD_SIGNATURES[0], AIDB_GUARD_SIGNATURES[1]],
   );
-  return { aiEngineer: Boolean(rows.rows[0]?.ai_engineer), guard: Boolean(rows.rows[0]?.guard) };
+  const row = rows.rows[0];
+  const signature = row?.current ? AIDB_GUARD_SIGNATURES[0] : row?.legacy ? AIDB_GUARD_SIGNATURES[1] : null;
+  return { aiEngineer: Boolean(row?.ai_engineer), guard: signature !== null, signature };
 }
 
 /**
@@ -243,13 +270,13 @@ export async function admitExactUseWithin(
   }
   const installation = await aidbGuardStatus(client);
   if (!installation.aiEngineer) return { path: "component_only", authoritativeEpoch: outcome.authoritativeEpoch };
-  if (!installation.guard) {
+  if (installation.signature === null) {
     throw new AdmissionInstallationError(
-      `the ai-engineer installation has no ${AIDB_GUARD_SIGNATURE}; apply AIDB migration 20261024010200 before native admission`,
+      `the ai-engineer installation has neither ${AIDB_GUARD_SIGNATURES.join(" nor ")}; apply AIDB migration 20261108120000 (or 20261024010200) before native admission`,
     );
   }
   try {
-    await client.query("select * from research.assert_admitted_use($1, $2, $3, $4, $5)", [
+    await client.query(GUARD_CALL[installation.signature], [
       tenantId,
       binding.useDecisionId,
       binding.boundEffectDigest,
