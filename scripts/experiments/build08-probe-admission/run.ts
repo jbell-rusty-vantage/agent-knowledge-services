@@ -93,6 +93,10 @@ const AUDIENCE = "internal";
 const RISK = "medium" as const;
 const TARGET_SCHEMA = "aieng.claim-verification.v1";
 const NATIVE_ROLE = "executor_service" as const;
+// Dates are the run's own (loop 6 hard-coded 2026-11-13, which made the task deadline expire on later runs).
+const RUN_STARTED = new Date();
+const NOW_ISO = RUN_STARTED.toISOString().replace(/\.\d{3}Z$/, "Z");
+const DEADLINE_ISO = new Date(RUN_STARTED.getTime() + 24 * 3600 * 1000).toISOString().replace(/\.\d{3}Z$/, "Z");
 
 /**
  * Polarity, read by the harness author from each statement (not inferred from the census cue list): `negative` claims
@@ -156,7 +160,12 @@ interface PackClaim {
   script_path: string | null;
   script_sha256: string | null;
   runs: PackRun[];
+  /** Loop 7 (D-80): the polarity reading and the owner confirmation travel with the claim in the pack. */
+  polarity?: { negative: boolean; note?: string };
+  confirmation?: { instrument: string; rationale: string; decided_by?: string };
 }
+const polarityOf = (claim: { claim_id: string; polarity?: { negative: boolean; note?: string } }) =>
+  POLARITY[claim.claim_id] ?? claim.polarity;
 interface Pack {
   schema: string;
   tenant: string;
@@ -200,7 +209,7 @@ function harnessOrigin(): Origin {
     mission: null,
     recoveryAuthorityRef: null,
     invocationId: "inv-build08-loop6",
-    authenticatedAt: "2026-11-13T00:00:00Z",
+    authenticatedAt: NOW_ISO,
   };
 }
 
@@ -325,12 +334,12 @@ function buildTask(
     use: USE,
     audience: AUDIENCE,
     obligations,
-    asOf: "2026-11-13T00:00:00Z",
+    asOf: NOW_ISO,
     permittedMedia: ["application_json"],
     rubric: ref("rubric", "rubric-engineering", ENGINEERING_RUBRIC_VERSION),
     policy: ref("policy", "policy-ai-engineer", "research-policy.ai-engineer.v2"),
     minimumRisk: RISK,
-    limits: { calls: 0, tokens: 0, costUsd: "0", deadline: "2026-11-14T00:00:00Z" },
+    limits: { calls: 0, tokens: 0, costUsd: "0", deadline: DEADLINE_ISO },
   });
 }
 
@@ -364,7 +373,7 @@ function compileClaims(input: {
         unit: null,
         jurisdiction: null,
         baseline: null,
-        negation: POLARITY[claim.claim_id]?.negative ?? false,
+        negation: polarityOf(claim)?.negative ?? false,
         modality: "asserted",
         comparison: null,
         runtime: null,
@@ -655,10 +664,10 @@ async function verificationRun(input: {
     kind: KINDS.ref(scope, "evidence_report"),
     structuredBody: structuredBody(
       compiled,
-      "AI Engineer knowledge base, tenant workspace (internal). Each finding is one proposed AIDB claim whose loop-4 probe verdict is directly_supported and human-confirmed; the evidence is the exact captured probe output.",
+      "AI Engineer knowledge base, tenant workspace (internal). Each finding is one proposed AIDB claim whose deterministic probe verdict is directly_supported and human-confirmed; the evidence is the exact captured probe output.",
       [
         "Probe outputs were captured on the disposable lab under pinned, dated environments; a finding holds for the cells the probe ran.",
-        "The human confirmation is the owner's recorded written acceptance of the loop-4 verdicts, not a separate review session.",
+        "The human confirmation is the owner's recorded written acceptance named on each finding, not a separate review session.",
       ],
     ),
     assertions: compiled.map((item) => recordRef("assertion", item.assertion)),
@@ -814,7 +823,9 @@ async function verificationRun(input: {
     if (claim.review_state !== "human_confirmed") continue;
     const humanConfig = {
       reviewer: "owner.john",
-      instrument: "written instruction, matrix row 2A, 2026-11-13: loop-4 verdicts accepted as proposed",
+      instrument:
+        claim.confirmation?.instrument ??
+        "written instruction, matrix row 2A, 2026-11-13: loop-4 verdicts accepted as proposed",
       verdict_id: claim.verdict_id,
     };
     const humanMethod = method(scope, "owner-written-confirmation", "owner-written-confirmation.v1", humanConfig);
@@ -839,8 +850,10 @@ async function verificationRun(input: {
           promptDigest: null,
           configDigest: humanMethod.digest,
         },
-        rationale:
-          "Human confirmation recorded from the admission pack: John accepted the loop-4 verdicts as proposed (matrix row 2A, written instruction, 2026-11-13).",
+        rationale: `Human confirmation recorded from the admission pack: ${
+          claim.confirmation?.rationale ??
+          "John accepted the loop-4 verdicts as proposed (matrix row 2A, written instruction, 2026-11-13)."
+        }`,
         limitations: [
           "transcribed by the harness from the owner's written instruction; not a separate interactive review session",
         ],
@@ -859,7 +872,7 @@ async function verificationRun(input: {
   const entries = compiled.map((item) => {
     const candidates = [escapeMarkdown(item.claim.statement, true), escapeMarkdown(item.claim.statement, false)];
     const quote = candidates.find((candidate) => text.includes(candidate)) ?? item.claim.statement;
-    const polarity = POLARITY[item.claim.claim_id];
+    const polarity = polarityOf(item.claim);
     return {
       quote,
       assertionLogicalId: item.assertion.logicalId,
