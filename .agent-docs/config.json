@@ -573,7 +573,7 @@
   "decisions": [
     "A knowledge-read retrieval operation is accepted in the intent schema but skipped as RETRIEVAL_UNAVAILABLE; catalog query retrieval.hybrid_search is pending an embedding.",
     "Ingestion records orchestration.operation_intent/receipt and does not write a knowledge_service.operation row or outbox.",
-    "The database-contract pin is the vendored 0.4.16 tarball, not an unpinned sibling checkout. Cloud deployment of its schema additions is not verified by this map.",
+    "The database-contract pin is the vendored 0.6.0 tarball (head 20261031010000; corrected 2026-11-15 from 0.4.16), not an unpinned sibling checkout. Cloud deployment of its schema additions is not verified by this map.",
     "Accepted ADR 0004: in-process KS servers call application; out-of-process callers use KnowledgeClient HTTP. Since Unit 3 every MCP tool runs in process (no API client); API/MCP parity is enforced by apps/mcp/src/tests/api-mcp-parity.test.ts."
   ],
   "ciWorkflow": ".github/workflows/agent-docs.yml",

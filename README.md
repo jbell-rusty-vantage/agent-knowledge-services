@@ -117,6 +117,8 @@ HTTP, MCP, and the worker do not own business rules. The executor creates its kn
 
 Honest status from the code map and accepted docs. “Implemented” means the module exists and is tested; it is not a deployment attestation.
 
+**Current state 2026-11-15:** the row "Platform verification (`verification.v1`)" predates the SV-17 cutover. Verification runs, claims and seals now live only in the `knowledge_verification` component 2.5.0, reached through K01 `ks.knowledge_operation.v2` ([current architecture](docs/architecture/current-state.md#sv-17-verification-cutover-2026-10-25)). The latest exercised admission use is the Build 08 probe-admission harness on a disposable lab ([experiments index](scripts/experiments/index.md)). Root skills are ten (`skills/manifest.json`) plus the executor's `knowledge-verify`. Present state: [state card](../../docs/state/2026-11-15/KNOWLEDGE-SERVICES.md#exists).
+
 | Capability | Owner | Maturity |
 |---|---|---|
 | Deterministic capture, convert, chunk, preview | `packages/sources`, `packages/preparation`, `packages/application` | Implemented. `vetOnly` / `preparePreview` stop at a review proposal. |
@@ -126,7 +128,7 @@ Honest status from the code map and accepted docs. “Implemented” means the m
 | Schema navigation | `packages/knowledge-db/src/schema-workspace`, executor `knowledge schema *` | Implemented. Contract view, not live tenant data. |
 | Bounded reads | `packages/knowledge-db/src/db-read`, executor `knowledge db *` | **Partial.** Named-query snapshots work. `retrieval` operations on a read intent are skipped as `RETRIEVAL_UNAVAILABLE`. |
 | Canonical ingestion | `packages/knowledge-db/src/ingestion`, executor `knowledge ingest *` | **Partial.** Plan/apply/receipt as `executor_service` exist. Ingestion records `orchestration.operation_intent` / `receipt` and does **not** write `knowledge_service.operation` or an outbox. |
-| Agent skills | `skills/` | Eleven root versioned skills plus executor-local `knowledge-verify`. Pin `manifest.json`; eight-skill consolidation and DeepAgents parser conformance remain planned. |
+| Agent skills | `skills/` | Ten root versioned skills (corrected 2026-11-15 from `skills/manifest.json`) plus executor-local `knowledge-verify`. Pin `manifest.json`; eight-skill consolidation and DeepAgents parser conformance remain planned. |
 | Evaluation / publication | `packages/evaluation`, `packages/retrieval/src/vector-backends`, platform CLI | Implemented as gates and pointer moves. Real embedding bundles remain `internal_exploratory` until promoted. |
 
 ## Prerequisites
@@ -528,7 +530,7 @@ From this repository root:
 corepack pnpm verify
 ```
 
-That is `typecheck && test && build` via Turborepo. Serial form if the host is contended:
+That is `format:check && lint && typecheck && test && build && boundaries && examples:verification` (corrected 2026-11-15 from `package.json`); the store-backed suites need a disposable PostgreSQL 17 through `KS_AIENG_DB_ADMIN_DSN`, as in `.github/workflows/verify.yml`. Serial form if the host is contended:
 
 ```bash
 corepack pnpm exec turbo run typecheck test build --concurrency=1
@@ -539,8 +541,8 @@ Targeted extras (not required for every change):
 ```bash
 node skills/check.mjs
 corepack pnpm --filter @aiengineer/knowledge-verification test
-pnpm evaluate:broad                  # frozen evaluation replay
-pnpm test:live:gateway               # live embeddings; needs credentials
 ```
+
+`pnpm evaluate:broad` and `pnpm test:live:gateway` were listed here. Their scripts have been absent from the tree since before the 2026-11-06 baseline, so those commands fail (2026-11-15; KM-D11 in the [direction](docs/specs/knowledge-machine-2026-11/DIRECTION.md#s11)).
 
 Deployment status is not inferred from this README, a git marker, or a passing `verify`. See the verification and operations docs for rollout state.

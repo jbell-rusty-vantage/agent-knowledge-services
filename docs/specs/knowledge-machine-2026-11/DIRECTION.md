@@ -437,8 +437,9 @@ closes it is the **revisit** signal from source intelligence and the **what_chan
 | KM-D8 | Content Machine split | catalogs per application, mechanics in `packages/content` with two ports, production in Mission Control output contracts, rendering in per-app UI catalogs registered as capabilities |
 | KM-D9 | Biotech content storage | graph nodes in v2.3.0 for `Article`, `Timeline`, `Guide` (recommended, since Biotech content is evidence-shaped) versus application PostgreSQL |
 | KM-D10 | Program names | "Knowledge Machine" and "Content Machine" as the two program names under which the Knowledge Services truth pass and the later content work are filed |
-| KM-D11 | The 136 deleted scripts in this repository's working tree (§11) | confirm intent before the truth pass commits or restores them |
+| KM-D11 | The 136 deleted scripts in this repository's working tree (§11) | confirm intent before the truth pass commits or restores them. **2026-11-15:** the deletion is now in history (see the note at the end of §11); what is left to decide is restore or retire |
 
+<a id="s11"></a>
 ## 11. Evidence limits and the working tree
 
 This document inspected source, tests, schema files, pinned releases and the Decisions API guide; it ran no provider,
@@ -450,6 +451,17 @@ The Knowledge Services working tree on `sprint-oc` at `94cbb7d` has **136 delete
 `internal/`, uncommitted, with no stash. `scripts/AGENTS.md` still routes to four of them. This is either an in-flight
 cleanup or an accident; the state inventory of 2026-11-01 recorded a clean tree. This document did not restore or commit
 them (KM-D11).
+
+**Current state 2026-11-15 (truth pass, git only).** The working tree on `main` is clean. The deleted scripts are not in
+the 2026-11-06 clean-slate baseline, whose tree equals the last pre-move `main`
+([repository history](../../REPOSITORY-HISTORY.md)), so the deletion is committed history and not dirty work. `scripts/`
+now holds only `AGENTS.md` and `scripts/experiments/`. The root `package.json` still names 16 of the deleted files
+(`prove:canonical-durability`, `prove:durable-preparation`, `prove:current-schema`, `prove:artifact-custody`,
+`prove:governed-indexing`, `prove:hnsw-local`, `prove:canonical-retrieval-api`, `evaluate:bundles`, `evaluate:broad`,
+`fixture:canonical`, the two `gate5` commands and the four `test:live:*` commands); those commands fail. Restoring them
+needs the owner's private pre-move archive. KM-D11 therefore becomes: restore, or retire the dead commands and the docs
+that cite them. KM-D1 to KM-D10 are still open. See the
+[state card](../../../../../docs/state/2026-11-15/KNOWLEDGE-SERVICES.md#decisions).
 
 ## 12. Sequence, by gate and not by date
 

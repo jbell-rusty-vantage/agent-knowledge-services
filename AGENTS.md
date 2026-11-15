@@ -8,6 +8,8 @@ Sprint V (finished; archived in Mission Control): [repositories, database roles 
 
 Before editing, run `git status --short`, `git branch --show-current`, and `git worktree list` here. Preserve dirty work; `.git/maintenance/jobs/` worktrees are not the primary source. Edit registered sources and build this repository only. Deeper guides: [README map](README.md#documentation-map), [code map](docs/agents/CODE-MAP.md).
 
+**Current state 2026-11-15:** read the [Knowledge Services state card](../../docs/state/2026-11-15/KNOWLEDGE-SERVICES.md#identity) first. Live Knowledge Services work is now driven from AI Engineer Build 08 ([current handoff](../ai-engineer-research-2026-11-02/10-review-workspace/NEXT-SESSION-BUILD-08-AFTER-LOOP-8.md)) and the accepted, not started [binding relocation plan](docs/specs/binding-relocation-2026-11/PLAN.md). The generated task route below that calls `NEXT-PACKAGE-CLEANUP.md` the current handoff is historical (last integrated 2026-10-24).
+
 GitHub: public [`jbell-rusty-vantage/agent-knowledge-services`](https://github.com/jbell-rusty-vantage/agent-knowledge-services), `main` only. History starts at the 2026-11-06 clean-slate baseline, so commit IDs and `Overton77/ai-engineer-knowledge-services` links in older documents do not resolve here ([repository history](docs/REPOSITORY-HISTORY.md)).
 
 ## Environment
