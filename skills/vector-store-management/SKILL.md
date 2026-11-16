@@ -1,4 +1,5 @@
 ---
+name: vector-store-management
 description: Use when creating or operating official, exploratory, or user-managed vector stores through Knowledge Services.
 license: Proprietary
 metadata:
@@ -10,7 +11,7 @@ metadata:
 
 Choose the store class explicitly: `official`, `internal_exploratory`, or `user_managed`. Preserve its owner, tenant, visibility, lifecycle, purpose, retention, admitted domains, embedding profile, and publication authority. Never move content or identifiers across classes implicitly.
 
-Use idempotent API or MCP operations to create a store, add exact document-version IDs, observe ingestion, search, evaluate, and reconcile. Propagate tenant, actor, reason, expected contract/capability versions, operation/attempt/work-item, correlation/causation, and external workflow run IDs. Retry ambiguous mutations only with the same idempotency key.
+Use idempotent API or MCP operations to create a store, add exact document-version IDs, observe ingestion, evaluate, and reconcile. A store has no search command or tool of its own: search it with a retrieval plan through the retrieval procedure. Propagate tenant, actor, reason, expected contract/capability versions, operation/attempt/work-item, correlation/causation, and external workflow run IDs. Retry ambiguous mutations only with the same idempotency key.
 
 ## Evaluated publication, activation, and rollback
 

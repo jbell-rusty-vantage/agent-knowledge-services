@@ -18,7 +18,7 @@ export interface ToolDefinition {
 }
 
 function bindingNames(operation: CatalogOperation): readonly string[] {
-  return "on" in operation.mcp ? operation.mcp.on : "failsClosed" in operation.mcp ? operation.mcp.failsClosed : [];
+  return "on" in operation.mcp ? operation.mcp.on : [];
 }
 
 export function catalogToolNames(): Set<string> {

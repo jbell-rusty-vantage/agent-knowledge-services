@@ -454,8 +454,6 @@ export function createMcpToolExecutor(options: KnowledgeMcpServerOptions) {
         if (!storeId || !operationId) return toolError("RESOURCE_ID_REQUIRED");
         return inProcessRead(() => reads.vectorStoreOperation(context.tenantId, storeId, operationId));
       },
-      knowledge_embed_models: async () => toolError("CAPABILITY_NOT_ADMITTED"),
-      knowledge_embed_estimate: async () => toolError("CAPABILITY_NOT_ADMITTED"),
     };
     const readHandler = readHandlers[name];
     if (readHandler) return readHandler();

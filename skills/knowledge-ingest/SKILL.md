@@ -10,6 +10,7 @@ description: >-
 allowed-tools:
   - Bash(knowledge ingest *)
   - Bash(knowledge db *)
+  - Bash(knowledge schema *)
   - Bash(knowledge artifact *)
 ---
 
@@ -101,7 +102,7 @@ Choosing the proposal kind:
 
 | you want to say | kind | notes |
 |---|---|---|
-| "X exists and is a <kind>" | subject `mode: new` (the executor synthesizes `entity.create`) | `typedPayload` keys must be columns of `corpus.<kind>`; `onMatch: review` unless you are sure it is new |
+| "X exists and is a <kind>" | subject `mode: new` (the executor synthesizes `entity.create`) | `typedPayload` keys must be columns of the relation that stores that entity kind. Do not assume its name: find it with `schema_search` (`knowledge schema search "<kind>"`), then read the relation page the hit names; `onMatch: review` unless you are sure it is new |
 | "X is also called Y" / "X has id Y in scheme S" | `entity.alias` / `entity.identifier` | idempotent |
 | "A <rel> B [since/until]" | `relationship.assert` | `worldInterval` required for temporal kinds |
 | "X's <stream> is/was V [from D]" | `fact.assert_state` | prices: rule `price.scope_key_is_unit` reuses the key of the subject's existing series for that unit (older data uses `input_tokens`), else defaults `scopeKey` to the unit; a `scopeKey` you give that names another key is rewritten (`reason: existing_series_reused`) |
@@ -110,7 +111,7 @@ Choosing the proposal kind:
 | "Record these claims as evidence rows" | `claim.materialize` (+ `evidence.claims[]` text) | needs `context.attemptId` or an `exactUse` originating origin (recorded as `producer_origin_digest`); otherwise `held: attempt_or_origin_required` |
 | "Observe metric M = v" | `metric.observe` | needs `metricDefinitionVersionId` |
 | "I found X but cannot resolve/place it" | `candidate.stage` | no evidence needed; give `reason` |
-| "Publish this report" | `report.publish` with `markdown` | stored as artifact `knowledge_report_markdown` + `research.report_version` |
+| "Publish this report" | `report.publish` with `markdown` | stored as artifact `knowledge_report_markdown` plus a report version row. Do not assume where that row lives: find the current relation with `schema_search` (`knowledge schema search "report version"`), then read the page the hit names |
 
 ### 2. Plan
 

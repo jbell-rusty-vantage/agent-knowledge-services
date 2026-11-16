@@ -14,25 +14,17 @@ export const OperationKindSchema = z.enum([
   "source_discovery",
   "source_resolution",
   "capture",
-  "capture_inspection",
-  "capture_comparison",
   "source_vetting",
   "vector_store_create",
   "vector_store_documents",
   "vector_store_ingestion",
-  "vector_store_search",
   "vector_store_evaluation",
-  "document",
-  "document_version",
-  "representation",
   "transformation",
-  "representation_inspection",
   "representation_comparison",
   "representation_decision",
   "chunk_preview",
   "chunk_comparison",
   "chunk_set",
-  "chunk_set_inspection",
   "promotion_proposal",
   "promotion_decision",
   "embedding_run",
@@ -44,7 +36,6 @@ export const OperationKindSchema = z.enum([
   "evaluation_dataset",
   "experiment",
   "evaluation_run",
-  "review",
   "review_decision",
   "verification_capture",
   "verification_extraction",
@@ -129,28 +120,3 @@ export const CallbackAcknowledgementSchema = z.strictObject({
   receivedAt: IsoDateTimeSchema,
 });
 export type CallbackAcknowledgement = z.infer<typeof CallbackAcknowledgementSchema>;
-
-export const ExploratoryBundleDescriptorSchema = z.strictObject({
-  schema_version: z.literal("ai-engineer-embedding-bundle/0.1.0"),
-  store_class: z.literal("internal_exploratory"),
-  video_id: z.enum(["kTnfJszFxCg", "bk0TmxoZlUY", "rmvDxxNubIg"]),
-  evaluation_scope: NonEmptyStringSchema.max(128),
-});
-export type ExploratoryBundleDescriptor = z.infer<typeof ExploratoryBundleDescriptorSchema>;
-
-export const ExploratoryEvaluationInputSchema = z
-  .strictObject({
-    mode: z.literal("three_bundle_internal_exploratory"),
-    bundles: z.array(ExploratoryBundleDescriptorSchema).length(3),
-  })
-  .superRefine((input, context) => {
-    const expected = new Set(ExploratoryBundleDescriptorSchema.shape.video_id.options);
-    const actual = new Set(input.bundles.map((bundle) => bundle.video_id));
-    if (actual.size !== expected.size || [...expected].some((id) => !actual.has(id)))
-      context.addIssue({
-        code: "custom",
-        path: ["bundles"],
-        message: "bundles must contain each allow-listed exploratory video exactly once",
-      });
-  });
-export type ExploratoryEvaluationInput = z.infer<typeof ExploratoryEvaluationInputSchema>;

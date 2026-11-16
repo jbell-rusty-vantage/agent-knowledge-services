@@ -10,26 +10,25 @@
 //              server profile has its database;
 //   gated    — executable only when host composes an optional port; `requires` names it (verification
 //              admission and read flags, Storage custody, operator reconciliation authority, the internal
-//              drift queue, callback signing keys, the demo bundle port);
-//   declared — contract vocabulary only; every bound surface fails closed with CAPABILITY_NOT_ADMITTED;
+//              drift queue, callback signing keys);
 //   executor — served by the verification executor (its own MCP/CLI and store mode), not by the ks api or mcp;
 //              the verification intent-pipeline rows also name the `ks` command that runs them on the local
 //              profile (5C, `executor.ks`).
-// Parity never promotes a declared operation: declared rows may only use `failsClosed` bindings.
+// There is no "declared" class: an operation enters the catalog together with the path that executes it, and a
+// binding is either a surface that serves it (`on`) or an exclusion with its reason. A name that can only refuse
+// is not catalogued, routed, registered as a tool or bound as a command (2026-11-15 removal of the 17 declared
+// rows and the in-memory demo evaluation).
 // transportState() derives the per-profile, per-transport state: executable, executable when composed,
-// declared (fails closed), excluded, executor only, server only, or local profile. The local host profile
+// excluded, executor only, server only, or local profile. The local host profile
 // composes only the verification intent pipeline over the executor's file store, so every platform row is
-// server only there; the 16 intent-pipeline rows run through `ks` on the local profile and stay executor only
+// server only there; the 9 intent-pipeline rows run through `ks` on the local profile and stay executor only
 // on ks api/mcp until 5D3; the registry rows stay executor only until 5D1/5D2. Host derives local
 // admission from its capability matrix.
 import type { OperationKind } from "@aiengineer/knowledge-contracts";
 
 export type Group = "operations" | "knowledge" | "verify" | "db" | "system";
-export type Admission = "admitted" | "gated" | "declared" | "executor";
-export type Binding =
-  | { readonly on: readonly string[] }
-  | { readonly failsClosed: readonly string[] }
-  | { readonly excluded: string };
+export type Admission = "admitted" | "gated" | "executor";
+export type Binding = { readonly on: readonly string[] } | { readonly excluded: string };
 
 export interface CatalogOperation {
   readonly id: string;
@@ -50,7 +49,6 @@ export interface CatalogOperation {
 }
 
 const on = (...names: string[]): Binding => ({ on: names });
-const failsClosed = (...names: string[]): Binding => ({ failsClosed: names });
 const excluded = (reason: string): Binding => ({ excluded: reason });
 
 const NO_CLI = excluded("no CLI command yet; recorded for the Unit 5 `ks` CLI");
@@ -60,7 +58,6 @@ const PUBLICATION_AUTHORITY = excluded(
   "publication changes are operator actions; FORBIDDEN_MCP_CAPABILITIES excludes publication.publish and publication.approve",
 );
 const BY_ID = excluded("agents read resources by id; tenant-wide listings are an HTTP operator surface");
-const DECLARED_API = (route: string) => failsClosed(route);
 const EXECUTOR = "executor-only surface; Unit 5 folds the verification executor into ks api/mcp/cli";
 
 // ── Durable knowledge operations (operations/surface.ts kinds) ──────────────────────────
@@ -94,26 +91,6 @@ const knowledgeMutations: readonly CatalogOperation[] = [
     api: on("POST /v1/captures"),
     mcp: on("knowledge_source_fetch"),
     cli: on("knowledge source fetch"),
-  },
-  {
-    id: "knowledge.capture_inspection",
-    group: "knowledge",
-    effect: "mutation",
-    kind: "capture_inspection",
-    admission: "declared",
-    api: DECLARED_API("POST /v1/captures/:target"),
-    mcp: failsClosed("knowledge_source_inspect_capture"),
-    cli: failsClosed("knowledge source inspect"),
-  },
-  {
-    id: "knowledge.capture_comparison",
-    group: "knowledge",
-    effect: "mutation",
-    kind: "capture_comparison",
-    admission: "declared",
-    api: DECLARED_API("POST /v1/captures/:target"),
-    mcp: failsClosed("knowledge_source_compare_captures"),
-    cli: excluded("declared only; no CLI binding"),
   },
   {
     id: "knowledge.source_vetting",
@@ -156,16 +133,6 @@ const knowledgeMutations: readonly CatalogOperation[] = [
     cli: NO_CLI,
   },
   {
-    id: "knowledge.vector_store_search",
-    group: "knowledge",
-    effect: "mutation",
-    kind: "vector_store_search",
-    admission: "declared",
-    api: DECLARED_API("POST /v1/vector-stores/:target"),
-    mcp: failsClosed("knowledge_store_search"),
-    cli: failsClosed("knowledge store search"),
-  },
-  {
     id: "knowledge.vector_store_evaluation",
     group: "knowledge",
     effect: "mutation",
@@ -176,36 +143,6 @@ const knowledgeMutations: readonly CatalogOperation[] = [
     cli: on("knowledge store evaluate"),
   },
   {
-    id: "knowledge.document",
-    group: "knowledge",
-    effect: "mutation",
-    kind: "document",
-    admission: "declared",
-    api: DECLARED_API("POST /v1/documents"),
-    mcp: excluded("declared only; no MCP binding"),
-    cli: excluded("declared only; no CLI binding"),
-  },
-  {
-    id: "knowledge.document_version",
-    group: "knowledge",
-    effect: "mutation",
-    kind: "document_version",
-    admission: "declared",
-    api: DECLARED_API("POST /v1/document-versions"),
-    mcp: excluded("declared only; no MCP binding"),
-    cli: excluded("declared only; no CLI binding"),
-  },
-  {
-    id: "knowledge.representation",
-    group: "knowledge",
-    effect: "mutation",
-    kind: "representation",
-    admission: "declared",
-    api: DECLARED_API("POST /v1/representations"),
-    mcp: excluded("declared only; no MCP binding"),
-    cli: excluded("declared only; no CLI binding"),
-  },
-  {
     id: "knowledge.transformation",
     group: "knowledge",
     effect: "mutation",
@@ -214,16 +151,6 @@ const knowledgeMutations: readonly CatalogOperation[] = [
     api: on("POST /v1/transformations", "POST /v1/a2a/tasks"),
     mcp: on("knowledge_document_convert"),
     cli: on("knowledge document convert"),
-  },
-  {
-    id: "knowledge.representation_inspection",
-    group: "knowledge",
-    effect: "mutation",
-    kind: "representation_inspection",
-    admission: "declared",
-    api: DECLARED_API("POST /v1/representations/:target"),
-    mcp: failsClosed("knowledge_document_inspect"),
-    cli: failsClosed("knowledge document inspect"),
   },
   {
     id: "knowledge.representation_comparison",
@@ -274,16 +201,6 @@ const knowledgeMutations: readonly CatalogOperation[] = [
     api: on("POST /v1/chunk-sets"),
     mcp: on("knowledge_chunk_build"),
     cli: on("knowledge chunk build"),
-  },
-  {
-    id: "knowledge.chunk_set_inspection",
-    group: "knowledge",
-    effect: "mutation",
-    kind: "chunk_set_inspection",
-    admission: "declared",
-    api: DECLARED_API("POST /v1/chunk-sets/:target"),
-    mcp: failsClosed("knowledge_chunk_inspect"),
-    cli: failsClosed("knowledge chunk inspect"),
   },
   {
     id: "knowledge.promotion_proposal",
@@ -400,16 +317,6 @@ const knowledgeMutations: readonly CatalogOperation[] = [
     api: on("POST /v1/eval-runs"),
     mcp: on("knowledge_eval_run"),
     cli: on("knowledge eval run"),
-  },
-  {
-    id: "knowledge.review",
-    group: "knowledge",
-    effect: "mutation",
-    kind: "review",
-    admission: "declared",
-    api: DECLARED_API("POST /v1/reviews"),
-    mcp: failsClosed("knowledge_document_request_review"),
-    cli: excluded("declared only; no CLI binding"),
   },
   {
     id: "knowledge.review_decision",
@@ -559,9 +466,6 @@ const knowledgeReads: readonly CatalogOperation[] = [
     on(
       "GET /v1/vector-stores",
       "GET /v1/captures",
-      "GET /v1/documents",
-      "GET /v1/document-versions",
-      "GET /v1/representations",
       "GET /v1/promotion-proposals",
       "GET /v1/promotion-decisions",
       "GET /v1/embedding-runs",
@@ -569,7 +473,6 @@ const knowledgeReads: readonly CatalogOperation[] = [
       "GET /v1/eval-datasets",
       "GET /v1/experiments",
       "GET /v1/eval-runs",
-      "GET /v1/reviews",
       "GET /v1/review-decisions",
       "GET /v1/retrieval-runs",
     ),
@@ -636,41 +539,6 @@ const knowledgeReads: readonly CatalogOperation[] = [
     on("knowledge_chunk_strategies"),
     NO_CLI,
   ),
-  read(
-    "knowledge.embedding_models",
-    "knowledge",
-    excluded("declared only; no route"),
-    failsClosed("knowledge_embed_models"),
-    excluded("declared only; no CLI binding"),
-    "declared",
-  ),
-  read(
-    "knowledge.embedding_estimate",
-    "knowledge",
-    excluded("declared only; no route"),
-    failsClosed("knowledge_embed_estimate"),
-    excluded("declared only; no CLI binding"),
-    "declared",
-  ),
-  {
-    id: "knowledge.demo_evaluation",
-    group: "knowledge",
-    effect: "mutation",
-    admission: "gated",
-    api: on("POST /v1/demo/evaluations"),
-    mcp: excluded("in-memory exploratory demo; composed only with the demo bundle port"),
-    cli: excluded("in-memory exploratory demo; composed only with the demo bundle port"),
-    requires: "the demo bundle port (loadDemoEvaluationBundles)",
-  },
-  {
-    id: "knowledge.space_rebuild",
-    group: "knowledge",
-    effect: "mutation",
-    admission: "declared",
-    api: excluded("declared only; no route"),
-    mcp: excluded("declared only; no MCP binding"),
-    cli: failsClosed("knowledge space rebuild"),
-  },
 ];
 
 const verifyReads: readonly CatalogOperation[] = [
@@ -747,23 +615,7 @@ const verifyReads: readonly CatalogOperation[] = [
   },
 ];
 
-// ── Offline workflows named by the CLI and system probes ──────────────────────────────
-const offline = (id: string, command: string): CatalogOperation => ({
-  id,
-  group: "db",
-  effect: "control",
-  admission: "declared",
-  api: excluded("offline operator/build workflow; never served"),
-  mcp: excluded("offline operator/build workflow; never served"),
-  cli: failsClosed(command),
-});
-const offlineWorkflows: readonly CatalogOperation[] = [
-  offline("db.maintenance_verify", "db verify"),
-  offline("db.types_generate", "db types"),
-  offline("db.rls_test", "db rls-test"),
-  offline("db.fixture_load", "db fixture load"),
-  offline("db.fixture_reset", "db fixture reset"),
-];
+// ── System probes ─────────────────────────────────────────────────────────────────
 const system: readonly CatalogOperation[] = [
   read(
     "system.health",
@@ -876,13 +728,12 @@ export type Profile = "server" | "local";
 export type TransportState =
   | "executable"
   | "executable when composed"
-  | "declared (fails closed)"
   | "excluded"
   | "executor only"
   | "server only"
   | "local profile";
 
-/** The declared/admitted/executable state of one operation on one transport under one host profile. */
+/** The admitted/executable state of one operation on one transport under one host profile. */
 export function transportState(
   operation: CatalogOperation,
   profile: Profile,
@@ -893,7 +744,6 @@ export function transportState(
   if (profile === "local") return "server only";
   const binding = operation[transport];
   if ("excluded" in binding) return "excluded";
-  if ("failsClosed" in binding) return "declared (fails closed)";
   return operation.admission === "gated" ? "executable when composed" : "executable";
 }
 
@@ -903,22 +753,8 @@ export const operationCatalog: readonly CatalogOperation[] = [
   ...knowledgeReads,
   ...verifyMutations,
   ...verifyReads,
-  ...offlineWorkflows,
   ...system,
   ...executorKnowledge,
   ...executorVerify,
   ...executorServerOnlyVerify,
 ];
-
-/** Concrete requests for the declared kinds' API routes, used to prove they fail closed. */
-export const declaredApiRequests: Readonly<Partial<Record<OperationKind, string>>> = {
-  capture_inspection: "/v1/captures/{id}:inspect",
-  capture_comparison: "/v1/captures/{id}:compare",
-  vector_store_search: "/v1/vector-stores/{id}:search",
-  document: "/v1/documents",
-  document_version: "/v1/document-versions",
-  representation: "/v1/representations",
-  representation_inspection: "/v1/representations/{id}:inspect",
-  chunk_set_inspection: "/v1/chunk-sets/{id}:inspect",
-  review: "/v1/reviews",
-};

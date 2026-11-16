@@ -92,14 +92,15 @@ describe("PostgresKnowledgeOperationService capability admission", () => {
       expect(sha256Digest(latest.request as never)).not.toBe(sha256Digest(first.request as never));
     }
   });
-  it("rejects an unsupported contract kind before any database write", async () => {
+  it("rejects a kind this service was not composed to admit before any database write", async () => {
     const createOperation = vi.fn();
     const service = new PostgresKnowledgeOperationService({
       createOperation,
     } as unknown as PostgresCanonicalRepository);
-    await expect(service.submit("capture_comparison", envelope, "https://knowledge.example")).rejects.toMatchObject({
+    // The default service admits the worker kinds only; a verification kind needs its own composition.
+    await expect(service.submit("verification_replay", envelope, "https://knowledge.example")).rejects.toMatchObject({
       code: "CAPABILITY_NOT_ADMITTED",
-      operationKind: "capture_comparison",
+      operationKind: "verification_replay",
     });
     expect(createOperation).not.toHaveBeenCalled();
   });

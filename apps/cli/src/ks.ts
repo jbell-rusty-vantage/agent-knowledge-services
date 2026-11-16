@@ -32,14 +32,6 @@ export async function runKs(argv: readonly string[], io: KsIo, options: KsOption
     return EXIT.ok;
   }
   const [group] = words;
-  if (group === "jev") {
-    error(io, {
-      code: "COMMAND_GROUP_NOT_BOUND",
-      group,
-      message: "Unit 5F binds `ks jev`; until then use the `jev` binary",
-    });
-    return EXIT.error;
-  }
   const resolved = resolveKsCommand(argv);
   if (!resolved) {
     error(io, {

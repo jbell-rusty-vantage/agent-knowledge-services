@@ -9,7 +9,7 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import { localVerificationOperations } from "@aiengineer/knowledge-host/local";
 import { CLI_COMMANDS } from "../commands.js";
 import type { KsIo } from "../io.js";
-import { KS_COMMANDS, ksNameOf, resolveKsCommand, type KsCommand } from "../ks-commands.js";
+import { KS_COMMANDS, KS_GROUPS, ksNameOf, resolveKsCommand, type KsCommand } from "../ks-commands.js";
 import { runKs, type LoadLocalProfile } from "../ks.js";
 import { localProfileOptions } from "../local/offline.js";
 
@@ -60,7 +60,7 @@ const store = {
 };
 
 describe("ks command names", () => {
-  it("binds every platform command exactly once and only in the knowledge, verify and db groups", () => {
+  it("binds every platform command exactly once and only in the knowledge and verify groups", () => {
     for (const [resource, actions] of Object.entries(CLI_COMMANDS))
       for (const action of Object.keys(actions))
         expect(
@@ -69,12 +69,24 @@ describe("ks command names", () => {
           ).length,
           `${resource} ${action}`,
         ).toBe(1);
-    expect(new Set(entries.map(([name]) => name.split(" ")[0]))).toEqual(new Set(["knowledge", "verify", "db"]));
+    expect(new Set(entries.map(([name]) => name.split(" ")[0]))).toEqual(new Set(Object.keys(KS_GROUPS)));
+    expect(Object.keys(KS_GROUPS)).toEqual(["knowledge", "verify"]);
+    expect(entries).toHaveLength(61);
     expect(ksNameOf("verify", "extract")).toBe("verify extract");
     // SV-17: the retired claims/report commands have no ks name.
     expect(ksNameOf("verify", "citations")).toBeUndefined();
     expect(ksNameOf("store", "create")).toBe("knowledge store create");
-    expect(ksNameOf("fixture", "load")).toBe("db fixture load");
+    // Commands that could only refuse are not bound: no `ks db` group, no reserved `ks jev`, no declared names.
+    for (const [resource, action] of [
+      ["fixture", "load"],
+      ["db", "verify"],
+      ["source", "inspect"],
+      ["store", "search"],
+      ["document", "inspect"],
+      ["chunk", "inspect"],
+      ["space", "rebuild"],
+    ] as const)
+      expect(ksNameOf(resource, action), `${resource} ${action}`).toBeUndefined();
   });
 
   it("binds every local-profile operation exactly once in the verify group", () => {
@@ -112,7 +124,7 @@ describe("ks dispatch", () => {
       ["help"],
       ["verify", "--help"],
       ["verify", "capture", "file", "--help"],
-      ["jev", "--help"],
+      ["unbound-group", "--help"],
     ]) {
       const terminal = io();
       expect(await runKs(argv, terminal, { loadLocal: neverLocal }), argv.join(" ")).toBe(0);
@@ -162,23 +174,31 @@ describe("ks dispatch", () => {
     expect(neverLocal).not.toHaveBeenCalled();
   });
 
-  it("exits 2 for usage errors, unknown commands, the reserved jev group and declared commands", async () => {
+  it("exits 2 for usage errors and unknown commands, including the removed db, jev and declared names", async () => {
+    const fetch = vi.fn();
     const cases: [readonly string[], KsIo["env"], string][] = [
       [["knowledge", "store", "show"], {}, "USAGE"],
       [["knowledge", "store", "show", "--bogus"], remoteEnv, "USAGE"],
       [["store", "show"], remoteEnv, "UNKNOWN_COMMAND"],
       [["verify", "nope"], remoteEnv, "UNKNOWN_COMMAND"],
-      [["jev", "list"], remoteEnv, "COMMAND_GROUP_NOT_BOUND"],
-      [["knowledge", "space", "rebuild", "--context", context], remoteEnv, "CLI_ERROR"],
+      [["jev", "list"], remoteEnv, "UNKNOWN_COMMAND"],
+      [["db", "verify"], remoteEnv, "UNKNOWN_COMMAND"],
+      [["knowledge", "space", "rebuild", "--context", context], remoteEnv, "UNKNOWN_COMMAND"],
+      [["knowledge", "store", "search", "--context", context], remoteEnv, "UNKNOWN_COMMAND"],
     ];
     for (const [argv, env, code] of cases) {
       const terminal = io(env);
-      expect(await runKs(argv, terminal, { loadLocal: neverLocal, fetch: vi.fn() as never }), argv.join(" ")).toBe(2);
+      expect(await runKs(argv, terminal, { loadLocal: neverLocal, fetch: fetch as never }), argv.join(" ")).toBe(2);
       expect(JSON.parse(terminal.err.join("")).code, argv.join(" ")).toBe(code);
     }
-    const declared = io(remoteEnv);
-    await runKs(["knowledge", "space", "rebuild", "--context", context], declared, { loadLocal: neverLocal });
-    expect(JSON.parse(declared.err.join("")).message).toMatch(/^CAPABILITY_NOT_ADMITTED:/u);
+    // An unknown command in a bound group points at that group's help; an unbound group points at `ks --help`.
+    const inGroup = io(remoteEnv);
+    await runKs(["knowledge", "space", "rebuild"], inGroup, { loadLocal: neverLocal });
+    expect(JSON.parse(inGroup.err.join("")).help).toBe("ks knowledge --help");
+    const unbound = io(remoteEnv);
+    await runKs(["jev", "list"], unbound, { loadLocal: neverLocal });
+    expect(JSON.parse(unbound.err.join("")).help).toBe("ks --help");
+    expect(fetch).not.toHaveBeenCalled();
     expect(neverLocal).not.toHaveBeenCalled();
   });
 });

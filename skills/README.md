@@ -27,8 +27,8 @@ publication.
 `@aiengineer/knowledge-verification-executor` ships the sandbox `knowledge` (and `knowledge-verify`)
 binary with the `schema_*`, `db_*`, `ingest_*`, `artifact_get`, `source_*` and `checkpoint_*`
 operations until Unit 5H removes it; SV-17 retired its report, content-link and recovery operations.
-`@aiengineer/knowledge-cli` ships `ks` (Unit 5C): `ks knowledge|verify|db …` call the admitted API, and
-the `ks verify capture|artifact` commands run on the local file-store profile. Its `pack:sandbox` tarball ships the `platform-cli`
+`@aiengineer/knowledge-cli` ships `ks` (Unit 5C): `ks knowledge|verify …` call the admitted API, and
+the `ks verify capture|artifact` commands run on the local file-store profile. `ks` has no `db` or `jev` group: every `ks` command runs. Its `pack:sandbox` tarball ships the `platform-cli`
 skills. A bare binary name is not a dependency identity: a run pin must name the distribution, and
 `manifest.json` records which surfaces each skill uses.
 
@@ -44,11 +44,16 @@ node skills/check.mjs --json   # digests per skill, for freezing onto an explici
 ```
 
 The check reads the implemented catalogs — the executor operation registry and MCP server, the
-`ks` command table (`apps/cli/src/ks-commands.ts`, with fail-closed status from `CLI_COMMANDS`), the platform MCP tool list, and the Jev MCP/CLI sources — and fails when a skill names a
-command or tool that is not implemented, names an explicitly unsupported platform command, uses a
+`ks` command table (`apps/cli/src/ks-commands.ts`, bound to `CLI_COMMANDS`), the platform MCP tool list, and the Jev MCP/CLI sources — and fails when a skill names a
+command or tool that is not implemented (or one `CLI_COMMANDS` marks unsupported, should such a
+command return; none exists today), uses a
 surface it did not declare, omits a catalog operation it owns, or describes a structural seal as
 admission. `absentOperations` and `artifactTypes` document names that deliberately are not
 operations; the check fails if one of them becomes an admitted operation.
+
+It also fails when a `SKILL.md` has no YAML frontmatter, no `name`, no `description`, or a `name`
+that differs from its directory: a skill loader (Deep Agents, the Agent Skills format) cannot load
+such a skill.
 
 Skill digests use the same content hash as the research run-pin installation (sorted relative paths
 over the complete UTF-8 bytes of `SKILL.md` and every reference file), so an installed child slot and

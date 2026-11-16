@@ -115,7 +115,8 @@ describe.skipIf(!runLocalPersistenceTests)("durable operation API local integrat
   });
   const request = (operationContext: ReturnType<typeof context>) => ({
     method: "POST" as const,
-    url: "/v1/reviews",
+    // An admitted single-step kind: the worker side of these tests claims and completes the step by hand.
+    url: "/v1/experiments",
     headers: {
       authorization: `Bearer ${token}`,
       "x-tenant-id": tenantId,
@@ -150,26 +151,26 @@ describe.skipIf(!runLocalPersistenceTests)("durable operation API local integrat
     const claimed = await workerRepository.claimOperation(tenantId, operationContext.operationId, "separate-worker");
     expect(claimed).toMatchObject({
       operationId: operationContext.operationId,
-      stepKey: "review",
-      stepKind: "review",
+      stepKey: "record",
+      stepKind: "record",
       attemptCount: 1,
     });
     expect(claimed?.input).toMatchObject({
       schemaVersion: "knowledge-operation-request/v1",
-      kind: "review",
+      kind: "experiment",
       operationInput: { subject: "durability" },
       context: {
         operationId: operationContext.operationId,
         correlationId: operationContext.correlationId,
       },
-      step: { name: "review", ordinal: 0 },
+      step: { name: "record", ordinal: 0 },
     });
     await workerRepository.completeStep(tenantId, claimed!, {
       id: randomUUID(),
       idempotencyKey: `worker:${claimed!.id}:${claimed!.attemptCount}`,
-      receiptKind: "review.succeeded",
+      receiptKind: "experiment.succeeded",
       executorIdentity: "separate-worker",
-      output: { reviewed: true },
+      output: { recorded: true },
     });
 
     const status = await api.inject({
@@ -182,7 +183,7 @@ describe.skipIf(!runLocalPersistenceTests)("durable operation API local integrat
     expect(status.json()).toMatchObject({
       operationId: operationContext.operationId,
       state: "succeeded",
-      kind: "review",
+      kind: "experiment",
       context: operationContext,
     });
     expect(status.json().receiptIds).toHaveLength(1);

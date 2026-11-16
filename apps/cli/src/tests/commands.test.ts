@@ -1,6 +1,12 @@
 import { describe, expect, it, vi } from "vitest";
 import type { OperationContext } from "@aiengineer/knowledge-contracts";
-import { dispatchCliCommand, resolveCommand, type CliKnowledgeClient } from "../commands.js";
+import {
+  CLI_COMMANDS,
+  dispatchCliCommand,
+  resolveCommand,
+  type CliCommand,
+  type CliKnowledgeClient,
+} from "../commands.js";
 const id = (n: number) => `00000000-0000-4000-8000-${String(n).padStart(12, "0")}`;
 const context: OperationContext = {
   tenantId: id(1),
@@ -72,12 +78,33 @@ describe("CLI semantic dispatcher", () => {
     ).rejects.toThrow("CLI_OPERATION_READ_UNKNOWN_FIELD");
     expect(c.getVerificationOperation).toHaveBeenCalledTimes(1);
   });
-  it("rejects deferred commands before admission", async () => {
-    const c = client();
-    await expect(dispatchCliCommand(c, resolveCommand("space", "rebuild")!, {}, context)).rejects.toThrow(
-      "CAPABILITY_NOT_ADMITTED",
+  it("binds no command for a capability that is not production-admitted", () => {
+    for (const [group, action] of [
+      ["source", "inspect"],
+      ["store", "search"],
+      ["document", "inspect"],
+      ["chunk", "inspect"],
+      ["space", "rebuild"],
+      ["db", "verify"],
+      ["db", "types"],
+      ["db", "rls-test"],
+      ["fixture", "load"],
+      ["fixture", "reset"],
+    ] as const)
+      expect(resolveCommand(group, action), `${group} ${action}`).toBeUndefined();
+    // Every bound command has a mode the dispatcher serves; there is no refusing mode.
+    const modes = Object.values(CLI_COMMANDS).flatMap((actions) =>
+      Object.values(actions as Record<string, CliCommand>).map((command) => command.mode),
     );
-    expect(c.submitOperation).not.toHaveBeenCalled();
+    expect([...new Set(modes)].sort()).toEqual([
+      "control",
+      "provider_reconciliation",
+      "read",
+      "retrieval",
+      "submit",
+      "validate_retrieval_plan",
+      "verification_mutation",
+    ]);
   });
   it("rejects fabricated ids", async () => {
     const c = client();

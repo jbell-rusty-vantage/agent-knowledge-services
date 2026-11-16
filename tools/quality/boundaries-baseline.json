@@ -29,35 +29,6 @@
   },
   {
     "type": "dependency",
-    "from": "apps/api/src/demo-evaluation-bundles.ts",
-    "to": "packages/application/dist/index.d.ts",
-    "unresolvedTo": "@aiengineer/knowledge-application",
-    "dependencyTypes": [
-      "undetermined",
-      "type-only",
-      "import"
-    ],
-    "rule": {
-      "severity": "error",
-      "name": "apps-import-host-contracts-client"
-    }
-  },
-  {
-    "type": "dependency",
-    "from": "apps/api/src/demo-evaluation-bundles.ts",
-    "to": "packages/testkit/dist/index.d.ts",
-    "unresolvedTo": "@aiengineer/knowledge-testkit",
-    "dependencyTypes": [
-      "undetermined",
-      "type-import"
-    ],
-    "rule": {
-      "severity": "error",
-      "name": "apps-import-host-contracts-client"
-    }
-  },
-  {
-    "type": "dependency",
     "from": "apps/api/src/index.ts",
     "to": "packages/application/dist/index.d.ts",
     "unresolvedTo": "@aiengineer/knowledge-application",
@@ -1425,6 +1396,7 @@
     "unresolvedTo": "../../../cli/src/commands.js",
     "dependencyTypes": [
       "local",
+      "type-only",
       "import"
     ],
     "rule": {

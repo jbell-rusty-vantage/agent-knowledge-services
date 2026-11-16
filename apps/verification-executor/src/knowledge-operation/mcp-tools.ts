@@ -43,7 +43,7 @@ export function registerKnowledgeOperationTools(
     {
       title: "Invoke a knowledge operation (K01 v2)",
       description:
-        "Send one ks.knowledge_operation.v2 operation-envelope.v2. Returns operation-receipt.v2 for a synchronous effect (report.register, knowledge.apply), knowledge-plan-preview.v1 for the read-only knowledge.plan_preview, knowledge-read-intent-result.v1 for the recorded read-only knowledge.read_intent (allowlisted named queries and schema reads), or operation-handle.v2 (report.assess, knowledge.read, verify.claims). Refusals are protocol-error.v2.",
+        "Send one ks.knowledge_operation.v2 operation-envelope.v2. Returns operation-receipt.v2 for a synchronous effect (report.register, knowledge.apply), knowledge-plan-preview.v1 for the read-only knowledge.plan_preview, knowledge-read-intent-result.v1 for the recorded read-only knowledge.read_intent (allowlisted named queries and schema reads), or operation-handle.v2 (knowledge.read, report.assess, report.derive, report.observe, report.seal, report.decide, report.review, decision.resolve). A binding serves only the operations its knowledge_describe descriptor lists. Refusals are protocol-error.v2.",
       inputSchema: { envelope: z.record(z.string(), z.unknown()) },
     },
     async (input) => guard((svc, token) => svc.invoke(token, input.envelope))(),

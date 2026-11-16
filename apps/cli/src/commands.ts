@@ -69,42 +69,36 @@ export type CliCommand =
         | "runBenchmark"
         | "compareBenchmarkRuns"
         | "extractStructuredData";
-    }
-  | { readonly mode: "unsupported"; readonly reason: string };
+    };
 const submit = (kind: OperationKind): CliCommand => {
   if (!productionWorkerOperationKinds.includes(kind)) throw new Error(`CLI_CATALOG_UNADMITTED:${kind}`);
   return { mode: "submit", kind };
 };
-const unsupported = (reason: string): CliCommand => ({
-  mode: "unsupported",
-  reason,
-});
 
-/** Read commands never submit writes; deferred capabilities fail before admission. */
+/**
+ * Read commands never submit writes. Every entry is served: a capability that is not production-admitted has no
+ * command here (`submit` refuses to build one).
+ */
 export const CLI_COMMANDS = Object.freeze({
   source: {
     discover: submit("source_discovery"),
     fetch: submit("capture"),
-    inspect: unsupported("capture inspection is not production-admitted"),
     vet: submit("source_vetting"),
   },
   store: {
     create: submit("vector_store_create"),
     show: { mode: "read", resource: "vector_store" },
     "add-documents": submit("vector_store_documents"),
-    search: unsupported("use retrieve search with a canonical RetrievalPlan"),
     evaluate: submit("vector_store_evaluation"),
     status: { mode: "read", resource: "vector_store_operation" },
   },
   document: {
     convert: submit("transformation"),
-    inspect: unsupported("representation inspection is not production-admitted"),
     compare: submit("representation_comparison"),
   },
   chunk: {
     preview: submit("chunk_preview"),
     build: submit("chunk_set"),
-    inspect: unsupported("chunk-set inspection is not production-admitted"),
   },
   promotion: {
     propose: submit("promotion_proposal"),
@@ -159,22 +153,12 @@ export const CLI_COMMANDS = Object.freeze({
   space: {
     publish: submit("space_publication"),
     rollback: submit("publication_rollback"),
-    rebuild: unsupported("space rebuild is not production-admitted"),
   },
   operation: {
     status: { mode: "read", resource: "operation" },
     events: { mode: "read", resource: "operation_events" },
     retry: { mode: "control", action: "retry" },
     reconcile: { mode: "control", action: "reconcile" },
-  },
-  db: {
-    verify: unsupported("database maintenance is an offline operator workflow"),
-    types: unsupported("database type generation is an offline build workflow"),
-    "rls-test": unsupported("RLS verification is an offline test workflow"),
-  },
-  fixture: {
-    load: unsupported("fixture loading is an offline test workflow"),
-    reset: unsupported("fixture reset is an offline test workflow"),
   },
 } satisfies Record<string, Record<string, CliCommand>>);
 export function resolveCommand(group: string, action: string): CliCommand | undefined {
@@ -260,7 +244,6 @@ export async function dispatchCliCommand(
   inputValue: unknown,
   context: OperationContext,
 ): Promise<unknown> {
-  if (command.mode === "unsupported") throw new Error(`CAPABILITY_NOT_ADMITTED:${command.reason}`);
   const input = objectInput(inputValue);
   if (command.mode === "provider_reconciliation") {
     const operationId = UuidSchema.parse(input.operationId),

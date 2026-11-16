@@ -1,9 +1,8 @@
-import { describe, expect, it, vi } from "vitest";
+import { describe, expect, it } from "vitest";
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { InMemoryTransport } from "@modelcontextprotocol/sdk/inMemory.js";
 import {
   operationStepsByKind,
-  declaredApiRequests,
   operationCatalog,
   productionAdmittedOperationKinds,
   transportState,
@@ -12,21 +11,19 @@ import {
 } from "@aiengineer/knowledge-application";
 import type { OperationKind } from "@aiengineer/knowledge-contracts";
 import { createHost, localProfileState } from "@aiengineer/knowledge-host";
-import { PostgresKnowledgeOperationService, type PostgresCanonicalRepository } from "@aiengineer/knowledge-persistence";
 import { buildServer } from "../../../api/src/server.js";
-import { dispatchCliCommand, type CliCommand } from "../../../cli/src/commands.js";
+import type { CliCommand } from "../../../cli/src/commands.js";
 import { KS_COMMANDS, ksNameOf, remoteCommand, type KsCommand } from "../../../cli/src/ks-commands.js";
 import { knowledgeOperations } from "../../../verification-executor/src/knowledge/operations.js";
 import { createVerificationMcpServer } from "../../../verification-executor/src/mcp.js";
 import { MCP_TOOL_CATALOG, VERIFICATION_MCP_TOOL_NAMES } from "../catalog.js";
-import { createKnowledgeMcpServer, createMcpToolExecutor } from "../index.js";
-import { CORRELATION, id, operationContext, owner, resolveIdentity, tenant, tokens } from "./parity-rows.js";
+import { createKnowledgeMcpServer } from "../index.js";
+import { owner } from "./parity-rows.js";
 import { verificationMutationInventory } from "./verification-inventory.js";
 
 type Transport = "api" | "mcp" | "cli";
 const transports: readonly Transport[] = ["api", "mcp", "cli"];
-const bound = (binding: Binding) =>
-  "on" in binding ? binding.on : "failsClosed" in binding ? binding.failsClosed : [];
+const bound = (binding: Binding) => ("on" in binding ? binding.on : []);
 
 async function registeredApiRoutes() {
   const routes = new Set<string>();
@@ -60,13 +57,16 @@ const cliCommands = new Map<string, CliCommand>(
   ),
 );
 
-/** Server-profile admission computed from the production catalogs, for rows that submit a durable kind. */
+/**
+ * Server-profile admission computed from the production catalogs, for rows that submit a durable kind. A kind no
+ * production catalog executes has no admission: the contract vocabulary may not hold one.
+ */
 const admissionOf = (kind: OperationKind) =>
   (productionAdmittedOperationKinds as readonly string[]).includes(kind)
     ? "admitted"
     : (verificationOwnedOperationKinds as readonly string[]).includes(kind)
       ? "gated"
-      : "declared";
+      : undefined;
 
 const escapeRegExp = (text: string) => text.replace(/[.*+?^${}()|[\]\\]/gu, (character) => `\\${character}`);
 /** Matches a Fastify route pattern (escaped `::`, `:param` and `:param(regex)`) against a concrete path. */
@@ -125,29 +125,26 @@ describe("operation catalog parity", async () => {
         const state = transportState(operation, profile, transport);
         return { ...counts, [state]: (counts[state] ?? 0) + 1 };
       }, {});
-    // SV-17 retired the verification chain, report, recovery and content-link operations.
+    // SV-17 retired the verification chain, report, recovery and content-link operations. The 17 declared rows and
+    // the in-memory demo evaluation were removed on 2026-11-15: no state is "declared (fails closed)".
     for (const transport of ["api", "mcp"] as const)
-      expect(states("local", transport)).toEqual({ "server only": 81, "executor only": 34 });
-    expect(states("local", "cli")).toEqual({ "server only": 81, "executor only": 25, "local profile": 9 });
+      expect(states("local", transport)).toEqual({ "server only": 63, "executor only": 34 });
+    expect(states("local", "cli")).toEqual({ "server only": 63, "executor only": 25, "local profile": 9 });
     expect(states("server", "api")).toEqual({
       executable: 47,
-      "executable when composed": 17,
-      "declared (fails closed)": 9,
-      excluded: 8,
+      "executable when composed": 16,
       "executor only": 34,
     });
     expect(states("server", "mcp")).toEqual({
       executable: 28,
       "executable when composed": 14,
-      "declared (fails closed)": 8,
-      excluded: 31,
+      excluded: 21,
       "executor only": 34,
     });
     expect(states("server", "cli")).toEqual({
       executable: 31,
       "executable when composed": 14,
-      "declared (fails closed)": 10,
-      excluded: 26,
+      excluded: 18,
       "executor only": 34,
     });
   });
@@ -157,7 +154,7 @@ describe("operation catalog parity", async () => {
       const state = localProfileState(operation);
       return { ...total, [state]: (total[state] ?? 0) + 1 };
     }, {});
-    expect(counts).toEqual({ "server only": 106, offline: 8, "capture provider": 1 });
+    expect(counts).toEqual({ "server only": 88, offline: 8, "capture provider": 1 });
     const verification = {
       captureMediaKind: () => "text" as const,
       create: (() => {
@@ -181,8 +178,10 @@ describe("operation catalog parity", async () => {
     await Promise.all([bare.close(), configured.close()]);
   });
 
-  it("covers every declared durable kind and derives its admission from the production catalogs", () => {
+  it("covers every durable kind and derives its admission from the production catalogs", () => {
     for (const kind of Object.keys(operationStepsByKind) as OperationKind[]) {
+      // Every kind in the contract vocabulary is executed by a production catalog.
+      expect(admissionOf(kind), kind).toBeDefined();
       const rows = platform.filter((operation) => operation.kind === kind);
       expect(rows.length, kind).toBeGreaterThan(0);
       for (const row of rows) expect(row.admission, row.id).toBe(admissionOf(kind));
@@ -200,14 +199,22 @@ describe("operation catalog parity", async () => {
     }
   });
 
-  it("never makes a declared operation executable because of parity", () => {
+  it("catalogs no operation that can only refuse", () => {
+    // A binding is a surface that serves the operation or an exclusion with its reason; an admission is admitted,
+    // gated or executor. A row or binding outside those (the retired "declared" class) fails here.
     for (const operation of operationCatalog) {
-      if (operation.admission === "declared")
-        for (const transport of transports)
-          expect("on" in operation[transport], `${operation.id} ${transport}`).toBe(false);
-      else
-        for (const transport of transports)
-          expect("failsClosed" in operation[transport], `${operation.id} ${transport}`).toBe(false);
+      expect(["admitted", "gated", "executor"], operation.id).toContain(operation.admission);
+      for (const transport of transports)
+        expect(Object.keys(operation[transport]), `${operation.id} ${transport}`).toEqual([
+          "on" in operation[transport] ? "on" : "excluded",
+        ]);
+    }
+    // Every MCP tool that submits a durable kind submits one the worker executes; the others are reads.
+    for (const [tool, kind] of Object.entries(MCP_TOOL_CATALOG)) {
+      const row = platform.find((operation) => bound(operation.mcp).includes(tool));
+      expect(row, tool).toBeDefined();
+      if (row!.effect === "mutation")
+        expect(productionAdmittedOperationKinds as readonly string[], `${tool} ${kind}`).toContain(kind);
     }
   });
 
@@ -221,15 +228,11 @@ describe("operation catalog parity", async () => {
         else expect(VERIFICATION_MCP_TOOL_NAMES, `${operation.id} ${tool}`).toContain(tool);
       for (const name of bound(operation.cli)) {
         const command = cliCommands.get(name)!;
-        if ("failsClosed" in operation.cli) expect(command.mode, name).toBe("unsupported");
-        else if (command.mode === "submit") expect(command.kind, name).toBe(operation.kind);
+        if (command.mode === "submit") expect(command.kind, name).toBe(operation.kind);
         else if (command.mode === "retrieval") expect(operation.kind, name).toBe("retrieval_run");
         else expect(command.mode, name).toBe("verification_mutation");
       }
     }
-    for (const operation of platform)
-      if ("failsClosed" in operation.cli)
-        for (const name of operation.cli.failsClosed) expect(cliCommands.get(name)?.mode, name).toBe("unsupported");
   });
 
   it("matches the verification mutation inventory used by the surface admission tests", () => {
@@ -293,93 +296,5 @@ describe("operation catalog parity", async () => {
       expect(localProfileState(row), row.id).not.toBe("server only");
       expect("excluded" in row.cli && row.cli.excluded, row.id).toMatch(/local profile only/u);
     }
-  });
-
-  describe("declared operations fail closed on every bound transport", () => {
-    const declared = platform.filter((operation) => operation.admission === "declared");
-
-    it.each(declared.filter((operation) => operation.kind && "failsClosed" in operation.api))(
-      "$id API route answers CAPABILITY_NOT_ADMITTED before persistence",
-      async (operation) => {
-        const createOperation = vi.fn();
-        const server = buildServer({
-          resolveIdentity,
-          operationService: new PostgresKnowledgeOperationService({
-            createOperation,
-          } as unknown as PostgresCanonicalRepository),
-        });
-        try {
-          const url = declaredApiRequests[operation.kind!]!.replace("{id}", id(60));
-          expect(bound(operation.api).some((route) => routeMatches(route.slice(5), url))).toBe(true);
-          const response = await server.inject({
-            method: "POST",
-            url,
-            headers: {
-              authorization: `Bearer ${tokens.owner}`,
-              "x-tenant-id": tenant,
-              "x-correlation-id": CORRELATION,
-            },
-            payload: { context: operationContext(tenant, owner), input: {}, expectedVersions: { api: "v1" } },
-          });
-          expect(response.statusCode, response.body).toBe(503);
-          expect(response.json()).toMatchObject({ code: "CAPABILITY_NOT_ADMITTED" });
-          expect(createOperation).not.toHaveBeenCalled();
-        } finally {
-          await server.close();
-        }
-      },
-    );
-
-    it.each(declared.filter((operation) => "failsClosed" in operation.mcp))(
-      "$id MCP tool answers CAPABILITY_NOT_ADMITTED without submitting",
-      async (operation) => {
-        const submit = vi.fn();
-        const execute = createMcpToolExecutor({
-          operationService: { submit } as never,
-          apiOrigin: "https://knowledge.example",
-          identity: resolveIdentity(tokens.owner)!,
-        });
-        for (const tool of bound(operation.mcp)) {
-          const kind = MCP_TOOL_CATALOG[tool as keyof typeof MCP_TOOL_CATALOG];
-          const result = await execute(tool as keyof typeof MCP_TOOL_CATALOG, kind, {
-            context: operationContext(tenant, owner),
-            input: { vectorStoreId: id(60) },
-            expectedVersions: { mcp: "v1" },
-          });
-          expect(result).toMatchObject({
-            isError: true,
-            content: [{ text: JSON.stringify({ code: "CAPABILITY_NOT_ADMITTED" }) }],
-          });
-        }
-        expect(submit).not.toHaveBeenCalled();
-      },
-    );
-
-    it.each(declared.filter((operation) => "failsClosed" in operation.cli))(
-      "$id CLI command refuses before any client call",
-      async (operation) => {
-        const client = new Proxy(
-          {},
-          {
-            get: () =>
-              vi.fn(() => {
-                throw new Error("CLIENT_CALLED");
-              }),
-          },
-        );
-        for (const name of bound(operation.cli)) {
-          const command = KS_COMMANDS[name as keyof typeof KS_COMMANDS];
-          expect(command?.profile, name).toBe("remote");
-          await expect(
-            dispatchCliCommand(
-              client as never,
-              remoteCommand(command as Extract<KsCommand, { profile: "remote" }>),
-              {},
-              operationContext(tenant, owner),
-            ),
-          ).rejects.toThrow(/^CAPABILITY_NOT_ADMITTED:/u);
-        }
-      },
-    );
   });
 });

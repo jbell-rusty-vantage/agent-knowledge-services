@@ -1,4 +1,5 @@
 ---
+name: knowledge-acquisition-and-vetting
 description: Use when discovering, acquiring, inspecting, or vetting a source for an AI Engineer knowledge store.
 license: Proprietary
 metadata:
@@ -26,7 +27,7 @@ Reject or quarantine when identity is conflicted, required rights are unknown, a
 | Surface | Binary | Discover | Acquire | Inspect |
 |---|---|---|---|---|
 | Executor | `knowledge` / `knowledge-verify` | `source discover` (managed providers, host budget) | `verify_capture_source` / `verify_capture_file` | `verify_read_capture` / `verify_search_capture` |
-| Platform | `ks` (API client) | `ks knowledge source discover` (candidates only) | `ks knowledge source fetch` (`capture`) | not admitted; use executor read/search |
+| Platform | `ks` (API client) | `ks knowledge source discover` (candidates only) | `ks knowledge source fetch` (`capture`) | no platform command; use executor read/search |
 
 Do not wrap Firecrawl or Tavily inside Knowledge Services MCP. Attach their MCP servers and skills in the **agent** environment. Import a self-reported receipt with `knowledge source import`. Cite the Firecrawl and Tavily agent skills for search/scrape; KS owns custody of sealed bytes.
 

@@ -2,7 +2,6 @@ import { afterAll, describe, expect, it, vi } from "vitest";
 import { KnowledgeIntegrationService } from "@aiengineer/knowledge-application";
 import { PostgresKnowledgeOperationService } from "@aiengineer/knowledge-persistence";
 import { buildServer } from "../server.js";
-import { loadRepositoryDemoEvaluationBundles } from "../demo-evaluation-bundles.js";
 import type { ApiRole, LocalApiIdentity } from "@aiengineer/knowledge-host/config";
 
 const server = buildServer();
@@ -206,114 +205,7 @@ const identity = (roles: readonly ApiRole[], tenantId = context.tenantId): Local
   grants: [{ tenantId, roles, scopes: [] }],
 });
 const resolver = (value: LocalApiIdentity) => (token: string) => (token === TOKEN ? value : undefined);
-const descriptors = ["kTnfJszFxCg", "bk0TmxoZlUY", "rmvDxxNubIg"].map((video_id) => ({
-  schema_version: "ai-engineer-embedding-bundle/0.1.0",
-  store_class: "internal_exploratory",
-  video_id,
-  evaluation_scope: "claims_retrieval",
-}));
 describe("Gate 6 operation API", () => {
-  it("resolves bounded Eve descriptors server-side and deduplicates the evaluation", async () => {
-    const service = new KnowledgeIntegrationService();
-    const api = buildServer({
-      service,
-      publicOrigin: "https://knowledge.example",
-      resolveIdentity: resolver(identity(["knowledge_evaluator"])),
-      loadDemoEvaluationBundles: loadRepositoryDemoEvaluationBundles,
-    });
-    const request = {
-      method: "POST" as const,
-      url: "/v1/demo/evaluations",
-      headers: {
-        authorization: `Bearer ${TOKEN}`,
-        "x-tenant-id": context.tenantId,
-        "x-correlation-id": context.correlationId,
-      },
-      payload: {
-        context,
-        input: {
-          mode: "three_bundle_internal_exploratory",
-          bundles: descriptors,
-        },
-        expectedVersions: { api: "v1", bundle: "0.1.0" },
-      },
-    };
-    const first = await api.inject(request);
-    const replay = await api.inject(request);
-    expect(first.statusCode).toBe(202);
-    expect(replay.json().operationId).toBe(first.json().operationId);
-    expect(first.json()).toMatchObject({
-      operationId: context.operationId,
-      state: "queued",
-      contractVersion: "v1",
-    });
-    expect(service.result(context.operationId)).toMatchObject({
-      storeClass: "internal_exploratory",
-      canonicalPublication: false,
-      bundleCount: 3,
-      videoIds: ["kTnfJszFxCg", "bk0TmxoZlUY", "rmvDxxNubIg"],
-      claimProjectionCount: 41,
-      vectorCount: 41,
-    });
-    expect(first.headers["x-correlation-id"]).toBe(context.correlationId);
-    await api.close();
-  });
-  it("answers fixture unavailable when no demo bundle loader is composed", async () => {
-    const api = buildServer({
-      service: new KnowledgeIntegrationService(),
-      resolveIdentity: resolver(identity(["knowledge_evaluator"])),
-    });
-    const response = await api.inject({
-      method: "POST",
-      url: "/v1/demo/evaluations",
-      headers: {
-        authorization: `Bearer ${TOKEN}`,
-        "x-tenant-id": context.tenantId,
-        "x-correlation-id": context.correlationId,
-      },
-      payload: {
-        context: { ...context, operationId: id(32), attemptId: id(33), idempotencyKey: "no-demo-loader-01" },
-        input: { mode: "three_bundle_internal_exploratory", bundles: descriptors },
-        expectedVersions: { api: "v1", bundle: "0.1.0" },
-      },
-    });
-    expect(response.statusCode).toBe(503);
-    expect(response.json()).toMatchObject({
-      code: "INTERNAL_ERROR",
-      title: "Allow-listed exploratory fixture unavailable",
-    });
-    await api.close();
-  });
-  it("rejects descriptor sets outside the exact allow-list", async () => {
-    const api = buildServer({
-      resolveIdentity: resolver(identity(["knowledge_evaluator"])),
-    });
-    const response = await api.inject({
-      method: "POST",
-      url: "/v1/demo/evaluations",
-      headers: {
-        authorization: `Bearer ${TOKEN}`,
-        "x-tenant-id": context.tenantId,
-        "x-correlation-id": context.correlationId,
-      },
-      payload: {
-        context: {
-          ...context,
-          operationId: id(30),
-          attemptId: id(31),
-          idempotencyKey: "invalid-descriptor-01",
-        },
-        input: {
-          mode: "three_bundle_internal_exploratory",
-          bundles: [...descriptors.slice(0, 2), { ...descriptors[2], video_id: "not-allowed" }],
-        },
-        expectedVersions: { api: "v1" },
-      },
-    });
-    expect(response.statusCode).toBe(400);
-    expect(response.json()).toMatchObject({ code: "INVALID_CONTRACT" });
-    await api.close();
-  });
   it("reconciles an expired leased step after a restart snapshot", () => {
     let now = 0;
     const service = new KnowledgeIntegrationService(undefined, {

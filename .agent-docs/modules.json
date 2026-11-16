@@ -23,7 +23,7 @@
     },
     {
       "path": "scripts",
-      "summary": "Explicit proof, evaluation, reconciliation, and experiment commands.",
+      "summary": "Experiment commands only; the proof, evaluation and reconciliation scripts are not in the tree and have no root command.",
       "inventory": "none"
     },
     {
@@ -122,7 +122,7 @@
         "apps/api/src/a2a-adapter.ts"
       ],
       "interface": [
-        "Versioned HTTP endpoints over application use cases. Host composes persistence, operation ports, knowledge services and the shared verify group; composition.ts only maps host services onto buildServer options. server.ts composes route registrars; http/context.ts assembles shared services; routes/{system,operationReads,verification,operationMutations,retrieval,knowledge}.ts own handlers; plugins/{correlation,auth,problem}.ts and http/{route,admission,problem-map,read-map}.ts share transport policy. Routes keep their historical problem titles over shared application reads, submitCanonicalRetrievalRun and bindResolvedVerificationContext. A2A retrieval uses the canonical submission path. The A2A task binding (a2a-adapter.ts) lives here; callback signing and replay protection stay in application. The demo evaluation route loads bundles only through the optional loadDemoEvaluationBundles port (demo-evaluation-bundles.ts lazily imports the test kit, a devDependency)."
+        "Versioned HTTP endpoints over application use cases. Host composes persistence, operation ports, knowledge services and the shared verify group; composition.ts only maps host services onto buildServer options. server.ts composes route registrars; http/context.ts assembles shared services; routes/{system,operationReads,verification,operationMutations,retrieval,knowledge}.ts own handlers; plugins/{correlation,auth,problem}.ts and http/{route,admission,problem-map,read-map}.ts share transport policy. Routes keep their historical problem titles over shared application reads, submitCanonicalRetrievalRun and bindResolvedVerificationContext. A2A retrieval uses the canonical submission path. The A2A task binding (a2a-adapter.ts) lives here; callback signing and replay protection stay in application. Every registered route is bound by an operation-catalog row: there is no fail-closed (declared) route and no demo route."
       ],
       "tests": [
         "apps/api/src/tests/server.test.ts",
@@ -147,7 +147,7 @@
       "path": "apps/cli",
       "kind": "app",
       "state": "implemented",
-      "summary": "The ks binary: remote knowledge/verify/db commands call KnowledgeClient over HTTP; the verification intent pipeline runs on host's local file-store profile, loaded lazily; offline demo, attestation and benchmark utilities use application or verification on frozen files. pack:sandbox builds the installable ks tarball.",
+      "summary": "The ks binary: remote knowledge/verify commands call KnowledgeClient over HTTP; the verification intent pipeline runs on host's local file-store profile, loaded lazily; offline demo, attestation and benchmark utilities use application or verification on frozen files. pack:sandbox builds the installable ks tarball.",
       "entrypoints": [
         "apps/cli/src/index.ts",
         "apps/cli/src/ks.ts",
@@ -156,7 +156,7 @@
         "apps/cli/src/local/offline.ts"
       ],
       "interface": [
-        "ks <group> <command…>: KS_COMMANDS names every command and its one profile (remote, local, offline utility). Remote commands need an API URL and bearer and dispatch through KnowledgeClient (dispatchCliCommand); local commands map flags and KNOWLEDGE_LOCAL_* variables onto the local host's explicit identity and providers (no VERIFY_* names). Exit 0 success, 1 gate failed, 2 usage/auth/network/executor error, never a fallback. jev is reserved until 5F."
+        "ks <group> <command…>: KS_COMMANDS names every command and its one profile (remote, local, offline utility). Remote commands need an API URL and bearer and dispatch through KnowledgeClient (dispatchCliCommand); local commands map flags and KNOWLEDGE_LOCAL_* variables onto the local host's explicit identity and providers (no VERIFY_* names). Exit 0 success, 1 gate failed, 2 usage/auth/network/executor error, never a fallback. The groups are knowledge and verify; there is no db or jev group, and every bound command runs."
       ],
       "tests": [
         "apps/cli/src/tests/ks.test.ts",
@@ -198,7 +198,7 @@
         "apps/mcp/src/tests/verification-surface-inventory.test.ts"
       ],
       "constraints": [
-        "No API client: MCP issues no HTTP request to the API and has no runtime @aiengineer/knowledge-client dependency. New tools call application use cases composed by host; keep tool names, schemas and authority outcomes in parity with the API route. KNOWLEDGE_API_URL only roots accepted-operation poll links. Every operation is classified in application operations/catalog.ts: exposed on API, MCP and CLI or excluded with a reason; declared kinds stay fail-closed."
+        "No API client: MCP issues no HTTP request to the API and has no runtime @aiengineer/knowledge-client dependency. New tools call application use cases composed by host; keep tool names, schemas and authority outcomes in parity with the API route. KNOWLEDGE_API_URL only roots accepted-operation poll links. Every operation is classified in application operations/catalog.ts: exposed on API, MCP and CLI or excluded with a reason; no row or tool can only refuse (the declared class was removed)."
       ],
       "uses": [
         "application",

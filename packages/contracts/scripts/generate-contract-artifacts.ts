@@ -71,7 +71,6 @@ import {
   EvaluationFailuresResourceSchema,
   EvaluationReportResourceSchema,
   EvidencePacketSchema,
-  ExploratoryEvaluationInputSchema,
   ModelAuthoredProposalSchema,
   MutationEnvelopeSchema,
   OperationEventSchema,
@@ -160,7 +159,6 @@ const schemas = {
   ServiceStatus: ServiceStatusSchema,
   RetrievalRunInput: RetrievalRunInputSchema,
   RetrievalCitationReplay: RetrievalCitationReplaySchema,
-  ExploratoryEvaluationInput: ExploratoryEvaluationInputSchema,
   VerificationSelector: VerificationSelectorSchema,
   VerificationBundle: VerificationBundleSchema,
   VerifyBundleInput: VerifyBundleInputSchema,
@@ -559,9 +557,6 @@ add({
 const collections = [
   "vector-stores",
   "captures",
-  "documents",
-  "document-versions",
-  "representations",
   "promotion-proposals",
   "promotion-decisions",
   "embedding-runs",
@@ -569,7 +564,6 @@ const collections = [
   "eval-datasets",
   "experiments",
   "eval-runs",
-  "reviews",
   "review-decisions",
 ] as const;
 for (const collection of collections) {
@@ -637,15 +631,10 @@ for (const action of ["discover", "resolve"] as const)
     responseSchema: accepted,
   });
 const resourceActions: readonly [string, string, string][] = [
-  ["vector-stores", "search", "vectorStore"],
   ["vector-stores", "evaluate", "vectorStore"],
-  ["captures", "inspect", "capture"],
-  ["captures", "compare", "capture"],
   ["captures", "vet", "capture"],
-  ["representations", "inspect", "representation"],
   ["representations", "compare", "representation"],
   ["representations", "decide", "representation"],
-  ["chunk-sets", "inspect", "chunkSet"],
   ["space-publications", "verify", "spacePublication"],
   ["space-publications", "rollback", "spacePublication"],
 ];
@@ -659,15 +648,6 @@ for (const [resource, action, prefix] of resourceActions)
     requestSchema: mutation,
     responseSchema: accepted,
   });
-add({
-  method: "post",
-  path: "/v1/demo/evaluations",
-  fastifyRoute: "/v1/demo/evaluations",
-  operationId: "runExploratoryEvaluation",
-  summary: "Run the bounded three-bundle exploratory evaluation",
-  requestSchema: { allOf: [mutation, { type: "object", properties: { input: ref("ExploratoryEvaluationInput") } }] },
-  responseSchema: accepted,
-});
 const resourceReads: readonly [string, string, string, string][] = [
   ["/v1/vector-stores/{vectorStoreId}", "/v1/vector-stores/:id", "getVectorStore", "VectorStoreResource"],
   ["/v1/evidence-packets/{packetId}", "/v1/evidence-packets/:id", "getEvidencePacket", "EvidencePacket"],

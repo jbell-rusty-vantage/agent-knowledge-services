@@ -15,7 +15,6 @@ import {
 } from "@aiengineer/knowledge-contracts";
 import { ParseArtifactRequestSchema, type ParseArtifactRequest } from "@aiengineer/knowledge-contracts";
 import {
-  AgenticKnowledgeService,
   createIntegrationService,
   createKnowledgeApplication,
   VerificationOperationApplicationService,
@@ -26,7 +25,6 @@ import {
   type VerificationBenchmarkComparisonReadService,
 } from "@aiengineer/knowledge-host";
 import {
-  ExploratoryEvaluationInputSchema,
   MutationEnvelopeSchema,
   OperationKindSchema,
   OperationContextSchema,
@@ -47,7 +45,6 @@ import {
 } from "@aiengineer/knowledge-contracts";
 import type { ResourceReadRepository } from "@aiengineer/knowledge-host";
 import Fastify, { type FastifyReply, type FastifyRequest } from "fastify";
-import { DeterministicFakeEmbeddingAdapter } from "@aiengineer/knowledge-host";
 import { z, ZodError, type ZodType } from "zod";
 import {
   actorsMatch,
@@ -61,7 +58,6 @@ import {
   createKnowledgeResourceReads,
   submitCanonicalRetrievalRun,
   type CanonicalRetrievalExecutorPort,
-  type VettedBundleInput,
 } from "@aiengineer/knowledge-host";
 import { correlationId, registerCorrelation, tenantId } from "../plugins/correlation.js";
 import { createAuthGuards } from "../plugins/auth.js";
@@ -71,12 +67,6 @@ import { reconciliationTitles, sendKnowledgeRead, sendVerificationRead } from ".
 
 export interface ServerOptionDependencies {
   logUnexpectedError?: (record: UnexpectedErrorRecord) => void;
-  /**
-   * Demo-only port for POST /v1/demo/evaluations: loads the allow-listed exploratory
-   * bundles. Unset, the route answers 503 (fixture unavailable); the server never imports
-   * test fixtures itself.
-   */
-  loadDemoEvaluationBundles?: () => Promise<readonly VettedBundleInput[]>;
   service?: KnowledgeIntegrationService;
   operationService?: KnowledgeOperationPort;
   retrievalOperationService?: KnowledgeOperationPort;
@@ -153,9 +143,6 @@ const VERIFICATION_CONTEXT_BINDING_TITLES: Readonly<Record<VerificationContextBi
 const collectionKinds: Record<string, OperationKind> = {
   "vector-stores": "vector_store_create",
   captures: "capture",
-  documents: "document",
-  "document-versions": "document_version",
-  representations: "representation",
   "promotion-proposals": "promotion_proposal",
   "promotion-decisions": "promotion_decision",
   "embedding-runs": "embedding_run",
@@ -163,7 +150,6 @@ const collectionKinds: Record<string, OperationKind> = {
   "eval-datasets": "evaluation_dataset",
   experiments: "experiment",
   "eval-runs": "evaluation_run",
-  reviews: "review",
   "review-decisions": "review_decision",
 };
 const operationInputSchemas: Partial<Record<OperationKind, ZodType>> = {
@@ -362,9 +348,7 @@ export function createRouteContext(options: ServerOptionDependencies = {}) {
     CompareBenchmarkRunsRequestSchema,
     RunBenchmarkRequestSchema,
     ParseArtifactRequestSchema,
-    AgenticKnowledgeService,
     VerificationOperationApplicationService,
-    ExploratoryEvaluationInputSchema,
     MutationEnvelopeSchema,
     OperationKindSchema,
     OperationContextSchema,
@@ -373,7 +357,6 @@ export function createRouteContext(options: ServerOptionDependencies = {}) {
     ReplayRunRequestSchema,
     RetrievalPlanSchema,
     UuidSchema,
-    DeterministicFakeEmbeddingAdapter,
     z,
     actorsMatch,
     isAuthorized,
@@ -382,7 +365,6 @@ export function createRouteContext(options: ServerOptionDependencies = {}) {
     options,
     server,
     application,
-    service,
     operationService,
     retrievalOperationService,
     resolveBearerIdentity,

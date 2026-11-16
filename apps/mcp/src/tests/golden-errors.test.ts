@@ -33,8 +33,6 @@ const TOOL = {
   // dotted names from the operation catalog (`MCP_TOOL_CATALOG`)
   sourceFetch: "knowledge_source_fetch",
   vectorStoreCreate: "knowledge_store_create",
-  vectorStoreSearch: "knowledge_store_search",
-  embeddingEstimate: "knowledge_embed_estimate",
   promotionStatus: "knowledge_promotion_status",
   retrievalPlanValidate: "knowledge_retrieve_plan",
   retrievalSearch: "knowledge_retrieve_search",
@@ -372,18 +370,6 @@ describe("golden MCP errors: catalog tools", () => {
   });
   it("answers an unknown operation from a status tool with the raw text NOT_FOUND (today: no code payload)", async () => {
     expectRawError(await call({}, TOOL.promotionStatus, catalogArguments({ operationId: id(20) })), "NOT_FOUND");
-  });
-  it("answers CAPABILITY_NOT_ADMITTED for declared tools and unadmitted kinds", async () => {
-    expectCode(
-      await call({}, TOOL.embeddingEstimate, catalogArguments({})),
-      "CAPABILITY_NOT_ADMITTED",
-      "declared tool",
-    );
-    expectCode(
-      await call({}, TOOL.vectorStoreSearch, catalogArguments({})),
-      "CAPABILITY_NOT_ADMITTED",
-      "unadmitted kind",
-    );
   });
   it("answers CAPABILITY_NOT_ADMITTED for retrieval tools without composed services (today: the API answers 503 INTERNAL_ERROR for the same reads)", async () => {
     expectCode(

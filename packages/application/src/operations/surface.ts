@@ -23,25 +23,17 @@ export const operationStepsByKind: Readonly<Record<OperationKind, readonly strin
   source_discovery: ["discover"],
   source_resolution: ["resolve"],
   capture: ["acquire", "seal"],
-  capture_inspection: ["inspect"],
-  capture_comparison: ["compare"],
   source_vetting: ["vet"],
   vector_store_create: ["create"],
   vector_store_documents: ["validate", "attach"],
   vector_store_ingestion: ["prepare", "embed", "index"],
-  vector_store_search: ["retrieve", "packet"],
   vector_store_evaluation: ["evaluate"],
-  document: ["record"],
-  document_version: ["version"],
-  representation: ["represent"],
   transformation: ["convert", "inspect"],
-  representation_inspection: ["inspect"],
   representation_comparison: ["compare"],
   representation_decision: ["decide"],
   chunk_preview: ["preview"],
   chunk_comparison: ["compare"],
   chunk_set: ["chunk", "verify"],
-  chunk_set_inspection: ["inspect"],
   promotion_proposal: ["propose"],
   promotion_decision: ["decide"],
   embedding_run: ["embed", "verify"],
@@ -53,7 +45,6 @@ export const operationStepsByKind: Readonly<Record<OperationKind, readonly strin
   evaluation_dataset: ["freeze"],
   experiment: ["record"],
   evaluation_run: ["evaluate", "report"],
-  review: ["review"],
   review_decision: ["decide"],
   verification_capture: ["register_and_admit"],
   verification_extraction: ["verify_and_register"],
@@ -66,9 +57,9 @@ export const operationStepsByKind: Readonly<Record<OperationKind, readonly strin
 
 /**
  * Durable operations that have complete, fail-closed production worker
- * implementations. Keep this map intentionally smaller than the contract
- * vocabulary above: a contract name is not, by itself, an executable
- * capability.
+ * implementations. The contract vocabulary above also holds the API-owned
+ * kind and the verification-owned kinds, which their own surfaces admit;
+ * a kind enters the vocabulary only together with the path that executes it.
  */
 export const productionWorkerStepsByKind = Object.freeze({
   source_discovery: operationStepsByKind.source_discovery,

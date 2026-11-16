@@ -1,4 +1,5 @@
 ---
+name: knowledge-retrieval-and-evidence
 description: Use when planning scoped knowledge retrieval, inspecting retrieval explanations, or building immutable evidence packets.
 license: Proprietary
 metadata:

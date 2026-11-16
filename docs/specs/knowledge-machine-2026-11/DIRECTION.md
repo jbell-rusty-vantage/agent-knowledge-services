@@ -463,6 +463,11 @@ needs the owner's private pre-move archive. KM-D11 therefore becomes: restore, o
 that cite them. KM-D1 to KM-D10 are still open. See the
 [state card](../../../../../docs/state/2026-11-15/KNOWLEDGE-SERVICES.md#decisions).
 
+**Dead-surface removal 2026-11-15.** Those 16 commands were removed from the root `package.json`, and the README,
+`catalog/README.md` and the two `docs/verification` pages that told a reader to run them now say they cannot be run.
+This takes the retire branch of KM-D11 for the commands only; restoring a proof still needs the archive. Accepted ADR
+0003 and the dated review records keep their original wording.
+
 ## 12. Sequence, by gate and not by date
 
 1. **Knowledge Services truth pass** (next, already planned) carries this vocabulary: concepts for source intelligence,

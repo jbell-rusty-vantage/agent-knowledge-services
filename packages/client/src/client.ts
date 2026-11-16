@@ -50,7 +50,6 @@ import {
   type CallbackEnvelope,
   type CaptureSourceRequest,
   type EvidencePacket,
-  type ExploratoryBundleDescriptor,
   type JsonValue,
   type OperationContext,
   type OperationKind,
@@ -267,9 +266,6 @@ export class KnowledgeClient {
   resolveSource(input: JsonValue, context: OperationContext) {
     return this.submitOperation("source_resolution", input, context, "v1/sources:resolve");
   }
-  inspectCapture(id: string, input: JsonValue, context: OperationContext) {
-    return this.submitOperation("capture_inspection", input, context, `v1/captures/${encodeURIComponent(id)}:inspect`);
-  }
   vetCapture(id: string, input: JsonValue, context: OperationContext) {
     return this.submitOperation("source_vetting", input, context, `v1/captures/${encodeURIComponent(id)}:vet`);
   }
@@ -307,14 +303,6 @@ export class KnowledgeClient {
       `v1/space-publications/${encodeURIComponent(id)}:rollback`,
     );
   }
-  searchVectorStore(id: string, input: JsonValue, context: OperationContext) {
-    return this.submitOperation(
-      "vector_store_search",
-      input,
-      context,
-      `v1/vector-stores/${encodeURIComponent(id)}:search`,
-    );
-  }
   evaluateVectorStore(id: string, input: JsonValue, context: OperationContext) {
     return this.submitOperation(
       "vector_store_evaluation",
@@ -325,17 +313,6 @@ export class KnowledgeClient {
   }
   startEvaluationRun(input: JsonValue, context: OperationContext) {
     return this.submitOperation("evaluation_run", input, context, "v1/eval-runs");
-  }
-  startExploratoryBundleEvaluation(bundles: readonly ExploratoryBundleDescriptor[], context: OperationContext) {
-    return this.submitOperation(
-      "evaluation_run",
-      {
-        mode: "three_bundle_internal_exploratory",
-        bundles: [...bundles],
-      } as JsonValue,
-      context,
-      "v1/demo/evaluations",
-    );
   }
   captureVerificationSource(request: CaptureSourceRequest, context: VerificationClientContext) {
     return this.#request(
@@ -724,8 +701,5 @@ export class ScopedKnowledgeClient {
   }
   vetCapture(id: string, input: JsonValue) {
     return this.client.vetCapture(id, input, this.context);
-  }
-  startExploratoryBundleEvaluation(bundles: readonly ExploratoryBundleDescriptor[]) {
-    return this.client.startExploratoryBundleEvaluation(bundles, this.context);
   }
 }

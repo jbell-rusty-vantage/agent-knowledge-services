@@ -66,7 +66,7 @@ Read `docs/agents/CODE-MAP.md` for source entrypoints, interfaces, dependencies,
 - `packages/AGENTS.md`: Business algorithms, contracts, adapters, and use-case composition.
 - `packages/verification/src/AGENTS.md`: Internal verification algorithm seams.
 - `services/AGENTS.md`: Separately deployed conversion and native parser boundaries.
-- `scripts/AGENTS.md`: Explicit proof, evaluation, reconciliation, and experiment commands.
+- `scripts/AGENTS.md`: Experiment commands only; the proof, evaluation and reconciliation scripts are not in the tree and have no root command.
 - `skills/AGENTS.md`: Agent skills for schema navigation, bounded reads, and ingestion.
 - `tools/AGENTS.md`: Repository quality and Git-driven maintenance tooling.
 - Change an HTTP/MCP/CLI verification surface: contracts → application → api → mcp → cli

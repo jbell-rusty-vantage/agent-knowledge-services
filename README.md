@@ -105,9 +105,9 @@ skills + CLI  ──HTTP/MCP──►   verification-executor
 | HTTP API | `apps/api` | Versioned Fastify API. Default `HOST=127.0.0.1`, `PORT=4100`. Vercel Fluid or a Node container. |
 | MCP | `apps/mcp` | Stateless Streamable HTTP over the same application services. Default port **4101**. Route `POST /mcp`. |
 | Worker | `apps/worker` | Durable executor for queued knowledge operations. Always-on container. Requires `WORKER_TENANT_ID`. |
-| CLI | `apps/cli` | `ks`: remote `knowledge`/`verify`/`db` commands through the HTTP API, the verification intent pipeline on the local file-store profile, and offline utilities. `pack:sandbox` builds the installable `ks` tarball. |
+| CLI | `apps/cli` | `ks`: remote `knowledge`/`verify` commands through the HTTP API, the verification intent pipeline on the local file-store profile, and offline utilities. `pack:sandbox` builds the installable `ks` tarball. |
 | Verification executor | `apps/verification-executor` | Sandbox host: `knowledge-verify` plus schema/read/ingest. CLI, HTTP, MCP stdio, MCP Streamable HTTP. Default serve port **4310**. |
-| Jev | `apps/jev` | Dedicated `jev` CLI, HTTP/MCP host and bounded child workers over local SQLite; `ks jev` remains reserved for slice 5F. |
+| Jev | `apps/jev` | Dedicated `jev` CLI, HTTP/MCP host and bounded child workers over local SQLite; `ks` has no `jev` group (consolidation is slice 5F). |
 | Docling | `services/docling` | Pinned conversion boundary. `docker compose -f services/docling/compose.yaml up -d` → `http://127.0.0.1:5001/health`. |
 | Verification parser | `services/parser` | Isolated native PDF/HTML parser for verification projections. Not Docling. |
 
@@ -210,7 +210,7 @@ This is the path for “I have an agent that must research and ingest, and I do 
    pnpm --filter @aiengineer/knowledge-verification-executor pack:sandbox
    ```
 
-   The tarball stages `knowledge-verify`, the `knowledge` bin, and the required skills (`schema-explore`, `knowledge-db`, `knowledge-ingest`, `knowledge-verification-recovery`, plus `knowledge-verify`). Pack fails if a required skill is missing.
+   The tarball stages `knowledge-verify`, the `knowledge` bin, and the required skills (`schema-explore`, `knowledge-db`, `knowledge-ingest`, plus `knowledge-verify`). Pack fails if a required skill is missing.
 
    The platform `ks` tarball is separate (Unit 5C): `pnpm --filter @aiengineer/knowledge-cli... build` then `pnpm --filter @aiengineer/knowledge-cli pack:sandbox` writes `apps/cli/dist/sandbox/ks-<version>.tgz` with the `platform-cli` skills and `zod` as its only runtime dependency. It runs remote commands against an API URL and bearer, and the intent pipeline offline on its local profile (`ks verify capture|chain|artifact …`); the executor tarball above stays until 5H.
 
@@ -337,9 +337,6 @@ knowledge-retrieval-and-evidence
     → validated plan → search → evidence packet → citation replay
 knowledge-evaluation
     → reviewed cases, ablations, release recommendation
-knowledge-verification-recovery
-    → on failure: observe → case → probe / plan / repair
-      (do not resubmit the unchanged input)
 ```
 
 Concept pages for the same loop:
@@ -392,7 +389,6 @@ Canonical catalog: [`skills/README.md`](skills/README.md) and [`skills/manifest.
 | `knowledge-acquisition-and-vetting` | executor, platform | Unknown source; preserve untrusted attempts; vet before capture. |
 | `knowledge-preparation-and-promotion` | executor, platform | Convert, chunk, link content, **propose** promotion. Does not select or activate a publication pointer. |
 | `knowledge-verification` | platform | Admitted platform verification (claims, report, benchmark, replay, adjudication). Do not mix with `knowledge-verify` in one run. |
-| `knowledge-verification-recovery` | executor, platform | Terminal verification failure. Recovery is not “retry unchanged.” |
 | `knowledge-retrieval-and-evidence` | platform | Answer against a **published** scope with replayable packets. |
 | `knowledge-evaluation` | platform | Pre-publication quality gates and release **recommendations**. Does not move the pointer. |
 | `vector-store-management` | platform | Store lifecycle, document ingest, submit publish/rollback. Poll `operation status`. |
@@ -413,7 +409,7 @@ MCP and CLI skills share one rule: no raw SQL beyond the guarded read-only capab
 | **CLI** | `ks` / executor `knowledge` and `knowledge-verify` | `ks` calls the HTTP API and runs the intent pipeline on its local profile, never falling back between them. The executor CLI (until 5H) can be local or remote. |
 | **A2A** | `POST /v1/a2a/tasks`, `POST /v1/a2a/callbacks` | Async admission + signed callbacks. |
 
-Representative platform HTTP families (see OpenAPI for the full set): `/v1/sources:discover`, `/v1/captures`, `/v1/transformations`, `/v1/documents`, `/v1/chunk-previews`, `/v1/chunk-sets`, `/v1/embedding-runs`, `/v1/vector-stores`, `/v1/retrieval-runs`, `/v1/evidence-packets/{id}`, `/v1/verification/*`, `/v1/operations/{id}`, `/v1/a2a/tasks`.
+Representative platform HTTP families (see OpenAPI for the full set): `/v1/sources:discover`, `/v1/captures`, `/v1/transformations`, `/v1/chunk-previews`, `/v1/chunk-sets`, `/v1/embedding-runs`, `/v1/vector-stores`, `/v1/retrieval-runs`, `/v1/evidence-packets/{id}`, `/v1/verification/*`, `/v1/operations/{id}`, `/v1/a2a/tasks`.
 
 ## Deterministic preparation pipeline
 
@@ -543,6 +539,6 @@ node skills/check.mjs
 corepack pnpm --filter @aiengineer/knowledge-verification test
 ```
 
-`pnpm evaluate:broad` and `pnpm test:live:gateway` were listed here. Their scripts have been absent from the tree since before the 2026-11-06 baseline, so those commands fail (2026-11-15; KM-D11 in the [direction](docs/specs/knowledge-machine-2026-11/DIRECTION.md#s11)).
+The 16 root commands whose script files left the tree before the 2026-11-06 baseline (the seven `prove:*`, `evaluate:bundles`, `evaluate:broad`, `fixture:canonical`, the two `gate5` commands and the four `test:live:*`) were removed from `package.json` on 2026-11-15; there is nothing to run under those names (KM-D11 in the [direction](docs/specs/knowledge-machine-2026-11/DIRECTION.md#s11)).
 
 Deployment status is not inferred from this README, a git marker, or a passing `verify`. See the verification and operations docs for rollout state.

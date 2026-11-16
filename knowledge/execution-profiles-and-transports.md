@@ -1,7 +1,7 @@
 ---
 type: Service Boundary
 title: Execution profiles and transport availability
-description: Choose the server, local verification, remote CLI, or transitional executor surface without mistaking a declared operation for an executable capability.
+description: Choose the server, local verification, remote CLI, or transitional executor surface without mistaking a tool name or contract type for an executable capability.
 tags: [host, profiles, transports, cli, mcp, capabilities]
 aliases: [local mode, remote mode, ks commands, tool availability]
 questions:
@@ -31,14 +31,14 @@ The operation catalog answers two different questions: whether a capability is i
 | Local verification | File-backed intent pipeline, loaded lazily by `ks`. | Offline operations need no database; URL capture, document conversion and semantic judging require explicit provider configuration. |
 | Remote CLI | `ks` calls `KnowledgeClient` over HTTP. | Does not load host or fall back locally after an authorization/network failure. |
 | Transitional executor | Separate CLI/HTTP/MCP host for schema/read/ingest, custody and recovery. | These groups have not all moved to the platform hosts. |
-| Jev | Dedicated `jev` service and client. | `ks jev` is reserved; see [Jev](jev-decisions-and-workers.md). |
+| Jev | Dedicated `jev` service and client. | `ks` has no `jev` group; use the `jev` binary. See [Jev](jev-decisions-and-workers.md). |
 
 Read the [capability matrix](../packages/host/src/local/capabilities.ts), [host entry](../packages/host/src/create-host.ts), and [CLI bindings](../apps/cli/src/ks-commands.ts). The [profile tests](../packages/host/src/tests/local-profile.test.ts) and [matrix tests](../packages/host/src/tests/capability-matrix.test.ts) exercise composition and rejection boundaries.
 
 ## Trace a tool before using it
 
 1. Find its row in the [application operation catalog](../packages/application/src/operations/catalog.ts).
-2. Check `admission`: admitted, gated, declared, or executor-only. Read any `requires` and transport exclusion reason.
+2. Check `admission`: admitted, gated, or executor-only. Read any `requires` and transport exclusion reason. The catalog has no declared-only class: since 2026-11-15 a route, tool or command exists only when a path executes it, so a platform surface refuses with `CAPABILITY_NOT_ADMITTED` only when a gated port is not composed on this host.
 3. Follow the actual API, MCP or CLI binding. Check the execution profile, not just the operation ID.
 4. Retain returned operation/run/receipt IDs and use their owning read surface; a submission is not proof of completion.
 

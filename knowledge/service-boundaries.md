@@ -55,8 +55,9 @@ are accepted implementation direction, not delivery attestations. They separate
 reusable platform capabilities, native domain knowledge services, product services
 and orchestration. Generalization against both domains and future dynamic or
 specialized services require explicit bindings and qualification; no additional
-deployed service follows from those names. Current executor-only capabilities,
-declared operations and gated host ports remain distinguished in the catalog.
+deployed service follows from those names. Current executor-only capabilities
+and gated host ports remain distinguished in the catalog, which lists no
+operation that can only refuse.
 
 The earlier request wrapper `mc.knowledge_request.v1` (a contract module never exported or
 used by a transport) was deleted on 2026-10-27 together with the older Mission Control Biotech
@@ -89,7 +90,7 @@ that executor-only capabilities already exist on the platform API or MCP.
 | --- | --- | --- |
 | Change a service use case shared by transports | [`application`](../packages/application/src/index.ts) | Shared use-case composition; keep algorithms out of transport handlers. |
 | Change the main service HTTP, CLI, or MCP surface | [API runtime](../apps/api/src/index.ts), [CLI commands](../apps/cli/src/commands.ts), [MCP runtime](../apps/mcp/src/index.ts) | Transport adaptation to published contracts and shared application behavior. |
-| Decide whether a named capability is executable on a transport | [Operation catalog](../packages/application/src/operations/catalog.ts) | Application-owned availability, gates and explicit exclusions; parity checks do not turn declared operations into implementation. |
+| Decide whether a named capability is executable on a transport | [Operation catalog](../packages/application/src/operations/catalog.ts) | Application-owned availability, gates and explicit exclusions; an operation is catalogued only together with the path that executes it. |
 | Compose verification ownership and admission for API or MCP | [`createVerificationHostRuntime`](../packages/host/src/verification/host-runtime.ts) | Shared host; transports are not a second algorithm authority. |
 | Find schema meaning, a relation, vocabulary, rule, or named query | [`schema-workspace`](../packages/knowledge-db/src/schema-workspace/index.ts) | Loads and searches the pinned workspace; it does not query tenant data. |
 | Read tenant knowledge reproducibly | [`ReadExecutor`](../packages/knowledge-db/src/db-read/read-executor.ts) | Executes catalog queries in a read-only transaction and returns a digestible snapshot. |

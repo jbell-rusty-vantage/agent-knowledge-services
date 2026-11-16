@@ -44,4 +44,4 @@ This is a single-host operator trust domain with one supervisor per local databa
 
 ## Current and planned
 
-The dedicated `jev` binary is implemented. [CLI bindings](../apps/cli/src/ks-commands.ts) reserve `ks jev` until cleanup slice 5F; importing the normal host does not start Jev. Do not remove the working service or `.jev` operator data because the [target layout](../docs/operations/package-cleanup/FINAL-LAYOUT.md) describes later consolidation. Source tests do not establish deployed availability or question-specific quality calibration.
+The dedicated `jev` binary is implemented. The [`ks` command table](../apps/cli/src/ks-commands.ts) has no `jev` group (the reserved, unbound group was removed on 2026-11-15; cleanup slice 5F would bind one); importing the normal host does not start Jev. Do not remove the working service or `.jev` operator data because the [target layout](../docs/operations/package-cleanup/FINAL-LAYOUT.md) describes later consolidation. Source tests do not establish deployed availability or question-specific quality calibration.

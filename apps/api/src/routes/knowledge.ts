@@ -5,28 +5,16 @@ import type { ServerOptionDependencies } from "../http/context.js";
 export interface KnowledgeRouteServices
   extends Pick<
     ServerOptionDependencies,
-    | "loadDemoEvaluationBundles"
-    | "service"
-    | "resourceReader"
-    | "maximumResourceResponseBytes"
-    | "replayEvidencePacketCitations"
-    | "getEvidencePacket"
+    "resourceReader" | "maximumResourceResponseBytes" | "replayEvidencePacketCitations" | "getEvidencePacket"
   > {}
 import type { OperationKind } from "@aiengineer/knowledge-contracts";
 type Params = { id: string };
 
 export function registerKnowledge(server: FastifyInstance, context: RouteContext): void {
   const {
-    AgenticKnowledgeService,
-    ExploratoryEvaluationInputSchema,
-    MutationEnvelopeSchema,
     UuidSchema,
-    DeterministicFakeEmbeddingAdapter,
     options,
-    service,
     requireAccess,
-    requireEnvelopeActor,
-    origin,
     requireResourceReader,
     knowledgeReads,
     sendKnowledgeRead,
@@ -57,21 +45,12 @@ export function registerKnowledge(server: FastifyInstance, context: RouteContext
       : reply.status(404).send(problem(404, "NOT_FOUND", "Action not found", correlationId(request)));
   });
   const resourceActions: Record<string, Record<string, OperationKind>> = {
-    "vector-stores": {
-      search: "vector_store_search",
-      evaluate: "vector_store_evaluation",
-    },
-    captures: {
-      inspect: "capture_inspection",
-      compare: "capture_comparison",
-      vet: "source_vetting",
-    },
+    "vector-stores": { evaluate: "vector_store_evaluation" },
+    captures: { vet: "source_vetting" },
     representations: {
-      inspect: "representation_inspection",
       compare: "representation_comparison",
       decide: "representation_decision",
     },
-    "chunk-sets": { inspect: "chunk_set_inspection" },
     "space-publications": {
       verify: "publication_verification",
       rollback: "publication_rollback",
@@ -85,41 +64,6 @@ export function registerKnowledge(server: FastifyInstance, context: RouteContext
         ? submit(request, reply, kind)
         : reply.status(404).send(problem(404, "NOT_FOUND", "Resource action not found", correlationId(request)));
     });
-  server.post("/v1/demo/evaluations", async (request, reply) => {
-    const access = await requireAccess(request, reply, "demo.evaluate");
-    if (!access) return;
-    const envelope = MutationEnvelopeSchema.parse(request.body);
-    if (access.tenant !== envelope.context.tenantId || correlationId(request) !== envelope.context.correlationId)
-      return reply.status(403).send(problem(403, "FORBIDDEN", "Execution context mismatch", correlationId(request)));
-    if (requireEnvelopeActor(access.identity, envelope, request, reply) !== true) return;
-    const input = ExploratoryEvaluationInputSchema.parse(envelope.input);
-    const loaded = options.loadDemoEvaluationBundles ? await options.loadDemoEvaluationBundles() : [];
-    const byVideoId = new Map(loaded.map((bundle) => [bundle.video_id, bundle]));
-    const bundles = input.bundles.map((descriptor) => byVideoId.get(descriptor.video_id)!);
-    if (bundles.some((bundle) => !bundle))
-      return reply
-        .status(503)
-        .send(problem(503, "INTERNAL_ERROR", "Allow-listed exploratory fixture unavailable", correlationId(request)));
-    const accepted = service.submit("evaluation_run", envelope, origin(request));
-    const evaluator = new AgenticKnowledgeService(new DeterministicFakeEmbeddingAdapter());
-    const index = await evaluator.buildExploratoryIndex(bundles);
-    const report = await evaluator.evaluate(index);
-    service.setResult(accepted.operationId, {
-      storeClass: "internal_exploratory",
-      canonicalPublication: false,
-      bundleCount: 3,
-      videoIds: input.bundles.map((bundle) => bundle.video_id),
-      evaluationScopes: input.bundles.map((bundle) => bundle.evaluation_scope),
-      claimProjectionCount: index.records.length,
-      vectorCount: index.backend.count(index.tenantId, index.vectorSpaceVersionId),
-      metrics: report.overall,
-      evaluationManifestDigest: report.outputManifestDigest,
-    } as unknown as import("@aiengineer/knowledge-contracts").JsonValue);
-    let claim;
-    while ((claim = service.claimOperation(accepted.operationId, "demo-evaluator")))
-      service.execute(claim, { stage: claim.step.name });
-    return reply.status(202).send(accepted);
-  });
   server.get<{ Params: Params }>("/v1/evidence-packets/:id", async (request, reply) => {
     const access = await requireAccess(request, reply, "knowledge.read");
     if (!access) return;

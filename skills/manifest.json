@@ -64,6 +64,8 @@
         "ingest_apply",
         "ingest_receipt",
         "db_read_intent",
+        "schema_search",
+        "schema_get",
         "artifact_get",
         "source_discover",
         "source_import",

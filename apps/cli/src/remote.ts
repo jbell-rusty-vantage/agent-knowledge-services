@@ -34,7 +34,6 @@ export async function runRemoteCommand(
   io: KsIo,
   fetchImplementation: typeof fetch = fetch,
 ): Promise<number> {
-  if (command.mode === "unsupported") throw new Error(`CAPABILITY_NOT_ADMITTED:${command.reason}`);
   const values = options(argv);
   const baseUrl = values.get("--base-url") ?? io.env[REMOTE_ENVIRONMENT.url];
   if (!baseUrl) throw new KsUsageError(`${REMOTE_ENVIRONMENT.url} or --base-url is required`);

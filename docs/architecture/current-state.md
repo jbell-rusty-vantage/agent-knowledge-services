@@ -11,7 +11,7 @@ Knowledge Services owns preparation, evidence retrieval, evaluation, verificatio
 | Concern | Current implementation | Entry |
 | --- | --- | --- |
 | Composition | Server API/MCP/worker roles and a local verification profile with owned lifecycle. | [createHost](../../packages/host/src/create-host.ts) |
-| Shared behavior and availability | Application use cases, admission, reads and an operation catalog that distinguishes executable, gated, declared and executor-only capabilities. | [Catalog](../../packages/application/src/operations/catalog.ts) |
+| Shared behavior and availability | Application use cases, admission, reads and an operation catalog that distinguishes executable, gated and executor-only capabilities (the declared-only class and its fail-closed routes, tools and commands were removed on 2026-11-15). | [Catalog](../../packages/application/src/operations/catalog.ts) |
 | Platform transports | API route modules; typed MCP tool registration; `ks` command bindings. API and MCP invoke application in process. | [API](../../apps/api/src/index.ts), [MCP](../../apps/mcp/src/index.ts), [CLI](../../apps/cli/src/ks-commands.ts) |
 | Local verification | File-backed capture and artifact tools through host, using an executor-owned transitional seam (a non-authoritative capture cache since SV-17). Remote CLI never falls back to this profile. | [Capability matrix](../../packages/host/src/local/capabilities.ts) |
 | Database/schema and custody tools | Schema exploration, bounded reads, deterministic ingestion, source discovery and checkpoint groups remain on executor surfaces pending folds; the report, content-link and recovery groups were retired in SV-17. | [Executor registry](../../apps/verification-executor/src/knowledge/operations.ts) |

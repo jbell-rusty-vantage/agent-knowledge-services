@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 /**
  * Skill conformance check: every command and MCP tool a skill names must exist in an actual
- * implemented catalog, and the manifest must describe the directories that exist.
+ * implemented catalog, the manifest must describe the directories that exist, and every SKILL.md
+ * must carry the `name` (equal to its directory) and `description` a skill loader needs.
  *
  *   node skills/check.mjs            # exit 1 on drift, 2 on a broken catalog source
  *   node skills/check.mjs --json     # also print manifest/skill digests for run-pin freezing
@@ -172,6 +173,43 @@ const contentDigest = (files) => createHash("sha256").update(JSON.stringify(Obje
 const codeSpans = (text) => [...text.matchAll(/`([^`\n]+)`/g)].map((match) => match[1])
   .concat([...text.matchAll(/```[a-z]*\r?\n([\s\S]*?)```/g)].flatMap((match) => match[1].split(/\r?\n/)));
 
+/**
+ * The top-level scalars of a SKILL.md YAML frontmatter block: a plain or quoted value, or a folded/literal block
+ * (`>-`, `|`) joined into one line. Mappings and lists (`metadata:`, `allowed-tools:`) read as empty strings.
+ * Returns undefined when the file does not open with a `---` block.
+ */
+function frontmatter(markdown) {
+  const block = /^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)/.exec(markdown);
+  if (!block) return undefined;
+  const fields = {};
+  const lines = block[1].split(/\r?\n/);
+  for (let index = 0; index < lines.length; index += 1) {
+    const top = /^([A-Za-z][A-Za-z0-9_-]*):(?:[ \t]+(.*))?$/.exec(lines[index]);
+    if (!top) continue;
+    let value = (top[2] ?? "").trim();
+    if (value === "" || /^[>|][+-]?$/.test(value)) {
+      const scalar = value !== "";
+      const continuation = [];
+      while (index + 1 < lines.length && /^(?:[ \t]+\S|[ \t]*$)/.test(lines[index + 1])) continuation.push(lines[++index].trim());
+      value = scalar ? continuation.filter(Boolean).join(" ") : "";
+    }
+    fields[top[1]] = value.replace(/^(["'])([\s\S]*)\1$/, "$2").trim();
+  }
+  return fields;
+}
+
+/**
+ * A skill loader (Deep Agents, the Agent Skills format) reads `name` and `description` from the frontmatter and
+ * requires `name` to equal the skill's directory; a SKILL.md without them cannot be loaded.
+ */
+function checkFrontmatter(id, directoryName, markdown) {
+  const fields = frontmatter(markdown);
+  if (!fields) { fail(`${id}: SKILL.md has no YAML frontmatter`); return; }
+  if (!fields.name) fail(`${id}: SKILL.md frontmatter has no name`);
+  else if (fields.name !== directoryName) fail(`${id}: SKILL.md frontmatter name "${fields.name}" differs from its directory "${directoryName}"`);
+  if (!fields.description) fail(`${id}: SKILL.md frontmatter has no description`);
+}
+
 const report = { skills: [], manifestDigest: contentDigest({ "manifest.json": read(join(skillsRoot, "manifest.json")) }) };
 
 for (const skill of manifest.skills) {
@@ -180,6 +218,7 @@ for (const skill of manifest.skills) {
   const files = filesOf(directory);
   if (!files["SKILL.md"]) { fail(`${skill.id}: SKILL.md missing`); continue; }
   if (skill.path !== `${skill.id}/SKILL.md`) fail(`${skill.id}: manifest path must be ${skill.id}/SKILL.md`);
+  checkFrontmatter(skill.id, skill.id, files["SKILL.md"]);
   for (const reference of skill.references ?? []) if (!files[reference]) fail(`${skill.id}: declared reference ${reference} is missing`);
   for (const surface of skill.surfaces ?? []) if (!SURFACES.has(surface)) fail(`${skill.id}: unknown surface ${surface}`);
 
@@ -282,6 +321,8 @@ if (!verificationSkill) fail("executor manifest omits knowledge-verify");
 else {
   const directory = join(executorRoot, "skills/knowledge-verify");
   const files = filesOf(directory);
+  if (!files["SKILL.md"]) fail("knowledge-verify: SKILL.md missing");
+  else checkFrontmatter("knowledge-verify", "knowledge-verify", files["SKILL.md"]);
   const cliSource = read(join(executorRoot, "src/index.ts"));
   const commands = new Set([...cliSource.matchAll(/case "([a-z][a-z-]*)":/g)].map((match) => match[1]));
   for (const reference of verificationSkill.references ?? []) {

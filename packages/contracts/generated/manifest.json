@@ -22,7 +22,6 @@
     "EvaluationFailuresResource",
     "EvaluationReportResource",
     "EvidencePacket",
-    "ExploratoryEvaluationInput",
     "ExtractStructuredDataRequest",
     "ModelAuthoredProposal",
     "MutationEnvelope",
@@ -99,5 +98,5 @@
     "VerifyExtractionRequest",
     "VerifyMetricObservationInput"
   ],
-  "openApiOperationCount": 90
+  "openApiOperationCount": 76
 }

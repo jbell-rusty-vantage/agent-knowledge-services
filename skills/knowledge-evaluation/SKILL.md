@@ -1,4 +1,5 @@
 ---
+name: knowledge-evaluation
 description: Use when creating reviewed retrieval cases, running ablations, diagnosing failures, or recommending a knowledge release.
 license: Proprietary
 metadata:

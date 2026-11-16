@@ -207,15 +207,16 @@ describe("durable MCP operation facade", () => {
     expect(submit).not.toHaveBeenCalled();
   });
 
-  it("rejects deferred read-like tools before admission", async () => {
+  it("refuses a kind the worker does not execute before admission", async () => {
     const submit = vi.fn<KnowledgeOperationPort["submit"]>(async () => accepted);
     const execute = createMcpToolExecutor({
       operationService: operationPort(submit),
       apiOrigin: "https://api.example",
       identity,
     });
+    // Verification kinds are submitted through the verify tools and their admission gate, never the generic path.
     expect(
-      await execute("knowledge_embed_estimate", "embedding_run", {
+      await execute("knowledge_source_fetch", "verification_capture", {
         context,
         input: {},
         expectedVersions: { api: "v1" },

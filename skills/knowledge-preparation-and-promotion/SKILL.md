@@ -1,4 +1,5 @@
 ---
+name: knowledge-preparation-and-promotion
 description: Use when converting sealed captures, inspecting nodes, previewing admitted chunks, and submitting a promotion proposal.
 license: Proprietary
 metadata:
@@ -42,7 +43,7 @@ Vendor MCP stays in the **agent** toolbox. After their skill runs, `source impor
 | Executor | `knowledge` / `knowledge-verify` | `source prepare-captured` for existing plain text or Markdown captures only |
 | Platform | `ks` (API client) | `ks knowledge document convert` (`transformation`), `ks knowledge chunk preview`, `ks knowledge chunk build` |
 
-Hosts without `source_prepare_captured` reject it rather than substituting a local converter. Platform `document inspect` and `chunk inspect` are not admitted; inspect nodes from the conversion output or an executor read of sealed bytes.
+Hosts without `source_prepare_captured` reject it rather than substituting a local converter. The platform has no node or chunk-set inspection command or tool; inspect nodes from the conversion output or an executor read of sealed bytes.
 
 Worked command bodies: [cli-reference.md](cli-reference.md), [mcp-reference.md](mcp-reference.md), [examples.md](examples.md).
 

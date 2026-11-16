@@ -14,6 +14,9 @@ export const API_ACTIONS = [
   "publication.execute",
   "callback.receive",
   "retrieval.plan.validate",
+  // Gates no route: the in-memory demo evaluation route was removed on 2026-11-15. The name stays in the vocabulary
+  // because host configuration parses KNOWLEDGE_API_IDENTITIES strictly, so a deployed identity that still grants
+  // this scope must keep parsing. Remove it once no configured identity names it.
   "demo.evaluate",
 ] as const;
 export type ApiAction = (typeof API_ACTIONS)[number];

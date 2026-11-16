@@ -150,7 +150,7 @@ Shapes checked against Zod in `packages/contracts/src/verification/requests.ts`.
 }
 ```
 
-`captureIds`: unique, length 1–100. Digests are `sha256:` + 64 hex. Claims verification is no longer a `verification.v1` request; submit `verify.claims` or `report.register` over K01.
+`captureIds`: unique, length 1–100. Digests are `sha256:` + 64 hex. Claims verification is no longer a `verification.v1` request; register the run's evidence with `report.register` and assess it with `report.assess` over K01 (`verify.claims` is retired and refuses `SCHEMA_UNSUPPORTED`).
 
 ### Replay (`ReplayRunRequestSchema`)
 
@@ -207,7 +207,7 @@ Bodies are exactly the K01 JSON Schemas (`packages/knowledge-operation-protocol/
 
 | Route | Body | Answer |
 | --- | --- | --- |
-| `POST /knowledge-operation/v2/invoke` | `operation-envelope.v2` | `operation-receipt.v2` (200) for `report.register` and `knowledge.apply`; `knowledge-plan-preview.v1` (200) for `knowledge.plan_preview`; `operation-handle.v2` (202) for `report.assess`, `report.derive`, `knowledge.read`, `verify.claims` and the trusted assessment operations `report.observe`, `report.seal`, `report.decide`, `report.review`, `decision.resolve` |
+| `POST /knowledge-operation/v2/invoke` | `operation-envelope.v2` | `operation-receipt.v2` (200) for `report.register` and `knowledge.apply`; `knowledge-plan-preview.v1` (200) for `knowledge.plan_preview`; `operation-handle.v2` (202) for `report.assess`, `report.derive`, `knowledge.read` and the trusted assessment operations `report.observe`, `report.seal`, `report.decide`, `report.review`, `decision.resolve` |
 | `GET /knowledge-operation/v2/operations/{operationId}` | — | `operation-status.v2`. While not terminal, `retryAfterMs` is bounded to 100..300000 and mirrored as `Retry-After` |
 | `POST /knowledge-operation/v2/operations/{operationId}/cancel` | `{"cancelRequestId"}` | `operation-status.v2`. Idempotent: the first cancel request id is kept, and a terminal operation is unchanged |
 | `GET /knowledge-operation/v2/receipts/{effectKey}` | — | `receipt-lookup.v2`: `found`, `not_found` (never proof that nothing was applied) or `unresolved` |

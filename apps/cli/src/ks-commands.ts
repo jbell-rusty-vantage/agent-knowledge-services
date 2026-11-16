@@ -7,16 +7,15 @@ import { type CLI_COMMANDS, resolveCommand, type CliCommand } from "./commands.j
  *   remote  — the server profile through KnowledgeClient (API URL and bearer); never constructs host;
  *   local   — host's local profile over a file store, loaded lazily (offline, or an explicitly configured provider);
  *   utility — an offline workflow over frozen files, loaded lazily; no host, HTTP or provider.
- * Remote commands keep their resource/action key in CLI_COMMANDS, which dispatchCliCommand serves. In each group the
- * resource of the same name (`verify`, `db`) sits at the group root. `jev` is reserved until Unit 5F binds it.
+ * Remote commands keep their resource/action key in CLI_COMMANDS, which dispatchCliCommand serves. In the `verify`
+ * group the resource of the same name sits at the group root. A group exists only while it binds a command that runs:
+ * schema navigation, bounded reads and ingestion are the executor's `knowledge` binary, and Jev is the `jev` binary.
  */
-export type KsGroup = "knowledge" | "verify" | "db" | "jev";
+export type KsGroup = "knowledge" | "verify";
 export const KS_GROUPS: Readonly<Record<KsGroup, string>> = Object.freeze({
   knowledge: "sources, stores, preparation, promotion, embedding, retrieval, evaluation, publication and operations",
   verify:
     "verification operations, extraction, benchmarks, replay and the local capture tools (SV-17 retired the claims chain)",
-  db: "database maintenance and fixture workflows (declared: every command fails closed with CAPABILITY_NOT_ADMITTED)",
-  jev: "reserved: Unit 5F binds `ks jev`; until then use the `jev` binary",
 });
 
 type RemoteResource = keyof typeof CLI_COMMANDS;
@@ -37,20 +36,16 @@ const utility = (name: KsUtility): KsCommand => ({ profile: "utility", utility: 
 export const KS_COMMANDS = Object.freeze({
   "knowledge source discover": remote("source", "discover"),
   "knowledge source fetch": remote("source", "fetch"),
-  "knowledge source inspect": remote("source", "inspect"),
   "knowledge source vet": remote("source", "vet"),
   "knowledge store create": remote("store", "create"),
   "knowledge store show": remote("store", "show"),
   "knowledge store add-documents": remote("store", "add-documents"),
-  "knowledge store search": remote("store", "search"),
   "knowledge store evaluate": remote("store", "evaluate"),
   "knowledge store status": remote("store", "status"),
   "knowledge document convert": remote("document", "convert"),
-  "knowledge document inspect": remote("document", "inspect"),
   "knowledge document compare": remote("document", "compare"),
   "knowledge chunk preview": remote("chunk", "preview"),
   "knowledge chunk build": remote("chunk", "build"),
-  "knowledge chunk inspect": remote("chunk", "inspect"),
   "knowledge promotion propose": remote("promotion", "propose"),
   "knowledge promotion review": remote("promotion", "review"),
   "knowledge promotion status": remote("promotion", "status"),
@@ -69,7 +64,6 @@ export const KS_COMMANDS = Object.freeze({
   "knowledge eval failures": remote("eval", "failures"),
   "knowledge space publish": remote("space", "publish"),
   "knowledge space rollback": remote("space", "rollback"),
-  "knowledge space rebuild": remote("space", "rebuild"),
   "knowledge operation status": remote("operation", "status"),
   "knowledge operation events": remote("operation", "events"),
   "knowledge operation retry": remote("operation", "retry"),
@@ -102,12 +96,6 @@ export const KS_COMMANDS = Object.freeze({
   "verify capture media-types": local("verify_supported_media_types"),
   "verify attestation export": utility("attestation-export"),
   "verify attestation inspect": utility("attestation-inspect"),
-
-  "db verify": remote("db", "verify"),
-  "db types": remote("db", "types"),
-  "db rls-test": remote("db", "rls-test"),
-  "db fixture load": remote("fixture", "load"),
-  "db fixture reset": remote("fixture", "reset"),
 } satisfies Record<string, KsCommand>);
 
 export type KsCommandName = keyof typeof KS_COMMANDS;

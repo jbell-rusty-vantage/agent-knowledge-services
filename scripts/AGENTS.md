@@ -1,7 +1,7 @@
 <!-- BEGIN GENERATED: semantic-map -->
 ## Code navigation: scripts
 
-Explicit proof, evaluation, reconciliation, and experiment commands.
+Experiment commands only; the proof, evaluation and reconciliation scripts are not in the tree and have no root command.
 
 Full interfaces, dependencies, tests, and architecture: [semantic map](../docs/agents/CODE-MAP.md). Paths in the rows below are repository-relative.
 

@@ -25,7 +25,7 @@ pnpm exec tsc --noEmit -p tsconfig.examples.json
 
 Expected shape: JSON on stdout with a sealed digest or a policy error, `artifactCount: 1` on success, and no secret values in inspection output.
 
-Platform `source inspect` is not admitted. Agents inspect sealed bytes with executor `verify_read_capture` / `verify_search_capture` or this package API.
+The platform has no `source inspect` command or tool. Agents inspect sealed bytes with executor `verify_read_capture` / `verify_search_capture` or this package API.
 
 ## Wiring status
 
@@ -36,7 +36,7 @@ The root barrel (`src/index.ts`) groups adapters under the same banners. "Librar
 | `RoutedAcquisitionAdapter` | `src/route.ts` | `apps/worker/src/index.ts` (`knowledge.capture/v1`) | n/a |
 | `ExactHttpAcquisitionAdapter` | `src/http/` | `apps/worker/src/index.ts`; `apps/verification-executor/src/root-host-preparation.ts`; HTTP policy and pinned transport in `packages/application/src/verification/source-acquisition/` | n/a |
 | `BoundedManualUploadAdapter` + `FilesystemManualUploadSource` | `src/upload/` | `apps/worker/src/index.ts` when `ACQUISITION_UPLOAD_ROOT` is set | n/a |
-| `readSealedCapture` / `searchSealedCapture` / `observeSealedCapture` | `src/inspect/` | library only (examples 03, 04); executor `verify_read_capture` / `verify_search_capture` read captures on their own path | platform `source inspect` is not admitted until a persisted contract exists (internal-fallbacks §"Out of scope") |
+| `readSealedCapture` / `searchSealedCapture` / `observeSealedCapture` | `src/inspect/` | library only (examples 03, 04); executor `verify_read_capture` / `verify_search_capture` read captures on their own path | no platform `source inspect` exists; one is added only with a persisted contract (internal-fallbacks §"Out of scope") |
 | `normalizePaperIdentifier` | `src/paper/identity.ts` | `apps/worker/src/activity-registry.ts` | n/a |
 | `planPaperAsHttpRequest` | `src/paper/plan-http.ts` | library only (example 05) | paper fetch stays "resolve identity, then HTTP-acquire" (internal-fallbacks §"Acquisition and inspection") |
 | `IdentityBoundPaperAcquisitionAdapter` (`execute`) | `src/paper/adapter.ts` | library only | review record: do not wire paper `execute`; capture cardinality decision pending (internal-fallbacks §"Acquisition and inspection") |
