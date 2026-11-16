@@ -4,12 +4,7 @@ import { loadExecutorConfig, VerificationExecutor } from "./executor.js";
 import { createHttpServer } from "./http.js";
 import type { ScopedExecutorAccess } from "./access.js";
 import { createCaptureCustodyReader } from "./knowledge-operation/capture-bridge.js";
-import {
-  createKnowledgeServices,
-  loadKnowledgeConfig,
-  type KnowledgeServices,
-  type KnowledgeServicesOptions,
-} from "./knowledge/context.js";
+import { createKnowledgeServices, loadKnowledgeConfig, type KnowledgeServices } from "./knowledge/context.js";
 import {
   BACKEND as AIENGINEER_POSTGRES_BACKEND,
   createIngestionApplyPort,
@@ -40,8 +35,6 @@ export interface ServeOptions {
   readonly token?: string;
   readonly env?: Readonly<Record<string, string | undefined>>;
   readonly scopedAccess?: ScopedExecutorAccess;
-  /** Trusted host injection; never resolved from a request or environment value. */
-  readonly prepareCapturedSource?: KnowledgeServicesOptions["prepareCapturedSource"];
   /** Trusted host injection: the independent census auditor for `report.assess` over K01 (SV-16). */
   readonly knowledgeOperationAuditor?: AuditorDiscovery;
 }
@@ -64,12 +57,7 @@ export async function startExecutorServer(options: ServeOptions): Promise<Runnin
   const env = options.env ?? process.env;
   const executor = await VerificationExecutor.create(loadExecutorConfig(env));
   const knowledgeConfig = loadKnowledgeConfig(env);
-  const knowledge = knowledgeConfig
-    ? createKnowledgeServices(knowledgeConfig, {
-        verification: executor,
-        ...(options.prepareCapturedSource ? { prepareCapturedSource: options.prepareCapturedSource } : {}),
-      })
-    : undefined;
+  const knowledge = knowledgeConfig ? createKnowledgeServices(knowledgeConfig, { verification: executor }) : undefined;
   let server: Server;
   let knowledgeOperation: KnowledgeOperationSurface | undefined;
   try {

@@ -2,9 +2,7 @@
 
 ## Executor MCP (`apps/verification-executor`)
 
-- `source_prepare_captured` — pinned convert + chunk on an existing text/Markdown capture
-
-Hosts without `source_prepare_captured` reject it. Do not substitute a local converter.
+- `source_prepare_captured` — registers an executor capture (text, Markdown, HTML, JSON) as an evidence capture with quotable content units for the verification chain; it does not chunk, embed or promote. See the `knowledge-research` verification reference.
 
 ## Platform MCP (`apps/mcp`)
 

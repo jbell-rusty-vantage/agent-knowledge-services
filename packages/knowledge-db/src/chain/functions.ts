@@ -14,7 +14,7 @@ export type ChainParameterType =
 /**
  * The signature of each governed function, in declaration order and without `p_idempotency_key` (always first) and
  * `p_actor` (always last): the parameter (the input field with `p_` prefixed) and its declared type. It restates
- * `pg_get_function_identity_arguments` of AI Engineer contract 0.8.0; the integration test compares the two.
+ * `pg_get_function_identity_arguments` of AI Engineer contract 0.9.0; the integration test compares the two.
  */
 export const CHAIN_FUNCTION_PARAMETERS: Readonly<
   Record<ChainOperationName, readonly (readonly [field: string, type: ChainParameterType])[]>

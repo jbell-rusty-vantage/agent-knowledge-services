@@ -12,3 +12,6 @@ export * from "./ingestion/index.js";
 
 // governed writes of the research verification chain
 export * from "./chain/index.js";
+
+// an executor capture registered as an evidence capture with quotable units
+export * from "./capture/index.js";

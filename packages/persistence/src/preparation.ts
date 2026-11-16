@@ -11,6 +11,7 @@ import type {
 } from "./types.js";
 import type { PostgresCanonicalRepository, TenantSqlClient } from "./postgres.js";
 import { canonicalCaptureMethod, canonicalDocumentType } from "./preparation-vocabulary.js";
+import { documentNodeKindOf, documentNodeUnit } from "./document-node-units.js";
 
 type Row = Record<string, unknown>;
 const iso = (value: unknown) => (value instanceof Date ? value.toISOString() : String(value));
@@ -561,10 +562,11 @@ export class PostgresPreparationRepository implements PreparationRepository {
       if (digestHex(lineages) !== digestHex(expectedLineages)) throw new Error("ARTIFACT_LINEAGE_CONFLICT");
       for (const node of input.nodes) {
         const locator = node.locator as Record<string, unknown>;
+        const unit = documentNodeUnit(node);
         await client.query(
           `insert into content.document_node
-          (id,tenant_id,representation_id,parent_id,ordinal,stable_local_key,node_kind,role,inline_text,selector,page_number,start_offset,end_offset,bbox,language,normalized_content_sha256)
-          values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10::jsonb,$11,$12,$13,$14::jsonb,$15,$16) on conflict(id) do nothing`,
+          (id,tenant_id,representation_id,parent_id,ordinal,stable_local_key,unit_kind,role,inline_text,selector,page_number,start_offset,end_offset,bbox,language,normalized_content_sha256,attributes,start_ms,end_ms)
+          values($1,$2,$3,$4,$5,$6,$7,$8,$9,$10::jsonb,$11,$12,$13,$14::jsonb,$15,$16,$17::jsonb,$18,$19) on conflict(id) do nothing`,
           [
             node.id,
             tenantId,
@@ -572,7 +574,7 @@ export class PostgresPreparationRepository implements PreparationRepository {
             node.parentId ?? null,
             node.ordinal,
             node.stableLocalKey,
-            node.kind,
+            unit.unitKind,
             node.role ?? null,
             node.text,
             JSON.stringify(locator),
@@ -582,6 +584,9 @@ export class PostgresPreparationRepository implements PreparationRepository {
             null,
             node.language ?? null,
             node.digest.slice(7),
+            JSON.stringify(unit.attributes),
+            unit.startMs,
+            unit.endMs,
           ],
         );
         const stored = (
@@ -681,7 +686,7 @@ export class PostgresPreparationRepository implements PreparationRepository {
         ...(row.parent_id ? { parentId: String(row.parent_id) } : {}),
         ordinal: Number(row.ordinal),
         stableLocalKey: String(row.stable_local_key),
-        kind: String(row.node_kind),
+        kind: documentNodeKindOf(String(row.unit_kind)),
         ...(row.role ? { role: String(row.role) } : {}),
         text: String(row.inline_text ?? ""),
         ...(row.language ? { language: String(row.language) } : {}),

@@ -9,7 +9,7 @@ import { chainFunctionSignature } from "./functions.js";
 
 /**
  * The whole research verification chain through the Knowledge Services operation layer, as the bounded roles, on an
- * AI Engineer database at contract 0.8.0 (migration 20261116130000) that holds captured content. Every scope is a
+ * AI Engineer database at contract 0.9.0 (migration 20261116140000) that holds captured content. Every scope is a
  * savepoint of one transaction that `close()` rolls back, so the database is left as found. Needs
  * `KS_TEST_DATABASE_URL` and `KS_TEST_PROJECT_DIR` (the disposable-project guard); skips without them.
  */

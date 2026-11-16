@@ -5,9 +5,28 @@ import { PostgresCanonicalRepository } from "./postgres.js";
 import { PostgresPreparationRepository } from "./preparation.js";
 import type { PersistedPreparationArtifact } from "./types.js";
 import { disposableDatabaseUrl } from "../test/disposable.mjs";
+import { RollbackPostgres } from "../test/rollback-postgres.mjs";
 
 const databaseUrl = disposableDatabaseUrl();
 const live = databaseUrl ? describe : describe.skip;
+// Committing the fixtures needs an explicit opt-in; otherwise every repository transaction is a savepoint of one
+// outer transaction that is rolled back, so the database is left as found.
+const committing = process.env.KS_TEST_ALLOW_COMMITTED_FIXTURES === "1";
+
+async function openRepository(url: string): Promise<{ database: PostgresCanonicalRepository; close(): Promise<void> }> {
+  const database = new PostgresCanonicalRepository({ connectionString: url });
+  if (committing) return { database, close: () => database.close() };
+  const rollback = await RollbackPostgres.open(url);
+  database.transaction = (tenant, work) =>
+    rollback.transaction({ tenantId: tenant, role: "executor_service" }, work as never) as never;
+  return {
+    database,
+    close: async () => {
+      await rollback.close();
+      await database.close();
+    },
+  };
+}
 const tenantId = "00000000-0000-7000-8000-000000000001";
 const digest = (value: unknown) => sha256Digest(JSON.parse(JSON.stringify(value))) as `sha256:${string}`;
 function artifact(
@@ -31,7 +50,7 @@ function artifact(
 
 live("PostgresPreparationRepository", () => {
   it("is replay-safe and rejects changed immutable capture, node, and span identities", async () => {
-    const database = new PostgresCanonicalRepository({ connectionString: databaseUrl! });
+    const { database, close } = await openRepository(databaseUrl!);
     const repository = new PostgresPreparationRepository(database);
     const namespace = randomUUID();
     const sourceArtifact = artifact(randomUUID(), `source-${namespace}`, "source_capture", "source_captures");
@@ -228,6 +247,15 @@ live("PostgresPreparationRepository", () => {
           },
         ],
       };
+      if (!committing) {
+        // At contract 0.9.0 no bounded role may insert retrieval.chunking_procedure_version, chunk_set,
+        // retrieval_chunk or chunk_span, so a chunk set cannot be written as executor_service. When the contract
+        // grants it, this refusal stops and the assertions below run in the rolled-back mode too.
+        await expect(repository.persistChunkSet(tenantId, chunk)).rejects.toThrow(
+          /permission denied for table chunking_procedure_version/,
+        );
+        return;
+      }
       const chunked = await repository.persistChunkSet(tenantId, chunk);
       await expect(repository.persistChunkSet(tenantId, chunk)).resolves.toEqual(chunked);
       await expect(
@@ -252,7 +280,7 @@ live("PostgresPreparationRepository", () => {
         }),
       ).rejects.toThrow(/CHUNK_SPAN_CONFLICT/);
     } finally {
-      await database.close();
+      await close();
     }
   });
 });

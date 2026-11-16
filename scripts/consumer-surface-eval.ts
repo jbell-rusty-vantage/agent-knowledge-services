@@ -18,7 +18,8 @@
  * Usage:
  *   corepack pnpm eval:consumer-surface [--out <dir>]     (default dist/consumer-surface-eval)
  */
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createKnowledgeResourceReads } from "@aiengineer/knowledge-application";
@@ -37,6 +38,7 @@ import { connectInProcess } from "../apps/mcp/src/tests/in-process-client.js";
 import { knowledgeOperations } from "../apps/verification-executor/src/knowledge/operations.js";
 import { createVerificationMcpServer } from "../apps/verification-executor/src/mcp.js";
 import { createChainService } from "../apps/verification-executor/src/knowledge/context.js";
+import { VerificationExecutor, loadExecutorConfig } from "../apps/verification-executor/src/executor.js";
 
 const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 
@@ -757,6 +759,115 @@ for (const [path, read] of [
     `the guide explains the code: ${explained}; a refused propose_verdict returns code ${String(refusal.code)}, class ${String(details.class)}, the role it ran as (${String(details.role)}), the database detail (${details.detail !== undefined}) and what to do next (${String(details.next).includes("record_probe_run")})`,
     "the guide explains the code, and the refusal itself names the code, what it means and what to do next",
   );
+
+  // I captured a page; how do I record a claim that quotes it?
+  {
+    // A real executor store in a temporary directory, so the capture and the locate are the executor's own; the
+    // registration is recorded by a stand-in (no database), and the claim goes to the refusing chain stand-in.
+    const root = mkdtempSync(join(tmpdir(), "ks-consumer-eval-"));
+    interface Registered {
+      readonly executorCaptureId?: string;
+      readonly representation?: { readonly text?: string };
+      readonly capture?: { readonly digest?: string };
+    }
+    const registrations: { tenantId: string; source: Registered; options: { quotes?: string[] } }[] = [];
+    try {
+      const store = await VerificationExecutor.create(
+        loadExecutorConfig({ VERIFY_STORE_DIR: root, VERIFY_TENANT_ID: TENANT }),
+      );
+      const own = await connectInProcess(
+        createVerificationMcpServer(
+          store,
+          {
+            config: { defaultTenantId: TENANT },
+            chain: createChainService(refusingDatabase as never),
+            captureStore: store.store,
+            remoteCustody: false,
+            captures: {
+              register: async (tenantId: string, source: Registered, options: { quotes?: string[] }) => {
+                registrations.push({ tenantId, source, options });
+                return {
+                  capture_id: id(90),
+                  anchors: (options.quotes ?? []).map((quote: string) => ({
+                    quote,
+                    status: "found",
+                    anchor: { capture_id: id(90), node_id: id(91), quote },
+                  })),
+                };
+              },
+            },
+          } as never,
+          { service: undefined, credential: () => null },
+        ),
+        "consumer-surface-eval-own-capture",
+      );
+      const ownCall = async (name: string, argumentsValue: Record<string, unknown>) => {
+        try {
+          return (await own.client.callTool({ name, arguments: argumentsValue })) as ToolResult;
+        } catch (error) {
+          return { isError: true, content: [{ type: "text", text: String(error) }] } as ToolResult;
+        }
+      };
+      const page = "# Checkpoints\n\nA checkpointer saves the graph state after every super-step.";
+      const quote = "saves the graph state after every super-step";
+      const captured = parsed(await ownCall("verify_capture_file", { filename: "checkpoints.md", text: page }));
+      const located = parsed(await ownCall("verify_locate_quote", { captureId: captured.captureId, quote }));
+      const prepared = parsed(
+        await ownCall("source_prepare_captured", { captureId: captured.captureId, quotes: [quote] }),
+      );
+      const anchor = ((prepared.anchors as { anchor?: unknown }[] | undefined) ?? [])[0]?.anchor;
+      const submittedBefore = chainSubmissions.length;
+      const claim = await ownCall("chain_write", {
+        request: {
+          operation: "record_claim",
+          idempotency_key: "eval:own-capture:claim:1",
+          input: {
+            claim_type: "assertion",
+            statement: "A checkpointer saves after every super-step.",
+            evidence: [anchor],
+          },
+        },
+      });
+      const claimSubmitted =
+        chainSubmissions.length === submittedBefore + 1 && chainSubmissions.at(-1) === "pipeline_agent";
+      const registered = registrations[0];
+      const describedPrepare = parsed(
+        await executorCall("knowledge_describe", { ref: "tool:source_prepare_captured" }),
+      );
+      const prepareArguments = JSON.stringify(describedPrepare.arguments ?? {});
+      const order = [
+        "`verify_capture_source`",
+        "`verify_locate_quote`",
+        "`source_prepare_captured`",
+        "`record_claim`",
+      ].map((name) => verification.text.indexOf(`${name}`, verification.text.indexOf("From a page you captured")));
+      const guideInOrder =
+        order.every((index) => index > 0) &&
+        order.every((index, at) => at === 0 || index > (order[at - 1] ?? Number.POSITIVE_INFINITY));
+      const routed = routing.text.includes("`source_prepare_captured`");
+      add(
+        "I captured a page; how do I record a claim that quotes it?",
+        "executor",
+        executorTools.includes("source_prepare_captured") &&
+          guideInOrder &&
+          routed &&
+          prepareArguments.includes("quotes") &&
+          located.status === "resolved" &&
+          registered?.tenantId === TENANT &&
+          registered.source.executorCaptureId === captured.captureId &&
+          String(registered.source.representation?.text).includes(quote) &&
+          registered.source.capture?.digest === (captured.contentArtifact as { digest?: string } | undefined)?.digest &&
+          anchor !== undefined &&
+          claim.isError === true &&
+          claimSubmitted,
+        `source_prepare_captured registered: ${executorTools.includes("source_prepare_captured")}; the guide gives capture, locate, prepare and record_claim in order: ${guideInOrder}; routing names it: ${routed}; knowledge_describe lists quotes: ${prepareArguments.includes("quotes")}; locate: ${String(located.status)}; the executor sent its own capture (id, text and digest checked): ${registered?.source.executorCaptureId === captured.captureId}; the anchor it returned was accepted by chain_write and submitted as ${String(chainSubmissions.at(-1))}: ${claimSubmitted}`,
+        "the guide gives the steps in order, and the executor's own capture becomes an anchor that record_claim accepts, with no id the agent had to guess",
+      );
+      await own.close();
+    } finally {
+      rmSync(root, { recursive: true, force: true });
+    }
+  }
 
   // Is the executor's tool list small?
   const executorListing = await executor.client.listTools();

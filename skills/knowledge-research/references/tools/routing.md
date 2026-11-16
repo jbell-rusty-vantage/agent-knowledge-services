@@ -41,6 +41,7 @@ What Knowledge Services does hold, on the **executor server**:
 | --- | --- | --- |
 | The capture path every row ends at | `verify_capture_source`, `verify_capture_file` | `knowledge-verify capture`, `knowledge-verify capture-file`; `ks verify capture source`, `ks verify capture file` |
 | Locate the quote | `verify_search_capture`, `verify_locate_quote` | `knowledge-verify search`, `knowledge-verify locate`; `ks verify capture search`, `ks verify capture locate` |
+| Make your capture quotable by a claim, and get the anchor of each quote | `source_prepare_captured` | `knowledge source prepare-captured` |
 | One managed web search that the host runs and records | `source_discover` | `knowledge source discover` |
 | Record a search you ran with your own tool, and your choice of leads | `source_import`, `source_select` | `knowledge source import`, `knowledge source select` |
 | Read the knowledge base before any tool in the table | `schema_search`, `db_read_intent` | `knowledge schema search`, `knowledge db read-intent` |
@@ -49,7 +50,7 @@ What Knowledge Services does hold, on the **executor server**:
 
 - `source_discover` offers two providers, Tavily search and Firecrawl search, and only when the host holds the key. It returns leads. It does not read pages.
 - `chain_write` takes the step in `operation`. Which operation performs which chain step, what it never writes and what a refusal means: [verification, Availability](../verification.md#chain-tools). `knowledge_describe` with `operation:<name>` returns one operation's full input.
-- A capture you make with `verify_capture_source` lives in the executor's store. It becomes quotable by `chain_write` only once it is held in the knowledge base as content units, and no tool here does that yet: [verification, Availability](../verification.md#availability).
+- A capture you make with `verify_capture_source` lives in the executor's store. `source_prepare_captured` registers it in the knowledge base as content units and returns the anchor of each quote you name, ready for `chain_write`: [verification, Availability](../verification.md#chain-tools). Text, Markdown, HTML and JSON captures only.
 - `verify_capture_source` fetches a page itself. Firecrawl may do that fetch when the executor is configured with it; otherwise the fetch is a plain HTTPS request. Either way the stored bytes are the capture.
 - Not wired: repository archives, paper records and page scraping as acquisition routes. The adapters exist in the code and no worker or tool runs them.
 - On the platform server, `knowledge_source_discover` ranks candidates you supply and `knowledge_source_fetch` stores an exact HTTPS capture for document preparation. Neither searches.

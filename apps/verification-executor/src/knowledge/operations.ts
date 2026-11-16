@@ -9,8 +9,15 @@ import {
   SourceDiscoverySelectionRequestSchema,
   SourceDiscoverySelectionReceiptSchema,
 } from "@aiengineer/knowledge-contracts";
-import { getPage, materializeScope, searchWorkspace } from "@aiengineer/knowledge-db";
+import {
+  domainError,
+  getPage,
+  isCaptureRegistrationMediaType,
+  materializeScope,
+  searchWorkspace,
+} from "@aiengineer/knowledge-db";
 import { defineOperation, OperationRegistry, type OperationDefinition } from "../operations/define.js";
+import { executorCapturedSource } from "./capture-registration.js";
 import type { KnowledgeServices } from "./context.js";
 import {
   CheckpointCommitRequestSchema,
@@ -429,24 +436,57 @@ export const checkpointOperations = [
   }),
 ];
 
-export const knowledgeOperations = new OperationRegistry<KnowledgeServices>([
-  defineKnowledgeOperation({
-    name: "source_prepare_captured",
-    title: "Prepare a retained source",
-    description:
-      "Convert and chunk exact remotely retained native text captures through durable preparation. Requires a trusted preparation host. Returns canonical receipts and pending independent review; does not publish.",
-    input: z.strictObject({
-      captureId: z.string().min(1).max(255),
-      title: z.string().min(1).max(500),
-      version: z.string().min(1).max(100),
-    }),
-    output: Any,
-    cli: { command: ["source", "prepare-captured"], positional: ["captureId"] },
-    run: async (input, services) => {
-      if (!services.prepareCapturedSource) throw new Error("PREPARATION_HOST_REQUIRED");
-      return services.prepareCapturedSource(input);
-    },
+/**
+ * The bridge from a capture this executor holds to an evidence capture the verification chain can anchor to: the
+ * capture, its document, version and representation, and one quotable unit per block (per member for JSON), written
+ * as executor_service under a receipt. Idempotent on the captured bytes.
+ */
+export const sourcePrepareCaptured = defineKnowledgeOperation({
+  name: "source_prepare_captured",
+  title: "Make a capture quotable",
+  description:
+    "Register a capture you made (verify_capture_source or verify_capture_file) as an evidence capture with quotable units, so chain_write can anchor to it. Text, Markdown, HTML, JSON; other types refused. Same bytes: same capture. quotes: get anchors back.",
+  input: z.strictObject({
+    captureId: z.string().min(1).max(255).describe("The executor's captureId from verify_capture_source or _file."),
+    title: z.string().min(1).max(500).optional().describe("Document title; default the page title or URL."),
+    version: z.string().min(1).max(100).optional().describe("Version label; default date and digest."),
+    documentType: z.string().max(80).optional().describe("A content.document_type code; default unclassified."),
+    sourceRole: z.string().max(80).optional().describe("A content.source_role code; default unknown."),
+    quotes: z
+      .array(z.string().min(1).max(4000))
+      .max(20)
+      .optional()
+      .describe("Quotes to anchor: each comes back with {capture_id, node_id, quote} when it is in one unit."),
+    maxUnits: z.int().min(1).max(200).optional().describe("Units listed in the result; default 30."),
   }),
+  output: Any,
+  cli: { command: ["source", "prepare-captured"], positional: ["captureId"] },
+  run: async (input, services) => {
+    const { captureId, ...options } = input;
+    let source: Awaited<ReturnType<typeof executorCapturedSource>>;
+    try {
+      source = await executorCapturedSource(services.captureStore, captureId, {
+        remoteCustody: services.remoteCustody,
+        registrable: isCaptureRegistrationMediaType,
+      });
+    } catch (error) {
+      if (error instanceof Error && error.message.startsWith("CAPTURE_NOT_FOUND:"))
+        throw domainError(
+          "CAPTURE_NOT_FOUND",
+          `CAPTURE_NOT_FOUND: this executor holds no capture ${JSON.stringify(captureId)}. Next: verify_list_captures, or capture it first.`,
+          { captureId },
+        );
+      throw error;
+    }
+    return services.captures.register(services.config.defaultTenantId, source, {
+      ...options,
+      ...(services.config.missionId ? { missionId: services.config.missionId } : {}),
+    });
+  },
+});
+
+export const knowledgeOperations = new OperationRegistry<KnowledgeServices>([
+  sourcePrepareCaptured,
   ...checkpointOperations,
   schemaSearch,
   schemaGet,

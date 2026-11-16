@@ -59,7 +59,7 @@ Work top to bottom. Do not start the next stage until the current one's quality 
 | 3 | capture | `capture <url> --run $RUN --capture-id <id>` / `capture-file <path> …` | command succeeds; inspect `characters` and `preview` | `10-captures.md` |
 | 4 | inspect + locate | `read`, `search`, `locate` | `locate` → `resolved` for every quote | `20-quote-ledger.md` |
 | 5 | register | `register <file> --label <label> --run $RUN`; read back with `artifact <artifactId>` | command succeeds; record `artifactId` and `digest` | `30-artifacts.md` |
-| 6 | hand off | pass captures, the quote ledger and artifact handles to the ks.knowledge_operation.v2 (K01) caller | — | `70-run-summary.md` |
+| 6 | hand off | make each kept capture quotable (`source_prepare_captured`, below), then pass captures, anchors, the quote ledger and artifact handles on | every quote you will use has an `anchor` | `70-run-summary.md` |
 
 ### 3. Capture
 
@@ -110,6 +110,17 @@ knowledge-verify artifact <artifactId> --as text
 ```
 
 Re-register after any edit: the artifactId changes with the bytes.
+
+### 6. Make a capture quotable, then hand off
+
+A claim or a probe run quotes a capture only once it is held in the knowledge base. The executor
+MCP tool `source_prepare_captured` (command line: `knowledge source prepare-captured <captureId>
+--quotes '["<quote>"]'`) registers the capture with one content unit per block and returns, for
+each located quote, the `anchor` `{capture_id, node_id, quote}` that `chain_write` `record_claim`
+takes as evidence and `record_probe_run` as output. It registers text, Markdown, HTML and JSON
+captures and refuses PDF and office captures with `CAPTURE_MEDIA_TYPE_UNSUPPORTED`. Record each
+anchor next to its quote in `20-quote-ledger.md`. The chain itself is in the `knowledge-research`
+verification reference.
 
 ## Exit codes
 

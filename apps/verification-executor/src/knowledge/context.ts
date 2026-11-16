@@ -3,6 +3,7 @@ import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import {
   ArtifactLedger,
+  CaptureRegistrar,
   GovernedChainExecutor,
   ReadExecutor,
   type KnowledgeTransactions,
@@ -26,6 +27,7 @@ import { LocalArtifactStore, SupabaseArtifactStore, type ArtifactStore } from "@
 import { loadWorkspace, resolveWorkspaceDir, type Workspace } from "@aiengineer/knowledge-db";
 import { loadKsDatabaseConfig } from "@aiengineer/knowledge-host/config";
 import { loadExecutorConfig, type VerificationExecutor } from "../executor.js";
+import type { FilesystemStore } from "../store.js";
 import { createExecutorCustody } from "../store-custody-postgres.js";
 import { createSourceDiscoveryHost, type DiscoveryHostConfig } from "./source-discovery-host.js";
 import { createSourceDiscoveryCustody } from "./source-discovery-custody.js";
@@ -74,7 +76,11 @@ export interface KnowledgeServices {
   readonly sourceDiscovery?: SourceDiscoveryApplicationService;
   readonly checkpoints?: CheckpointApplicationService;
   readonly checkpointHarness?: KnowledgeCheckpointHarness;
-  readonly prepareCapturedSource?: (input: unknown) => Promise<unknown>;
+  /** Registers a capture of `captureStore` as an evidence capture with quotable units (`source_prepare_captured`). */
+  readonly captures: CaptureRegistrar;
+  /** The co-hosted capture store; `remoteCustody` says whether its bytes are also in durable custody. */
+  readonly captureStore: FilesystemStore;
+  readonly remoteCustody: boolean;
   close(): Promise<void>;
 }
 
@@ -143,7 +149,6 @@ export interface KnowledgeServicesOptions {
   /** The co-hosted capture and artifact store; omission rejects before database initialization. */
   readonly verification?: VerificationExecutor;
   readonly sourceDiscoveryHost?: SourceDiscoveryHost;
-  readonly prepareCapturedSource?: (input: unknown) => Promise<unknown>;
 }
 
 /** The verification-chain service over a database port, as the composition below builds it. */
@@ -256,11 +261,13 @@ export function createKnowledgeServices(
     reads,
     ingestion,
     chain: createChainService(db),
+    captures: new CaptureRegistrar({ db, executorVersion: KNOWLEDGE_EXECUTOR_VERSION }),
+    captureStore: options.verification.store,
+    remoteCustody: custody !== undefined,
     useClasses,
     ...(sourceDiscovery ? { sourceDiscovery } : {}),
     ...(checkpoints ? { checkpoints } : {}),
     ...(checkpointHarness ? { checkpointHarness } : {}),
-    ...(options.prepareCapturedSource ? { prepareCapturedSource: options.prepareCapturedSource } : {}),
     close: async () => {
       await discoveryDatabase?.close();
       await custody?.close();

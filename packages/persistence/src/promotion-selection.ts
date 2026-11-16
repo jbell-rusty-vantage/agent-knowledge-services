@@ -158,7 +158,7 @@ async function selectedText(client: TenantSqlClient, tenantId: string, member: M
 }> {
   switch (member.content.kind) {
     case "entity": {
-      const row = (await client.query<Row>("select display_name from corpus.entity where tenant_id=$1 and id=$2", [tenantId, member.content.id])).rows[0];
+      const row = (await client.query<Row>("select display_name from catalog.entity where tenant_id=$1 and id=$2", [tenantId, member.content.id])).rows[0];
       return { text: typeof row?.display_name === "string" ? row.display_name : fail("PROMOTION_SELECTION_ENTITY_MISSING") };
     }
     case "chunk": return { text: chunks.get(member.content.id) ?? fail("PROMOTION_SELECTION_CONTENT_MISSING") };
@@ -167,7 +167,7 @@ async function selectedText(client: TenantSqlClient, tenantId: string, member: M
       return { text: claim ? [claim.statement, ...claim.qualifiers].join("\n") : fail("PROMOTION_SELECTION_CONTENT_CLAIM_MISSING") };
     }
     case "record": {
-      const row = (await client.query<Row>("select r.* from knowledge.record r join evidence.claim_record c on c.tenant_id=r.tenant_id and c.record_id=r.id and c.claim_id=r.provenance_claim_id where r.tenant_id=$1 and r.id=$2", [tenantId, member.content.id])).rows[0];
+      const row = (await client.query<Row>("select r.* from guidance.item r join evidence.claim_record c on c.tenant_id=r.tenant_id and c.record_id=r.id and c.claim_id=r.provenance_claim_id where r.tenant_id=$1 and r.id=$2", [tenantId, member.content.id])).rows[0];
       const claim = claims.find(claim => claim.canonicalClaimId === row?.provenance_claim_id && claim.statement === row.statement && equal({ qualifiers: claim.qualifiers }, row.scope));
       return { text: claim ? [claim.statement, ...claim.qualifiers].join("\n") : fail("PROMOTION_SELECTION_RECORD_MISMATCH") };
     }

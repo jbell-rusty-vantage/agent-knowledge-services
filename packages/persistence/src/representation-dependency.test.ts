@@ -23,23 +23,15 @@ const node = (representationId: string, authorized = true) => ({
   representation_class: "structural",
   has_decision: true,
   capture_root: false,
-  report_version_id: null,
 });
 
 describe("current representation dependency closure", () => {
-  it("does not declare report or unknown artifact descendants revalidated", async () => {
-    const value = fixture([
-      { artifact_id: "report-artifact", representation_id: null, projection_id: null, report_version_id: "report" },
-      { artifact_id: "unknown", representation_id: null, projection_id: null, report_version_id: null },
-    ]);
+  it("does not declare unknown artifact descendants revalidated, and reads no retired report projection", async () => {
+    const value = fixture([{ artifact_id: "unknown", representation_id: null, projection_id: null }]);
     const result = await readRepresentationImpact(value.client, "tenant", "source");
     expect(result.complete).toBe(false);
-    expect(result.blocked).toEqual([
-      "REPORT_DEPENDENCY_REVALIDATION_REQUIRED:report",
-      "DEPENDENCY_AUTHORITY_REQUIRED:unknown",
-    ]);
-    expect(value.query.mock.calls[0]![0]).toContain("research.report_assertion_claim");
-    expect(value.query.mock.calls[0]![0]).toContain("research.report_section_dependency");
+    expect(result.blocked).toEqual(["DEPENDENCY_AUTHORITY_REQUIRED:unknown"]);
+    expect(value.query.mock.calls[0]![0]).not.toContain("research.");
   });
   it("gates a still-admitted derived representation when a transitive input is revoked", async () => {
     const value = fixture([node("derived"), node("middle"), node("source", false)]);
@@ -47,8 +39,8 @@ describe("current representation dependency closure", () => {
       eligible: false,
       representationIds: ["derived", "middle", "source"],
       blocked: ["SOURCE_REPRESENTATION_NOT_ADMITTED:source"],
-      unsupportedReportVersionIds: [],
     });
+    expect(value.query.mock.calls[0]![0]).not.toContain("research.");
     const sql = value.query.mock.calls[0]![0];
     expect(sql).toContain("e.relation_kind='derived_from'");
     expect(sql).toContain("i.transformation_run_id=r.transformation_run_id");
@@ -64,12 +56,11 @@ describe("current representation dependency closure", () => {
         representation_id: null,
         authorized: false,
         capture_root: true,
-        report_version_id: null,
       },
     ]);
     expect((await readRepresentationDependencies(value.client, "tenant", "derived")).eligible).toBe(true);
   });
-  it.each(["unknown", "missing", "report"])("fails closed on %s artifact authority", async (mode) => {
+  it.each(["unknown", "missing"])("fails closed on %s artifact authority", async (mode) => {
     const value = fixture([
       node("derived"),
       {
@@ -78,12 +69,10 @@ describe("current representation dependency closure", () => {
         representation_id: null,
         authorized: false,
         capture_root: mode !== "unknown",
-        report_version_id: mode === "report" ? "report" : null,
       },
     ]);
     const result = await readRepresentationDependencies(value.client, "tenant", "derived");
     expect(result.eligible).toBe(false);
-    if (mode === "report") expect(result.unsupportedReportVersionIds).toEqual(["report"]);
   });
   it("keeps missing artifact metadata visible and denies it", async () => {
     const value = fixture([
@@ -94,7 +83,6 @@ describe("current representation dependency closure", () => {
         representation_id: null,
         capture_root: false,
         native_reviews: [],
-        report_version_id: null,
       },
     ]);
     const result = await readRepresentationDependencies(value.client, "tenant", "derived");
@@ -110,7 +98,6 @@ describe("current representation dependency closure", () => {
         representation_id: null,
         capture_root: true,
         native_reviews: [{ id: "native", digest: "b".repeat(64), has_decision: true, withdrawn: false }],
-        report_version_id: null,
       },
     ]);
     expect((await readRepresentationDependencies(value.client, "tenant", "derived")).blocked).toContain(

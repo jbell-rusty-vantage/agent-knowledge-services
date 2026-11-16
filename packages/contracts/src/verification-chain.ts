@@ -2,7 +2,7 @@ import { z } from "zod";
 import { inputJsonSchema, type JsonSchema } from "./operations/json-schema.js";
 
 /**
- * The governed writes of the research verification chain (AI Engineer database contract 0.8.0, schema `api`):
+ * The governed writes of the research verification chain (AI Engineer database contract 0.9.0, schema `api`):
  * nine functions through which a bounded database role records a claim with evidence, restates it, registers a
  * probe, records a run, proposes a verdict, triages a candidate, assesses a source, and opens and settles an
  * attention sweep. This module is the one definition of what a caller sends for each: every transport validates
@@ -633,7 +633,7 @@ export const GOVERNED_WRITE_ERRORS = {
   PROBE_RUN_OUTPUT_REQUIRED: entry(
     "malformed",
     "A run that passed or failed is recorded with its captured output as an evidence anchor, so a verdict can cite it.",
-    "Capture the run output, find its unit with evidence_units and pass it as output.",
+    "Capture the run output (verify_capture_file), register it with source_prepare_captured and pass the anchor it returns as output.",
   ),
   VERDICT_INVALID: entry(
     "malformed",
@@ -864,7 +864,7 @@ export const GOVERNED_WRITE_ERRORS = {
   CHAIN_ROLE_NOT_GRANTED: entry(
     "not_allowed",
     "The database does not grant this function to the role Knowledge Services writes it as.",
-    "Report it: the AI Engineer database is not at contract 0.8.0 (migration 20261116130000), or its grants were changed.",
+    "Report it: the AI Engineer database is not at contract 0.9.0 (migration 20261116140000), or its grants were changed.",
   ),
 } as const satisfies Record<string, GovernedWriteErrorEntry>;
 export type GovernedWriteErrorCode = keyof typeof GOVERNED_WRITE_ERRORS;

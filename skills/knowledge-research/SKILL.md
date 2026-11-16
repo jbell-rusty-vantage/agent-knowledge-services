@@ -40,9 +40,9 @@ Work the steps in order. Finish a step's "done when" before starting the next.
    *Done when* each question has a primary-source candidate or a recorded miss.
    Load [routing](references/tools/routing.md), then the one tool playbook it names. Load [sources](references/sources.md) to judge a source.
 
-4. **Capture.** Store each source you will rely on as exact bytes through the capture path. Inspect what came back. Find the exact quote and check that it occurs once.
-   *Done when* every quote you intend to use resolves exactly once in a capture you inspected.
-   Load the tool's playbook, section "From lead to capture".
+4. **Capture.** Store each source you will rely on as exact bytes through the capture path. Inspect what came back. Find the exact quote and check that it occurs once. Then make the capture quotable by a claim, which returns the anchor of each quote.
+   *Done when* every quote you intend to use resolves exactly once in a capture you inspected, and has its anchor.
+   Load the tool's playbook, section "From lead to capture", then [verification, anchors](references/verification.md#chain-tools).
 
 5. **State claims.** One statement per claim, with entity, version, date, unit and conditions. Keep "the document says X" apart from "X is true". Name who asserts it.
    *Done when* each claim is one testable statement with a source and a locator.
@@ -100,5 +100,5 @@ Knowledge Services has two tool servers. The **platform server** holds the `know
 - **Arguments.** The tool list of each server shows a short form of every large input. `knowledge_describe` with `tool:<name>` returns the full arguments of a tool of that server. On the executor server, `knowledge_describe` with `operation:<name>` returns one operation of `chain_write`, with its rules and a valid example; without a reference it returns the binding descriptor.
 - **Step 1, orient,** exists on the executor server: [method, Availability](references/method.md#availability).
 - **Step 3, find leads.** Knowledge Services has no web search, documentation, repository, paper or browser tool. Your environment attaches those: [routing, Availability](references/tools/routing.md#availability).
-- **Step 4, capture, and step 6, verify.** Capture, locate, report registration and independent assessment exist on the executor server. So do claims, restatements, triage, probes, probe runs, proposed verdicts, source assessments and attention sweeps, through `chain_write`. Human confirmation and admission are not yours to write, and a capture you make is not yet quotable by a claim: [verification, Availability](references/verification.md#availability).
+- **Step 4, capture, and step 6, verify.** Capture, locate, report registration and independent assessment exist on the executor server. So do claims, restatements, triage, probes, probe runs, proposed verdicts, source assessments and attention sweeps, through `chain_write`, and `source_prepare_captured`, which makes a text, Markdown, HTML or JSON capture you made quotable by a claim. Human confirmation and admission are not yours to write: [verification, Availability](references/verification.md#availability).
 - **Step 8, hand back:** [handback, Availability](references/handback.md#availability).

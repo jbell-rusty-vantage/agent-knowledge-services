@@ -262,7 +262,7 @@ async function itemEligibility(
     join content.document_representation r on r.tenant_id=cs.tenant_id and r.id=cs.representation_id
     left join content.document_summary s on s.tenant_id=t.tenant_id and s.id=t.summary_id
     left join evidence.claim c on c.tenant_id=t.tenant_id and c.id=t.claim_id
-    left join knowledge.record kr on kr.tenant_id=t.tenant_id and kr.id=t.record_id
+    left join guidance.item kr on kr.tenant_id=t.tenant_id and kr.id=t.record_id
     left join evidence.claim rc on rc.tenant_id=kr.tenant_id and rc.id=kr.provenance_claim_id
     where v.tenant_id=$1 and v.id=$2`,
       [tenantId, vectorItemId],

@@ -118,11 +118,14 @@ A verdict holds for the versions it was run on. When a release of a subject land
 | See what can be captured | `verify_supported_media_types` | `knowledge-verify media-types`; `ks verify capture media-types` |
 | Inspect a capture | `verify_list_captures`, `verify_read_capture`, `verify_search_capture` | `knowledge-verify read`, `knowledge-verify search`; `ks verify capture list`, `ks verify capture read`, `ks verify capture search` |
 | Check that a quote occurs once | `verify_locate_quote` | `knowledge-verify locate`; `ks verify capture locate` |
+| Make a capture quotable by a claim: register it in the knowledge base as an evidence capture with content units, and get the anchor of each quote | `source_prepare_captured` | `knowledge source prepare-captured <captureId> --quotes '["<quote>"]'` |
 | Export the exact fragment a report cites | `verify_capture_fragment` | `knowledge-verify fragment` |
 | Keep a file as an artifact | `verify_register_artifact`, `verify_get_artifact` | `knowledge-verify register`, `knowledge-verify artifact`; `ks verify artifact register`, `ks verify artifact get` |
 
 - The `ks` commands in this table run on the local profile, over a file store on your machine. The `knowledge-verify` commands forward to a served executor.
 - `verify_capture_fragment` needs durable custody. It runs only on a served executor.
+- `source_prepare_captured` registers text, Markdown, HTML and JSON captures. It refuses a PDF, office or spreadsheet capture with `CAPTURE_MEDIA_TYPE_UNSUPPORTED`. The same bytes from the same address register once: a second call returns the first registration with `replayed` true.
+- Each unit is one block of the captured text (a heading, a paragraph, a list, a table, a code block; one line of an HTML page; one member of a JSON document). A quote anchors only when it lies inside one unit: an anchor of `not_in_one_unit` means shorten the quote to one block.
 - The platform server cannot produce a quote. `knowledge_source_fetch` stores a capture for document preparation, and no tool on that server reads or locates text in it.
 
 <a id="chain-tools"></a>
@@ -145,7 +148,14 @@ How to call it:
 - **The call** is `{ "request": { "operation", "idempotency_key", "input", "actor" } }`. `input` holds the operation's arguments.
 - **`idempotency_key` is yours.** Derive it from the work (`run-2fa5:claim:7`), never from the attempt. The same key with the same input returns the first result with `replayed` true and writes nothing. The same key with another input is refused.
 - **`actor` says who acted:** `label` (the agent or tool, never a person), `mission_id` (the mission whose budget bounds the work) and `mc` (the Mission Control invocation). It is recorded as you send it.
-- **An evidence anchor** is `{ "capture_id", "node_id", "quote" }`: a quote that is verbatim in one content unit of a capture held in the knowledge base. Find the pair with `evidence_units` (`knowledge evidence units --text "<words>"`), which returns each unit's text and its `anchor`. Copy the quote from that text.
+- **An evidence anchor** is `{ "capture_id", "node_id", "quote" }`: a quote that is verbatim in one content unit of a capture held in the knowledge base. From a page you captured, in order:
+  1. `verify_capture_source` (or `verify_capture_file`) stores the page and returns its `captureId`;
+  2. `verify_locate_quote` checks that the quote occurs once in that capture;
+  3. `source_prepare_captured` with that `captureId` and `quotes: ["<quote>"]` makes the capture quotable and returns, for each quote, the `anchor` to paste;
+  4. `chain_write` `record_claim` with `evidence: [<anchor>]`.
+
+  Content the knowledge base already holds needs no capture: `evidence_units` (`knowledge evidence units --text "<words>"`) returns each unit's text and its `anchor`. Copy the quote from that text.
+- **A probe run's `output`** is an anchor too. Capture the run's output file with `verify_capture_file`, register it with `source_prepare_captured`, and pass the returned anchor. For JSON output, a unit is one member: send `{ "capture_id", "node_id", "selector_kind": "json_pointer", "pointer", "quote" }` with the unit's `pointer`.
 - **Order matters.** A verdict needs a registered probe with a recorded run in every cell it cites. A derived source assessment needs a prior first. Do the work of a sweep only when it came back `open`.
 
 <a id="not-written"></a>
@@ -189,7 +199,7 @@ How to call it:
 
 **No Knowledge Services tool, command or operation exists for:**
 
-- **turning a capture you made into content units.** `verify_capture_source` and `verify_capture_file` store bytes in the executor's own store. An anchor needs a capture and a unit held in the knowledge base, and no tool here creates them from an executor capture: `source_prepare_captured` needs a preparation host, and answers `PREPARATION_HOST_REQUIRED` without one. Until then you can anchor only content the knowledge base already holds (`evidence_units` finds it), or pass an existing `locator_id`;
+- **anchoring a quote in a PDF, office or spreadsheet capture.** `source_prepare_captured` refuses them (`CAPTURE_MEDIA_TYPE_UNSUPPORTED`). Capture an HTML or text version of the same document when one exists, or pass an existing `locator_id`;
 - human confirmation of a verdict or of a restated wording (step 5): a person does it, through a path no agent holds;
 - the admission evidence pack for a single claim, and its dispatch (step 7);
 - running a probe. `record_probe_run` records a run you made; nothing here executes one.

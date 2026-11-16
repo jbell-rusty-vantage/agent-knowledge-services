@@ -279,8 +279,8 @@ export async function stageExploratoryVersion(
         ],
       );
       await client.query(
-        `insert into retrieval.projection_target(id,tenant_id,target_kind,schema_version,canonical_table,canonical_record_id,eligibility_validator)
-        values($1,$2,'claim',1,'evidence.claim',$3,'util.current_tenant_id()') on conflict(id) do nothing`,
+        `insert into retrieval.projection_target(id,tenant_id,target_kind,claim_id)
+        values($1,$2,'claim',$3) on conflict(id) do nothing`,
         [targetId, input.tenantId, claimRecordId],
       );
       const artifact = input.artifacts.find((candidate) => candidate.videoId === item.videoId);
@@ -290,7 +290,7 @@ export async function stageExploratoryVersion(
         representationId = id(input.namespace, `representation:${input.version}:${artifact.videoId}`),
         nodeId = id(input.namespace, `node:${input.version}:${item.sourceRecordId}`);
       await client.query(
-        "insert into content.document(id,tenant_id,document_kind,canonical_title) values($1,$2,'research_bundle',$3) on conflict(id) do nothing",
+        "insert into content.document(id,tenant_id,document_type_code,canonical_title) values($1,$2,'unclassified',$3) on conflict(id) do nothing",
         [documentId, input.tenantId, `Exploratory bundle ${artifact.videoId}`],
       );
       await client.query(
@@ -303,7 +303,7 @@ export async function stageExploratoryVersion(
         [representationId, input.tenantId, documentVersionId, artifact.artifactId, artifact.digest.slice(7)],
       );
       await client.query(
-        `insert into content.document_node(id,tenant_id,representation_id,ordinal,stable_local_key,node_kind,inline_text,start_offset,end_offset,normalized_content_sha256)
+        `insert into content.document_node(id,tenant_id,representation_id,ordinal,stable_local_key,unit_kind,inline_text,start_offset,end_offset,normalized_content_sha256)
         values($1,$2,$3,$4,$5,'paragraph',$6,0,$7,$8) on conflict(id) do nothing`,
         [
           nodeId,
@@ -334,13 +334,12 @@ export async function stageExploratoryVersion(
       );
       await client.query(
         `insert into retrieval.vector_item
-        (id,tenant_id,space_version_id,claim_id,search_projection_id,content_sha256,backend_location,verification_state,language,visibility,classification,lifecycle,authority_level,freshness_at,search_text)
-        values($1,$2,$3,$4,$5,$6,'pgvector:halfvec1536','verified','en','internal','internal','active','exploratory',$7,$8) on conflict(id) do nothing`,
+        (id,tenant_id,space_version_id,search_projection_id,content_sha256,backend_location,verification_state,language,visibility,classification,lifecycle,authority_level,freshness_at,search_text)
+        values($1,$2,$3,$4,$5,'pgvector:halfvec1536','verified','en','internal','internal','active','exploratory',$6,$7) on conflict(id) do nothing`,
         [
           item.vectorItemId,
           input.tenantId,
           vectorSpaceVersionId,
-          claimRecordId,
           item.projectionId,
           hexDigest(item.text),
           item.freshnessAt,

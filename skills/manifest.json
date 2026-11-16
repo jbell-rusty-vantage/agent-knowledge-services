@@ -350,6 +350,7 @@
           "knowledge-verification"
         ],
         "executor": [
+          "source_prepare_captured",
           "evidence_units",
           "chain_write",
           "knowledge_operation_invoke",
@@ -401,9 +402,7 @@
           "knowledge-preparation-and-promotion",
           "vector-store-management"
         ],
-        "executor": [
-          "source_prepare_captured"
-        ]
+        "executor": []
       },
       {
         "id": "retrieve",

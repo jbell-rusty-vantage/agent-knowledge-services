@@ -29,7 +29,7 @@
     "examples": "node skills/knowledge-verify/examples/offline.mjs dist/index.js"
   },
   "dependencies": {
-    "@aiengineer/database-contract": "file:../../vendor/aiengineer-database-contract-0.8.0.tgz",
+    "@aiengineer/database-contract": "file:../../vendor/aiengineer-database-contract-0.9.0.tgz",
     "@aiengineer/knowledge-application": "workspace:*",
     "@aiengineer/knowledge-binding-aiengineer-postgres": "workspace:*",
     "@aiengineer/knowledge-binding-biotech-graph": "workspace:*",

@@ -16,15 +16,15 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@aiengineer/database-contract": "file:../../vendor/aiengineer-database-contract-0.8.0.tgz",
+    "@aiengineer/database-contract": "file:../../vendor/aiengineer-database-contract-0.9.0.tgz",
     "@aiengineer/knowledge-contracts": "workspace:*",
     "@aiengineer/knowledge-core": "workspace:*",
     "@aiengineer/knowledge-operation-protocol": "workspace:*",
+    "@aiengineer/knowledge-preparation": "workspace:*",
     "zod": "catalog:"
   },
   "devDependencies": {
     "@aiengineer/knowledge-persistence": "workspace:*",
-    "@aiengineer/knowledge-preparation": "workspace:*",
     "@types/node": "catalog:",
     "tsup": "catalog:",
     "typescript": "catalog:",

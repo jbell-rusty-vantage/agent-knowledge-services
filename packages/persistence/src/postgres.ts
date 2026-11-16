@@ -73,27 +73,26 @@ const digestHex = (value: unknown) => sha256Digest(JSON.parse(JSON.stringify(val
 const halfvec = (values: readonly number[]) => `[${values.join(",")}]`;
 const iso = (value: unknown) => (value instanceof Date ? value.toISOString() : String(value));
 
+/**
+ * The column of `retrieval.packet_member` a canonical member's reference is stored in: a claim, or a guidance item of
+ * one of the `guidance.item_kind` codes (Build 08 folded the nine typed knowledge tables into `guidance.item`).
+ */
+const GUIDANCE_ITEM_KINDS = [
+  "advanced_usage_pattern",
+  "compatibility_constraint",
+  "failure_mode",
+  "implementation_example",
+  "operational_practice",
+  "research_direction",
+  "security_consideration",
+  "setup_guide_step",
+  "solution_pattern",
+  "technical_problem",
+] as const;
 const packetMemberReferenceColumns = new Map<string, string>([
   ["claim", "claim_id"],
   ["evidence.claim", "claim_id"],
-  ["technical_problem", "technical_problem_id"],
-  ["knowledge.technical_problem", "technical_problem_id"],
-  ["solution_pattern", "solution_pattern_id"],
-  ["knowledge.solution_pattern", "solution_pattern_id"],
-  ["advanced_usage_pattern", "advanced_usage_pattern_id"],
-  ["knowledge.advanced_usage_pattern", "advanced_usage_pattern_id"],
-  ["implementation_example", "implementation_example_id"],
-  ["knowledge.implementation_example", "implementation_example_id"],
-  ["failure_mode", "failure_mode_id"],
-  ["knowledge.failure_mode", "failure_mode_id"],
-  ["benchmark_result", "benchmark_result_id"],
-  ["knowledge.benchmark_result", "benchmark_result_id"],
-  ["compatibility_constraint", "compatibility_constraint_id"],
-  ["knowledge.compatibility_constraint", "compatibility_constraint_id"],
-  ["operational_practice", "operational_practice_id"],
-  ["knowledge.operational_practice", "operational_practice_id"],
-  ["security_consideration", "security_consideration_id"],
-  ["knowledge.security_consideration", "security_consideration_id"],
+  ...GUIDANCE_ITEM_KINDS.map((kind) => [kind, "guidance_item_id"] as [string, string]),
 ]);
 
 function assertPacketDigest(packet: EvidencePacket): void {
@@ -1785,7 +1784,7 @@ export class PostgresCanonicalRepository
         join retrieval.projection_target pt on pt.tenant_id=sp.tenant_id and pt.id=sp.projection_target_id and pt.retired_at is null
         join retrieval.vector_space_version vsv on vsv.tenant_id=vi.tenant_id and vsv.id=vi.space_version_id
         join retrieval.vector_space vs on vs.tenant_id=vsv.tenant_id and vs.id=vsv.vector_space_id
-        left join knowledge.record kr on kr.tenant_id=pt.tenant_id and kr.id=pt.record_id
+        left join guidance.item kr on kr.tenant_id=pt.tenant_id and kr.id=pt.record_id
         left join lateral (
           select cs.representation_id,span.document_node_id node_id,span.start_offset,span.end_offset,
             span.selected_text_sha256 normalized_content_sha256,

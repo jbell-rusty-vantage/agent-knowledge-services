@@ -40,22 +40,20 @@ Vendor MCP stays in the **agent** toolbox. After their skill runs, `source impor
 
 | Surface | Binary | Convert / chunk |
 |---|---|---|
-| Executor | `knowledge` / `knowledge-verify` | `source prepare-captured` for existing plain text or Markdown captures only |
+| Executor | `knowledge` / `knowledge-verify` | None; `source prepare-captured` makes an executor capture quotable by the verification chain and does not chunk |
 | Platform | `ks` (API client) | `ks knowledge document convert` (`transformation`), `ks knowledge chunk preview`, `ks knowledge chunk build` |
 
-Hosts without `source_prepare_captured` reject it rather than substituting a local converter. The platform has no node or chunk-set inspection command or tool; inspect nodes from the conversion output or an executor read of sealed bytes.
+Do not substitute a local converter. The platform has no node or chunk-set inspection command or tool; inspect nodes from the conversion output or an executor read of sealed bytes.
 
 Worked command bodies: [cli-reference.md](cli-reference.md), [mcp-reference.md](mcp-reference.md), [examples.md](examples.md).
 
-## Prepare an existing text capture
+## An executor capture is not a chunk set
 
-When the trusted host exposes `source_prepare_captured`, prepare an existing native text capture
-with the executor CLI `knowledge source prepare-captured <captureId> --title '<title>' --version '<version>'`
-or the corresponding executor MCP operation. This reads the retained capture, validates its remote
-custody, and runs the pinned conversion and chunk procedures. Keep the returned representation,
-chunk-set and durable receipt identifiers. Repeating the exact request reconciles those receipts.
-The operation supports plain text and Markdown captures; it does not acquire a new source or admit
-the resulting representation. Independent representation review is still required before promotion.
+The executor's `source_prepare_captured` (`knowledge source prepare-captured <captureId>`) registers a
+text, Markdown, HTML or JSON capture as an evidence capture with one content unit per block, so a claim
+or a probe run can quote it. It runs no chunk profile, writes no chunk set, embeds nothing and promotes
+nothing; chunking and promotion stay on the platform commands below. Its procedure is in the
+`knowledge-research` verification reference.
 
 ## Chunk with an admitted profile
 
