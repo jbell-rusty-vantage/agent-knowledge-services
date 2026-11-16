@@ -7,7 +7,7 @@ import { claimKey, subjectRefOfPlaceholder } from "./placeholders.js";
 import { slugify, type IngestionPlan, type PlannedProposal } from "./plan.js";
 import { originDigest } from "@aiengineer/knowledge-operation-protocol";
 import type { AffectedRef, ProposalReceipt, ReceiptTarget, ReceiptTargetAction, ReceiptTargetRole } from "./receipt.js";
-import type { EntityKind, Vocabulary } from "./vocabulary.js";
+import type { Vocabulary } from "./vocabulary.js";
 import type { z } from "zod";
 import { materializeProvenance } from "./provenance.js";
 import { materializeRecord } from "./records.js";
@@ -64,10 +64,9 @@ export interface TargetOptions {
 
 /** The role a native row plays when the writer does not name one. */
 export function defaultTargetRole(schema: string, table: string): ReceiptTargetRole {
-  if (schema === "corpus" && table === "entity") return "subject";
+  if (schema === "catalog" && table === "entity") return "subject";
   if (schema === "staging") return "staging";
   if (schema === "evidence") return table === "segment_support" ? "supporting" : "provenance";
-  if (schema === "research") return "projection";
   return "canonical";
 }
 
@@ -201,7 +200,7 @@ const scalar = async (client: KnowledgeSqlClient, sql: string, params: readonly 
 export async function applyPlan(context: ApplyContext): Promise<ApplyOutcome> {
   const state = new ApplyState(context.plan);
   for (const subject of reusedSubjects(context.plan))
-    state.target("corpus", "entity", subject.entityId, {
+    state.target("catalog", "entity", subject.entityId, {
       action: "reused",
       entityId: subject.entityId,
     });
@@ -257,7 +256,7 @@ export function targetsWithoutBatch(plan: IngestionPlan): ReceiptTarget[] {
   const targets = new TargetCollector();
   for (const subject of reusedSubjects(plan)) {
     targets.rememberEntityKind(subject.entityId, subject.kind);
-    targets.add("corpus", "entity", subject.entityId, null, {
+    targets.add("catalog", "entity", subject.entityId, null, {
       action: "reused",
       entityId: subject.entityId,
     });
@@ -336,12 +335,10 @@ async function write(context: ApplyContext, proposal: Proposal, state: ApplyStat
         state.target(ref.schema, ref.table, ref.id, {
           action: result.noop ? "reused" : "created",
           claimId,
-          ...(ref.table === "record_entity_link" ? { entityId } : {}),
+          ...(ref.table === "item_subject" ? { entityId } : {}),
         });
       return { ids: result.ids, ...(result.noop ? { noop: true } : {}) };
     }
-    case "metric.observe":
-      return observeMetric(context, proposal, state);
     case "candidate.stage":
       return { ids: await stageCandidate(context, proposal, state) };
     case "report.publish":
@@ -375,7 +372,7 @@ interface InsertIfAbsent {
 }
 
 const aliasRow = (entityId: string, alias: { alias: string; aliasKind: string }): InsertIfAbsent => ({
-  table: "corpus.entity_alias",
+  table: "catalog.entity_alias",
   key: "aliasId",
   columns: {
     entity_id: entityId,
@@ -389,7 +386,7 @@ const aliasRow = (entityId: string, alias: { alias: string; aliasKind: string })
 });
 
 const identifierRow = (entityId: string, identifier: { scheme: string; value: string }): InsertIfAbsent => ({
-  table: "corpus.entity_identifier",
+  table: "catalog.entity_identifier",
   key: "identifierId",
   columns: {
     entity_id: entityId,
@@ -435,6 +432,8 @@ async function createEntity(
     throw domainError("SUBJECT_UNKNOWN", `cannot create subject ${proposal.subjectRef}`);
   const kind = context.vocabulary.entityKinds.get(subject.kind);
   if (!kind) throw domainError("VOCABULARY_VIOLATION", `unknown entity kind ${subject.kind}`);
+  if (kind.isWork)
+    throw domainError("WORK_KIND_NOT_CREATABLE", `${subject.kind} needs a catalog.work row no bounded role may write`);
   const { client, receiptId } = context;
   const candidateId = await scalar(
     client,
@@ -445,7 +444,7 @@ async function createEntity(
         displayName: subject.displayName,
         aliases: subject.aliases,
         identifiers: subject.identifiers,
-        typedPayload: subject.typedPayload,
+        attributes: subject.attributes,
         intentId: context.intent.intentId,
         ref: subject.ref,
       }),
@@ -453,8 +452,15 @@ async function createEntity(
   );
   const entityId = await scalar(
     client,
-    "insert into corpus.entity(id, kind, display_name, slug, created_by_receipt_id) values($1,$2,$3,$4,$5) returning id",
-    [planned.entityId, subject.kind, subject.displayName, planned.slug ?? slugify(subject.displayName), receiptId],
+    "insert into catalog.entity(id, kind, display_name, slug, attributes, created_by_receipt_id) values($1,$2,$3,$4,$5::jsonb,$6) returning id",
+    [
+      planned.entityId,
+      subject.kind,
+      subject.displayName,
+      planned.slug ?? slugify(subject.displayName),
+      JSON.stringify(resolvedAttributes(subject.attributes, state)),
+      receiptId,
+    ],
   );
   const decisionId = await scalar(
     client,
@@ -462,11 +468,6 @@ async function createEntity(
     [candidateId, entityId, receiptId],
   );
   await client.query("update staging.candidate set resolved_entity_id=$2 where id=$1", [candidateId, entityId]);
-  await insertTypedRow(client, state, {
-    kind,
-    entityId,
-    payload: subject.typedPayload,
-  });
   const { aliasIds, identifierIds } = await insertNames(context, state, {
     entityId,
     subject,
@@ -478,7 +479,7 @@ async function createEntity(
   });
   state.rememberCreatedEntity(subject.ref, entityId, subject.kind);
   const claimId = state.claim(proposal);
-  state.touch("corpus", "entity", entityId, { entityId, claimId });
+  state.touch("catalog", "entity", entityId, { entityId, claimId });
   state.touch("staging", "candidate", candidateId, { entityId });
   state.touch("staging", "resolution_decision", decisionId, { entityId });
   state.touch("temporal", "segment", nameSegmentId, { entityId, claimId });
@@ -494,29 +495,14 @@ async function createEntity(
   };
 }
 
-interface TypedRow {
-  readonly kind: EntityKind;
-  readonly entityId: string;
-  readonly payload: Record<string, unknown>;
-}
-
-/** Inserts the kind's typed row, resolving `$subject:` placeholders and serialising nested objects as JSON. */
-async function insertTypedRow(client: KnowledgeSqlClient, state: ApplyState, row: TypedRow): Promise<void> {
-  const columns = Object.keys(row.payload).filter((column) => row.kind.columns.includes(column));
-  const values = columns.map((column) => typedColumnValue(row.payload[column], state));
-  const quoted = columns.map((column) => `"${column.replaceAll('"', '""')}"`);
-  const placeholders = columns.map((_, index) => `$${index + 2}`);
-  await client.query(
-    `insert into "${row.kind.schema}"."${row.kind.table}"(id${quoted.length ? `,${quoted.join(",")}` : ""}) values($1${placeholders.length ? `,${placeholders.join(",")}` : ""})`,
-    [row.entityId, ...values],
+/** Kind attributes as stored: a top-level `$subject:<ref>` placeholder becomes that subject's entity id. */
+function resolvedAttributes(attributes: Record<string, unknown>, state: ApplyState): Record<string, unknown> {
+  return Object.fromEntries(
+    Object.entries(attributes).map(([key, value]) => {
+      const subjectRef = subjectRefOfPlaceholder(value);
+      return [key, subjectRef === undefined ? value : state.entity(subjectRef)];
+    }),
   );
-}
-
-function typedColumnValue(value: unknown, state: ApplyState): unknown {
-  const subjectRef = subjectRefOfPlaceholder(value);
-  if (subjectRef !== undefined) return state.entity(subjectRef);
-  const isPlainObject = value !== null && typeof value === "object" && !Array.isArray(value);
-  return isPlainObject ? JSON.stringify(value) : value;
 }
 
 interface NamedEntity {
@@ -573,7 +559,7 @@ async function assertRelationship(
       state.claim(proposal),
     ],
   );
-  state.touch("corpus", "relationship", relationshipId, {
+  state.touch("catalog", "relationship", relationshipId, {
     claimId: state.claim(proposal),
   });
   const isTemporal = context.vocabulary.relationshipKinds.get(proposal.relationshipKind)?.temporal ?? false;
@@ -611,7 +597,7 @@ async function assertState(
     : null;
   const segmentId = await scalar(
     context.client,
-    "select temporal.assert_state($1,$2,$3::tstzrange,$4,$5,$6::numeric,$7,$8,$9,$10::jsonb,$11,$12,$13,$14,$15,$16)",
+    "select temporal.assert_state($1,$2,$3::tstzrange,$4,$5,$6::numeric,$7,$8,$9,$10::jsonb,$11,$12,$13,$14,$15)",
     [
       proposal.subjectRef ? state.entity(proposal.subjectRef) : null,
       proposal.streamKind,
@@ -628,7 +614,6 @@ async function assertState(
       proposal.temporalBasis,
       relationshipId,
       proposal.belief,
-      proposal.specificationRef ?? null,
     ],
   );
   const segment = await describeAssertedSegment(context.client, segmentId);
@@ -870,31 +855,6 @@ async function materializeClaims(
     claimRowIds.push(claimRowId);
   }
   return { ids: { claimRowIds, locatorIds, claimSubjectKeys } };
-}
-
-async function observeMetric(
-  context: ApplyContext,
-  proposal: ProposalOf<"metric.observe">,
-  state: ApplyState,
-): Promise<Written> {
-  const observationId = await scalar(
-    context.client,
-    "insert into ranking.metric_observation(metric_definition_version_id, subject_entity_id, benchmark_run_id, value, unit, observed_at, claim_id) values($1,$2,$3,$4,$5,$6::timestamptz,$7) returning id",
-    [
-      proposal.metricDefinitionVersionId,
-      state.entity(proposal.subjectRef),
-      proposal.benchmarkRunRef ? state.entity(proposal.benchmarkRunRef) : null,
-      proposal.value,
-      proposal.unit ?? null,
-      proposal.observedAt,
-      state.claim(proposal),
-    ],
-  );
-  state.touch("ranking", "metric_observation", observationId, {
-    entityId: state.entity(proposal.subjectRef),
-    claimId: state.claim(proposal),
-  });
-  return { ids: { observationId } };
 }
 
 /** Stages a `candidate.stage` proposal, or any proposal the plan routed to review, for a human decision. */

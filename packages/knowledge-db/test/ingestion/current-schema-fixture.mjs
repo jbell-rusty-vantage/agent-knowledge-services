@@ -1,6 +1,9 @@
 import { randomUUID } from "node:crypto";
 
-/** Synthetic schema fixture with its own typed parents and sealed price slot. */
+/**
+ * Synthetic schema fixture on the current AI Engineer schema (catalog identities with validated attributes, one
+ * `offering_price` series keyed the way the lab's loader keys them). Returns the offering entity id.
+ */
 export async function seedPriceSlot(db, tenantId) {
   return db.transaction({ tenantId }, async (client) => {
     const [provider, model, version, offering, intent, receipt] = Array.from({ length: 6 }, () => randomUUID());
@@ -12,30 +15,20 @@ export async function seedPriceSlot(db, tenantId) {
       "insert into orchestration.operation_receipt(id,intent_id,executor_version,outcome,changes_summary) values($1,$2,'synthetic-schema-fixture/1','applied','{}')",
       [receipt, intent],
     );
-    for (const [id, kind] of [
-      [provider, "organization"],
-      [model, "ai_model"],
-      [version, "ai_model_version"],
-      [offering, "model_offering"],
+    for (const [id, kind, attributes] of [
+      [provider, "organization", {}],
+      [model, "ai_model", {}],
+      [version, "ai_model_version", { version_label: "schema-fixture" }],
+      [offering, "model_offering", { offering_key: `schema-fixture-${offering}` }],
     ]) {
       await client.query(
-        "insert into corpus.entity(id,tenant_id,kind,slug,display_name,created_by_receipt_id) values($1,$2,$3,$4,$4,$5)",
-        [id, tenantId, kind, `schema-fixture-${id}`, receipt],
+        "insert into catalog.entity(id,tenant_id,kind,slug,display_name,attributes,created_by_receipt_id) values($1,$2,$3,$4,$4,$5::jsonb,$6)",
+        [id, tenantId, kind, `schema-fixture-${id}`, JSON.stringify(attributes), receipt],
       );
     }
-    await client.query("insert into corpus.organization(id) values($1)", [provider]);
-    await client.query("insert into corpus.ai_model(id) values($1)", [model]);
-    await client.query(
-      "insert into corpus.ai_model_version(id,ai_model_id,version_label) values($1,$2,'schema-fixture')",
-      [version, model],
-    );
-    await client.query(
-      "insert into corpus.model_offering(id,model_version_id,provider_entity_id,offering_key) values($1,$2,$3,'schema-fixture')",
-      [offering, version, provider],
-    );
     await client.query("select temporal.begin_batch((select knowledge_seq from api.knowledge_head()))");
     await client.query(
-      "select temporal.assert_state($1,'model_offering_price','[2026-01-01,)'::tstzrange,'input_tokens',null,2,'USD','per_1m_input_tokens',null,'{}',null,null,'observation_bounded')",
+      "select temporal.assert_state($1,'offering_price','[2026-01-01,)'::tstzrange,'input_tokens|fast||',null,2,'USD','USD_per_1M_tokens',null,'{\"meter\":\"input_tokens\",\"tier\":\"fast\"}',null,null,'observation_bounded')",
       [offering],
     );
     await client.query("select temporal.commit_batch($1,$2,repeat('0',64),'{\"synthetic\":true}')", [

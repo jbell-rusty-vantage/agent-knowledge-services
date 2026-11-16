@@ -77,13 +77,16 @@ async function fixture() {
   }
 }
 
-describe.skipIf(!url)("P1 temporal current-schema proof (explicit synthetic admission adapter)", () => {
+// Commits its fixture under a tenant of its own through the persistence repositories: only for a database that may
+// keep those rows (KS_TEST_ALLOW_COMMITTED_FIXTURES=1), never for one whose data must be left as found.
+const committing = process.env.KS_TEST_ALLOW_COMMITTED_FIXTURES === "1";
+describe.skipIf(!url || !committing)("P1 temporal current-schema proof (explicit synthetic admission adapter)", () => {
   beforeAll(() => {
     workspace = loadWorkspace(
       resolve(import.meta.dirname, "../../../../../../aiengineer/ai-engineer-db-contract/workspace"),
     );
   });
-  it("T05/T06/T08 corrects one legacy slot over a bounded interval and preserves K0 and adjacent evidence", async () => {
+  it("T05/T06/T08 corrects one existing price series over a bounded interval and preserves K0 and adjacent evidence", async () => {
     const f = await fixture();
     try {
       const offering = await seedPriceSlot(f.db, f.tenantId);
@@ -107,9 +110,9 @@ describe.skipIf(!url)("P1 temporal current-schema proof (explicit synthetic admi
               proposalId: "price",
               kind: "fact.assert_state",
               subjectRef: "offering",
-              streamKind: "model_offering_price",
-              scopeKey: "per_1m_input_tokens",
-              unit: "per_1m_input_tokens",
+              streamKind: "offering_price",
+              unit: "USD_per_1M_tokens",
+              payload: { meter: "input_tokens", tier: "fast" },
               currency: "USD",
               amount: 2,
               worldInterval: { from: "2026-01-01T00:00:00Z", to: null },
@@ -128,18 +131,18 @@ describe.skipIf(!url)("P1 temporal current-schema proof (explicit synthetic admi
         } as IngestionIntentInput);
       const original = await f.executor.apply(await make("original"));
       const k0 = original.head.after;
-      const stale = await make("stale", { amount: 9, unit: "Per 1m input tokens" });
+      const stale = await make("stale", { amount: 9, unit: "usd per 1m tokens" });
       stale.onStale = "rebase_if_disjoint";
       const correction = await make("correction", {
         amount: 3,
-        unit: "Per 1m input tokens",
+        unit: "usd per 1m tokens",
         worldInterval: { from: "2026-02-01T00:00:00Z", to: "2026-03-01T00:00:00Z" },
       });
       const plan = await f.executor.plan(correction);
       expect(plan.errors).toEqual([]);
       expect(plan.proposals.find((p) => p.proposalId === "price")?.effective).toMatchObject({
-        scopeKey: "input_tokens",
-        unit: "per_1m_input_tokens",
+        scopeKey: "input_tokens|fast||",
+        unit: "USD_per_1M_tokens",
       });
       const corrected = await f.executor.apply(correction);
       expect(corrected.head.after).toBe(k0 + 1);
@@ -152,31 +155,35 @@ describe.skipIf(!url)("P1 temporal current-schema proof (explicit synthetic admi
               await client.query(
                 `select st.scope_key,s.amount::text,c.structured->'verification'->>'claimId' claim_id
         from temporal.segment s join temporal.stream st on st.id=s.stream_id left join evidence.claim c on c.id=s.primary_claim_id
-        where st.subject_entity_id=$1 and st.kind='model_offering_price' and s.k_from<=$2 and (s.k_to is null or $2<s.k_to) and s.valid_during @> $3::timestamptz`,
+        where st.subject_entity_id=$1 and st.kind='offering_price' and s.k_from<=$2 and (s.k_to is null or $2<s.k_to) and s.valid_during @> $3::timestamptz`,
                 [offering, k, date],
               )
             ).rows,
         );
       expect(await state(k0, "2026-02-15Z")).toEqual([
-        { scope_key: "input_tokens", amount: "2.000000", claim_id: "original" },
+        { scope_key: "input_tokens|fast||", amount: "2.000000", claim_id: "original" },
       ]);
       expect(await state(corrected.head.after, "2026-02-15Z")).toEqual([
-        { scope_key: "input_tokens", amount: "3.000000", claim_id: "correction" },
+        { scope_key: "input_tokens|fast||", amount: "3.000000", claim_id: "correction" },
       ]);
       for (const date of ["2026-01-15Z", "2026-04-15Z"])
         expect(await state(corrected.head.after, date)).toEqual([
-          { scope_key: "input_tokens", amount: "2.000000", claim_id: "original" },
+          { scope_key: "input_tokens|fast||", amount: "2.000000", claim_id: "original" },
         ]);
       const duplicated = await f.executor.apply(correction);
       expect(duplicated.receiptId).toBe(corrected.receiptId);
       expect((await f.reads.head(f.tenantId)).knowledgeSeq).toBe(corrected.head.after);
       const regional = await f.executor.apply(
-        await make("regional", { scopeKey: "eu-enterprise", amount: 4, payload: { region: "eu", plan: "enterprise" } }),
+        await make("regional", {
+          scopeKey: "eu-enterprise",
+          amount: 4,
+          payload: { meter: "input_tokens", region: "eu", plan: "enterprise" },
+        }),
       );
       expect(regional.outcome).toBe("applied");
       expect((await state(regional.head.after, "2026-02-15Z")).map((row) => row.scope_key).sort()).toEqual([
         "eu-enterprise",
-        "input_tokens",
+        "input_tokens|fast||",
       ]);
       const alteredPayload = await f.executor.apply(
         await make("regional", {

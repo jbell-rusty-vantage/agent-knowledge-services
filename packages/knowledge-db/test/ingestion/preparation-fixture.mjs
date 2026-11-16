@@ -42,13 +42,12 @@ async function bootstrap(database, tenantId) {
     await client.query(
       `insert into orchestration.operation_receipt(id,intent_id,executor_version,outcome,changes_summary,affected_refs)
       values($1,$2,$3,'applied','{"synthetic":true}', $4::jsonb)`,
-      [receiptId, intentId, POLICY, JSON.stringify([{ schema: "corpus", table: "entity", id: parents.entityId }])],
+      [receiptId, intentId, POLICY, JSON.stringify([{ schema: "catalog", table: "entity", id: parents.entityId }])],
     );
     await client.query(
-      "insert into corpus.entity(id,tenant_id,kind,slug,display_name,created_by_receipt_id) values($1,$2,'organization',$3,$4,$5)",
+      "insert into catalog.entity(id,tenant_id,kind,slug,display_name,created_by_receipt_id) values($1,$2,'organization',$3,$4,$5)",
       [parents.entityId, tenantId, `synthetic-p0-${parents.entityId}`, "Synthetic P0 organization", receiptId],
     );
-    await client.query("insert into corpus.organization(id,tenant_id) values($1,$2)", [parents.entityId, tenantId]);
   });
   return parents;
 }

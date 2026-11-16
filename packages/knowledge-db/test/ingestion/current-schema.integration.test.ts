@@ -16,7 +16,10 @@ import { prepareCurrentSchemaFixture } from "./preparation-fixture.mjs";
 const url = disposableDatabaseUrl();
 const workspacePath = resolve(import.meta.dirname, "../../../../../../aiengineer/ai-engineer-db-contract/workspace");
 
-describe.skipIf(!url)("required isolated current-schema vertical path", () => {
+// Commits its fixture under a tenant of its own through the persistence repositories: only for a database that may
+// keep those rows (KS_TEST_ALLOW_COMMITTED_FIXTURES=1), never for one whose data must be left as found.
+const committing = process.env.KS_TEST_ALLOW_COMMITTED_FIXTURES === "1";
+describe.skipIf(!url || !committing)("required isolated current-schema vertical path", () => {
   it("persists preparation, synthetic service admission, snapshot, claim, fact, event and replayable receipt", async () => {
     const tenantId = randomUUID();
     const foreignTenant = randomUUID();

@@ -19,6 +19,11 @@ export interface OperationDefinition<TInput extends z.ZodObject, TOutput extends
   /** ≤ 300 characters; shown verbatim as the MCP tool description. */
   readonly description: string;
   readonly input: TInput;
+  /**
+   * The typed schema the tool list and `knowledge_describe` publish, for an operation whose `input` holds a request
+   * it validates itself (so a refusal carries the operation's own code). Absent: `input` is published.
+   */
+  readonly published?: z.ZodObject;
   readonly output: TOutput;
   readonly cli: CliBinding;
   /** Domain quality gate: return a reason to exit 1 even though the operation succeeded. */

@@ -103,8 +103,8 @@ describe("operation catalog parity", async () => {
       identity: { actor: owner, grants: [] },
     }),
   );
-  // Without knowledge services the executor MCP server registers only its verify_* tools and the guide, which it
-  // shares with the platform server (the `executor` binding of a platform row).
+  // Without knowledge services the executor MCP server registers only its verify_* tools, describe and the guide; the
+  // last two it shares with the platform server (the `executor` binding of a platform row).
   const executorTools = await toolNames(createVerificationMcpServer({} as never));
   const sharedWithExecutor = new Set(
     operationCatalog.flatMap((row) => (row.admission !== "executor" && row.executor ? [row.executor.mcp] : [])),
@@ -146,25 +146,26 @@ describe("operation catalog parity", async () => {
     // 2026-11-15: `system.describe` (knowledge_describe, GET /v1/describe, ks describe) adds one executable row;
     // `system.guide` (knowledge_guide, GET /v1/guide, ks guide) and `operations.result` (knowledge_operation_result,
     // GET /v1/operations/:id/result, ks knowledge operation result) add two more on every transport.
+    // 2026-11-16: the executor's `chain_write` and `evidence_units` add two executor-only rows.
     for (const transport of ["api", "mcp"] as const)
-      expect(states("local", transport)).toEqual({ "server only": 66, "executor only": 34 });
-    expect(states("local", "cli")).toEqual({ "server only": 66, "executor only": 25, "local profile": 9 });
+      expect(states("local", transport)).toEqual({ "server only": 66, "executor only": 36 });
+    expect(states("local", "cli")).toEqual({ "server only": 66, "executor only": 27, "local profile": 9 });
     expect(states("server", "api")).toEqual({
       executable: 50,
       "executable when composed": 16,
-      "executor only": 34,
+      "executor only": 36,
     });
     expect(states("server", "mcp")).toEqual({
       executable: 31,
       "executable when composed": 14,
       excluded: 21,
-      "executor only": 34,
+      "executor only": 36,
     });
     expect(states("server", "cli")).toEqual({
       executable: 34,
       "executable when composed": 14,
       excluded: 18,
-      "executor only": 34,
+      "executor only": 36,
     });
   });
 
@@ -175,7 +176,7 @@ describe("operation catalog parity", async () => {
     }, {});
     // The local host composes no guide or describe operation: `ks guide` and `ks describe` are offline utilities
     // that load no host.
-    expect(counts).toEqual({ "server only": 91, offline: 8, "capture provider": 1 });
+    expect(counts).toEqual({ "server only": 93, offline: 8, "capture provider": 1 });
     const verification = {
       captureMediaKind: () => "text" as const,
       create: (() => {
@@ -299,10 +300,12 @@ describe("operation catalog parity", async () => {
       expect("excluded" in row.api && row.api.excluded).toMatch(/receipt semantics/u);
   });
 
-  it("serves the guide on the executor server too, as the one tool it shares with the platform server", () => {
-    expect([...sharedWithExecutor]).toEqual(["knowledge_guide"]);
-    expect(executorTools.has("knowledge_guide")).toBe(true);
-    expect(mcpTools.has("knowledge_guide")).toBe(true);
+  it("serves describe and the guide on the executor server too, the two tools it shares with the platform server", () => {
+    expect([...sharedWithExecutor]).toEqual(["knowledge_describe", "knowledge_guide"]);
+    for (const name of sharedWithExecutor) {
+      expect(executorTools.has(name), name).toBe(true);
+      expect(mcpTools.has(name), name).toBe(true);
+    }
   });
 
   it("binds every local-profile ks command to its executor row and the local host's admission", () => {

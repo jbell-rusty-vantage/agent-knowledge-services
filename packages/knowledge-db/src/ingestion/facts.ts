@@ -13,7 +13,7 @@ import {
 } from "./plan.js";
 import { applyRules, type RuleSet } from "./rules.js";
 import { domainError } from "../schema-workspace/index.js";
-import { eventExtent, extentTimestamp, normalizeTemporalUnit, priceSlotAliases } from "./temporal.js";
+import { eventExtent, extentTimestamp, normalizeTemporalUnit } from "./temporal.js";
 import type { Vocabulary } from "./vocabulary.js";
 import { canonicalJson } from "../db-read/index.js";
 import { existingRecord, recordKeys } from "./records.js";
@@ -104,7 +104,7 @@ function entityIdFor(subject: Subject, facts: SubjectFacts): string | null {
 async function subjectFacts(client: KnowledgeSqlClient, subject: Subject): Promise<SubjectFacts> {
   if (subject.mode === "resolved") {
     const row = (
-      await client.query<Row>("select kind, lifecycle, merged_into_id from corpus.entity where id=$1", [
+      await client.query<Row>("select kind, lifecycle, merged_into_id from catalog.entity where id=$1", [
         subject.entityId,
       ])
     ).rows[0];
@@ -121,7 +121,7 @@ async function subjectFacts(client: KnowledgeSqlClient, subject: Subject): Promi
   for (const identifier of subject.identifiers) {
     for (const row of (
       await client.query<Row>(
-        "select e.id, e.kind, e.display_name from corpus.entity_identifier i join corpus.entity e on e.id=i.entity_id where i.scheme=$1 and i.value=$2 and e.lifecycle='active'",
+        "select e.id, e.kind, e.display_name from catalog.entity_identifier i join catalog.entity e on e.id=i.entity_id where i.scheme=$1 and i.value=$2 and e.lifecycle='active'",
         [identifier.scheme, identifier.value],
       )
     ).rows) {
@@ -151,7 +151,7 @@ async function subjectFacts(client: KnowledgeSqlClient, subject: Subject): Promi
   }
   const slug =
     (
-      await client.query<Row>("select 1 from corpus.entity where kind=$1 and slug=$2", [
+      await client.query<Row>("select 1 from catalog.entity where kind=$1 and slug=$2", [
         subject.kind,
         slugify(subject.displayName),
       ])
@@ -185,7 +185,7 @@ async function existingFacts(
     const claimId = claim?.claimRowId ?? null;
     const unresolvedClaim = primary && !claimId && !claim?.fixtureOnly;
     if (proposal.kind === "fact.assert_state" && proposal.subjectRef) {
-      const seriesKey = await sameUnitSeriesKey(client, proposal, String(entityIds.get(proposal.subjectRef)));
+      const seriesKey = await sameMeterSeriesKey(client, proposal, String(entityIds.get(proposal.subjectRef)));
       if (seriesKey !== undefined) seriesKeys[proposal.proposalId] = seriesKey;
       proposal = applyRules(deps.rules, proposal, seriesKey === undefined ? {} : { existingSeriesKey: seriesKey })
         .proposal as ProposalOf<"fact.assert_state">;
@@ -198,8 +198,8 @@ async function existingFacts(
          where st.kind=$1 and st.subject_entity_id=$2 and st.scope_key=$3 and s.k_to is null and s.valid_during = tstzrange($4::timestamptz,$5::timestamptz,'[)')
            and s.status is not distinct from $6 and s.amount is not distinct from $7::numeric and s.currency is not distinct from $8::char(3) and s.unit is not distinct from $9
            and s.belief=$10 and s.temporal_basis=$11 and s.payload=$12::jsonb and s.ref_entity_id is not distinct from $13::uuid
-           and s.specification_id is not distinct from $14::uuid and s.primary_claim_id is not distinct from $15::uuid
-           and (($16::text is null and s.extent_id is null) or (x.source_text=$16 and x.precision=$17 and x.locator_id is not distinct from $18::uuid and x.earliest is not distinct from $19::timestamptz and x.latest is not distinct from $20::timestamptz and x.timezone is null))
+           and s.primary_claim_id is not distinct from $14::uuid
+           and (($15::text is null and s.extent_id is null) or (x.source_text=$15 and x.precision=$16 and x.locator_id is not distinct from $17::uuid and x.earliest is not distinct from $18::timestamptz and x.latest is not distinct from $19::timestamptz and x.timezone is null))
            order by s.id limit 1`,
           [
             proposal.streamKind,
@@ -215,7 +215,6 @@ async function existingFacts(
             proposal.temporalBasis,
             JSON.stringify(proposal.payload),
             proposal.refEntityRef ? entityIds.get(proposal.refEntityRef) : null,
-            proposal.specificationRef ?? null,
             claimId,
             extent?.sourceText ?? null,
             extent?.precision ?? null,
@@ -230,7 +229,7 @@ async function existingFacts(
     if (proposal.kind === "relationship.assert") {
       const row = (
         await client.query<Row>(
-          "select id, properties = $6::jsonb same from corpus.relationship where kind=$1 and from_entity_id=$2 and to_entity_id=$3 and qualifier=$4 and episode=$5 and k_to is null order by id limit 1",
+          "select id, properties = $6::jsonb same from catalog.relationship where kind=$1 and from_entity_id=$2 and to_entity_id=$3 and qualifier=$4 and episode=$5 and k_to is null order by id limit 1",
           [
             proposal.relationshipKind,
             entityIds.get(proposal.fromRef),
@@ -281,24 +280,37 @@ async function existingFacts(
   return { segments, relationships, occurrences, seriesKeys };
 }
 
-/** Resolve only recognized legacy aliases; explicit regional/qualified scopes stay distinct. */
-async function sameUnitSeriesKey(
+/**
+ * The key of the subject's current `offering_price` series with the proposal's meter, tier and region, when the
+ * proposal names no `scopeKey` (an explicit key stays distinct). More than one such series is ambiguous: name the key.
+ */
+async function sameMeterSeriesKey(
   client: KnowledgeSqlClient,
   proposal: ProposalOf<"fact.assert_state">,
   entityId: string,
 ): Promise<string | undefined> {
-  if (proposal.streamKind !== "model_offering_price" || proposal.unit === undefined) return undefined;
-  const aliases = priceSlotAliases(proposal.unit);
-  if (proposal.scopeKey && !aliases.includes(proposal.scopeKey)) return undefined;
+  if (proposal.streamKind !== "offering_price" || (proposal.scopeKey ?? "") !== "") return undefined;
+  const { meter, tier, region } = proposal.payload;
+  if (typeof meter !== "string" || meter === "") return undefined;
   const rows = (
     await client.query<Row>(
       `select distinct st.scope_key from temporal.segment s join temporal.stream st on st.id=s.stream_id
-     where st.kind=$1 and st.subject_entity_id=$2 and s.unit=$3 and s.k_to is null and st.scope_key=any($4::text[])`,
-      [proposal.streamKind, entityId, proposal.unit, aliases],
+     where st.kind=$1 and st.subject_entity_id=$2 and s.k_to is null and s.payload->>'meter'=$3
+       and coalesce(s.payload->>'tier','')=$4 and coalesce(s.payload->>'region','')=$5`,
+      [
+        proposal.streamKind,
+        entityId,
+        meter,
+        typeof tier === "string" ? tier : "",
+        typeof region === "string" ? region : "",
+      ],
     )
   ).rows;
   if (rows.length > 1)
-    throw domainError("TEMPORAL_SLOT_AMBIGUOUS", "Multiple active streams use aliases of the same semantic price slot");
+    throw domainError(
+      "TEMPORAL_SLOT_AMBIGUOUS",
+      "Several current price series share this meter, tier and region; name the scopeKey of the one to correct",
+    );
   return rows[0] ? String(rows[0].scope_key) : undefined;
 }
 

@@ -1,7 +1,12 @@
 import { existsSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { ArtifactLedger, ReadExecutor } from "@aiengineer/knowledge-db";
+import {
+  ArtifactLedger,
+  GovernedChainExecutor,
+  ReadExecutor,
+  type KnowledgeTransactions,
+} from "@aiengineer/knowledge-db";
 import { IngestionExecutor, exactUseEvidenceOracle, type UseClassPolicy } from "@aiengineer/knowledge-db";
 import {
   PostgresCanonicalRepository,
@@ -63,6 +68,8 @@ export interface KnowledgeServices {
   readonly artifacts: ArtifactLedger;
   readonly reads: ReadExecutor;
   readonly ingestion: IngestionExecutor;
+  /** The governed writes of the research verification chain, and the unit-to-capture read an anchor needs. */
+  readonly chain: GovernedChainExecutor;
   readonly useClasses: UseClassPolicy;
   readonly sourceDiscovery?: SourceDiscoveryApplicationService;
   readonly checkpoints?: CheckpointApplicationService;
@@ -138,6 +145,10 @@ export interface KnowledgeServicesOptions {
   readonly sourceDiscoveryHost?: SourceDiscoveryHost;
   readonly prepareCapturedSource?: (input: unknown) => Promise<unknown>;
 }
+
+/** The verification-chain service over a database port, as the composition below builds it. */
+export const createChainService = (db: KnowledgeTransactions): GovernedChainExecutor =>
+  new GovernedChainExecutor({ db });
 
 export function createKnowledgeServices(
   config: KnowledgeConfig,
@@ -244,6 +255,7 @@ export function createKnowledgeServices(
     artifacts,
     reads,
     ingestion,
+    chain: createChainService(db),
     useClasses,
     ...(sourceDiscovery ? { sourceDiscovery } : {}),
     ...(checkpoints ? { checkpoints } : {}),

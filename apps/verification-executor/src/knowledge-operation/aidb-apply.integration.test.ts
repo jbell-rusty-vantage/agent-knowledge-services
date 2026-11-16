@@ -264,7 +264,7 @@ describe.skipIf(!url)("knowledge.apply over K01 on the disposable AI Engineer da
           mode: "new",
           kind: "organization",
           displayName: `KOP Exact Use Org ${suffix} ${name}`,
-          typedPayload: { website_url: "https://example.test" },
+          attributes: { website_url: "https://example.test" },
           onMatch: "fail",
           evidence: [{ runId: `vr_kop_${suffix}`, claimId: "c_1" }],
         },
@@ -369,7 +369,7 @@ describe.skipIf(!url)("knowledge.apply over K01 on the disposable AI Engineer da
       async (c) =>
         (
           await c.query<{ admissions: number; protocol: number; native: number }>(
-            `select (select count(*)::int from research.use_admission where tenant_id = $1 and use_decision_id = $2) as admissions,
+            `select (select count(*)::int from verification.use_admission where tenant_id = $1 and use_decision_id = $2) as admissions,
                     (select count(*)::int from knowledge_verification.protocol_receipt where tenant_id = $1 and effect_key = $3) as protocol,
                     (select count(*)::int from knowledge_verification.effect_receipt where tenant_id = $1 and effect_key = $3) as native`,
             [TENANT, decisionId, effectKey],
@@ -485,13 +485,13 @@ describe.skipIf(!url)("knowledge.apply over K01 on the disposable AI Engineer da
           await c.query<Record<string, number>>(
             `select (select count(*)::int from orchestration.operation_intent where tenant_id = $1) as intents,
                     (select count(*)::int from orchestration.operation_receipt r join orchestration.operation_intent i on i.id = r.intent_id where i.tenant_id = $1) as receipts,
-                    (select count(*)::int from corpus.entity where tenant_id = $1) as entities,
+                    (select count(*)::int from catalog.entity where tenant_id = $1) as entities,
                     (select count(*)::int from knowledge_verification.origin where tenant_id = $1) as origins,
                     (select count(*)::int from knowledge_verification.effect where tenant_id = $1 and effect_key = $2) as effects,
                     (select count(*)::int from knowledge_verification.effect_dispatch where tenant_id = $1 and effect_key = $2) as dispatches,
                     (select count(*)::int from knowledge_verification.effect_receipt where tenant_id = $1 and effect_key = $2) as native,
                     (select count(*)::int from knowledge_verification.protocol_receipt where tenant_id = $1 and effect_key = $2) as protocol,
-                    (select count(*)::int from research.use_admission where tenant_id = $1) as admissions,
+                    (select count(*)::int from verification.use_admission where tenant_id = $1) as admissions,
                     (select knowledge_seq from api.knowledge_head()) as head`,
             [TENANT, effectKey],
           )
@@ -604,7 +604,7 @@ describe.skipIf(!url)("knowledge.apply over K01 on the disposable AI Engineer da
     const admitted = await owner(async (c) =>
       (
         await c.query<{ v: string | null }>(
-          "select normalized_values_digest as v from research.use_admission where tenant_id = $1 and use_decision_id = $2",
+          "select normalized_values_digest as v from verification.use_admission where tenant_id = $1 and use_decision_id = $2",
           [TENANT, decisionId],
         )
       ).rows.map((row) => row.v),
@@ -803,7 +803,7 @@ describe.skipIf(!url)("knowledge.apply over K01 on the disposable AI Engineer da
       async (c) =>
         (
           await c.query<Record<string, number>>(
-            `select (select count(*)::int from research.use_admission where tenant_id = $1 and use_decision_id = $2) as admissions,
+            `select (select count(*)::int from verification.use_admission where tenant_id = $1 and use_decision_id = $2) as admissions,
                     (select count(*)::int from orchestration.operation_receipt where use_decision_id = $2) as receipts,
                     (select count(*)::int from knowledge_verification.effect_receipt where tenant_id = $1 and effect_key = $3) as native,
                     (select count(*)::int from knowledge_verification.effect_commit where tenant_id = $1 and effect_key = $3) as commit,

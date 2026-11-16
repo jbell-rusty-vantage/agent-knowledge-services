@@ -18,16 +18,6 @@ export function normalizeTemporalUnit(proposal: Proposal, vocabulary: Vocabulary
   return matches.length === 1 ? { ...proposal, unit: matches[0]! } : proposal;
 }
 
-/** Only these documented price aliases can denote the same unqualified semantic slot. */
-export function priceSlotAliases(unit: string): readonly string[] {
-  const legacy: Record<string, string> = {
-    per_1m_input_tokens: "input_tokens",
-    per_1m_output_tokens: "output_tokens",
-    per_1m_cached_input_tokens: "cached_input_tokens",
-  };
-  return legacy[unit] ? [unit, legacy[unit]!] : [unit];
-}
-
 export function eventExtent(proposal: ProposalOf<"event.assert">): NonNullable<ProposalOf<"event.assert">["extent"]> {
   if (proposal.extent) return proposal.extent;
   return {

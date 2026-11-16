@@ -141,7 +141,7 @@ describe("authoritative admission matrix", () => {
         displayName: "new",
         aliases: [],
         identifiers: [],
-        typedPayload: {},
+        attributes: {},
         onMatch: "review",
         evidence: [],
       },
@@ -158,12 +158,12 @@ describe("authoritative admission matrix", () => {
         displayName: "new",
         aliases: [],
         identifiers: [],
-        typedPayload: {},
+        attributes: {},
         onMatch: "review",
         evidence: [],
       },
     ];
-    const canonicalId = deterministicId("corpus.entity", [tenantId, f.intent.intentId, "system"].join("\0"));
+    const canonicalId = deterministicId("catalog.entity", [tenantId, f.intent.intentId, "system"].join("\0"));
     Object.assign(f.facts.claims[0]!.authoritative!, { entityBindings: [{ role: "subject", canonicalId }] });
     expect(codes(f)).toEqual([]);
     f.intent.intentId = "different-intent";
@@ -179,12 +179,12 @@ describe("authoritative admission matrix", () => {
         displayName: "new",
         aliases: [],
         identifiers: [],
-        typedPayload: {},
+        attributes: {},
         onMatch: "review",
         evidence: [],
       },
     ];
-    const canonicalId = deterministicId("corpus.entity", [tenantId, f.intent.intentId, "system"].join("\0"));
+    const canonicalId = deterministicId("catalog.entity", [tenantId, f.intent.intentId, "system"].join("\0"));
     Object.assign(f.facts.claims[0]!.authoritative!, { entityBindings: [{ role: "subject", canonicalId }] });
     f.intent.proposals.push(
       ...IngestionIntentSchema.parse({

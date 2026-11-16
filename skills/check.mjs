@@ -286,7 +286,8 @@ for (const skill of manifest.skills) {
   }
   for (const span of codeSpans(body)) {
     const toolText = span.replace(/"serviceIdentity"\s*:\s*"[^"]*"/g, "");
-    for (const candidate of toolText.matchAll(/\b((?:knowledge|verify|schema|db|ingest|artifact|report|recovery|content|checkpoint|source|jev)_[a-z0-9_]+)(\*?)/g)) {
+    // A dotted name (`evidence.source_registry`) is a catalog query or a relation, not a tool.
+    for (const candidate of toolText.matchAll(/(?<![.\w])((?:knowledge|verify|schema|db|ingest|artifact|report|recovery|content|checkpoint|source|chain|jev)_[a-z0-9_]+)(\*?)/g)) {
       const name = candidate[1];
       if (candidate[2] === "*" || name.endsWith("_")) continue;
       if (jevTools.has(name)) {

@@ -212,7 +212,7 @@ export function guideStartPage(): string {
     "",
     "Knowledge Services stores exact captures of sources and a knowledge base built on them, where only admission makes a claim verified. Use it to research, verify, read and write.",
     "",
-    `Tools are on two servers, platform and executor. ${tool("guide")} (both) takes a topic: a skill, \`<skill>/references/<name>\`, \`tools\` or \`topics\`. On platform, ${tool("describe")} returns a tool's arguments and ${tool("operation_result")} the ids an operation produced. \`x_*\`: every tool of that server starting with \`x_\`; \`x_{a,b}\`: \`x_a\`, \`x_b\`.`,
+    `Tools are on two servers, platform and executor. ${tool("guide")} (both) takes a topic: a skill, \`<skill>/references/<name>\`, \`tools\` or \`topics\`. ${tool("describe")} (both) returns a tool's full arguments; on platform, ${tool("operation_result")} returns the ids an operation produced. \`x_*\`: every tool of that server starting with \`x_\`; \`x_{a,b}\`: \`x_a\`, \`x_b\`.`,
     "",
     "Jobs, in order:",
     "",
@@ -232,13 +232,13 @@ export function guideToolsPage(): string {
   const lines = [
     "# Tools by job",
     "",
-    "A platform tool takes the arguments `knowledge_describe` returns for `tool:<name>`. An executor or Jev tool carries its full input in its own description. A `ks` command runs the same operation as the tool beside it.",
+    "A platform or executor tool takes the arguments `knowledge_describe` returns for `tool:<name>` on its own server: the tool list shows a short form of a large input. A Jev tool carries its full input in its own description. A `ks` command runs the same operation as the tool beside it.",
     "",
     "## Every job (platform server)",
     "",
     ...contractsOf("every").flatMap(operationLines),
     "",
-    "The executor server also has `knowledge_guide`.",
+    "The executor server also has `knowledge_guide` and `knowledge_describe`.",
   ];
   for (const [index, job] of guideJobs().entries()) {
     lines.push("", `## ${index + 1}. ${heading(job)}`, "", `Skills: ${code(job.skills)}.`);

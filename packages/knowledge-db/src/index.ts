@@ -9,3 +9,6 @@ export * from "./db-read/index.js";
 
 // ingestion
 export * from "./ingestion/index.js";
+
+// governed writes of the research verification chain
+export * from "./chain/index.js";

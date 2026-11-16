@@ -31,6 +31,8 @@ describe("operation registry", () => {
       "ingest_apply",
       "ingest_receipt",
       "artifact_get",
+      "chain_write",
+      "evidence_units",
       "source_discover",
       "source_import",
       "source_attempt",

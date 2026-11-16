@@ -243,7 +243,7 @@ export class ContentSourceReader {
       id: reference.id,
       representationId: reference.representationId,
       text: String(row.inline_text ?? ""),
-      kind: String(row.node_kind),
+      kind: String(row.unit_kind),
     };
   }
 
@@ -305,7 +305,7 @@ function structuralNodeDigest(row: Row): string {
     localKey: String(row.stable_local_key),
     parentKey: row.parent_local_key === null ? null : String(row.parent_local_key),
     ordinal: Number(row.ordinal),
-    kind: String(row.node_kind),
+    kind: String(row.unit_kind),
     role: row.role === null ? null : String(row.role),
     language: row.language === null ? null : String(row.language),
     text: String(row.inline_text ?? ""),

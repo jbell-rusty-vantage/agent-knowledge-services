@@ -211,7 +211,7 @@
       "path": "apps/verification-executor",
       "kind": "app",
       "state": "implemented",
-      "summary": "Sandbox verification executor that also hosts schema, bounded-read, and ingestion operations on CLI, MCP, and HTTP, and serves ks.knowledge_operation.v2 (K01 over the Sprint V application services: register, assess, read, derive, apply, verify, status, cancel, receipt) with K07 issuer-credential validation and durable single-use credentials.",
+      "summary": "Sandbox verification executor that also hosts schema, bounded-read, ingestion and governed verification-chain operations on CLI, MCP, and HTTP, and serves ks.knowledge_operation.v2 (K01 over the Sprint V application services: register, assess, read, derive, apply, verify, status, cancel, receipt) with K07 issuer-credential validation and durable single-use credentials.",
       "entrypoints": [
         "apps/verification-executor/src/index.ts",
         "apps/verification-executor/src/executor.ts",
@@ -219,15 +219,19 @@
         "apps/verification-executor/src/knowledge/cli.ts",
         "apps/verification-executor/src/knowledge/context.ts",
         "apps/verification-executor/src/operations/define.ts",
+        "apps/verification-executor/src/mcp.ts",
+        "apps/verification-executor/src/tool-catalog.ts",
         "apps/verification-executor/src/knowledge-operation/http.ts",
         "apps/verification-executor/src/serve.ts"
       ],
       "interface": [
-        "knowledge-verify plus knowledge schema_*/db_*/ingest_*/artifact_get; one OperationDefinition feeds CLI, POST /knowledge/<name>, and MCP. ./local-verification publishes the 5B file-backed seam for ks until 5D3.",
+        "knowledge-verify plus knowledge schema_*/db_*/ingest_*/artifact_get, chain_write (the nine governed writes of the research verification chain, one tool with an operation discriminator) and evidence_units; one OperationDefinition feeds CLI, POST /knowledge/<name>, and MCP. ./local-verification publishes the 5B file-backed seam for ks until 5D3.",
+        "tools/list publishes a short form of every large input (tool-catalog.ts); the server validates with the full schema, and knowledge_describe returns it for tool:<name> and, for chain_write, each operation under operation:<name>.",
         "/knowledge-operation/v2/{invoke,operations/:id,operations/:id/cancel,receipts/:key,describe,artifacts/:id} HTTP and MCP knowledge_operation_* adapters over @aiengineer/knowledge-host/knowledge-operation (service, K07 credentials); serve.ts composes KNOWLEDGE_BACKENDS from the binding packages' BACKEND registrations and the host in-memory one."
       ],
       "tests": [
         "apps/verification-executor/src/knowledge/cli.test.ts",
+        "apps/verification-executor/src/tool-list.test.ts",
         "apps/verification-executor/src/locate.test.ts",
         "apps/verification-executor/src/knowledge-operation/conformance.test.ts",
         "apps/verification-executor/src/knowledge-operation/postgres.integration.test.ts",
@@ -437,11 +441,13 @@
         "packages/contracts/src/index.ts"
       ],
       "interface": [
-        "Public request/result and verification contract schemas."
+        "Public request/result and verification contract schemas.",
+        "verification-chain.ts: the one definition of the nine governed verification-chain writes (input schemas, bounded role, notes, example), the governed-write error table (code, class, what to do next) and parseChainWrite, which every transport runs before submitting."
       ],
       "tests": [
         "packages/contracts/src/contracts.test.ts",
-        "packages/contracts/src/deployment.test.ts"
+        "packages/contracts/src/deployment.test.ts",
+        "packages/contracts/src/verification-chain.test.ts"
       ],
       "constraints": [],
       "uses": [],
@@ -452,7 +458,7 @@
       "path": "packages/knowledge-db",
       "kind": "package",
       "state": "implemented",
-      "summary": "Pinned schema workspace navigation, bounded read snapshots and deterministic ingestion through canonical temporal helpers.",
+      "summary": "Pinned schema workspace navigation, bounded read snapshots, deterministic ingestion through canonical temporal helpers, and the governed writes of the research verification chain.",
       "entrypoints": [
         "packages/knowledge-db/src/index.ts",
         "packages/knowledge-db/src/ports.ts",
@@ -465,14 +471,15 @@
         "packages/knowledge-db/src/ingestion/plan.ts",
         "packages/knowledge-db/src/ingestion/apply.ts",
         "packages/knowledge-db/src/ingestion/executor.ts",
-        "packages/knowledge-db/src/ingestion/duplicate.ts"
+        "packages/knowledge-db/src/chain/executor.ts"
       ],
       "interface": [
         "Owns its ports (ports.ts): KnowledgeSqlClient, KnowledgeTransactions/KnowledgeDatabase, KnowledgeTransactionScope, KnowledgeRole and ContentAdmission; persistence implements them (TenantPostgres, postgresContentAdmission) and the composition root injects them.",
         "loadWorkspace, searchWorkspace, getPage, compareHeads/assertHeadMatches, materializeScope; locate via SCHEMA_WORKSPACE_DIR or the pinned contract workspace/.",
         "ReadExecutor.validateIntent/runIntent/sqlReadonly/explain/head; ArtifactLedger persist of intent+snapshot; assertSingleReadStatement admits one SELECT/WITH.",
         "buildSpaceManifest is pure and generic in the space type; readSpaceManifest reads only the catalog queries that exist and records the rest in unavailable[].",
-        "IngestionExecutor.plan/apply/receipt; buildPlan; applyPlan inside temporal.begin_batch/assert_*/commit_batch; same idempotency key returns duplicateOf."
+        "IngestionExecutor.plan/apply/receipt; buildPlan; applyPlan inside temporal.begin_batch/assert_*/commit_batch; same idempotency key returns duplicateOf.",
+        "GovernedChainExecutor.write: one api.<function> call per governed write, as the bounded role of its contract (pipeline_agent for claims and sweeps, verifier_agent for probes, runs, verdicts, triage and assessments), validated in full before submitting and refused with the database's stable code; evidenceUnits maps a content unit to its capture as executor_service."
       ],
       "tests": [
         "packages/knowledge-db/src/schema-workspace/schema-workspace.test.ts",
@@ -481,12 +488,15 @@
         "packages/knowledge-db/src/db-read/space-manifest.test.ts",
         "packages/knowledge-db/src/ingestion/tests/plan.test.ts",
         "packages/knowledge-db/src/ingestion/tests/duplicate.test.ts",
-        "packages/knowledge-db/src/ingestion/tests/executor.integration.test.ts"
+        "packages/knowledge-db/src/ingestion/tests/executor.integration.test.ts",
+        "packages/knowledge-db/src/chain/chain.test.ts",
+        "packages/knowledge-db/src/chain/chain.integration.test.ts"
       ],
       "constraints": [
         "No production dependency on persistence (R1); persistence remains a devDependency for database integration tests and fixtures.",
         "Consumes the committed workspace tree; it does not regenerate IR from the live database at request time.",
         "Retrieval operations are skipped (RETRIEVAL_UNAVAILABLE). Named queries and artifact ops run.",
+        "Integration tests run on a database whose data must be left as found through packages/persistence/test/rollback-postgres.mjs (one transaction, a savepoint per scope, rolled back); suites that commit fixtures need KS_TEST_ALLOW_COMMITTED_FIXTURES=1.",
         "space_manifest reports only its static half today: contract 0.4.16 has no space, store, version or publication catalog query, and no per-space budget exists at all. No executor operation is registered yet (Track K, after G3).",
         "Writes orchestration.operation_intent/receipt; does not write a knowledge_service.operation row."
       ],

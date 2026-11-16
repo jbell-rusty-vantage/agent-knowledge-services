@@ -1,11 +1,19 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { ListToolsRequestSchema } from "@modelcontextprotocol/sdk/types.js";
 import { GuideInputSchema, guidePage, guideRefusalMarkdown, toolDescription } from "@aiengineer/knowledge-contracts";
 import { isKnowledgeError } from "@aiengineer/knowledge-db";
-import { z } from "zod";
+import { z, type ZodRawShape } from "zod";
 import type { VerificationExecutor } from "./executor.js";
 import type { KnowledgeServices } from "./knowledge/context.js";
 import { knowledgeOperations } from "./knowledge/operations.js";
-import { registerKnowledgeOperationTools } from "./knowledge-operation/mcp-tools.js";
+import { describeBinding, registerKnowledgeOperationTools } from "./knowledge-operation/mcp-tools.js";
+import {
+  asObjectSchema,
+  describeExecutorReference,
+  EXECUTOR_INSTRUCTIONS,
+  toolListingSchema,
+  type ExecutorTool,
+} from "./tool-catalog.js";
 import type { KnowledgeOperationService } from "@aiengineer/knowledge-host/knowledge-operation";
 import { CaptureFragmentInputSchema } from "./knowledge-operation/capture-bridge.js";
 
@@ -13,9 +21,15 @@ import { CaptureFragmentInputSchema } from "./knowledge-operation/capture-bridge
  * One MCP tool per executor capture/artifact step (SV-17 retired the verification chain tools; verification runs,
  * claims and seals are served only by ks.knowledge_operation.v2). An optional `runId` logs non-authoritative step
  * receipts in the local working cache.
- * When knowledge services are configured, the `schema_*` / `db_*` / `ingest_*` /
+ * When knowledge services are configured, the `schema_*` / `db_*` / `ingest_*` / `chain_write` /
  * `artifact_get` tools are generated from the same operation registry as the CLI and HTTP routes.
+ *
+ * The server validates every call with the tool's full schema. The tool list publishes a short form of each large
+ * input (tool-catalog.ts) and `knowledge_describe` returns the full one, so the list stays small.
  */
+
+/** Where tools are registered: the MCP server, or the collector that also records them for the list and describe. */
+export type ToolRegistrar = Pick<McpServer, "registerTool">;
 
 const runId = z
   .string()
@@ -44,7 +58,7 @@ function error(err: unknown): ToolResult {
 
 const guard = <T>(fn: () => Promise<T>) => fn().then(ok).catch(error);
 
-export function registerKnowledgeTools(server: McpServer, services: KnowledgeServices): void {
+export function registerKnowledgeTools(server: ToolRegistrar, services: KnowledgeServices): void {
   for (const operation of knowledgeOperations.list()) {
     server.registerTool(
       operation.name,
@@ -66,7 +80,7 @@ export function registerKnowledgeTools(server: McpServer, services: KnowledgeSer
  * contract package. An agent that has only this server reads the start page, each skill and each reference here. It
  * needs no knowledge services and reads no tenant data; the page is Markdown text, never JSON.
  */
-export function registerGuideTool(server: McpServer): void {
+export function registerGuideTool(server: ToolRegistrar): void {
   server.registerTool(
     "knowledge_guide",
     {
@@ -89,13 +103,69 @@ export interface KnowledgeOperationMcpOptions {
   readonly credential: () => string | null;
 }
 
+/**
+ * `knowledge_describe`: with `tool:<name>`, the full input schema of one tool of this server; with
+ * `operation:<name>`, one verification-chain operation (input, rules, example, role); without a reference, the
+ * binding-descriptor.v2 of the credential's binding, as before. The first two read no tenant data and need no
+ * credential.
+ */
+export function registerDescribeTool(
+  server: ToolRegistrar,
+  tools: readonly ExecutorTool[],
+  knowledgeOperation: KnowledgeOperationMcpOptions | undefined,
+): void {
+  server.registerTool(
+    "knowledge_describe",
+    {
+      title: "Describe a tool, a chain operation or the binding",
+      description:
+        "ref tool:<name>: the full input schema of one tool of this server. ref operation:<name>: one verification-chain operation of chain_write (input, rules, example, role). No ref: binding-descriptor.v2 of the credential's binding (protocol, operations, report kinds, guarantees).",
+      inputSchema: { ref: z.string().trim().min(1).max(200).optional() },
+    },
+    async (input) => {
+      if (input.ref === undefined)
+        return describeBinding(knowledgeOperation?.service, knowledgeOperation?.credential ?? (() => null));
+      const result = describeExecutorReference(input.ref, tools);
+      return result.ok ? ok(result.description) : { ...ok(result.refusal), isError: true };
+    },
+  );
+}
+
+/** Registers on the server and records what the tool list and `knowledge_describe` publish about each tool. */
+function collectingRegistrar(server: McpServer, tools: ExecutorTool[]): ToolRegistrar {
+  const register = server.registerTool.bind(server) as (name: string, config: unknown, handler: unknown) => unknown;
+  const registerTool = (
+    name: string,
+    config: { title?: string; description?: string; inputSchema?: z.ZodObject | ZodRawShape },
+    handler: unknown,
+  ) => {
+    const operation = knowledgeOperations.get(name);
+    tools.push({
+      name,
+      title: config.title ?? name,
+      description: config.description ?? "",
+      validated: asObjectSchema(config.inputSchema ?? {}),
+      ...(operation?.published ? { published: operation.published } : {}),
+      ...(operation ? { cli: `knowledge ${operation.cli.command.join(" ")}` } : {}),
+    });
+    return register(name, config, handler);
+  };
+  return { registerTool: registerTool as ToolRegistrar["registerTool"] };
+}
+
 export function createVerificationMcpServer(
   executor: VerificationExecutor,
   knowledge?: KnowledgeServices,
   knowledgeOperation?: KnowledgeOperationMcpOptions,
 ): McpServer {
-  const server = new McpServer({ name: "knowledge-verification-executor", version: "0.1.0" });
+  const mcp = new McpServer(
+    { name: "knowledge-verification-executor", version: "0.1.0" },
+    { instructions: EXECUTOR_INSTRUCTIONS },
+  );
+  const tools: ExecutorTool[] = [];
+  const server = collectingRegistrar(mcp, tools);
   registerGuideTool(server);
+  registerDescribeTool(server, tools, knowledgeOperation);
   if (knowledge) registerKnowledgeTools(server, knowledge);
   if (knowledgeOperation) {
     registerKnowledgeOperationTools(server, knowledgeOperation.service, knowledgeOperation.credential);
@@ -268,5 +338,14 @@ export function createVerificationMcpServer(
     async (input) => guard(() => executor.artifact(input)),
   );
 
-  return server;
+  // Calls are validated with each tool's full schema (registered above). The list publishes the short form.
+  mcp.server.setRequestHandler(ListToolsRequestSchema, () => ({
+    tools: tools.map((tool) => ({
+      name: tool.name,
+      title: tool.title,
+      description: tool.description,
+      inputSchema: toolListingSchema(tool) as { type: "object"; [keyword: string]: unknown },
+    })),
+  }));
+  return mcp;
 }

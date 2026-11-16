@@ -24,7 +24,9 @@ class RollbackOncePostgres extends TenantPostgres {
   }
 }
 
-describe.skipIf(!databaseUrl || !storageConfig)(
+// Writes storage objects and committed custody rows: only for a stack that may keep them.
+const committing = process.env.KS_TEST_ALLOW_COMMITTED_FIXTURES === "1";
+describe.skipIf(!databaseUrl || !storageConfig || !committing)(
   "ArtifactLedger real Postgres and Supabase custody reconciliation",
   () => {
     const db = new RollbackOncePostgres({ connectionString: databaseUrl ?? "postgresql://unused" });

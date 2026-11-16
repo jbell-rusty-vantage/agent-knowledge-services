@@ -10,7 +10,7 @@ import {
   type Workspace,
 } from "../schema-workspace/index.js";
 import { applyPlan, targetsWithoutBatch, type ApplyOutcome } from "./apply.js";
-import { insertReceiptTargets, projectReportV2 } from "./receipt-targets.js";
+import { insertReceiptTargets } from "./receipt-targets.js";
 import { awaitWinnerReceipt, isIdempotencyKeyCollision } from "./duplicate.js";
 import { gatherFacts, type EvidenceOracle } from "./facts.js";
 import {
@@ -436,7 +436,8 @@ export class IngestionExecutor {
         };
         const ids = await this.insertLedger(client, entry);
         await client.query(
-          "set constraints corpus.entity_created_by_receipt_id_fkey, staging.resolution_decision_receipt_id_fkey, evidence.claim_created_by_receipt_id_fkey, corpus.entity_receipt_tenant, knowledge.record_created_by_receipt_id_fkey, knowledge.record_receipt_tenant deferred",
+          // Build 08 renamed the schemas (catalog, guidance); guidance.item kept its `record_*` constraint names.
+          "set constraints catalog.entity_created_by_receipt_id_fkey, staging.resolution_decision_receipt_id_fkey, evidence.claim_created_by_receipt_id_fkey, catalog.entity_receipt_tenant, guidance.record_created_by_receipt_id_fkey, guidance.record_receipt_tenant deferred",
         );
         const knowledgeSeq = needsBatch
           ? Number(await scalar(client, "select temporal.begin_batch($1::bigint)", [plan.head.effectiveExpectedHead]))
@@ -460,22 +461,7 @@ export class IngestionExecutor {
           affectedRefs: applied.affectedRefs,
           ...(admission?.path === "aidb_guard" && intent.exactUse ? { admission: intent.exactUse } : {}),
         });
-        // AI Engineer installation: project the admitted exact use into research.report_v2_* (guards re-check it).
-        const projection =
-          admission?.path === "aidb_guard" && intent.exactUse
-            ? await projectReportV2(client, {
-                tenantId,
-                useDecisionId: intent.exactUse.useDecisionId,
-                boundEffectDigest: intent.exactUse.boundEffectDigest,
-                operationIntentId: ids.operationIntentId,
-                receiptId: ids.receiptId,
-                outcome: entry.outcome,
-              })
-            : null;
-        const targets = await insertReceiptTargets(client, tenantId, ids.receiptId, [
-          ...applied.targets,
-          ...(projection?.targets ?? []),
-        ]);
+        const targets = await insertReceiptTargets(client, tenantId, ids.receiptId, applied.targets);
         const summary = {
           proposals: plan.plannedSummary,
           affected: applied.affectedRefs.length,
@@ -565,7 +551,6 @@ export class IngestionExecutor {
           claims: applied.claims,
           affectedRefs: applied.affectedRefs,
           targets,
-          report: projection?.report ?? null,
           duplicateOf: null,
           priorReceiptsForIntentId: await this.priorReceipts(client, intent, hex(plan.intentRef.idempotencyKey)),
           failure: null,
@@ -733,7 +718,6 @@ export class IngestionExecutor {
           claims: [],
           affectedRefs: [],
           targets: [],
-          report: null,
           duplicateOf: null,
           priorReceiptsForIntentId: [],
           failure,

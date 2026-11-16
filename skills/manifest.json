@@ -13,7 +13,7 @@
   "skills": [
     {
       "id": "knowledge-research",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "path": "knowledge-research/SKILL.md",
       "surfaces": [
         "executor-cli",
@@ -42,6 +42,8 @@
         "knowledge_operation_get",
         "knowledge_operation_cancel",
         "knowledge_receipt_get",
+        "evidence_units",
+        "chain_write",
         "guide"
       ]
     },
@@ -87,7 +89,7 @@
     },
     {
       "id": "knowledge-ingest",
-      "version": "1.2.0",
+      "version": "1.3.0",
       "path": "knowledge-ingest/SKILL.md",
       "surfaces": [
         "executor-cli",
@@ -348,6 +350,8 @@
           "knowledge-verification"
         ],
         "executor": [
+          "evidence_units",
+          "chain_write",
           "knowledge_operation_invoke",
           "knowledge_operation_get",
           "knowledge_operation_cancel",

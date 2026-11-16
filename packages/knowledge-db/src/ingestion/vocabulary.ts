@@ -3,9 +3,10 @@ import type { KnowledgeSqlClient } from "../ports.js";
 /** Vocabulary tables read once per plan so validation can name allowed values before any transaction is attempted. */
 export interface EntityKind {
   readonly code: string;
-  readonly schema: string;
-  readonly table: string;
-  readonly columns: readonly string[];
+  /** A work kind (paper, talk, media work, story, case study) also needs a `catalog.work` row no bounded role may write. */
+  readonly isWork: boolean;
+  /** JSON Schema of `catalog.entity.attributes` for this kind (`taxonomy.entity_kind.attributes_schema`). */
+  readonly attributesSchema: Record<string, unknown>;
 }
 export interface RelationshipKind {
   readonly code: string;
@@ -37,15 +38,10 @@ export interface Vocabulary {
   readonly eventKinds: ReadonlyMap<string, EventKind>;
 }
 
-const TYPED_TABLE_EXCLUDED_COLUMNS = new Set(["id", "tenant_id", "kind"]);
-
 export async function loadVocabulary(client: KnowledgeSqlClient): Promise<Vocabulary> {
-  const [kinds, columns, relationships, streams, events] = await Promise.all([
-    client.query<{ code: string; canonical_schema: string; canonical_table: string }>(
-      "select code, canonical_schema, canonical_table from taxonomy.entity_kind order by code",
-    ),
-    client.query<{ table_schema: string; table_name: string; column_name: string }>(
-      "select table_schema, table_name, column_name from information_schema.columns where table_schema = 'corpus' order by table_name, ordinal_position",
+  const [kinds, relationships, streams, events] = await Promise.all([
+    client.query<{ code: string; is_work: boolean; attributes_schema: Record<string, unknown> | null }>(
+      "select code, is_work, attributes_schema from taxonomy.entity_kind order by code",
     ),
     client.query<{
       code: string;
@@ -70,22 +66,11 @@ export async function loadVocabulary(client: KnowledgeSqlClient): Promise<Vocabu
       "select code, subject_kinds, object_kinds from temporal.event_kind order by code",
     ),
   ]);
-  const columnsByTable = new Map<string, string[]>();
-  for (const row of columns.rows) {
-    if (TYPED_TABLE_EXCLUDED_COLUMNS.has(row.column_name)) continue;
-    const key = `${row.table_schema}.${row.table_name}`;
-    columnsByTable.set(key, [...(columnsByTable.get(key) ?? []), row.column_name]);
-  }
   return {
     entityKinds: new Map(
       kinds.rows.map((row) => [
         row.code,
-        {
-          code: row.code,
-          schema: row.canonical_schema,
-          table: row.canonical_table,
-          columns: columnsByTable.get(`${row.canonical_schema}.${row.canonical_table}`) ?? [],
-        },
+        { code: row.code, isWork: row.is_work, attributesSchema: row.attributes_schema ?? { type: "object" } },
       ]),
     ),
     relationshipKinds: new Map(

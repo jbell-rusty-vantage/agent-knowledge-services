@@ -15,7 +15,7 @@ export interface RecordBinding {
 export function recordIdentity(binding: RecordBinding): string {
   const { proposal, tenantId, claimId, entityId } = binding;
   return deterministicId(
-    "knowledge.record",
+    "guidance.item",
     canonicalJson({
       tenantId,
       claimId,
@@ -32,14 +32,12 @@ export function recordIdentity(binding: RecordBinding): string {
 
 export function recordKeys(binding: RecordBinding): {
   recordId: string;
-  compatibilityConstraintId: string;
   claimRecordKey: string;
   recordEntityKey: string;
 } {
   const recordId = recordIdentity(binding);
   return {
     recordId,
-    compatibilityConstraintId: recordId,
     claimRecordKey: JSON.stringify([binding.tenantId, binding.claimId, recordId]),
     recordEntityKey: JSON.stringify([binding.tenantId, recordId, binding.entityId, "subject"]),
   };
@@ -49,14 +47,13 @@ export async function existingRecord(client: KnowledgeSqlClient, binding: Record
   const id = recordIdentity(binding);
   const row = (
     await client.query<{ id: string }>(
-      `select r.id from knowledge.record r
-    join knowledge.compatibility_constraint c on c.tenant_id=r.tenant_id and c.id=r.id
+      `select r.id from guidance.item r
     join evidence.claim_record cr on cr.tenant_id=r.tenant_id and cr.record_id=r.id and cr.claim_id=$3
-    join knowledge.record_entity_link e on e.tenant_id=r.tenant_id and e.record_id=r.id and e.entity_id=$4 and e.role='subject'
+    join guidance.item_subject e on e.tenant_id=r.tenant_id and e.item_id=r.id and e.entity_id=$4 and e.role='subject'
     join evidence.claim claim on claim.tenant_id=r.tenant_id and claim.id=cr.claim_id and claim.status='verified'
     where r.tenant_id=$1 and r.id=$2 and r.provenance_claim_id=$3 and r.kind='compatibility_constraint'
       and r.title=$5 and r.statement=$6 and r.scope=$7::jsonb and r.assurance_level='source_inspection'
-      and c.constraint_kind=$8 and c.expression=$9`,
+      and r.payload->>'constraint_kind'=$8 and r.payload->>'expression'=$9`,
       [
         binding.tenantId,
         id,
@@ -82,7 +79,7 @@ export async function materializeRecord(
   ids: Record<string, string>;
   /** Rows this call wrote (empty on a no-op): the K01 affected refs. */
   affected: AffectedRef[];
-  /** The record's four rows, written now or already present (`noop`): the receipt targets. */
+  /** The item's three rows, written now or already present (`noop`): the receipt targets. */
   rows: AffectedRef[];
   noop?: boolean;
 }> {
@@ -98,19 +95,14 @@ export async function materializeRecord(
   const ids = recordKeys(input);
   const recordId = ids.recordId;
   const rows: AffectedRef[] = [
-    { schema: "knowledge", table: "record", id: recordId },
-    { schema: "knowledge", table: "compatibility_constraint", id: recordId },
+    { schema: "guidance", table: "item", id: recordId },
     { schema: "evidence", table: "claim_record", id: ids.claimRecordKey },
-    {
-      schema: "knowledge",
-      table: "record_entity_link",
-      id: ids.recordEntityKey,
-    },
+    { schema: "guidance", table: "item_subject", id: ids.recordEntityKey },
   ];
   if (await existingRecord(client, input)) return { ids, affected: [], rows, noop: true };
   await client.query(
-    `insert into knowledge.record(id,tenant_id,kind,title,statement,scope,assurance_level,provenance_claim_id,created_by_receipt_id)
-    values($1,$2,'compatibility_constraint',$3,$4,$5::jsonb,'source_inspection',$6,$7)`,
+    `insert into guidance.item(id,tenant_id,kind,title,statement,scope,assurance_level,provenance_claim_id,created_by_receipt_id,payload)
+    values($1,$2,'compatibility_constraint',$3,$4,$5::jsonb,'source_inspection',$6,$7,$8::jsonb)`,
     [
       recordId,
       tenantId,
@@ -119,20 +111,18 @@ export async function materializeRecord(
       JSON.stringify({ qualifiers: proposal.qualifiers ?? [] }),
       claimId,
       receiptId,
+      JSON.stringify({ constraint_kind: proposal.constraintKind, expression: proposal.expression }),
     ],
-  );
-  await client.query(
-    "insert into knowledge.compatibility_constraint(id,tenant_id,constraint_kind,expression) values($1,$2,$3,$4)",
-    [recordId, tenantId, proposal.constraintKind, proposal.expression],
   );
   await client.query("insert into evidence.claim_record(tenant_id,claim_id,record_id) values($1,$2,$3)", [
     tenantId,
     claimId,
     recordId,
   ]);
-  await client.query(
-    "insert into knowledge.record_entity_link(tenant_id,record_id,entity_id,role) values($1,$2,$3,'subject')",
-    [tenantId, recordId, entityId],
-  );
+  await client.query("insert into guidance.item_subject(tenant_id,item_id,entity_id,role) values($1,$2,$3,'subject')", [
+    tenantId,
+    recordId,
+    entityId,
+  ]);
   return { ids, affected: rows, rows };
 }

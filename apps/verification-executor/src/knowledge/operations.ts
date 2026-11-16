@@ -1,5 +1,7 @@
 import { z } from "zod";
 import {
+  ChainWriteRequestSchema,
+  EvidenceUnitsInputSchema,
   ManagedSourceDiscoveryRequestSchema,
   ImportedSourceDiscoveryReceiptSchema,
   SourceDiscoveryAttemptSchema,
@@ -333,6 +335,34 @@ export const sourceSelect = defineKnowledgeOperation({
   },
 });
 
+/**
+ * The governed writes of the research verification chain. `request` is validated by the chain executor itself, in
+ * full and before anything is submitted (the three rules, the envelope, the operation's input schema), so a refusal
+ * carries the database's stable code; the published schema is the typed request.
+ */
+export const chainWrite = defineKnowledgeOperation({
+  name: "chain_write",
+  title: "Write one step of the verification chain",
+  description:
+    "One governed write: record_claim, restate_claim, record_triage, register_probe, record_probe_run, propose_verdict, record_source_assessment, raise_attention_sweep, settle_attention_sweep. Proposals only: never verifies a claim, never a person's judgment. Read knowledge_describe operation:<name>.",
+  input: z.object({ request: z.record(z.string(), z.unknown()) }),
+  published: z.object({ request: ChainWriteRequestSchema }),
+  output: Any,
+  cli: { command: ["chain", "write"], positional: ["request"], jsonFiles: ["request"] },
+  run: async (input, services) => services.chain.write(services.config.defaultTenantId, input.request),
+});
+
+export const evidenceUnits = defineKnowledgeOperation({
+  name: "evidence_units",
+  title: "Find quotable content units and their capture",
+  description:
+    "Find content units of the knowledge base by capture, document, unit, URL or text, each with the capture it was read from. A row's anchor {capture_id, node_id} plus a verbatim quote of its text is an evidence anchor for chain_write record_claim. Name at least one filter.",
+  input: EvidenceUnitsInputSchema,
+  output: Any,
+  cli: { command: ["evidence", "units"] },
+  run: async (input, services) => services.chain.evidenceUnits(services.config.defaultTenantId, input),
+});
+
 function checkpoints(services: KnowledgeServices) {
   if (!services.checkpoints) throw new Error("CHECKPOINT_REMOTE_CUSTODY_REQUIRED");
   return services.checkpoints;
@@ -430,6 +460,8 @@ export const knowledgeOperations = new OperationRegistry<KnowledgeServices>([
   ingestApply,
   ingestReceipt,
   artifactGet,
+  chainWrite,
+  evidenceUnits,
   sourceDiscover,
   sourceImport,
   sourceAttempt,

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
-  AIDB_GUARD_SIGNATURES,
+  AIDB_GUARD_SIGNATURE,
   AdmissionInstallationError,
   ExactUseAdmissionError,
   admitExactUseWithin,
@@ -9,11 +9,10 @@ import {
 import type { KnowledgeSqlClient } from "../../ports.js";
 
 /**
- * AIDB moved the native guard from `research.assert_admitted_use` to `verification.assert_admitted_use` (AIDB
- * 20261108120000). The admission path detects which 5-argument form is installed, prefers `verification.`, falls
- * back to `research.` only when that is the installed one, and refuses AIDB_GUARD_REQUIRED when neither exists.
+ * The AIDB native guard is `verification.assert_admitted_use` (AIDB 20261108120000 dropped the `research` schema). It
+ * is the only form the admission path calls; an AI Engineer installation without it refuses AIDB_GUARD_REQUIRED.
  */
-function fakeClient(installed: { current: boolean; legacy: boolean; aiEngineer: boolean; guardError?: unknown }) {
+function fakeClient(installed: { guard: boolean; aiEngineer: boolean; guardError?: unknown }) {
   const calls: string[] = [];
   const client: KnowledgeSqlClient = {
     async query(text: string) {
@@ -25,12 +24,7 @@ function fakeClient(installed: { current: boolean; legacy: boolean; aiEngineer: 
         };
       }
       if (text.includes("to_regprocedure")) {
-        return {
-          rows: [
-            { current: installed.current, legacy: installed.legacy, ai_engineer: installed.aiEngineer },
-          ] as never[],
-          rowCount: 1,
-        };
+        return { rows: [{ guard: installed.guard, ai_engineer: installed.aiEngineer }] as never[], rowCount: 1 };
       }
       if (text.includes("assert_admitted_use")) {
         if (installed.guardError) throw installed.guardError;
@@ -49,50 +43,34 @@ const binding = {
   normalizedValuesDigest: `sha256:${"b".repeat(64)}`,
 };
 
-describe("AIDB guard signature selection", () => {
-  it("prefers verification.assert_admitted_use, then research., in that order", () => {
-    expect(AIDB_GUARD_SIGNATURES).toEqual([
-      "verification.assert_admitted_use(uuid,text,text,bigint,text)",
-      "research.assert_admitted_use(uuid,text,text,bigint,text)",
-    ]);
+describe("AIDB guard", () => {
+  it("names the verification. form and no other", () => {
+    expect(AIDB_GUARD_SIGNATURE).toBe("verification.assert_admitted_use(uuid,text,text,bigint,text)");
   });
 
-  it("calls the verification. form when it is installed (even if research. also is)", async () => {
-    const { client, calls } = fakeClient({ current: true, legacy: true, aiEngineer: true });
-    expect(await aidbGuardStatus(client)).toEqual({
-      aiEngineer: true,
-      guard: true,
-      signature: AIDB_GUARD_SIGNATURES[0],
-    });
+  it("calls verification.assert_admitted_use on an ai-engineer installation", async () => {
+    const { client, calls } = fakeClient({ guard: true, aiEngineer: true });
+    expect(await aidbGuardStatus(client)).toEqual({ aiEngineer: true, guard: true });
     const admitted = await admitExactUseWithin(client, "t", binding);
     expect(admitted.path).toBe("aidb_guard");
     expect(calls.filter((text) => text.includes("verification.assert_admitted_use("))).toHaveLength(1);
-    expect(calls.some((text) => text.includes("research.assert_admitted_use("))).toBe(false);
+    expect(calls.some((text) => text.includes("research."))).toBe(false);
   });
 
-  it("falls back to the research. form only when it is the installed one (vendored contract 0.6.0)", async () => {
-    const { client, calls } = fakeClient({ current: false, legacy: true, aiEngineer: true });
-    const admitted = await admitExactUseWithin(client, "t", binding);
-    expect(admitted.path).toBe("aidb_guard");
-    expect(calls.filter((text) => text.includes("research.assert_admitted_use("))).toHaveLength(1);
-    expect(calls.some((text) => text.includes("verification.assert_admitted_use("))).toBe(false);
-  });
-
-  it("refuses AIDB_GUARD_REQUIRED on ai-engineer when neither form is installed", async () => {
-    const { client } = fakeClient({ current: false, legacy: false, aiEngineer: true });
+  it("refuses AIDB_GUARD_REQUIRED on ai-engineer when the guard is not installed", async () => {
+    const { client } = fakeClient({ guard: false, aiEngineer: true });
     await expect(admitExactUseWithin(client, "t", binding)).rejects.toBeInstanceOf(AdmissionInstallationError);
   });
 
   it("runs component_only outside ai-engineer", async () => {
-    const { client, calls } = fakeClient({ current: true, legacy: false, aiEngineer: false });
+    const { client, calls } = fakeClient({ guard: true, aiEngineer: false });
     expect((await admitExactUseWithin(client, "t", binding)).path).toBe("component_only");
     expect(calls.some((text) => text.includes("assert_admitted_use("))).toBe(false);
   });
 
-  it("keeps the SQLSTATE mapping for the verification. guard", async () => {
+  it("keeps the SQLSTATE mapping for the guard", async () => {
     const { client } = fakeClient({
-      current: true,
-      legacy: false,
+      guard: true,
       aiEngineer: true,
       guardError: Object.assign(new Error("EFFECT_CONFLICT"), { code: "KSA03" }),
     });

@@ -47,6 +47,13 @@ Ingestion (executor_service, one transaction, temporal helpers)
   ingest receipt <receiptId>
   artifact get <artifactId>
 
+Verification chain (governed writes; proposals only, never verified and never a person's judgment)
+  chain write <request.json>                 { operation, idempotency_key, input, actor? }: record_claim, restate_claim,
+                                             record_triage, register_probe, record_probe_run, propose_verdict,
+                                             record_source_assessment, raise_attention_sweep, settle_attention_sweep
+  evidence units [--text "words"] [--capture-id <uuid>] [--document-id <uuid>] [--node-id <uuid>] [--url <url>] [--limit 20]
+                                             content units to quote, each with its anchor { capture_id, node_id }
+
 Research reports (registration is custody; a seal is not admission)
   report register <report.json> [--tenant <uuid>]
   report get <reportVersionId> [--tenant <uuid>]
@@ -94,7 +101,8 @@ Output
 Exit codes
   0  success (includes duplicateOf, partial, noop receipts and skipped read ops)
   1  domain outcome: INTENT_SCHEMA_INVALID, PARAMS_INVALID, QUERY_UNKNOWN, VOCABULARY_VIOLATION, RULE_VIOLATION,
-     REBASE_REQUIRED, SUBJECT_*, EVIDENCE_NOT_ELIGIBLE, REVIEW_REQUIRED_ONLY, DUPLICATE_PENDING, HEAD_MISMATCH (atKnowledgeSeq), plan rejected
+     REBASE_REQUIRED, SUBJECT_*, EVIDENCE_NOT_ELIGIBLE, REVIEW_REQUIRED_ONLY, DUPLICATE_PENDING, HEAD_MISMATCH (atKnowledgeSeq), plan rejected,
+     and every refused chain write (its stable code, for example VERDICT_CELL_NOT_RUN or HUMAN_REVIEW_NOT_AGENT_WRITABLE)
   2  infrastructure/usage: WORKSPACE_MISSING, WORKSPACE_STALE, HEAD_MISMATCH (migration), DB_UNAVAILABLE, ROLE_DENIED, network, auth`;
 
 export interface Parsed {

@@ -19,7 +19,7 @@ export interface ValidationContext {
 }
 
 const CURRENCY = /^[A-Z]{3}$/;
-const MONETARY_STREAMS = new Set(["model_offering_price", "compute_offering_price", "valuation"]);
+const MONETARY_STREAMS = new Set(["offering_price", "compute_offering_price", "valuation"]);
 
 export function validateProposal(proposal: Proposal, context: ValidationContext): VocabularyIssue[] {
   switch (proposal.kind) {

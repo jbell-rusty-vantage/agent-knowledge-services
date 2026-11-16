@@ -105,7 +105,7 @@ export function subjectIdentity(intent: IngestionIntent, facts: PlanFacts, ref: 
   if (subject.mode === "resolved") return subject.entityId;
   const strong = facts.subjects[ref]?.matches?.find((match) => match.score >= STRONG_MATCH);
   if (strong) return subject.onMatch === "use_existing" && strong.kind === subject.kind ? strong.entityId : undefined;
-  return deterministicId("corpus.entity", [intent.context.tenantId, intent.intentId, ref].join("\0"));
+  return deterministicId("catalog.entity", [intent.context.tenantId, intent.intentId, ref].join("\0"));
 }
 
 export function proposalClaims(proposal: Proposal): readonly { runId: string; claimId: string }[] {

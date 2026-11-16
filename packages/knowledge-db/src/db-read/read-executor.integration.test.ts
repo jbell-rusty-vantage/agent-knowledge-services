@@ -1,35 +1,36 @@
 import { mkdtempSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { join, resolve } from "node:path";
-import { TenantPostgres } from "@aiengineer/knowledge-persistence";
+import { join } from "node:path";
 import { LocalArtifactStore } from "@aiengineer/knowledge-core";
-import { loadWorkspace } from "../schema-workspace/index.js";
+import { loadWorkspace, resolveWorkspaceDir } from "../schema-workspace/index.js";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { ArtifactLedger } from "./artifacts.js";
 import { ReadExecutor } from "./read-executor.js";
 import type { ReadIntentInput } from "./read-intent.js";
 import { disposableDatabaseUrl } from "../../../persistence/test/disposable.mjs";
+import { RollbackPostgres } from "../../../persistence/test/rollback-postgres.mjs";
 
 const url = disposableDatabaseUrl();
 const TENANT = "00000000-0000-7000-8000-000000000001";
-const REAL_WORKSPACE = resolve(import.meta.dirname, "../../../../../../aiengineer/ai-engineer-db-contract/workspace");
-const workspaces = [["db-contract", REAL_WORKSPACE]] as [string, string][];
+// The vendored contract pin: its workspace head must be the database head, or every read refuses HEAD_MISMATCH.
+const workspaces = [["db-contract", resolveWorkspaceDir({ env: {} })]] as [string, string][];
 
 const MIGRATION_HEAD_PATTERN = /^\d{14}$/;
 
 describe.skipIf(!url).each(workspaces)(
   "ReadExecutor against the disposable database (%s workspace)",
   (label, workspaceDir) => {
-    // The package fixture is a frozen snapshot; only the real db-contract tree is expected to match the database head.
+    // The package fixture is a frozen snapshot; only the pinned db-contract tree is expected to match the database head.
     const workspaceTracksDatabase = label === "db-contract";
-    let db!: TenantPostgres;
+    // Every scope is a savepoint in one transaction that afterAll rolls back: the database is left as found.
+    let db!: RollbackPostgres;
     let storeDir: string | undefined;
     let workspace!: ReturnType<typeof loadWorkspace>;
     let artifacts!: ArtifactLedger;
     let executor!: ReadExecutor;
-    beforeAll(() => {
+    beforeAll(async () => {
       workspace = loadWorkspace(workspaceDir);
-      db = new TenantPostgres({ connectionString: url ?? "postgresql://unused", maximumPoolSize: 2 });
+      db = await RollbackPostgres.open(url ?? "postgresql://unused");
       storeDir = mkdtempSync(join(tmpdir(), "ks-read-artifacts-"));
       artifacts = new ArtifactLedger({
         db,
@@ -89,6 +90,27 @@ describe.skipIf(!url).each(workspaces)(
       expect(first.contract.migrationHead).toBe(workspace.migrationHead);
     });
 
+    it("serves the Build 08 verified-knowledge and governed-chain queries of the pinned catalog", async () => {
+      const snapshot = await executor.runIntent(
+        intent({
+          intentId: "build08-verified-read",
+          operations: [
+            { opId: "verified", kind: "named_query", query: "evidence.verified_claims", limit: 50 },
+            { opId: "probes", kind: "named_query", query: "evidence.probes", limit: 50 },
+            { opId: "writes", kind: "named_query", query: "chain.governed_writes", limit: 50 },
+            { opId: "kinds", kind: "named_query", query: "vocab.unit_kind", limit: 50 },
+          ],
+        }),
+      );
+      expect(snapshot.operations.map((operation) => [operation.opId, operation.status])).toEqual([
+        ["verified", "ok"],
+        ["probes", "ok"],
+        ["writes", expect.stringMatching(/ok|empty/)],
+        ["kinds", "ok"],
+      ]);
+      expect(snapshot.operations[0]?.rowCount).toBeGreaterThan(0);
+    });
+
     it("rejects bad parameters, unknown queries, and role escalation statically", () => {
       expect(() =>
         executor.validateIntent(
@@ -135,13 +157,15 @@ describe.skipIf(!url).each(workspaces)(
       expect(result.role).toBe("pipeline_agent");
       expect(result.rows).toHaveLength(5);
       expect(result.truncated).toBe(true);
-      await expect(executor.sqlReadonly({ tenantId: TENANT, sql: "delete from corpus.entity" })).rejects.toMatchObject({
-        code: "SQL_NOT_SELECT",
-      });
+      await expect(executor.sqlReadonly({ tenantId: TENANT, sql: "delete from catalog.entity" })).rejects.toMatchObject(
+        {
+          code: "SQL_NOT_SELECT",
+        },
+      );
       await expect(executor.sqlReadonly({ tenantId: TENANT, sql: "select lo_create(0)" })).rejects.toMatchObject({
         code: "25006",
       });
-      const explained = await executor.explain({ tenantId: TENANT, sql: "select count(*) from corpus.entity" });
+      const explained = await executor.explain({ tenantId: TENANT, sql: "select count(*) from catalog.entity" });
       expect(Array.isArray(explained.plan)).toBe(true);
     });
   },

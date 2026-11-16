@@ -24,7 +24,7 @@ function fixture() {
     proposals: [],
     subjects: [],
     claims: [],
-    affectedRefs: [{ schema: "corpus", table: "entity", id: id(7) }],
+    affectedRefs: [{ schema: "catalog", table: "entity", id: id(7) }],
     duplicateOf: null,
     priorReceiptsForIntentId: [],
     failure: null,

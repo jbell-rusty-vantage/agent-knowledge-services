@@ -110,18 +110,6 @@ const installed = (
 const head = (
   await probe.query<{ version: string }>("select max(version) as version from supabase_migrations.schema_migrations")
 ).rows[0];
-// The executor's plan does not check each kind's NOT NULL typed columns; the fixture preflights them.
-const requiredColumns = new Map(
-  (
-    await probe.query<{ code: string; columns: string[] }>(
-      `select k.code, array_agg(c.column_name::text order by c.column_name) as columns
-         from information_schema.columns c
-         join taxonomy.entity_kind k on k.canonical_schema = c.table_schema and k.canonical_table = c.table_name
-        where c.is_nullable = 'NO' and c.column_default is null and c.column_name not in ('id', 'tenant_id', 'kind')
-        group by k.code`,
-    )
-  ).rows.map((row) => [row.code, row.columns]),
-);
 await probe.end();
 if (
   !installed ||
@@ -460,7 +448,7 @@ async function readback(receiptId: string, effectKey: string, decisionId: string
       if (rows.length !== 1) failures.push({ ref, error: "affected row not found" });
     }
     const entities = await q<{ id: string; kind: string; display_name: string; lifecycle: string }>(
-      "select id::text, kind, display_name, lifecycle from corpus.entity where tenant_id = $1::uuid and created_by_receipt_id = $2::uuid order by kind, display_name",
+      "select id::text, kind, display_name, lifecycle from catalog.entity where tenant_id = $1::uuid and created_by_receipt_id = $2::uuid order by kind, display_name",
       [origin.tenantId, receiptId],
     );
     const claims = await q<{ id: string; statement: string; claim_type: string; status: string }>(
@@ -471,7 +459,7 @@ async function readback(receiptId: string, effectKey: string, decisionId: string
       if (![...frozenClaims.values()].includes(claim.statement))
         failures.push({ claim: claim.id, error: "materialized claim text differs from every frozen proposition" });
     const [ledger] = await q<{ admissions: number; protocol: number; native: number }>(
-      `select (select count(*)::int from research.use_admission where tenant_id = $1::uuid and use_decision_id = $2) as admissions,
+      `select (select count(*)::int from verification.use_admission where tenant_id = $1::uuid and use_decision_id = $2) as admissions,
               (select count(*)::int from knowledge_verification.protocol_receipt where tenant_id = $1::uuid and effect_key = $3) as protocol,
               (select count(*)::int from knowledge_verification.effect_receipt where tenant_id = $1::uuid and effect_key = $3) as native`,
       [origin.tenantId, decisionId, effectKey],
@@ -666,26 +654,7 @@ try {
           }
           throw error;
         }
-        const missingTyped = built.intent.subjects.flatMap((subject) => {
-          if (subject.mode !== "new") return [];
-          const payload = subject.typedPayload as Record<string, unknown>;
-          const required = requiredColumns.get(subject.kind) ?? [];
-          const missing = required.filter((column) => !column.endsWith("_id") && payload[column] == null);
-          const derived = required.filter((column) => column.endsWith("_id") && payload[column] == null);
-          return missing.length || derived.length
-            ? [{ ref: subject.ref, kind: subject.kind, missingTypedPayload: missing, unresolvedReferences: derived }]
-            : [];
-        });
-        if (missingTyped.some((item) => item.missingTypedPayload.length > 0)) {
-          send({
-            refused: true,
-            code: "TYPED_PAYLOAD_REQUIRED",
-            message:
-              "New subjects lack NOT NULL typed columns of their kind; supply them in typedPayload from evidence",
-            details: { subjects: missingTyped },
-          });
-          continue;
-        }
+        // The executor's plan checks each new subject's attributes against its kind's schema (VOCABULARY_VIOLATION).
         // The executor's own read-only plan, with placeholder decision fields, is repair feedback only.
         let plan: ReturnType<typeof planFeedback> | { error: string };
         try {

@@ -268,7 +268,6 @@ const GROUP_ORDER: readonly ProposalKind[] = [
   "fact.assert_state",
   "event.assert",
   "support.admit",
-  "metric.observe",
   "record.materialize",
   "report.publish",
 ];
@@ -482,14 +481,18 @@ class PlanBuilder {
         details: { entityId: strong.entityId },
       });
     const kind = this.facts.vocabulary.entityKinds.get(subject.kind);
-    const unknownColumns = kind
-      ? Object.keys(subject.typedPayload).filter((column) => !kind.columns.includes(column))
-      : [];
-    if (unknownColumns.length > 0)
+    const attributeIssues = kind ? attributeSchemaIssues(kind.attributesSchema, subject.attributes) : undefined;
+    if (attributeIssues)
       this.fail({
         code: "VOCABULARY_VIOLATION",
-        message: `subject ${subject.ref}: typedPayload keys are not columns of ${kind?.schema}.${kind?.table}`,
-        details: { unknownColumns, allowed: kind?.columns },
+        message: `subject ${subject.ref}: attributes do not satisfy the ${subject.kind} attributes schema`,
+        details: attributeIssues,
+      });
+    if (kind?.isWork && !strong)
+      this.fail({
+        code: "WORK_KIND_NOT_CREATABLE",
+        message: `subject ${subject.ref}: a ${subject.kind} also needs its catalog.work row, which no bounded role may write; reference the existing work as a resolved subject`,
+        details: { kind: subject.kind },
       });
     const slug = this.subjectSlug(subject, known);
     if (strong && subject.onMatch === "fail")
@@ -517,7 +520,7 @@ class PlanBuilder {
         slug,
       };
     const entityId = deterministicId(
-      "corpus.entity",
+      "catalog.entity",
       [this.intent.context.tenantId, this.intent.intentId, subject.ref].join(NULL_SEPARATOR),
     );
     return {
@@ -794,7 +797,7 @@ class PlanBuilder {
           outcome: "admitted",
           actions: [
             {
-              table: "corpus.entity_alias",
+              table: "catalog.entity_alias",
               op: "insert_if_absent",
               args: {
                 entity: subject(proposal.subjectRef),
@@ -809,7 +812,7 @@ class PlanBuilder {
           outcome: "admitted",
           actions: [
             {
-              table: "corpus.entity_identifier",
+              table: "catalog.entity_identifier",
               op: "insert_if_absent",
               args: {
                 entity: subject(proposal.subjectRef),
@@ -924,35 +927,13 @@ class PlanBuilder {
         if (current) return { outcome: "no_op_duplicate", existing: current, actions: [] };
         return {
           outcome: "admitted",
-          actions: [
-            "knowledge.record",
-            "knowledge.compatibility_constraint",
-            "evidence.claim_record",
-            "knowledge.record_entity_link",
-          ].map((table) => ({
+          actions: ["guidance.item", "evidence.claim_record", "guidance.item_subject"].map((table) => ({
             table,
             op: "insert",
             args: { subject: subject(proposal.subjectRef), claim: claimArg },
           })),
         };
       }
-      case "metric.observe":
-        return {
-          outcome: "admitted",
-          actions: [
-            {
-              table: "ranking.metric_observation",
-              op: "insert",
-              args: {
-                subject: subject(proposal.subjectRef),
-                metric_definition_version_id: proposal.metricDefinitionVersionId,
-                value: proposal.value,
-                observed_at: proposal.observedAt,
-                claim: claimArg,
-              },
-            },
-          ],
-        };
       case "candidate.stage":
         return {
           outcome: "review_required",
@@ -1108,7 +1089,7 @@ class PlanBuilder {
             (binding) =>
               binding.canonicalId ===
               deterministicId(
-                "corpus.entity",
+                "catalog.entity",
                 [this.intent.context.tenantId, this.intent.intentId, subject.ref].join(NULL_SEPARATOR),
               ),
           ),
@@ -1142,7 +1123,7 @@ class PlanBuilder {
       const create = proposal.effective;
       const subject = this.intent.subjects.find((item) => item.ref === create.subjectRef);
       if (subject?.mode === "new")
-        for (const value of Object.values(subject.typedPayload)) {
+        for (const value of Object.values(subject.attributes)) {
           const ref = subjectRefOfPlaceholder(value);
           if (ref) subjectRefs.push(ref);
         }
@@ -1156,7 +1137,7 @@ class PlanBuilder {
     return [...dependencies];
   }
 
-  /** Dependency groups (claims → candidates → entities → aliases → relationships → facts → events → supports → metrics → report), then explicit `dependsOn`. */
+  /** Dependency groups (claims → candidates → entities → aliases → relationships → facts → events → supports → records → report), then explicit `dependsOn`. */
   orderProposals(proposals: readonly PlannedProposal[]): string[] {
     const grouped = [...proposals].sort(
       (a, b) => GROUP_ORDER.indexOf(a.kind) - GROUP_ORDER.indexOf(b.kind) || a.ordinal - b.ordinal,
@@ -1192,6 +1173,23 @@ class PlanBuilder {
   }
 }
 
+/**
+ * The part of a kind's attributes schema the planner reports before any transaction: missing `required` keys and,
+ * when the schema is closed, keys it does not declare. The database validates the full JSON Schema on insert.
+ */
+export function attributeSchemaIssues(
+  schema: Record<string, unknown>,
+  attributes: Record<string, unknown>,
+): { missing: string[]; unknown: string[]; allowed: string[] } | undefined {
+  const properties =
+    schema.properties && typeof schema.properties === "object" ? Object.keys(schema.properties as object) : [];
+  const required = Array.isArray(schema.required) ? schema.required.map(String) : [];
+  const missing = required.filter((key) => attributes[key] === undefined);
+  const unknown =
+    schema.additionalProperties === false ? Object.keys(attributes).filter((key) => !properties.includes(key)) : [];
+  return missing.length > 0 || unknown.length > 0 ? { missing, unknown, allowed: properties } : undefined;
+}
+
 function entityCreateOutcome(planned: PlannedSubject | undefined): OutcomeSlice {
   if (planned?.resolution === "use_existing")
     return {
@@ -1214,7 +1212,7 @@ function entityCreateOutcome(planned: PlannedSubject | undefined): OutcomeSlice 
         args: { decision: "create" },
       },
       {
-        table: "corpus.entity",
+        table: "catalog.entity",
         op: "insert",
         args: {
           id: planned?.entityId,

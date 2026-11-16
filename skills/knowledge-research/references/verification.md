@@ -108,7 +108,7 @@ For a probe, the control is the cell where the claim should fail, and the expect
 A verdict holds for the versions it was run on. When a release of a subject lands, the checks that cover it are due again. Rerun them in a rebuilt latest cell. An unchanged outcome writes nothing new. A changed outcome opens a review and flags every released work that cites the claim.
 
 <a id="availability"></a>
-## Availability, checked 2026-11-15
+## Availability, checked 2026-11-16
 
 **Capture and locate (acts 1 and 2): executor server.** Procedure: skill `knowledge-verify`.
 
@@ -125,7 +125,52 @@ A verdict holds for the versions it was run on. When a release of a subject land
 - `verify_capture_fragment` needs durable custody. It runs only on a served executor.
 - The platform server cannot produce a quote. `knowledge_source_fetch` stores a capture for document preparation, and no tool on that server reads or locates text in it.
 
-**Reports, independent assessment and applying a decision (acts 4 and 5): executor server.** One tool, `knowledge_operation_invoke`, carries every operation below. `knowledge_operation_get` polls an operation, `knowledge_operation_cancel` cancels one, and `knowledge_receipt_get` looks up the receipt of an effect. On this server `knowledge_describe` returns the binding descriptor, which lists the operations that binding serves.
+<a id="chain-tools"></a>
+**The chain, steps 1 to 4 and the watch: executor server.** One tool, `chain_write`, carries nine operations. Each is one governed write of the knowledge base; you name it in `operation`. Command line: `knowledge chain write <request.json>`.
+
+| Chain step | `operation` | It records | Read it back with `db_read_intent` |
+| --- | --- | --- | --- |
+| 1. Claim | `record_claim` | a statement as `proposed`, with 1 to 50 evidence anchors, its subjects and who stated it | `evidence.claim` |
+| 6. Restatement | `restate_claim` | the testable statement X behind "the post states that X"; the original stays as it was | `evidence.claim_restatements` |
+| 2. Triage | `record_triage` | what to do with a candidate: probe, docs check, registry check, not checkable, duplicate, out of scope | `evidence.claim_triage` |
+| 3. Probe | `register_probe` | the check, the claims it tests and the expected outcome, before any run | `evidence.probes` |
+| 3. Probe run | `record_probe_run` | one run in one cell, with its captured output as an anchor | `evidence.probe_matrix` |
+| 4. Verdict | `propose_verdict` | what the recorded runs showed about one claim, as `agent_proposed` | `evidence.claim_verdicts` |
+| Source | `record_source_assessment` | a role prior for a source, or an assessment derived from verdicts on its claims | `evidence.source_registry` |
+| Watch | `raise_attention_sweep`, then `settle_attention_sweep` | one execution of an attention policy under a mission budget: opened before the work, settled once after | `acquisition.open_sweeps` |
+
+How to call it:
+
+- **Read the operation first.** `knowledge_describe` with `operation:record_claim` (or any name above) returns that operation's full input, its rules and a valid example. `knowledge_describe` with `tool:chain_write` lists all nine.
+- **The call** is `{ "request": { "operation", "idempotency_key", "input", "actor" } }`. `input` holds the operation's arguments.
+- **`idempotency_key` is yours.** Derive it from the work (`run-2fa5:claim:7`), never from the attempt. The same key with the same input returns the first result with `replayed` true and writes nothing. The same key with another input is refused.
+- **`actor` says who acted:** `label` (the agent or tool, never a person), `mission_id` (the mission whose budget bounds the work) and `mc` (the Mission Control invocation). It is recorded as you send it.
+- **An evidence anchor** is `{ "capture_id", "node_id", "quote" }`: a quote that is verbatim in one content unit of a capture held in the knowledge base. Find the pair with `evidence_units` (`knowledge evidence units --text "<words>"`), which returns each unit's text and its `anchor`. Copy the quote from that text.
+- **Order matters.** A verdict needs a registered probe with a recorded run in every cell it cites. A derived source assessment needs a prior first. Do the work of a sweep only when it came back `open`.
+
+<a id="not-written"></a>
+**What `chain_write` never writes.** These are rules of the knowledge base. No tool works around them, and you do not look for another path.
+
+| You want to | Answer | Refusal |
+| --- | --- | --- |
+| Mark a claim `verified` | No. Every operation leaves a claim `proposed`, or `disputed` after a deterministic contradiction. A claim becomes `verified` only when Knowledge Services admits a sealed verification run | `VERIFIED_CLAIM_REQUIRES_ADMITTED_USE` |
+| Record that a person confirmed or rejected a verdict, reviewed a triage or a source, or reviewed a release | No. Propose, then ask for the review. Do not transcribe a person's answer into a row | `HUMAN_REVIEW_NOT_AGENT_WRITABLE`; a label that names a person is `ACTOR_INVALID` |
+| Change or delete a verdict, a triage row or an assessment | No. They are append-only. Send the new one: it supersedes the old row, and the same one again writes nothing (`unchanged` true) | `CHAIN_OPERATION_UNKNOWN` for an update or delete operation |
+
+<a id="refusals"></a>
+**What a refusal means.** A refused call wrote nothing. The error carries a stable `code`, its class, what it means and what to do next. The class tells you whether to retry:
+
+| Class | Meaning | Do |
+| --- | --- | --- |
+| `invalid_input`, `malformed` | The call does not match the schema or a rule of the function | Correct the named field and call again with the same key |
+| `not_found` | An id names nothing in this tenant | Read the id back; do not invent one |
+| `state_refuses` | The row's state forbids it | Read the state and change the plan. Example: `VERDICT_CELL_NOT_RUN` means record that cell's run first |
+| `taken` | The key, slug or restatement already exists | Use the existing row, or a new key for a new write |
+| `not_allowed` | One of the three rules above | Stop. Report where your authority ended |
+
+`VERDICT_REQUIRES_RUNS` is the common one: `cells` must be an object keyed by the cell labels of recorded runs, with what each showed. `QUOTE_NOT_IN_UNIT` means the quote was paraphrased or joined from two units.
+
+**Reports, independent assessment and applying a decision (acts 4 and 5): executor server.** One tool, `knowledge_operation_invoke`, carries every operation below. `knowledge_operation_get` polls an operation, `knowledge_operation_cancel` cancels one, and `knowledge_receipt_get` looks up the receipt of an effect. `knowledge_describe` without a reference returns the binding descriptor, which lists the operations that binding serves.
 
 | Step | Operation |
 | --- | --- |
@@ -144,11 +189,11 @@ A verdict holds for the versions it was run on. When a release of a subject land
 
 **No Knowledge Services tool, command or operation exists for:**
 
-- triage, probes, probe runs and their cells;
-- verdict records, human confirmation and restatement;
-- the admission evidence pack for a single claim, and its dispatch;
-- the watch that reruns checks when a release lands.
+- **turning a capture you made into content units.** `verify_capture_source` and `verify_capture_file` store bytes in the executor's own store. An anchor needs a capture and a unit held in the knowledge base, and no tool here creates them from an executor capture: `source_prepare_captured` needs a preparation host, and answers `PREPARATION_HOST_REQUIRED` without one. Until then you can anchor only content the knowledge base already holds (`evidence_units` finds it), or pass an existing `locator_id`;
+- human confirmation of a verdict or of a restated wording (step 5): a person does it, through a path no agent holds;
+- the admission evidence pack for a single claim, and its dispatch (step 7);
+- running a probe. `record_probe_run` records a run you made; nothing here executes one.
 
-When your tool list has none of these, do the step in your own working files, state the result as a proposal, and name in the handback the step where your authority ended.
+When your tool list has none of a step, do it in your own working files, state the result as a proposal, and name in the handback the step where your authority ended.
 
-**Outside this service, recorded 2026-11-15 and not checked here:** those steps exist as lab scripts for the AI Engineer knowledge base, with one Knowledge Services experiment for admission. On that date the lab held 27 verified claims, all on a disposable database and signed with a test key.
+**Outside this service, recorded 2026-11-15 and not checked here:** human confirmation and the admission pack exist as lab scripts for the AI Engineer knowledge base, with one Knowledge Services experiment for admission. On that date the lab held 27 verified claims, all on a disposable database and signed with a test key.

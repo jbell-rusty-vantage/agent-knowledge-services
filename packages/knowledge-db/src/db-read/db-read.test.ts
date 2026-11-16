@@ -67,14 +67,14 @@ describe("assertSingleReadStatement", () => {
   });
 
   it("rejects writes, multi-statements, non-select, and context mutators", () => {
-    expect(() => assertSingleReadStatement("delete from corpus.entity")).toThrowError(
+    expect(() => assertSingleReadStatement("delete from catalog.entity")).toThrowError(
       expect.objectContaining({ code: "SQL_NOT_SELECT" }),
     );
     expect(() => assertSingleReadStatement("select 1; select 2")).toThrowError(
       expect.objectContaining({ code: "SQL_MULTI_STATEMENT" }),
     );
     expect(() =>
-      assertSingleReadStatement("with w as (delete from corpus.entity returning id) select * from w"),
+      assertSingleReadStatement("with w as (delete from catalog.entity returning id) select * from w"),
     ).toThrowError(expect.objectContaining({ code: "SQL_FORBIDDEN_KEYWORD" }));
     expect(() => assertSingleReadStatement("select set_config('app.tenant_id','x',true)")).toThrowError(
       expect.objectContaining({ code: "SQL_FORBIDDEN_FUNCTION" }),

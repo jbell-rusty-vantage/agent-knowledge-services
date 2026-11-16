@@ -95,7 +95,8 @@ const NewSubject = z.strictObject({
   identifiers: z
     .array(z.strictObject({ scheme: z.enum(IDENTIFIER_SCHEMES), value: z.string().min(1).max(400) }))
     .default([]),
-  typedPayload: z.record(z.string(), z.unknown()).default({}),
+  /** Kind-specific attributes; the database validates them against `taxonomy.entity_kind.attributes_schema`. */
+  attributes: z.record(z.string(), z.unknown()).default({}),
   onMatch: z.enum(["review", "use_existing", "fail"]).default("review"),
   evidence: z.array(EvidenceRefSchema).default([]),
 });
@@ -159,7 +160,6 @@ export const ProposalSchema = z.discriminatedUnion("kind", [
     payload: z.record(z.string(), z.unknown()).default({}),
     extent: ExtentSchema.optional(),
     temporalBasis: TemporalBasis,
-    specificationRef: Uuid.optional(),
   }),
   z.strictObject({
     ...common,
@@ -198,16 +198,6 @@ export const ProposalSchema = z.discriminatedUnion("kind", [
     expression: z.string().min(1).max(4000),
     evidence: z.array(EvidenceRefSchema.extend({ role: z.literal("primary").default("primary") })).length(1),
     belief: z.literal("accepted").default("accepted"),
-  }),
-  z.strictObject({
-    ...common,
-    kind: z.literal("metric.observe"),
-    subjectRef: Ref,
-    metricDefinitionVersionId: Uuid,
-    value: z.number(),
-    unit: z.string().max(120).optional(),
-    observedAt: Timestamp,
-    benchmarkRunRef: Ref.optional(),
   }),
   z.strictObject({
     ...common,
@@ -366,7 +356,6 @@ export const ENTITY_REF_KINDS: ReadonlySet<ProposalKind> = new Set([
   "entity.identifier",
   "fact.assert_state",
   "event.assert",
-  "metric.observe",
   "record.materialize",
 ]);
 
@@ -382,7 +371,6 @@ export function subjectRefsOf(proposal: Proposal): string[] {
     case "entity.create":
     case "entity.alias":
     case "entity.identifier":
-    case "metric.observe":
     case "record.materialize":
       return [proposal.subjectRef];
     default:

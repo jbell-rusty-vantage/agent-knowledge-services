@@ -1,31 +1,40 @@
 import { mkdtempSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { join, resolve } from "node:path";
+import { join } from "node:path";
 import { ArtifactLedger, canonicalJson, ReadExecutor } from "../../db-read/index.js";
-import { TenantPostgres, type TenantSqlClient, type TransactionScope } from "@aiengineer/knowledge-persistence";
 import { LocalArtifactStore } from "@aiengineer/knowledge-core";
-import { loadWorkspace } from "../../schema-workspace/index.js";
+import type { KnowledgeDatabase, KnowledgeSqlClient, KnowledgeTransactionScope } from "../../ports.js";
+import { loadWorkspace, resolveWorkspaceDir } from "../../schema-workspace/index.js";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { classifyFailure, IngestionExecutor } from "../executor.js";
 import type { IngestionIntentInput } from "../intent.js";
 import { disposableDatabaseUrl } from "../../../../persistence/test/disposable.mjs";
+import { RollbackPostgres } from "../../../../persistence/test/rollback-postgres.mjs";
 import { withSnapshot } from "../../../test/ingestion/snapshot-fixture.mjs";
 import { seedPriceSlot } from "../../../test/ingestion/current-schema-fixture.mjs";
 import { declaredRunsOracle } from "../../../test/ingestion/declared-evidence.mjs";
 
 const url = disposableDatabaseUrl();
 const TENANT = "00000000-0000-7000-8000-000000000001";
-const REAL_WORKSPACE = resolve(
-  import.meta.dirname,
-  "../../../../../../../aiengineer/ai-engineer-db-contract/workspace",
-);
-const workspaces = [["db-contract", REAL_WORKSPACE]] as [string, string][];
+// The vendored contract pin; its workspace head must equal the database head.
+const workspaces = [["db-contract", resolveWorkspaceDir({ env: {} })]] as [string, string][];
 
-class InterleavedPostgres extends TenantPostgres {
+/**
+ * Every scope is a savepoint of one transaction that `close()` rolls back (the database is left as found). The
+ * wrapper injects the two interleavings the executor must survive: a lost apply response and a write after planning.
+ */
+class InterleavedDatabase implements KnowledgeDatabase {
   afterPlan: (() => Promise<void>) | undefined;
   loseApplyResponse = false;
-  override async transaction<T>(scope: TransactionScope, work: (client: TenantSqlClient) => Promise<T>): Promise<T> {
-    const result = await super.transaction(scope, work);
+  constructor(private readonly inner: RollbackPostgres) {}
+  migrationHead(): Promise<string | undefined> {
+    return this.inner.migrationHead();
+  }
+  close(): Promise<void> {
+    return this.inner.close();
+  }
+  async transaction<T>(scope: KnowledgeTransactionScope, work: (client: KnowledgeSqlClient) => Promise<T>): Promise<T> {
+    const result = await this.inner.transaction(scope, work);
     if (
       !scope.readOnly &&
       result !== null &&
@@ -50,15 +59,15 @@ describe.skipIf(!url).each(workspaces)(
   "IngestionExecutor against the disposable database (%s workspace)",
   (label, workspaceDir) => {
     const suffix = `${Date.now().toString(36)}${label.slice(0, 1)}`;
-    let db!: InterleavedPostgres;
+    let db!: InterleavedDatabase;
     let storeDir: string | undefined;
     let workspace!: ReturnType<typeof loadWorkspace>;
     let artifacts!: ArtifactLedger;
     let reads!: ReadExecutor;
     let executor!: IngestionExecutor;
-    beforeAll(() => {
+    beforeAll(async () => {
       workspace = loadWorkspace(workspaceDir);
-      db = new InterleavedPostgres({ connectionString: url ?? "postgresql://unused", maximumPoolSize: 2 });
+      db = new InterleavedDatabase(await RollbackPostgres.open(url ?? "postgresql://unused"));
       storeDir = mkdtempSync(join(tmpdir(), "ks-ingest-artifacts-"));
       artifacts = new ArtifactLedger({
         db,
@@ -103,7 +112,7 @@ describe.skipIf(!url).each(workspaces)(
             mode: "new",
             kind: "organization",
             displayName: `KS Exp3 Org ${suffix} ${intentId}`,
-            typedPayload: { website_url: "https://example.test" },
+            attributes: { website_url: "https://example.test" },
             onMatch: "fail",
             evidence: [{ runId: `vr_test_${suffix}`, claimId: "c_1" }],
           },
@@ -164,7 +173,7 @@ describe.skipIf(!url).each(workspaces)(
       );
       const immutable = await artifacts.get(TENANT, receipt.storage.receiptArtifactId!);
       expect(relational?.affected_refs).toEqual(receipt.affectedRefs);
-      // Receipt targets: every affected ref is a created/staged target of its proposal; no exact use, no origin/report.
+      // Receipt targets: every affected ref is a created/staged target of its proposal; no exact use, no origin.
       const targets = receipt.targets ?? [];
       expect(targets.map(({ schema, table, id }) => ({ schema, table, id }))).toEqual(receipt.affectedRefs);
       expect(targets.map((target) => [target.table, target.action, target.proposalId])).toEqual(
@@ -181,7 +190,6 @@ describe.skipIf(!url).each(workspaces)(
         entityId: receipt.subjects[0]?.entityId,
         entityKind: "organization",
       });
-      expect(receipt.report).toBeNull();
       const ledgerRow = await db.transaction(
         { tenantId: TENANT, role: "executor_service", readOnly: true },
         async (client) =>
@@ -281,11 +289,11 @@ describe.skipIf(!url).each(workspaces)(
       expect(targets).toBe(0);
     });
 
-    it("reuses the existing same-unit price series key and closes the stale segment", async () => {
+    it("reuses the existing same-meter price series key and closes the stale segment", async () => {
       const FIXTURE_TERRA_OFFERING = await seedPriceSlot(db, TENANT);
       const staleSeries = await reads.sqlReadonly({
         tenantId: TENANT,
-        sql: "select st.scope_key, s.id from temporal.segment s join temporal.stream st on st.id=s.stream_id where st.subject_entity_id=$1 and st.kind='model_offering_price' and s.unit='per_1m_input_tokens' and s.k_to is null and upper_inf(s.valid_during)",
+        sql: "select st.scope_key, s.id from temporal.segment s join temporal.stream st on st.id=s.stream_id where st.subject_entity_id=$1 and st.kind='offering_price' and s.payload->>'meter'='input_tokens' and s.k_to is null and upper_inf(s.valid_during)",
         params: [FIXTURE_TERRA_OFFERING],
       });
       expect(staleSeries.rows).toHaveLength(1);
@@ -301,12 +309,12 @@ describe.skipIf(!url).each(workspaces)(
             proposalId: "p-01",
             kind: "fact.assert_state",
             subjectRef: "terra",
-            streamKind: "model_offering_price",
-            scopeKey: "per_1m_input_tokens",
+            streamKind: "offering_price",
             worldInterval: { from: "2026-08-20T00:00:00Z", to: null, bounds: "[)" },
             amount,
             currency: "USD",
-            unit: "per_1m_input_tokens",
+            unit: "USD_per_1M_tokens",
+            payload: { meter: "input_tokens", tier: "fast" },
             temporalBasis: "observation_bounded",
             evidence: [{ runId: `vr_test_${suffix}`, claimId: "c_1" }],
           },
@@ -319,9 +327,9 @@ describe.skipIf(!url).each(workspaces)(
         outcome: "admitted",
         rewrites: [
           {
-            rule: "price.scope_key_is_unit",
+            rule: "price.scope_key_is_meter",
             field: "scopeKey",
-            from: "per_1m_input_tokens",
+            from: null,
             to: existingKey,
             reason: "existing_series_reused",
           },
@@ -333,11 +341,11 @@ describe.skipIf(!url).each(workspaces)(
       expect(receipt).toMatchObject({ outcome: "applied", head: { before, after: before + 1 } });
       expect(receipt.proposals[0]).toMatchObject({ outcome: "admitted", supersedes: [staleSegmentId] });
       const newSegmentId = String(receipt.proposals[0]?.created?.segmentId);
-      // Targets: the resolved subject is reused (kind from corpus.entity), the new segment created, the stale one superseded.
+      // Targets: the resolved subject is reused (kind from catalog.entity), the new segment created, the stale one superseded.
       expect(receipt.targets).toEqual(
         expect.arrayContaining([
           expect.objectContaining({
-            schema: "corpus",
+            schema: "catalog",
             table: "entity",
             id: FIXTURE_TERRA_OFFERING,
             action: "reused",
@@ -377,7 +385,7 @@ describe.skipIf(!url).each(workspaces)(
           kind: "model_offering",
           displayName: `Offer ${suffix}`,
           onMatch: "fail",
-          typedPayload: {},
+          attributes: { offering_key: `offer-${suffix}` },
         },
       ];
       intent.proposals = [
@@ -385,11 +393,12 @@ describe.skipIf(!url).each(workspaces)(
           proposalId: "p-01",
           kind: "fact.assert_state",
           subjectRef: "offer",
-          streamKind: "model_offering_price",
+          streamKind: "offering_price",
           worldInterval: { from: "2026-01-01T00:00:00Z", to: null, bounds: "[)" },
           amount: 1,
           currency: "USD",
           unit: "per_1k_tokens",
+          payload: { meter: "input_tokens" },
           temporalBasis: "observation_bounded",
           evidence: [{ runId: `vr_test_${suffix}`, claimId: "c_1" }],
         },
@@ -478,8 +487,8 @@ describe.skipIf(!url).each(workspaces)(
             {
               opId: "search",
               kind: "retrieval",
-              query: "retrieval.evidence_packet",
-              params: { packet_id: "00000000-0000-7000-8000-000000000001" },
+              query: "retrieval.hybrid_search",
+              params: { query_text: "anything", vector_space_version_id: "00000000-0000-7000-8000-000000000001" },
             },
           ],
         },

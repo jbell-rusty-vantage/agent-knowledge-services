@@ -52,15 +52,14 @@ function fixture() {
 }
 
 describe("bounded compatibility record admission", () => {
-  it("plans all four canonical rows and reconciles a duplicate", () => {
+  it("plans the guidance item, its claim link and its subject, and reconciles a duplicate", () => {
     const f = fixture();
     const plan = buildPlan(f.intent, f.facts, { version: "unit", migrationHead: "unit" });
     expect(plan.errors).toEqual([]);
     expect(plan.proposals[0]!.actions.map((action) => action.table)).toEqual([
-      "knowledge.record",
-      "knowledge.compatibility_constraint",
+      "guidance.item",
       "evidence.claim_record",
-      "knowledge.record_entity_link",
+      "guidance.item_subject",
     ]);
     const duplicate = buildPlan(
       f.intent,

@@ -220,7 +220,7 @@ async function prepareRow(
 async function entity(context: ContentOperationContext, entityId: string): Promise<void> {
   const found = await rows(
     context,
-    "select id from corpus.entity where tenant_id=$1 and id=$2 and lifecycle='active'",
+    "select id from catalog.entity where tenant_id=$1 and id=$2 and lifecycle='active'",
     [context.tenantId, entityId],
   );
   if (
@@ -403,7 +403,7 @@ async function chunkRelationship(
     tenantId = context.tenantId;
   await chunk(context, operation.chunk);
   const relationship = (
-    await rows(context, "select * from corpus.relationship where tenant_id=$1 and id=$2 and k_to is null", [
+    await rows(context, "select * from catalog.relationship where tenant_id=$1 and id=$2 and k_to is null", [
       tenantId,
       operation.relationshipId,
     ])
@@ -781,7 +781,7 @@ async function projectionTarget(
       const record = (
         await rows(
           context,
-          `select r.* from knowledge.record r join evidence.claim_record c on c.tenant_id=r.tenant_id and c.record_id=r.id
+          `select r.* from guidance.item r join evidence.claim_record c on c.tenant_id=r.tenant_id and c.record_id=r.id
         and c.claim_id=r.provenance_claim_id where r.tenant_id=$1 and r.id=$2`,
           [tenantId, canonicalId],
         )

@@ -2,5 +2,5 @@
 
 | Domain | Schemas | Start with |
 |---|---|---|
-| identity | corpus | `domains/identity.md` |
+| identity | catalog | `domains/identity.md` |
 | temporal-facts | temporal | `domains/temporal-facts.md` |

@@ -162,10 +162,10 @@ a rule rewrite before a write is attempted.
 the temporal helpers in one executor-service transaction. It records an
 immutable receipt and relational receipt data. The receipt carries outcomes,
 affected references, head before/after, and storage references; it is the
-authority after an uncertain response. Against AI Engineer database contract 0.6.0
-(head `20261031010000`) it also writes one `orchestration.operation_receipt_target` row per native row created,
-reused, superseded or staged (returned as `targets`), the `research.report_v2_*` projection of an exact-use apply
-(`report`), and the origin digest and Mission Control coordinates on the intent and receipt; see
+authority after an uncertain response. Against AI Engineer database contract 0.8.0
+(head `20261116130000`) it also writes one `orchestration.operation_receipt_target` row per native row created,
+reused, superseded or staged (returned as `targets`), and the origin digest and Mission Control coordinates on the
+intent and receipt (the `research.report_v2_*` projection was retired with that schema in Build 08); see
 [`receipt-targets.ts`](../packages/knowledge-db/src/ingestion/receipt-targets.ts). See
 [`apply.ts`](../packages/knowledge-db/src/ingestion/apply.ts),
 [`executor.ts`](../packages/knowledge-db/src/ingestion/executor.ts), and

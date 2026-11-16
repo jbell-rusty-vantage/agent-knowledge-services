@@ -20,3 +20,4 @@ export * from "./source-discovery.js";
 export * from "./checkpoints.js";
 export * from "./content-links.js";
 export * from "./operations/index.js";
+export * from "./verification-chain.js";

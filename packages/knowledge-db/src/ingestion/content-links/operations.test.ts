@@ -127,8 +127,8 @@ function fixture(operation: ContentLinkOperation, override: Query = () => undefi
       }
       const custom = override(sql, values);
       if (custom) return { rows: custom };
-      if (sql.includes("from corpus.entity")) return { rows: [{ id: ids.entity }] };
-      if (sql.includes("from corpus.relationship"))
+      if (sql.includes("from catalog.entity")) return { rows: [{ id: ids.entity }] };
+      if (sql.includes("from catalog.relationship"))
         return {
           rows: [
             {
@@ -325,7 +325,7 @@ describe("typed content operation admission", () => {
       "CONTENT_TEMPORAL_AUTHORITY_REQUIRED",
     ]);
     const unrelated = fixture(operation, (sql) =>
-      sql.includes("from corpus.relationship") ? [{ primary_claim_id: randomUUID() }] : undefined,
+      sql.includes("from catalog.relationship") ? [{ primary_claim_id: randomUUID() }] : undefined,
     );
     expect((await prepareContentOperation(unrelated.context, operation)).result.reasons).toEqual([
       "CONTENT_RELATIONSHIP_EVIDENCE_REQUIRED",

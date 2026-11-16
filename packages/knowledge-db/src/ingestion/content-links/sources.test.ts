@@ -48,7 +48,7 @@ function fixture(nodeDigest: (node: DocumentNode) => string = (node) => node.dig
     parent_representation_id: node.parentId ? representationId : null,
     stable_local_key: blocks[index]!.localKey,
     ordinal: node.ordinal,
-    node_kind: node.kind,
+    unit_kind: node.kind,
     role: node.role ?? null,
     language: node.language ?? null,
     inline_text: node.text,

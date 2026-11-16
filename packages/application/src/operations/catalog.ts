@@ -636,7 +636,12 @@ const system: readonly CatalogOperation[] = [
   ),
   // The operation that explains the others (purpose, input schema, example, result) from the contract package. It
   // reads no tenant data: the API and MCP require a bearer, and the `ks` command answers offline.
-  read("system.describe", "system", on("GET /v1/describe"), on("knowledge_describe"), on("describe")),
+  {
+    ...read("system.describe", "system", on("GET /v1/describe"), on("knowledge_describe"), on("describe")),
+    // The executor registers the tool for its own tools (`tool:<name>`) and the verification-chain operations
+    // (`operation:<name>`); without a reference it returns the K01 binding descriptor.
+    executor: { mcp: "knowledge_describe" },
+  },
   // The guidance an agent reads first: the start page, and every skill and reference as a Markdown page. The pages
   // are bundled in the contract package, so the API, the MCP server and the `ks` command answer alike.
   {
@@ -665,6 +670,8 @@ const executorOperation = (
 });
 const INGESTION =
   "ingestion keeps its own transaction and receipt semantics; no durable operation kind is added for parity";
+const GOVERNED_CHAIN =
+  "each governed write of the verification chain is one database function with its own idempotency key and receipt; no durable operation kind is added for parity";
 const executorKnowledge: readonly CatalogOperation[] = [
   ...(
     [
@@ -685,6 +692,8 @@ const executorKnowledge: readonly CatalogOperation[] = [
   executorOperation("db", "mutation", "ingest_apply", "ingest apply", INGESTION),
   executorOperation("db", "read", "ingest_receipt", "ingest receipt", INGESTION),
   executorOperation("db", "read", "artifact_get", "artifact get"),
+  executorOperation("verify", "mutation", "chain_write", "chain write", GOVERNED_CHAIN),
+  executorOperation("verify", "read", "evidence_units", "evidence units"),
   ...(
     [
       "source_discover:source discover:mutation",

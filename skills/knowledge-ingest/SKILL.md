@@ -90,10 +90,11 @@ Write every large response to a file (`--out`) and carry handles — `receiptId`
   "subjects": [
     { "ref": "openai", "mode": "resolved", "entityId": "<from snapshot>", "kind": "organization" },
     { "ref": "offering", "mode": "new", "kind": "model_offering", "displayName": "…", "aliases": [], "identifiers": [],
-      "typedPayload": { "model_version_id": "$subject:<ref>", "provider_entity_id": "<uuid>", "offering_key": "api" }, "onMatch": "review" } ],
+      "attributes": { "offering_key": "api", "region": "global" }, "onMatch": "review" } ],
   "proposals": [
-    { "proposalId": "p-01", "kind": "fact.assert_state", "subjectRef": "offering", "streamKind": "model_offering_price",
-      "worldInterval": { "from": "2026-08-20T00:00:00Z", "to": null, "bounds": "[)" }, "amount": 2.5, "currency": "USD", "unit": "per_1m_input_tokens",
+    { "proposalId": "p-01", "kind": "fact.assert_state", "subjectRef": "offering", "streamKind": "offering_price",
+      "worldInterval": { "from": "2026-08-20T00:00:00Z", "to": null, "bounds": "[)" }, "amount": 2.5, "currency": "USD", "unit": "USD_per_1M_tokens",
+      "payload": { "meter": "input_tokens" },
       "temporalBasis": "explicit", "extent": { "sourceText": "August 20, 2026", "precision": "day", "earliest": "2026-08-20", "latest": "2026-08-20" },
       "belief": "accepted", "evidence": [ { "runId": "<run>", "claimId": "<claim>", "role": "primary" } ] } ] }
 ```
@@ -102,16 +103,15 @@ Choosing the proposal kind:
 
 | you want to say | kind | notes |
 |---|---|---|
-| "X exists and is a <kind>" | subject `mode: new` (the executor synthesizes `entity.create`) | `typedPayload` keys must be columns of the relation that stores that entity kind. Do not assume its name: find it with `schema_search` (`knowledge schema search "<kind>"`), then read the relation page the hit names; `onMatch: review` unless you are sure it is new |
+| "X exists and is a <kind>" | subject `mode: new` (the executor synthesizes `entity.create`) | `attributes` must satisfy the attributes schema of that entity kind: a missing required key is `VOCABULARY_VIOLATION` in the plan. Read the schema with `db_read_intent` (query `entity.attributes`) or the kind's page (`knowledge schema search "<kind>"`). A number that changes over time is a fact, never an attribute. A work kind (paper, talk, media work, story, case study) cannot be created here: `WORK_KIND_NOT_CREATABLE`; reference the existing work as a resolved subject. `onMatch: review` unless you are sure it is new |
 | "X is also called Y" / "X has id Y in scheme S" | `entity.alias` / `entity.identifier` | idempotent |
 | "A <rel> B [since/until]" | `relationship.assert` | `worldInterval` required for temporal kinds |
-| "X's <stream> is/was V [from D]" | `fact.assert_state` | prices: rule `price.scope_key_is_unit` reuses the key of the subject's existing series for that unit (older data uses `input_tokens`), else defaults `scopeKey` to the unit; a `scopeKey` you give that names another key is rewritten (`reason: existing_series_reused`) |
+| "X's <stream> is/was V [from D]" | `fact.assert_state` | a measured number (a benchmark score, a count) is a fact on its stream, not a separate proposal kind; prices are `offering_price` facts with `payload.meter`: when you give no `scopeKey`, rule `price.scope_key_is_meter` reuses the key of the subject's current series for that meter, tier and region (`reason: existing_series_reused`), else keys the new series `meter|tier|region`; a `scopeKey` you give is never rewritten |
 | "On D, X <event>" | `event.assert` | `occurredDuring` + `precision` |
 | "This quote also supports that fact" | `support.admit` | needs `locatorId` and a materialized claim |
 | "Record these claims as evidence rows" | `claim.materialize` (+ `evidence.claims[]` text) | needs `context.attemptId` or an `exactUse` originating origin (recorded as `producer_origin_digest`); otherwise `held: attempt_or_origin_required` |
-| "Observe metric M = v" | `metric.observe` | needs `metricDefinitionVersionId` |
 | "I found X but cannot resolve/place it" | `candidate.stage` | no evidence needed; give `reason` |
-| "Publish this report" | `report.publish` with `markdown` | stored as artifact `knowledge_report_markdown` plus a report version row. Do not assume where that row lives: find the current relation with `schema_search` (`knowledge schema search "report version"`), then read the page the hit names |
+| "Publish this report" | not an ingestion proposal | `report.publish` is refused `LEGACY_REPORT_PUBLISH_UNSUPPORTED`. Register the report with `knowledge_operation_invoke` (`report.register`) and ask for its assessment |
 
 ### 2. Plan
 

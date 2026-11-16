@@ -1,10 +1,10 @@
 ---
 id: dom:identity
 kind: domain
-schemas: [corpus]
+schemas: [catalog]
 aliases: [entities, identity, canonical entity, resolve]
 ---
 
 # Identity
 
-`corpus.entity` is the identity; `kind` picks the typed table. Resolve names with `q:entity.resolve` before creating anything.
+`catalog.entity` is the identity; `kind` picks the attributes schema. Resolve names with `q:entity.resolve` before creating anything.

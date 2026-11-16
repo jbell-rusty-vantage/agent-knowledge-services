@@ -10,7 +10,8 @@
  * - `executor`: an agent that has only the executor MCP server.
  *
  * Every check is deterministic and read-only: no database, no network, no model call, nothing paid. The guidance
- * and listing checks need no store; the one result read runs over a fixed fixture. The result is a scorecard, not a
+ * and listing checks need no store; the one result read runs over a fixed fixture; the verification-chain checks
+ * run the real chain executor over a database stand-in that refuses every write the way the database would. The result is a scorecard, not a
  * gate: it records what the surface answers today so a change can be measured. Sizes are token estimates:
  * characters divided by four.
  *
@@ -21,7 +22,12 @@ import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { createKnowledgeResourceReads } from "@aiengineer/knowledge-application";
-import { operationContractForTool, toolArgumentsSchema } from "@aiengineer/knowledge-contracts";
+import {
+  CHAIN_OPERATION_NAMES,
+  operationContractForTool,
+  parseChainWrite,
+  toolArgumentsSchema,
+} from "@aiengineer/knowledge-contracts";
 import { buildServer } from "../apps/api/src/server.js";
 import { KS_COMMANDS } from "../apps/cli/src/ks-commands.js";
 import { runKs } from "../apps/cli/src/ks.js";
@@ -30,6 +36,7 @@ import { createKnowledgeMcpServer } from "../apps/mcp/src/index.js";
 import { connectInProcess } from "../apps/mcp/src/tests/in-process-client.js";
 import { knowledgeOperations } from "../apps/verification-executor/src/knowledge/operations.js";
 import { createVerificationMcpServer } from "../apps/verification-executor/src/mcp.js";
+import { createChainService } from "../apps/verification-executor/src/knowledge/context.js";
 
 const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 
@@ -133,9 +140,26 @@ const platform = await connectInProcess(
   }),
   "consumer-surface-eval",
 );
-// Every tool group the executor can register: capture and artifact tools, the knowledge registry and K01.
+// Every tool group the executor can register: capture and artifact tools, the knowledge registry and K01. The chain
+// executor is the real one; its database stand-in refuses every submitted write with the code a verdict without
+// recorded runs gets, so a request that is refused before submitting never reaches it and one that is submitted
+// shows what a database refusal looks like to an agent.
+const chainSubmissions: string[] = [];
+const refusingDatabase = {
+  transaction: async (scope: { role?: string }) => {
+    chainSubmissions.push(scope.role ?? "login");
+    throw Object.assign(new Error("VERDICT_REQUIRES_RUNS"), {
+      code: "22023",
+      detail: "p_cells is an object keyed by the cell labels of the runs the verdict rests on, with what each showed",
+    });
+  },
+};
 const executor = await connectInProcess(
-  createVerificationMcpServer({} as never, {} as never, { service: undefined, credential: () => null }),
+  createVerificationMcpServer(
+    {} as never,
+    { config: { defaultTenantId: TENANT }, chain: createChainService(refusingDatabase as never) } as never,
+    { service: undefined, credential: () => null },
+  ),
   "consumer-surface-eval-executor",
 );
 const jev = await connectInProcess(createJevMcpServer({} as never), "consumer-surface-eval-jev");
@@ -611,6 +635,138 @@ for (const [path, read] of [
     embedStatus.code === 2 && embedStatus.err.includes("UNKNOWN_COMMAND"),
     `ks knowledge embed status: exit ${embedStatus.code}${embedStatus.err.includes("UNKNOWN_COMMAND") ? ", unknown command" : ""}`,
     "the removed command is unknown",
+  );
+}
+
+// ── 11. Can I write the verification chain, and do I know what I may not write? ─────────────────────────────────
+{
+  const executorCall = async (name: string, argumentsValue: Record<string, unknown>) => {
+    try {
+      return (await executor.client.callTool({ name, arguments: argumentsValue })) as ToolResult;
+    } catch (error) {
+      return { isError: true, content: [{ type: "text", text: String(error) }] } as ToolResult;
+    }
+  };
+  const parsed = (result: ToolResult) => {
+    try {
+      return JSON.parse(result.content[0]?.text ?? "null") as Record<string, unknown>;
+    } catch {
+      return {};
+    }
+  };
+  const verification = await executorGuide(`${RESEARCH}/references/verification`);
+  const routing = await executorGuide(`${RESEARCH}/references/tools/routing`);
+
+  // How do I record a claim with evidence?
+  const describedClaim = parsed(await executorCall("knowledge_describe", { ref: "operation:record_claim" }));
+  const claimInput = JSON.stringify(describedClaim.input ?? {});
+  const claimExample = parseChainWrite(describedClaim.example);
+  const guideNamesIt =
+    verification.text.includes("`record_claim`") &&
+    verification.text.includes("`evidence_units`") &&
+    routing.text.includes("`chain_write`");
+  add(
+    "How do I record a claim with evidence?",
+    "executor",
+    executorTools.includes("chain_write") &&
+      executorTools.includes("evidence_units") &&
+      guideNamesIt &&
+      claimInput.includes("capture_id") &&
+      claimInput.includes("locator_id") &&
+      claimExample.ok &&
+      JSON.stringify(describedClaim.notes ?? []).includes("evidence_units"),
+    `chain_write registered: ${executorTools.includes("chain_write")}; evidence_units registered: ${executorTools.includes("evidence_units")}; the guide names record_claim, evidence_units and chain_write: ${guideNamesIt}; knowledge_describe operation:record_claim returns the anchor forms (${claimInput.includes("capture_id") && claimInput.includes("locator_id")}) and an example the tool accepts (${claimExample.ok})`,
+    "the guide says which tool records a claim and how to find an anchor, and knowledge_describe returns the full input with a valid example",
+  );
+
+  // Which tool performs each chain step?
+  const describedTool = parsed(await executorCall("knowledge_describe", { ref: "tool:chain_write" }));
+  const operationRefs = ((describedTool.operations as { ref: string }[] | undefined) ?? []).map((item) => item.ref);
+  const invalidExamples: string[] = [];
+  for (const name of CHAIN_OPERATION_NAMES) {
+    const one = parsed(await executorCall("knowledge_describe", { ref: `operation:${name}` }));
+    if (!parseChainWrite(one.example).ok || !verification.text.includes(`\`${name}\``)) invalidExamples.push(name);
+  }
+  add(
+    "Which tool performs each chain step?",
+    "executor",
+    operationRefs.length === CHAIN_OPERATION_NAMES.length && invalidExamples.length === 0,
+    `knowledge_describe tool:chain_write lists ${operationRefs.length} operations; ${CHAIN_OPERATION_NAMES.length - invalidExamples.length} of ${CHAIN_OPERATION_NAMES.length} are named in the verification reference and described with an example the tool accepts; missing: ${few(invalidExamples)}`,
+    "nine operations, each named in the guide and described in full on demand",
+  );
+
+  // Can I mark a claim verified?
+  const before = chainSubmissions.length;
+  const verify = await executorCall("chain_write", {
+    request: { operation: "verify_claim", idempotency_key: "eval:verify:1", input: { claim_id: id(80) } },
+  });
+  const withStatus = await executorCall("chain_write", {
+    request: {
+      operation: "record_claim",
+      idempotency_key: "eval:claim:1",
+      input: { claim_type: "assertion", statement: "S", evidence: [{ locator_id: id(81) }], status: "verified" },
+    },
+  });
+  const reviewed = await executorCall("chain_write", {
+    request: {
+      operation: "record_source_assessment",
+      idempotency_key: "eval:assessment:1",
+      input: { subject_entity_id: id(82), method: "reviewed" },
+    },
+  });
+  const codes = [verify, withStatus, reviewed].map((result) => String(parsed(result).code));
+  const guideSaysNo =
+    verification.text.includes("Mark a claim `verified`") &&
+    verification.text.includes("`VERIFIED_CLAIM_REQUIRES_ADMITTED_USE`") &&
+    verification.text.includes("`HUMAN_REVIEW_NOT_AGENT_WRITABLE`");
+  add(
+    "Can I mark a claim verified?",
+    "executor",
+    guideSaysNo &&
+      codes[0] === "VERIFIED_CLAIM_REQUIRES_ADMITTED_USE" &&
+      codes[1] === "VERIFIED_CLAIM_REQUIRES_ADMITTED_USE" &&
+      codes[2] === "HUMAN_REVIEW_NOT_AGENT_WRITABLE" &&
+      [verify, withStatus, reviewed].every((result) => result.isError === true) &&
+      chainSubmissions.length === before,
+    `the guide says no and names the refusal: ${guideSaysNo}; an operation that verifies: ${codes[0]}; a status field: ${codes[1]}; a reviewed assessment: ${codes[2]}; requests submitted to the database: ${chainSubmissions.length - before}`,
+    "the guide says no, and the tool refuses with the database's own code before anything is submitted",
+  );
+
+  // What does VERDICT_REQUIRES_RUNS mean?
+  const refusedVerdict = await executorCall("chain_write", {
+    request: {
+      operation: "propose_verdict",
+      idempotency_key: "eval:verdict:1",
+      input: { claim_id: id(80), probe_id: id(83), verdict: "contradicted", cells: { D9: {} }, rationale: "r" },
+    },
+  });
+  const refusal = parsed(refusedVerdict);
+  const details = (refusal.details ?? {}) as Record<string, unknown>;
+  const explained =
+    verification.text.includes("`VERDICT_REQUIRES_RUNS`") && verification.text.includes("keyed by the cell labels");
+  add(
+    "What does VERDICT_REQUIRES_RUNS mean?",
+    "executor",
+    explained &&
+      refusedVerdict.isError === true &&
+      refusal.code === "VERDICT_REQUIRES_RUNS" &&
+      details.class === "malformed" &&
+      String(details.next).includes("record_probe_run") &&
+      String(refusal.error).includes("cell labels") &&
+      details.role === "verifier_agent",
+    `the guide explains the code: ${explained}; a refused propose_verdict returns code ${String(refusal.code)}, class ${String(details.class)}, the role it ran as (${String(details.role)}), the database detail (${details.detail !== undefined}) and what to do next (${String(details.next).includes("record_probe_run")})`,
+    "the guide explains the code, and the refusal itself names the code, what it means and what to do next",
+  );
+
+  // Is the executor's tool list small?
+  const executorListing = await executor.client.listTools();
+  const bytes = Buffer.byteLength(JSON.stringify({ tools: executorListing.tools }), "utf8");
+  add(
+    "Is the executor's tools/list at most 9,000 tokens?",
+    "executor",
+    bytes <= 36_000,
+    `${bytes} bytes (${Math.ceil(bytes / 4)} tokens at four bytes a token) for ${executorListing.tools.length} tools`,
+    "at most 36,000 bytes",
   );
 }
 

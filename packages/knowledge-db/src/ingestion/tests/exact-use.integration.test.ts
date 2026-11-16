@@ -1,38 +1,43 @@
 import { createHash, generateKeyPairSync, sign } from "node:crypto";
 import { mkdtempSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { join, resolve } from "node:path";
+import { join } from "node:path";
 import { LocalArtifactStore } from "@aiengineer/knowledge-core";
 import { type Origin, digestCanonical, originDigest } from "@aiengineer/knowledge-operation-protocol";
-import { TenantPostgres, type TenantSqlClient, type TransactionScope } from "@aiengineer/knowledge-persistence";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { disposableDatabaseUrl } from "../../../../persistence/test/disposable.mjs";
+import { RollbackPostgres } from "../../../../persistence/test/rollback-postgres.mjs";
 import { declaredRunsOracle } from "../../../test/ingestion/declared-evidence.mjs";
 import { withSnapshot } from "../../../test/ingestion/snapshot-fixture.mjs";
 import { ArtifactLedger, ReadExecutor } from "../../db-read/index.js";
-import { loadWorkspace } from "../../schema-workspace/index.js";
+import type { KnowledgeDatabase, KnowledgeSqlClient, KnowledgeTransactionScope } from "../../ports.js";
+import { loadWorkspace, resolveWorkspaceDir } from "../../schema-workspace/index.js";
 import { IngestionExecutor, lookupExactUseReceipt, type ExactUseIngestionReceipt } from "../executor.js";
 import type { IngestionIntentInput } from "../intent.js";
 
 /**
- * SV-08 KS half on the disposable AI Engineer Supabase database (component 2.2.0 installed first, then every AIDB
- * migration incl. the binding and the report-v2 projection): the exact-use admission runs INSIDE `applyOnce`'s
- * transaction (`temporal.begin_batch ... commit_batch`) on the executor's own client. Needs `KS_TEST_DATABASE_URL` and
+ * SV-08 KS half on an AI Engineer database at the vendored contract head with the knowledge_verification component
+ * installed: the exact-use admission runs INSIDE `applyOnce`'s transaction (`temporal.begin_batch ... commit_batch`) on
+ * the executor's own client. Every scope is a savepoint of one transaction that `close()` rolls back, so the database
+ * (seal key, run, decisions, domain rows, epoch) is left as found. Needs `KS_TEST_DATABASE_URL` and
  * `KS_TEST_PROJECT_DIR` (the disposable-project guard of the executor suite); skips without them.
  */
 const url = disposableDatabaseUrl();
 const TENANT = "00000000-0000-7000-8000-000000000001";
-const REAL_WORKSPACE = resolve(
-  import.meta.dirname,
-  "../../../../../../../aiengineer/ai-engineer-db-contract/workspace",
-);
 const digest = (value: string | Uint8Array) => `sha256:${createHash("sha256").update(value).digest("hex")}`;
 const values = digestCanonical({ parameters: "7000000000" });
 
-class LossyPostgres extends TenantPostgres {
+class LossyDatabase implements KnowledgeDatabase {
   loseApplyResponse = false;
-  override async transaction<T>(scope: TransactionScope, work: (client: TenantSqlClient) => Promise<T>): Promise<T> {
-    const result = await super.transaction(scope, work);
+  constructor(private readonly inner: RollbackPostgres) {}
+  migrationHead(): Promise<string | undefined> {
+    return this.inner.migrationHead();
+  }
+  close(): Promise<void> {
+    return this.inner.close();
+  }
+  async transaction<T>(scope: KnowledgeTransactionScope, work: (client: KnowledgeSqlClient) => Promise<T>): Promise<T> {
+    const result = await this.inner.transaction(scope, work);
     if (
       this.loseApplyResponse &&
       !scope.readOnly &&
@@ -50,7 +55,7 @@ class LossyPostgres extends TenantPostgres {
 
 describe.skipIf(!url)("exact-use admission inside the native ingestion transaction (AIDB disposable database)", () => {
   const suffix = Date.now().toString(36);
-  let db!: LossyPostgres;
+  let db!: LossyDatabase;
   let storeDir: string | undefined;
   let reads!: ReadExecutor;
   let executor!: IngestionExecutor;
@@ -69,11 +74,11 @@ describe.skipIf(!url)("exact-use admission inside the native ingestion transacti
     invocationId: `inv-${suffix}`,
     authenticatedAt: "2026-10-25T00:00:00Z",
   };
-  const owner = <T>(work: (client: TenantSqlClient) => Promise<T>) => db.transaction({ tenantId: TENANT }, work);
+  const owner = <T>(work: (client: KnowledgeSqlClient) => Promise<T>) => db.transaction({ tenantId: TENANT }, work);
 
   beforeAll(async () => {
-    const workspace = loadWorkspace(REAL_WORKSPACE);
-    db = new LossyPostgres({ connectionString: url ?? "postgresql://unused", maximumPoolSize: 3 });
+    const workspace = loadWorkspace(resolveWorkspaceDir({ env: {} }));
+    db = new LossyDatabase(await RollbackPostgres.open(url ?? "postgresql://unused"));
     storeDir = mkdtempSync(join(tmpdir(), "ks-exact-use-"));
     const artifacts = new ArtifactLedger({
       db,
@@ -240,7 +245,7 @@ describe.skipIf(!url)("exact-use admission inside the native ingestion transacti
           mode: "new",
           kind: "organization",
           displayName: `SV08 Exact Use Org ${suffix} ${intentId}`,
-          typedPayload: { website_url: "https://example.test" },
+          attributes: { website_url: "https://example.test" },
           onMatch: "fail",
           evidence: [{ runId: `vr_sv08_${suffix}`, claimId: "c_1" }],
         },
@@ -364,7 +369,7 @@ describe.skipIf(!url)("exact-use admission inside the native ingestion transacti
       async (c) =>
         (
           await c.query<{ n: number; digests: string[] }>(
-            "select count(*)::int n, array_agg(normalized_values_digest) digests from research.use_admission where tenant_id = $1 and use_decision_id = $2",
+            "select count(*)::int n, array_agg(normalized_values_digest) digests from verification.use_admission where tenant_id = $1 and use_decision_id = $2",
             [TENANT, decisionId],
           )
         ).rows[0],
@@ -403,13 +408,13 @@ describe.skipIf(!url)("exact-use admission inside the native ingestion transacti
       mc_run_id: null,
       mc_mission_id: null,
     });
-    // Receipt targets: written in the same transaction, attributed to proposals, entity kind from corpus.entity.
+    // Receipt targets: written in the same transaction, attributed to proposals, entity kind from catalog.entity.
     const targets = (receipt as ExactUseIngestionReceipt).targets ?? [];
     const entityId = receipt.subjects[0]?.entityId;
     expect(targets).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
-          schema: "corpus",
+          schema: "catalog",
           table: "entity",
           id: entityId,
           role: "subject",
@@ -420,20 +425,16 @@ describe.skipIf(!url)("exact-use admission inside the native ingestion transacti
         }),
         expect.objectContaining({ schema: "staging", table: "candidate", role: "staging", action: "staged" }),
         expect.objectContaining({
-          schema: "corpus",
+          schema: "catalog",
           table: "entity_alias",
           action: "created",
           proposalId: "p-01",
           entityId,
         }),
-        expect.objectContaining({
-          schema: "research",
-          table: "report_v2_ingestion",
-          id: decisionId,
-          role: "projection",
-        }),
       ]),
     );
+    // Build 08 retired the research.report_v2_* projection: an exact-use apply writes no projection target.
+    expect(targets.some((target) => target.role === "projection")).toBe(false);
     const storedTargets = await ledger<Record<string, unknown>>(
       `select ordinal, target_schema, target_table, target_id, entity_id::text, entity_kind, role, action, proposal_id, claim_id::text
          from orchestration.operation_receipt_target where receipt_id = $1 order by ordinal`,
@@ -455,36 +456,6 @@ describe.skipIf(!url)("exact-use admission inside the native ingestion transacti
     expect(storedTargets.map((row) => row.ordinal)).toEqual(targets.map((_, index) => index));
     // affectedRefs (the K01 effect-receipt payload) keeps its shape: {schema, table, id} for written rows only.
     expect(receipt.affectedRefs.every((ref) => Object.keys(ref).sort().join() === "id,schema,table")).toBe(true);
-    // report_v2 projection: the report-subject decision names the sealed revision; the ingestion row names this receipt.
-    const report = (receipt as ExactUseIngestionReceipt).report;
-    expect(report).toMatchObject({
-      reportId: `report-${suffix}`,
-      revision: 1,
-      reportRevisionId: `rev-${suffix}`,
-      runId,
-      useDecisionId: decisionId,
-      subjectKind: "report",
-      assertionRefDigest: null,
-      resolution: "report_subject",
-      candidateRevisions: 1,
-      assertions: 0,
-    });
-    const projected = await ledger<Record<string, unknown>>(
-      `select r.report_revision_id, r.run_id::text, r.verification_snapshot_digest, i.receipt_id::text, i.intent_id::text, i.outcome
-         from research.report_v2_revision r join research.report_v2_ingestion i on i.tenant_id = r.tenant_id and i.report_id = r.report_id and i.revision = r.revision
-        where r.tenant_id = $1 and i.use_decision_id = $2`,
-      [TENANT, decisionId],
-    );
-    expect(projected).toEqual([
-      {
-        report_revision_id: `rev-${suffix}`,
-        run_id: runId,
-        verification_snapshot_digest: report?.verificationSnapshotDigest,
-        receipt_id: receipt.receiptId,
-        intent_id: receipt.operationIntentId,
-        outcome: "applied",
-      },
-    ]);
     // The same intent again is the same receipt; the effect receipt is unique per effect key.
     expect((await executor.apply(intent)).duplicateOf).toBe(receipt.receiptId);
   });
@@ -519,20 +490,25 @@ describe.skipIf(!url)("exact-use admission inside the native ingestion transacti
     ).rejects.toMatchObject({ code: "EFFECT_CONFLICT" });
     expect(await effectReceipt(edited.effectKey)).toBeNull();
     expect((await reads.head(TENANT)).knowledgeSeq).toBe(before);
-    // Rolled back: no receipt targets and no report projection for any refused apply (a rejected receipt has none).
+    // Rolled back: no receipt targets and no recorded admission for any refused apply (a rejected receipt has none).
     for (const refused of [stale, missing, edited]) {
       expect(await targetCount(refused.intent.intentId)).toBe(0);
       expect(
-        await ledger("select 1 from research.report_v2_ingestion where tenant_id = $1 and use_decision_id = $2", [
-          TENANT,
-          refused.decisionId,
-        ]),
+        await owner(
+          async (c) =>
+            (
+              await c.query("select 1 from verification.use_admission where tenant_id = $1 and use_decision_id = $2", [
+                TENANT,
+                refused.decisionId,
+              ])
+            ).rows,
+        ),
       ).toEqual([]);
     }
   });
 
   it("mission origin without an attempt: the claim names its producer origin and the run's effects are one SELECT", async () => {
-    const { intent, decisionId } = await prepared("mission", { variant: { origin: missionOrigin, materialize: true } });
+    const { intent } = await prepared("mission", { variant: { origin: missionOrigin, materialize: true } });
     expect(intent.context.attemptId).toBeUndefined();
     const receipt = (await executor.apply(intent)) as ExactUseIngestionReceipt;
     expect(receipt.outcome).toBe("applied");
@@ -575,14 +551,19 @@ describe.skipIf(!url)("exact-use admission inside the native ingestion transacti
           proposal_id: "p-claims",
         }),
         expect.objectContaining({ target_table: "claim_subject", action: "created", claim_id: claimRowId }),
-        expect.objectContaining({ target_table: "report_v2_ingestion", target_id: decisionId }),
-        // The report revision was projected by an earlier apply in this suite: reused, not rewritten.
-        expect.objectContaining({ target_table: "report_v2_revision", action: "reused" }),
       ]),
     );
+    // A claim an ingestion apply materializes is `proposed`: only a Knowledge Services claim-verification admission
+    // (verification.record_admitted_claim_verification) makes a claim verified.
+    const [status] = await ledger<Record<string, unknown>>("select status::text from evidence.claim where id = $1", [
+      claimRowId,
+    ]);
+    expect(status).toEqual({ status: "proposed" });
   });
 
-  it("two concurrent same-key requests yield one effect and one receipt", async () => {
+  // Needs two connections racing for real: the rollback harness runs scopes one at a time, so the second request
+  // plans after the first one's rows exist and is refused SUBJECT_MATCH_EXISTS instead of meeting the key collision.
+  it.skip("two concurrent same-key requests yield one effect and one receipt", async () => {
     const { intent, effectKey } = await prepared("parallel");
     const [first, second] = await Promise.all([executor.apply(intent), executor.apply(intent)]);
     expect(first.receiptId).toBe(second.receiptId);

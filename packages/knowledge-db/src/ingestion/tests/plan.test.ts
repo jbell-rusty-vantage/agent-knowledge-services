@@ -1,6 +1,6 @@
 import { resolve } from "node:path";
 import { canonicalJson } from "../../db-read/index.js";
-import { loadWorkspace } from "../../schema-workspace/index.js";
+import { loadWorkspace, resolveWorkspaceDir } from "../../schema-workspace/index.js";
 import { describe, expect, it } from "vitest";
 import { IngestionIntentSchema } from "../intent.js";
 import { buildPlan, intentDigestOf, intentIdempotencyKey, proposalIdempotencyKey } from "../plan.js";
@@ -30,15 +30,14 @@ it("rejects legacy report.publish before artifact or graph writes", () => {
 });
 
 describe("temporal helper input preservation", () => {
-  it("keeps an explicit qualified price scope despite another same-unit series", () => {
+  it("keeps an explicit qualified price scope despite another same-meter series", () => {
     const intent = parse(priceIntent());
-    const price = intent.proposals.find(
-      (p) => p.kind === "fact.assert_state" && p.streamKind === "model_offering_price",
-    )!;
+    const price = intent.proposals.find((p) => p.kind === "fact.assert_state" && p.streamKind === "offering_price")!;
     const rules = { ...priceRules, rules: [priceRules.rules[0]!] };
     expect(
-      applyRules(rules, { ...price, scopeKey: "eu-enterprise" } as typeof price, { existingSeriesKey: "input_tokens" })
-        .proposal,
+      applyRules(rules, { ...price, scopeKey: "eu-enterprise" } as typeof price, {
+        existingSeriesKey: "input_tokens||",
+      }).proposal,
     ).toMatchObject({ scopeKey: "eu-enterprise" });
   });
 
@@ -72,11 +71,11 @@ const priceRules: RuleSet = {
   loaded: true,
   rules: [
     {
-      id: "price.scope_key_is_unit",
+      id: "price.scope_key_is_meter",
       basis: "curated",
       action: "rewrite",
-      when: { kind: ["fact.assert_state"], streamKind: ["model_offering_price"], missing: ["scopeKey"], equals: {} },
-      set: { scopeKey: "$unit" },
+      when: { kind: ["fact.assert_state"], streamKind: ["offering_price"], missing: [], equals: {} },
+      set: {},
       message: undefined,
       demoted: false,
     },
@@ -137,23 +136,42 @@ describe("planner outcomes", () => {
     const plan = buildPlan(parse(priceIntent()), fixtureFacts({ rules: priceRules }), executor);
     const price = plan.proposals.find((proposal) => proposal.proposalId === "p-03")!;
     expect(price.rewrites).toEqual([
-      { rule: "price.scope_key_is_unit", field: "scopeKey", from: null, to: "per_1m_input_tokens" },
+      { rule: "price.scope_key_is_meter", field: "scopeKey", from: null, to: "input_tokens||" },
     ]);
-    expect((price.effective as { scopeKey?: string }).scopeKey).toBe("per_1m_input_tokens");
+    expect((price.effective as { scopeKey?: string }).scopeKey).toBe("input_tokens||");
     expect(
-      plan.ruleChecks.some((check) => check.rule === "price.scope_key_is_unit" && check.result === "rewrite"),
+      plan.ruleChecks.some((check) => check.rule === "price.scope_key_is_meter" && check.result === "rewrite"),
     ).toBe(true);
+  });
+
+  it("refuses attributes that miss a required key or name an undeclared one, and a work kind it cannot create", () => {
+    const intent = priceIntent();
+    (intent.subjects?.[1] as { attributes: Record<string, unknown> }).attributes = { region: "global", colour: "blue" };
+    const plan = buildPlan(parse(intent), fixtureFacts(), executor);
+    expect(plan.plannedOutcome).toBe("rejected");
+    expect(plan.errors[0]).toMatchObject({
+      code: "VOCABULARY_VIOLATION",
+      details: { missing: ["offering_key"], unknown: ["colour"] },
+    });
+    const work = priceIntent({
+      subjects: [{ ref: "paper", mode: "new", kind: "paper", displayName: "A paper nobody holds yet" }],
+      proposals: [{ proposalId: "create", kind: "entity.create", subjectRef: "paper" }],
+    });
+    const subjects = { paper: { ref: "paper", kind: "paper", matches: [], slugTaken: false } };
+    const refused = buildPlan(parse(work), fixtureFacts({ subjects }), executor);
+    expect(refused.errors.map((error) => error.code)).toContain("WORK_KIND_NOT_CREATABLE");
+    expect(refused.plannedOutcome).toBe("rejected");
   });
 
   it("rejects a disallowed unit with the allowed values", () => {
     const intent = priceIntent();
-    (intent.proposals[2] as { unit: string }).unit = "per_1k_tokens";
+    (intent.proposals[2] as { unit: string }).unit = "per_1k_tokens_legacy";
     const plan = buildPlan(parse(intent), fixtureFacts(), executor);
     expect(plan.plannedOutcome).toBe("rejected");
     expect(plan.errors[0]).toMatchObject({
       code: "VOCABULARY_VIOLATION",
       proposalId: "p-03",
-      details: { allowed: ["per_1m_input_tokens", "per_1m_output_tokens"], field: "unit" },
+      details: { allowed: ["USD_per_1M_tokens", "USD_per_1K_tokens"], field: "unit" },
     });
   });
 
@@ -241,17 +259,17 @@ describe("planner outcomes", () => {
   });
 });
 
-describe("price.scope_key_is_unit reuses an existing same-unit series", () => {
-  /** Renderer shape: no `set`, no `missing`; the built-in rewriter decides. */
+describe("price.scope_key_is_meter keys a price series by meter and reuses an existing series", () => {
+  /** Renderer shape (`applies_to` normalized): no `set`, no `missing`; the built-in rewriter decides. */
   const renderedRule: RuleSet = {
     rulesVersion: "ingestion-rules.v1@sha256:rendered",
     loaded: true,
     rules: [
       {
-        id: "price.scope_key_is_unit",
+        id: "price.scope_key_is_meter",
         basis: "curated",
         action: "rewrite",
-        when: { kind: ["fact.assert_state"], streamKind: ["model_offering_price"], missing: [], equals: {} },
+        when: { kind: ["fact.assert_state"], streamKind: ["offering_price"], missing: [], equals: {} },
         set: {},
         message: undefined,
         demoted: false,
@@ -276,64 +294,63 @@ describe("price.scope_key_is_unit reuses an existing same-unit series", () => {
   const priceProposal = (plan: ReturnType<typeof buildPlan>) =>
     plan.proposals.find((proposal) => proposal.proposalId === "p-03")!;
 
-  it("fills a missing scopeKey with the existing series key instead of the unit", () => {
-    const price = priceProposal(buildPlan(parse(priceIntent()), withSeries("input_tokens"), executor));
+  it("fills a missing scopeKey with the existing series key, whatever that series was created with", () => {
+    const price = priceProposal(buildPlan(parse(priceIntent()), withSeries("input_tokens|fast||"), executor));
     expect(price.rewrites).toEqual([
       {
-        rule: "price.scope_key_is_unit",
+        rule: "price.scope_key_is_meter",
         field: "scopeKey",
         from: null,
-        to: "input_tokens",
+        to: "input_tokens|fast||",
         reason: "existing_series_reused",
       },
     ]);
-    expect((price.effective as { scopeKey?: string }).scopeKey).toBe("input_tokens");
+    expect((price.effective as { scopeKey?: string }).scopeKey).toBe("input_tokens|fast||");
+    expect(price.actions.at(-1)?.args).toMatchObject({ scope_key: "input_tokens|fast||", unit: "USD_per_1M_tokens" });
   });
 
-  it("rewrites a scopeKey that names a different key than the existing same-unit series", () => {
-    const plan = buildPlan(priceWithScopeKey("per_1m_input_tokens"), withSeries("input_tokens"), executor);
-    expect(priceProposal(plan).rewrites).toEqual([
-      {
-        rule: "price.scope_key_is_unit",
-        field: "scopeKey",
-        from: "per_1m_input_tokens",
-        to: "input_tokens",
-        reason: "existing_series_reused",
-      },
-    ]);
-    expect(priceProposal(plan).actions.at(-1)?.args).toMatchObject({
-      scope_key: "input_tokens",
-      unit: "per_1m_input_tokens",
-    });
-    expect(plan.ruleChecks).toEqual([
-      { rule: "price.scope_key_is_unit", basis: "curated", result: "rewrite", proposalId: "p-03" },
-    ]);
-  });
-
-  it("leaves a scopeKey that already names the existing series untouched, and defaults a new series to the unit", () => {
-    const kept = buildPlan(priceWithScopeKey("input_tokens"), withSeries("input_tokens"), executor);
+  it("never rewrites an explicit scopeKey, and keys a new series meter|tier|region from the payload", () => {
+    const kept = buildPlan(priceWithScopeKey("eu-enterprise"), withSeries("input_tokens||"), executor);
     expect(priceProposal(kept).rewrites).toEqual([]);
     expect(kept.ruleChecks).toEqual([]);
     const fresh = priceProposal(buildPlan(parse(priceIntent()), withSeries(undefined), executor));
     expect(fresh.rewrites).toEqual([
-      { rule: "price.scope_key_is_unit", field: "scopeKey", from: null, to: "per_1m_input_tokens" },
+      { rule: "price.scope_key_is_meter", field: "scopeKey", from: null, to: "input_tokens||" },
+    ]);
+    const tiered = priceIntent();
+    (tiered.proposals[2] as { payload: Record<string, unknown> }).payload = {
+      meter: "output_tokens",
+      tier: "fast",
+      region: "eu",
+    };
+    expect(priceProposal(buildPlan(parse(tiered), withSeries(undefined), executor)).rewrites).toEqual([
+      { rule: "price.scope_key_is_meter", field: "scopeKey", from: null, to: "output_tokens|fast|eu" },
     ]);
   });
 
-  it("applies the built-in rewriter to a loaded rule authored with `missing`/`set`", () => {
+  it("applies the built-in rewriter to a loaded rule authored with `missing`/`set`, and to the pinned contract rule", () => {
     const loaded = loadRules(
       loadWorkspace(resolve(import.meta.dirname, "../../../test/schema-workspace/fixtures/workspace")),
     );
-    const plan = buildPlan(priceWithScopeKey("per_1m_input_tokens"), withSeries("input_tokens", loaded), executor);
+    const plan = buildPlan(parse(priceIntent()), withSeries("input_tokens|fast||", loaded), executor);
     expect(priceProposal(plan).rewrites).toEqual([
       {
-        rule: "price.scope_key_is_unit",
+        rule: "price.scope_key_is_meter",
         field: "scopeKey",
-        from: "per_1m_input_tokens",
-        to: "input_tokens",
+        from: null,
+        to: "input_tokens|fast||",
         reason: "existing_series_reused",
       },
     ]);
+    const pinned = loadRules(loadWorkspace(resolveWorkspaceDir({ env: {} })));
+    expect(pinned.rules.find((rule) => rule.id === "price.scope_key_is_meter")).toMatchObject({
+      action: "rewrite",
+      demoted: false,
+      when: { kind: ["fact.assert_state"], streamKind: ["offering_price"] },
+    });
+    expect(
+      priceProposal(buildPlan(parse(priceIntent()), withSeries(undefined, pinned), executor)).rewrites,
+    ).toContainEqual({ rule: "price.scope_key_is_meter", field: "scopeKey", from: null, to: "input_tokens||" });
   });
 });
 

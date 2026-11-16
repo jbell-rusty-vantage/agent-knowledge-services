@@ -15,7 +15,7 @@ export interface SkillSummary {
 export const SKILL_CATALOG: readonly SkillSummary[] = [
   {
     "name": "knowledge-research",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "description": "Research method and verification for a knowledge base, loaded before a task searches for sources, captures evidence, states or checks a claim, or hands research back.",
     "surfaces": [
       "executor-cli",
@@ -31,6 +31,8 @@ export const SKILL_CATALOG: readonly SkillSummary[] = [
       "knowledge_operation_get",
       "knowledge_operation_cancel",
       "knowledge_receipt_get",
+      "evidence_units",
+      "chain_write",
       "guide"
     ]
   },
@@ -72,7 +74,7 @@ export const SKILL_CATALOG: readonly SkillSummary[] = [
   },
   {
     "name": "knowledge-ingest",
-    "version": "1.2.0",
+    "version": "1.3.0",
     "description": "Use when verified facts must be written into the shared knowledge database: compose a knowledge-ingestion intent (entities, aliases, identifiers, relationships, two-clock facts, events, evidence support, staged candidates, reports) from a sealed verification run and a knowledge-db snapshot, dry-run it, apply it through the deterministic executor, inspect the receipt, recover from stale-head or validation failures, and verify by re-reading. You never write to the database yourself; the executor does, as executor_service.",
     "surfaces": [
       "executor-cli",

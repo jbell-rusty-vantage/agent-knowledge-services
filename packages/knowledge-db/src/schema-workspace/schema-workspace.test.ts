@@ -48,8 +48,8 @@ describe("searchWorkspace", () => {
   });
 
   it("matches a qualified name exactly", () => {
-    expect(searchWorkspace(workspace, "corpus.entity").hits[0]).toMatchObject({
-      id: "rel:corpus.entity",
+    expect(searchWorkspace(workspace, "catalog.entity").hits[0]).toMatchObject({
+      id: "rel:catalog.entity",
       matchedOn: "name",
     });
   });
@@ -97,11 +97,11 @@ describe("head check", () => {
     expect(assertHeadMatches(workspace, undefined, true).matches).toBe(false);
   });
 
-  it("loads the pinned contract head 20261031010000 and fails closed on a stale database head", () => {
+  it("loads the pinned contract head 20261116130000 and fails closed on a stale database head", () => {
     const pinned = loadWorkspace(resolveWorkspaceDir({ env: {} }));
-    expect(pinned.migrationHead).toBe("20261031010000");
-    expect(assertHeadMatches(pinned, "20261031010000").matches).toBe(true);
-    expect(() => assertHeadMatches(pinned, "20260914011100")).toThrowError(
+    expect(pinned.migrationHead).toBe("20261116130000");
+    expect(assertHeadMatches(pinned, "20261116130000").matches).toBe(true);
+    expect(() => assertHeadMatches(pinned, "20261031010000")).toThrowError(
       expect.objectContaining({ code: "HEAD_MISMATCH", exit: 2 }),
     );
   });

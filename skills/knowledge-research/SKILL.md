@@ -92,13 +92,13 @@ Load one reference at a time, for the step you are on.
 | "No results, so the feature does not exist" | "Not found in the official docs, the changelog or the issue tracker on <date>; queries listed" |
 | A report that cites another of our reports for a number | The number resolves to a verified claim or to a primary-source locator within two hops |
 
-## Availability, checked 2026-11-15
+## Availability, checked 2026-11-16
 
-Knowledge Services has two tool servers. The **platform server** holds the `knowledge_*` and `verify_*` operation tools. The **executor server** holds the capture, locate, schema, read, ingestion and report tools. Both serve this guidance.
+Knowledge Services has two tool servers. The **platform server** holds the `knowledge_*` and `verify_*` operation tools. The **executor server** holds the capture, locate, schema, read, ingestion, verification-chain and report tools. Both serve this guidance.
 
 - **This skill** ships in the Knowledge Services skill catalog. Without a filesystem, read it with `knowledge_guide`, which both servers have: the topic `knowledge-research` is this page and `knowledge-research/references/method` is a reference. On a command line: `ks guide knowledge-research`.
-- **Arguments.** On the platform server `knowledge_describe` returns the full arguments, notes and an example for any of its tools. On the executor server each tool's own description and input schema are complete; there `knowledge_describe` returns the binding descriptor and takes no tool name.
+- **Arguments.** The tool list of each server shows a short form of every large input. `knowledge_describe` with `tool:<name>` returns the full arguments of a tool of that server. On the executor server, `knowledge_describe` with `operation:<name>` returns one operation of `chain_write`, with its rules and a valid example; without a reference it returns the binding descriptor.
 - **Step 1, orient,** exists on the executor server: [method, Availability](references/method.md#availability).
 - **Step 3, find leads.** Knowledge Services has no web search, documentation, repository, paper or browser tool. Your environment attaches those: [routing, Availability](references/tools/routing.md#availability).
-- **Step 4, capture, and step 6, verify.** Capture, locate, report registration and independent assessment exist on the executor server. Triage, probes, verdict records, human confirmation and restatement have no Knowledge Services tool: [verification, Availability](references/verification.md#availability).
+- **Step 4, capture, and step 6, verify.** Capture, locate, report registration and independent assessment exist on the executor server. So do claims, restatements, triage, probes, probe runs, proposed verdicts, source assessments and attention sweeps, through `chain_write`. Human confirmation and admission are not yours to write, and a capture you make is not yet quotable by a claim: [verification, Availability](references/verification.md#availability).
 - **Step 8, hand back:** [handback, Availability](references/handback.md#availability).

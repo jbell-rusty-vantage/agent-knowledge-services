@@ -4,7 +4,6 @@ import { z } from "zod";
 import { sha256Hex } from "../db-read/index.js";
 import { WORKSPACE_FILES, type Workspace } from "../schema-workspace/index.js";
 import type { Proposal } from "./intent.js";
-import { priceSlotAliases } from "./temporal.js";
 
 /**
  * Ingestion rules are data (`workspace/rules/ingestion-rules.v1.json`). A rule matches a
@@ -70,7 +69,7 @@ const RulesFileSchema = z.looseObject({
 
 /** What a rewrite rule may consult about the current head for one proposal. */
 export interface RuleFacts {
-  /** The `scope_key` under which the subject already has a current series of the proposal's stream kind and unit. */
+  /** The `scope_key` under which the subject already has a current series of the proposal's stream kind, meter, tier and region. */
   readonly existingSeriesKey?: string;
 }
 
@@ -87,26 +86,31 @@ type Rewriter = (proposal: Proposal, facts: RuleFacts) => readonly FieldRewrite[
 const EXISTING_SERIES_REUSED = "existing_series_reused";
 const field = (proposal: Proposal, name: string): unknown => (proposal as unknown as Record<string, unknown>)[name];
 
-/** A new series defaults `scopeKey` to the unit; an existing series for the same subject, stream kind, and unit keeps its key. */
-const scopeKeyOfUnitSeries: Rewriter = (proposal, facts) => {
+/** The key a new `offering_price` series gets: `meter|tier|region` from the payload (`input_tokens||`). */
+export function meterSeriesKey(payload: unknown): string | undefined {
+  if (payload === null || typeof payload !== "object") return undefined;
+  const { meter, tier, region } = payload as Record<string, unknown>;
+  if (typeof meter !== "string" || meter === "") return undefined;
+  const part = (value: unknown): string => (typeof value === "string" ? value : "");
+  return `${meter}|${part(tier)}|${part(region)}`;
+}
+
+/**
+ * An explicit `scopeKey` is never rewritten. Without one, a current series for the same subject, meter, tier and
+ * region keeps its key (whatever it was created with); otherwise the new series is keyed `meter|tier|region`.
+ */
+const scopeKeyOfMeterSeries: Rewriter = (proposal, facts) => {
   const given = field(proposal, "scopeKey");
-  const unit = field(proposal, "unit");
-  if (
-    typeof given === "string" &&
-    given !== "" &&
-    (typeof unit !== "string" || !priceSlotAliases(unit).includes(given))
-  )
-    return [];
+  if (typeof given === "string" && given !== "") return [];
   if (facts.existingSeriesKey !== undefined)
-    return given === facts.existingSeriesKey
-      ? []
-      : [{ field: "scopeKey", to: facts.existingSeriesKey, reason: EXISTING_SERIES_REUSED }];
-  return given === undefined ? [{ field: "scopeKey", to: field(proposal, "unit") }] : [];
+    return [{ field: "scopeKey", to: facts.existingSeriesKey, reason: EXISTING_SERIES_REUSED }];
+  const key = meterSeriesKey(field(proposal, "payload"));
+  return key === undefined ? [] : [{ field: "scopeKey", to: key }];
 };
 
 /** Rules whose semantics the executor implements; they decide when to rewrite, so `when.missing` and `set` authored under the same id are ignored. */
 const BUILTIN_REWRITERS: Readonly<Record<string, Rewriter>> = {
-  "price.scope_key_is_unit": scopeKeyOfUnitSeries,
+  "price.scope_key_is_meter": scopeKeyOfMeterSeries,
 };
 
 /** `$field` in a `set` value copies another field of the same proposal. */

@@ -1,10 +1,10 @@
 import { randomUUID } from "node:crypto";
 import { mkdtempSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { join, resolve } from "node:path";
+import { join } from "node:path";
 import { TenantPostgres, type TenantSqlClient, type TransactionScope } from "@aiengineer/knowledge-persistence";
 import { LocalArtifactStore } from "@aiengineer/knowledge-core";
-import { loadWorkspace } from "../schema-workspace/index.js";
+import { loadWorkspace, resolveWorkspaceDir } from "../schema-workspace/index.js";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { disposableDatabaseUrl } from "../../../persistence/test/disposable.mjs";
 import { ArtifactLedger } from "./artifacts.js";
@@ -37,7 +37,12 @@ class InterleavedPostgres extends TenantPostgres {
   }
 }
 
-describe.skipIf(!url)("P1.2 persisted repeatable snapshots on isolated Postgres", () => {
+/**
+ * Needs two connections that really commit (a snapshot pinned while another connection writes), under a tenant of its
+ * own: run it only on a database that may keep those rows. It cannot run inside the rollback harness.
+ */
+const committing = process.env.KS_TEST_ALLOW_COMMITTED_FIXTURES === "1";
+describe.skipIf(!url || !committing)("P1.2 persisted repeatable snapshots on isolated Postgres", () => {
   let db!: InterleavedPostgres;
   let writer!: TenantPostgres;
   let workspace!: ReturnType<typeof loadWorkspace>;
@@ -48,9 +53,7 @@ describe.skipIf(!url)("P1.2 persisted repeatable snapshots on isolated Postgres"
   let artifacts!: ArtifactLedger;
   let reads!: ReadExecutor;
   beforeAll(async () => {
-    workspace = loadWorkspace(
-      resolve(import.meta.dirname, "../../../../../../aiengineer/ai-engineer-db-contract/workspace"),
-    );
+    workspace = loadWorkspace(resolveWorkspaceDir({ env: {} }));
     db = new InterleavedPostgres({ connectionString: url ?? "postgresql://unused" });
     writer = new TenantPostgres({ connectionString: url ?? "postgresql://unused" });
     directory = mkdtempSync(join(tmpdir(), "ks-p1-snapshots-"));
@@ -91,10 +94,9 @@ describe.skipIf(!url)("P1.2 persisted repeatable snapshots on isolated Postgres"
       );
       if (create) {
         await client.query(
-          "insert into corpus.entity(id,tenant_id,kind,slug,display_name,created_by_receipt_id) values($1::uuid,$2::uuid,'organization',$1::text,'Synthetic snapshot organization',$3)",
+          "insert into catalog.entity(id,tenant_id,kind,slug,display_name,created_by_receipt_id) values($1::uuid,$2::uuid,'organization',$1::text,'Synthetic snapshot organization',$3)",
           [entityId, tenantId, receiptId],
         );
-        await client.query("insert into corpus.organization(id) values($1)", [entityId]);
       }
       await client.query("select temporal.begin_batch((select knowledge_seq from api.knowledge_head()))");
       await client.query(

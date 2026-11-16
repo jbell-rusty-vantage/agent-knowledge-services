@@ -23,12 +23,10 @@ function failed(error: unknown): ToolResult {
 
 const Id = z.string().regex(/^[A-Za-z0-9][A-Za-z0-9._:/@-]{0,199}$/);
 
-export function registerKnowledgeOperationTools(
-  server: McpServer,
-  service: KnowledgeOperationService | undefined,
-  credential: () => string | null,
-): void {
-  const guard = (run: (svc: KnowledgeOperationService, token: string | null) => Promise<unknown>) => async () => {
+const guarded =
+  (service: KnowledgeOperationService | undefined, credential: () => string | null) =>
+  (run: (svc: KnowledgeOperationService, token: string | null) => Promise<unknown>) =>
+  async (): Promise<ToolResult> => {
     try {
       if (service === undefined) {
         throw refusal("CAPABILITY_UNAVAILABLE", "ks.knowledge_operation.v2 is not configured on this executor");
@@ -38,6 +36,24 @@ export function registerKnowledgeOperationTools(
       return failed(error);
     }
   };
+
+/**
+ * binding-descriptor.v2 of the credential's binding: what `knowledge_describe` answers without a reference. The tool
+ * itself is registered by the server, which also answers `tool:<name>` and `operation:<name>` references.
+ */
+export function describeBinding(
+  service: KnowledgeOperationService | undefined,
+  credential: () => string | null,
+): Promise<ToolResult> {
+  return guarded(service, credential)((svc, token) => svc.describe(token))();
+}
+
+export function registerKnowledgeOperationTools(
+  server: Pick<McpServer, "registerTool">,
+  service: KnowledgeOperationService | undefined,
+  credential: () => string | null,
+): void {
+  const guard = guarded(service, credential);
   server.registerTool(
     "knowledge_operation_invoke",
     {
@@ -78,15 +94,5 @@ export function registerKnowledgeOperationTools(
       inputSchema: { effectKey: Id },
     },
     async (input) => guard((svc, token) => svc.receipt(token, input.effectKey))(),
-  );
-  server.registerTool(
-    "knowledge_describe",
-    {
-      title: "Describe the binding",
-      description:
-        "binding-descriptor.v2 of the credential's binding: protocol and core schemas, operations, report kinds, media, guarantees, signing issuer, pinned component and qualification receipts.",
-      inputSchema: {},
-    },
-    async () => guard((svc, token) => svc.describe(token))(),
   );
 }
