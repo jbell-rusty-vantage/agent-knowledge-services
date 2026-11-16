@@ -82,6 +82,33 @@ export const DurableReceiptResourceSchema = z
   });
 export type DurableReceiptResource = z.infer<typeof DurableReceiptResourceSchema>;
 
+/**
+ * What one finished step of an operation recorded, reduced to what the next call needs: identifiers, digests,
+ * timestamps, numbers, flags and short state names. Text, addresses and storage locations are never included.
+ */
+export const OperationResultStepSchema = z.strictObject({
+  receiptId: UuidSchema,
+  /** The step and its outcome as the receipt names them, for example `convert.succeeded` or `failure`. */
+  receiptKind: NonEmptyStringSchema,
+  outcome: NonEmptyStringSchema,
+  recordedAt: IsoDateTimeSchema,
+  outputDigest: Sha256DigestSchema.optional(),
+  output: JsonValueSchema,
+  /** How many fields of the recorded output were left out of `output`. */
+  omittedFields: z.int().nonnegative(),
+});
+export type OperationResultStep = z.infer<typeof OperationResultStepSchema>;
+
+export const OperationResultResourceSchema = z.strictObject({
+  operationId: UuidSchema,
+  kind: NonEmptyStringSchema,
+  state: NonEmptyStringSchema,
+  steps: z.array(OperationResultStepSchema).max(100),
+  /** Every identifier and digest of the step outputs, by field name, in the order recorded. */
+  ids: z.record(z.string(), z.array(z.string()).max(50)),
+});
+export type OperationResultResource = z.infer<typeof OperationResultResourceSchema>;
+
 export const RetrievalRunResourceSchema = z.strictObject({
   id: UuidSchema,
   tenantId: UuidSchema,

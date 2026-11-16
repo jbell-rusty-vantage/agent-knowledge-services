@@ -14,7 +14,10 @@ const SHARED = `Profiles (chosen by the command, never by a failure)
            KNOWLEDGE_LOCAL_FIRECRAWL_API_KEY (document conversion); [--out <file>] [--human]
   offline  a workflow over frozen files or the operation contracts; no service, store or provider
 
-Describe
+Guide and describe
+  ks guide [topic]              the guidance as Markdown: without a topic the start page (the jobs, the skill and the
+                                tools of each, the rules that always hold); a skill name prints that skill, and
+                                <skill>/references/<name> one of its references; tools and topics list what exists
   ks describe <ref> [--human]   everything about one tool, operation or skill: purpose, input schema, field notes,
                                 a valid example and the result; ref is tool:<tool name>, operation:<kind> or skill:<name>
 
@@ -48,11 +51,12 @@ export function ksHelp(words: readonly string[] = []): string {
   const [group] = words;
   if (group === "describe")
     return `ks describe — explain one tool, operation or skill\n${detail("describe")}\n${SHARED}\n`;
+  if (group === "guide") return `ks guide — read the guidance, start page first\n${detail("guide")}\n${SHARED}\n`;
   if (!group || !Object.hasOwn(KS_GROUPS, group)) {
     const groups = (Object.keys(KS_GROUPS) as KsGroup[])
       .map((name) => `  ${name.padEnd(10)} ${KS_GROUPS[name]}`)
       .join("\n");
-    return `ks — Knowledge Services command line\n\nUsage: ks <group> <command> [arguments] [options]\n       ks <group> --help\n       ks describe <ref>\n\nGroups\n${groups}\n\n${SHARED}\n`;
+    return `ks — Knowledge Services command line\n\nUsage: ks guide [topic]\n       ks <group> <command> [arguments] [options]\n       ks <group> --help\n       ks describe <ref>\n\nGroups\n${groups}\n\n${SHARED}\n`;
   }
   const prefix = words.join(" ");
   const matching = names(group as KsGroup).filter((name) => name === prefix || name.startsWith(`${prefix} `));

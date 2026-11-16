@@ -186,7 +186,11 @@ export function toolListingSchema(tool: string, depth = 1): JsonSchema | undefin
   const contract = operationContractForTool(tool);
   if (!contract) return undefined;
   const full = inputJsonSchema(toolArgumentsSchema(contract));
-  if (contract.shape === "bare") return compactJsonSchema(full, depth);
+  if (contract.shape === "bare") {
+    // An input whose fields are all optional has no compact form: the list publishes it whole, so its fields show.
+    const compact = compactJsonSchema(full, depth);
+    return compact.properties === undefined ? full : compact;
+  }
   // The input of these tools sits one level down, beside a short context.
   if (contract.shape !== "envelope") return compactJsonSchema(full, depth + 1);
   // The context is the same for every tool of this shape, so the list names it without repeating its fields.

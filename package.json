@@ -39,6 +39,7 @@
     "boundaries": "depcruise apps packages --config .dependency-cruiser.cjs --ignore-known tools/quality/boundaries-baseline.json",
     "boundaries:baseline": "depcruise apps packages --config .dependency-cruiser.cjs --output-type baseline --output-to tools/quality/boundaries-baseline.json",
     "verify": "corepack pnpm format:check && corepack pnpm lint && corepack pnpm typecheck && corepack pnpm test && corepack pnpm build && corepack pnpm boundaries && corepack pnpm examples:verification",
+    "eval:consumer-surface": "tsx scripts/consumer-surface-eval.ts",
     "experiment:model-card-verification": "tsx --env-file=.env scripts/experiments/model-card-verification/run.ts",
     "examples:verification": "corepack pnpm --filter @aiengineer/knowledge-verification examples && corepack pnpm --filter @aiengineer/knowledge-verification-executor examples",
     "jev:build": "turbo run build --filter=@aiengineer/knowledge-jev-service...",

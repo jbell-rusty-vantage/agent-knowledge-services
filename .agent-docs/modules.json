@@ -23,7 +23,7 @@
     },
     {
       "path": "scripts",
-      "summary": "Experiment commands only; the proof, evaluation and reconciliation scripts are not in the tree and have no root command.",
+      "summary": "Experiment commands and the consumer-surface evaluation (`corepack pnpm eval:consumer-surface`); the proof and reconciliation scripts are not in the tree and have no root command.",
       "inventory": "none"
     },
     {
@@ -981,6 +981,31 @@
       "constraints": [],
       "uses": [
         "verification"
+      ]
+    },
+    {
+      "id": "skill-knowledge-research",
+      "path": "skills/knowledge-research",
+      "kind": "agent skill",
+      "state": "implemented",
+      "summary": "Research method and verification procedure: orient in the knowledge base, frame questions, find leads with external tools, capture and locate quotes, state and check claims, hand back; one playbook per external tool; served to agents without a filesystem by the guide.",
+      "entrypoints": [
+        "skills/knowledge-research/SKILL.md"
+      ],
+      "interface": [
+        "knowledge-research skill 1.0.0: references method, sources, verification, handback and tools/{routing,tavily,firecrawl,context7,github,arxiv,browser}; read with knowledge_guide, GET /v1/guide/knowledge-research or ks guide knowledge-research."
+      ],
+      "tests": [
+        "packages/contracts/src/operations/guide.test.ts",
+        "apps/verification-executor/src/guide.test.ts"
+      ],
+      "constraints": [
+        "Names tools and says when to use them; arguments come from knowledge_describe and each tool's description. Names no database schema or table. Every Availability section states what this repository serves on the checked date."
+      ],
+      "uses": [
+        "contracts",
+        "verification-executor",
+        "mcp"
       ]
     },
     {

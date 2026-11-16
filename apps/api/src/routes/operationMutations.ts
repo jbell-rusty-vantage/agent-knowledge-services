@@ -9,10 +9,14 @@ export function registerOperationMutations(server: FastifyInstance, context: Rou
   const {
     MutationEnvelopeSchema,
     OperationKindSchema,
+    UuidSchema,
     requiredSubmissionAction,
     operationService,
     requireAccess,
     requireEnvelopeActor,
+    requireResourceReader,
+    knowledgeReads,
+    sendKnowledgeRead,
     origin,
     correlationId,
     problem,
@@ -40,6 +44,20 @@ export function registerOperationMutations(server: FastifyInstance, context: Rou
     if (!access) return;
     const item = await operationService.get(request.params.id, access.tenant);
     return item ?? reply.status(404).send(problem(404, "NOT_FOUND", "Operation not found", correlationId(request)));
+  });
+  // What the operation produced: the ids and digests its finished steps recorded, for the next call. The MCP tool
+  // knowledge_operation_result and `ks knowledge operation result` return the same resource.
+  server.get<{ Params: Params }>("/v1/operations/:id/result", async (request, reply) => {
+    const access = await requireAccess(request, reply, "knowledge.read");
+    if (!access) return;
+    if (!requireResourceReader(request, reply)) return;
+    return sendKnowledgeRead(
+      request,
+      reply,
+      await knowledgeReads.operationResult(access.tenant, UuidSchema.parse(request.params.id)),
+      "Operation not found",
+      "Operation receipts are inconsistent",
+    );
   });
   server.get<{ Params: Params }>("/v1/operations/:id/events", async (request, reply) => {
     const access = await requireAccess(request, reply, "knowledge.read");

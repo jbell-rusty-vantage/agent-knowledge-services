@@ -34,14 +34,47 @@ export const DESCRIBE_OPERATION: OperationContract = {
     outcome:
       "A tool or operation answer has description, the input schema, notes, example, result (name, shape, outcome), related and surfaces. A skill answer has name, version, description, surfaces and operations.",
   },
-  related: [],
+  related: ["tool:knowledge_guide"],
   mcp: ["knowledge_describe"],
   cli: ["describe"],
   http: ["GET /v1/describe"],
 };
 
+/** The topics `guide` answers besides one page per skill and per skill file. */
+export const GUIDE_FIXED_TOPICS = Object.freeze(["start", "tools", "topics"] as const);
+export const GuideInputSchema = z.strictObject({ topic: z.string().trim().min(1).max(200).optional() });
+
+/** The operation an agent calls first: where to start, and every skill and reference as a page. */
+export const GUIDE_OPERATION: OperationContract = {
+  operation: "guide",
+  effect: "read",
+  summary: "Read the guidance as Markdown: the start page, or one skill or one reference of a skill.",
+  when: "Call it first, without a topic, for the jobs, the skill and the tools of each job and the rules that always hold.",
+  returns:
+    "Returns one Markdown page that ends with the topics it links to. Read a skill, then only the reference the step you are on needs.",
+  input: GuideInputSchema,
+  shape: "bare",
+  notes: [
+    "Without a topic the answer is the start page. tools lists every tool by job and server; topics lists every page.",
+    "A skill name returns that skill's SKILL.md; <skill>/<path> returns one of its files, for example knowledge-research/references/method. A trailing .md is accepted.",
+    "The pages are the files of the skills directory, so an agent with a filesystem and an agent with only this tool read the same text.",
+    "An unknown topic is refused with NOT_FOUND and the list of valid topics.",
+  ],
+  example: { topic: "knowledge-research" },
+  result: {
+    name: "GuidePage",
+    outcome:
+      "Markdown text, not JSON. Over HTTP the content type is text/markdown; on MCP it is the text content of the result.",
+  },
+  related: ["tool:knowledge_describe"],
+  mcp: ["knowledge_guide"],
+  cli: ["guide"],
+  http: ["GET /v1/guide", "GET /v1/guide/{topic}"],
+};
+
 /** Every operation with a written contract, in the order a caller meets them. */
 export const OPERATION_CONTRACTS: readonly OperationContract[] = Object.freeze([
+  GUIDE_OPERATION,
   DESCRIBE_OPERATION,
   ...SOURCE_OPERATIONS,
   ...PREPARATION_OPERATIONS,
@@ -87,10 +120,10 @@ const lines = (text: DescriptionLines) => `${text.summary}\n${text.when}\n${text
 /** The three description lines of an operation: what it does, when to use it, the result and what to call next. */
 export const operationDescription = (contract: OperationContract): string => lines(contract);
 
-/** The description an MCP tool publishes. A tool that is another name for an operation says so. */
+/** The description an MCP tool publishes: the three lines of the operation it runs. */
 export function toolDescription(tool: string): string | undefined {
   const contract = byTool.get(tool);
-  return contract && lines(contract.aliases?.[tool] ?? contract);
+  return contract && lines(contract);
 }
 
 /** The same description for `ks --help`: each tool name that has a command is written as that command. */

@@ -1,7 +1,7 @@
 <!-- BEGIN GENERATED: semantic-map -->
 ## Code navigation: scripts
 
-Experiment commands only; the proof, evaluation and reconciliation scripts are not in the tree and have no root command.
+Experiment commands and the consumer-surface evaluation (`corepack pnpm eval:consumer-surface`); the proof and reconciliation scripts are not in the tree and have no root command.
 
 Full interfaces, dependencies, tests, and architecture: [semantic map](../docs/agents/CODE-MAP.md). Paths in the rows below are repository-relative.
 

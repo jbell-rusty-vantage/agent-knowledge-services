@@ -50,14 +50,12 @@ export interface OperationContract {
   readonly result: OperationResult;
   /** Refs of the operations a caller usually needs beside this one. */
   readonly related: readonly string[];
-  /** MCP tools that run this operation. The first is the operation's own tool; the others are named in `aliases`. */
+  /** The MCP tool that runs this operation; empty when the operation is not offered to agents. */
   readonly mcp: readonly string[];
   /** `ks` commands (without the binary) that run this operation. */
   readonly cli: readonly string[];
   /** HTTP routes (`METHOD /path`, OpenAPI path form) that run this operation. */
   readonly http: readonly string[];
-  /** Description lines of the tools in `mcp` that are another name for this operation. */
-  readonly aliases?: Readonly<Record<string, Pick<OperationContract, "summary" | "when" | "returns">>>;
 }
 
 /** Read context of the MCP tools that take ids beside it. */

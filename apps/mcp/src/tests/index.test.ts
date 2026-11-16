@@ -197,7 +197,7 @@ describe("durable MCP operation facade", () => {
       identity,
       knowledge: { reads: reads as never },
     });
-    const status = await execute("knowledge_embed_status", "embedding_run", {
+    const status = await execute("knowledge_promotion_status", "promotion_proposal", {
       context,
       input: { operationId: id(20) },
       expectedVersions: { api: "v1" },

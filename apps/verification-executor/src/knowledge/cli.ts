@@ -1,5 +1,6 @@
 import { readFile, writeFile } from "node:fs/promises";
 import { z } from "zod";
+import { guidePage } from "@aiengineer/knowledge-contracts";
 import { isKnowledgeError } from "@aiengineer/knowledge-db";
 import { RemoteExecutor, RemoteExecutorError } from "../remote.js";
 import { UnknownOperationError, type AnyOperation } from "../operations/define.js";
@@ -15,6 +16,12 @@ Modes
   local   (default)                 needs KS_AIENG_DB_RUNTIME_DSN and SCHEMA_WORKSPACE_DIR
   remote  KNOWLEDGE_EXECUTOR_URL    forward every command to a running executor (\`knowledge serve\` / \`knowledge-verify serve\`)
                                     (or --remote <url>; --token / KNOWLEDGE_EXECUTOR_TOKEN for bearer auth)
+
+Guidance (offline; needs no database, workspace or executor)
+  guide [topic]                              the guidance as Markdown: without a topic the start page (the jobs, the
+                                             skill and the tools of each); a skill name, or <skill>/references/<name>;
+                                             tools and topics list what exists. The MCP tool knowledge_guide returns
+                                             the same pages.
 
 Serving
   serve [--port 4310] [--host 127.0.0.1]     same process as knowledge-verify serve: /mcp, /knowledge/:operation, /health
@@ -203,6 +210,14 @@ export async function runKnowledgeCli(
   const [group, sub, ...rest] = argv;
   if (!group || group === "help" || group === "--help" || group === "-h") {
     console.log(KNOWLEDGE_HELP);
+    return;
+  }
+  if (group === "guide") {
+    // Markdown on stdout, not JSON: the page an agent reads. An unknown topic lists the topics that exist.
+    if (rest.length > 0 || sub?.startsWith("--")) throw new UsageError("guide takes at most one topic");
+    const result = guidePage(sub);
+    if (!result.ok) throw new UsageError(`${result.refusal.message} Valid topics: ${result.refusal.valid.join(", ")}`);
+    process.stdout.write(result.markdown);
     return;
   }
   const parsed = parseArgv(group === "serve" || group === "health" || group === "ops" ? argv.slice(1) : rest);

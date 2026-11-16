@@ -10,9 +10,10 @@ import { verificationToolDefinitions } from "./verify.js";
 /** What a client is told once, when it connects: the conventions every tool shares. */
 export const SERVER_INSTRUCTIONS = [
   "Knowledge Services: capture sources, prepare and promote content, embed, retrieve evidence, evaluate and verify.",
+  "Start with knowledge_guide, without arguments: it returns the jobs, the skill to read and the tools of each job, and the rules that always hold. knowledge_guide with a topic returns one skill or one of its references as Markdown.",
   "The tool list shows only the required fields of each input. Call knowledge_describe with tool:<name> before the first use of a tool: it returns the full schema (including context), field notes, a valid example and the result.",
-  "knowledge_* tools take { context, input, expectedVersions }; verify_* tools take { context, request }, or { context } with ids beside it.",
-  "A tool that submits work returns an accepted operation at once: poll knowledge_promotion_status (knowledge_* tools) or verify_status (verify_* tools) with its operationId.",
+  "Operation tools take { context, input, expectedVersions } (knowledge_*) or { context, request }, or { context } with ids beside it (verify_*); knowledge_guide and knowledge_describe take their one field directly.",
+  "A tool that submits work returns an accepted operation at once: poll knowledge_promotion_status (knowledge_* tools) or verify_status (verify_* tools) with its operationId, then read the ids it produced with knowledge_operation_result.",
   "An input that does not match its schema is refused with INVALID_CONTRACT and the failing fields; nothing is submitted.",
 ].join("\n");
 

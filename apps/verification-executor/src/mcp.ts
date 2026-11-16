@@ -1,4 +1,5 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { GuideInputSchema, guidePage, guideRefusalMarkdown, toolDescription } from "@aiengineer/knowledge-contracts";
 import { isKnowledgeError } from "@aiengineer/knowledge-db";
 import { z } from "zod";
 import type { VerificationExecutor } from "./executor.js";
@@ -60,6 +61,28 @@ export function registerKnowledgeTools(server: McpServer, services: KnowledgeSer
   }
 }
 
+/**
+ * `knowledge_guide`: the guidance pages the platform server serves under the same name, from the same module of the
+ * contract package. An agent that has only this server reads the start page, each skill and each reference here. It
+ * needs no knowledge services and reads no tenant data; the page is Markdown text, never JSON.
+ */
+export function registerGuideTool(server: McpServer): void {
+  server.registerTool(
+    "knowledge_guide",
+    {
+      title: "Read the guidance",
+      description: toolDescription("knowledge_guide") ?? "Read the guidance as Markdown.",
+      inputSchema: GuideInputSchema.shape,
+    },
+    async (input) => {
+      const result = guidePage(input.topic);
+      return result.ok
+        ? { content: [{ type: "text" as const, text: result.markdown }] }
+        : { content: [{ type: "text" as const, text: guideRefusalMarkdown(result.refusal) }], isError: true };
+    },
+  );
+}
+
 export interface KnowledgeOperationMcpOptions {
   readonly service: KnowledgeOperationService | undefined;
   /** The K07 credential of this MCP request (out of band of tool arguments); `null` refuses every tool. */
@@ -72,6 +95,7 @@ export function createVerificationMcpServer(
   knowledgeOperation?: KnowledgeOperationMcpOptions,
 ): McpServer {
   const server = new McpServer({ name: "knowledge-verification-executor", version: "0.1.0" });
+  registerGuideTool(server);
   if (knowledge) registerKnowledgeTools(server, knowledge);
   if (knowledgeOperation) {
     registerKnowledgeOperationTools(server, knowledgeOperation.service, knowledgeOperation.credential);

@@ -1,4 +1,5 @@
 import { OperationStatusSchema } from "../integration.js";
+import { OperationResultResourceSchema } from "../resources.js";
 import { PromotionProposalInputSchema } from "../promotion-selection.js";
 import { acceptedResult, EXAMPLE, type OperationContract } from "./contract-types.js";
 import { OperationReadInputSchema } from "./retrieval-inputs.js";
@@ -7,13 +8,8 @@ import { PromotionDecisionInputSchema, ReviewDecisionInputSchema } from "./revie
 const CHUNK = EXAMPLE.id(40);
 const REVIEWER_NOTE =
   "The caller must be a human, or a service with the human_reviewer identity, holding the decision.record permission; a model is refused when the operation runs.";
-const PROPOSAL_ALIAS = {
-  summary: "Another name for knowledge_promotion_propose: it submits the same promotion proposal from the same input.",
-  when: "The service treats the four knowledge_promotion_propose names alike; prefer knowledge_promotion_propose.",
-  returns: "Returns the accepted operation; poll knowledge_promotion_status. A reviewer then decides on the proposal.",
-};
 
-/** Proposing content for promotion, the reviewer decisions that follow, and operation status. */
+/** Proposing content for promotion, the reviewer decisions that follow, and the status and result of any operation. */
 export const PROMOTION_OPERATIONS: readonly OperationContract[] = [
   {
     operation: "promotion_proposal",
@@ -97,19 +93,9 @@ export const PROMOTION_OPERATIONS: readonly OperationContract[] = [
       "tool:knowledge_embed_run",
       "tool:knowledge_promotion_status",
     ],
-    mcp: [
-      "knowledge_promotion_propose",
-      "knowledge_promotion_propose_domain_mapping",
-      "knowledge_promotion_propose_claims",
-      "knowledge_promotion_propose_entity_links",
-    ],
+    mcp: ["knowledge_promotion_propose"],
     cli: ["knowledge promotion propose"],
     http: ["POST /v1/promotion-proposals"],
-    aliases: {
-      knowledge_promotion_propose_domain_mapping: PROPOSAL_ALIAS,
-      knowledge_promotion_propose_claims: PROPOSAL_ALIAS,
-      knowledge_promotion_propose_entity_links: PROPOSAL_ALIAS,
-    },
   },
   {
     operation: "promotion_decision",
@@ -179,12 +165,12 @@ export const PROMOTION_OPERATIONS: readonly OperationContract[] = [
     summary: "Read the state of one knowledge operation by its operationId.",
     when: "Use to poll any knowledge_* submission, not only promotion proposals; verify_* submissions are polled with verify_status.",
     returns:
-      "Returns the operation status: kind, state, receiptIds and, after a failure, a failure summary. Poll again while state is queued or running.",
+      "Returns the operation status: kind, state, receiptIds and, after a failure, a failure summary. Poll while state is queued or running, then read knowledge_operation_result.",
     input: OperationReadInputSchema,
     shape: "envelope",
     notes: [
       "state is one of queued, running, needs_review, quarantined, succeeded, failed, cancelled.",
-      "The status lists the receipts of finished steps (receiptIds) but not their output. A step's output is the body of its receipt, read over HTTP with GET /v1/receipts/{receiptId}; no MCP tool or ks command reads a receipt.",
+      "The status lists the receipts of finished steps (receiptIds) but not their output. knowledge_operation_result returns the identifiers and digests each step recorded; a whole receipt, with its body, is read over HTTP with GET /v1/receipts/{receiptId}.",
       "On MCP an input without a valid operationId is refused with RESOURCE_ID_REQUIRED and an unknown operation is answered with the text NOT_FOUND.",
     ],
     example: { operationId: EXAMPLE.id(2) },
@@ -194,18 +180,37 @@ export const PROMOTION_OPERATIONS: readonly OperationContract[] = [
       outcome:
         "failure, when present, carries the receipt id, a category, an error class and whether a retry can help.",
     },
-    related: ["tool:knowledge_store_status", "tool:verify_status"],
-    mcp: ["knowledge_promotion_status", "knowledge_embed_status"],
-    cli: ["knowledge operation status", "knowledge promotion status", "knowledge embed status"],
+    related: ["tool:knowledge_operation_result", "tool:knowledge_store_status", "tool:verify_status"],
+    mcp: ["knowledge_promotion_status"],
+    cli: ["knowledge operation status", "knowledge promotion status"],
     http: ["GET /v1/operations/{operationId}"],
-    aliases: {
-      knowledge_embed_status: {
-        summary:
-          "Read the state of one knowledge operation by its operationId; the same read as knowledge_promotion_status.",
-        when: "Either name polls any knowledge_* submission, including knowledge_embed_run.",
-        returns:
-          "Returns the operation status: kind, state, receiptIds and, after a failure, a failure summary. Poll again while state is queued or running.",
-      },
+  },
+  {
+    operation: "operation_result",
+    effect: "read",
+    summary: "Read what one operation produced: the identifiers and digests each finished step recorded.",
+    when: "Use once knowledge_promotion_status or verify_status reports succeeded, to get the ids the next call needs.",
+    returns:
+      "Returns the operation's kind and state, each finished step with its recorded ids, and those ids gathered by field name in ids. Pass them to the next tool.",
+    input: OperationReadInputSchema,
+    shape: "envelope",
+    notes: [
+      "It answers for every operation of the tenant, whether a knowledge_* or a verify_* tool submitted it.",
+      "A step's output keeps its identifiers, digests, timestamps, numbers, flags and short state names. Text, addresses, storage locations and provider content are left out, and omittedFields counts them. The whole receipt is read over HTTP with GET /v1/receipts/{receiptId}.",
+      "ids gathers every identifier and digest of the outputs under its field name, for example representationId, chunkSetId, captureId, proposalId, reviewSubjectId or benchmarkRunId. Each name holds at most 50 distinct values, in the order they were recorded.",
+      "steps is empty while no step has finished. A failed step has the outcome failed and an output with its errorClass; state says whether the operation as a whole succeeded.",
+      "On MCP an input without a valid operationId is refused with RESOURCE_ID_REQUIRED and an unknown operation with NOT_FOUND.",
+    ],
+    example: { operationId: EXAMPLE.id(2) },
+    result: {
+      name: "OperationResultResource",
+      schema: OperationResultResourceSchema,
+      outcome:
+        "After a document conversion, ids.representationId is the representation knowledge_chunk_build takes; after a chunk build, ids.chunkSetId is the chunk set knowledge_promotion_propose takes; after a proposal, ids.projectionIds are the projections knowledge_embed_run takes.",
     },
+    related: ["tool:knowledge_promotion_status", "tool:verify_status", "tool:knowledge_store_status"],
+    mcp: ["knowledge_operation_result"],
+    cli: ["knowledge operation result"],
+    http: ["GET /v1/operations/{operationId}/result"],
   },
 ];

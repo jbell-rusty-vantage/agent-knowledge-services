@@ -73,10 +73,19 @@ describe("operation contracts", () => {
 
   it("names only tools that exist, and rewrites them as ks commands for the command help", () => {
     for (const contract of OPERATION_CONTRACTS)
-      for (const text of [contract, ...Object.values(contract.aliases ?? {})])
-        for (const line of [text.summary, text.when, text.returns])
-          for (const [name] of line.matchAll(/\b(?:knowledge|verify)_[a-z_]+\b/gu))
-            expect(PLATFORM_TOOL_NAMES, `${contract.operation}: ${name}`).toContain(name);
+      for (const line of [contract.summary, contract.when, contract.returns, ...contract.notes])
+        for (const [name] of line.matchAll(/\b(?:knowledge|verify)_[a-z_]+\b/gu))
+          expect(PLATFORM_TOOL_NAMES, `${contract.operation}: ${name}`).toContain(name);
+    // One tool per operation: no tool is another name for an operation that already has one.
+    for (const contract of OPERATION_CONTRACTS) expect(contract.mcp.length, contract.operation).toBeLessThanOrEqual(1);
+    for (const removed of [
+      "knowledge_promotion_propose_domain_mapping",
+      "knowledge_promotion_propose_claims",
+      "knowledge_promotion_propose_entity_links",
+      "knowledge_embed_status",
+    ])
+      expect(PLATFORM_TOOL_NAMES, removed).not.toContain(removed);
+    expect(commandDescription("knowledge embed status")).toBeUndefined();
     expect(commandDescription("knowledge source fetch")).toContain("ks knowledge document convert");
     expect(commandDescription("knowledge source fetch")).not.toContain("knowledge_document_convert");
     // A tool whose operation has no ks command keeps its tool name.
@@ -249,7 +258,8 @@ describe("published input schemas", () => {
       expect(full.type, tool).toBe("object");
       const listed = toolListingSchema(tool, 1);
       expect(listed?.type, tool).toBe("object");
-      expect(JSON.stringify(listed).length, tool).toBeLessThan(JSON.stringify(full).length);
+      // An input whose fields are all optional (the guide's topic) is listed whole.
+      expect(JSON.stringify(listed).length, tool).toBeLessThanOrEqual(JSON.stringify(full).length);
       if (contract.shape === "envelope") {
         const input = (listed?.properties as Record<string, Record<string, unknown>> | undefined)?.input;
         expect(input?.type, tool).toBe("object");

@@ -8,6 +8,8 @@ import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { z } from "zod";
 import {
   describeReference,
+  guidePage,
+  guideTopics,
   inputJsonSchema,
   operationContractForTool,
   PLATFORM_TOOL_NAMES,
@@ -65,10 +67,10 @@ describe("platform MCP tool contracts", () => {
     };
   };
 
-  it("lists the 47 tools: the describe tool first, then the knowledge and the verification tools", () => {
+  it("lists the 45 tools: the guide and describe tools first, then the knowledge and the verification tools", () => {
     const names = listing.tools.map((tool) => tool.name);
-    expect(names).toHaveLength(47);
-    expect(names[0]).toBe("knowledge_describe");
+    expect(names).toHaveLength(45);
+    expect(names.slice(0, 2)).toEqual(["knowledge_guide", "knowledge_describe"]);
     expect([...names].sort()).toEqual(
       [
         ...SYSTEM_MCP_TOOL_NAMES,
@@ -100,12 +102,81 @@ describe("platform MCP tool contracts", () => {
       // Plain words: no ticket ids, file paths or source file names.
       expect(description, tool.name).not.toMatch(/\b[A-Z]{2,5}-\d+\b|\bsrc\/|\.ts\b|\bapps\/|\bpackages\//u);
     }
-    // A tool that is another name for an operation says so instead of repeating the operation's description.
-    const descriptions = new Map(listing.tools.map((tool) => [tool.name, tool.description]));
-    expect(descriptions.get("knowledge_promotion_propose_claims")).toContain("knowledge_promotion_propose");
-    expect(descriptions.get("knowledge_promotion_propose_claims")).not.toBe(
-      descriptions.get("knowledge_promotion_propose"),
-    );
+    // No tool is another name for an operation: every description is listed once.
+    const descriptions = listing.tools.map((tool) => tool.description);
+    expect(new Set(descriptions).size).toBe(descriptions.length);
+    const names = listing.tools.map((tool) => tool.name);
+    for (const removed of [
+      "knowledge_promotion_propose_domain_mapping",
+      "knowledge_promotion_propose_claims",
+      "knowledge_promotion_propose_entity_links",
+      "knowledge_embed_status",
+    ])
+      expect(names, removed).not.toContain(removed);
+    expect(names).toContain("knowledge_promotion_propose");
+    expect(names).toContain("knowledge_promotion_status");
+  });
+
+  it("refuses a call to a removed name as an unknown tool", async () => {
+    for (const removed of ["knowledge_embed_status", "knowledge_promotion_propose_claims"]) {
+      const outcome = await client.callTool({ name: removed, arguments: {} }).then(
+        (result) => ({ isError: result.isError === true, text: JSON.stringify(result.content) }),
+        (error: unknown) => ({ isError: true, text: error instanceof Error ? error.message : String(error) }),
+      );
+      expect(outcome.isError, removed).toBe(true);
+      expect(outcome.text, removed).toContain(removed);
+    }
+  });
+
+  it("returns the start page from knowledge_guide without arguments, as Markdown text", async () => {
+    const result = await client.callTool({ name: "knowledge_guide", arguments: {} });
+    expect(result.isError).not.toBe(true);
+    const content = result.content as { type: string; text: string }[];
+    expect(content).toHaveLength(1);
+    expect(content[0]?.type).toBe("text");
+    const start = content[0]?.text ?? "";
+    const expected = guidePage();
+    expect(expected.ok && start).toBe(expected.ok && expected.markdown);
+    // Markdown, never Markdown inside a JSON string, and no structured copy of it.
+    expect(start.startsWith("# Knowledge Services\n")).toBe(true);
+    expect(() => JSON.parse(start)).toThrow();
+    expect(result.structuredContent).toBeUndefined();
+    // Every tool the start page names for the platform server is in the tool list.
+    const listed = new Set(listing.tools.map((tool) => tool.name));
+    for (const line of start.split("\n").filter((text) => /^\d\. /u.test(text))) {
+      const platform = /Platform: ([^.]+)\./u.exec(line)?.[1] ?? "";
+      for (const [, pattern] of platform.matchAll(/`([^`]+)`/gu)) {
+        const wildcard = /^([a-z0-9_]+_)\*$/u.exec(pattern as string);
+        const braces = /^([a-z0-9_]+_)\{([a-z0-9_,]+)\}$/u.exec(pattern as string);
+        const tools = wildcard
+          ? [...listed].filter((name) => name.startsWith(wildcard[1] as string))
+          : braces
+            ? (braces[2] as string).split(",").map((rest) => `${braces[1]}${rest}`)
+            : [pattern as string];
+        expect(tools.length, pattern).toBeGreaterThan(0);
+        for (const tool of tools) expect(listed.has(tool), `${pattern}: ${tool}`).toBe(true);
+      }
+    }
+  });
+
+  it("returns every skill and every reference from knowledge_guide by topic", async () => {
+    for (const topic of guideTopics()) {
+      const result = await client.callTool({ name: "knowledge_guide", arguments: { topic } });
+      const [content] = result.content as { type: string; text: string }[];
+      const expected = guidePage(topic);
+      expect(result.isError, topic).not.toBe(true);
+      expect(expected.ok && content?.text, topic).toBe(expected.ok && expected.markdown);
+      expect((content?.text ?? "").length, topic).toBeGreaterThan(100);
+    }
+    const method = await client.callTool({
+      name: "knowledge_guide",
+      arguments: { topic: "knowledge-research/references/tools/tavily" },
+    });
+    expect((method.content as { text: string }[])[0]?.text).toContain("# Tavily playbook");
+    const refused = await client.callTool({ name: "knowledge_guide", arguments: { topic: "no-such-skill" } });
+    expect(refused.isError).toBe(true);
+    expect((refused.content as { text: string }[])[0]?.text).toContain("`knowledge-research`");
+    expect(refused.structuredContent).toMatchObject({ code: "NOT_FOUND", valid: guideTopics() });
   });
 
   it("publishes a typed input for every tool: no tool falls back to any JSON", () => {
@@ -125,9 +196,13 @@ describe("platform MCP tool contracts", () => {
       const required = inputJsonSchema(contract.input).required as string[] | undefined;
       if (required?.length) expect(input?.required, `${tool.name}.${member}`).toEqual(required);
     }
-    // The 32 knowledge tools no longer share one schema.
+    // The 29 knowledge tools no longer share one schema.
     const knowledge = listing.tools.filter((tool) => tool.name in MCP_TOOL_CATALOG);
-    expect(knowledge).toHaveLength(32);
+    expect(knowledge).toHaveLength(29);
+    // The guide's one field is optional, so the list publishes it whole.
+    expect(listing.tools.find((tool) => tool.name === "knowledge_guide")?.inputSchema.properties).toHaveProperty(
+      "topic",
+    );
     const distinct = new Set(knowledge.map((tool) => JSON.stringify(tool.inputSchema.properties?.input)));
     expect(distinct.size).toBeGreaterThanOrEqual(20);
   });
@@ -169,6 +244,10 @@ describe("platform MCP tool contracts", () => {
     }
     expect(client.getInstructions()).toBe(SERVER_INSTRUCTIONS);
     expect(SERVER_INSTRUCTIONS).toContain("knowledge_describe");
+    expect(SERVER_INSTRUCTIONS).toContain("Start with knowledge_guide");
+    expect(SERVER_INSTRUCTIONS).toContain("knowledge_operation_result");
+    // About 10,000 tokens is the budget of the whole list.
+    expect(Math.ceil(characters / 4)).toBeLessThanOrEqual(10_000);
   });
 
   it("describes any tool, operation or skill with the content the contract package serves", async () => {

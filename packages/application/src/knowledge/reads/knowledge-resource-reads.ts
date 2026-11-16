@@ -4,11 +4,13 @@ import {
   EvaluationFailuresResourceSchema,
   EvaluationReportResourceSchema,
   EvidencePacketSchema,
+  OperationResultResourceSchema,
   RetrievalCitationReplaySchema,
   RetrievalExplanationResourceSchema,
   RetrievalRunResourceSchema,
   VectorStoreResourceSchema,
   type EvidencePacket,
+  type OperationResultResource,
   type OperationStatus,
   type RetrievalCitationReplay,
 } from "@aiengineer/knowledge-contracts";
@@ -19,6 +21,7 @@ import {
   validatedStoredResource,
   type ResourceReadResult,
 } from "../../reads/resource-read-result.js";
+import { operationResultResource } from "./operation-result.js";
 
 /** Tenant-scoped canonical resource reads; implemented by the persistence resource repository. */
 export interface KnowledgeResourceReader {
@@ -91,6 +94,29 @@ export function createKnowledgeResourceReads(ports: KnowledgeResourceReadPorts) 
         return resourceReadFailure("not_found");
       const operation = (await ports.operations.get(operationId, tenantId)) as OperationStatus | undefined;
       return operation ? { ok: true, value: operation } : resourceReadFailure("inconsistent");
+    },
+    /**
+     * What an operation produced: the identifiers and digests its finished steps recorded. The steps are the
+     * operation's own receipts, read for the same tenant; a receipt of another operation is an integrity failure.
+     */
+    async operationResult(tenantId: string, operationId: string): Promise<ResourceReadResult<OperationResultResource>> {
+      const reader = ports.resources;
+      if (!reader || !ports.operations) return resourceReadFailure("unavailable");
+      const operation = (await ports.operations.get(operationId, tenantId)) as OperationStatus | undefined;
+      if (!operation) return resourceReadFailure("not_found");
+      const receipts = [];
+      for (const receiptId of operation.receiptIds.slice(0, 100)) {
+        const stored = await reader.getReceiptResource(tenantId, receiptId);
+        if (!stored) return resourceReadFailure("inconsistent");
+        const receipt = validatedStoredResource(DurableReceiptResourceSchema, stored);
+        if (receipt.operationId !== operation.operationId || receipt.tenantId !== tenantId)
+          return resourceReadFailure("integrity");
+        receipts.push(receipt);
+      }
+      return boundedResourceResult(
+        validatedStoredResource(OperationResultResourceSchema, operationResultResource(operation, receipts)),
+        ports.maximumResponseBytes,
+      );
     },
     async evidencePacket(tenantId: string, packetId: string): Promise<ResourceReadResult<EvidencePacket>> {
       const packet = await ports.getEvidencePacket?.(tenantId, packetId);

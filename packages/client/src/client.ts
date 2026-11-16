@@ -4,7 +4,10 @@ import {
   VerificationProviderReconciliationResourceSchema,
   type ApplyProviderReconciliationRequest,
 } from "@aiengineer/knowledge-contracts";
-import { VerificationProfileCaptureAcceptedSchema } from "@aiengineer/knowledge-contracts";
+import {
+  OperationResultResourceSchema,
+  VerificationProfileCaptureAcceptedSchema,
+} from "@aiengineer/knowledge-contracts";
 import {
   ExtractStructuredDataRequestSchema,
   VerificationStructuredExtractionResourceSchema,
@@ -428,6 +431,16 @@ export class KnowledgeClient {
       `v1/operations/${encodeURIComponent(operationId)}`,
       undefined,
       OperationStatusSchema,
+      "GET",
+      context,
+    );
+  }
+  /** What a finished operation produced: the ids and digests of its steps, for the next call. */
+  getOperationResult(operationId: string, context: Pick<OperationContext, "tenantId" | "correlationId">) {
+    return this.#request(
+      `v1/operations/${encodeURIComponent(operationId)}/result`,
+      undefined,
+      OperationResultResourceSchema,
       "GET",
       context,
     );

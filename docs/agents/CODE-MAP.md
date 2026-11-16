@@ -52,6 +52,7 @@ Paths below are repository-relative. Use the task routes, then search the module
 | [docling](#docling) | services/docling | Pinned Docling Serve conversion deployment boundary. | implemented |
 | [parser](#parser) | services/parser | Isolated native PDF geometry and HTML DOM parser (folder renamed from services/verification-parser; image tags unchanged); separate from Docling and OCR. | implemented |
 | [script-experiments](#script-experiments) | scripts/experiments | Curated model-card verification experiments; run results are not canonical architecture. | partial |
+| [skill-knowledge-research](#skill-knowledge-research) | skills/knowledge-research | Research method and verification procedure: orient in the knowledge base, frame questions, find leads with external tools, capture and locate quotes, state and check claims, hand back; one playbook per external tool; served to agents without a filesystem by the guide. | implemented |
 | [skill-schema-explore](#skill-schema-explore) | skills/schema-explore | Progressive-disclosure procedure for navigating the pinned schema workspace without querying the database. | implemented |
 | [skill-knowledge-db](#skill-knowledge-db) | skills/knowledge-db | Procedure for catalog reads and reproducible knowledge-read snapshots that an ingestion intent can cite. | implemented |
 | [skill-knowledge-ingest](#skill-knowledge-ingest) | skills/knowledge-ingest | Procedure for composing, planning, applying, and verifying knowledge-ingestion intents through the executor. | implemented |
@@ -847,6 +848,26 @@ Curated model-card verification experiments; run results are not canonical archi
 **Other runtime dependencies:** none declared
 **Reviewed runtime/data relationships:** [verification](#verification)
 **Checks:** No specific test anchor registered.
+
+**Architecture and detailed docs:**
+
+No module-specific architecture document registered. Do not infer a design decision from the folder name.
+
+## skill-knowledge-research
+
+**skills/knowledge-research** · agent skill · implemented
+
+Research method and verification procedure: orient in the knowledge base, frame questions, find leads with external tools, capture and locate quotes, state and check claims, hand back; one playbook per external tool; served to agents without a filesystem by the guide.
+
+**Enter:** [`skills/knowledge-research/SKILL.md`](../../skills/knowledge-research/SKILL.md)
+**Interface:** knowledge-research skill 1.0.0: references method, sources, verification, handback and tools/{routing,tavily,firecrawl,context7,github,arxiv,browser}; read with knowledge_guide, GET /v1/guide/knowledge-research or ks guide knowledge-research.
+**Package:** not a standalone package
+**Export subpaths:** none declared. Declared metadata; build outputs are not read.
+**Declared internal package dependencies:** none declared
+**Other runtime dependencies:** none declared
+**Reviewed runtime/data relationships:** [contracts](#contracts), [verification-executor](#verification-executor), [mcp](#mcp)
+**Checks:** [`packages/contracts/src/operations/guide.test.ts`](../../packages/contracts/src/operations/guide.test.ts), [`apps/verification-executor/src/guide.test.ts`](../../apps/verification-executor/src/guide.test.ts)
+- Names tools and says when to use them; arguments come from knowledge_describe and each tool's description. Names no database schema or table. Every Availability section states what this repository serves on the checked date.
 
 **Architecture and detailed docs:**
 

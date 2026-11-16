@@ -9,12 +9,17 @@
  *
  * Catalogs are read from source, never invented here:
  *   executor operations  apps/verification-executor/src/knowledge/operations.ts (SV-17 retired the recovery and content-link operations)
- *   executor MCP tools   apps/verification-executor/src/mcp.ts  (verify_* tools) + the operations above
+ *   executor MCP tools   apps/verification-executor/src/mcp.ts  (verify_* tools and knowledge_guide), the K01 tools of
+ *                        src/knowledge-operation/mcp-tools.ts, and the operations above
  *   platform CLI (ks)    apps/cli/src/ks-commands.ts KS_COMMANDS; remote status from apps/cli/src/commands.ts CLI_COMMANDS
  *   platform MCP tools   apps/mcp/src/catalog.ts and tools/verify.ts
  *   Jev MCP / CLI        apps/jev/src/{mcp,index}.ts
  * When apps/verification-executor/dist/knowledge.js exists, its `ops` output is compared against the
  * parsed executor catalog so a stale parser cannot pass silently.
+ *
+ * The guide (knowledge_guide, GET /v1/guide, `ks guide`) serves these files to agents without a filesystem. The
+ * check therefore also fails when manifest.json `guide.jobs` names a skill or a tool that does not exist, when an
+ * executor or Jev tool belongs to no job, and when the bundled pages in packages/contracts are out of date.
  */
 import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
@@ -31,7 +36,7 @@ const die = (message) => { console.error(message); process.exit(2); };
 const read = (path) => readFileSync(path, "utf8");
 
 /** Minimum sizes: a silently empty catalog must never let a skill pass. */
-const MINIMUM = { executorOperations: 20, executorMcpTools: 30, platformCommands: 50, platformMcpTools: 20, jevMcpTools: 6, jevCommands: 8 };
+const MINIMUM = { executorOperations: 20, executorMcpTools: 36, platformCommands: 50, platformMcpTools: 20, jevMcpTools: 6, jevCommands: 8 };
 
 function executorOperationCatalog() {
   const files = ["operations.ts"].map((name) => read(join(executorRoot, "src/knowledge", name)));
@@ -49,9 +54,12 @@ function executorOperationCatalog() {
   return operations;
 }
 
+/** The tools the executor registers by name: capture, artifact and guide tools, and the K01 operation tools. */
 function verifyMcpTools() {
-  const source = read(join(executorRoot, "src/mcp.ts"));
-  return new Set([...source.matchAll(/registerTool\(\s*"([a-z][a-z0-9_]*)"/g)].map((match) => match[1]));
+  const sources = ["src/mcp.ts", "src/knowledge-operation/mcp-tools.ts"].map((path) => read(join(executorRoot, path)));
+  return new Set(
+    sources.flatMap((source) => [...source.matchAll(/registerTool\(\s*"([a-z][a-z0-9_]*)"/g)].map((match) => match[1])),
+  );
 }
 
 /** The dispatcher's status per resource/action key: "unsupported" when the command fails closed, else "admitted". */
@@ -310,10 +318,14 @@ for (const skill of manifest.skills) {
     if (!separated) fail(`${skill.id}: mentions sealing without stating that a seal is not admission`);
   }
 
-  // 5. Relative markdown links must resolve inside the repository.
-  for (const link of body.matchAll(/\]\((\.{1,2}\/[^)\s#]+|[A-Za-z0-9._-]+\.md)(?:#[^)]*)?\)/g)) {
-    const target = resolve(directory, link[1]);
-    if (!existsSync(target)) fail(`${skill.id}: broken relative link ${link[1]}`);
+  // 5. Relative links must resolve, each from the directory of the file that holds it.
+  for (const [name, text] of Object.entries(files)) {
+    if (!name.endsWith(".md")) continue;
+    for (const link of text.matchAll(/\]\(([^)\s#]+)(?:#[^)]*)?\)/g)) {
+      if (/^[a-z][a-z0-9+.-]*:/i.test(link[1])) continue;
+      const target = resolve(dirname(join(directory, name)), link[1]);
+      if (!existsSync(target)) fail(`${skill.id}/${name}: broken relative link ${link[1]}`);
+    }
   }
 
   report.skills.push({ id: skill.id, version: skill.version, digest: contentDigest(files), files: Object.keys(files).sort() });
@@ -351,6 +363,45 @@ else {
     }
   }
   report.skills.push({ id: verificationSkill.id, version: verificationSkill.version, digest: contentDigest(files), files: Object.keys(files).sort() });
+}
+
+// The guide: its jobs name skills and tools that exist, and no executor or Jev tool is left out of it.
+const guide = manifest.guide;
+if (!guide || !Array.isArray(guide.jobs) || guide.jobs.length === 0) fail("manifest.json has no guide.jobs");
+else {
+  const guideSkills = new Set([...declared.keys(), ...(verificationSkill ? [verificationSkill.id] : [])]);
+  const placed = new Map();
+  const place = (name, where) => {
+    if (placed.has(name)) fail(`guide: ${name} is listed under ${placed.get(name)} and ${where}`);
+    placed.set(name, where);
+  };
+  for (const job of guide.jobs) {
+    if (!job.id || !Array.isArray(job.skills) || job.skills.length === 0) fail(`guide job ${job.id ?? "?"}: needs an id and at least one skill`);
+    for (const name of job.skills ?? []) if (!guideSkills.has(name)) fail(`guide job ${job.id}: skill "${name}" does not exist`);
+    for (const name of job.executor ?? []) {
+      if (!executorMcpTools.has(name)) fail(`guide job ${job.id}: "${name}" is not an executor MCP tool`);
+      place(name, `job ${job.id}`);
+    }
+    for (const name of job.jev ?? []) {
+      if (!jevTools.has(name)) fail(`guide job ${job.id}: "${name}" is not a Jev MCP tool`);
+      place(name, `job ${job.id}`);
+    }
+  }
+  for (const name of guide.unassigned?.executor ?? []) {
+    if (!executorMcpTools.has(name)) fail(`guide unassigned: "${name}" is not an executor MCP tool`);
+    place(name, "unassigned");
+  }
+  if ((guide.unassigned?.executor ?? []).length > 0 && !guide.unassigned.reason) fail("guide unassigned: a reason is required");
+  // knowledge_guide is the one tool both servers register; the guide names it in its own text.
+  for (const name of executorMcpTools) if (name !== "knowledge_guide" && !placed.has(name)) fail(`guide: executor MCP tool "${name}" belongs to no job and is not listed as unassigned`);
+  for (const name of jevTools) if (!placed.has(name)) fail(`guide: Jev MCP tool "${name}" belongs to no job`);
+  if (!executorMcpTools.has("knowledge_guide") || !platformTools.has("knowledge_guide")) fail("guide: knowledge_guide must be registered on the platform and on the executor MCP server");
+  if (!platform.has("guide")) fail("guide: the ks guide command is not bound");
+}
+// The pages the guide serves are bundled in the contract package; they must be the files checked above.
+for (const generator of ["generate-guide-pages.mjs", "generate-skill-catalog.mjs"]) {
+  try { execFileSync(process.execPath, [join(repoRoot, "packages/contracts/scripts", generator), "--check"], { stdio: "pipe", windowsHide: true }); }
+  catch { fail(`packages/contracts: the output of ${generator} is out of date; run "corepack pnpm --filter @aiengineer/knowledge-contracts generate"`); }
 }
 
 if (problems.length) {

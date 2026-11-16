@@ -209,12 +209,7 @@ const knowledgeMutations: readonly CatalogOperation[] = [
     kind: "promotion_proposal",
     admission: "admitted",
     api: on("POST /v1/promotion-proposals"),
-    mcp: on(
-      "knowledge_promotion_propose",
-      "knowledge_promotion_propose_domain_mapping",
-      "knowledge_promotion_propose_claims",
-      "knowledge_promotion_propose_entity_links",
-    ),
+    mcp: on("knowledge_promotion_propose"),
     cli: on("knowledge promotion propose"),
   },
   {
@@ -436,8 +431,16 @@ const operationsSurface: readonly CatalogOperation[] = [
     "operations.status",
     "operations",
     on("GET /v1/operations/:id"),
-    on("knowledge_embed_status", "knowledge_promotion_status"),
-    on("knowledge operation status", "knowledge promotion status", "knowledge embed status"),
+    on("knowledge_promotion_status"),
+    on("knowledge operation status", "knowledge promotion status"),
+  ),
+  // What a finished operation produced: the ids and digests of its steps, for the next call.
+  read(
+    "operations.result",
+    "operations",
+    on("GET /v1/operations/:id/result"),
+    on("knowledge_operation_result"),
+    on("knowledge operation result"),
   ),
   read(
     "operations.events",
@@ -634,6 +637,13 @@ const system: readonly CatalogOperation[] = [
   // The operation that explains the others (purpose, input schema, example, result) from the contract package. It
   // reads no tenant data: the API and MCP require a bearer, and the `ks` command answers offline.
   read("system.describe", "system", on("GET /v1/describe"), on("knowledge_describe"), on("describe")),
+  // The guidance an agent reads first: the start page, and every skill and reference as a Markdown page. The pages
+  // are bundled in the contract package, so the API, the MCP server and the `ks` command answer alike.
+  {
+    ...read("system.guide", "system", on("GET /v1/guide", "GET /v1/guide/*"), on("knowledge_guide"), on("guide")),
+    // The executor serves the same pages: its MCP server registers the tool and `knowledge guide` prints them.
+    executor: { mcp: "knowledge_guide", cli: "guide" },
+  },
 ];
 
 // ── Verification executor registry (folds into ks in Unit 5) ─────────────────────────

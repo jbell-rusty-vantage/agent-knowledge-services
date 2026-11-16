@@ -61,9 +61,10 @@ const cliCommands = new Map<string, CliCommand>(
     command.profile === "remote" ? [[name, remoteCommand(command)] as const] : [],
   ),
 );
-// `describe` is the one catalogued command that is not remote: it answers offline from the operation contracts.
+// `guide` and `describe` are the catalogued commands that are not remote: they answer offline from the contract
+// package (the guidance pages and the operation contracts).
 const offlineCatalogCommands = ksCommands.flatMap(([name, command]) =>
-  command.profile === "utility" && command.utility === "describe" ? [name] : [],
+  command.profile === "utility" && (command.utility === "describe" || command.utility === "guide") ? [name] : [],
 );
 
 /**
@@ -86,7 +87,8 @@ const routeMatches = (pattern: string, path: string) => {
       if (token === "::") return ":";
       const parameter = /^:[A-Za-z]+(?:\(\^?(.*?)\$?\))?$/u.exec(token);
       if (parameter) return parameter[1] === undefined ? "[^/]+" : `(?:${parameter[1]})`;
-      return escapeRegExp(token);
+      // A trailing wildcard (`/v1/guide/*`) takes the rest of the path, slashes included.
+      return escapeRegExp(token).replace(/\\\*$/u, ".+");
     })
     .join("");
   return new RegExp(`^${source}$`, "u").test(path);
@@ -101,8 +103,13 @@ describe("operation catalog parity", async () => {
       identity: { actor: owner, grants: [] },
     }),
   );
-  // Without knowledge services the executor MCP server registers only its verify_* tools.
-  const executorVerifyTools = await toolNames(createVerificationMcpServer({} as never));
+  // Without knowledge services the executor MCP server registers only its verify_* tools and the guide, which it
+  // shares with the platform server (the `executor` binding of a platform row).
+  const executorTools = await toolNames(createVerificationMcpServer({} as never));
+  const sharedWithExecutor = new Set(
+    operationCatalog.flatMap((row) => (row.admission !== "executor" && row.executor ? [row.executor.mcp] : [])),
+  );
+  const executorVerifyTools = new Set([...executorTools].filter((name) => !sharedWithExecutor.has(name)));
   const registered: Record<Transport, ReadonlySet<string>> = {
     api: apiRoutes,
     mcp: mcpTools,
@@ -136,23 +143,25 @@ describe("operation catalog parity", async () => {
       }, {});
     // SV-17 retired the verification chain, report, recovery and content-link operations. The 17 declared rows and
     // the in-memory demo evaluation were removed on 2026-11-15: no state is "declared (fails closed)".
-    // 2026-11-15: `system.describe` (knowledge_describe, GET /v1/describe, ks describe) adds one executable row.
+    // 2026-11-15: `system.describe` (knowledge_describe, GET /v1/describe, ks describe) adds one executable row;
+    // `system.guide` (knowledge_guide, GET /v1/guide, ks guide) and `operations.result` (knowledge_operation_result,
+    // GET /v1/operations/:id/result, ks knowledge operation result) add two more on every transport.
     for (const transport of ["api", "mcp"] as const)
-      expect(states("local", transport)).toEqual({ "server only": 64, "executor only": 34 });
-    expect(states("local", "cli")).toEqual({ "server only": 64, "executor only": 25, "local profile": 9 });
+      expect(states("local", transport)).toEqual({ "server only": 66, "executor only": 34 });
+    expect(states("local", "cli")).toEqual({ "server only": 66, "executor only": 25, "local profile": 9 });
     expect(states("server", "api")).toEqual({
-      executable: 48,
+      executable: 50,
       "executable when composed": 16,
       "executor only": 34,
     });
     expect(states("server", "mcp")).toEqual({
-      executable: 29,
+      executable: 31,
       "executable when composed": 14,
       excluded: 21,
       "executor only": 34,
     });
     expect(states("server", "cli")).toEqual({
-      executable: 32,
+      executable: 34,
       "executable when composed": 14,
       excluded: 18,
       "executor only": 34,
@@ -164,8 +173,9 @@ describe("operation catalog parity", async () => {
       const state = localProfileState(operation);
       return { ...total, [state]: (total[state] ?? 0) + 1 };
     }, {});
-    // The local host composes no describe operation: `ks describe` is an offline utility that loads no host.
-    expect(counts).toEqual({ "server only": 89, offline: 8, "capture provider": 1 });
+    // The local host composes no guide or describe operation: `ks guide` and `ks describe` are offline utilities
+    // that load no host.
+    expect(counts).toEqual({ "server only": 91, offline: 8, "capture provider": 1 });
     const verification = {
       captureMediaKind: () => "text" as const,
       create: (() => {
@@ -287,6 +297,12 @@ describe("operation catalog parity", async () => {
       for (const transport of transports) expect("excluded" in row[transport], `${row.id} ${transport}`).toBe(true);
     for (const row of executorRows.filter((operation) => operation.id.startsWith("executor.ingest_")))
       expect("excluded" in row.api && row.api.excluded).toMatch(/receipt semantics/u);
+  });
+
+  it("serves the guide on the executor server too, as the one tool it shares with the platform server", () => {
+    expect([...sharedWithExecutor]).toEqual(["knowledge_guide"]);
+    expect(executorTools.has("knowledge_guide")).toBe(true);
+    expect(mcpTools.has("knowledge_guide")).toBe(true);
   });
 
   it("binds every local-profile ks command to its executor row and the local host's admission", () => {

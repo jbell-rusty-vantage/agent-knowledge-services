@@ -166,7 +166,7 @@ corepack pnpm dev:worker
 corepack pnpm dev:mcp
 ```
 
-Offline CLI check (no API, Docker, or network). `ks describe` explains any tool, operation or skill from the operation contracts: purpose, input schema, a valid example and the result. The MCP tool `knowledge_describe` and `GET /v1/describe?ref=` return the same answer:
+Offline CLI check (no API, Docker, or network). `ks guide` prints the guidance an agent starts from: the jobs, the skill to read and the tools of each job, and the rules that always hold; `ks guide <skill>` prints one skill and `ks guide <skill>/references/<name>` one of its references. The MCP tool `knowledge_guide` (platform and executor servers) and `GET /v1/guide[/topic]` return the same Markdown pages, which are the files of [`skills/`](skills/README.md#the-guide-the-same-files-for-an-agent-without-a-filesystem) bundled into the contract package. `ks describe` explains any tool, operation or skill from the operation contracts: purpose, input schema, a valid example and the result. The MCP tool `knowledge_describe` and `GET /v1/describe?ref=` return the same answer:
 
 ```bash
 corepack pnpm --filter @aiengineer/knowledge-cli... build

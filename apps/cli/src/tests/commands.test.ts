@@ -30,6 +30,7 @@ const client = () =>
     getVectorStore: vi.fn(),
     getVectorStoreOperation: vi.fn(),
     getOperation: vi.fn(),
+    getOperationResult: vi.fn(),
     getVerificationOperation: vi.fn(),
     getOperationEvents: vi.fn(),
     retryOperation: vi.fn(),
@@ -57,7 +58,8 @@ describe("CLI semantic dispatcher", () => {
   });
   it.each([
     ["promotion", "status", "getOperation", "operationId"],
-    ["embed", "status", "getOperation", "operationId"],
+    ["operation", "status", "getOperation", "operationId"],
+    ["operation", "result", "getOperationResult", "operationId"],
     ["retrieve", "explain", "getRetrievalExplanation", "runId"],
     ["eval", "failures", "getEvaluationFailures", "runId"],
   ])("routes %s %s as a read", async (group, action, method, key) => {
@@ -65,6 +67,21 @@ describe("CLI semantic dispatcher", () => {
     await dispatchCliCommand(c, resolveCommand(group, action)!, { [key]: id(8) }, context);
     expect(c[method as keyof CliKnowledgeClient]).toHaveBeenCalled();
     expect(c.submitOperation).not.toHaveBeenCalled();
+  });
+  it("reads an operation's result by its id alone, and binds no embed status command", async () => {
+    const c = client();
+    const result = resolveCommand("operation", "result");
+    if (!result) throw new Error("operation result is not bound");
+    await dispatchCliCommand(c, result, { operationId: id(9) }, context);
+    expect(c.getOperationResult).toHaveBeenCalledWith(id(9), context);
+    await expect(dispatchCliCommand(c, result, { operationId: id(9), state: "x" }, context)).rejects.toThrow(
+      "OPERATION_RESULT_READ_INPUT_INVALID",
+    );
+    await expect(dispatchCliCommand(c, result, { operationId: "latest" }, context)).rejects.toThrow();
+    expect(c.getOperationResult).toHaveBeenCalledTimes(1);
+    // `embed status` was another name for `operation status`; one command polls every operation.
+    expect(resolveCommand("embed", "status")).toBeUndefined();
+    expect(resolveCommand("embed", "run")).toMatchObject({ mode: "submit", kind: "embedding_run" });
   });
   it("routes verify status through the verification-aware operation read", async () => {
     const c = client();

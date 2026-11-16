@@ -10,8 +10,9 @@ import { type CLI_COMMANDS, resolveCommand, type CliCommand } from "./commands.j
  * Remote commands keep their resource/action key in CLI_COMMANDS, which dispatchCliCommand serves. In the `verify`
  * group the resource of the same name sits at the group root. A group exists only while it binds a command that runs:
  * schema navigation, bounded reads and ingestion are the executor's `knowledge` binary, and Jev is the `jev` binary.
- * `describe` is the one command outside a group: it explains any tool, operation or skill from the operation
- * contracts, offline.
+ * `guide` and `describe` are the two commands outside a group, both offline: `guide` prints the guidance pages
+ * (the start page, a skill, one of its references) and `describe` explains any tool, operation or skill from the
+ * operation contracts.
  */
 export type KsGroup = "knowledge" | "verify";
 export const KS_GROUPS: Readonly<Record<KsGroup, string>> = Object.freeze({
@@ -22,6 +23,7 @@ export const KS_GROUPS: Readonly<Record<KsGroup, string>> = Object.freeze({
 
 type RemoteResource = keyof typeof CLI_COMMANDS;
 export type KsUtility =
+  | "guide"
   | "describe"
   | "benchmark-capture"
   | "benchmark-diff"
@@ -41,6 +43,7 @@ const local = (operation: LocalOperation): KsCommand => ({ profile: "local", ope
 const utility = (name: KsUtility): KsCommand => ({ profile: "utility", utility: name });
 
 export const KS_COMMANDS = Object.freeze({
+  guide: utility("guide"),
   describe: utility("describe"),
   "knowledge source discover": remote("source", "discover"),
   "knowledge source fetch": remote("source", "fetch"),
@@ -58,7 +61,6 @@ export const KS_COMMANDS = Object.freeze({
   "knowledge promotion review": remote("promotion", "review"),
   "knowledge promotion status": remote("promotion", "status"),
   "knowledge embed run": remote("embed", "run"),
-  "knowledge embed status": remote("embed", "status"),
   "knowledge embed verify": remote("embed", "verify"),
   "knowledge retrieve plan": remote("retrieve", "plan"),
   "knowledge retrieve search": remote("retrieve", "search"),
@@ -73,6 +75,7 @@ export const KS_COMMANDS = Object.freeze({
   "knowledge space publish": remote("space", "publish"),
   "knowledge space rollback": remote("space", "rollback"),
   "knowledge operation status": remote("operation", "status"),
+  "knowledge operation result": remote("operation", "result"),
   "knowledge operation events": remote("operation", "events"),
   "knowledge operation retry": remote("operation", "retry"),
   "knowledge operation reconcile": remote("operation", "reconcile"),

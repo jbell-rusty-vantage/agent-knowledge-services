@@ -12,6 +12,40 @@
   },
   "skills": [
     {
+      "id": "knowledge-research",
+      "version": "1.0.0",
+      "path": "knowledge-research/SKILL.md",
+      "surfaces": [
+        "executor-cli",
+        "executor-mcp",
+        "platform-cli",
+        "platform-mcp"
+      ],
+      "references": [
+        "references/method.md",
+        "references/sources.md",
+        "references/verification.md",
+        "references/handback.md",
+        "references/tools/routing.md",
+        "references/tools/tavily.md",
+        "references/tools/firecrawl.md",
+        "references/tools/context7.md",
+        "references/tools/github.md",
+        "references/tools/arxiv.md",
+        "references/tools/browser.md"
+      ],
+      "operations": [
+        "knowledge_guide",
+        "knowledge_describe",
+        "knowledge_operation_result",
+        "knowledge_operation_invoke",
+        "knowledge_operation_get",
+        "knowledge_operation_cancel",
+        "knowledge_receipt_get",
+        "guide"
+      ]
+    },
+    {
       "id": "schema-explore",
       "version": "1.2.0",
       "path": "schema-explore/SKILL.md",
@@ -109,7 +143,7 @@
     },
     {
       "id": "knowledge-preparation-and-promotion",
-      "version": "1.6.0",
+      "version": "1.7.0",
       "path": "knowledge-preparation-and-promotion/SKILL.md",
       "surfaces": [
         "executor-cli",
@@ -133,7 +167,8 @@
         "knowledge promotion status",
         "knowledge embed run",
         "knowledge embed verify",
-        "knowledge embed status"
+        "knowledge operation status",
+        "knowledge operation result"
       ],
       "absentOperations": [
         "promotion_selection_select",
@@ -277,5 +312,132 @@
         "scripts/jev-batch.mjs"
       ]
     }
-  ]
+  ],
+  "guide": {
+    "description": "The jobs of the guide start page, in the order a research task meets them. Each names the skills to read and the tools the executor and Jev servers hold for it; platform tools come from the operation contracts.",
+    "jobs": [
+      {
+        "id": "research",
+        "skills": [
+          "knowledge-research",
+          "knowledge-acquisition-and-vetting",
+          "knowledge-verify"
+        ],
+        "executor": [
+          "source_discover",
+          "source_import",
+          "source_select",
+          "source_attempt",
+          "source_reconcile",
+          "verify_capture_source",
+          "verify_capture_file",
+          "verify_supported_media_types",
+          "verify_list_captures",
+          "verify_read_capture",
+          "verify_search_capture",
+          "verify_locate_quote",
+          "verify_capture_fragment",
+          "verify_register_artifact",
+          "verify_get_artifact"
+        ]
+      },
+      {
+        "id": "verify",
+        "skills": [
+          "knowledge-research",
+          "knowledge-verification"
+        ],
+        "executor": [
+          "knowledge_operation_invoke",
+          "knowledge_operation_get",
+          "knowledge_operation_cancel",
+          "knowledge_receipt_get",
+          "knowledge_describe"
+        ]
+      },
+      {
+        "id": "schema",
+        "skills": [
+          "schema-explore"
+        ],
+        "executor": [
+          "schema_search",
+          "schema_get",
+          "schema_manifest",
+          "schema_materialize"
+        ]
+      },
+      {
+        "id": "read",
+        "skills": [
+          "knowledge-db"
+        ],
+        "executor": [
+          "db_head",
+          "db_read_intent",
+          "db_sql_readonly",
+          "db_explain",
+          "artifact_get"
+        ]
+      },
+      {
+        "id": "write",
+        "skills": [
+          "knowledge-ingest"
+        ],
+        "executor": [
+          "ingest_plan",
+          "ingest_apply",
+          "ingest_receipt"
+        ]
+      },
+      {
+        "id": "prepare",
+        "skills": [
+          "knowledge-preparation-and-promotion",
+          "vector-store-management"
+        ],
+        "executor": [
+          "source_prepare_captured"
+        ]
+      },
+      {
+        "id": "retrieve",
+        "skills": [
+          "knowledge-retrieval-and-evidence"
+        ]
+      },
+      {
+        "id": "evaluate",
+        "skills": [
+          "knowledge-evaluation"
+        ]
+      },
+      {
+        "id": "decide",
+        "skills": [
+          "jev-system-one"
+        ],
+        "jev": [
+          "jev_submit",
+          "jev_batch",
+          "jev_get",
+          "jev_list",
+          "jev_cancel",
+          "jev_workers"
+        ]
+      }
+    ],
+    "unassigned": {
+      "reason": "Scoped session checkpoints of a harness; no job of the guide uses them.",
+      "executor": [
+        "checkpoint_harness",
+        "checkpoint_commit",
+        "checkpoint_head",
+        "checkpoint_read",
+        "checkpoint_restore",
+        "checkpoint_tombstone"
+      ]
+    }
+  }
 }

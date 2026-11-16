@@ -212,7 +212,8 @@ export const STORE_OPERATIONS: readonly OperationContract[] = [
     effect: "submit",
     summary: "Embed approved projections into one vector-space version and record the run.",
     when: "Use after a reviewer accepted the promotion proposal; it does not publish, so searches do not see the vectors yet.",
-    returns: "Returns the accepted operation; poll knowledge_embed_status. Publication is a separate operator step.",
+    returns:
+      "Returns the accepted operation; poll knowledge_promotion_status. Publication is a separate operator step.",
     input: EmbeddingRunInputSchema,
     shape: "envelope",
     notes: [
@@ -235,7 +236,7 @@ export const STORE_OPERATIONS: readonly OperationContract[] = [
     ),
     related: [
       "tool:knowledge_promotion_propose",
-      "tool:knowledge_embed_status",
+      "tool:knowledge_promotion_status",
       "tool:knowledge_store_evaluate",
       "operation:space_publication",
     ],

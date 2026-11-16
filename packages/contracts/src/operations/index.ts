@@ -22,4 +22,13 @@ export {
 } from "./contract-types.js";
 export * from "./operation-contracts.js";
 export * from "./describe.js";
+export * from "./guide.js";
+export {
+  GUIDE_FILES,
+  GUIDE_JOBS,
+  GUIDE_SKILLS,
+  GUIDE_UNASSIGNED,
+  type GuideJobEntry,
+  type GuideSkillEntry,
+} from "./guide-pages.generated.js";
 export { SKILL_CATALOG, type SkillSummary } from "./skill-catalog.generated.js";

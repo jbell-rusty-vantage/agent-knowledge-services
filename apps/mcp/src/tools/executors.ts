@@ -373,8 +373,8 @@ export function createMcpToolExecutor(options: KnowledgeMcpServerOptions) {
       "knowledge_retrieve_packet",
       "knowledge_retrieve_citations",
       "knowledge_eval_failures",
-      "knowledge_embed_status",
       "knowledge_promotion_status",
+      "knowledge_operation_result",
       "knowledge_store_status",
     ]);
     if (
@@ -458,8 +458,15 @@ export function createMcpToolExecutor(options: KnowledgeMcpServerOptions) {
           ? inProcessRead(() => reads.evaluationFailures(context.tenantId, id))
           : toolError("RESOURCE_ID_REQUIRED");
       },
-      knowledge_embed_status: operationStatus,
       knowledge_promotion_status: operationStatus,
+      // What the operation produced: the ids and digests of its finished steps, never their text or locations.
+      knowledge_operation_result: async () => {
+        if (!reads) return toolError("CAPABILITY_NOT_ADMITTED");
+        const id = uuid("operationId");
+        if (!id || Object.keys(inputObject).some((key) => key !== "operationId"))
+          return toolError("RESOURCE_ID_REQUIRED");
+        return inProcessRead(() => reads.operationResult(context.tenantId, id));
+      },
       knowledge_store_status: async () => {
         if (!reads) return toolError("CAPABILITY_NOT_ADMITTED");
         const storeId = uuid("vectorStoreId");

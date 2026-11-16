@@ -9,6 +9,8 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import {
   commandDescription,
   describeReference,
+  guidePage,
+  guideTopics,
   operationContractForCommand,
   operationContractForKind,
   operationInputIssues,
@@ -76,13 +78,17 @@ describe("ks command names", () => {
           ).length,
           `${resource} ${action}`,
         ).toBe(1);
-    // `describe` is the one command outside a group; every other command is in `knowledge` or `verify`.
+    // `guide` and `describe` are the commands outside a group; every other command is in `knowledge` or `verify`.
     expect(new Set(entries.map(([name]) => name.split(" ")[0]))).toEqual(
-      new Set(["describe", ...Object.keys(KS_GROUPS)]),
+      new Set(["guide", "describe", ...Object.keys(KS_GROUPS)]),
     );
+    expect(KS_COMMANDS.guide).toEqual({ profile: "utility", utility: "guide" });
     expect(KS_COMMANDS.describe).toEqual({ profile: "utility", utility: "describe" });
     expect(Object.keys(KS_GROUPS)).toEqual(["knowledge", "verify"]);
-    expect(entries).toHaveLength(62);
+    // 62 before; `guide` and `knowledge operation result` are new and `knowledge embed status` is gone.
+    expect(entries).toHaveLength(63);
+    expect(ksNameOf("embed", "status")).toBeUndefined();
+    expect(ksNameOf("operation", "result")).toBe("knowledge operation result");
     expect(ksNameOf("verify", "extract")).toBe("verify extract");
     // SV-17: the retired claims/report commands have no ks name.
     expect(ksNameOf("verify", "citations")).toBeUndefined();
@@ -190,6 +196,71 @@ describe("ks dispatch", () => {
     expect(JSON.parse(usage.err.join(""))).toMatchObject({ code: "USAGE", command: "describe" });
     expect(fetch).not.toHaveBeenCalled();
     expect(neverLocal).not.toHaveBeenCalled();
+  });
+
+  it("prints the guide offline as Markdown: the start page, a skill, a reference, and a refusal with the topics", async () => {
+    const fetch = vi.fn();
+    const page = (topic?: string) => {
+      const result = guidePage(topic);
+      if (!result.ok) throw new Error(`guide topic ${topic} was refused`);
+      return result.markdown;
+    };
+    const start = io();
+    expect(await runKs(["guide"], start, { loadLocal: neverLocal, fetch: fetch as never })).toBe(0);
+    expect(start.out.join("")).toBe(page());
+    expect(start.out.join("").startsWith("# Knowledge Services\n")).toBe(true);
+    for (const topic of guideTopics()) {
+      const terminal = io();
+      expect(await runKs(["guide", topic], terminal, { loadLocal: neverLocal }), topic).toBe(0);
+      expect(terminal.out.join(""), topic).toBe(page(topic));
+    }
+    const playbook = io();
+    expect(
+      await runKs(["guide", "knowledge-research/references/tools/github"], playbook, { loadLocal: neverLocal }),
+    ).toBe(0);
+    expect(playbook.out.join("")).toContain("# GitHub playbook");
+    const unknown = io();
+    expect(await runKs(["guide", "no-such-skill"], unknown, { loadLocal: neverLocal })).toBe(2);
+    expect(JSON.parse(unknown.err.join(""))).toMatchObject({ code: "NOT_FOUND", topic: "no-such-skill" });
+    expect(JSON.parse(unknown.err.join("")).valid).toEqual(guideTopics());
+    expect(unknown.out).toEqual([]);
+    const usage = io();
+    expect(await runKs(["guide", "a", "b"], usage, { loadLocal: neverLocal })).toBe(2);
+    expect(JSON.parse(usage.err.join(""))).toMatchObject({ code: "USAGE", command: "guide" });
+    const help = io();
+    expect(await runKs(["guide", "--help"], help, { loadLocal: neverLocal })).toBe(0);
+    expect(help.out.join("")).toContain("ks guide [topic]");
+    const top = io();
+    expect(await runKs(["--help"], top, { loadLocal: neverLocal })).toBe(0);
+    expect(top.out.join("")).toContain("ks guide [topic]");
+    expect(fetch).not.toHaveBeenCalled();
+    expect(neverLocal).not.toHaveBeenCalled();
+  });
+
+  it("reads what an operation produced through the result route", async () => {
+    const result = { operationId: id(7), kind: "transformation", state: "succeeded", steps: [], ids: {} };
+    const fetch = vi.fn(async (url: string | URL | Request) => {
+      expect(String(url)).toBe(`https://knowledge.example/v1/operations/${id(7)}/result`);
+      return new Response(JSON.stringify(result), { status: 200, headers: { "content-type": "application/json" } });
+    });
+    const terminal = io(remoteEnv);
+    const exit = await runKs(
+      ["knowledge", "operation", "result", "--context", context, "--input", JSON.stringify({ operationId: id(7) })],
+      terminal,
+      { loadLocal: neverLocal, fetch: fetch as typeof globalThis.fetch },
+    );
+    expect(exit, terminal.err.join("")).toBe(0);
+    expect(terminal.json()).toEqual(result);
+    // The removed name is an unknown command, not another way to poll.
+    const removed = io(remoteEnv);
+    expect(
+      await runKs(["knowledge", "embed", "status", "--context", context, "--input", "{}"], removed, {
+        loadLocal: neverLocal,
+        fetch: fetch as typeof globalThis.fetch,
+      }),
+    ).toBe(2);
+    expect(JSON.parse(removed.err.join(""))).toMatchObject({ code: "UNKNOWN_COMMAND" });
+    expect(fetch).toHaveBeenCalledTimes(1);
   });
 
   it("refuses an invalid operation input with INVALID_CONTRACT and its issues before any request is sent", async () => {

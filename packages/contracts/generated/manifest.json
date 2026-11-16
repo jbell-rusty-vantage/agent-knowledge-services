@@ -35,6 +35,7 @@
     "ModelAuthoredProposal",
     "MutationEnvelope",
     "OperationEvent",
+    "OperationResultResource",
     "OperationStatus",
     "ParseArtifactRequest",
     "ProblemDetails",
@@ -120,5 +121,5 @@
     "VerifyExtractionRequest",
     "VerifyMetricObservationInput"
   ],
-  "openApiOperationCount": 77
+  "openApiOperationCount": 80
 }

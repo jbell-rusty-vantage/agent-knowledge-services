@@ -168,8 +168,8 @@ and
 [`submitCanonicalRetrievalRun`](../packages/application/src/knowledge/retrieval/canonical-retrieval-run.ts).
 Verification mutations call application after
 [`bindResolvedVerificationContext`](../packages/application/src/verification/operations/verification-context-binding.ts)
-and the shared admission gates. `verify_status`,
-`knowledge_embed_status` and `knowledge_promotion_status` use `operationService.get`;
+and the shared admission gates. `verify_status` and `knowledge_promotion_status` use
+`operationService.get`; `knowledge_operation_result` reads the receipts of that operation;
 `knowledge_retrieve_plan` is `RetrievalPlanSchema.parse`; pipeline catalog
 writes use `operationService.submit`. The API route is the behavioral
 reference: a [parity test](../apps/mcp/src/tests/api-mcp-parity.test.ts) runs

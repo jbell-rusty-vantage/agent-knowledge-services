@@ -75,6 +75,7 @@ import {
   DiagnosticsBenchmarkExperimentManifestSchema,
   DiagnosticsBenchmarkProviderObservationSchema,
   DurableReceiptResourceSchema,
+  OperationResultResourceSchema,
   EvaluationFailuresResourceSchema,
   EvaluationReportResourceSchema,
   EvidencePacketSchema,
@@ -151,6 +152,7 @@ const schemas = {
   EvidencePacket: EvidencePacketSchema,
   ArtifactResource: ArtifactResourceSchema,
   DurableReceiptResource: DurableReceiptResourceSchema,
+  OperationResultResource: OperationResultResourceSchema,
   VectorStoreResource: VectorStoreResourceSchema,
   VectorStoreCreateInput: VectorStoreCreateInputSchema,
   VectorStoreDocumentsInput: VectorStoreDocumentsInputSchema,
@@ -286,6 +288,8 @@ interface OperationDocument {
   summary: string;
   responseStatus?: number;
   responseSchema?: Schema;
+  /** The media type of the success response; JSON unless the route answers in text. */
+  responseContentType?: string;
   requestSchema?: Schema;
   public?: boolean;
   serverOwnedTenant?: boolean;
@@ -356,6 +360,21 @@ add({
   serverOwnedTenant: true,
   extraParameters: [{ $ref: "#/components/parameters/DescribeReference" }],
 });
+// The guidance pages are Markdown text and the same for every tenant: the bearer is required, a tenant is not.
+for (const [path, fastifyRoute, operationId] of [
+  ["/v1/guide", "/v1/guide", "getGuide"],
+  ["/v1/guide/{topic}", "/v1/guide/*", "getGuideTopic"],
+] as const)
+  add({
+    method: "get",
+    path,
+    fastifyRoute,
+    operationId,
+    summary: "Read the guidance as Markdown",
+    responseSchema: { type: "string" },
+    responseContentType: "text/markdown",
+    serverOwnedTenant: true,
+  });
 add({
   method: "post",
   path: "/v1/a2a/tasks",
@@ -551,6 +570,14 @@ add({
   operationId: "getVerificationOperation",
   summary: "Read a verification operation",
   responseSchema: operation,
+});
+add({
+  method: "get",
+  path: "/v1/operations/{operationId}/result",
+  fastifyRoute: "/v1/operations/:id/result",
+  operationId: "getOperationResult",
+  summary: "Read what an operation produced",
+  responseSchema: ref("OperationResultResource"),
 });
 add({
   method: "get",
@@ -768,7 +795,10 @@ for (const item of operations) {
     schema:
       match[1] === "profileName"
         ? { type: "string", pattern: "^[a-z][a-z0-9-]{0,63}$" }
-        : { type: "string", format: "uuid" },
+        : match[1] === "topic"
+          ? // A skill name, or a skill name and the path of one of its files; the path keeps its slashes.
+            { type: "string", minLength: 1, maxLength: 200 }
+          : { type: "string", format: "uuid" },
   }));
   const parameters = item.public
     ? pathParameters
@@ -790,7 +820,9 @@ for (const item of operations) {
   const responses: Record<string, Schema> = {
     [responseStatus]: {
       description: summary,
-      content: { "application/json": { schema: item.responseSchema ?? { type: "object" } } },
+      content: {
+        [item.responseContentType ?? "application/json"]: { schema: item.responseSchema ?? { type: "object" } },
+      },
     },
     ...(item.public
       ? {}

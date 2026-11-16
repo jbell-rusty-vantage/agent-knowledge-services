@@ -14,6 +14,27 @@ export interface SkillSummary {
 
 export const SKILL_CATALOG: readonly SkillSummary[] = [
   {
+    "name": "knowledge-research",
+    "version": "1.0.0",
+    "description": "Research method and verification for a knowledge base, loaded before a task searches for sources, captures evidence, states or checks a claim, or hands research back.",
+    "surfaces": [
+      "executor-cli",
+      "executor-mcp",
+      "platform-cli",
+      "platform-mcp"
+    ],
+    "operations": [
+      "knowledge_guide",
+      "knowledge_describe",
+      "knowledge_operation_result",
+      "knowledge_operation_invoke",
+      "knowledge_operation_get",
+      "knowledge_operation_cancel",
+      "knowledge_receipt_get",
+      "guide"
+    ]
+  },
+  {
     "name": "schema-explore",
     "version": "1.2.0",
     "description": "Use when you need to know what the shared knowledge database contains or how something is stored: which table/view/function holds a concept, how entities, relationships, two-clock temporal facts, evidence and claims relate, which named query answers a question, or what an ingestion proposal must contain. Navigates the pinned schema workspace (progressive disclosure) instead of guessing table names. Does not query the database; use knowledge-db.",
@@ -98,7 +119,7 @@ export const SKILL_CATALOG: readonly SkillSummary[] = [
   },
   {
     "name": "knowledge-preparation-and-promotion",
-    "version": "1.6.0",
+    "version": "1.7.0",
     "description": "Use when converting sealed captures, inspecting nodes, previewing admitted chunks, and submitting a promotion proposal.",
     "surfaces": [
       "executor-cli",
@@ -117,7 +138,8 @@ export const SKILL_CATALOG: readonly SkillSummary[] = [
       "knowledge promotion status",
       "knowledge embed run",
       "knowledge embed verify",
-      "knowledge embed status"
+      "knowledge operation status",
+      "knowledge operation result"
     ]
   },
   {

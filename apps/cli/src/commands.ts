@@ -52,6 +52,7 @@ export type CliCommand =
         | "vector_store"
         | "vector_store_operation"
         | "operation"
+        | "operation_result"
         | "operation_events"
         | "retrieval_explanation"
         | "retrieval_run"
@@ -109,7 +110,6 @@ export const CLI_COMMANDS = Object.freeze({
   },
   embed: {
     run: submit("embedding_run"),
-    status: { mode: "read", resource: "operation" },
     verify: submit("publication_verification"),
   },
   retrieve: {
@@ -158,6 +158,7 @@ export const CLI_COMMANDS = Object.freeze({
   },
   operation: {
     status: { mode: "read", resource: "operation" },
+    result: { mode: "read", resource: "operation_result" },
     events: { mode: "read", resource: "operation_events" },
     retry: { mode: "control", action: "retry" },
     reconcile: { mode: "control", action: "reconcile" },
@@ -211,6 +212,7 @@ export interface CliKnowledgeClient {
     context: Pick<OperationContext, "tenantId" | "correlationId">,
   ): Promise<unknown>;
   getOperation(id: string, context: Pick<OperationContext, "tenantId" | "correlationId">): Promise<unknown>;
+  getOperationResult(id: string, context: Pick<OperationContext, "tenantId" | "correlationId">): Promise<unknown>;
   getVerificationOperation(id: string, context: Pick<OperationContext, "tenantId" | "correlationId">): Promise<unknown>;
   getOperationEvents(id: string, context: Pick<OperationContext, "tenantId" | "correlationId">): Promise<unknown>;
   retryOperation(id: string, context: OperationContext): Promise<unknown>;
@@ -352,6 +354,10 @@ export async function dispatchCliCommand(
       );
     case "operation":
       return client.getOperation(requiredId(input, "operationId"), context);
+    case "operation_result":
+      if (Object.keys(input).some((key) => key !== "operationId"))
+        throw new Error("OPERATION_RESULT_READ_INPUT_INVALID");
+      return client.getOperationResult(requiredId(input, "operationId"), context);
     case "operation_events":
       return client.getOperationEvents(requiredId(input, "operationId"), context);
     case "retrieval_explanation":

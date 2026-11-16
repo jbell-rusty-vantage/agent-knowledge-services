@@ -3,7 +3,7 @@ name: knowledge-preparation-and-promotion
 description: Use when converting sealed captures, inspecting nodes, previewing admitted chunks, and submitting a promotion proposal.
 license: Proprietary
 metadata:
-  version: "1.6.0"
+  version: "1.7.0"
   contract: "knowledge-service/v1"
 ---
 

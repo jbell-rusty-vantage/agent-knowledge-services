@@ -7,6 +7,7 @@ Full interfaces, dependencies, tests, and architecture: [semantic map](../docs/a
 
 | Module | Responsibility | Enter |
 |---|---|---|
+| [skill-knowledge-research](../docs/agents/CODE-MAP.md#skill-knowledge-research) | Research method and verification procedure: orient in the knowledge base, frame questions, find leads with external tools, capture and locate quotes, state and check claims, hand back; one playbook per external tool; served to agents without a filesystem by the guide. | skills/knowledge-research/SKILL.md |
 | [skill-schema-explore](../docs/agents/CODE-MAP.md#skill-schema-explore) | Progressive-disclosure procedure for navigating the pinned schema workspace without querying the database. | skills/schema-explore/SKILL.md |
 | [skill-knowledge-db](../docs/agents/CODE-MAP.md#skill-knowledge-db) | Procedure for catalog reads and reproducible knowledge-read snapshots that an ingestion intent can cite. | skills/knowledge-db/SKILL.md |
 | [skill-knowledge-ingest](../docs/agents/CODE-MAP.md#skill-knowledge-ingest) | Procedure for composing, planning, applying, and verifying knowledge-ingestion intents through the executor. | skills/knowledge-ingest/SKILL.md |
