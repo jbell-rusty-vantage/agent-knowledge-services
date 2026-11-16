@@ -1,3 +1,4 @@
+import { CliInputError } from "./commands.js";
 import { ksHelp } from "./help.js";
 import { EXIT, KsUsageError, type KsIo } from "./io.js";
 import { isKsGroup, remoteCommand, resolveKsCommand } from "./ks-commands.js";
@@ -56,6 +57,14 @@ export async function runKs(argv: readonly string[], io: KsIo, options: KsOption
   } catch (failure) {
     if (failure instanceof KsUsageError)
       error(io, { code: "USAGE", command: name, message: failure.message, help: `ks ${name} --help` });
+    else if (failure instanceof CliInputError)
+      // The refusal the API and the MCP tools give for the same input: the code and the failing fields.
+      error(io, {
+        code: failure.code,
+        command: name,
+        issues: failure.issues,
+        help: `ks describe ${failure.describe}`,
+      });
     else
       error(io, {
         code: "CLI_ERROR",

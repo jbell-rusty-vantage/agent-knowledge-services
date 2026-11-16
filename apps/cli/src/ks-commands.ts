@@ -10,6 +10,8 @@ import { type CLI_COMMANDS, resolveCommand, type CliCommand } from "./commands.j
  * Remote commands keep their resource/action key in CLI_COMMANDS, which dispatchCliCommand serves. In the `verify`
  * group the resource of the same name sits at the group root. A group exists only while it binds a command that runs:
  * schema navigation, bounded reads and ingestion are the executor's `knowledge` binary, and Jev is the `jev` binary.
+ * `describe` is the one command outside a group: it explains any tool, operation or skill from the operation
+ * contracts, offline.
  */
 export type KsGroup = "knowledge" | "verify";
 export const KS_GROUPS: Readonly<Record<KsGroup, string>> = Object.freeze({
@@ -19,7 +21,12 @@ export const KS_GROUPS: Readonly<Record<KsGroup, string>> = Object.freeze({
 });
 
 type RemoteResource = keyof typeof CLI_COMMANDS;
-export type KsUtility = "benchmark-capture" | "benchmark-diff" | "attestation-export" | "attestation-inspect";
+export type KsUtility =
+  | "describe"
+  | "benchmark-capture"
+  | "benchmark-diff"
+  | "attestation-export"
+  | "attestation-inspect";
 export type KsCommand =
   | { readonly profile: "remote"; readonly resource: RemoteResource; readonly action: string }
   | { readonly profile: "local"; readonly operation: LocalOperation }
@@ -34,6 +41,7 @@ const local = (operation: LocalOperation): KsCommand => ({ profile: "local", ope
 const utility = (name: KsUtility): KsCommand => ({ profile: "utility", utility: name });
 
 export const KS_COMMANDS = Object.freeze({
+  describe: utility("describe"),
   "knowledge source discover": remote("source", "discover"),
   "knowledge source fetch": remote("source", "fetch"),
   "knowledge source vet": remote("source", "vet"),

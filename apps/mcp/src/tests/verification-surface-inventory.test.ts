@@ -1,11 +1,19 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import {
+  createKnowledgeResourceReads,
   KnowledgeIntegrationService,
   VerificationOperationApplicationService,
 } from "@aiengineer/knowledge-application";
+import { OPERATION_CONTRACTS, operationContractForKind, operationInputIssues } from "@aiengineer/knowledge-contracts";
 import { KnowledgeClient } from "../../../../packages/client/src/client.js";
-import { dispatchCliCommand, resolveCommand } from "../../../cli/src/commands.js";
-import { createVerificationMcpToolExecutor } from "../index.js";
+import {
+  CLI_COMMANDS,
+  CliInputError,
+  dispatchCliCommand,
+  resolveCommand,
+  type CliCommand,
+} from "../../../cli/src/commands.js";
+import { createMcpToolExecutor, createVerificationMcpToolExecutor } from "../index.js";
 import { buildServer } from "../../../api/src/server.js";
 import { verificationMutationInventory, version } from "./verification-inventory.js";
 
@@ -118,6 +126,143 @@ describe("complete verification mutation admission inventory", () => {
       expect(claim?.step).toMatchObject({ name: entry.step });
       // This is admission/lease parity. It deliberately does not synthesize a
       // worker terminal or claim execution of the twelve verification algorithms.
+    } finally {
+      await api.close();
+    }
+  });
+});
+
+describe("knowledge operation input refusal on HTTP, CLI and MCP", () => {
+  const context = {
+    tenantId: tenant,
+    operationId: id(10),
+    attemptId: id(11),
+    correlationId: "input-refusal",
+    actor,
+    capabilityVersion: "mcp/1",
+    idempotencyKey: "input-refusal-0001",
+    reason: "cross-surface input refusal fixture",
+    contractVersion: "v1" as const,
+  };
+
+  it("refuses the same invalid input with the same code and issues on every transport, before submission", async () => {
+    const submit = vi.fn();
+    const port = { submit, get: vi.fn(), input: vi.fn(), list: vi.fn(), events: vi.fn() } as never;
+    const retrieval = { submit: vi.fn(), execute: vi.fn() };
+    const api = buildServer({
+      resolveIdentity: () => identity,
+      operationService: port,
+      retrievalOperationService: { submit: retrieval.submit } as never,
+      canonicalRetrievalExecutor: { execute: retrieval.execute } as never,
+    });
+    const execute = createMcpToolExecutor({
+      operationService: port,
+      apiOrigin: "https://knowledge.example",
+      identity,
+      knowledge: {
+        reads: createKnowledgeResourceReads({}),
+        retrievalOperations: { submit: retrieval.submit },
+        retrievalExecutor: { execute: retrieval.execute } as never,
+      },
+    });
+    const commands = Object.values(CLI_COMMANDS).flatMap((actions) => Object.values(actions) as CliCommand[]);
+    let checked = 0;
+    try {
+      for (const contract of OPERATION_CONTRACTS) {
+        const [tool] = contract.mcp;
+        const [route] = contract.http;
+        if (contract.effect !== "submit" || !contract.kind || contract.shape !== "envelope" || !tool || !route)
+          continue;
+        const kind = contract.kind;
+        const invalid = kind === "retrieval_run" ? { plan: {} } : { unexpected: true };
+        const issues = operationInputIssues(kind, invalid);
+        expect(issues.length, kind).toBeGreaterThan(0);
+        expect(
+          issues.every((issue) => issue.path === "input" || issue.path.startsWith("input.")),
+          kind,
+        ).toBe(true);
+        const envelope = {
+          context,
+          input: invalid,
+          expectedVersions: { api: "v1", ...(kind === "retrieval_run" ? { retrieval: "v1" } : {}) },
+        };
+
+        const called = await execute(tool as never, kind, envelope);
+        expect(called, tool).toHaveProperty("isError", true);
+        const [content] = called.content as { text: string }[];
+        expect(JSON.parse(content?.text ?? "null"), tool).toEqual({
+          code: "INVALID_CONTRACT",
+          issues,
+          describe: `tool:${tool}`,
+        });
+
+        const [method, path] = route.split(" ") as ["POST", string];
+        const response = await api.inject({
+          method,
+          url: path.replace(/\{[^}]+\}/gu, id(60)),
+          headers: {
+            authorization: "Bearer synthetic-inventory",
+            "x-tenant-id": tenant,
+            "x-correlation-id": context.correlationId,
+          },
+          payload: envelope,
+        });
+        expect(response.statusCode, route).toBe(400);
+        expect(response.json(), route).toMatchObject({ code: "INVALID_CONTRACT", issues });
+
+        const command = commands.find(
+          (item) =>
+            (item.mode === "submit" && item.kind === kind) || (item.mode === "retrieval" && kind === "retrieval_run"),
+        );
+        if (command) {
+          const refused = await dispatchCliCommand({} as never, command, invalid, context).catch(
+            (error: unknown) => error,
+          );
+          expect(refused, `ks ${kind}`).toBeInstanceOf(CliInputError);
+          expect(refused, `ks ${kind}`).toMatchObject({ code: "INVALID_CONTRACT", issues });
+        }
+        checked += 1;
+      }
+    } finally {
+      await api.close();
+    }
+    // Every knowledge operation with an MCP tool and an HTTP route of its own was checked (evidence_packet has no
+    // route of its own; its tool makes the same check).
+    expect(checked).toBe(18);
+    expect(submit).not.toHaveBeenCalled();
+    expect(retrieval.submit).not.toHaveBeenCalled();
+    expect(retrieval.execute).not.toHaveBeenCalled();
+  });
+
+  it("admits on every transport the example each operation's contract publishes", async () => {
+    const capture = operationContractForKind("capture").example;
+    const envelope = { context, input: capture, expectedVersions: { api: "v1" } };
+    const operations = () => new KnowledgeIntegrationService();
+    const api = buildServer({ resolveIdentity: () => identity, operationService: operations() });
+    try {
+      const direct = await api.inject({
+        method: "POST",
+        url: "/v1/captures",
+        headers: {
+          authorization: "Bearer synthetic-inventory",
+          "x-tenant-id": tenant,
+          "x-correlation-id": context.correlationId,
+        },
+        payload: envelope,
+      });
+      expect(direct.statusCode, direct.body).toBe(202);
+      const mcp = await createMcpToolExecutor({
+        operationService: operations(),
+        apiOrigin: "https://knowledge.example",
+        identity,
+      })("knowledge_source_fetch", "capture", envelope);
+      expect(mcp).not.toHaveProperty("isError", true);
+      const submitOperation = vi.fn(async () => ({ operationId: context.operationId, state: "queued" }));
+      const cli = await dispatchCliCommand({ submitOperation } as never, CLI_COMMANDS.source.fetch, capture, context);
+      // The CLI sends the input it was given: the check validates and changes nothing.
+      expect(submitOperation).toHaveBeenCalledWith("capture", capture, context);
+      for (const accepted of [direct.json(), mcp.structuredContent, cli])
+        expect(accepted).toMatchObject({ operationId: context.operationId, state: "queued" });
     } finally {
       await api.close();
     }

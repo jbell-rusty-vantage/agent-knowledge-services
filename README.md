@@ -166,13 +166,11 @@ corepack pnpm dev:worker
 corepack pnpm dev:mcp
 ```
 
-Offline CLI demo (no API, Docker, or network). It writes reports from a frozen fixture and currently exits `2` with `verification_incomplete` by design — missing full-demo paths are listed in the generated quality-gate record:
+Offline CLI check (no API, Docker, or network). `ks describe` explains any tool, operation or skill from the operation contracts: purpose, input schema, a valid example and the result. The MCP tool `knowledge_describe` and `GET /v1/describe?ref=` return the same answer:
 
 ```bash
 corepack pnpm --filter @aiengineer/knowledge-cli... build
-node apps/cli/dist/index.js verify demo diagnostics-companies \
-  --dataset diagnostics-companies-v1 \
-  --output ./diagnostics-reports
+node apps/cli/dist/index.js describe tool:knowledge_source_fetch --human
 ```
 
 Health check once the API is up: `GET /health` → `{ "status": "ok" }`.
@@ -270,13 +268,13 @@ CLI against a running API:
 ```bash
 export KNOWLEDGE_API_URL=http://127.0.0.1:4100
 export KNOWLEDGE_API_TOKEN=...
-corepack pnpm --filter @aiengineer/knowledge-cli dev -- verify citations \
+corepack pnpm --filter @aiengineer/knowledge-cli dev -- verify extract \
   --context '<OperationContext>' \
-  --input '<VerifyClaimsRequest>' \
+  --input '<VerifyExtractionRequest>' \
   --wait
 ```
 
-After build: `node apps/cli/dist/index.js <group> <command…> ...` (`ks --help` lists them).
+After build: `node apps/cli/dist/index.js <group> <command…> ...` (`ks <group> --help` lists them; `ks describe operation:<kind>` gives the input schema and a valid example).
 
 ### 3. Skills in Cursor, Claude Code, or Codex
 

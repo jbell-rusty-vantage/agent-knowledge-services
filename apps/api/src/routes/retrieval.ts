@@ -20,6 +20,7 @@ export function registerRetrieval(server: FastifyInstance, context: RouteContext
     collectionKinds,
     correlationId,
     problem,
+    assertOperationInput,
   } = context;
   server.post("/v1/retrieval-plans:validate", async (request, reply) => {
     if (!(await requireAccess(request, reply, "retrieval.plan.validate"))) return;
@@ -31,6 +32,8 @@ export function registerRetrieval(server: FastifyInstance, context: RouteContext
     if (!access) return;
     const envelope = MutationEnvelopeSchema.parse(request.body);
     if (!requireSubmissionEnvelope(access, envelope, request, reply)) return;
+    // The input check every submission route makes, with the failing fields named under `input`.
+    assertOperationInput("retrieval_run", envelope.input);
     const submission = await submitCanonicalRetrievalRun(
       {
         operations: retrievalOperationService,

@@ -17,71 +17,27 @@ import {
 } from "./executors.js";
 import { toolCollector } from "./definition.js";
 
+/** The verification tools. Each description comes from the operation contract, as for every other tool. */
 export function verificationToolDefinitions(options: KnowledgeMcpServerOptions) {
   const { definitions, add } = toolCollector();
   const executeVerification = createVerificationMcpToolExecutor(options);
   const executeBenchmarkRead = createBenchmarkReadMcpExecutor(options);
   for (const name of ["verify_benchmark_show", "verify_benchmark_manifest"] as const)
-    add(
-      name,
-      {
-        description:
-          "Read a completed, signed benchmark with compact engineering metadata under the caller's tenant read authority.",
-        inputSchema: benchmarkReadSchema.shape,
-      },
-      async (value: unknown) => executeBenchmarkRead(name, value),
-    );
+    add(name, benchmarkReadSchema.shape, async (value: unknown) => executeBenchmarkRead(name, value));
   add(
     "verify_reconciliation_apply",
-    {
-      description:
-        "Apply a registered signed accounting decision under configured operator authority; never redispatches.",
-      inputSchema: reconciliationApplySchema.shape,
-    },
+    reconciliationApplySchema.shape,
     createProviderReconciliationMcpExecutor(options, "apply"),
   );
   add(
     "verify_reconciliation_show",
-    {
-      description: "Read an authenticated applied accounting decision.",
-      inputSchema: reconciliationReadSchema.shape,
-    },
+    reconciliationReadSchema.shape,
     createProviderReconciliationMcpExecutor(options, "show"),
   );
-  add(
-    "verify_extraction_show",
-    {
-      description: "Read compact authenticated extraction custody results; candidates remain unverified.",
-      inputSchema: extractionReadSchema.shape,
-    },
-    createStructuredExtractionReadMcpExecutor(options),
-  );
-  add(
-    "verify_benchmark_comparison",
-    {
-      description:
-        "Read signed paired engineering statistics and corrected p-values for a completed benchmark comparison.",
-      inputSchema: comparisonReadSchema.shape,
-    },
-    createBenchmarkComparisonReadMcpExecutor(options),
-  );
-  add(
-    "verify_status",
-    {
-      description:
-        "Poll the state and receipt ids of a tenant-owned verification operation; read the kind-specific terminal result once state is succeeded.",
-      inputSchema: verificationOperationReadSchema.shape,
-    },
-    createVerificationOperationReadMcpExecutor(options),
-  );
+  add("verify_extraction_show", extractionReadSchema.shape, createStructuredExtractionReadMcpExecutor(options));
+  add("verify_benchmark_comparison", comparisonReadSchema.shape, createBenchmarkComparisonReadMcpExecutor(options));
+  add("verify_status", verificationOperationReadSchema.shape, createVerificationOperationReadMcpExecutor(options));
   for (const name of VERIFICATION_MCP_TOOL_NAMES)
-    add(
-      name,
-      {
-        description: `Bounded ${name} workflow through in-process verification admission.`,
-        inputSchema: verificationToolSchemas[name].shape,
-      },
-      async (value: unknown) => executeVerification(name, value),
-    );
+    add(name, verificationToolSchemas[name].shape, async (value: unknown) => executeVerification(name, value));
   return definitions;
 }

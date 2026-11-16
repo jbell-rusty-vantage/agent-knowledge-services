@@ -1,7 +1,8 @@
 import { describe, expect, it, vi } from "vitest";
-import type { OperationContext } from "@aiengineer/knowledge-contracts";
+import { operationContractForKind, operationInputIssues, type OperationContext } from "@aiengineer/knowledge-contracts";
 import {
   CLI_COMMANDS,
+  CliInputError,
   dispatchCliCommand,
   resolveCommand,
   type CliCommand,
@@ -115,8 +116,43 @@ describe("CLI semantic dispatcher", () => {
   });
   it("routes admitted mutations", async () => {
     const c = client();
-    await dispatchCliCommand(c, resolveCommand("embed", "run")!, { model: "x" }, context);
-    expect(c.submitOperation).toHaveBeenCalledWith("embedding_run", { model: "x" }, context);
+    const input = operationContractForKind("embedding_run").example;
+    await dispatchCliCommand(c, resolveCommand("embed", "run")!, input, context);
+    expect(c.submitOperation).toHaveBeenCalledWith("embedding_run", input, context);
+  });
+  it("refuses an input its operation's contract does not accept, before any request is sent", async () => {
+    const c = client();
+    const refused = await dispatchCliCommand(c, CLI_COMMANDS.embed.run, { model: "x" }, context).catch(
+      (error: unknown) => error,
+    );
+    expect(refused).toBeInstanceOf(CliInputError);
+    expect(refused).toMatchObject({ code: "INVALID_CONTRACT", describe: "operation:embedding_run" });
+    expect((refused as CliInputError).issues).toEqual(operationInputIssues("embedding_run", { model: "x" }));
+    expect((refused as CliInputError).issues[0]).toEqual({
+      path: "input.schemaVersion",
+      message: 'Invalid input: expected "knowledge.embedding-run/v1"',
+    });
+    // Every submitting command is checked, and so is a retrieval plan in either accepted form.
+    for (const [group, actions] of Object.entries(CLI_COMMANDS))
+      for (const [action, command] of Object.entries(actions as Record<string, CliCommand>))
+        if (command.mode === "submit" || command.mode === "retrieval" || command.mode === "validate_retrieval_plan")
+          await expect(
+            dispatchCliCommand(c, command, { unexpected: true }, context),
+            `${group} ${action}`,
+          ).rejects.toBeInstanceOf(CliInputError);
+    for (const method of Object.values(c)) expect(method).not.toHaveBeenCalled();
+  });
+  it("submits every operation's own example", async () => {
+    for (const actions of Object.values(CLI_COMMANDS))
+      for (const command of Object.values(actions as Record<string, CliCommand>)) {
+        if (command.mode !== "submit") continue;
+        const c = client();
+        await dispatchCliCommand(c, command, operationContractForKind(command.kind).example, context);
+        const calls = [c.submitOperation, c.createVectorStore, c.attachVectorStoreDocuments].flatMap(
+          (method) => (method as ReturnType<typeof vi.fn>).mock.calls,
+        );
+        expect(calls, command.kind).toHaveLength(1);
+      }
   });
   it("uses the typed vector-store documents endpoint", async () => {
     const c = client(),

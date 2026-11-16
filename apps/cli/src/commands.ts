@@ -12,6 +12,8 @@ import {
 import { productionWorkerOperationKinds } from "@aiengineer/knowledge-application";
 import {
   CaptureSourceRequestSchema,
+  operationInputIssues,
+  type ContractIssue,
   JsonValueSchema,
   ParseArtifactRequestSchema,
   ReplayRunRequestSchema,
@@ -237,6 +239,25 @@ function objectInput(value: unknown): Record<string, unknown> {
   if (!parsed || Array.isArray(parsed) || typeof parsed !== "object") throw new Error("CLI_INPUT_OBJECT_REQUIRED");
   return parsed;
 }
+
+/**
+ * An `--input` its operation's contract refuses. `ks` reports it as INVALID_CONTRACT with the issue list the API
+ * and the MCP tools report, and names the reference that explains the operation. Nothing was sent.
+ */
+export class CliInputError extends Error {
+  override readonly name = "CliInputError";
+  readonly code = "INVALID_CONTRACT" as const;
+  constructor(
+    readonly issues: readonly ContractIssue[],
+    readonly describe: string,
+  ) {
+    super("INVALID_CONTRACT");
+  }
+}
+function assertInput(kind: OperationKind, input: unknown): void {
+  const issues = operationInputIssues(kind, input);
+  if (issues.length > 0) throw new CliInputError(issues, `operation:${kind}`);
+}
 const requiredId = (input: Record<string, unknown>, name: string) => UuidSchema.parse(input[name]);
 export async function dispatchCliCommand(
   client: CliKnowledgeClient,
@@ -264,6 +285,8 @@ export async function dispatchCliCommand(
     );
   }
   if (command.mode === "submit") {
+    // The check the API route and the MCP tool make, before any request is sent.
+    assertInput(command.kind, input);
     if (command.kind === "vector_store_create")
       return client.createVectorStore(VectorStoreCreateInputSchema.parse(input), context);
     if (command.kind === "vector_store_documents") {
@@ -272,10 +295,14 @@ export async function dispatchCliCommand(
     }
     return client.submitOperation(command.kind, input as JsonValue, context);
   }
-  if (command.mode === "retrieval")
-    return client.createRetrievalRun(RetrievalPlanSchema.parse(input.plan ?? input), context);
-  if (command.mode === "validate_retrieval_plan")
-    return client.validateRetrievalPlan(RetrievalPlanSchema.parse(input.plan ?? input), context);
+  if (command.mode === "retrieval" || command.mode === "validate_retrieval_plan") {
+    // A plan is accepted as { plan } or as the plan itself; either way it is checked as the retrieval run input.
+    const plan = input.plan ?? input;
+    assertInput("retrieval_run", { plan });
+    return command.mode === "retrieval"
+      ? client.createRetrievalRun(RetrievalPlanSchema.parse(plan), context)
+      : client.validateRetrievalPlan(RetrievalPlanSchema.parse(plan), context);
+  }
   if (command.mode === "verification_mutation") {
     if (command.useCase === "extractStructuredData")
       return client.extractStructuredData(ExtractStructuredDataRequestSchema.parse(input), context);

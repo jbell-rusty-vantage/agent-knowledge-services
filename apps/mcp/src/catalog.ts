@@ -45,6 +45,8 @@ export const VERIFICATION_MCP_TOOL_NAMES = Object.freeze([
   "verify_benchmark_run",
   "verify_benchmark_compare",
 ] as const);
+/** Tools that read no tenant data: `knowledge_describe` explains every other tool, operation and skill. */
+export const SYSTEM_MCP_TOOL_NAMES = Object.freeze(["knowledge_describe"] as const);
 export const FORBIDDEN_MCP_CAPABILITIES = Object.freeze([
   "raw_sql",
   "secret.read",

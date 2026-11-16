@@ -33,9 +33,7 @@ import {
   ReplayRunRequestSchema,
   VerificationOperationContextHintsSchema,
   RetrievalPlanSchema,
-  VectorStoreCreateInputSchema,
-  VectorStoreDocumentsInputSchema,
-  VectorStoreIngestionInputSchema,
+  assertOperationInput,
   UuidSchema,
   type EvidencePacket,
   type RetrievalCitationReplay,
@@ -45,7 +43,7 @@ import {
 } from "@aiengineer/knowledge-contracts";
 import type { ResourceReadRepository } from "@aiengineer/knowledge-host";
 import Fastify, { type FastifyReply, type FastifyRequest } from "fastify";
-import { z, ZodError, type ZodType } from "zod";
+import { z, ZodError } from "zod";
 import {
   actorsMatch,
   isAuthorized,
@@ -151,11 +149,6 @@ const collectionKinds: Record<string, OperationKind> = {
   experiments: "experiment",
   "eval-runs": "evaluation_run",
   "review-decisions": "review_decision",
-};
-const operationInputSchemas: Partial<Record<OperationKind, ZodType>> = {
-  vector_store_create: VectorStoreCreateInputSchema,
-  vector_store_documents: VectorStoreDocumentsInputSchema,
-  vector_store_ingestion: VectorStoreIngestionInputSchema,
 };
 export function createRouteContext(options: ServerOptionDependencies = {}) {
   const server = Fastify({ logger: false });
@@ -305,8 +298,10 @@ export function createRouteContext(options: ServerOptionDependencies = {}) {
     const access = await requireAccess(request, reply, requiredSubmissionAction(kind));
     if (!access) return;
     const envelope = MutationEnvelopeSchema.parse(request.body);
-    operationInputSchemas[kind]?.parse(envelope.input);
     if (!requireSubmissionEnvelope(access, envelope, request, reply)) return;
+    // Every knowledge operation's input is checked against its contract schema here, so a wrong input is refused
+    // with INVALID_CONTRACT and its issues instead of being queued to fail in the worker.
+    assertOperationInput(kind, envelope.input);
     if (pathVectorStoreId) {
       const input = envelope.input as { vectorStoreId?: unknown };
       if (input.vectorStoreId !== UuidSchema.parse(pathVectorStoreId))
@@ -384,6 +379,7 @@ export function createRouteContext(options: ServerOptionDependencies = {}) {
     correlationId,
     tenantId,
     problem,
+    assertOperationInput,
   };
 }
 

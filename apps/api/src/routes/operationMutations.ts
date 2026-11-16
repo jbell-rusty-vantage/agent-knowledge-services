@@ -16,6 +16,7 @@ export function registerOperationMutations(server: FastifyInstance, context: Rou
     origin,
     correlationId,
     problem,
+    assertOperationInput,
   } = context;
   server.post("/v1/operations", async (request, reply) => {
     const body = request.body as { kind?: unknown; envelope?: unknown };
@@ -30,6 +31,8 @@ export function registerOperationMutations(server: FastifyInstance, context: Rou
       return reply
         .status(400)
         .send(problem(400, "INVALID_CONTRACT", "Correlation context mismatch", correlationId(request)));
+    // The same input check as the operation's own route: this is the route the `ks` submissions use.
+    assertOperationInput(kind, envelope.input, "envelope.input");
     return reply.status(202).send(await operationService.submit(kind, envelope, origin(request)));
   });
   server.get<{ Params: Params }>("/v1/operations/:id", async (request, reply) => {

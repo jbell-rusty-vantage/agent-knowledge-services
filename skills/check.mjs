@@ -75,7 +75,9 @@ function platformCommands() {
   const statuses = remoteStatuses();
   const commands = new Map();
   const source = read(join(repoRoot, "apps/cli/src/ks-commands.ts"));
-  for (const [, name, profile, first, second] of source.matchAll(/^\s{2}"([a-z][a-z -]*)": (remote|local|utility)\("([a-z_-]+)"(?:, "([a-z-]+)")?\)/gm)) {
+  // A one-word command (`describe`) is written without quotes by the formatter; every other name is quoted.
+  for (const [, quoted, bare, profile, first, second] of source.matchAll(/^\s{2}(?:"([a-z][a-z -]*)"|([a-z][a-z-]*)): (remote|local|utility)\("([a-z_-]+)"(?:, "([a-z-]+)")?\)/gm)) {
+    const name = quoted ?? bare;
     if (profile !== "remote") { commands.set(name, "admitted"); continue; }
     const status = statuses.get(`${first} ${second}`);
     if (!status) die(`apps/cli/src/ks-commands.ts: "${name}" binds ${first} ${second}, which CLI_COMMANDS does not define`);
@@ -87,14 +89,18 @@ function platformCommands() {
 function platformMcpTools() {
   const catalog = read(join(repoRoot, "apps/mcp/src/catalog.ts"));
   const catalogEnd = catalog.indexOf("export type McpToolName");
-  const verificationEnd = catalog.indexOf("export const FORBIDDEN_MCP_CAPABILITIES");
-  if (catalogEnd < 0 || verificationEnd < 0) die("platform MCP catalog markers changed");
+  const systemStart = catalog.indexOf("export const SYSTEM_MCP_TOOL_NAMES");
+  const systemEnd = catalog.indexOf("export const FORBIDDEN_MCP_CAPABILITIES");
+  if (catalogEnd < 0 || systemStart < 0 || systemEnd < 0) die("platform MCP catalog markers changed");
   const bounded = catalog.slice(catalog.indexOf("export const MCP_TOOL_CATALOG"), catalogEnd);
-  const verification = catalog.slice(catalog.indexOf("export const VERIFICATION_MCP_TOOL_NAMES"), verificationEnd);
+  const verification = catalog.slice(catalog.indexOf("export const VERIFICATION_MCP_TOOL_NAMES"), systemStart);
+  // The tools that read no tenant data (knowledge_describe).
+  const system = catalog.slice(systemStart, systemEnd);
   const group = read(join(repoRoot, "apps/mcp/src/tools/verify.ts"));
   return new Set([
     ...[...bounded.matchAll(/^\s*"?([a-z][a-z0-9_]*)"?:/gm)].map((match) => match[1]),
     ...[...verification.matchAll(/"([a-z][a-z0-9_]*)"/g)].map((match) => match[1]),
+    ...[...system.matchAll(/"([a-z][a-z0-9_]*)"/g)].map((match) => match[1]),
     ...[...group.matchAll(/"(verify_[a-z0-9_]+)"/g)].map((match) => match[1]),
   ]);
 }

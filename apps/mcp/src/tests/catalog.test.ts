@@ -1,5 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { FORBIDDEN_MCP_CAPABILITIES, MCP_TOOL_CATALOG, VERIFICATION_MCP_TOOL_NAMES } from "../catalog.js";
+import {
+  FORBIDDEN_MCP_CAPABILITIES,
+  MCP_TOOL_CATALOG,
+  SYSTEM_MCP_TOOL_NAMES,
+  VERIFICATION_MCP_TOOL_NAMES,
+} from "../catalog.js";
 describe("bounded MCP catalog", () => {
   it("matches the admitted Gate 6 catalog and excludes authority bypasses", () => {
     expect(Object.keys(MCP_TOOL_CATALOG)).toHaveLength(32);
@@ -17,5 +22,9 @@ describe("bounded MCP catalog", () => {
       "verify_benchmark_run",
       "verify_benchmark_compare",
     ]);
+  });
+  it("names the one tool that explains the others", () => {
+    expect(SYSTEM_MCP_TOOL_NAMES).toEqual(["knowledge_describe"]);
+    expect(Object.keys(MCP_TOOL_CATALOG)).not.toContain("knowledge_describe");
   });
 });

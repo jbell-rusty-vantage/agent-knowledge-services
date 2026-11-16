@@ -15,6 +15,13 @@ import {
 } from "../src/vector-store.js";
 import { ContentLinkIntentSchema } from "../src/content-links.js";
 import { RetrievalCitationReplaySchema } from "../src/retrieval.js";
+import {
+  isKnowledgeOperationKind,
+  OPERATION_INPUT_SCHEMAS,
+  operationContractForRoute,
+  operationDescription,
+  type KnowledgeOperationKind,
+} from "../src/operations/index.js";
 import { VerificationProfileCaptureAcceptedSchema } from "../src/index.js";
 import { ParseArtifactRequestSchema, VerificationParseArtifactResultSchema } from "../src/index.js";
 import { VerificationCaptureTerminalResourceSchema } from "../src/index.js";
@@ -212,10 +219,51 @@ const schemas = {
   ReplayRunRequest: ReplayRunRequestSchema,
 } as const;
 
+/**
+ * The published name of every knowledge operation's input. The schemas are the ones the transports check before
+ * they submit an operation; they are published as a caller sends them, so a field with a default is optional.
+ */
+const operationInputNames: Record<KnowledgeOperationKind, string> = {
+  source_discovery: "SourceDiscoveryInput",
+  source_resolution: "SourceResolutionInput",
+  capture: "CaptureInput",
+  source_vetting: "SourceVettingInput",
+  vector_store_create: "VectorStoreCreateInput",
+  vector_store_documents: "VectorStoreDocumentsInput",
+  vector_store_ingestion: "VectorStoreIngestionJobInput",
+  vector_store_evaluation: "VectorStoreEvaluationInput",
+  transformation: "TransformationInput",
+  representation_comparison: "RepresentationComparisonInput",
+  representation_decision: "RepresentationDecisionInput",
+  chunk_preview: "ChunkPreviewInput",
+  chunk_comparison: "ChunkComparisonInput",
+  chunk_set: "ChunkSetInput",
+  promotion_proposal: "PromotionProposalInput",
+  promotion_decision: "PromotionDecisionInput",
+  embedding_run: "EmbeddingRunInput",
+  space_publication: "SpacePublicationInput",
+  publication_verification: "VectorVerificationInput",
+  publication_rollback: "PublicationRollbackInput",
+  retrieval_run: "RetrievalRunInput",
+  evidence_packet: "EvidencePacketInput",
+  evaluation_dataset: "EvaluationDatasetInput",
+  experiment: "ExperimentInput",
+  evaluation_run: "EvaluationRunInput",
+  review_decision: "ReviewDecisionInput",
+};
+const operationInputSchemas = Object.fromEntries(
+  (Object.keys(operationInputNames) as KnowledgeOperationKind[])
+    .filter((kind) => !(operationInputNames[kind] in schemas))
+    .map((kind) => [operationInputNames[kind], OPERATION_INPUT_SCHEMAS[kind]]),
+);
+
 await mkdir(resolve(generatedRoot, "json-schema"), { recursive: true });
 const jsonSchemas: Record<string, object> = {};
-for (const [name, schema] of Object.entries(schemas)) {
-  const jsonSchema = z.toJSONSchema(schema, { target: "draft-2020-12" });
+for (const [name, schema, io] of [
+  ...Object.entries(schemas).map(([name, schema]) => [name, schema, "output"] as const),
+  ...Object.entries(operationInputSchemas).map(([name, schema]) => [name, schema, "input"] as const),
+]) {
+  const jsonSchema = z.toJSONSchema(schema, { target: "draft-2020-12", io });
   // JSON Schema's local #/$defs references are relative to the whole OpenAPI
   // document after embedding. Scope them back to their component root while
   // leaving each standalone schema self-contained.
@@ -296,6 +344,17 @@ add({
   operationId: "getSystemStatus",
   summary: "Authenticated service status",
   responseSchema: ref("ServiceStatus"),
+});
+add({
+  method: "get",
+  path: "/v1/describe",
+  fastifyRoute: "/v1/describe",
+  operationId: "describe",
+  summary: "Explain one tool, operation or skill",
+  responseSchema: { type: "object", required: ["ref", "type"] },
+  // The answer is the same for every tenant: the bearer is required, a tenant is not.
+  serverOwnedTenant: true,
+  extraParameters: [{ $ref: "#/components/parameters/DescribeReference" }],
 });
 add({
   method: "post",
@@ -720,9 +779,17 @@ for (const item of operations) {
         ...(item.extraParameters ?? []),
       ];
   const responseStatus = String(item.responseStatus ?? (item.method === "post" ? 202 : 200));
+  // An operation with a written contract takes its summary and description from it, and a route that submits
+  // one knowledge operation with the plain envelope takes that operation's input schema.
+  const contract = operationContractForRoute(`${item.method.toUpperCase()} ${item.path}`);
+  const summary = contract?.summary ?? item.summary;
+  const requestSchema =
+    item.requestSchema === mutation && contract?.kind && isKnowledgeOperationKind(contract.kind)
+      ? typedMutation(operationInputNames[contract.kind])
+      : item.requestSchema;
   const responses: Record<string, Schema> = {
     [responseStatus]: {
-      description: item.summary,
+      description: summary,
       content: { "application/json": { schema: item.responseSchema ?? { type: "object" } } },
     },
     ...(item.public
@@ -739,13 +806,14 @@ for (const item of operations) {
   };
   (paths[item.path] ??= {})[item.method] = {
     operationId: item.operationId,
-    summary: item.summary,
+    summary,
+    ...(contract ? { description: operationDescription(contract) } : {}),
     tags: [item.path.split("/")[2] || "operations"],
     "x-fastify-route": item.fastifyRoute,
     parameters,
     ...(item.public ? { security: [] } : {}),
-    ...(item.requestSchema
-      ? { requestBody: { required: true, content: { "application/json": { schema: item.requestSchema } } } }
+    ...(requestSchema
+      ? { requestBody: { required: true, content: { "application/json": { schema: requestSchema } } } }
       : {}),
     responses,
   };
@@ -849,6 +917,13 @@ const openapi = {
         schema: { type: "string", maxLength: 255 },
       },
       AfterSequence: { in: "query", name: "after", required: false, schema: { type: "integer", minimum: 0 } },
+      DescribeReference: {
+        in: "query",
+        name: "ref",
+        required: true,
+        description: "tool:<MCP tool name>, operation:<operation kind or read name> or skill:<skill name>",
+        schema: { type: "string", minLength: 1, maxLength: 200 },
+      },
     },
     responses: {
       BadRequest: problemResponse("Invalid contract"),
@@ -864,5 +939,5 @@ const openapi = {
 await writeFile(resolve(generatedRoot, "openapi.json"), `${JSON.stringify(openapi, null, 2)}\n`);
 await writeFile(
   resolve(generatedRoot, "manifest.json"),
-  `${JSON.stringify({ contractVersion: "v1", generatedFrom: "packages/contracts/src", schemas: Object.keys(schemas).sort(), openApiOperationCount: operations.length }, null, 2)}\n`,
+  `${JSON.stringify({ contractVersion: "v1", generatedFrom: "packages/contracts/src", schemas: Object.keys(jsonSchemas).sort(), openApiOperationCount: operations.length }, null, 2)}\n`,
 );

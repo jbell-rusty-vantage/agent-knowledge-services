@@ -1,0 +1,175 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "knowledge.capture/v1"
+    },
+    "source": {
+      "type": "object",
+      "properties": {
+        "sourceClass": {
+          "type": "string",
+          "enum": [
+            "web_page",
+            "api",
+            "repository",
+            "pdf",
+            "transcript",
+            "dataset",
+            "registry",
+            "other"
+          ]
+        },
+        "canonicalUrl": {
+          "type": "string",
+          "format": "uri"
+        },
+        "publisher": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sensitivity": {
+          "type": "string",
+          "enum": [
+            "public",
+            "restricted",
+            "confidential"
+          ]
+        }
+      },
+      "required": [
+        "sourceClass",
+        "canonicalUrl",
+        "sensitivity"
+      ],
+      "additionalProperties": false
+    },
+    "request": {
+      "type": "object",
+      "properties": {
+        "purpose": {
+          "type": "string",
+          "minLength": 1
+        },
+        "target": {
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "const": "http"
+                },
+                "url": {
+                  "type": "string",
+                  "format": "uri"
+                }
+              },
+              "required": [
+                "kind",
+                "url"
+              ],
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "properties": {
+                "kind": {
+                  "type": "string",
+                  "const": "upload"
+                },
+                "uploadId": {
+                  "type": "string",
+                  "pattern": "^[a-zA-Z0-9][a-zA-Z0-9._-]{0,127}$"
+                },
+                "declaredOrigin": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "kind",
+                "uploadId",
+                "declaredOrigin"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "expectedSourceClass": {
+          "type": "string",
+          "minLength": 1
+        },
+        "preferredMediaTypes": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "egressProfile": {
+          "type": "string",
+          "const": "public-web-v1"
+        },
+        "maximumBytes": {
+          "type": "integer",
+          "exclusiveMinimum": 0,
+          "maximum": 1073741824
+        },
+        "renderingPolicy": {
+          "type": "string",
+          "enum": [
+            "none",
+            "allowed",
+            "required"
+          ]
+        },
+        "interactionPolicy": {
+          "type": "string",
+          "enum": [
+            "none",
+            "bounded"
+          ]
+        },
+        "classification": {
+          "type": "string",
+          "enum": [
+            "public",
+            "restricted",
+            "confidential"
+          ]
+        },
+        "expectedOutputs": {
+          "minItems": 1,
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "required": [
+        "purpose",
+        "target",
+        "expectedSourceClass",
+        "preferredMediaTypes",
+        "egressProfile",
+        "maximumBytes",
+        "renderingPolicy",
+        "interactionPolicy",
+        "classification",
+        "expectedOutputs"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "source",
+    "request"
+  ],
+  "additionalProperties": false
+}

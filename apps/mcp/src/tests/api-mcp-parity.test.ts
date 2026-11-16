@@ -9,6 +9,7 @@ import {
   KNOWN,
   mutationTransports,
   operationContext,
+  ORIGIN,
   owner,
   readRows,
   retrievalPlan,
@@ -19,7 +20,8 @@ import {
   UNKNOWN,
   type ParityRow,
 } from "./parity-rows.js";
-import { actorsMatch } from "@aiengineer/knowledge-application";
+import { actorsMatch, KnowledgeIntegrationService } from "@aiengineer/knowledge-application";
+import { describeReference, operationContractForKind } from "@aiengineer/knowledge-contracts";
 
 // The API route is the behavioral reference. Every former MCP HTTP shim row runs the
 // same application use case in both transports; each case asserts the reference
@@ -94,6 +96,80 @@ describe.each(readRows)("$tool API/MCP parity", (row) => {
     const { api, mcp } = await run(row, { resourceId: UNKNOWN });
     expect(api).toEqual({ status: 404, code: "NOT_FOUND" });
     expect(mcp).toEqual({ code: "NOT_FOUND" });
+  });
+});
+
+describe("describe API/MCP parity", () => {
+  it.each(["tool:knowledge_source_fetch", "tool:verify_extract", "operation:capture", "skill:knowledge-verification"])(
+    "returns the same description of %s",
+    async (ref) => {
+      const api = await viaApi({}, tokens.owner, tenant, {
+        method: "GET",
+        url: `/v1/describe?ref=${encodeURIComponent(ref)}`,
+      });
+      const mcp = await viaMcp({}, tokens.owner, "knowledge_describe", { ref });
+      const expected = describeReference(ref);
+      expect(api).toEqual({ status: 200, value: expected.ok && JSON.parse(JSON.stringify(expected.description)) });
+      expect(mcp).toEqual({ value: (api as { value: unknown }).value });
+    },
+  );
+
+  it("refuses an unknown reference as NOT_FOUND and a missing reference as an invalid request", async () => {
+    const ref = "tool:knowledge_source_inspect";
+    expect(
+      await viaApi({}, tokens.owner, tenant, { method: "GET", url: `/v1/describe?ref=${encodeURIComponent(ref)}` }),
+    ).toEqual({ status: 404, code: "NOT_FOUND" });
+    expect(await viaMcp({}, tokens.owner, "knowledge_describe", { ref })).toEqual({ code: "NOT_FOUND" });
+    expect(await viaApi({}, tokens.owner, tenant, { method: "GET", url: "/v1/describe" })).toEqual({
+      status: 400,
+      code: "INVALID_CONTRACT",
+    });
+    expect(await viaMcp({}, tokens.owner, "knowledge_describe", {})).toMatchObject({
+      error: expect.stringContaining("Input validation error"),
+    });
+  });
+
+  it("requires a bearer and no tenant", async () => {
+    expect(
+      await viaApi({}, "unknown-token-000000000000001", tenant, { method: "GET", url: "/v1/describe?ref=tool:x" }),
+    ).toEqual({ status: 401, code: "UNAUTHORIZED" });
+    // A tenant the bearer has no grant for changes nothing: the answer is the same for every tenant.
+    expect(
+      await viaApi({}, tokens.owner, foreignTenant, { method: "GET", url: "/v1/describe?ref=operation:capture" }),
+    ).toMatchObject({ status: 200 });
+  });
+});
+
+describe("knowledge mutation API/MCP parity", () => {
+  const submit = async (input: unknown) => {
+    const context = operationContext(tenant, owner);
+    const envelope = { context, input, expectedVersions: { api: "v1" } };
+    return {
+      api: await viaApi(
+        { operationService: new KnowledgeIntegrationService(), publicOrigin: ORIGIN },
+        tokens.owner,
+        tenant,
+        { method: "POST", url: "/v1/captures", payload: envelope },
+      ),
+      mcp: await viaMcp(
+        { operationService: new KnowledgeIntegrationService() },
+        tokens.owner,
+        "knowledge_source_fetch",
+        envelope,
+      ),
+    };
+  };
+
+  it("admits the same capture from an input the operation's contract accepts", async () => {
+    const { api, mcp } = await submit(operationContractForKind("capture").example);
+    expect(api).toMatchObject({ status: 202, value: { operationId: operationContext(tenant, owner).operationId } });
+    expect(mcp).toEqual({ value: (api as { value: unknown }).value });
+  });
+
+  it("refuses the same invalid input with the same code before anything is admitted", async () => {
+    const { api, mcp } = await submit({ schemaVersion: "knowledge.capture/v1" });
+    expect(api).toEqual({ status: 400, code: "INVALID_CONTRACT" });
+    expect(mcp).toEqual({ code: "INVALID_CONTRACT" });
   });
 });
 

@@ -4,6 +4,7 @@
 import { callbackEnvelopeForA2ATask, type KnowledgeOperationPort } from "@aiengineer/knowledge-application";
 import {
   A2ATaskSchema,
+  assertOperationInput,
   type A2AStatus,
   type A2ATask,
   type CallbackEnvelope,
@@ -64,11 +65,11 @@ export class A2AKnowledgeAdapter {
 
   async dispatch(value: unknown): Promise<A2AStatus> {
     const task = A2ATaskSchema.parse(value);
-    const accepted = await this.service.submit(
-      operationKindForA2ATask(task),
-      operationEnvelopeForA2ATask(task),
-      this.origin,
-    );
+    const kind = operationKindForA2ATask(task);
+    const envelope = operationEnvelopeForA2ATask(task);
+    // The check every other submission route makes; a task names its input `operationInput`.
+    assertOperationInput(kind, envelope.input, "operationInput");
+    const accepted = await this.service.submit(kind, envelope, this.origin);
     return {
       taskId: task.taskId,
       operationId: accepted.operationId,

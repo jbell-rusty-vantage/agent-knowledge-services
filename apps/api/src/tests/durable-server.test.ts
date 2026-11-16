@@ -1,6 +1,11 @@
 import { requireDisposableDatabaseUrl, runLocalPersistenceTests } from "./support/persistence.js";
 import { randomUUID } from "node:crypto";
-import { AcceptedOperationSchema, OperationStatusSchema } from "@aiengineer/knowledge-contracts";
+import {
+  AcceptedOperationSchema,
+  operationContractForKind,
+  OperationStatusSchema,
+  type JsonValue,
+} from "@aiengineer/knowledge-contracts";
 import { PostgresCanonicalRepository, PostgresKnowledgeOperationService } from "@aiengineer/knowledge-persistence";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { serviceIdentity } from "./support/identity.js";
@@ -113,6 +118,11 @@ describe.skipIf(!runLocalPersistenceTests)("durable operation API local integrat
     reason: "prove process-separated durable admission",
     contractVersion: "v1" as const,
   });
+  /** An input the experiment contract accepts: the route refuses any other before the operation is stored. */
+  const experimentInput = () =>
+    structuredClone(operationContractForKind("experiment").example) as Record<string, JsonValue> & {
+      hypothesis: string;
+    };
   const request = (operationContext: ReturnType<typeof context>) => ({
     method: "POST" as const,
     // An admitted single-step kind: the worker side of these tests claims and completes the step by hand.
@@ -124,7 +134,7 @@ describe.skipIf(!runLocalPersistenceTests)("durable operation API local integrat
     },
     payload: {
       context: operationContext,
-      input: { subject: "durability" },
+      input: experimentInput(),
       expectedVersions: { api: "v1" },
     },
   });
@@ -143,7 +153,7 @@ describe.skipIf(!runLocalPersistenceTests)("durable operation API local integrat
     expect(replay.statusCode).toBe(202);
     expect(replay.json().operationId).toBe(operationContext.operationId);
     const conflicting = request(replayContext);
-    conflicting.payload.input.subject = "changed durability input";
+    conflicting.payload.input.hypothesis = "changed durability input";
     const conflict = await api.inject(conflicting);
     expect(conflict.statusCode).toBe(409);
     expect(conflict.json()).toMatchObject({ code: "IDEMPOTENCY_CONFLICT" });
@@ -158,7 +168,7 @@ describe.skipIf(!runLocalPersistenceTests)("durable operation API local integrat
     expect(claimed?.input).toMatchObject({
       schemaVersion: "knowledge-operation-request/v1",
       kind: "experiment",
-      operationInput: { subject: "durability" },
+      operationInput: experimentInput(),
       context: {
         operationId: operationContext.operationId,
         correlationId: operationContext.correlationId,

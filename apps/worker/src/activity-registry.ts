@@ -8,18 +8,36 @@ import type { AcquisitionAdapter, AcquisitionRequest } from "@aiengineer/knowled
 import { normalizePaperIdentifier } from "@aiengineer/knowledge-acquisition";
 import { chunkDocument, defaultChunkProfileRegistry } from "@aiengineer/knowledge-preparation";
 import {
-  A2AOperationBindingSchema,
+  CaptureInputSchema,
+  ChunkComparisonInputSchema,
+  ChunkPreviewInputSchema,
+  ChunkSetInputSchema,
   DocumentNodeSchema,
-  EvidencePacketSchema,
+  EmbeddingRunInputSchema,
+  EvaluationDatasetInputSchema,
+  EvaluationRunInputSchema,
+  EvidencePacketInputSchema,
+  ExperimentInputSchema,
   JsonValueSchema,
   OperationContextSchema,
   OperationKindSchema,
+  PromotionDecisionInputSchema,
   PromotionProposalInputSchema,
+  PublicationRollbackInputSchema,
+  RepresentationComparisonInputSchema,
+  RepresentationDecisionInputSchema,
+  ReviewDecisionInputSchema,
   SelectedCandidateEvaluationInputSchema,
   SelectedCandidateIndexInputSchema,
+  SourceDiscoveryInputSchema,
+  SourceResolutionInputSchema,
+  SourceVettingInputSchema,
+  SpacePublicationInputSchema,
+  TransformationInputSchema,
   VectorStoreCreateInputSchema,
   VectorStoreDocumentsInputSchema,
   VectorStoreIngestionInputSchema,
+  VectorVerificationInputSchema,
   type JsonValue,
   type OperationKind,
 } from "@aiengineer/knowledge-contracts";
@@ -80,407 +98,10 @@ const durableOperationRequestSchema = z.strictObject({
     .refine((versions) => Object.keys(versions).length > 0, "at least one expected contract version is required"),
 });
 
-const preparationDocumentSchema = z.strictObject({
-  id: z.string().trim().min(1),
-  document_kind: z.string().trim().min(1),
-  title: z.string().trim().min(1),
-  canonical_url: z.string(),
-  source_role: z.enum(["official", "primary", "authoritative_secondary"]),
-  publisher: z.string().trim().min(1),
-  source_class: z.string().trim().min(1),
-  target_vector_spaces: z.array(z.string()),
-  text: z.string(),
-  entity_slugs: z.array(z.string()),
-});
-
-const preparationClaimSchema = z.strictObject({
-  id: z.string().trim().min(1),
-  statement: z.string().trim().min(1),
-  claim_role: z.string().trim().min(1),
-  problem: z.string().optional(),
-  mechanism: z.string().optional(),
-  applicability: z.string().optional(),
-  limitations: z.string().optional(),
-  attribution: z.string().trim().min(1),
-  locator_excerpt: z.string().trim().min(1),
-  related_entities: z.array(z.string().trim().min(1)),
-});
-
-const vettedBundleSchema = z.strictObject({
-  schema_version: z.literal("ai-engineer-embedding-bundle/0.1.0"),
-  store_class: z.literal("internal_exploratory"),
-  video_id: z.string().trim().min(1),
-  title: z.string().trim().min(1),
-  research_as_of: z.iso.date(),
-  primary: z.strictObject({
-    engineer: z.strictObject({ slug: z.string().trim().min(1), display_name: z.string().trim().min(1) }),
-    organization: z.strictObject({ slug: z.string().trim().min(1), display_name: z.string().trim().min(1) }),
-  }),
-  selected_documents: z.array(preparationDocumentSchema).min(1),
-  engineering_claims: z.array(preparationClaimSchema),
-});
-
-const filterValueSchema = z.union([
-  z.string(),
-  z.number(),
-  z.boolean(),
-  z.array(z.union([z.string(), z.number(), z.boolean()])),
-]);
-const expectedFilterSchema = z.strictObject({
-  field: z.string().trim().min(1),
-  value: filterValueSchema,
-});
-const evaluationCaseSchema = z.strictObject({
-  id: z.string().trim().min(1),
-  query: z.string().trim().min(1),
-  domain: z.enum([
-    "engineering_claims",
-    "tool_capabilities",
-    "implementation_examples",
-    "paper_case_study_knowledge",
-    "entity_profiles",
-    "model_capabilities",
-    "benchmark_intelligence",
-    "source_native_sections",
-  ]),
-  queryClass: z.enum([
-    "semantic",
-    "lexical",
-    "filtered",
-    "graph",
-    "temporal",
-    "exact",
-    "conceptual",
-    "mixed",
-    "constraint",
-    "multi_hop",
-    "code",
-    "contradiction",
-    "freshness_temporal",
-    "negative_abstention",
-    "adversarial",
-  ]),
-  provenance: z.array(z.string().trim().min(1)).min(1),
-  relevanceJudgments: z.array(
-    z.strictObject({
-      recordId: z.string().trim().min(1),
-      grade: z.union([z.literal(0), z.literal(1), z.literal(2), z.literal(3)]),
-      rationale: z.string().trim().min(1),
-    }),
-  ),
-  expectedFilters: z.array(expectedFilterSchema).optional(),
-  expectedAbstain: z.boolean().optional(),
-  partition: z.enum(["dev", "calibration", "heldout"]).optional(),
-  sourceFamily: z.string().optional(),
-  entityFamily: z.string().optional(),
-  forbiddenResultIds: z.array(z.string()).optional(),
-  forbiddenFilters: z.array(expectedFilterSchema).optional(),
-  authorProvenance: z.string().optional(),
-  reviewerProvenance: z.string().optional(),
-  fixtureKind: z.enum(["real_bundle_grounded", "synthetic_gap", "reviewed_negative", "adversarial"]).optional(),
-  expectedFacts: z.array(z.string()).optional(),
-  expectedLocatorDigests: z.array(z.string()).optional(),
-  requiredResultType: z.string().optional(),
-  requiredResultTypes: z.array(z.string()).optional(),
-  difficulty: z.enum(["easy", "medium", "hard"]).optional(),
-  tags: z.array(z.string()).optional(),
-  policySlice: z.string().optional(),
-  expectedGraphPath: z.array(z.string()).optional(),
-});
-const evaluationReviewArtifactSchema = z.strictObject({
-  candidateManifestDigest: z.string().regex(/^sha256:[a-f0-9]{64}$/),
-  authorIdentity: z.string().trim().min(1),
-  reviewerIdentity: z.string().trim().min(1),
-  decision: z.enum(["accept", "reject"]),
-  reviewedCaseIds: z.array(z.string().trim().min(1)),
-  reviewedAt: z.string().trim().min(1),
-  rationale: z.string().trim().min(1),
-  digest: z.string().regex(/^sha256:[a-f0-9]{64}$/),
-});
-const evaluationDatasetInputSchema = z.strictObject({
-  id: z.string().trim().min(1),
-  version: z.int().positive(),
-  name: z.string().trim().min(1),
-  cases: z.array(evaluationCaseSchema).min(1),
-  reviewed: z.boolean(),
-  reviewMode: z.enum(["independent", "development"]).optional(),
-  reviewArtifact: evaluationReviewArtifactSchema.optional(),
-});
-const evaluationOutputSchema = z.strictObject({
-  caseId: z.string().trim().min(1),
-  items: z.array(
-    z.strictObject({
-      recordId: z.string().trim().min(1),
-      rank: z.int().positive(),
-      score: z.number().finite(),
-      matchedFilters: z.record(z.string(), filterValueSchema).optional(),
-      citation: z.strictObject({ entailed: z.boolean(), locatorValid: z.boolean() }).optional(),
-      resultType: z.string().optional(),
-      locatorDigests: z.array(z.string()).optional(),
-      graphPaths: z.array(z.array(z.string())).optional(),
-      contentDigest: z
-        .string()
-        .regex(/^sha256:[a-f0-9]{64}$/)
-        .optional(),
-    }),
-  ),
-  abstained: z.boolean(),
-  latencyMs: z.number().nonnegative(),
-  costMicros: z.number().nonnegative(),
-});
-
-const evaluationRunInputSchema = z.strictObject({
-  dataset: evaluationDatasetInputSchema,
-  outputs: z.array(evaluationOutputSchema),
-  k: z.int().positive().max(100).default(10),
-});
-
-const vectorVerificationInputSchema = z.strictObject({
-  vectorSpaceVersionId: z.uuid(),
-  queryEmbedding: z.array(z.number().finite()).length(1_536),
-  resultLimit: z.int().positive().max(100).default(20),
-  minimumRecallAtK: z.number().min(0).max(1).default(0.95),
-});
-
-const evidencePacketInputSchema = z.strictObject({
-  planId: z.uuid(),
-  runId: z.uuid(),
-  packetId: z.uuid(),
-  packet: EvidencePacketSchema,
-  a2a: A2AOperationBindingSchema.optional(),
-});
-
-const captureInputSchema = z
-  .strictObject({
-    schemaVersion: z.literal("knowledge.capture/v1"),
-    source: z.strictObject({
-      sourceClass: z.enum(["web_page", "api", "repository", "pdf", "transcript", "dataset", "registry", "other"]),
-      canonicalUrl: z.url(),
-      publisher: z.string().trim().min(1).optional(),
-      sensitivity: z.enum(["public", "restricted", "confidential"]),
-    }),
-    request: z.strictObject({
-      purpose: z.string().trim().min(1),
-      target: z.discriminatedUnion("kind", [
-        z.strictObject({ kind: z.literal("http"), url: z.url() }),
-        z.strictObject({
-          kind: z.literal("upload"),
-          uploadId: z.string().regex(/^[a-zA-Z0-9][a-zA-Z0-9._-]{0,127}$/),
-          declaredOrigin: z.string().trim().min(1),
-        }),
-      ]),
-      expectedSourceClass: z.string().trim().min(1),
-      preferredMediaTypes: z.array(z.string().trim().min(1)).min(1),
-      egressProfile: z.literal("public-web-v1"),
-      maximumBytes: z.int().positive().max(1_073_741_824),
-      renderingPolicy: z.enum(["none", "allowed", "required"]),
-      interactionPolicy: z.enum(["none", "bounded"]),
-      classification: z.enum(["public", "restricted", "confidential"]),
-      expectedOutputs: z.array(z.string().trim().min(1)).min(1),
-    }),
-  })
-  .superRefine((value, context) => {
-    if (
-      value.request.target.kind === "http" &&
-      new URL(value.source.canonicalUrl).href !== new URL(value.request.target.url).href
-    ) {
-      context.addIssue({
-        code: "custom",
-        message: "source canonical URL must equal the exact capture target",
-        path: ["source", "canonicalUrl"],
-      });
-    }
-    if (value.source.sensitivity !== value.request.classification) {
-      context.addIssue({
-        code: "custom",
-        message: "source sensitivity must equal capture classification",
-        path: ["source", "sensitivity"],
-      });
-    }
-  });
-
-const transformationInputSchema = z.strictObject({
-  schemaVersion: z.literal("knowledge.transformation/v1"),
-  captureOperationId: z.uuid(),
-  document: z.strictObject({
-    documentKind: z.string().trim().min(1),
-    canonicalTitle: z.string().trim().min(1),
-    versionLabel: z.string().trim().min(1),
-    identifier: z
-      .strictObject({
-        type: z.enum(["url", "doi", "arxiv", "openreview", "isbn", "repository", "media_id", "other"]),
-        value: z.string().trim().min(1),
-        authority: z.string().trim().min(1).optional(),
-      })
-      .optional(),
-  }),
-  profile: z.strictObject({
-    profileKey: z.string().trim().min(1),
-    version: z.string().trim().min(1),
-    mediaType: z.string().trim().min(1),
-    language: z.string().trim().min(1).optional(),
-    preserveHtml: z.boolean().optional(),
-    managedProcessingAllowed: z.boolean(),
-    maximumPolls: z.int().positive().max(10_000).optional(),
-  }),
-  providerRoute: z.array(z.string().trim().min(1)).min(1),
-  a2a: A2AOperationBindingSchema.optional(),
-});
-
-const chunkSetInputSchema = z.strictObject({
-  schemaVersion: z.literal("knowledge.chunk-set/v1"),
-  representationId: z.uuid(),
-  profileName: z.string().trim().min(1),
-  profileVersion: z.string().trim().min(1),
-});
-
-const sourceDiscoveryInputSchema = z.strictObject({
-  schemaVersion: z.literal("knowledge.source-discovery/v1"),
-  query: z.string().trim().min(1).max(2_000),
-  candidates: z
-    .array(
-      z.strictObject({
-        url: z.url().max(4_096),
-        title: z.string().trim().min(1).max(500),
-        sourceClass: z.string().trim().min(1).max(100),
-        publisher: z.string().trim().min(1).max(300).optional(),
-        score: z.number().finite().min(0).max(1),
-        evidence: z.array(z.string().trim().min(1).max(1_000)).max(16),
-      }),
-    )
-    .max(500),
-  limit: z.int().positive().max(100).default(25),
-});
-
-const sourceResolutionInputSchema = z.strictObject({
-  schemaVersion: z.literal("knowledge.source-resolution/v1"),
-  candidates: z
-    .array(
-      z.strictObject({
-        candidateId: z.string().trim().min(1).max(255),
-        identifierKind: z.enum(["url", "doi", "arxiv", "openreview"]),
-        identifier: z.string().trim().min(1).max(4_096),
-      }),
-    )
-    .min(1)
-    .max(500),
-});
-
-const chunkPreviewInputSchema = z.strictObject({
-  schemaVersion: z.literal("knowledge.chunk-preview/v1"),
-  nodes: z.array(DocumentNodeSchema).min(1).max(10_000),
-  profileName: z.string().trim().min(1).max(255),
-  profileVersion: z.string().trim().min(1).max(100),
-});
-
-const chunkComparisonInputSchema = z.strictObject({
-  schemaVersion: z.literal("knowledge.chunk-comparison/v1"),
-  nodes: z.array(DocumentNodeSchema).min(1).max(10_000),
-  profiles: z
-    .array(z.strictObject({ name: z.string().trim().min(1).max(255), version: z.string().trim().min(1).max(100) }))
-    .min(2)
-    .max(12),
-});
-
-const representationComparisonInputSchema = z.strictObject({
-  schemaVersion: z.literal("knowledge.representation-comparison/v1"),
-  left: z.strictObject({
-    representationId: z.uuid(),
-    digest: z.string().regex(/^sha256:[a-f0-9]{64}$/),
-    nodes: z.array(DocumentNodeSchema).max(10_000),
-  }),
-  right: z.strictObject({
-    representationId: z.uuid(),
-    digest: z.string().regex(/^sha256:[a-f0-9]{64}$/),
-    nodes: z.array(DocumentNodeSchema).max(10_000),
-  }),
-});
-
-const experimentInputSchema = z.strictObject({
-  schemaVersion: z.literal("knowledge.experiment/v1"),
-  id: z.string().trim().min(1).max(255),
-  hypothesis: z.string().trim().min(1).max(2_000),
-  dataset: evaluationDatasetInputSchema,
-  k: z.int().positive().max(100).default(10),
-  arms: z
-    .array(
-      z.strictObject({
-        id: z.string().trim().min(1).max(255),
-        name: z.string().trim().min(1).max(255),
-        control: z.boolean(),
-        configuration: JsonValueSchema,
-        outputs: z.array(evaluationOutputSchema),
-      }),
-    )
-    .min(2)
-    .max(20),
-});
-const digestSchema = z.string().regex(/^sha256:[a-f0-9]{64}$/);
+// The input schema of every operation kind lives in @aiengineer/knowledge-contracts (operations/*-inputs), where
+// the API, MCP and CLI check an input before it is submitted. The handlers below parse the same schemas when a
+// step executes.
 const typedDigest = (value: string) => value as `sha256:${string}`;
-const representationDecisionInputSchema = z.strictObject({
-  schemaVersion: z.literal("knowledge.representation-decision/v1"),
-  representationId: z.uuid(),
-  reviewSubjectId: z.uuid(),
-  guardedDigest: digestSchema,
-  decision: z.enum(["accept", "reject", "quarantine", "defer", "request_changes"]),
-  policyVersion: z.string().trim().min(1),
-  rationale: z.string().trim().min(1),
-  expiresAt: z.iso.datetime().optional(),
-});
-const promotionDecisionInputSchema = z.strictObject({
-  schemaVersion: z.literal("knowledge.promotion-decision/v1"),
-  proposalId: z.uuid(),
-  reviewSubjectId: z.uuid(),
-  guardedDigest: digestSchema,
-  decision: z.enum(["accept", "reject", "defer", "request_changes"]),
-  gates: JsonValueSchema,
-  policyVersion: z.string().trim().min(1),
-  rationale: z.string().trim().min(1),
-  expiresAt: z.iso.datetime().optional(),
-});
-const reviewDecisionInputSchema = z.strictObject({
-  schemaVersion: z.literal("knowledge.review-decision/v1"),
-  reviewSubjectId: z.uuid(),
-  guardedDigest: digestSchema,
-  decision: z.enum(["approve", "reject", "defer", "request_changes"]),
-  rationale: z.string().trim().min(1).max(8_000),
-});
-const embeddingRunInputSchema = z.strictObject({
-  schemaVersion: z.literal("knowledge.embedding-run/v1"),
-  vectorSpaceVersionId: z.uuid(),
-  promotionDecisionId: z.uuid(),
-  projectionIds: z.array(z.uuid()).min(1),
-  providerRoute: z.array(z.string().trim().min(1)).min(1),
-  expectedDimensions: z.literal(1536),
-  modelSlug: z.string().trim().min(1),
-});
-const baselineQuerySchema = z.strictObject({
-  queryId: z.string().trim().min(1).max(256),
-  embedding: z.array(z.number().finite()).length(1_536),
-});
-const spacePublicationInputSchema = z.strictObject({
-  schemaVersion: z.literal("knowledge.space-publication/v1"),
-  vectorStoreSpaceId: z.uuid(),
-  vectorSpaceVersionId: z.uuid(),
-  promotionDecisionId: z.uuid(),
-  evaluationResultId: z.uuid(),
-  expectedOwnerIdentity: z.string().trim().min(1),
-  guardedDigest: digestSchema,
-  reason: z.string().trim().min(1),
-  /** Present whenever the space publishes an evaluated selected candidate rather than the legacy counted chain. */
-  candidate: SelectedCandidateIndexInputSchema.optional(),
-  candidateEvidenceDigest: digestSchema.optional(),
-  evaluationDigest: digestSchema.optional(),
-});
-const publicationRollbackInputSchema = z.strictObject({
-  schemaVersion: z.literal("knowledge.publication-rollback/v1"),
-  currentPublicationId: z.uuid(),
-  targetPublicationId: z.uuid(),
-  guardedDigest: digestSchema,
-  reason: z.string().trim().min(1),
-  vectorStoreSpaceId: z.uuid().optional(),
-  baselineQueries: z.array(baselineQuerySchema).min(1).max(16).optional(),
-});
 
 export interface DurableStepInput extends z.infer<typeof durableStepInputSchema> {}
 
@@ -731,7 +352,7 @@ function preparationHandlers(
       operationKind: "capture",
       stepName: "acquire",
       async execute({ activity, operation }) {
-        const input = captureInputSchema.parse(activity.operationInput);
+        const input = CaptureInputSchema.parse(activity.operationInput);
         try {
           const existing = await dependencies.repository.getCaptureByOperation(activity.context.tenantId, operation.id);
           if (existing) {
@@ -848,7 +469,7 @@ function preparationHandlers(
       operationKind: "capture",
       stepName: "seal",
       async execute({ activity, operation }) {
-        captureInputSchema.parse(activity.operationInput);
+        CaptureInputSchema.parse(activity.operationInput);
         const capture = await dependencies.repository.getCaptureByOperation(activity.context.tenantId, operation.id);
         if (!capture)
           throw new CanonicalActivityError(
@@ -882,7 +503,7 @@ function preparationHandlers(
       operationKind: "transformation",
       stepName: "convert",
       async execute({ activity, operation }) {
-        const input = transformationInputSchema.parse(activity.operationInput);
+        const input = TransformationInputSchema.parse(activity.operationInput);
         const existing = await dependencies.repository.getRepresentationByOperation(
           activity.context.tenantId,
           operation.id,
@@ -1122,7 +743,7 @@ function preparationHandlers(
       operationKind: "transformation",
       stepName: "inspect",
       async execute({ activity, operation }) {
-        transformationInputSchema.parse(activity.operationInput);
+        TransformationInputSchema.parse(activity.operationInput);
         const representation = await dependencies.repository.getRepresentationByOperation(
           activity.context.tenantId,
           operation.id,
@@ -1160,7 +781,7 @@ function preparationHandlers(
       operationKind: "chunk_set",
       stepName: "chunk",
       async execute({ activity, operation }) {
-        const input = chunkSetInputSchema.parse(activity.operationInput);
+        const input = ChunkSetInputSchema.parse(activity.operationInput);
         const existing = await dependencies.repository.getChunkSetByOperation(activity.context.tenantId, operation.id);
         if (existing) return existing;
         const persistedNodes = await dependencies.repository.getRepresentationNodes(
@@ -1239,7 +860,7 @@ function preparationHandlers(
       operationKind: "chunk_set",
       stepName: "verify",
       async execute({ activity, operation }) {
-        chunkSetInputSchema.parse(activity.operationInput);
+        ChunkSetInputSchema.parse(activity.operationInput);
         const set = await dependencies.repository.getChunkSetByOperation(activity.context.tenantId, operation.id);
         if (!set || set.chunkCount < 1 || set.spanCount < set.chunkCount || set.status !== "succeeded") {
           throw new CanonicalActivityError("CHUNK_SET_VERIFICATION_FAILED", "Persisted chunk set is incomplete", false);
@@ -1274,7 +895,7 @@ export function reviewDecisionActivityHandler(
     operationKind: "review_decision",
     stepName: "decide",
     async execute({ activity, operation }) {
-      const input = reviewDecisionInputSchema.parse(activity.operationInput),
+      const input = ReviewDecisionInputSchema.parse(activity.operationInput),
         identity = reviewerIdentity(activity);
       const decisionId = deterministicUuid(
         "knowledge-review-decision",
@@ -1362,7 +983,7 @@ function governedIndexHandlers(
       operationKind: "representation_decision",
       stepName: "decide",
       async execute({ activity, operation }) {
-        const input = representationDecisionInputSchema.parse(activity.operationInput),
+        const input = RepresentationDecisionInputSchema.parse(activity.operationInput),
           identity = reviewerIdentity(activity);
         const knowledgeDecisionId = deterministicUuid(
           "knowledge-review-decision",
@@ -1471,7 +1092,7 @@ function governedIndexHandlers(
       operationKind: "promotion_decision",
       stepName: "decide",
       async execute({ activity, operation }) {
-        const input = promotionDecisionInputSchema.parse(activity.operationInput),
+        const input = PromotionDecisionInputSchema.parse(activity.operationInput),
           identity = reviewerIdentity(activity);
         const knowledgeDecisionId = deterministicUuid(
           "knowledge-review-decision",
@@ -1514,7 +1135,7 @@ function governedIndexHandlers(
       operationKind: "embedding_run",
       stepName: "embed",
       async execute({ activity, operation }) {
-        const input = embeddingRunInputSchema.parse(activity.operationInput),
+        const input = EmbeddingRunInputSchema.parse(activity.operationInput),
           actor = activity.context.actor;
         if (actor.kind !== "service" || actor.serviceIdentity !== "embedding_executor")
           throw new CanonicalActivityError(
@@ -1582,7 +1203,7 @@ function governedIndexHandlers(
       operationKind: "embedding_run",
       stepName: "verify",
       async execute({ activity, operation }) {
-        const input = embeddingRunInputSchema.parse(activity.operationInput),
+        const input = EmbeddingRunInputSchema.parse(activity.operationInput),
           actor = activity.context.actor;
         if (actor.kind !== "service" || actor.serviceIdentity !== "embedding_executor")
           throw new CanonicalActivityError(
@@ -1621,7 +1242,7 @@ function governedIndexHandlers(
       operationKind: "space_publication",
       stepName: "publish",
       async execute({ activity, operation }) {
-        const input = spacePublicationInputSchema.parse(activity.operationInput),
+        const input = SpacePublicationInputSchema.parse(activity.operationInput),
           identity = controlPlaneIdentity(activity);
         const staged = await dependencies.repository.stagePublication(activity.context.tenantId, {
           operationId: operation.id,
@@ -1649,7 +1270,7 @@ function governedIndexHandlers(
       operationKind: "space_publication",
       stepName: "verify",
       async execute({ activity, operation }) {
-        const input = spacePublicationInputSchema.parse(activity.operationInput),
+        const input = SpacePublicationInputSchema.parse(activity.operationInput),
           identity = controlPlaneIdentity(activity),
           publicationId = deterministicUuid("space-publication", operation.id);
         await dependencies.repository.publishStaged(
@@ -1669,7 +1290,7 @@ function governedIndexHandlers(
       operationKind: "publication_rollback",
       stepName: "rollback",
       async execute({ activity }) {
-        const input = publicationRollbackInputSchema.parse(activity.operationInput),
+        const input = PublicationRollbackInputSchema.parse(activity.operationInput),
           identity = controlPlaneIdentity(activity);
         const plan = await dependencies.repository.planRollback(
           activity.context.tenantId,
@@ -1714,7 +1335,7 @@ function governedIndexHandlers(
       operationKind: "publication_rollback",
       stepName: "verify",
       async execute({ activity, operation }) {
-        const input = publicationRollbackInputSchema.parse(activity.operationInput),
+        const input = PublicationRollbackInputSchema.parse(activity.operationInput),
           identity = controlPlaneIdentity(activity);
         const switchReceiptId = await dependencies.repository.executeRollback(
           activity.context.tenantId,
@@ -1782,7 +1403,7 @@ function vectorVerificationHandler(
           );
         return governedIndex.repository.evaluateSelectedCandidate(activity.context.tenantId, candidate.data);
       }
-      const input = vectorVerificationInputSchema.parse(activity.operationInput);
+      const input = VectorVerificationInputSchema.parse(activity.operationInput);
       const request = {
         tenantId: activity.context.tenantId,
         vectorSpaceVersionId: input.vectorSpaceVersionId,
@@ -1822,7 +1443,7 @@ export function createProductionActivityRegistry(
     stepName,
     execute({ activity }) {
       try {
-        const input = evaluationRunInputSchema.parse(activity.operationInput);
+        const input = EvaluationRunInputSchema.parse(activity.operationInput);
         const dataset = freezeEvaluationDataset(input.dataset as EvaluationDatasetInput);
         const report = evaluateRetrieval(dataset, input.outputs as EvaluationCaseOutput[], input.k);
         return JsonValueSchema.parse({ stage: stepName, report });
@@ -2029,7 +1650,7 @@ export function createProductionActivityRegistry(
       operationKind: "source_discovery",
       stepName: "discover",
       execute({ activity }) {
-        const input = sourceDiscoveryInputSchema.parse(activity.operationInput);
+        const input = SourceDiscoveryInputSchema.parse(activity.operationInput);
         const byUrl = new Map<string, (typeof input.candidates)[number]>();
         for (const candidate of [...input.candidates].sort(
           (left, right) => right.score - left.score || left.url.localeCompare(right.url),
@@ -2076,7 +1697,7 @@ export function createProductionActivityRegistry(
       operationKind: "source_resolution",
       stepName: "resolve",
       execute({ activity }) {
-        const input = sourceResolutionInputSchema.parse(activity.operationInput);
+        const input = SourceResolutionInputSchema.parse(activity.operationInput);
         const resolved = input.candidates
           .map((candidate) => {
             let canonicalIdentifier: string;
@@ -2112,7 +1733,7 @@ export function createProductionActivityRegistry(
       operationKind: "chunk_preview",
       stepName: "preview",
       execute({ activity }) {
-        const input = chunkPreviewInputSchema.parse(activity.operationInput);
+        const input = ChunkPreviewInputSchema.parse(activity.operationInput);
         const profile = defaultChunkProfileRegistry.get(input.profileName, input.profileVersion);
         const result = chunkDocument(input.nodes, profile);
         return { schemaVersion: "knowledge.chunk-preview-result/v1", ...result, persisted: false };
@@ -2122,7 +1743,7 @@ export function createProductionActivityRegistry(
       operationKind: "chunk_comparison",
       stepName: "compare",
       execute({ activity }) {
-        const input = chunkComparisonInputSchema.parse(activity.operationInput);
+        const input = ChunkComparisonInputSchema.parse(activity.operationInput);
         const keys = input.profiles.map((profile) => `${profile.name}@${profile.version}`);
         if (new Set(keys).size !== keys.length)
           throw new CanonicalActivityError(
@@ -2153,7 +1774,7 @@ export function createProductionActivityRegistry(
       operationKind: "representation_comparison",
       stepName: "compare",
       execute({ activity }) {
-        const input = representationComparisonInputSchema.parse(activity.operationInput);
+        const input = RepresentationComparisonInputSchema.parse(activity.operationInput);
         for (const side of [input.left, input.right]) {
           if (new Set(side.nodes.map((node) => node.id)).size !== side.nodes.length)
             throw new CanonicalActivityError(
@@ -2205,7 +1826,7 @@ export function createProductionActivityRegistry(
       operationKind: "experiment",
       stepName: "record",
       execute({ activity }) {
-        const input = experimentInputSchema.parse(activity.operationInput);
+        const input = ExperimentInputSchema.parse(activity.operationInput);
         if (input.dataset.cases.length > 500 || input.arms.some((arm) => arm.outputs.length > 500))
           throw new CanonicalActivityError(
             "EXPERIMENT_CASE_LIMIT_EXCEEDED",
@@ -2248,7 +1869,7 @@ export function createProductionActivityRegistry(
       operationKind: "source_vetting",
       stepName: "vet",
       async execute({ activity, operation }) {
-        const bundle = vettedBundleSchema.parse(activity.operationInput) as VettedBundleInput;
+        const bundle = SourceVettingInputSchema.parse(activity.operationInput) as VettedBundleInput;
         const result = preparation.vetOnly(bundle);
         const proposal = result.proposals[0];
         if (!proposal) {
@@ -2275,7 +1896,7 @@ export function createProductionActivityRegistry(
       stepName: "freeze",
       execute({ activity }) {
         try {
-          const dataset = evaluationDatasetInputSchema.parse(activity.operationInput) as EvaluationDatasetInput;
+          const dataset = EvaluationDatasetInputSchema.parse(activity.operationInput) as EvaluationDatasetInput;
           return JsonValueSchema.parse(freezeEvaluationDataset(dataset));
         } catch (error) {
           if (error instanceof ZodError) throw error;
@@ -2296,7 +1917,7 @@ export function createProductionActivityRegistry(
       operationKind: "evidence_packet",
       stepName: "packet",
       async execute({ activity }) {
-        const input = evidencePacketInputSchema.parse(activity.operationInput);
+        const input = EvidencePacketInputSchema.parse(activity.operationInput);
         const packetId = await dependencies.retrieval.storeEvidencePacket(activity.context.tenantId, input);
         return { packetId, digest: input.packet.digest, persisted: true };
       },

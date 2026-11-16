@@ -631,6 +631,9 @@ const system: readonly CatalogOperation[] = [
     excluded("operator status read"),
     excluded("operator status read"),
   ),
+  // The operation that explains the others (purpose, input schema, example, result) from the contract package. It
+  // reads no tenant data: the API and MCP require a bearer, and the `ks` command answers offline.
+  read("system.describe", "system", on("GET /v1/describe"), on("knowledge_describe"), on("describe")),
 ];
 
 // ── Verification executor registry (folds into ks in Unit 5) ─────────────────────────

@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "knowledge.source-discovery/v1"
+    },
+    "query": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000
+    },
+    "candidates": {
+      "maxItems": 500,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "maxLength": 4096,
+            "format": "uri"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "sourceClass": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "publisher": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 300
+          },
+          "score": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "evidence": {
+            "maxItems": 16,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1000
+            }
+          }
+        },
+        "required": [
+          "url",
+          "title",
+          "sourceClass",
+          "score",
+          "evidence"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "limit": {
+      "default": 25,
+      "type": "integer",
+      "exclusiveMinimum": 0,
+      "maximum": 100
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "query",
+    "candidates"
+  ],
+  "additionalProperties": false
+}

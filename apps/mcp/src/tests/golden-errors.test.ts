@@ -19,7 +19,11 @@ import {
   type LocalApiIdentity,
   type VerificationResourceReadServices,
 } from "@aiengineer/knowledge-application";
-import { VectorStoreCreateInputSchema, type VerificationArtifactHandle } from "@aiengineer/knowledge-contracts";
+import {
+  operationContractForKind,
+  operationInputIssues,
+  type VerificationArtifactHandle,
+} from "@aiengineer/knowledge-contracts";
 import {
   buildKnowledgeMcpApp,
   createKnowledgeMcpServer,
@@ -358,15 +362,40 @@ describe("golden MCP errors: catalog tools", () => {
       "citations",
     );
   });
-  it("answers a schema-invalid tool input with the thrown ZodError text (today: the raw issues JSON, no code)", async () => {
-    const expected = VectorStoreCreateInputSchema.safeParse({}).error;
-    const observed = await call({}, TOOL.vectorStoreCreate, catalogArguments({}));
+  it("answers a schema-invalid tool input with INVALID_CONTRACT, the failing fields and the reference that explains the tool", async () => {
+    const submit = vi.fn();
+    const observed = await call(
+      { operationService: { ...emptyPort(), submit } },
+      TOOL.vectorStoreCreate,
+      catalogArguments({}),
+    );
+    const body = {
+      code: "INVALID_CONTRACT",
+      issues: operationInputIssues("vector_store_create", {}),
+      describe: `tool:${TOOL.vectorStoreCreate}`,
+    };
     expect(observed.isError).toBe(true);
-    expect(observed.text).toBe(expected?.message);
-    expect(observed.structured).toBeUndefined();
+    // The issues are in the text as well as the structured content: a caller that reads only text can correct them.
+    expect(observed.text).toBe(JSON.stringify(body));
+    expect(observed.structured).toEqual(body);
+    expect(body.issues[0]).toEqual({
+      path: "input.schemaVersion",
+      message: 'Invalid input: expected "knowledge.vector-store/v1"',
+    });
+    // Every knowledge operation is checked before the port is called, not only the vector-store ones.
+    const fetched = await call(
+      { operationService: { ...emptyPort(), submit } },
+      TOOL.sourceFetch,
+      catalogArguments({}),
+    );
+    expect(JSON.parse(fetched.text)).toMatchObject({ code: "INVALID_CONTRACT", describe: `tool:${TOOL.sourceFetch}` });
+    expect(submit).not.toHaveBeenCalled();
     const plan = await call({}, TOOL.retrievalPlanValidate, catalogArguments({ plan: {} }));
     expect(plan.isError).toBe(true);
-    expect(plan.text).toContain('"path": [\n      "policyVersion"\n    ]');
+    expect(JSON.parse(plan.text)).toMatchObject({
+      code: "INVALID_CONTRACT",
+      issues: expect.arrayContaining([{ path: "input.plan.policyVersion", message: expect.any(String) }]),
+    });
   });
   it("answers an unknown operation from a status tool with the raw text NOT_FOUND (today: no code payload)", async () => {
     expectRawError(await call({}, TOOL.promotionStatus, catalogArguments({ operationId: id(20) })), "NOT_FOUND");
@@ -505,20 +534,31 @@ describe("golden MCP errors: catalog tools", () => {
     expectCode(await search(new Error("AI_GATEWAY_TIMEOUT")), "INTERNAL_ERROR", "provider");
     expectCode(await search(new Error("provider key sk-secret leaked")), "INTERNAL_ERROR", "unexpected");
   });
-  it("answers a schema-invalid retrieval plan with the thrown text and a missing v1 pin as CAPABILITY_NOT_ADMITTED", async () => {
+  it("answers a schema-invalid retrieval plan with INVALID_CONTRACT before anything is admitted or executed", async () => {
+    const submit = vi.fn(async () => ({}) as never);
+    const execute = vi.fn(async () => ({}) as never);
     const composed: KnowledgeMcpServices = {
       reads: createKnowledgeResourceReads({}),
-      retrievalOperations: { submit: async () => ({}) as never },
-      retrievalExecutor: { execute: async () => ({}) as never },
+      retrievalOperations: { submit },
+      retrievalExecutor: { execute },
     };
     const invalid = await call({ knowledge: composed }, TOOL.retrievalSearch, catalogArguments({ plan: {} }));
     expect(invalid.isError).toBe(true);
-    expect(invalid.text).toContain('"policyVersion"');
-    expect(invalid.structured).toBeUndefined();
+    expect(JSON.parse(invalid.text)).toMatchObject({
+      code: "INVALID_CONTRACT",
+      issues: expect.arrayContaining([{ path: "input.plan.policyVersion", message: expect.any(String) }]),
+      describe: `tool:${TOOL.retrievalSearch}`,
+    });
+    expect(submit).not.toHaveBeenCalled();
+    expect(execute).not.toHaveBeenCalled();
   });
   it("passes a submit failure's raw message through as the text (today: unlike the API's sanitized 500, 409 and 503)", async () => {
     const submit = (failure: Error) =>
-      call({ operationService: failingSubmit(failure) }, TOOL.sourceFetch, catalogArguments());
+      call(
+        { operationService: failingSubmit(failure) },
+        TOOL.sourceFetch,
+        catalogArguments(operationContractForKind("capture").example),
+      );
     expectRawError(await submit(new Error("db password leaked")), "db password leaked", "unexpected");
     expectRawError(await submit(new Error("IDEMPOTENCY_CONFLICT")), "IDEMPOTENCY_CONFLICT", "idempotency conflict");
     expectRawError(

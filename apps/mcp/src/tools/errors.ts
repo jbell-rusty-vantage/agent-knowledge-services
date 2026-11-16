@@ -1,3 +1,4 @@
+import type { ContractIssue } from "@aiengineer/knowledge-contracts";
 import { transportProblem, type ResourceReadResult } from "@aiengineer/knowledge-host";
 type ResourceReadFailureCode = Extract<ResourceReadResult<unknown>, { ok: false }>["failure"]["code"];
 
@@ -14,6 +15,20 @@ export function toolError(
   return {
     content: [{ type: "text" as const, text: JSON.stringify({ code }) }],
     ...(details === undefined ? {} : { structuredContent: details as Record<string, unknown> }),
+    isError: true,
+  };
+}
+
+/**
+ * The refusal of an input that does not match its operation's schema: the API's `INVALID_CONTRACT` code with the
+ * same issue list, and the reference that explains the tool. The issues are in the text as well as the structured
+ * content, because a caller that reads only the text must still learn which fields to correct.
+ */
+export function invalidInputError(tool: string, issues: readonly ContractIssue[]) {
+  const body = { code: "INVALID_CONTRACT" as const, issues, describe: `tool:${tool}` };
+  return {
+    content: [{ type: "text" as const, text: JSON.stringify(body) }],
+    structuredContent: body as unknown as Record<string, unknown>,
     isError: true,
   };
 }

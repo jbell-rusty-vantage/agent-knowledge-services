@@ -9,7 +9,12 @@ import {
   type Binding,
   verificationOwnedOperationKinds,
 } from "@aiengineer/knowledge-application";
-import type { OperationKind } from "@aiengineer/knowledge-contracts";
+import {
+  OPERATION_CONTRACTS,
+  operationContractForKind,
+  operationContractForTool,
+  type OperationKind,
+} from "@aiengineer/knowledge-contracts";
 import { createHost, localProfileState } from "@aiengineer/knowledge-host";
 import { buildServer } from "../../../api/src/server.js";
 import type { CliCommand } from "../../../cli/src/commands.js";
@@ -56,6 +61,10 @@ const cliCommands = new Map<string, CliCommand>(
     command.profile === "remote" ? [[name, remoteCommand(command)] as const] : [],
   ),
 );
+// `describe` is the one catalogued command that is not remote: it answers offline from the operation contracts.
+const offlineCatalogCommands = ksCommands.flatMap(([name, command]) =>
+  command.profile === "utility" && command.utility === "describe" ? [name] : [],
+);
 
 /**
  * Server-profile admission computed from the production catalogs, for rows that submit a durable kind. A kind no
@@ -97,7 +106,7 @@ describe("operation catalog parity", async () => {
   const registered: Record<Transport, ReadonlySet<string>> = {
     api: apiRoutes,
     mcp: mcpTools,
-    cli: new Set(cliCommands.keys()),
+    cli: new Set([...cliCommands.keys(), ...offlineCatalogCommands]),
   };
   const platform = operationCatalog.filter((operation) => operation.admission !== "executor");
 
@@ -127,22 +136,23 @@ describe("operation catalog parity", async () => {
       }, {});
     // SV-17 retired the verification chain, report, recovery and content-link operations. The 17 declared rows and
     // the in-memory demo evaluation were removed on 2026-11-15: no state is "declared (fails closed)".
+    // 2026-11-15: `system.describe` (knowledge_describe, GET /v1/describe, ks describe) adds one executable row.
     for (const transport of ["api", "mcp"] as const)
-      expect(states("local", transport)).toEqual({ "server only": 63, "executor only": 34 });
-    expect(states("local", "cli")).toEqual({ "server only": 63, "executor only": 25, "local profile": 9 });
+      expect(states("local", transport)).toEqual({ "server only": 64, "executor only": 34 });
+    expect(states("local", "cli")).toEqual({ "server only": 64, "executor only": 25, "local profile": 9 });
     expect(states("server", "api")).toEqual({
-      executable: 47,
+      executable: 48,
       "executable when composed": 16,
       "executor only": 34,
     });
     expect(states("server", "mcp")).toEqual({
-      executable: 28,
+      executable: 29,
       "executable when composed": 14,
       excluded: 21,
       "executor only": 34,
     });
     expect(states("server", "cli")).toEqual({
-      executable: 31,
+      executable: 32,
       "executable when composed": 14,
       excluded: 18,
       "executor only": 34,
@@ -154,7 +164,8 @@ describe("operation catalog parity", async () => {
       const state = localProfileState(operation);
       return { ...total, [state]: (total[state] ?? 0) + 1 };
     }, {});
-    expect(counts).toEqual({ "server only": 88, offline: 8, "capture provider": 1 });
+    // The local host composes no describe operation: `ks describe` is an offline utility that loads no host.
+    expect(counts).toEqual({ "server only": 89, offline: 8, "capture provider": 1 });
     const verification = {
       captureMediaKind: () => "text" as const,
       create: (() => {
@@ -295,6 +306,42 @@ describe("operation catalog parity", async () => {
       expect(row.admission, row.id).toBe("executor");
       expect(localProfileState(row), row.id).not.toBe("server only");
       expect("excluded" in row.cli && row.cli.excluded, row.id).toMatch(/local profile only/u);
+    }
+  });
+
+  it("writes an operation contract for every tool and durable kind, bound to the surfaces the catalog binds", () => {
+    // Every registered tool takes its description and schema from a contract; no tool falls back to a template.
+    for (const tool of mcpTools) expect(operationContractForTool(tool), tool).toBeDefined();
+    for (const kind of Object.keys(operationStepsByKind) as OperationKind[])
+      expect(operationContractForKind(kind).kind, kind).toBe(kind);
+    const sample = (route: string) => route.replace(/\{[^}]+\}/gu, "x1");
+    for (const contract of OPERATION_CONTRACTS) {
+      const rows = platform.filter(
+        (row) =>
+          (contract.kind !== undefined && row.kind === contract.kind) ||
+          contract.mcp.some((tool) => bound(row.mcp).includes(tool)) ||
+          contract.cli.some((command) => bound(row.cli).includes(command)),
+      );
+      expect(
+        rows.map((row) => row.id),
+        contract.operation,
+      ).toHaveLength(1);
+      const [row] = rows;
+      if (!row) throw new Error(`no catalog row for ${contract.operation}`);
+      // The contract names exactly the tools of its catalog row, and only commands and routes the row binds.
+      expect([...contract.mcp].sort(), contract.operation).toEqual([...bound(row.mcp)].sort());
+      for (const command of contract.cli) expect(bound(row.cli), `${contract.operation} ${command}`).toContain(command);
+      for (const route of contract.http) {
+        const [method, path] = route.split(" ") as [string, string];
+        expect(
+          bound(row.api).some(
+            (pattern) =>
+              pattern.startsWith(`${method} `) && routeMatches(pattern.slice(method.length + 1), sample(path)),
+          ),
+          `${contract.operation} ${route}`,
+        ).toBe(true);
+      }
+      expect(contract.effect === "read", contract.operation).toBe(row.effect === "read");
     }
   });
 });

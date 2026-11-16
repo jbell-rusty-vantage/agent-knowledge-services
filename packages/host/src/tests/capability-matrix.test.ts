@@ -24,6 +24,10 @@ const serverBacked = [
   "verify_claims",
   "verify_seal_run",
   "knowledge_retrieve_run",
+  // The local host composes no describe operation. `ks describe` answers from the operation contracts as an
+  // offline utility that loads no host, so the matrix has no local entry for it.
+  "knowledge_describe",
+  "system.describe",
 ];
 
 // The remote CLI's client-only enforcement is tested in apps/cli (src/tests/remote-profile.test.ts).

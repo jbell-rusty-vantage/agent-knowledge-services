@@ -1,3 +1,4 @@
+import { contractIssues } from "@aiengineer/knowledge-contracts";
 import { OperationCapabilityUnavailableError, retrievalExecutionProblem } from "@aiengineer/knowledge-host";
 import type { FastifyInstance } from "fastify";
 import { ZodError } from "zod";
@@ -35,10 +36,7 @@ export function registerProblemHandler(
             "Request contract validation failed",
             correlation,
             "The request does not match the v1 contract.",
-            error.issues.slice(0, 25).map((issue) => ({
-              path: issue.path.join(".") || "$",
-              message: issue.message,
-            })),
+            contractIssues(error),
           ),
         );
     const message = error instanceof Error ? error.message : "Internal error";

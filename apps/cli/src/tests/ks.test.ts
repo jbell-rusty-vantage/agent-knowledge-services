@@ -6,6 +6,13 @@ import type { AddressInfo } from "node:net";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, describe, expect, it, vi } from "vitest";
+import {
+  commandDescription,
+  describeReference,
+  operationContractForCommand,
+  operationContractForKind,
+  operationInputIssues,
+} from "@aiengineer/knowledge-contracts";
 import { localVerificationOperations } from "@aiengineer/knowledge-host/local";
 import { CLI_COMMANDS } from "../commands.js";
 import type { KsIo } from "../io.js";
@@ -69,9 +76,13 @@ describe("ks command names", () => {
           ).length,
           `${resource} ${action}`,
         ).toBe(1);
-    expect(new Set(entries.map(([name]) => name.split(" ")[0]))).toEqual(new Set(Object.keys(KS_GROUPS)));
+    // `describe` is the one command outside a group; every other command is in `knowledge` or `verify`.
+    expect(new Set(entries.map(([name]) => name.split(" ")[0]))).toEqual(
+      new Set(["describe", ...Object.keys(KS_GROUPS)]),
+    );
+    expect(KS_COMMANDS.describe).toEqual({ profile: "utility", utility: "describe" });
     expect(Object.keys(KS_GROUPS)).toEqual(["knowledge", "verify"]);
-    expect(entries).toHaveLength(61);
+    expect(entries).toHaveLength(62);
     expect(ksNameOf("verify", "extract")).toBe("verify extract");
     // SV-17: the retired claims/report commands have no ks name.
     expect(ksNameOf("verify", "citations")).toBeUndefined();
@@ -131,6 +142,81 @@ describe("ks dispatch", () => {
       expect(terminal.out.join("")).toMatch(/^ks/u);
     }
     expect(neverLocal).not.toHaveBeenCalled();
+  });
+
+  it("prints what a command does from its operation contract and advertises only providers the code accepts", async () => {
+    const group = io();
+    await runKs(["knowledge", "--help"], group, { loadLocal: neverLocal });
+    expect(operationContractForCommand("knowledge source fetch")).toBe(operationContractForKind("capture"));
+    expect(group.out.join("")).toContain(operationContractForKind("capture").summary);
+    const command = io();
+    await runKs(["knowledge", "source", "fetch", "--help"], command, { loadLocal: neverLocal });
+    const text = command.out.join("");
+    // The MCP tool's description, with tool names written as the ks commands that run them.
+    for (const line of (commandDescription("knowledge source fetch") ?? "missing").split("\n"))
+      expect(text).toContain(line);
+    expect(text).toContain("ks knowledge document convert");
+    expect(text).toContain("ks describe operation:capture");
+    const top = io();
+    await runKs(["--help"], top, { loadLocal: neverLocal });
+    expect(top.out.join("")).toContain("ks describe <ref>");
+    expect(top.out.join("")).toContain("--providers capture ");
+    expect(top.out.join("")).not.toMatch(/semantic|JUDGE_MODEL|principal-salt|git-sha/u);
+  });
+
+  it("describes a tool, an operation and a skill offline, and refuses an unknown reference with the valid prefixes", async () => {
+    const fetch = vi.fn();
+    for (const ref of ["tool:knowledge_source_fetch", "operation:capture", "skill:knowledge-verification"]) {
+      const terminal = io();
+      expect(await runKs(["describe", ref], terminal, { loadLocal: neverLocal, fetch: fetch as never }), ref).toBe(0);
+      const expected = describeReference(ref);
+      expect(expected.ok && terminal.json(), ref).toEqual(
+        expected.ok && JSON.parse(JSON.stringify(expected.description)),
+      );
+    }
+    const human = io();
+    expect(await runKs(["describe", "operation:chunk_set", "--human"], human, { loadLocal: neverLocal })).toBe(0);
+    expect(human.out.join("")).toContain('\n  "ref": "operation:chunk_set"');
+    const unknown = io();
+    expect(await runKs(["describe", "tool:knowledge_source_inspect"], unknown, { loadLocal: neverLocal })).toBe(2);
+    expect(JSON.parse(unknown.err.join(""))).toMatchObject({
+      code: "NOT_FOUND",
+      ref: "tool:knowledge_source_inspect",
+      validPrefixes: ["tool:", "operation:", "skill:"],
+    });
+    expect(unknown.out).toEqual([]);
+    const usage = io();
+    expect(await runKs(["describe"], usage, { loadLocal: neverLocal })).toBe(2);
+    expect(JSON.parse(usage.err.join(""))).toMatchObject({ code: "USAGE", command: "describe" });
+    expect(fetch).not.toHaveBeenCalled();
+    expect(neverLocal).not.toHaveBeenCalled();
+  });
+
+  it("refuses an invalid operation input with INVALID_CONTRACT and its issues before any request is sent", async () => {
+    const fetch = vi.fn();
+    const terminal = io(remoteEnv);
+    const exit = await runKs(
+      [
+        "knowledge",
+        "chunk",
+        "build",
+        "--context",
+        context,
+        "--input",
+        JSON.stringify({ schemaVersion: "knowledge.chunk-set/v1", representationId: "nope" }),
+      ],
+      terminal,
+      { loadLocal: neverLocal, fetch: fetch as never },
+    );
+    expect(exit).toBe(2);
+    expect(JSON.parse(terminal.err.join(""))).toEqual({
+      code: "INVALID_CONTRACT",
+      command: "knowledge chunk build",
+      issues: operationInputIssues("chunk_set", { schemaVersion: "knowledge.chunk-set/v1", representationId: "nope" }),
+      help: "ks describe operation:chunk_set",
+    });
+    expect(terminal.out).toEqual([]);
+    expect(fetch).not.toHaveBeenCalled();
   });
 
   it("runs remote commands through KnowledgeClient without loading the local profile", async () => {
@@ -346,6 +432,10 @@ describe("built ks binary", () => {
     try {
       const url = `http://127.0.0.1:${(server.address() as AddressInfo).port}`;
       expect((await run(["--help"], {})).code).toBe(0);
+      // `ks describe` answers from the contracts packed into the binary: no service, store or credentials.
+      const described = await run(["describe", "tool:knowledge_source_fetch"], {});
+      expect(described.code, described.stderr).toBe(0);
+      expect(JSON.parse(described.stdout)).toMatchObject({ type: "tool", operation: "capture" });
       const argv = [
         "knowledge",
         "store",

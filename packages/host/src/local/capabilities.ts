@@ -8,6 +8,9 @@
  *   remote-cli — `ks` remote commands through `KnowledgeClient`; they never load host, so an authorization or
  *                network error surfaces to the caller and never falls back to local execution. `ks` local commands
  *                load the local profile (`@aiengineer/knowledge-host/local`) lazily instead.
+ * `describe` (the MCP tool knowledge_describe, GET /v1/describe, `ks describe`) is outside the matrix: it answers
+ * from the operation contracts and composes nothing. The server serves it, the local host has no entry for it, and
+ * the `ks` command runs as an offline utility that loads no host.
  */
 export type ExecutionProfile = "server" | "local" | "remote-cli";
 

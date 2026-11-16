@@ -4,7 +4,12 @@ import Fastify from "fastify";
 import { afterAll, beforeAll, describe, expect, it, vi } from "vitest";
 import type { KnowledgeOperationPort } from "@aiengineer/knowledge-application";
 import { createLocalIdentityResolver, type LocalApiIdentity } from "@aiengineer/knowledge-host";
-import type { AcceptedOperation, OperationContext } from "@aiengineer/knowledge-contracts";
+import {
+  operationContractForKind,
+  type AcceptedOperation,
+  type JsonValue,
+  type OperationContext,
+} from "@aiengineer/knowledge-contracts";
 import { PostgresCanonicalRepository, PostgresKnowledgeOperationService } from "@aiengineer/knowledge-persistence";
 import { apiPublicOrigin, buildKnowledgeMcpApp, createMcpRequestHandler, createMcpToolExecutor } from "../index.js";
 import vercelHandler from "../index.js";
@@ -29,6 +34,8 @@ const identity: LocalApiIdentity = {
   actor: context.actor,
   grants: [{ tenantId: context.tenantId, roles: ["knowledge_operator"], scopes: [] }],
 };
+/** A capture input its contract accepts: an input the tool would refuse never reaches the operation port. */
+const captureInput = operationContractForKind("capture").example as JsonValue;
 const accepted: AcceptedOperation = {
   operationId: context.operationId,
   state: "queued",
@@ -121,15 +128,16 @@ describe("durable MCP operation facade", () => {
     });
     const pending = execute("knowledge_source_fetch", "capture", {
       context,
-      input: { query: "durable MCP operation" },
+      input: captureInput,
       expectedVersions: { api: "v1" },
     });
     await Promise.resolve();
+    // The input is submitted as the caller sent it: the edge check validates and changes nothing.
     expect(submit).toHaveBeenCalledWith(
       "capture",
       {
         context,
-        input: { query: "durable MCP operation" },
+        input: captureInput,
         expectedVersions: { api: "v1" },
       },
       "https://api.example",
@@ -304,7 +312,7 @@ describe.skipIf(process.env.RUN_LOCAL_PERSISTENCE_TESTS !== "1")("MCP durable Po
     });
     const result = await execute("knowledge_source_fetch", "capture", {
       context: durableContext,
-      input: { subject: "durably admitted through MCP" },
+      input: captureInput,
       expectedVersions: { api: "v1" },
     });
     expect(result).not.toHaveProperty("isError", true);
@@ -323,7 +331,7 @@ describe.skipIf(process.env.RUN_LOCAL_PERSISTENCE_TESTS !== "1")("MCP durable Po
       stepKey: "acquire",
       input: {
         kind: "capture",
-        operationInput: { subject: "durably admitted through MCP" },
+        operationInput: captureInput,
         context: { operationId: durableContext.operationId },
       },
     });

@@ -15,7 +15,7 @@ import {
   type KnowledgeOperationPort,
   type LocalApiIdentity,
 } from "@aiengineer/knowledge-application";
-import { OperationKindSchema } from "@aiengineer/knowledge-contracts";
+import { operationContractForKind, OperationKindSchema, type OperationKind } from "@aiengineer/knowledge-contracts";
 import { A2AKnowledgeAdapter } from "../a2a-adapter.js";
 import { buildServer, type ServerOptions } from "../server.js";
 
@@ -57,6 +57,8 @@ const envelope = (input: unknown = {}, context: Record<string, unknown> = {}) =>
   input,
   expectedVersions: { api: "v1" },
 });
+/** An input the operation's contract accepts, for the cases that must reach the operation port. */
+const validInput = (kind: OperationKind) => operationContractForKind(kind).example;
 const retrievalPlan = {
   policyVersion: id(70),
   query: "durable agent state",
@@ -404,7 +406,11 @@ describe("golden API errors: operations", () => {
   it("answers 503 CAPABILITY_NOT_ADMITTED when the port reports an unadmitted operation kind", async () => {
     const api = server({ operationService: failingPort(new OperationCapabilityUnavailableError("capture")) });
     expectProblem(
-      await send(api, { method: "POST", url: "/v1/operations", body: { kind: "capture", envelope: envelope() } }),
+      await send(api, {
+        method: "POST",
+        url: "/v1/operations",
+        body: { kind: "capture", envelope: envelope(validInput("capture")) },
+      }),
       {
         status: 503,
         contentType: PROBLEM,
@@ -412,6 +418,18 @@ describe("golden API errors: operations", () => {
         title: "Operation capability unavailable",
       },
     );
+  });
+  it("answers 400 INVALID_CONTRACT for an invalid operation input before the port is called", async () => {
+    const submit = vi.fn();
+    const api = server({ operationService: { ...emptyPort(), submit } });
+    expectProblem(
+      await send(api, { method: "POST", url: "/v1/operations", body: { kind: "capture", envelope: envelope({}) } }),
+      invalidContract({
+        path: "envelope.input.schemaVersion",
+        message: 'Invalid input: expected "knowledge.capture/v1"',
+      }),
+    );
+    expect(submit).not.toHaveBeenCalled();
   });
   it("answers the control route's unknown action and unknown operation with 404 (today: untyped)", async () => {
     const api = server({ operationService: emptyPort() });
@@ -490,8 +508,23 @@ describe("golden API errors: knowledge mutations", () => {
     );
     expectProblem(
       await post("/v1/vector-stores", envelope({})),
-      invalidContract({ path: "schemaVersion", message: 'Invalid input: expected "knowledge.vector-store/v1"' }),
+      invalidContract({ path: "input.schemaVersion", message: 'Invalid input: expected "knowledge.vector-store/v1"' }),
       "vector store input",
+    );
+    // Every knowledge operation is checked, not only the vector-store ones: the path names the field under input.
+    expectProblem(
+      await post("/v1/chunk-sets", envelope({ schemaVersion: "knowledge.chunk-set/v1", representationId: "nope" })),
+      invalidContract({ path: "input.representationId", message: "Invalid UUID" }),
+      "chunk set input",
+    );
+    const capture = validInput("capture") as { source: Record<string, unknown> };
+    expectProblem(
+      await post("/v1/captures", envelope({ ...capture, source: { ...capture.source, sensitivity: "restricted" } })),
+      invalidContract({
+        path: "input.source.sensitivity",
+        message: "source sensitivity must equal capture classification",
+      }),
+      "cross-field rule",
     );
   });
   it("answers the envelope binding failures with problem+json (this route family sets the content type)", async () => {
@@ -545,23 +578,29 @@ describe("golden API errors: knowledge mutations", () => {
   });
   it("maps a port's idempotency conflict and unexpected failure through the shared handler", async () => {
     const conflict = server({ operationService: failingPort(new Error("IDEMPOTENCY_CONFLICT")) });
-    expectProblem(await send(conflict, { method: "POST", url: "/v1/captures", body: envelope() }), {
-      status: 409,
-      contentType: PROBLEM,
-      code: "IDEMPOTENCY_CONFLICT",
-      title: "Idempotency conflict",
-    });
+    expectProblem(
+      await send(conflict, { method: "POST", url: "/v1/captures", body: envelope(validInput("capture")) }),
+      {
+        status: 409,
+        contentType: PROBLEM,
+        code: "IDEMPOTENCY_CONFLICT",
+        title: "Idempotency conflict",
+      },
+    );
     const logUnexpectedError = vi.fn();
     const broken = server({
       operationService: failingPort(new Error("secret credential in error message")),
       logUnexpectedError,
     });
-    expectProblem(await send(broken, { method: "POST", url: "/v1/chunk-sets", body: envelope() }), {
-      status: 500,
-      contentType: PROBLEM,
-      code: "INTERNAL_ERROR",
-      title: "Internal service error",
-    });
+    expectProblem(
+      await send(broken, { method: "POST", url: "/v1/chunk-sets", body: envelope(validInput("chunk_set")) }),
+      {
+        status: 500,
+        contentType: PROBLEM,
+        code: "INTERNAL_ERROR",
+        title: "Internal service error",
+      },
+    );
     expect(logUnexpectedError).toHaveBeenCalledExactlyOnceWith({
       correlationId: CORRELATION,
       error: { name: "Error" },
@@ -752,7 +791,8 @@ describe("golden API errors: retrieval", () => {
     );
     expectProblem(
       await run({ body: envelope({ query: "not a plan" }) }),
-      invalidContract({ path: "plan", message: "Invalid input: expected object, received undefined" }),
+      // The path names the field from the request root, as for every other operation input.
+      invalidContract({ path: "input.plan", message: "Invalid input: expected object, received undefined" }),
       "run input",
     );
   });

@@ -6,7 +6,12 @@ import {
   type CallbackReplayStore,
   type KnowledgeOperationPort,
 } from "@aiengineer/knowledge-application";
-import { A2ATaskSchema, CallbackAcknowledgementSchema, type ProblemDetails } from "@aiengineer/knowledge-contracts";
+import {
+  A2ATaskSchema,
+  assertOperationInput,
+  CallbackAcknowledgementSchema,
+  type ProblemDetails,
+} from "@aiengineer/knowledge-contracts";
 import { actorsMatch, type ApiAction, type LocalApiIdentity } from "@aiengineer/knowledge-host";
 import type { FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";
@@ -122,6 +127,8 @@ export function registerA2AHttpRoutes(server: FastifyInstance, dependencies: A2A
           ),
         );
       const envelope = operationEnvelopeForA2ATask(task);
+      // The input check every submission route makes; a task names its input `operationInput`.
+      assertOperationInput("retrieval_run", envelope.input, "operationInput");
       const submission = await submitCanonicalRetrievalRun(
         {
           operations: dependencies.retrievalOperationService,

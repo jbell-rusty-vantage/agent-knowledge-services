@@ -1,0 +1,208 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "ai-engineer-embedding-bundle/0.1.0"
+    },
+    "store_class": {
+      "type": "string",
+      "const": "internal_exploratory"
+    },
+    "video_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "research_as_of": {
+      "type": "string",
+      "format": "date",
+      "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))$"
+    },
+    "primary": {
+      "type": "object",
+      "properties": {
+        "engineer": {
+          "type": "object",
+          "properties": {
+            "slug": {
+              "type": "string",
+              "minLength": 1
+            },
+            "display_name": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "slug",
+            "display_name"
+          ],
+          "additionalProperties": false
+        },
+        "organization": {
+          "type": "object",
+          "properties": {
+            "slug": {
+              "type": "string",
+              "minLength": 1
+            },
+            "display_name": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "slug",
+            "display_name"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "engineer",
+        "organization"
+      ],
+      "additionalProperties": false
+    },
+    "selected_documents": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "document_kind": {
+            "type": "string",
+            "minLength": 1
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "canonical_url": {
+            "type": "string"
+          },
+          "source_role": {
+            "type": "string",
+            "enum": [
+              "official",
+              "primary",
+              "authoritative_secondary"
+            ]
+          },
+          "publisher": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_class": {
+            "type": "string",
+            "minLength": 1
+          },
+          "target_vector_spaces": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "text": {
+            "type": "string"
+          },
+          "entity_slugs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "document_kind",
+          "title",
+          "canonical_url",
+          "source_role",
+          "publisher",
+          "source_class",
+          "target_vector_spaces",
+          "text",
+          "entity_slugs"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "engineering_claims": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "statement": {
+            "type": "string",
+            "minLength": 1
+          },
+          "claim_role": {
+            "type": "string",
+            "minLength": 1
+          },
+          "problem": {
+            "type": "string"
+          },
+          "mechanism": {
+            "type": "string"
+          },
+          "applicability": {
+            "type": "string"
+          },
+          "limitations": {
+            "type": "string"
+          },
+          "attribution": {
+            "type": "string",
+            "minLength": 1
+          },
+          "locator_excerpt": {
+            "type": "string",
+            "minLength": 1
+          },
+          "related_entities": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "required": [
+          "id",
+          "statement",
+          "claim_role",
+          "attribution",
+          "locator_excerpt",
+          "related_entities"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "store_class",
+    "video_id",
+    "title",
+    "research_as_of",
+    "primary",
+    "selected_documents",
+    "engineering_claims"
+  ],
+  "additionalProperties": false
+}

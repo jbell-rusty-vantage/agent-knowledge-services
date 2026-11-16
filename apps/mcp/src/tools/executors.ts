@@ -19,35 +19,35 @@ import {
 } from "@aiengineer/knowledge-host";
 import {
   ApplyProviderReconciliationRequestSchema,
+  assertOperationInput,
   CaptureSourceRequestSchema,
   CompareBenchmarkRunsRequestSchema,
+  contractIssues,
+  envelopeArguments,
   ExtractStructuredDataRequestSchema,
   JsonValueSchema,
   MutationEnvelopeSchema,
-  OperationContextSchema,
   ParseArtifactRequestSchema,
   ReplayRunRequestSchema,
   RetrievalPlanSchema,
   RunBenchmarkRequestSchema,
   UuidSchema,
-  VectorStoreCreateInputSchema,
-  VectorStoreDocumentsInputSchema,
-  VerificationOperationContextHintsSchema,
+  VerificationToolContextSchema,
   VerifyExtractionRequestSchema,
   type OperationContext,
   type OperationKind,
 } from "@aiengineer/knowledge-contracts";
-import { z } from "zod";
+import { z, ZodError } from "zod";
 import type { CallToolResult } from "@modelcontextprotocol/sdk/types.js";
 import type { MCP_TOOL_CATALOG, VERIFICATION_MCP_TOOL_NAMES, McpToolName } from "../catalog.js";
 import { McpReadContextSchema } from "./definition.js";
-import { inProcessRead, readToolResult, toolError } from "./errors.js";
+import { inProcessRead, invalidInputError, readToolResult, toolError } from "./errors.js";
 
-export const McpToolArgumentsSchema = z.object({
-  context: OperationContextSchema,
-  input: JsonValueSchema,
-  expectedVersions: z.record(z.string(), z.string().min(1)),
-});
+/**
+ * The arguments every knowledge tool takes. `input` is any JSON here: the executor checks it against the
+ * operation's own schema (the one the tool publishes) and answers INVALID_CONTRACT before anything is submitted.
+ */
+export const McpToolArgumentsSchema = envelopeArguments(JsonValueSchema);
 export type McpToolArguments = z.infer<typeof McpToolArgumentsSchema>;
 
 const verificationToolUseCases = {
@@ -85,10 +85,7 @@ export interface KnowledgeMcpServices {
   readonly retrievalExecutor?: CanonicalRetrievalExecutorPort;
 }
 
-const verificationContextSchema = McpReadContextSchema.extend({
-  idempotencyKey: z.string().trim().min(8).max(255),
-  ...VerificationOperationContextHintsSchema.shape,
-});
+const verificationContextSchema = VerificationToolContextSchema;
 export const verificationToolSchemas = {
   verify_extraction_run: z.strictObject({
     context: verificationContextSchema,
@@ -316,9 +313,21 @@ export interface KnowledgeMcpAppOptions {
   readonly verificationReads?: VerificationResourceReads;
 }
 
+/** The issues of a plan that does not satisfy the retrieval plan contract, reported under `input.plan`. */
+function planIssues(plan: unknown) {
+  const parsed = RetrievalPlanSchema.safeParse(plan);
+  return parsed.success
+    ? undefined
+    : contractIssues({
+        issues: parsed.error.issues.map((issue) => ({ ...issue, path: ["input", "plan", ...issue.path] })),
+      });
+}
+
 async function searchCanonicalRetrieval(options: KnowledgeMcpServerOptions, context: OperationContext, plan: unknown) {
   const knowledge = options.knowledge;
   if (!knowledge?.retrievalOperations || !knowledge.retrievalExecutor) return toolError("CAPABILITY_NOT_ADMITTED");
+  const issues = planIssues(plan);
+  if (issues) return invalidInputError("knowledge_retrieve_search", issues);
   // The envelope the public client submitted: JSON-normalized, retrieval contract v1.
   const envelope = MutationEnvelopeSchema.parse(
     JSON.parse(
@@ -418,7 +427,11 @@ export function createMcpToolExecutor(options: KnowledgeMcpServerOptions) {
           ],
           nextCursor: null,
         }),
-      knowledge_retrieve_plan: async () => success(RetrievalPlanSchema.parse(inputObject.plan ?? inputObject)),
+      knowledge_retrieve_plan: async () => {
+        const plan = inputObject.plan ?? inputObject;
+        const issues = planIssues(plan);
+        return issues ? invalidInputError(name, issues) : success(RetrievalPlanSchema.parse(plan));
+      },
       knowledge_retrieve_search: async () =>
         options.knowledge
           ? searchCanonicalRetrieval(options, context, inputObject.plan ?? inputObject)
@@ -462,8 +475,13 @@ export function createMcpToolExecutor(options: KnowledgeMcpServerOptions) {
     } catch {
       return toolError("CAPABILITY_NOT_ADMITTED");
     }
-    if (kind === "vector_store_create") VectorStoreCreateInputSchema.parse(input);
-    if (kind === "vector_store_documents") VectorStoreDocumentsInputSchema.parse(input);
+    // The same check the API route and the CLI make: a wrong input is refused here, never queued to fail later.
+    try {
+      assertOperationInput(kind, input);
+    } catch (error) {
+      if (error instanceof ZodError) return invalidInputError(name, contractIssues(error));
+      throw error;
+    }
     const result = await options.operationService.submit(kind, { context, input, expectedVersions }, options.apiOrigin);
     return {
       content: [{ type: "text" as const, text: JSON.stringify(result) }],

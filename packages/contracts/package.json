@@ -20,7 +20,7 @@
     }
   },
   "scripts": {
-    "generate": "tsx scripts/generate-contract-artifacts.ts",
+    "generate": "node scripts/generate-skill-catalog.mjs && tsx scripts/generate-contract-artifacts.ts",
     "build": "pnpm generate && tsup src/index.ts src/jev.ts --format esm && tsc --emitDeclarationOnly --rootDir src --outDir dist",
     "typecheck": "tsc --noEmit",
     "test": "vitest run --passWithNoTests"

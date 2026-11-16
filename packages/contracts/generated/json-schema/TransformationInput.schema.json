@@ -1,0 +1,191 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "knowledge.transformation/v1"
+    },
+    "captureOperationId": {
+      "type": "string",
+      "format": "uuid",
+      "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+    },
+    "document": {
+      "type": "object",
+      "properties": {
+        "documentKind": {
+          "type": "string",
+          "minLength": 1
+        },
+        "canonicalTitle": {
+          "type": "string",
+          "minLength": 1
+        },
+        "versionLabel": {
+          "type": "string",
+          "minLength": 1
+        },
+        "identifier": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "url",
+                "doi",
+                "arxiv",
+                "openreview",
+                "isbn",
+                "repository",
+                "media_id",
+                "other"
+              ]
+            },
+            "value": {
+              "type": "string",
+              "minLength": 1
+            },
+            "authority": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "type",
+            "value"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "documentKind",
+        "canonicalTitle",
+        "versionLabel"
+      ],
+      "additionalProperties": false
+    },
+    "profile": {
+      "type": "object",
+      "properties": {
+        "profileKey": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "mediaType": {
+          "type": "string",
+          "minLength": 1
+        },
+        "language": {
+          "type": "string",
+          "minLength": 1
+        },
+        "preserveHtml": {
+          "type": "boolean"
+        },
+        "managedProcessingAllowed": {
+          "type": "boolean"
+        },
+        "maximumPolls": {
+          "type": "integer",
+          "exclusiveMinimum": 0,
+          "maximum": 10000
+        }
+      },
+      "required": [
+        "profileKey",
+        "version",
+        "mediaType",
+        "managedProcessingAllowed"
+      ],
+      "additionalProperties": false
+    },
+    "providerRoute": {
+      "minItems": 1,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "a2a": {
+      "type": "object",
+      "properties": {
+        "taskId": {
+          "type": "string",
+          "format": "uuid",
+          "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "document_preparation",
+            "vector_store_ingestion",
+            "retrieval",
+            "evidence_packet_construction"
+          ]
+        },
+        "purpose": {
+          "type": "string",
+          "minLength": 1
+        },
+        "inputArtifactIds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uuid",
+            "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+          }
+        },
+        "expectedOutputContract": {
+          "type": "string",
+          "minLength": 1
+        },
+        "callback": {
+          "type": "object",
+          "properties": {
+            "url": {
+              "type": "string",
+              "format": "uri"
+            },
+            "authenticationReference": {
+              "type": "string",
+              "minLength": 1
+            },
+            "signingKeyReference": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "url",
+            "authenticationReference",
+            "signingKeyReference"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "taskId",
+        "kind",
+        "purpose",
+        "inputArtifactIds",
+        "expectedOutputContract",
+        "callback"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "schemaVersion",
+    "captureOperationId",
+    "document",
+    "profile",
+    "providerRoute"
+  ],
+  "additionalProperties": false
+}

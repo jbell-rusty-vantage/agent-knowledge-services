@@ -1,5 +1,6 @@
+import { describeReference } from "@aiengineer/knowledge-contracts";
 import type { KsUtility } from "./ks-commands.js";
-import { EXIT, type KsIo } from "./io.js";
+import { EXIT, KsUsageError, type KsIo } from "./io.js";
 
 type Run = (args: readonly string[], io: KsIo) => Promise<number>;
 const print = (io: KsIo, value: unknown) => io.stdout(`${JSON.stringify(value)}\n`);
@@ -16,6 +17,20 @@ const failure = (io: KsIo, code: string, error?: unknown) => {
  * `attestation …`); the `verify` group word is already consumed.
  */
 const UTILITIES: Readonly<Record<KsUtility, Run>> = {
+  // `ks describe <ref>`: the answer of the MCP tool knowledge_describe and of GET /v1/describe, computed from the
+  // operation contracts in this binary. It needs no service, store or credentials.
+  describe: async (args, io) => {
+    const [ref, ...extra] = args.filter((token) => token !== "--human");
+    if (ref === undefined || extra.length > 0 || ref.startsWith("-"))
+      throw new KsUsageError("one reference is required: tool:<tool name>, operation:<kind> or skill:<name>");
+    const result = describeReference(ref);
+    if (!result.ok) {
+      io.stderr(`${JSON.stringify(result.refusal)}\n`);
+      return EXIT.error;
+    }
+    io.stdout(`${JSON.stringify(result.description, null, args.includes("--human") ? 2 : undefined)}\n`);
+    return EXIT.ok;
+  },
   "benchmark-capture": async (args, io) => {
     try {
       const [{ runDiagnosticsBenchmarkCapture }, { writeBenchmarkRefreshProposal }] = await Promise.all([
