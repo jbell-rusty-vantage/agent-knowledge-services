@@ -53,7 +53,11 @@ const KINDS = ReportKindCatalog.fromDirectory(
   resolve(dirname(fileURLToPath(import.meta.url)), "../../../../catalog/research/report-kinds"),
 );
 
-describe.skipIf(!url)("knowledge.read_intent over the real AIDB ReadExecutor", () => {
+// This suite commits rows (artifacts and recorded reads). It runs only against a database that may keep them
+// (KS_TEST_ALLOW_COMMITTED_FIXTURES=1), never against one whose data must be left as found.
+const committing = process.env.KS_TEST_ALLOW_COMMITTED_FIXTURES === "1";
+
+describe.skipIf(!url || !committing)("knowledge.read_intent over the real AIDB ReadExecutor", () => {
   let db!: TenantPostgres;
   let storeDir!: string;
   let svc!: KnowledgeOperationService;

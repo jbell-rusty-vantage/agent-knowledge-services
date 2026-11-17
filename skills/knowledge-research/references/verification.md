@@ -125,6 +125,7 @@ A verdict holds for the versions it was run on. When a release of a subject land
 - The `ks` commands in this table run on the local profile, over a file store on your machine. The `knowledge-verify` commands forward to a served executor.
 - `verify_capture_fragment` needs durable custody. It runs only on a served executor.
 - `source_prepare_captured` registers text, Markdown, HTML and JSON captures. It refuses a PDF, office or spreadsheet capture with `CAPTURE_MEDIA_TYPE_UNSUPPORTED`. The same bytes from the same address register once: a second call returns the first registration with `replayed` true.
+- Each registration is filed on the ledger: its result carries `receipt.intent_id` and `receipt.receipt_id`, and the receipt names the capture, its source and its fetch. Keep the `receipt_id` with the capture in your working files; a replay returns the same one.
 - Each unit is one block of the captured text (a heading, a paragraph, a list, a table, a code block; one line of an HTML page; one member of a JSON document). A quote anchors only when it lies inside one unit: an anchor of `not_in_one_unit` means shorten the quote to one block.
 - The platform server cannot produce a quote. `knowledge_source_fetch` stores a capture for document preparation, and no tool on that server reads or locates text in it.
 
@@ -178,7 +179,7 @@ How to call it:
 | `taken` | The key, slug or restatement already exists | Use the existing row, or a new key for a new write |
 | `not_allowed` | One of the three rules above | Stop. Report where your authority ended |
 
-`VERDICT_REQUIRES_RUNS` is the common one: `cells` must be an object keyed by the cell labels of recorded runs, with what each showed. `QUOTE_NOT_IN_UNIT` means the quote was paraphrased or joined from two units.
+`VERDICT_REQUIRES_RUNS` is the common one: `cells` must be an object keyed by the cell labels of recorded runs, with what each showed. `QUOTE_NOT_IN_UNIT` means the quote was paraphrased or joined from two units, or the unit has no text to hold it. A quote of only whitespace is `QUOTE_REQUIRED`.
 
 **Reports, independent assessment and applying a decision (acts 4 and 5): executor server.** One tool, `knowledge_operation_invoke`, carries every operation below. `knowledge_operation_get` polls an operation, `knowledge_operation_cancel` cancels one, and `knowledge_receipt_get` looks up the receipt of an effect. `knowledge_describe` without a reference returns the binding descriptor, which lists the operations that binding serves.
 

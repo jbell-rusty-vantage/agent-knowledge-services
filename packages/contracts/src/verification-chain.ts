@@ -2,7 +2,7 @@ import { z } from "zod";
 import { inputJsonSchema, type JsonSchema } from "./operations/json-schema.js";
 
 /**
- * The governed writes of the research verification chain (AI Engineer database contract 0.9.0, schema `api`):
+ * The governed writes of the research verification chain (AI Engineer database contract 0.10.0, schema `api`):
  * nine functions through which a bounded database role records a claim with evidence, restates it, registers a
  * probe, records a run, proposes a verdict, triages a candidate, assesses a source, and opens and settles an
  * attention sweep. This module is the one definition of what a caller sends for each: every transport validates
@@ -579,7 +579,7 @@ export const GOVERNED_WRITE_ERRORS = {
   ),
   QUOTE_REQUIRED: entry(
     "malformed",
-    "A text_quote anchor carries the verbatim quote.",
+    "A text_quote anchor carries the verbatim quote; a quote of only whitespace is no quote.",
     "Add quote, copied from the unit text evidence_units returns.",
   ),
   SUBJECT_INVALID: entry(
@@ -762,8 +762,8 @@ export const GOVERNED_WRITE_ERRORS = {
   ),
   QUOTE_NOT_IN_UNIT: entry(
     "state_refuses",
-    "The quote is not verbatim in the unit (after whitespace and typographic quotes are normalised).",
-    "Copy the quote from the unit text evidence_units returns; do not paraphrase or join text from two units.",
+    "The quote is not verbatim in the unit (after whitespace and typographic quotes are normalised), or the unit has no text to hold one.",
+    "Copy the quote from the unit text evidence_units returns; do not paraphrase or join text from two units. A unit with no text anchors nothing: name a unit that has text.",
   ),
   CLAIM_NOT_RESTATABLE: entry(
     "state_refuses",
@@ -864,7 +864,7 @@ export const GOVERNED_WRITE_ERRORS = {
   CHAIN_ROLE_NOT_GRANTED: entry(
     "not_allowed",
     "The database does not grant this function to the role Knowledge Services writes it as.",
-    "Report it: the AI Engineer database is not at contract 0.9.0 (migration 20261116140000), or its grants were changed.",
+    "Report it: the AI Engineer database is not at contract 0.10.0 (migration 20261116150000), or its grants were changed.",
   ),
 } as const satisfies Record<string, GovernedWriteErrorEntry>;
 export type GovernedWriteErrorCode = keyof typeof GOVERNED_WRITE_ERRORS;

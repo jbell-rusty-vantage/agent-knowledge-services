@@ -256,8 +256,8 @@ importers:
   apps/verification-executor:
     dependencies:
       '@aiengineer/database-contract':
-        specifier: file:../../vendor/aiengineer-database-contract-0.9.0.tgz
-        version: file:vendor/aiengineer-database-contract-0.9.0.tgz
+        specifier: file:../../vendor/aiengineer-database-contract-0.10.0.tgz
+        version: file:vendor/aiengineer-database-contract-0.10.0.tgz
       '@aiengineer/knowledge-application':
         specifier: workspace:*
         version: link:../../packages/application
@@ -663,8 +663,8 @@ importers:
   packages/knowledge-db:
     dependencies:
       '@aiengineer/database-contract':
-        specifier: file:../../vendor/aiengineer-database-contract-0.9.0.tgz
-        version: file:vendor/aiengineer-database-contract-0.9.0.tgz
+        specifier: file:../../vendor/aiengineer-database-contract-0.10.0.tgz
+        version: file:vendor/aiengineer-database-contract-0.10.0.tgz
       '@aiengineer/knowledge-contracts':
         specifier: workspace:*
         version: link:../contracts
@@ -741,8 +741,8 @@ importers:
   packages/persistence:
     dependencies:
       '@aiengineer/database-contract':
-        specifier: file:../../vendor/aiengineer-database-contract-0.9.0.tgz
-        version: file:vendor/aiengineer-database-contract-0.9.0.tgz
+        specifier: file:../../vendor/aiengineer-database-contract-0.10.0.tgz
+        version: file:vendor/aiengineer-database-contract-0.10.0.tgz
       '@aiengineer/knowledge-application':
         specifier: workspace:*
         version: link:../application
@@ -929,9 +929,9 @@ packages:
     resolution: {integrity: sha512-oGMAgGoQdBXbZqNG0Ze56CHjDZ1IDYOwGYxYjO5KLSlz5HiNQ9udIXsPZ61VWaHGZ5XW/jyjmr6t2xz2jGVwbQ==}
     engines: {node: '>=18'}
 
-  '@aiengineer/database-contract@file:vendor/aiengineer-database-contract-0.9.0.tgz':
-    resolution: {integrity: sha512-oFu7ZFO1yflScIV80Q8Y3FGewR2cQM2Me0affNM359p59F7YE+ElPNrgQBlces2/wYU+C66V/jSK5DEhGaIhXA==, tarball: file:vendor/aiengineer-database-contract-0.9.0.tgz}
-    version: 0.9.0
+  '@aiengineer/database-contract@file:vendor/aiengineer-database-contract-0.10.0.tgz':
+    resolution: {integrity: sha512-Ccw2wl9YS/9KhHkZJwILArsw6TfR9wnIsDOEw18xAjlPYZDRYXCkEXrQfyIAIUsDFUBVI3q8ALgHxB24rxBiyA==, tarball: file:vendor/aiengineer-database-contract-0.10.0.tgz}
+    version: 0.10.0
     engines: {node: '>=20'}
 
   '@biomejs/biome@2.5.14':
@@ -2949,7 +2949,7 @@ snapshots:
     dependencies:
       json-schema: 0.4.0
 
-  '@aiengineer/database-contract@file:vendor/aiengineer-database-contract-0.9.0.tgz': {}
+  '@aiengineer/database-contract@file:vendor/aiengineer-database-contract-0.10.0.tgz': {}
 
   '@biomejs/biome@2.5.14':
     optionalDependencies:

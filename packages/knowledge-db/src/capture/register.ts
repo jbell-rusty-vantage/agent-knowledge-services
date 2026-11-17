@@ -22,9 +22,10 @@ import {
  * content.document -> document_version -> document_representation -> document_node), written in one transaction as
  * `executor_service`, the role the contract names as their only writer, with the tenant of the session. No function
  * of the contract writes these tables, so the rows are inserted directly, as the contract's grants and immutability
- * triggers allow; nothing is updated except the source's capture counter and nothing is deleted. The operation intent
- * and receipt are written when the contract declares their intent type (`capture_registration`); until then the
- * result says so and the fetch row and the capture context record who registered the capture.
+ * triggers allow; nothing is updated except the source's capture counter and nothing is deleted. The operation intent,
+ * its receipt and the receipt targets (the capture, its source, its fetch) are written in the same transaction under
+ * the intent type `capture_registration`, which contract 0.10.0 declares; against an older database that lacks it the
+ * result says so (`INTENT_TYPE_UNDECLARED`) and the fetch row and the capture context record who registered it.
  *
  * Idempotent on the captured bytes: the same bytes from the same URL return the first registration (`replayed`).
  * Bytes stay where the executor's custody put them: with remote custody the capture binds the registered artifact;
@@ -111,8 +112,8 @@ export interface CaptureRegistration {
   readonly units_truncated: boolean;
   readonly anchors: readonly QuoteAnchor[];
   /**
-   * The operation intent and receipt the registration is filed under. Null, with the reason, while the database
-   * contract declares no `orchestration.intent_type` for a capture registration.
+   * The operation intent and receipt the registration is filed under. Null, with the reason, only against a database
+   * older than contract 0.10.0, which declares no `orchestration.intent_type` for a capture registration.
    */
   readonly receipt:
     | { readonly intent_id: string; readonly receipt_id: string }
@@ -157,7 +158,7 @@ const LOCAL_BUCKET = "verification-executor-local";
 const DEFAULT_UNITS = 30;
 const EXCERPT_CHARS = 240;
 const NODE_BATCH = 400;
-/** The `orchestration.intent_type` code a capture registration's receipt is filed under, once the contract declares it. */
+/** The `orchestration.intent_type` code a capture registration's receipt is filed under (declared by contract 0.10.0). */
 export const CAPTURE_INTENT_TYPE = "capture_registration";
 const RECEIPT_UNAVAILABLE =
   "INTENT_TYPE_UNDECLARED: the database contract declares no orchestration.intent_type capture_registration, so no operation receipt is written; the acquisition.fetch row and the capture context record who registered it.";
@@ -803,11 +804,13 @@ export class CaptureRegistrar {
     const total = Number(rows[0]?.total ?? 0);
     const anchors: QuoteAnchor[] = [];
     for (const quote of options.quotes ?? []) {
+      // A quote that normalises to nothing is in no unit: the database refuses it (QUOTE_REQUIRED) and every
+      // position('' in <text>) would otherwise match the first unit.
       const found = (
         await client.query<{ node_id: string; unit_kind: string; containing: string }>(
           `select n.id::text as node_id, n.unit_kind, count(*) over () as containing
              from content.document_node n
-            where n.tenant_id = $1 and n.representation_id = $2
+            where n.tenant_id = $1 and n.representation_id = $2 and ${NORM("$3::text")} <> ''
               and position(${NORM("$3::text")} in ${NORM("n.inline_text")}) > 0
             order by length(n.inline_text), n.ordinal limit 1`,
           [tenantId, representationId, quote],

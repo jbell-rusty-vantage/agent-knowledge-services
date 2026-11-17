@@ -16,6 +16,8 @@ import type { KnowledgeServices } from "./context.js";
  * An agent's whole verification chain through the executor's own tools, on the AI Engineer lab database: it
  * captures a page and a probe's output, makes both quotable with source_prepare_captured, locates a quote, records a
  * claim anchored to it, registers a probe, records a run whose output is the second capture and proposes a verdict.
+ * Each registration leaves an operation intent, a receipt and receipt targets (contract 0.10.0), and a quote against a
+ * unit with no text, or a quote of only whitespace, is refused as the executor returns it.
  * Every write runs as a bounded role (executor_service for the capture, pipeline_agent and verifier_agent for the
  * chain; the integration harness connects as the login role and switches with `set local role`), every scope is a savepoint of one transaction that is rolled back, and the lab's row counts are read on a
  * separate connection before and after. Needs KS_TEST_DATABASE_URL and KS_TEST_PROJECT_DIR; skips without them.
@@ -146,7 +148,7 @@ describe.skipIf(!url)(
       const prepared = await call("source_prepare_captured", {
         captureId: captured.captureId,
         title: "Persistence (test page)",
-        quotes: [quote, "words that are not on the page at all"],
+        quotes: [quote, "words that are not on the page at all", "\t \n"],
       });
       expect(prepared).toMatchObject({
         executor_capture_id: captured.captureId,
@@ -171,6 +173,8 @@ describe.skipIf(!url)(
         quote: "words that are not on the page at all",
         status: "not_in_one_unit",
       });
+      // A quote of only whitespace is in no unit (the database refuses it as no quote).
+      expect(prepared.anchors[2]).toEqual({ quote: "\t \n", status: "not_in_one_unit" });
 
       // The same bytes again: the same capture, nothing new written.
       const again = await call("source_prepare_captured", { captureId: captured.captureId });
@@ -180,11 +184,46 @@ describe.skipIf(!url)(
         receipt: prepared.receipt,
         units_total: prepared.units_total,
       });
-      // The contract declares no intent type for a capture registration yet, so none is filed (and the result says so).
-      expect(prepared.receipt).toMatchObject({
-        receipt_id: null,
-        unavailable: expect.stringContaining("INTENT_TYPE_UNDECLARED"),
+      // Contract 0.10.0 declares the intent type capture_registration: the registration is filed on the ledger as an
+      // intent, its receipt and receipt targets, written as executor_service in the same transaction.
+      const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
+      expect(prepared.receipt).toEqual({
+        intent_id: expect.stringMatching(UUID),
+        receipt_id: expect.stringMatching(UUID),
       });
+      expect(JSON.stringify(prepared)).not.toContain("INTENT_TYPE_UNDECLARED");
+      const ledger = await db.transaction(
+        { tenantId: TENANT, role: "executor_service", readOnly: true },
+        async (sql) =>
+          (
+            await sql.query(
+              `select i.intent_type, i.payload ->> 'operation' as operation, i.payload ->> 'executor_capture_id' as executor_capture_id,
+                      i.approval_state, i.origin_kind, r.id::text as receipt_id, r.outcome, r.executor_version,
+                      (select string_agg(t.target_schema || '.' || t.target_table || ':' || t.role || ':' || t.action || ':' || t.target_id, ' ' order by t.ordinal)
+                         from orchestration.operation_receipt_target t where t.tenant_id = i.tenant_id and t.receipt_id = r.id) as targets
+                 from orchestration.operation_intent i join orchestration.operation_receipt r on r.intent_id = i.id
+                where i.tenant_id = $1 and i.id = $2`,
+              [TENANT, prepared.receipt.intent_id],
+            )
+          ).rows,
+      );
+      expect(ledger).toEqual([
+        {
+          intent_type: "capture_registration",
+          operation: "source_prepare_captured",
+          executor_capture_id: captured.captureId,
+          approval_state: "approved",
+          origin_kind: "standalone",
+          receipt_id: prepared.receipt.receipt_id,
+          outcome: "applied",
+          executor_version: "knowledge-executor/test",
+          targets: [
+            `evidence.source_capture:subject:created:${prepared.capture_id}`,
+            `evidence.source:provenance:created:${prepared.source_id}`,
+            `acquisition.fetch:provenance:created:${prepared.fetch_id}`,
+          ].join(" "),
+        },
+      ]);
       // evidence_units finds the unit by the new capture, with the same anchor.
       const units = await call("evidence_units", { captureId: prepared.capture_id, text: "super-step" });
       expect(units.units.map((unit: { anchor: unknown }) => unit.anchor)).toEqual([
@@ -200,6 +239,46 @@ describe.skipIf(!url)(
       });
       expect(claim).toMatchObject({ created: true, status: "proposed" });
       expect(claim.locator_ids).toHaveLength(1);
+
+      // A unit with no text holds no quote. The executor's grammar never makes one, so the test adds a unit with NULL
+      // text to the registered representation (as executor_service, rolled back) and anchors to it; a quote of only
+      // whitespace is refused against a unit that has text.
+      const emptyNode = await db.transaction({ tenantId: TENANT, role: "executor_service" }, async (sql) =>
+        String(
+          (
+            await sql.query<{ id: string }>(
+              `insert into content.document_node(tenant_id, representation_id, ordinal, stable_local_key, unit_kind, inline_text, normalized_content_sha256)
+               values ($1, $2, 9999, $3, 'paragraph', null, repeat('0', 64)) returning id::text as id`,
+              [TENANT, prepared.representation_id, `ks-capture-chain-empty-${suffix}`],
+            )
+          ).rows[0]?.id,
+        ),
+      );
+      const refused = async (name: string, evidence: Record<string, unknown>) => {
+        try {
+          await write("record_claim", name, {
+            claim_type: "assertion",
+            statement: `KS capture chain ${suffix}: ${name}.`,
+            evidence: [evidence],
+          });
+        } catch (error) {
+          return (error as { body?: Body }).body;
+        }
+        throw new Error(`${name}: record_claim was accepted`);
+      };
+      expect(await refused("empty-unit", { capture_id: prepared.capture_id, node_id: emptyNode, quote })).toMatchObject(
+        {
+          code: "QUOTE_NOT_IN_UNIT",
+          details: { class: "state_refuses" },
+        },
+      );
+      expect(
+        await refused("whitespace-quote", {
+          capture_id: prepared.capture_id,
+          node_id: prepared.units[2].anchor.node_id,
+          quote: "\t\n",
+        }),
+      ).toMatchObject({ code: "QUOTE_REQUIRED", details: { class: "malformed" } });
 
       // 4. Register a probe that tests it.
       const probe = await write("register_probe", "probe", {
@@ -299,6 +378,22 @@ describe.skipIf(!url)(
           artifact_type: "source_capture",
         },
       ]);
+      // Every registration of this test (page, run output, HTML page) left one receipt with its three targets.
+      const filed = await db.transaction(
+        { tenantId: TENANT, role: "executor_service", readOnly: true },
+        async (sql) =>
+          (
+            await sql.query<{ receipts: string; targets: string }>(
+              `select count(distinct r.id)::text as receipts, count(t.*)::text as targets
+               from orchestration.operation_intent i join orchestration.operation_receipt r on r.intent_id = i.id
+               left join orchestration.operation_receipt_target t on t.tenant_id = i.tenant_id and t.receipt_id = r.id
+              where i.tenant_id = $1 and i.intent_type = 'capture_registration' and i.payload ->> 'executor_capture_id' = any($2::text[])`,
+              [TENANT, [captured.captureId, output.captureId, html.captureId]],
+            )
+          ).rows[0],
+      );
+      expect(filed).toEqual({ receipts: "3", targets: "9" });
+      expect([outputUnits.receipt.receipt_id, htmlUnits.receipt.receipt_id]).not.toContain(null);
     });
   },
 );
