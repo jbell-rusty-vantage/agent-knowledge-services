@@ -1,0 +1,10 @@
+#!/bin/sh
+# ./dev: the codebase CLI for agents working on Knowledge Services (scripts/dev/dev_cli.py).
+# Standard-library Python, so it runs before `pnpm install`. PowerShell: .\dev (dev.ps1).
+root=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+py=$(command -v python3 || command -v python)
+if [ -z "$py" ]; then
+  echo "dev: no python on PATH; install Python 3.12+ (uv python install 3.12)" >&2
+  exit 3
+fi
+exec "$py" -X utf8 "$root/scripts/dev/dev_cli.py" "$@"

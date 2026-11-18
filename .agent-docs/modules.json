@@ -22,6 +22,11 @@
       "inventory": "directories"
     },
     {
+      "path": "docs/tools",
+      "summary": "Provenance trace tool (SPEC-02) and its tests; standard-library Python.",
+      "inventory": "none"
+    },
+    {
       "path": "scripts",
       "summary": "Experiment commands and the consumer-surface evaluation (`corepack pnpm eval:consumer-surface`); the proof and reconciliation scripts are not in the tree and have no root command.",
       "inventory": "none"
@@ -994,6 +999,46 @@
       ]
     },
     {
+      "id": "dev-runners",
+      "path": "scripts/dev",
+      "kind": "tooling",
+      "state": "implemented",
+      "summary": "./dev: the agent front door (status, doctor, check, test, trace; db is a stub) copied from Mission Control (SPEC-03 K2). Standard-library Python.",
+      "entrypoints": [
+        "dev",
+        "dev.ps1",
+        "scripts/dev/dev_cli.py"
+      ],
+      "interface": [
+        "./dev status, doctor, check [--full], test TARGET [FILE..], trace ..., db (stub until Mission Control config/planes.toml)."
+      ],
+      "tests": [],
+      "constraints": [
+        "Wraps existing pnpm scripts and checks; never reaches a remote database; db waits for the shared planes registry."
+      ],
+      "uses": []
+    },
+    {
+      "id": "provenance-trace",
+      "path": "docs/tools",
+      "kind": "tooling",
+      "state": "implemented",
+      "summary": "trace.py: the provenance chain (answers, decisions, specs, OVE issues, commits) copied from Mission Control (SPEC-02, SPEC-03 K1), resolving AS and B08 ids from sibling checkouts.",
+      "entrypoints": [
+        "docs/tools/trace.py"
+      ],
+      "interface": [
+        "python -X utf8 docs/tools/trace.py show, build, check, linear pull, sources; ./dev trace ..."
+      ],
+      "tests": [
+        "docs/tools/test_trace.py"
+      ],
+      "constraints": [
+        "Warn-only until SDLC_TRACE=block; .sdlc/trace/ is git-ignored; LINEAR_API_KEY from the environment only."
+      ],
+      "uses": []
+    },
+    {
       "id": "skill-knowledge-research",
       "path": "skills/knowledge-research",
       "kind": "agent skill",
@@ -1382,7 +1427,7 @@
         ".github/maintenance/cursor-run.mjs"
       ],
       "interface": [
-        "Node CLI enqueue/reconcile/run/watch/status/pause/resume; Git hooks; Cursor prompt/edit/shell/stop hooks; explicit /agent provider task commands."
+        "Node CLI enqueue/reconcile/run/watch/status/pause/resume/check-message; Git hooks (pre-commit format check, commit-msg warn-only provenance check via docs/tools/trace.py); Cursor prompt/edit/shell/stop hooks; explicit /agent provider task commands."
       ],
       "tests": [
         "tools/maintenance/maintenance.test.mjs",

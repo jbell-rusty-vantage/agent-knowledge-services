@@ -52,6 +52,8 @@ Paths below are repository-relative. Use the task routes, then search the module
 | [docling](#docling) | services/docling | Pinned Docling Serve conversion deployment boundary. | implemented |
 | [parser](#parser) | services/parser | Isolated native PDF geometry and HTML DOM parser (folder renamed from services/verification-parser; image tags unchanged); separate from Docling and OCR. | implemented |
 | [script-experiments](#script-experiments) | scripts/experiments | Curated model-card verification experiments; run results are not canonical architecture. | partial |
+| [dev-runners](#dev-runners) | scripts/dev | ./dev: the agent front door (status, doctor, check, test, trace; db is a stub) copied from Mission Control (SPEC-03 K2). Standard-library Python. | implemented |
+| [provenance-trace](#provenance-trace) | docs/tools | trace.py: the provenance chain (answers, decisions, specs, OVE issues, commits) copied from Mission Control (SPEC-02, SPEC-03 K1), resolving AS and B08 ids from sibling checkouts. | implemented |
 | [skill-knowledge-research](#skill-knowledge-research) | skills/knowledge-research | Research method and verification procedure: orient in the knowledge base, frame questions, find leads with external tools, capture and locate quotes, state and check claims, hand back; one playbook per external tool; served to agents without a filesystem by the guide. | implemented |
 | [skill-schema-explore](#skill-schema-explore) | skills/schema-explore | Progressive-disclosure procedure for navigating the pinned schema workspace without querying the database. | implemented |
 | [skill-knowledge-db](#skill-knowledge-db) | skills/knowledge-db | Procedure for catalog reads and reproducible knowledge-read snapshots that an ingestion intent can cite. | implemented |
@@ -854,6 +856,46 @@ Curated model-card verification experiments; run results are not canonical archi
 
 No module-specific architecture document registered. Do not infer a design decision from the folder name.
 
+## dev-runners
+
+**scripts/dev** · tooling · implemented
+
+./dev: the agent front door (status, doctor, check, test, trace; db is a stub) copied from Mission Control (SPEC-03 K2). Standard-library Python.
+
+**Enter:** [`dev`](../../dev), [`dev.ps1`](../../dev.ps1), [`scripts/dev/dev_cli.py`](../../scripts/dev/dev_cli.py)
+**Interface:** ./dev status, doctor, check [--full], test TARGET [FILE..], trace ..., db (stub until Mission Control config/planes.toml).
+**Package:** not a standalone package
+**Export subpaths:** none declared. Declared metadata; build outputs are not read.
+**Declared internal package dependencies:** none declared
+**Other runtime dependencies:** none declared
+**Reviewed runtime/data relationships:** none declared
+**Checks:** No specific test anchor registered.
+- Wraps existing pnpm scripts and checks; never reaches a remote database; db waits for the shared planes registry.
+
+**Architecture and detailed docs:**
+
+No module-specific architecture document registered. Do not infer a design decision from the folder name.
+
+## provenance-trace
+
+**docs/tools** · tooling · implemented
+
+trace.py: the provenance chain (answers, decisions, specs, OVE issues, commits) copied from Mission Control (SPEC-02, SPEC-03 K1), resolving AS and B08 ids from sibling checkouts.
+
+**Enter:** [`docs/tools/trace.py`](../../docs/tools/trace.py)
+**Interface:** python -X utf8 docs/tools/trace.py show, build, check, linear pull, sources; ./dev trace ...
+**Package:** not a standalone package
+**Export subpaths:** none declared. Declared metadata; build outputs are not read.
+**Declared internal package dependencies:** none declared
+**Other runtime dependencies:** none declared
+**Reviewed runtime/data relationships:** none declared
+**Checks:** [`docs/tools/test_trace.py`](../../docs/tools/test_trace.py)
+- Warn-only until SDLC_TRACE=block; .sdlc/trace/ is git-ignored; LINEAR_API_KEY from the environment only.
+
+**Architecture and detailed docs:**
+
+No module-specific architecture document registered. Do not infer a design decision from the folder name.
+
 ## skill-knowledge-research
 
 **skills/knowledge-research** · agent skill · implemented
@@ -1185,7 +1227,7 @@ Agent procedure for closed-choice tasks, captured input references, process work
 Git and Cursor hook-driven review queue with Grok 4.7, bounded context and isolated proposals; GitHub dispatch handles remote work.
 
 **Enter:** [`tools/maintenance/cli.mjs`](../../tools/maintenance/cli.mjs), [`tools/maintenance/engine.mjs`](../../tools/maintenance/engine.mjs), [`tools/maintenance/cursor-hooks.mjs`](../../tools/maintenance/cursor-hooks.mjs), [`tools/maintenance/context.mjs`](../../tools/maintenance/context.mjs), [`tools/maintenance/install-watcher.ps1`](../../tools/maintenance/install-watcher.ps1), [`tools/maintenance/policy.json`](../../tools/maintenance/policy.json), [`.github/maintenance/dispatch.mjs`](../../.github/maintenance/dispatch.mjs), [`.github/maintenance/cursor-run.mjs`](../../.github/maintenance/cursor-run.mjs)
-**Interface:** Node CLI enqueue/reconcile/run/watch/status/pause/resume; Git hooks; Cursor prompt/edit/shell/stop hooks; explicit /agent provider task commands.
+**Interface:** Node CLI enqueue/reconcile/run/watch/status/pause/resume/check-message; Git hooks (pre-commit format check, commit-msg warn-only provenance check via docs/tools/trace.py); Cursor prompt/edit/shell/stop hooks; explicit /agent provider task commands.
 **Package:** not a standalone package
 **Export subpaths:** none declared. Declared metadata; build outputs are not read.
 **Declared internal package dependencies:** none declared

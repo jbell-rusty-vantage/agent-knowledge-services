@@ -239,7 +239,7 @@
   },
   "semantic": {
     "inputs": {
-      ".agent-docs/modules.json": "1957918acb1a1ce6060b21622f02afbc5b1d58bbe4aae7d073c0f73f97ec98a8",
+      ".agent-docs/modules.json": "c15e1e8f44137072fce04b8591a207901bb93f840194e64f673e951c263eafa1",
       ".github/maintenance/cursor-run.mjs": "1ddbcc901e858f25a437ec3bef8e741ebdb69b38d7d7b8666f1578c9df7d0919",
       ".github/maintenance/cursor-run.test.mjs": "2d156b53ea9ce59029424083d4c3272d7c56877295ae909447074fef3b3c6681",
       ".github/maintenance/dispatch.mjs": "be23da1c04a4db5a6e7c8537c943d8963c298bcd69b305895ec6cf1ce32e6343",
@@ -317,6 +317,10 @@
       "apps/worker/src/index.ts": "8307386015e533d6b0361aa72f678edb49305c61ecc55f8ae6a7be6d01b3f6af",
       "apps/worker/src/worker.test.ts": "6b713d59ca1d613ed4a5b1e0782534eeabd755b7f1328c169fbfc6b37e0b875d",
       "apps/worker/src/worker.ts": "4fb18eb09ecaa3e659741107892ae3f9a405f8ea523db1fd8ce3ddc58dd422dc",
+      "dev": "d92d29d217700a8e539d0ffa2678f5f3eb0b6189c29605fbc07bbc92c3c423b8",
+      "dev.ps1": "83276e46f74157fe536dccdd7824ed68b4f34540e5c540861bdecf76ddc7fd54",
+      "docs/tools/test_trace.py": "2f365e3f80db05ec3a8135607e23c9117bf3d87cf90a917f2fd0bf74a7bca66f",
+      "docs/tools/trace.py": "4390b15d0f814a0e0c2f4e8d362a99ea621f46fcc4a4124a2de3866a43effadc",
       "packages/application/package.json": "953a054d88e77141375fc08bdf0bdd6fb83a1a6fec67adc4386b4be2f1f73193",
       "packages/application/src/access/api-access.ts": "bc8c85957fd50648f0ac0a67f6a1787d3329d5449883ea6afc8ffd22cbfd82e4",
       "packages/application/src/diagnostics/verification-diagnostics-quarantine.test.ts": "8d3ec00022372a2c1497f694636bd46f97227672991edf5bcbbb194fc980858a",
@@ -533,6 +537,7 @@
       "packages/verification/src/semantic/judge-output.test.ts": "2e3ec6ddc4610c67f966ccf572c14658f62c443d2660d47d2df6af937481f3a9",
       "packages/verification/src/semantic/verification.test.ts": "ed3b0e3eb1a92788538579ea4b700ee17ee6cd2060f5f68a61fec93573596620",
       "packages/verification/src/semantic/verify-case.ts": "e58bc25e583c73a8b3c760407a26f7d3a908f97fc482bcce72f6cc77a7a74c0f",
+      "scripts/dev/dev_cli.py": "542218aa1adbcce81c460709e6bbcbb408516420f00c1499c49c663893831b69",
       "scripts/experiments/model-card-verification/README.md": "822863e2f772e48841d9a0e2f72ea9b75282f68b112db178ee6e8a0fe70b06ac",
       "services/docling/compose.yaml": "bff24156efc8fa4021daa99255d44e471c517353f8fbd4c6ecccf6711f1a378f",
       "services/docling/README.md": "8e0d872d04321cc81a3c5bb00aad2838ee10656ce7ac7933ed05e43de6b2a450",

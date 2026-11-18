@@ -66,6 +66,7 @@ Read `docs/agents/CODE-MAP.md` for source entrypoints, interfaces, dependencies,
 - `packages/AGENTS.md`: Business algorithms, contracts, adapters, and use-case composition.
 - `packages/verification/src/AGENTS.md`: Internal verification algorithm seams.
 - `services/AGENTS.md`: Separately deployed conversion and native parser boundaries.
+- `docs/tools/AGENTS.md`: Provenance trace tool (SPEC-02) and its tests; standard-library Python.
 - `scripts/AGENTS.md`: Experiment commands and the consumer-surface evaluation (`corepack pnpm eval:consumer-surface`); the proof and reconciliation scripts are not in the tree and have no root command.
 - `skills/AGENTS.md`: Agent skills for schema navigation, bounded reads, and ingestion.
 - `tools/AGENTS.md`: Repository quality and Git-driven maintenance tooling.
