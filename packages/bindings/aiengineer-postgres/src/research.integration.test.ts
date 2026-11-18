@@ -2,7 +2,7 @@ import { randomBytes } from "node:crypto";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { ReportKindCatalog, ResearchCoordinator } from "@aiengineer/knowledge-application";
-import { install, loadComponent } from "@aiengineer/knowledge-db-contract";
+import { disposableAdminDsn, install, loadComponent } from "@aiengineer/knowledge-db-contract";
 import { type Digest, bindEffect as bindEffectBinding, digestBytes } from "@aiengineer/knowledge-operation-protocol";
 import { admitExactUseWithin, bindExactEffect, evaluateExactUse } from "@aiengineer/knowledge-db";
 import {
@@ -35,7 +35,7 @@ import { lookupEffectReceipt, recordEffectReceipt } from "./stores.js";
  * T1-KS: the first complete evidence -> assertion -> verification -> seal -> decision -> exact-use admission ->
  * receipt fixture over the real component in a disposable database (SPRINT-V-PLAN W2 exit proof, engineering data).
  */
-const ADMIN = process.env.KS_AIENG_DB_ADMIN_DSN;
+const ADMIN = disposableAdminDsn();
 const describeDb = ADMIN ? describe : describe.skip;
 const TENANT = "00000000-0000-7000-8000-0000000000aa";
 const BINDING = "aiengineer-postgres";

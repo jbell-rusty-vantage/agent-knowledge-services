@@ -135,6 +135,7 @@
           "Name": "worker", "Image": { "Ref": "WorkerImageUri" }, "Essential": true, "ReadonlyRootFilesystem": true, "StopTimeout": 120,
           "Environment": [
             { "Name": "NODE_ENV", "Value": "production" }, { "Name": "KNOWLEDGE_PERSISTENCE_MODE", "Value": "postgres" },
+            { "Name": "KS_APPLICATION", "Value": "ai-engineer" },
             { "Name": "WORKER_TENANT_ID", "Value": { "Ref": "WorkerTenantId" } },
             { "Name": "DOCLING_BASE_URL", "Value": { "Fn::Sub": "https://${DoclingPrivateDnsName}" } },
             { "Name": "DOCLING_VERSION", "Value": "sha256:f8b324448e7c9e66083049727aaa90e3e65e88f0d7796624597a29d04183198b" }

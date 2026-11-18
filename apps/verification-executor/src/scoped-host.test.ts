@@ -46,9 +46,9 @@ describe("public scoped host", () => {
     await expect(
       createScopedCustodyHost({
         env: {
-          KS_AIENG_DB_RUNTIME_DSN: "postgres://unused",
+          KS_AIENG_DB_RUNTIME_DSN: "postgres://unused@127.0.0.1:1/unused",
           KNOWLEDGE_ARTIFACT_STORAGE: "supabase",
-          KS_AIENG_DB_URL: "http://unused",
+          KS_AIENG_DB_URL: "http://127.0.0.1:1",
           KS_AIENG_DB_SECRET_KEY: "unused",
           VERIFY_TENANT_ID: randomUUID(),
           KNOWLEDGE_TENANT_ID: randomUUID(),

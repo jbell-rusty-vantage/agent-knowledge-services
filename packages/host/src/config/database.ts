@@ -6,6 +6,11 @@ import { z } from "zod";
  * This module is the ONLY code that reads the `KS_{AIENG,BIOTECH}_DB_*` variables. Callers receive the resolved
  * plane object. There are no aliases and no fallback to earlier names. Values are never logged; the startup
  * selection record carries only the plane, the project ref and the host(s).
+ *
+ * Local by default (SPEC-03 K3): a process that names no application (`KS_APPLICATION` unset and no explicit
+ * argument) may only reach loopback databases and endpoints; any remote URL or DSN is refused with
+ * `KS_DB_REMOTE_REQUIRES_APPLICATION`. Setting `KS_APPLICATION=ai-engineer` (or `biotech`) names the plane and
+ * allows its remote values.
  */
 
 /** Plane token -> the application it serves. */
@@ -32,7 +37,10 @@ export const KS_DB_COMPONENT_DSN_VARIABLES = KS_DB_PLANES.map((plane) => ksDbVar
   ...string[],
 ];
 
-/** `ai-engineer` -> AIENG, `biotech` -> BIOTECH; a process started without an application uses AIENG. */
+/** The one variable that names a process's application, and with it the plane it may reach remotely. */
+export const KS_APPLICATION_VARIABLE = "KS_APPLICATION";
+
+/** `ai-engineer` -> AIENG, `biotech` -> BIOTECH; a process started without an application uses AIENG (loopback only). */
 export function ksDbPlaneForApplication(application?: string): KsDbPlane {
   if (application === undefined) return "AIENG";
   for (const plane of KS_DB_PLANES) if (KS_DB_PLANE_APPLICATIONS[plane] === application) return plane;
@@ -80,6 +88,8 @@ export interface KsDatabaseSelection {
 
 export interface KsDatabaseConfig {
   readonly plane: KsDbPlane;
+  /** The application that named the plane (argument or `KS_APPLICATION`); `undefined` = loopback-only. */
+  readonly application?: string;
   /** The variable names of this plane, for "set X" error messages and docs. */
   readonly names: Readonly<Record<KsDbRole, string>>;
   readonly projectRef?: string;
@@ -114,6 +124,24 @@ function hostAndUser(value: string): { host: string; user: string } | undefined 
   }
 }
 
+/** Loopback hosts, plus the empty host of a Unix-socket DSN. Anything else counts as remote. */
+export function isLoopbackHost(host: string): boolean {
+  const value = host.toLowerCase().replace(/^\[|\]$/g, "");
+  return (
+    value === "" ||
+    value === "localhost" ||
+    value.endsWith(".localhost") ||
+    value === "::1" ||
+    /^127(?:\.\d{1,3}){3}$/.test(value)
+  );
+}
+
+function namedApplication(environment: KsDatabaseEnvironment, application?: string): string | undefined {
+  if (application !== undefined) return application;
+  const value = environment[KS_APPLICATION_VARIABLE]?.trim();
+  return value ? value : undefined;
+}
+
 const logged = new Set<string>();
 function defaultLog(environment: KsDatabaseEnvironment, selection: KsDatabaseSelection): void {
   if (!selection.projectRef || environment.NODE_ENV === "test") return;
@@ -124,17 +152,19 @@ function defaultLog(environment: KsDatabaseEnvironment, selection: KsDatabaseSel
 }
 
 /**
- * Resolves the plane for `application` (`ai-engineer`, `biotech`; undefined = AIENG), validates the shape of each
- * value present, and refuses when `KS_<PLANE>_DB_PROJECT_REF` is set but does not appear in the host or user of a
- * sibling URL/DSN (contract rule 3). With no project ref (a disposable loopback database) the check is skipped.
- * Which values a process needs is the caller's decision; absent values are `undefined`.
+ * Resolves the plane for `application` (argument, else `KS_APPLICATION`; `ai-engineer`, `biotech`; neither = AIENG
+ * restricted to loopback), validates the shape of each value present, refuses a remote value when no application is
+ * named (`KS_DB_REMOTE_REQUIRES_APPLICATION`), and refuses when `KS_<PLANE>_DB_PROJECT_REF` is set but does not appear
+ * in the host or user of a sibling URL/DSN (contract rule 3). With no project ref (a disposable loopback database)
+ * the ref check is skipped. Which values a process needs is the caller's decision; absent values are `undefined`.
  */
 export function loadKsDatabaseConfig(
   environment: KsDatabaseEnvironment = process.env,
   application?: string,
   options: LoadKsDatabaseOptions = {},
 ): KsDatabaseConfig {
-  const plane = ksDbPlaneForApplication(application);
+  const named = namedApplication(environment, application);
+  const plane = ksDbPlaneForApplication(named);
   const names = namesOf(plane);
   const raw = Object.fromEntries(KS_DB_ROLES.map((role) => [role, environment[names[role]]]));
   const parsed = PlaneSchema.safeParse(raw);
@@ -151,6 +181,10 @@ export function loadKsDatabaseConfig(
     const parts = hostAndUser(candidate);
     if (!parts) throw new Error(`KS_DB_INVALID: ${names[role]} is not a parseable URL`);
     hosts.add(parts.host);
+    if (named === undefined && !isLoopbackHost(parts.host))
+      throw new Error(
+        `KS_DB_REMOTE_REQUIRES_APPLICATION: ${names[role]} points at a remote host and no application is named; set ${KS_APPLICATION_VARIABLE}=ai-engineer (or biotech) to use that plane, or point it at a loopback database`,
+      );
     if (value.PROJECT_REF) {
       const ref = value.PROJECT_REF.toLowerCase();
       if (!parts.host.includes(ref) && !parts.user.includes(ref))
@@ -161,6 +195,7 @@ export function loadKsDatabaseConfig(
   const selection: KsDatabaseSelection = { plane, projectRef: value.PROJECT_REF, hosts: [...hosts].sort() };
   const config: KsDatabaseConfig = {
     plane,
+    ...(named !== undefined ? { application: named } : {}),
     names,
     ...(value.PROJECT_REF ? { projectRef: value.PROJECT_REF } : {}),
     ...(value.URL ? { url: value.URL } : {}),

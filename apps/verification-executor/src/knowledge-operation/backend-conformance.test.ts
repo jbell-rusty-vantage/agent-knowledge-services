@@ -27,7 +27,7 @@ import {
   recordEffectCommit,
   recordExactUseReceipt,
 } from "@aiengineer/knowledge-db";
-import { install, loadComponent } from "@aiengineer/knowledge-db-contract";
+import { disposableAdminDsn, install, loadComponent } from "@aiengineer/knowledge-db-contract";
 import {
   type BackendConformance,
   defineBackendConformance,
@@ -60,7 +60,7 @@ import { KNOWLEDGE_BACKENDS } from "../serve.js";
  * `IngestionExecutor` ledger path is exercised only by `aidb-apply.integration.test.ts`, which needs a local
  * Supabase project and was not run for R5. Engineering fixtures only; no model or network calls.
  */
-const ADMIN = process.env.KS_AIENG_DB_ADMIN_DSN;
+const ADMIN = disposableAdminDsn();
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "../../../..");
 const KINDS = ReportKindCatalog.fromDirectory(resolve(ROOT, "catalog/research/report-kinds"));
 const DSN_VARIABLE = "KS_AIENG_DB_COMPONENT_DSN";

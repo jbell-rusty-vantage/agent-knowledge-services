@@ -20,7 +20,7 @@ import {
   fixtureSupportSet,
   fixtureTask,
 } from "@aiengineer/knowledge-application/testing";
-import { install, loadComponent, registerSealKey } from "@aiengineer/knowledge-db-contract";
+import { disposableAdminDsn, install, loadComponent, registerSealKey } from "@aiengineer/knowledge-db-contract";
 import { type AuthScope, qualifiersDigest, recordRef } from "@aiengineer/knowledge-research-core";
 import { Client } from "pg";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
@@ -35,7 +35,7 @@ import { PostgresResearchBinding } from "./research-binding.js";
  * executor's PEM, is `current` on repeat, refuses another key under the same id, retires an earlier key; then the
  * exact same seal succeeds.
  */
-const ADMIN = process.env.KS_AIENG_DB_ADMIN_DSN;
+const ADMIN = disposableAdminDsn();
 const describeDb = ADMIN ? describe : describe.skip;
 const TENANT = "00000000-0000-7000-8000-0000000000aa";
 const BINDING = "aiengineer-postgres";

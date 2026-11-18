@@ -24,7 +24,7 @@ import {
   PostgresResearchBinding,
   pinSealSigningKey,
 } from "../../../packages/bindings/aiengineer-postgres/dist/index.js";
-import { install, loadComponent } from "../../../packages/knowledge-db-contract/dist/index.js";
+import { disposableAdminDsn, install, loadComponent } from "../../../packages/knowledge-db-contract/dist/index.js";
 import {
   AdmissionInstallationError,
   ExactUseAdmissionError,
@@ -112,8 +112,8 @@ const HARNESS_FILES = ["run.ts", "fixtures.ts", "manifest.ts", "meter.ts", "anal
 const TENANT = "00000000-0000-7000-8000-0000000009c9";
 const INSTALLATION = "0192a4f0-0000-7000-8000-000000000909";
 const BINDING = "aiengineer-postgres";
-const ADMIN_DSN =
-  process.env.KS_AIENG_DB_ADMIN_DSN ?? "postgresql://sprintv:sprintv-disposable@127.0.0.1:55433/postgres";
+// A remote KS_AIENG_DB_ADMIN_DSN is refused (DISPOSABLE_ADMIN_DSN_REMOTE_REFUSED), never reached.
+const ADMIN_DSN = disposableAdminDsn() ?? "postgresql://sprintv:sprintv-disposable@127.0.0.1:55433/postgres";
 const KINDS = ReportKindCatalog.fromDirectory(join(KS_ROOT, "catalog/research/report-kinds"));
 const AUTHORITY = SourceAuthorityCatalog.fromDirectory(join(KS_ROOT, "catalog/research/source-authority"));
 const SEAL = testSealKeys("sv09-harness-seal-1");

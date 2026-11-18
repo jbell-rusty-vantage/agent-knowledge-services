@@ -9,7 +9,7 @@ import {
   lookupExactUseReceipt,
   recordExactUseReceipt,
 } from "@aiengineer/knowledge-db";
-import { install, loadComponent } from "@aiengineer/knowledge-db-contract";
+import { disposableAdminDsn, install, loadComponent } from "@aiengineer/knowledge-db-contract";
 import { bindEffect, digestBytes, digestCanonical } from "@aiengineer/knowledge-operation-protocol";
 import { normalizedValuesDigest } from "@aiengineer/knowledge-research-core";
 import { Client } from "pg";
@@ -24,7 +24,7 @@ import { currentRevocationEpoch, recordInvalidation, closeInvalidation, recordUs
  * the bound effect, the epoch-locked admission, a domain write and the effect receipt commit or roll back together.
  * The domain write here is a disposable stand-in table; the AIDB executor path is `knowledge-db` ingestion's own test.
  */
-const ADMIN = process.env.KS_AIENG_DB_ADMIN_DSN;
+const ADMIN = disposableAdminDsn();
 const describeDb = ADMIN ? describe : describe.skip;
 const TENANT = "00000000-0000-7000-8000-0000000000aa";
 

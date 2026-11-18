@@ -5,7 +5,7 @@ import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { ReportKindCatalog, ScriptedAuditorDiscovery } from "@aiengineer/knowledge-application";
 import { EVIDENCE_REPORT_SCRIPT, reportKindCases } from "@aiengineer/knowledge-application/testing";
-import { install, loadComponent } from "@aiengineer/knowledge-db-contract";
+import { disposableAdminDsn, install, loadComponent } from "@aiengineer/knowledge-db-contract";
 import {
   type JsonValue,
   type OperationEnvelope,
@@ -48,7 +48,7 @@ import {
  * report.register -> report.assess handle -> status terminal -> receipt.get, then a NEW service instance over the same
  * database (an executor restart) still answers the handle, the receipt and the exact read. Engineering fixtures only.
  */
-const ADMIN = process.env.KS_AIENG_DB_ADMIN_DSN;
+const ADMIN = disposableAdminDsn();
 const describeDb = ADMIN ? describe : describe.skip;
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "../../../..");
 const KINDS = ReportKindCatalog.fromDirectory(resolve(ROOT, "catalog/research/report-kinds"));

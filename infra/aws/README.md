@@ -20,6 +20,8 @@ The required secret JSON keys are:
 | `DatabaseSecretArn` | `KS_AIENG_DB_RUNTIME_DSN` |
 | `WorkerRuntimeSecretArn` | `KS_AIENG_DB_URL`, `KS_AIENG_DB_SECRET_KEY`, `AI_GATEWAY_API_KEY` |
 
+The worker task also sets `KS_APPLICATION=ai-engineer` in its plain environment. Without it the database config is loopback-only and refuses the remote values above (`KS_DB_REMOTE_REQUIRES_APPLICATION`; [environment](../../docs/ENVIRONMENT.md#plane-selection)).
+
 Both container image parameters require immutable `@sha256:` references. Build and push the worker from the repository root so the workspace-aware Dockerfile can construct the production closure:
 
 ```powershell

@@ -1,5 +1,5 @@
 import { randomBytes } from "node:crypto";
-import { install, loadComponent } from "@aiengineer/knowledge-db-contract";
+import { disposableAdminDsn, install, loadComponent } from "@aiengineer/knowledge-db-contract";
 import {
   bindEffect as bindEffectBinding,
   digestBytes,
@@ -46,7 +46,7 @@ import {
  * One complete evidence -> assertion -> verification -> seal -> decision -> receipt path through the binding, on a
  * fresh disposable database with the component installed. Needs `KS_AIENG_DB_ADMIN_DSN` (loopback PG17).
  */
-const ADMIN = process.env.KS_AIENG_DB_ADMIN_DSN;
+const ADMIN = disposableAdminDsn();
 const describeDb = ADMIN ? describe : describe.skip;
 const TENANT = "00000000-0000-7000-8000-0000000000aa";
 

@@ -11,7 +11,7 @@ import {
   biotechReportKind,
   reportPublishFields,
 } from "@aiengineer/knowledge-binding-biotech-graph";
-import { install, loadComponent } from "@aiengineer/knowledge-db-contract";
+import { disposableAdminDsn, install, loadComponent } from "@aiengineer/knowledge-db-contract";
 import {
   type JsonValue,
   type OperationEnvelope,
@@ -50,7 +50,7 @@ import {
  *   - Separate readback: marker/Activity/Report counts read from Neo4j by another process, outbox rows from PostgreSQL.
  * Needs KS_AIENG_DB_ADMIN_DSN (loopback), WI05_BKS_ROOT, NEO4J_TEST_URI, NEO4J_TEST_PASSWORD; skips without.
  */
-const ADMIN = process.env.KS_AIENG_DB_ADMIN_DSN;
+const ADMIN = disposableAdminDsn();
 const BKS_ROOT = process.env.WI05_BKS_ROOT;
 const NEO4J = process.env.NEO4J_TEST_URI;
 const enabled = Boolean(ADMIN && BKS_ROOT && NEO4J && process.env.NEO4J_TEST_PASSWORD);

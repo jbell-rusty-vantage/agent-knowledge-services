@@ -20,7 +20,7 @@ import {
   reportPublishFields,
 } from "@aiengineer/knowledge-binding-biotech-graph";
 import { StubBksExecutor } from "@aiengineer/knowledge-binding-biotech-graph/testing";
-import { install, loadComponent } from "@aiengineer/knowledge-db-contract";
+import { disposableAdminDsn, install, loadComponent } from "@aiengineer/knowledge-db-contract";
 import {
   BindingDescriptorSchema,
   type JsonValue,
@@ -62,7 +62,7 @@ import {
  * Trusted in-process setup only where K01 has no operation: the independent judge observation, the seal and the
  * report use decision. Engineering fixtures only; no model calls.
  */
-const ADMIN = process.env.KS_AIENG_DB_ADMIN_DSN;
+const ADMIN = disposableAdminDsn();
 const describeDb = ADMIN ? describe : describe.skip;
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "../../../..");
 const TENANT = randomUUID();

@@ -3,12 +3,13 @@ import { Client } from "pg";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { loadComponent } from "./component.js";
 import { InstallRefused, inspect, install } from "./installer.js";
+import { disposableAdminDsn } from "./disposable-admin.js";
 
 /**
  * Two disposable app-local installs (ai-engineer, biotech) plus the component's seam proofs. Needs a loopback
  * PostgreSQL 17 administrator DSN in `KS_AIENG_DB_ADMIN_DSN`; skips (never fakes) without it.
  */
-const ADMIN = process.env.KS_AIENG_DB_ADMIN_DSN;
+const ADMIN = disposableAdminDsn();
 const describeDb = ADMIN ? describe : describe.skip;
 
 const TENANT_A = "00000000-0000-7000-8000-0000000000aa";

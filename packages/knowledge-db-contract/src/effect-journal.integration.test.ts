@@ -8,6 +8,7 @@ import { Client } from "pg";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { loadComponent } from "./component.js";
 import { install } from "./installer.js";
+import { disposableAdminDsn } from "./disposable-admin.js";
 
 /**
  * Component 2.5.0 `0008_effect_dispatch_journal` (Sprint OC WI-05, OVE-167) on a disposable PostgreSQL 17 database:
@@ -16,7 +17,7 @@ import { install } from "./installer.js";
  * the protocol receipt bound to the committing dispatch (RECEIPT_DISPATCH_MISMATCH), immutability and tenant RLS.
  * Needs `KS_AIENG_DB_ADMIN_DSN` (loopback); skips (never fakes) without it.
  */
-const ADMIN = process.env.KS_AIENG_DB_ADMIN_DSN;
+const ADMIN = disposableAdminDsn();
 const describeDb = ADMIN ? describe : describe.skip;
 const TENANT = "00000000-0000-7000-8000-0000000005aa";
 const OTHER = "00000000-0000-7000-8000-0000000005bb";

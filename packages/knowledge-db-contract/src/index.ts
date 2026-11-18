@@ -4,3 +4,4 @@ export type { Component, ComponentManifest, Migration, ReleaseSpec } from "./com
 export { InstallRefused, inspect, install } from "./installer.js";
 export type { InstallReceipt, InstallTarget, Inspection } from "./installer.js";
 export * from "./seal-keys.js";
+export { DISPOSABLE_ADMIN_DSN_VARIABLE, disposableAdminDsn } from "./disposable-admin.js";

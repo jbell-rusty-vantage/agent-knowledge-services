@@ -12,7 +12,7 @@ import {
   reportKindRoundTrip,
 } from "@aiengineer/knowledge-application/testing";
 import { ComponentDatabase, pinSealSigningKey } from "@aiengineer/knowledge-binding-aiengineer-postgres";
-import { install, loadComponent } from "@aiengineer/knowledge-db-contract";
+import { disposableAdminDsn, install, loadComponent } from "@aiengineer/knowledge-db-contract";
 import { type AuthScope, normalizedValuesDigest } from "@aiengineer/knowledge-research-core";
 import { Client } from "pg";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
@@ -38,7 +38,7 @@ import { StubBksExecutor } from "./testing.js";
  *         whose Neo4j is unreachable (graph-unavailable case).
  * Requires KS_AIENG_DB_ADMIN_DSN (disposable admin DSN). Engineering fixtures only; no model calls.
  */
-const ADMIN = process.env.KS_AIENG_DB_ADMIN_DSN;
+const ADMIN = disposableAdminDsn();
 const describeDb = ADMIN ? describe : describe.skip;
 const EXECUTOR_URL = process.env.BIOTECH_GRAPH_T1_EXECUTOR_URL;
 const MODE: "stub" | "bks" = EXECUTOR_URL ? "bks" : "stub";
