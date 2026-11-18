@@ -129,6 +129,7 @@ function validateConfig(config) {
   requireValue(config.docs.length > 0 && config.docs.every((doc) => typeof doc.path === 'string' && typeof doc.task === 'string' && doc.task.length > 0), 'Invalid documentation routes');
   requireValue(config.docs.every((doc) => doc.navigation === undefined || typeof doc.navigation === 'boolean'), 'Document navigation must be boolean');
   requireValue(new Set(config.docs.map((doc) => doc.path)).size === config.docs.length, 'Duplicate documentation path');
+  requireValue(config.guide === undefined || (typeof config.guide === 'string' && /^docs\/agents\/[A-Za-z0-9._-]+\.md$/.test(config.guide)), 'Guide must be docs/agents/<name>.md');
 }
 
 function compactIndex(docs) {
@@ -155,6 +156,16 @@ function renderRepository(config, semantic, knowledge) {
     ...config.commands.map((command) => `- \`${command}\``), '',
     'Documentation: `node .agent-docs/cli.mjs check --repo .`; refresh with `node .agent-docs/cli.mjs build --repo .`. Edit `.agent-docs/config.json` to change this guide.', '',
     '[Docs index]|root:.', compactIndex(routes), '',
+  ].join('\n');
+}
+
+// With `guide` set (SPEC-03 K4: AGENTS.md stays short), the full guide renders into that file and AGENTS.md carries a
+// pointer block. Without it, AGENTS.md carries the full guide as before.
+function renderPointer(config, guide) {
+  return [
+    '## Repository guide (generated)', '', config.purpose, '',
+    `Rules, OKF concept routes, code map, task routes and validation: [${guide}](${guide}#repository-guide). Concepts: \`node .agent-docs/cli.mjs search --repo . --query "your terms"\`; code map: \`docs/agents/CODE-MAP.md\`.`, '',
+    'Edit `.agent-docs/config.json` to change the guide; `node .agent-docs/cli.mjs build --repo .` regenerates it and `check` reports drift.', '',
   ].join('\n');
 }
 
@@ -198,9 +209,15 @@ function planRepository(root, generator, snapshots = []) {
   if (config.knowledge) sources.knowledge = { inputs: knowledge.inputs };
   const semantic = planSemanticMaps(config, { read: readSource, directory: (path) => directory(root, path), childDirectories: (path) => childDirectories(root, path) });
   if (config.codeMap) sources.semantic = { inputs: semantic.inputs, inventories: semantic.inventories };
-  const instructions = replaceBlock(readOptional(root, 'AGENTS.md'), renderRepository(config, semantic, knowledge), 'agent-docs');
+  const full = renderRepository(config, semantic, knowledge);
+  const instructions = replaceBlock(readOptional(root, 'AGENTS.md'), config.guide ? renderPointer(config, config.guide) : full, 'agent-docs');
   ensureBudget(instructions, config.budgetBytes, `${config.id}/AGENTS.md`);
   const outputs = [makeOutput(root, 'AGENTS.md', instructions), makeOutput(root, PROVENANCE, json(sources)), makeOutput(root, '.agent-docs/.gitignore', 'update.lock\naudit-state.json\naudit-report.json\n*.tmp\n'), ...snapshots.map((item) => makeOutput(root, item.path, item.content))];
+  if (config.guide) {
+    const guide = replaceBlock(readOptional(root, config.guide), full, 'agent-docs');
+    ensureBudget(guide, config.budgetBytes, `${config.id}/${config.guide}`);
+    outputs.push(makeOutput(root, config.guide, guide));
+  }
   for (const file of [...semantic.files, ...knowledge.files]) {
     const content = replaceBlock(readOptional(root, file.path), file.content, file.block);
     ensureBudget(content, file.budgetBytes, `${config.id}/${file.path}`);

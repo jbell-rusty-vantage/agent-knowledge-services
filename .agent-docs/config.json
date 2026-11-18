@@ -3,7 +3,8 @@
   "id": "ai-engineer-knowledge-services",
   "purpose": "Knowledge preparation, retrieval, evidence, evaluation, publication, and verification; API, MCP, CLI, durable workers, and parser boundaries.",
   "lifecycle": "Active service repository; see deployment docs for rollout state.",
-  "budgetBytes": 12288,
+  "budgetBytes": 16384,
+  "guide": "docs/agents/REPOSITORY-GUIDE.md",
   "rules": [
     "Transport handlers share packages/application. Cross-repository consumers use published HTTP/client, CLI, or MCP contracts; do not import internal algorithm packages.",
     "API, MCP, and workers call packages/application in process; MCP has no API client. Out-of-process callers use KnowledgeClient HTTP. Local CLI demo/attestation stays application-direct.",
@@ -14,6 +15,7 @@
     "Knowledge schema/read/ingest live in packages/knowledge-db and the verification-executor knowledge surfaces. Retrieval read ops are skipped; ingestion does not write knowledge_service.operation. The K01 knowledge.read_intent (native contract knowledge-read-intent/v1) is a different contract from the bounded knowledge-read-intent.v1 and records every served read in knowledge_verification.operation; see knowledge/schema-read-and-ingestion.md."
   ],
   "commands": [
+    "./dev check (fast gate) and ./dev check --full (what CI runs)",
     "corepack pnpm verify",
     "Gates: tools/quality/README.md",
     "corepack pnpm test:maintenance && corepack pnpm test:context"

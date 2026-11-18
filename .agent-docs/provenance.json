@@ -2,7 +2,7 @@
   "version": 1,
   "generator": {
     "version": "1.2.0",
-    "sha256": "5c1f7a749fddb002ddb2289534d038a69d4011093a0256a1d58677949fec1909",
+    "sha256": "cecc49f62d252b838b8d2075c674ebbbf4f79b5d0bcaf511437aae96ef0a4111",
     "semanticSha256": "10155b6b08970879fec33c68f0a6db8b293071142b92437df3ea40d6ff319ecf",
     "supportSha256": {
       "knowledge.mjs": "ce5f4471ebf49af0d2b7d66d02dfcdf836f9a90514e60a75af7be19ac664f324",
@@ -25,7 +25,7 @@
   },
   "sourceState": "Filesystem snapshot; may include uncommitted changes. No deployment or commit claim.",
   "inputs": {
-    ".agent-docs/config.json": "c254acdf288bdc805f160868dcc928f6a5e935a036bee5fad55a9d2c5d824ee2",
+    ".agent-docs/config.json": "3fe452dddce5cc489b20db13da18314148baf83231ac4170cdd8278fd98ec4ca",
     "GLOSSARY.md": "6be4b3ddf0a0d05214a8e4f4e085324df2a062797c876544230c0c836558766b",
     "README.md": "47296a1ab2b947a3d5e015f7feacfec88d8da8fc16d1f95198fd7195a961617e",
     "apps/verification-executor/examples/CAPABILITIES-ACQUISITION.md": "3f25e13d4dde93ccf36233c67ef5c62b240374061e4b5cb4d8a39dca8117c6cf",
