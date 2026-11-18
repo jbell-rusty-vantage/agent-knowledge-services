@@ -32,11 +32,12 @@ describe("versioned knowledge skills", () => {
     };
     expect(manifest.contractVersion).toBe("v1");
     expect(manifest.skills.map(({ id, version }) => ({ id, version }))).toEqual([
+      { id: "knowledge-research", version: "1.1.0" },
       { id: "schema-explore", version: "1.2.0" },
       { id: "knowledge-db", version: "1.1.0" },
-      { id: "knowledge-ingest", version: "1.2.0" },
+      { id: "knowledge-ingest", version: "1.3.0" },
       { id: "knowledge-acquisition-and-vetting", version: "1.4.0" },
-      { id: "knowledge-preparation-and-promotion", version: "1.6.0" },
+      { id: "knowledge-preparation-and-promotion", version: "1.7.0" },
       { id: "knowledge-retrieval-and-evidence", version: "1.3.0" },
       { id: "knowledge-evaluation", version: "1.3.0" },
       // knowledge-verification-recovery is folded into knowledge-verification (docs/operations/package-cleanup/FINAL-LAYOUT.md).
@@ -50,8 +51,13 @@ describe("versioned knowledge skills", () => {
       // knowledge-service/v1. Executor schema/read/ingest procedures have no YAML contract field.
       // Jev binds its worker service contract rather than the external provider wire format.
       const verificationFamily = skill.id === "knowledge-verification";
+      // knowledge-research is the method skill: judgment only, served on every surface, no YAML contract field
+      // (its bytes are pinned by Mission Control's agent-skills seed, so the file stays as it is).
       const executorKnowledgeSkill =
-        skill.id === "schema-explore" || skill.id === "knowledge-db" || skill.id === "knowledge-ingest";
+        skill.id === "schema-explore" ||
+        skill.id === "knowledge-db" ||
+        skill.id === "knowledge-ingest" ||
+        skill.id === "knowledge-research";
       const jevServiceSkill = skill.id === "jev-system-one";
       if (jevServiceSkill) {
         expect(markdown).toContain('contract: "knowledge-jev/v1"');
