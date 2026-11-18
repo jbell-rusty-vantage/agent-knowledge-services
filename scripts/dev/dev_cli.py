@@ -16,8 +16,9 @@ library only, so ``./dev status`` and ``./dev doctor`` work before ``pnpm instal
   ./dev test TARGET [FILE..]            one package's vitest files (TARGET = package directory
                                         name or @aiengineer/* name), or maintenance | context | trace
   ./dev trace show|build|check|linear|sources   the provenance chain (docs/tools/trace.py)
-  ./dev db ...                          not here yet: arrives with Mission Control's
-                                        config/planes.toml registry (SPEC-03 K3)
+  ./dev planes list|show P|check        the data-plane registry config/planes.toml (no network)
+  ./dev db status|schema|query --plane P   read-only database sessions (scripts/dev/planes.py,
+                                        copied from Mission Control); --plane is always required
 
 Fast gate (``./dev check``), in order: format (biome format ., EOL-only differences re-checked
 the way the pre-commit hook does), lint (tools/quality/lint-ratchet.mjs), boundaries
@@ -415,6 +416,7 @@ def fast_gate() -> int:
     results["boundaries"] = run([*manager, "boundaries"], "dependency-cruiser")
     results["docs"] = run(["node", str(DOCS_CLI.relative_to(ROOT)), "check", "--repo", "."], "docs")
     results["retrieval"] = retrieval_step()
+    results["planes"] = run([sys.executable, "-X", "utf8", str(PLANES), "planes", "check"], "data-plane registry")
     results["trace"] = run(SPECIAL_TESTS["trace"][0], "trace tests") or run(
         [sys.executable, "-X", "utf8", str(TRACE), "check"], "provenance, warn-only"
     )
@@ -490,13 +492,26 @@ def trace(args: list[str]) -> int:
     return subprocess.run([sys.executable, "-X", "utf8", str(TRACE), *args], cwd=ROOT, check=False).returncode
 
 
-def db(_args: list[str]) -> int:
-    return fail(
-        "`./dev db` is not here yet: it arrives with Mission Control's data-plane registry "
-        "(config/planes.toml, SPEC-03 K3), being built there now",
-        "read docs/ENVIRONMENT.md; processes are loopback-only unless KS_APPLICATION names a plane",
-        3,
-    )
+PLANES = ROOT / "scripts" / "dev" / "planes.py"
+
+
+def planes(group: str, args: list[str]) -> int:
+    """`planes` runs here (standard library); `db` needs psycopg, so it runs through
+    `uv run --with psycopg[binary]` unless this interpreter has it. Credentials resolve inside
+    planes.py, never here."""
+
+    command = [sys.executable, "-X", "utf8", str(PLANES), group, *args]
+    if group == "db":
+        try:
+            import psycopg  # noqa: F401
+        except ImportError:
+            if not shutil.which("uv"):
+                return fail("`./dev db` needs psycopg", "install uv (it supplies psycopg per run)", 3)
+            command = [
+                "uv", "run", "--no-project", "--quiet", "--with", "psycopg[binary]",
+                "python", "-X", "utf8", str(PLANES), group, *args,
+            ]  # fmt: skip
+    return subprocess.run(command, cwd=ROOT, check=False).returncode
 
 
 # --------------------------------------------------------------------------------------- main
@@ -534,12 +549,13 @@ def main() -> int:
         description="Examples: ./dev trace show OVE-243   ./dev trace check   ./dev trace sources",
         add_help=False,
     )
-    sub.add_parser("db", help="not here yet (Mission Control's config/planes.toml)", add_help=False)
+    sub.add_parser("planes", help="the data-plane registry: list | show PLANE | check", add_help=False)
+    sub.add_parser("db", help="read-only database sessions: status | schema | query --plane P", add_help=False)
     argv = sys.argv[1:]
     if argv and argv[0] == "trace":
         return trace(argv[1:])
-    if argv and argv[0] == "db":
-        return db(argv[1:])
+    if argv and argv[0] in {"planes", "db"}:
+        return planes(argv[0], argv[1:] or ["--help"])
     args = parser.parse_args(argv)
     if args.command is None:
         parser.print_help()

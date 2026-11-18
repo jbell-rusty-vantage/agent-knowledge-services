@@ -537,7 +537,7 @@
       "packages/verification/src/semantic/judge-output.test.ts": "2e3ec6ddc4610c67f966ccf572c14658f62c443d2660d47d2df6af937481f3a9",
       "packages/verification/src/semantic/verification.test.ts": "ed3b0e3eb1a92788538579ea4b700ee17ee6cd2060f5f68a61fec93573596620",
       "packages/verification/src/semantic/verify-case.ts": "e58bc25e583c73a8b3c760407a26f7d3a908f97fc482bcce72f6cc77a7a74c0f",
-      "scripts/dev/dev_cli.py": "542218aa1adbcce81c460709e6bbcbb408516420f00c1499c49c663893831b69",
+      "scripts/dev/dev_cli.py": "df29e6cf656609b4ae7561274d6189470a94429c5a03e3301f1d3cc3f318e905",
       "scripts/experiments/model-card-verification/README.md": "822863e2f772e48841d9a0e2f72ea9b75282f68b112db178ee6e8a0fe70b06ac",
       "services/docling/compose.yaml": "bff24156efc8fa4021daa99255d44e471c517353f8fbd4c6ecccf6711f1a378f",
       "services/docling/README.md": "8e0d872d04321cc81a3c5bb00aad2838ee10656ce7ac7933ed05e43de6b2a450",

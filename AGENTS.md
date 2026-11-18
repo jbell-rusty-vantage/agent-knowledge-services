@@ -3,7 +3,7 @@
 Shared knowledge machinery for BellLabs: capture and custody, preparation, retrieval, evaluation, verification and policy admission, and durable knowledge execution, served over the API, MCP, CLIs and workers. Mission Control dispatches verification and classifies retry and cancellation; Knowledge Services owns the algorithms, admission and durable knowledge execution. Report against the [owner goal](../../AGENTS.md#owner-goal-and-reporting-directive-2026-10-29) (Deep Agents workflow and agent configuration on the Mission Control path) and keep implemented, tested, integrated and qualified apart.
 
 ## Start, act, finish
-- `./dev status` orients (branch, dirty files, contract pin, hooks, which local services answer); `./dev doctor` names each fix.
+- `./dev status` orients (branch, dirty files, contract pin, hooks, which local services answer); `./dev doctor` names each fix. `./dev db status|schema|query --plane P` reads a database read-only (`config/planes.toml`, copied from Mission Control; `--plane` is always required, DDL is refused).
 - `./dev check` is the fast gate (about 30 s: format, lint ratchet, boundaries, docs, retrieval checks, trace); `./dev check --full` is what CI runs; `./dev test <package> <file>` runs one suite.
 - `./dev trace check` before finishing. Every commit ends with `Refs: OVE-n | <FAM>-S<n>` and, when they apply, `Decisions:` and `Docs:`; `./dev trace show <id>` prints the chain ([provenance](docs/agents/REPOSITORY-GUIDE.md#provenance)). The hook and CI warn only.
 - Work lands on `main`; commit explicit paths; preserve dirty work (`.git/maintenance/jobs/` worktrees are not the source). Build and edit this repository only.

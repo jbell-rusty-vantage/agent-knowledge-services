@@ -1,0 +1,148 @@
+# Data-plane registry: identities only, never credentials (SPEC-03 K3; design DATA-ACCESS §5).
+#
+# Read by scripts/dev/planes.py (`./dev planes list|show|check`, `./dev db status|schema|query`).
+# Every fact here is public: project refs, hosts, ports, container names and the NAMES of the
+# variables that hold credentials. Values live in <workspace>/.secrets/<file>.env, in a repository
+# file named below, or in a local container's environment, and are resolved inside the process at
+# run time. `./dev planes check` fails when a value-shaped string appears in this file.
+#
+# Postures: disposable (may be wiped by an accepted packet) · protected (holds data that cannot be
+# recreated: writes refused) · protected-local (a local lab that holds checkpoints: writes need
+# --write --confirm <container>) · retired (refused by every access command).
+# A fact marked `verified = false` was not checked against the live plane when this file was
+# written; `sources` names where each plane's facts come from (paths relative to the workspace).
+# Copied from Mission Control's config/planes.toml (31970844), keeping only the planes Knowledge
+# Services reaches. Mission Control's file stays the full registry; a fact changed there is changed here.
+
+[registry]
+format_version = 1
+# The BellLabs workspace root, relative to the repository root (the folder holding `.secrets/`).
+workspace = "../.."
+# One line per remote call; never values or result rows.
+audit_log = ".scratch/planes/audit.jsonl"
+# Where schema changes go; `./dev db` refuses DDL everywhere and names this.
+installer = "the owning contract's installer: scripts/install-ai-engineer.mjs in aiengineer/ai-engineer-db-contract (AI Engineer), the Biotech contract's installer (Biotech); Knowledge Services' own component through its release path"
+statement_timeout_ms = 10000
+connect_timeout_s = 10
+row_limit = 200
+
+# Tables whose newest row `./dev db status` reports when they exist (migration heads).
+[[registry.heads]]
+name = "knowledge-services verification component"
+table = "knowledge_verification.component_release"
+column = "component_version"
+order_by = "applied_at"
+
+[[registry.heads]]
+name = "supabase migrations"
+table = "supabase_migrations.schema_migrations"
+column = "version"
+order_by = "version"
+
+# ------------------------------------------------------------------------------ remote planes
+
+[plane.aieng-db]
+kind = "postgres"
+domain = "aieng"
+location = "remote"
+posture = "disposable"  # Sprint OC disposable target; the owner may protect it before quality ingestion
+project_label = "supabase-blue-ocean"
+project_ref = "wkythqbofmckbuoothhn"
+url = "https://wkythqbofmckbuoothhn.supabase.co"
+mc_installation_id = "01a103c0-9a9e-70f3-9398-eb1573a98324"
+database = "postgres"
+mcp = "supabase-aieng"  # configured read-only at the workspace root; not authenticated on 2026-11-17
+sources = ["platform/mission-control/deployments/ai-engineer/target.toml", "docs/navigation/DATA-PLANES-AND-CREDENTIALS.md"]
+repo_names = { mission-control = "MC_AIENG_DB_", knowledge-services = "KS_AIENG_DB_", ai-engineer-db-contract = "AIENG_DB_", ai-engineer-service = "AIENG_DB_" }
+
+[plane.aieng-db.endpoints]
+session_pooler = { host = "aws-1-us-east-1.pooler.supabase.com", port = 5432, user = "postgres.wkythqbofmckbuoothhn" }
+direct = { host = "db.wkythqbofmckbuoothhn.supabase.co", port = 5432, verified = false }
+
+[plane.aieng-db.roles]
+reader = { secrets = "aieng-db.env", name = "AIENG_DB_READER_DSN", missing = "J4 (DATA-ACCESS §6): create one read-only login per Supabase project and put its DSN in .secrets/aieng-db.env as AIENG_DB_READER_DSN" }
+runtime = { secrets = "aieng-db.env", name = "AIENG_DB_RUNTIME_DSN" }
+admin = { secrets = "aieng-db.env", name = "AIENG_DB_ADMIN_DSN" }
+
+[plane.aieng-storage]
+kind = "storage"
+domain = "aieng"
+location = "remote"
+posture = "protected"  # paid transcripts and the GLM pre-research record survive only here
+parent = "aieng-db"
+project_ref = "wkythqbofmckbuoothhn"
+url = "https://wkythqbofmckbuoothhn.supabase.co"
+# Proposed in DATA-ACCESS §5.1; the owner names the final lists (J6).
+protected_buckets = ["ai-engineer-transcripts", "matthew-berman-transcripts", "research-ingestion-intents", "ai-engineer-cloud-bucket"]
+disposable_buckets = ["capability-bundles"]
+other_buckets = ["aieng-workspaces", "source-captures"]
+sources = ["aiengineer/ai-engineer-db-contract/docs/RECOVERY-ASSESSMENT-2026-11-05-AIENG-DB-PURGE.md", "docs/state/2026-11-17/plan/inputs/DATA-ACCESS.md"]
+
+[plane.aieng-storage.roles]
+admin = { secrets = "aieng-db.env", name = "AIENG_DB_SECRET_KEY" }
+
+[plane.biotech-db]
+kind = "postgres"
+domain = "biotech"
+location = "remote"
+posture = "disposable"  # Sprint OC disposable target (DATA-PLANES §1)
+project_label = "biotech-research-ingestion"
+project_ref = "bxnetwiimwhtlrjlbtab"
+url = "https://bxnetwiimwhtlrjlbtab.supabase.co"
+mc_installation_id = "01a103c0-9a9e-7a95-961b-29dda83c842b"
+database = "postgres"
+mcp = "supabase-biotech"  # read-only, header token; works (2026-11-17)
+sources = ["platform/mission-control/deployments/biotech/target.toml", "docs/navigation/DATA-PLANES-AND-CREDENTIALS.md"]
+repo_names = { mission-control = "MC_BIOTECH_DB_", knowledge-services = "KS_BIOTECH_DB_", biotech-knowledge-services = "BKS_BIOTECH_DB_", biotech-postgres-db-contract = "BIOTECH_DB_" }
+
+[plane.biotech-db.endpoints]
+direct = { host = "db.bxnetwiimwhtlrjlbtab.supabase.co", port = 5432, user = "postgres" }
+# The runtime login uses the session pooler; its region host is not recorded in any source read.
+session_pooler = { user = "postgres.bxnetwiimwhtlrjlbtab", verified = false }
+
+[plane.biotech-db.roles]
+reader = { secrets = "biotech-db.env", name = "BIOTECH_DB_READER_DSN", missing = "J4 (DATA-ACCESS §6): create one read-only login per Supabase project and put its DSN in .secrets/biotech-db.env as BIOTECH_DB_READER_DSN" }
+runtime = { secrets = "biotech-db.env", name = "BIOTECH_DB_RUNTIME_DSN" }
+admin = { secrets = "biotech-db.env", name = "BIOTECH_DB_ADMIN_DSN" }
+
+[plane.aieng-graph]
+kind = "neo4j"
+domain = "aieng"
+location = "remote"
+posture = "retired"  # retired 2026-11-07: never read, write or wipe; every access command refuses it
+aura_instance_id = "4773dc72"
+sources = ["docs/navigation/DATA-PLANES-AND-CREDENTIALS.md"]
+
+# ------------------------------------------------------------------------------- local planes
+# A local plane is reached only on loopback; its port is checked against the container's
+# published port before connecting. Container credentials come from `docker inspect` at run time.
+
+[plane.lab-aieng-build04]
+kind = "postgres"
+domain = "aieng"
+location = "local"
+posture = "protected-local"  # the Build 08 knowledge lab: 27 verified claims and checkpoints
+container = "supabase_db_disposable-aieng-build04"
+port = 55622
+api_port = 55621
+database = "postgres"
+workdir = "platform/ai-engineer-research-2026-11-02/11-build04-lab"
+up = "supabase start --workdir <workdir>"
+sources = ["docs/state/2026-11-17/plan/inputs/DATA-ACCESS.md"]
+
+[plane.lab-aieng-build04.roles]
+admin = { container = "supabase_db_disposable-aieng-build04", verified = false }
+
+[plane.local-pg17-disposable]
+kind = "postgres"
+domain = "platform"
+location = "local"
+posture = "disposable"
+# Three container names have served this port; the first one running is used.
+containers = ["sprint-v-pg17", "mc-ft-disposable-pg17", "mc-g-disposable-pg17"]
+port = 55433
+database = "postgres"
+sources = ["docs/navigation/DATA-PLANES-AND-CREDENTIALS.md", "docs/state/2026-11-17/plan/inputs/DATA-ACCESS.md"]
+
+[plane.local-pg17-disposable.roles]
+admin = { containers = ["sprint-v-pg17", "mc-ft-disposable-pg17", "mc-g-disposable-pg17"], verified = false }
