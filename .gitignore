@@ -90,3 +90,6 @@ packages/persistence/vendor/
 
 # Local scratch, evidence and history archives (never tracked)
 .scratch/
+
+# Provenance trace (SPEC-02): generated, and the Linear snapshot holds issue text
+.sdlc/trace/

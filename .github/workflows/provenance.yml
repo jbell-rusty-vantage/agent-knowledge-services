@@ -1,0 +1,41 @@
+name: Provenance
+
+# SPEC-02 §5 and SPEC-03 K1: every pushed commit carries `Refs:` naming an issue (OVE-n) or a record
+# (<FAM>-S<n>, <FAM>-D<n>, ADR-NNNN). Warn-only (SDLC_TRACE=warn exits 0) until the owner switches it
+# to block. Sibling checkouts (Mission Control answers, the AI Engineer review workspace) are absent
+# on CI, so their ids are reported as notes, never as gaps.
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  trailers:
+    name: Provenance trailers (warn-only)
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Trace tool tests
+        run: python3 -X utf8 -m unittest discover -s docs/tools -p "test_*.py"
+      - name: Check the trailers of the pushed commits
+        env:
+          SDLC_TRACE: warn
+          EVENT_BEFORE: ${{ github.event.before }}
+          BASE_REF: ${{ github.base_ref }}
+        run: |
+          if [ -n "$BASE_REF" ]; then
+            range="origin/$BASE_REF..HEAD"
+          elif [ -n "$EVENT_BEFORE" ] && git cat-file -e "$EVENT_BEFORE^{commit}" 2>/dev/null; then
+            range="$EVENT_BEFORE..HEAD"
+          else
+            range="HEAD~1..HEAD"
+          fi
+          python3 -X utf8 docs/tools/trace.py check --range "$range"

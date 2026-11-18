@@ -1,3 +1,4 @@
+import { spawnSync } from "node:child_process";
 import { existsSync, mkdirSync, readFileSync, writeFileSync, unlinkSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -33,7 +34,15 @@ if (maintenanceChild(engine.repo)) {
   process.exit(0);
 }
 const print = (value) => process.stdout.write(`${JSON.stringify(value, null, 2)}\n`);
-const hookNames = ["pre-commit", "post-commit", "post-merge", "post-checkout", "post-rewrite", "pre-push"];
+const hookNames = [
+  "pre-commit",
+  "commit-msg",
+  "post-commit",
+  "post-merge",
+  "post-checkout",
+  "post-rewrite",
+  "pre-push",
+];
 const marker = "# ks-maintenance-managed-v1";
 
 function installedHooks() {
@@ -57,6 +66,7 @@ function installHooks() {
   mkdirSync(target, { recursive: true });
   const commands = {
     "pre-commit": "check-staged",
+    "commit-msg": 'check-message "$1"',
     "pre-push": "check-push",
     "post-commit": "enqueue",
     "post-merge": "enqueue",
@@ -106,6 +116,29 @@ function checkPush() {
     throw new Error("Outgoing revision lacks a successful maintenance receipt. Run maintenance before pushing.");
   return { refs: result, enforced: policy.requirePushReceipt };
 }
+/**
+ * The commit-msg provenance check (SPEC-02 §3/§5, SPEC-03 K1): runs `docs/tools/trace.py check --message-file`.
+ * Warn-only: a missing Python or trace tool is reported and the commit proceeds; only `SDLC_TRACE=block` (the owner's
+ * later switch) lets the trace tool's exit 1 stop the commit.
+ */
+function checkMessage(file) {
+  if (!file || !existsSync(file)) throw new Error("check-message needs the commit message file Git passes as $1");
+  const trace = join(engine.repo, "docs", "tools", "trace.py");
+  if (!existsSync(trace)) return { checked: false, reason: "docs/tools/trace.py is absent" };
+  for (const python of process.platform === "win32" ? ["python", "py", "python3"] : ["python3", "python"]) {
+    const done = spawnSync(python, ["-X", "utf8", trace, "check", "--message-file", file], {
+      cwd: engine.repo,
+      stdio: ["ignore", "inherit", "inherit"],
+      windowsHide: true,
+      timeout: 60_000,
+    });
+    if (done.error?.code === "ENOENT") continue;
+    if (done.status === 1 && process.env.SDLC_TRACE === "block") process.exitCode = 1;
+    return { checked: true, mode: process.env.SDLC_TRACE ?? "warn", status: done.status };
+  }
+  process.stderr.write("trace [warn]: no python on PATH; the commit-msg provenance check did not run\n");
+  return { checked: false, reason: "no python on PATH" };
+}
 async function main() {
   switch (command) {
     case "status":
@@ -141,6 +174,8 @@ async function main() {
       }
       return { passed: true, scope: "staged whitespace, metadata JSON, source formatting" };
     }
+    case "check-message":
+      return checkMessage(args[0]);
     case "check-push":
       return checkPush();
     case "run":

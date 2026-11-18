@@ -522,3 +522,35 @@ test("unexpected MCP inventory never starts a model generation", (t) => {
   assert.equal(result.status, "failed");
   assert.match(result.error, /MCP inventory/);
 });
+
+test("install-hooks adds a warn-only commit-msg provenance check that blocks only under SDLC_TRACE=block", (t) => {
+  const engine = fixture(t);
+  const cli = fileURLToPath(new URL("./cli.mjs", import.meta.url));
+  const run = (args, env = {}) =>
+    spawnSync(process.execPath, [cli, ...args, "--repo", engine.repo], {
+      cwd: engine.repo,
+      encoding: "utf8",
+      timeout: 60000,
+      env: { ...Object.fromEntries(Object.entries(process.env).filter(([name]) => name !== "SDLC_TRACE")), ...env },
+    });
+  assert.equal(run(["install-hooks"]).status, 0);
+  const hook = readFileSync(join(engine.repo, ".git", "maintenance", "hooks", "commit-msg"), "utf8");
+  assert.match(hook, /ks-maintenance-managed-v1/);
+  assert.match(hook, /check-message "\$1"/);
+  const message = join(engine.repo, "MSG");
+  writeFileSync(message, "feat: no trailers\n");
+  const absent = run(["check-message", message]);
+  assert.equal(absent.status, 0);
+  assert.match(absent.stdout, /trace\.py is absent/);
+  mkdirSync(join(engine.repo, "docs", "tools"), { recursive: true });
+  writeFileSync(
+    join(engine.repo, "docs", "tools", "trace.py"),
+    readFileSync(new URL("../../docs/tools/trace.py", import.meta.url)),
+  );
+  const warned = run(["check-message", message]);
+  assert.equal(warned.status, 0);
+  assert.match(warned.stderr, /no Refs: trailer/);
+  assert.equal(run(["check-message", message], { SDLC_TRACE: "block" }).status, 1);
+  writeFileSync(message, "feat: traced\n\nRefs: OVE-243\n");
+  assert.equal(run(["check-message", message], { SDLC_TRACE: "block" }).status, 0);
+});
