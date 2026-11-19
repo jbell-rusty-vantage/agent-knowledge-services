@@ -20,7 +20,7 @@ Shared knowledge machinery for BellLabs: capture and custody, preparation, retri
 - **Bounded search.** Search explicit source paths first; never enumerate artifacts, outputs, runs, receipts, caches, dependencies or private notes. Retired `ai-engineer-mission-control` and `research_ingestion_systems_agent` are not entrypoints.
 
 ## Pointers
-- Current state: the [state card](../../docs/state/2026-11-15/KNOWLEDGE-SERVICES.md#identity); live work comes from AI Engineer Build 08 ([handoff](../ai-engineer-research-2026-11-02/10-review-workspace/NEXT-SESSION-BUILD-08-AFTER-LOOP-8.md)).
+- Current state: the [state card](../../docs/state/2026-11-15/KNOWLEDGE-SERVICES.md#identity); live work comes from AI Engineer Build 08 ([handoff](../ai-engineer-research-2026-11-02/10-review-workspace/archive/handoffs/NEXT-SESSION-BUILD-08-AFTER-LOOP-8.md)).
 - Concepts: [knowledge index](knowledge/index.md#find-the-relevant-concept); code map: [CODE-MAP](docs/agents/CODE-MAP.md); glossary: [GLOSSARY](GLOSSARY.md); the kit: [SPEC-03](../mission-control/docs/specs/agentic-sdlc-2026-11/SPEC-03-REPO-KIT.md#parts).
 
 <!-- BEGIN GENERATED: agent-docs -->
