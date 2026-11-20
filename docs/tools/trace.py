@@ -396,9 +396,16 @@ def review_workspace_ids(root: Path) -> set[str]:
     ``| D-80 |`` row there or in ``REVIEW-LEDGER.md``."""
 
     ids: set[str] = set()
-    ledger = root / "REVIEW-LEDGER.md"
+    records = root / "provenance" / "records"  # the frozen records since the 2026-11-20 per-unit layout
+    ledger = records / "REVIEW-LEDGER.md"
     ledger_text = ledger.read_text(encoding="utf-8", errors="replace") if ledger.is_file() else ""
-    for path in sorted((root / "reviews").glob("BUILD-[0-9][0-9]-*.md")):
+    answers = sorted(records.glob("**/*ANSWERS*.md")) + sorted(root.glob("units/*/sessions/*/ANSWERS.md"))
+    for path in answers:
+        text = path.read_text(encoding="utf-8", errors="replace")
+        meta = frontmatter(text)
+        if meta.get("type") == "Interview Answers" and SESSION.match(str(meta.get("id", ""))):
+            ids.add(meta["id"])
+    for path in sorted(records.glob("BUILD-[0-9][0-9]-*.md")):
         build = path.name[len("BUILD-") : len("BUILD-") + 2]
         text = path.read_text(encoding="utf-8", errors="replace")
         ids.update(f"B{build}-S{n}" for n in re.findall(r'<a id="s(\d+)"></a>', text))
