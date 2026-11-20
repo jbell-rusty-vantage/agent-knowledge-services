@@ -82,7 +82,7 @@ import {
  */
 const here = dirname(fileURLToPath(import.meta.url));
 const KS_ROOT = resolve(here, "../../..");
-const LAB = resolve(KS_ROOT, "../ai-engineer-research-2026-11-02/11-build04-lab/knowledge-loop-6");
+const LAB = resolve(KS_ROOT, "../ai-engineer-research-2026-11-02/schema-units/provenance/evidence/B08-loop-6");
 const TENANT = "00000000-0000-7000-8000-000000000001";
 const INSTALLATION = "0195f0a0-5b08-7000-8000-0000000c1a1d";
 const BINDING = "aiengineer-postgres";

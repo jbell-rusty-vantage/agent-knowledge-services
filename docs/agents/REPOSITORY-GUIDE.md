@@ -22,7 +22,7 @@ unless they are links.
   binding and the target component are distinguished there.
 - Current state (2026-11-15): read the [Knowledge Services state card](../../../../docs/state/2026-11-15/KNOWLEDGE-SERVICES.md#identity)
   first. Live work is driven from AI Engineer Build 08 ([current
-  handoff](../../../ai-engineer-research-2026-11-02/10-review-workspace/archive/handoffs/NEXT-SESSION-BUILD-08-AFTER-LOOP-8.md)) and the
+  handoff](../../../ai-engineer-research-2026-11-02/schema-units/archive/handoffs/NEXT-SESSION-BUILD-08-AFTER-LOOP-8.md)) and the
   accepted, not started [binding relocation plan](../specs/binding-relocation-2026-11/PLAN.md). The generated task route
   below that calls `NEXT-PACKAGE-CLEANUP.md` the current handoff is historical (last integrated 2026-10-24).
 - GitHub: public [`jbell-rusty-vantage/agent-knowledge-services`](https://github.com/jbell-rusty-vantage/agent-knowledge-services),

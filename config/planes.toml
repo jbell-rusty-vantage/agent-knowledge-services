@@ -126,7 +126,7 @@ container = "supabase_db_disposable-aieng-build04"
 port = 55622
 api_port = 55621
 database = "postgres"
-workdir = "platform/ai-engineer-research-2026-11-02/11-build04-lab"
+workdir = "platform/ai-engineer-research-2026-11-02/lab"
 up = "supabase start --workdir <workdir>"
 sources = ["docs/state/2026-11-17/plan/inputs/DATA-ACCESS.md"]
 

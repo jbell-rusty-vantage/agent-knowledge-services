@@ -85,7 +85,7 @@ EXTERNAL_SOURCES: tuple[dict[str, Any], ...] = (
     },
     {
         "name": "ai-engineer-review-workspace",
-        "root": Path("..") / "ai-engineer-research-2026-11-02" / "10-review-workspace",
+        "root": Path("..") / "ai-engineer-research-2026-11-02" / "schema-units",
         "families": re.compile(r"^B\d{2}$"),
     },
 )
