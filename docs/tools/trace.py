@@ -86,7 +86,7 @@ EXTERNAL_SOURCES: tuple[dict[str, Any], ...] = (
     {
         "name": "ai-engineer-review-workspace",
         "root": Path("..") / "ai-engineer-research-2026-11-02" / "schema-units",
-        "families": re.compile(r"^(?:B\d{2}|WS)$"),
+        "families": re.compile(r"^(?:B\d{2}|WS|VER)$"),
     },
 )
 
@@ -392,8 +392,10 @@ def collect_external(graph: Graph) -> None:
 
 
 def review_workspace_ids(root: Path) -> set[str]:
-    """``B08-S29`` is section 29 of ``reviews/BUILD-08-*.md`` (``<a id="s29">``); ``B08-D80`` is a
-    ``| D-80 |`` row there or in ``REVIEW-LEDGER.md``."""
+    """``B08-S29`` is section 29 of ``provenance/records/BUILD-08-*.md`` (``<a id="s29">``);
+    ``B08-D80`` is a ``| D-80 |`` row there or in ``provenance/records/REVIEW-LEDGER.md``. A session
+    id such as ``WS-S1`` or ``VER-S1`` is the ``id:`` of an ``Interview Answers`` file under
+    ``provenance/records/`` or ``units/*/sessions/*/``."""
 
     ids: set[str] = set()
     records = root / "provenance" / "records"  # the frozen records since the 2026-11-20 per-unit layout

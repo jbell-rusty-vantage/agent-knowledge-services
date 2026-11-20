@@ -11,7 +11,7 @@ import {
 import { sha256Digest } from "@aiengineer/knowledge-core";
 import { deterministicUuid } from "@aiengineer/knowledge-core";
 import { operationActorIdentity } from "./actor-identity.js";
-import { readDatabaseRelease } from "./database-release.js";
+import { observeDatabaseRelease, type DatabaseReleaseObservation } from "./database-release.js";
 import {
   RetrievalCitationReplay,
   RetrievalSupportResolver,
@@ -221,13 +221,14 @@ export class PostgresCanonicalRepository
   }
 
   /**
-   * What the database says about its release (`api.database_release()`), or null when it has no such function.
-   * Needs no tenant and writes nothing; the startup check reads it (`checkDatabaseRelease`).
+   * Whether the database holds the AI Engineer contract (the `api` schema) and, when it does, what it says about
+   * its release (`api.database_release()`; null when it has no such function). Needs no tenant and writes nothing;
+   * the startup check reads it (`checkDatabaseRelease`).
    */
-  async databaseRelease(): Promise<unknown> {
+  async databaseRelease(): Promise<DatabaseReleaseObservation> {
     const client = await this.#pool.connect();
     try {
-      return await readDatabaseRelease(client);
+      return await observeDatabaseRelease(client);
     } finally {
       client.release();
     }

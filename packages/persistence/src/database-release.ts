@@ -15,6 +15,12 @@ import type { ApiDatabaseReleaseState, ApiReleaseVerdict } from "@aiengineer/dat
  * This service's range is the `version` of the vendored `@aiengineer/database-contract` package, read from its
  * `contract.version.json` ({@link serviceReleaseRange}). Until 1.0.0 a range is that exact version. It applies to
  * the AI Engineer database only, never to the Biotech database.
+ *
+ * One outcome is this consumer's own and precedes the shared rule, as in Mission Control: a database without the
+ * `api` schema does not hold the AI Engineer contract at all (a disposable database with only the verification
+ * component, for example). There is no release to check, so the verdict is `not_applicable` and the process starts.
+ * A database that has the `api` schema but no `api.database_release()` is an AI Engineer database that states no
+ * release: the shared rule calls that `unknown` and refuses it.
  */
 
 export const DATABASE_RELEASE_FORMAT = "ai-engineer-database-release/1";
@@ -127,6 +133,24 @@ export async function readDatabaseRelease(client: DatabaseReleaseClient): Promis
   return (await client.query("select api.database_release() as r")).rows[0]?.r ?? null;
 }
 
+/** What a database says before the rule applies. */
+export interface DatabaseReleaseObservation {
+  /** Whether the database holds the AI Engineer contract at all: it has the `api` schema. */
+  readonly contract: boolean;
+  /** The JSON of `api.database_release()`, or null when the function is not there. Never read without the contract. */
+  readonly answer: unknown;
+}
+
+/**
+ * Asks one connection: first whether the `api` schema exists (`to_regnamespace`, which needs no privilege), and only
+ * then for the release. A database without the schema is never asked for the function. Reads only.
+ */
+export async function observeDatabaseRelease(client: DatabaseReleaseClient): Promise<DatabaseReleaseObservation> {
+  const absent = (await client.query("select to_regnamespace('api') is null as absent")).rows[0]?.absent;
+  if (absent === true) return { contract: false, answer: null };
+  return { contract: true, answer: await readDatabaseRelease(client) };
+}
+
 const CONTRACT_PACKAGE = "@aiengineer/database-contract";
 
 /** The record of the vendored contract package: the release this service was built for. */
@@ -185,8 +209,11 @@ export interface DatabaseReleaseReport {
   /** The release the database stated; null when it stated none or was not asked. */
   readonly release: string | null;
   readonly state: string | null;
-  /** The verdict of the rule; `not_checked` when the mode is `off`. */
-  readonly verdict: DatabaseReleaseVerdict["verdict"] | "not_checked";
+  /**
+   * The verdict of the shared rule, or one of this consumer's own two: `not_checked` when the mode is `off`,
+   * `not_applicable` when the database does not hold the AI Engineer contract (no `api` schema).
+   */
+  readonly verdict: DatabaseReleaseVerdict["verdict"] | "not_checked" | "not_applicable";
   readonly warning: boolean;
   readonly reason: string;
   /** When the database was asked (ISO 8601); the report is not refreshed afterwards. */
@@ -241,6 +268,8 @@ function withoutDsn(message: string): string {
  * the rule and decides:
  *
  * - `off`: the database is not asked; the report says `not_checked`.
+ * - a database without the AI Engineer contract (no `api` schema): `not_applicable`; the process starts in either
+ *   mode and the report is logged once.
  * - `enforce`: a verdict that does not start throws {@link DatabaseReleaseRefused}; a warning is logged.
  * - `warn`: the verdict is logged and the process starts whatever it is.
  *
@@ -249,7 +278,7 @@ function withoutDsn(message: string): string {
  * as `unknown`, asks nothing and, in enforce mode, refuses.
  */
 export async function checkDatabaseRelease(
-  read: () => Promise<unknown>,
+  read: () => Promise<DatabaseReleaseObservation>,
   options: DatabaseReleaseCheckOptions,
 ): Promise<DatabaseReleaseReport> {
   const checkedAt = (options.now?.() ?? new Date()).toISOString();
@@ -293,8 +322,22 @@ export async function checkDatabaseRelease(
   else
     try {
       const observed = await read();
+      if (!observed.contract) {
+        const outside: DatabaseReleaseReport = {
+          check: options.mode,
+          range,
+          release: null,
+          state: null,
+          verdict: "not_applicable",
+          warning: false,
+          reason: "the database does not hold the AI Engineer contract (no api schema), so it has no release to check",
+          checkedAt,
+        };
+        log(outside);
+        return outside;
+      }
       try {
-        verdict = releaseVerdict(observed, range);
+        verdict = releaseVerdict(observed.answer, range);
       } catch (error) {
         verdict = noAnswer(`the database stated a release this service cannot read (${said(error)})`);
       }

@@ -41,6 +41,12 @@ describe("knowledge API", () => {
         databaseRelease,
       });
       expect(ServiceStatusSchema.parse(response.json()).databaseRelease?.verdict).toBe("ok");
+      // A database without the AI Engineer contract is a verdict the published status carries too.
+      const outside = {
+        ...response.json(),
+        databaseRelease: { ...databaseRelease, release: null, state: null, verdict: "not_applicable" },
+      };
+      expect(ServiceStatusSchema.parse(outside).databaseRelease?.verdict).toBe("not_applicable");
     } finally {
       await persistent.close();
     }

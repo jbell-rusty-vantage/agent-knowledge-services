@@ -4,14 +4,15 @@ import { z } from "zod";
  * The AI Engineer database release a process started on (VER-S1): what the database stated through
  * `api.database_release()` (`release`, `state`), the releases this service works with (`range`), the verdict of the
  * rule shared with the AI Engineer service and Mission Control, and the mode the check ran in
- * (`AIENG_DB_RELEASE_CHECK`). `not_checked` is the verdict of mode `off`. Read once at startup (`checkedAt`).
+ * (`AIENG_DB_RELEASE_CHECK`). `not_checked` is the verdict of mode `off`; `not_applicable` means the database does
+ * not hold the AI Engineer contract (it has no `api` schema), so it has no release. Read once at startup (`checkedAt`).
  */
 export const DatabaseReleaseStatusSchema = z.strictObject({
   check: z.enum(["enforce", "warn", "off"]),
   range: z.string(),
   release: z.string().nullable(),
   state: z.string().nullable(),
-  verdict: z.enum(["ok", "unknown", "unstamped", "incompatible", "inconsistent", "not_checked"]),
+  verdict: z.enum(["ok", "unknown", "unstamped", "incompatible", "inconsistent", "not_checked", "not_applicable"]),
   warning: z.boolean(),
   checkedAt: z.string(),
 });

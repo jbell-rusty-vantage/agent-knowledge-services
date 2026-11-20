@@ -10,6 +10,7 @@ import {
   checkMode,
   compareVersions,
   inRange,
+  observeDatabaseRelease,
   pinnedContractRelease,
   readDatabaseRelease,
   releaseVerdict,
@@ -40,6 +41,10 @@ const record = JSON.parse(readFileSync(join(pinned.packageRoot, "contract.versio
 };
 const NOW = () => new Date("2026-11-20T00:00:00.000Z");
 const stated = (release: string | null, state: string) => ({ format: DATABASE_RELEASE_FORMAT, release, state });
+/** An AI Engineer database (it has the `api` schema) that answered `answer`; null is one without the function. */
+const contract = (answer: unknown) => ({ contract: true, answer });
+/** A database that does not hold the AI Engineer contract: no `api` schema. */
+const NO_CONTRACT = { contract: false, answer: null };
 
 describe("the shared release-check cases of the vendored contract", () => {
   it("are the format this port was written against, and none is empty", () => {
@@ -145,6 +150,44 @@ describe("reading the database", () => {
     expect(double.statements).toHaveLength(1);
     expect(await readDatabaseRelease({ query: async () => ({ rows: [] }) })).toBeNull();
   });
+
+  /** A connection to a database with or without the `api` schema, and with or without the function. */
+  const database = (schema: boolean, present: boolean, answer: unknown = null) => {
+    const statements: string[] = [];
+    return {
+      statements,
+      query: async (text: string) => {
+        statements.push(text);
+        if (text.includes("to_regnamespace")) return { rows: [{ absent: !schema }] };
+        return { rows: text.includes("to_regprocedure") ? [{ ok: present }] : [{ r: answer }] };
+      },
+    };
+  };
+
+  it("asks for the schema first and never calls the function in a database without the AI Engineer contract", async () => {
+    const outside = database(false, false);
+    expect(await observeDatabaseRelease(outside)).toEqual({ contract: false, answer: null });
+    expect(outside.statements).toEqual(["select to_regnamespace('api') is null as absent"]);
+  });
+
+  it("asks an AI Engineer database for its release, and reports a missing function as no answer", async () => {
+    const answer = stated("0.12.0", "current");
+    const current = database(true, true, answer);
+    expect(await observeDatabaseRelease(current)).toEqual({ contract: true, answer });
+    expect(current.statements).toEqual([
+      "select to_regnamespace('api') is null as absent",
+      "select to_regprocedure('api.database_release()') is not null as ok",
+      "select api.database_release() as r",
+    ]);
+    const older = database(true, false);
+    expect(await observeDatabaseRelease(older)).toEqual({ contract: true, answer: null });
+    expect(older.statements).toHaveLength(2);
+    // Only an explicit answer that the schema is absent makes a database "not applicable".
+    expect(await observeDatabaseRelease({ query: async () => ({ rows: [] }) })).toEqual({
+      contract: true,
+      answer: null,
+    });
+  });
 });
 
 describe("the startup check", () => {
@@ -152,7 +195,7 @@ describe("the startup check", () => {
   const log = (event: DatabaseReleaseReport & { event: string }) => void events.push(event);
   const run = (observed: unknown, mode: "enforce" | "warn" | "off", range = "0.12.0") => {
     events.length = 0;
-    return checkDatabaseRelease(async () => observed, { mode, range, log, now: NOW });
+    return checkDatabaseRelease(async () => contract(observed), { mode, range, log, now: NOW });
   };
 
   it("starts on the release as stamped and reports release, state, range and verdict", async () => {
@@ -198,6 +241,31 @@ describe("the startup check", () => {
       await expect(run(observed, "enforce")).rejects.toMatchObject({ report: { verdict } });
   });
 
+  it("starts on a database without the AI Engineer contract: not_applicable in enforce and warn, logged once", async () => {
+    for (const mode of ["enforce", "warn"] as const) {
+      events.length = 0;
+      const report = await checkDatabaseRelease(async () => NO_CONTRACT, { mode, range: "0.12.0", log, now: NOW });
+      expect(report).toEqual({
+        check: mode,
+        range: "0.12.0",
+        release: null,
+        state: null,
+        verdict: "not_applicable",
+        warning: false,
+        reason: "the database does not hold the AI Engineer contract (no api schema), so it has no release to check",
+        checkedAt: "2026-11-20T00:00:00.000Z",
+      });
+      expect(events).toEqual([{ event: "ks.database.release", ...report }]);
+    }
+  });
+
+  it("still refuses an AI Engineer database that has the api schema but no release function", async () => {
+    const refused = await run(null, "enforce").catch((error: unknown) => error);
+    expect(refused).toBeInstanceOf(DatabaseReleaseRefused);
+    expect((refused as DatabaseReleaseRefused).report).toMatchObject({ verdict: "unknown", release: null });
+    expect(await run(null, "warn")).toMatchObject({ check: "warn", verdict: "unknown" });
+  });
+
   it("starts in warn mode whatever the verdict, and logs it", async () => {
     const report = await run(stated("0.11.0", "current"), "warn");
     expect(report).toMatchObject({ check: "warn", verdict: "incompatible", release: "0.11.0", state: "current" });
@@ -209,7 +277,7 @@ describe("the startup check", () => {
     const report = await checkDatabaseRelease(
       async () => {
         asked += 1;
-        return null;
+        return NO_CONTRACT;
       },
       { mode: "off", range: "0.12.0", log, now: NOW },
     );
@@ -241,7 +309,7 @@ describe("the startup check", () => {
     let asked = 0;
     const read = async () => {
       asked += 1;
-      return stated("0.12.0", "current");
+      return contract(stated("0.12.0", "current"));
     };
     const range = (): string => {
       throw new Error("DATABASE_CONTRACT_PACKAGE_MISSING: @aiengineer/database-contract is not installed");
@@ -261,7 +329,7 @@ describe("the startup check", () => {
   });
 
   it("uses this service's range by default and refuses a malformed range before asking", async () => {
-    const report = await checkDatabaseRelease(async () => stated(serviceReleaseRange(), "current"), {
+    const report = await checkDatabaseRelease(async () => contract(stated(serviceReleaseRange(), "current")), {
       mode: "enforce",
       log: false,
     });
@@ -271,7 +339,7 @@ describe("the startup check", () => {
       checkDatabaseRelease(
         async () => {
           asked += 1;
-          return null;
+          return contract(null);
         },
         { mode: "enforce", range: "latest", log: false },
       ),

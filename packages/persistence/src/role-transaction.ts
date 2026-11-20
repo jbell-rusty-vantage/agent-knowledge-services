@@ -1,5 +1,5 @@
 import { Pool, type PoolConfig } from "pg";
-import { readDatabaseRelease } from "./database-release.js";
+import { observeDatabaseRelease, type DatabaseReleaseObservation } from "./database-release.js";
 import type { TenantSqlClient } from "./postgres.js";
 
 /**
@@ -112,13 +112,14 @@ export class TenantPostgres {
   }
 
   /**
-   * Superuser-free probe that needs no tenant: what the database says about its release
-   * (`api.database_release()`), or null when it has no such function. Writes nothing.
+   * Superuser-free probe that needs no tenant: whether the database holds the AI Engineer contract (the `api`
+   * schema) and, when it does, what it says about its release (`api.database_release()`; null when it has no such
+   * function). Writes nothing.
    */
-  async databaseRelease(): Promise<unknown> {
+  async databaseRelease(): Promise<DatabaseReleaseObservation> {
     const client = await this.#pool.connect();
     try {
-      return await readDatabaseRelease(client);
+      return await observeDatabaseRelease(client);
     } finally {
       client.release();
     }

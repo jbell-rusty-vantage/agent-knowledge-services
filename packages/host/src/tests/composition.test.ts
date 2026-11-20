@@ -4,20 +4,26 @@ const pools = vi.hoisted(() => ({ created: 0, ended: 0 }));
 /**
  * What the database behind the double answers for `api.database_release()`: `undefined` is the release this service
  * was built for, as stamped; `null` is a database without the function; an `Error` is one that cannot be asked.
+ * `contract: false` is a database without the `api` schema: it does not hold the AI Engineer contract at all.
  */
-const release = vi.hoisted(() => ({ answer: undefined as unknown, asked: 0 }));
+const release = vi.hoisted(() => ({ answer: undefined as unknown, asked: 0, contract: true }));
 
 // Observe pool ownership at the persistence boundary host composes. Pools connect
 // lazily, so constructing and ending them needs no database; the release probe is
 // answered here, so no test reaches one either.
 vi.mock("@aiengineer/knowledge-persistence", async (importOriginal) => {
   const original = await importOriginal<typeof import("@aiengineer/knowledge-persistence")>();
-  const databaseRelease = async (): Promise<unknown> => {
+  const databaseRelease = async (): Promise<{ contract: boolean; answer: unknown }> => {
     release.asked += 1;
     if (release.answer instanceof Error) throw release.answer;
-    return release.answer === undefined
-      ? { format: original.DATABASE_RELEASE_FORMAT, release: original.serviceReleaseRange(), state: "current" }
-      : release.answer;
+    if (!release.contract) return { contract: false, answer: null };
+    return {
+      contract: true,
+      answer:
+        release.answer === undefined
+          ? { format: original.DATABASE_RELEASE_FORMAT, release: original.serviceReleaseRange(), state: "current" }
+          : release.answer,
+    };
   };
   class PostgresCanonicalRepository extends original.PostgresCanonicalRepository {
     constructor(...parameters: ConstructorParameters<typeof original.PostgresCanonicalRepository>) {
@@ -62,6 +68,7 @@ beforeEach(() => {
   pools.ended = 0;
   release.answer = undefined;
   release.asked = 0;
+  release.contract = true;
   fetchSpy = vi.spyOn(globalThis, "fetch").mockRejectedValue(new Error("NETWORK_NOT_ALLOWED"));
 });
 afterEach(() => {
@@ -500,6 +507,28 @@ describe("AI Engineer database release at startup (VER-S1)", () => {
     await expect(worker(test, phases)).rejects.toMatchObject({ report: { verdict: "inconsistent" } });
     expect(phases).toEqual(["prepare"]);
     expect(pools).toEqual({ created: 4, ended: 4 });
+  });
+
+  it("starts every role on a database without the AI Engineer contract and reports not_applicable", async () => {
+    // A disposable database that holds only the verification component (a Mission Control drill): no api schema.
+    release.contract = false;
+    const phases: string[] = [];
+    const hosts = [await api(test), await mcp(test), await worker(test, phases)];
+    try {
+      for (const host of hosts)
+        expect(host.databaseRelease).toMatchObject({
+          check: "enforce",
+          release: null,
+          state: null,
+          verdict: "not_applicable",
+          warning: false,
+        });
+      expect(phases).toEqual(["prepare", "build", "reconcile"]);
+    } finally {
+      await Promise.all(hosts.map((host) => host.close()));
+    }
+    expect(pools).toEqual({ created: 3, ended: 3 });
+    expect(release.asked).toBe(3);
   });
 
   it("starts with a warning on a release that is in range but ahead of its stamp", async () => {

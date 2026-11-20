@@ -18875,7 +18875,8 @@
                   "unstamped",
                   "incompatible",
                   "inconsistent",
-                  "not_checked"
+                  "not_checked",
+                  "not_applicable"
                 ]
               },
               "warning": {

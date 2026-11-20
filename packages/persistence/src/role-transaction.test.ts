@@ -8,6 +8,8 @@ const pool = vi.hoisted(() => ({
   failOn: undefined as string | undefined,
   /** What `api.database_release()` answers; `undefined` means the database has no such function. */
   release: undefined as unknown,
+  /** Whether the database has the `api` schema, that is, holds the AI Engineer contract. */
+  contract: true,
 }));
 vi.mock("pg", () => ({
   Pool: class {
@@ -16,6 +18,7 @@ vi.mock("pg", () => ({
         async query(sql: string, values?: readonly unknown[]) {
           pool.statements.push({ sql, ...(values ? { values } : {}) });
           if (pool.failOn && sql.startsWith(pool.failOn)) throw new Error(`FAILED:${sql}`);
+          if (sql.includes("to_regnamespace")) return { rows: [{ absent: !pool.contract }], rowCount: 1 };
           if (sql.includes("to_regprocedure")) return { rows: [{ ok: pool.release !== undefined }], rowCount: 1 };
           if (sql === "select api.database_release() as r") return { rows: [{ r: pool.release }], rowCount: 1 };
           return { rows: [], rowCount: 0 };
@@ -45,6 +48,7 @@ beforeEach(() => {
   pool.ended = 0;
   pool.failOn = undefined;
   pool.release = undefined;
+  pool.contract = true;
 });
 
 describe("tenant-scoped bounded-role transactions", () => {
@@ -128,18 +132,28 @@ describe("tenant-scoped bounded-role transactions", () => {
   });
 
   it("asks the database for its release without a tenant or a transaction, and releases the client", async () => {
-    await expect(database().databaseRelease()).resolves.toBeNull();
-    expect(sql()).toEqual(["select to_regprocedure('api.database_release()') is not null as ok"]);
+    await expect(database().databaseRelease()).resolves.toEqual({ contract: true, answer: null });
+    expect(sql()).toEqual([
+      "select to_regnamespace('api') is null as absent",
+      "select to_regprocedure('api.database_release()') is not null as ok",
+    ]);
     pool.statements = [];
     pool.release = { format: "ai-engineer-database-release/1", release: "0.12.0", state: "current" };
-    await expect(database().databaseRelease()).resolves.toEqual(pool.release);
+    await expect(database().databaseRelease()).resolves.toEqual({ contract: true, answer: pool.release });
     expect(sql()).toEqual([
+      "select to_regnamespace('api') is null as absent",
       "select to_regprocedure('api.database_release()') is not null as ok",
       "select api.database_release() as r",
     ]);
     pool.failOn = "select api.database_release()";
     await expect(database().databaseRelease()).rejects.toThrow("FAILED:select api.database_release() as r");
-    expect(pool.released).toBe(3);
+    // A database without the api schema holds no AI Engineer contract: the function is never looked up or called.
+    pool.statements = [];
+    pool.failOn = undefined;
+    pool.contract = false;
+    await expect(database().databaseRelease()).resolves.toEqual({ contract: false, answer: null });
+    expect(sql()).toEqual(["select to_regnamespace('api') is null as absent"]);
+    expect(pool.released).toBe(4);
   });
 
   it("refuses non-Postgres connection strings", () => {

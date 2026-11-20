@@ -3,6 +3,7 @@ import {
   checkDatabaseRelease,
   serviceReleaseRange,
   type DatabaseReleaseCheckMode,
+  type DatabaseReleaseObservation,
   type DatabaseReleaseReport,
   type DatabaseReleaseStatus,
 } from "@aiengineer/knowledge-persistence";
@@ -21,12 +22,12 @@ import {
  * two functions below before it serves or writes. Neither ever asks a Biotech database.
  */
 
-export type { DatabaseReleaseCheckMode, DatabaseReleaseReport, DatabaseReleaseStatus };
+export type { DatabaseReleaseCheckMode, DatabaseReleaseObservation, DatabaseReleaseReport, DatabaseReleaseStatus };
 export { DatabaseReleaseRefused, databaseReleaseStatus } from "@aiengineer/knowledge-persistence";
 
 /** A pool that can ask its database for its release (`PostgresCanonicalRepository`, `TenantPostgres`). */
 export interface DatabaseReleaseProbe {
-  databaseRelease(): Promise<unknown>;
+  databaseRelease(): Promise<DatabaseReleaseObservation>;
 }
 
 /** The component login of the AI Engineer plane: a binding that names it works in the AI Engineer database. */
@@ -48,8 +49,9 @@ export function databaseReleaseExpectation(environment: KsDatabaseEnvironment): 
 /**
  * The startup check of a process that holds an open pool on the plane `selection` names. On the AIENG plane it asks
  * the database for its release and, in enforce mode, throws `DatabaseReleaseRefused` unless the release is one this
- * service works with; the report is what the process then states on its status and health surfaces. On any other
- * plane it asks nothing and returns `undefined`. The log line is silent when `NODE_ENV=test`.
+ * service works with; the report is what the process then states on its status and health surfaces. A database
+ * without the `api` schema holds no AI Engineer contract: the verdict is `not_applicable` and the process starts.
+ * On any other plane it asks nothing and returns `undefined`. The log line is silent when `NODE_ENV=test`.
  */
 export async function startOnAiEngineerDatabase(
   database: DatabaseReleaseProbe,
@@ -79,7 +81,7 @@ export async function startOnAiEngineerDatabaseAt(
 ): Promise<DatabaseReleaseReport> {
   const mode = loadKsDatabaseConfig(environment, "ai-engineer", { log: false }).releaseCheck ?? "enforce";
   const options = { mode, ...(environment.NODE_ENV === "test" ? { log: false as const } : {}) };
-  if (mode === "off") return checkDatabaseRelease(async () => null, options);
+  if (mode === "off") return checkDatabaseRelease(async () => ({ contract: true, answer: null }), options);
   const database = open(connectionString);
   try {
     return await checkDatabaseRelease(() => database.databaseRelease(), options);

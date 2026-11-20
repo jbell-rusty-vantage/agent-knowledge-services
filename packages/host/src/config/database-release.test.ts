@@ -15,7 +15,13 @@ import {
 const range = serviceReleaseRange();
 const stated = (release: string | null, state: string) => ({ format: DATABASE_RELEASE_FORMAT, release, state });
 
-/** A pool double: counts how often it is asked and whether it was closed. */
+/** A database that does not hold the AI Engineer contract: it has no `api` schema. */
+const NO_CONTRACT = Symbol("no api schema");
+
+/**
+ * A pool double: counts how often it is asked and whether it was closed. `answer` is what `api.database_release()`
+ * returns in a database that has the `api` schema (null: no such function); `NO_CONTRACT` is one without the schema.
+ */
 function probe(answer: unknown) {
   const seen = { asked: 0, closed: 0 };
   return {
@@ -23,7 +29,7 @@ function probe(answer: unknown) {
     databaseRelease: async () => {
       seen.asked += 1;
       if (answer instanceof Error) throw answer;
-      return answer;
+      return answer === NO_CONTRACT ? { contract: false, answer: null } : { contract: true, answer };
     },
     close: async () => {
       seen.closed += 1;
@@ -52,6 +58,26 @@ describe("the release check of an open AI Engineer pool", () => {
     await expect(
       startOnAiEngineerDatabase(probe(stated("0.0.1", "current")), { plane: "AIENG" }, { NODE_ENV: "test" }),
     ).rejects.toBeInstanceOf(DatabaseReleaseRefused);
+  });
+
+  it("starts on a database without the AI Engineer contract and reports not_applicable; a missing function is refused", async () => {
+    for (const releaseCheck of ["enforce", "warn"] as const) {
+      const outside = probe(NO_CONTRACT);
+      const report = await startOnAiEngineerDatabase(outside, { plane: "AIENG", releaseCheck }, { NODE_ENV: "test" });
+      expect(report).toMatchObject({
+        check: releaseCheck,
+        range,
+        release: null,
+        state: null,
+        verdict: "not_applicable",
+        warning: false,
+      });
+      expect(outside.seen.asked).toBe(1);
+    }
+    // The api schema without api.database_release() is an AI Engineer database that states no release: unknown.
+    await expect(
+      startOnAiEngineerDatabase(probe(null), { plane: "AIENG", releaseCheck: "enforce" }, { NODE_ENV: "test" }),
+    ).rejects.toMatchObject({ report: { verdict: "unknown" } });
   });
 
   it("asks nothing on the Biotech plane", async () => {
@@ -87,6 +113,13 @@ describe("the release check behind a DSN (a binding's component login, a one-off
       report: { verdict: "unknown" },
     });
     expect(unreachable.seen.closed).toBe(1);
+  });
+
+  it("starts a binding on a component-only database: not_applicable, and the connection is closed", async () => {
+    const componentOnly = probe(NO_CONTRACT);
+    const report = await startOnAiEngineerDatabaseAt(dsn, env(), () => componentOnly);
+    expect(report).toMatchObject({ check: "enforce", verdict: "not_applicable", release: null });
+    expect(componentOnly.seen).toEqual({ asked: 1, closed: 1 });
   });
 
   it("starts in warn mode and opens nothing in off mode", async () => {

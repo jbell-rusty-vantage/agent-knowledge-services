@@ -10,12 +10,22 @@ Biotech database.
 
 | The database answers | Verdict | In `enforce` mode |
 | --- | --- | --- |
-| nothing (no function, another format, or it cannot be asked) | `unknown` | refuses to start |
+| it has no `api` schema: it does not hold the AI Engineer contract | `not_applicable` | starts and logs it once |
+| nothing (the `api` schema but no function, another format, or it cannot be asked) | `unknown` | refuses to start |
 | `release` is null | `unstamped` | refuses |
 | a release outside this service's range | `incompatible` | refuses |
 | in range, state `inconsistent` | `inconsistent` | refuses |
 | in range, state `ahead`, `component_drift` or `unverifiable` | `ok` with a warning | starts and logs the warning |
 | in range, state `current` | `ok` | starts |
+
+**Not applicable.** The first row is this service's own pre-check, the same one Mission Control makes; it is not in
+the shared cases. Before asking for the release a process asks the same connection whether the `api` schema exists
+(`select to_regnamespace('api') is null`). A database without it holds no AI Engineer contract, for example a
+disposable PostgreSQL with only the verification component, as in Mission Control drills: there is no release to
+check, `api.database_release()` is never looked up or called, and the process starts in `enforce` and in `warn` mode
+with verdict `not_applicable`. A database that has the `api` schema but no `api.database_release()` is taken for an
+AI Engineer database that states no release (one older than 0.12.0, for example): that stays `unknown` and is
+refused.
 
 **The range** is the `version` in `contract.version.json` of the vendored `@aiengineer/database-contract` package,
 read from the installed package at run time (`serviceReleaseRange()`); no version number is written in this
@@ -30,7 +40,7 @@ the contract's, shared by the three services, so it has no `KS_` prefix. It is r
 **Code.** The rule, the range, the read and the startup decision:
 `packages/persistence/src/database-release.ts` (`inRange`, `releaseVerdict`, `checkMode`, `readDatabaseRelease`,
 `serviceReleaseRange`, `checkDatabaseRelease`, `DatabaseReleaseRefused`), a port of the contract repository's
-`scripts/database-release.mjs`. The pools ask without a tenant: `PostgresCanonicalRepository.databaseRelease()`
+`scripts/database-release.mjs`, plus `observeDatabaseRelease` (the `api` schema pre-check, then the read). The pools ask without a tenant: `PostgresCanonicalRepository.databaseRelease()`
 (`postgres.ts`) and `TenantPostgres.databaseRelease()` (`role-transaction.ts`). Where a process applies it:
 `packages/host/src/config/database-release.ts` (`startOnAiEngineerDatabase` for an open pool,
 `startOnAiEngineerDatabaseAt` for a DSN).
@@ -50,7 +60,8 @@ A refusal is one error, `AIENG_DB_RELEASE_REFUSED`, that names the verdict and i
 state, this service's range and the variable that changes the mode. Every pool opened to ask is closed again.
 
 **Where the release is reported.** Each surface carries `check`, `range`, `release`, `state`, `verdict`, `warning`
-and `checkedAt`; the database is asked once, at startup.
+and `checkedAt`; the database is asked once, at startup. The verdict is one of the rule's five, `not_applicable`, or
+`not_checked` (mode `off`).
 - API: `databaseRelease` on `GET /readiness` and `GET /v1/system` (`ServiceStatus` in `packages/contracts/src/service.ts`).
 - Platform MCP: `databaseRelease` on `GET /health`.
 - Worker: `databaseRelease` on its `knowledge.worker.started` line.
@@ -60,7 +71,7 @@ and `checkedAt`; the database is asked once, at startup.
   `./dev db query --plane <plane> --sql "select api.database_release()"` reads one read-only.
 
 **Tests.** `packages/persistence/src/database-release.test.ts` (every shared case, the range, the read, the three
-modes); `packages/persistence/src/role-transaction.test.ts` (the pool probe);
+modes, and `not_applicable`: nothing is refused and the function is never called); `packages/persistence/src/role-transaction.test.ts` (the pool probe);
 `packages/host/src/config/database.test.ts` (the variable, the registry and `.env.example`);
 `packages/host/src/config/database-release.test.ts`; `packages/host/src/tests/composition.test.ts` (API, MCP and
 worker refuse, warn and skip; Biotech is never asked);
@@ -74,9 +85,12 @@ package, the range read from its `contract.version.json`). Startup refusal with 
 
 **Gotchas.**
 - A database that holds only the Knowledge Services verification component (a disposable PostgreSQL the component
-  installer filled) has no `api.database_release()`: a process pointed at it through `KS_AIENG_DB_RUNTIME_DSN`, or a
-  binding on `KS_AIENG_DB_COMPONENT_DSN`, refuses with verdict `unknown`. Set `AIENG_DB_RELEASE_CHECK=off` for such a
-  target. Tests that construct `createAiEngineerPostgresBackend` or `createKnowledgeServices` directly are not asked.
+  installer filled) has no `api` schema, so a binding on `KS_AIENG_DB_COMPONENT_DSN` or a process on
+  `KS_AIENG_DB_RUNTIME_DSN` starts on it with verdict `not_applicable`; no variable is needed. The verdict is about the
+  release only: a surface that needs the AI Engineer schema still fails on such a database when it is used.
+- A database with an `api` schema that is not the AI Engineer contract's (another application's) is asked for
+  `api.database_release()` and refused as `unknown`; only `AIENG_DB_RELEASE_CHECK=off` or `warn` starts on it.
+- Tests that construct `createAiEngineerPostgresBackend` or `createKnowledgeServices` directly are not asked.
 - A lab built from drafts must be stamped before a service starts on it
   (`node scripts/database-release.mjs stamp --workdir <dir>` in the contract repository). Migrations applied after the
   stamp give state `ahead`: the service starts and warns.

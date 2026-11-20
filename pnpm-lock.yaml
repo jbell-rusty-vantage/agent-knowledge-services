@@ -930,7 +930,7 @@ packages:
     engines: {node: '>=18'}
 
   '@aiengineer/database-contract@file:vendor/aiengineer-database-contract-0.12.0.tgz':
-    resolution: {integrity: sha512-/NjJS033pUiGFtXDfZoNplGn/OcXgzcaQiolVIzrIOBhUaDEoo9KPQyABm2OnSl4OLRb9i+RRN0Z394dKFhmkA==, tarball: file:vendor/aiengineer-database-contract-0.12.0.tgz}
+    resolution: {integrity: sha512-srjeR1YBbdY1jEp2b8JS+Ujq3CSuHTPfMIVguw28bHz7PRdIFU5SKStoj9KnKa8Ujbc0dUeuan2Z96MEWhPkBg==, tarball: file:vendor/aiengineer-database-contract-0.12.0.tgz}
     version: 0.12.0
     engines: {node: '>=20'}
 

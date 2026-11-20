@@ -5,19 +5,25 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 
 /**
  * What the database behind the double answers for `api.database_release()`: `undefined` is the release this service
- * was built for, as stamped. The executor's pool (`TenantPostgres`) is the persistence boundary it composes, so the
- * double sits there and no test reaches a database.
+ * was built for, as stamped; `null` is a database without the function. `contract: false` is a database without the
+ * `api` schema, which does not hold the AI Engineer contract. The executor's pool (`TenantPostgres`) is the
+ * persistence boundary it composes, so the double sits there and no test reaches a database.
  */
-const release = vi.hoisted(() => ({ answer: undefined as unknown, asked: 0, closed: 0 }));
+const release = vi.hoisted(() => ({ answer: undefined as unknown, asked: 0, closed: 0, contract: true }));
 
 vi.mock("@aiengineer/knowledge-persistence", async (importOriginal) => {
   const original = await importOriginal<typeof import("@aiengineer/knowledge-persistence")>();
   class TenantPostgres extends original.TenantPostgres {
-    override async databaseRelease(): Promise<unknown> {
+    override async databaseRelease(): Promise<{ contract: boolean; answer: unknown }> {
       release.asked += 1;
-      return release.answer === undefined
-        ? { format: original.DATABASE_RELEASE_FORMAT, release: original.serviceReleaseRange(), state: "current" }
-        : release.answer;
+      if (!release.contract) return { contract: false, answer: null };
+      return {
+        contract: true,
+        answer:
+          release.answer === undefined
+            ? { format: original.DATABASE_RELEASE_FORMAT, release: original.serviceReleaseRange(), state: "current" }
+            : release.answer,
+      };
     }
     override async migrationHead(): Promise<string | undefined> {
       return original.pinnedContractRelease().migrationHead.split("_")[0];
@@ -55,6 +61,7 @@ beforeEach(() => {
   release.answer = undefined;
   release.asked = 0;
   release.closed = 0;
+  release.contract = true;
 });
 
 describe("the executor checks the AI Engineer database release before it serves (VER-S1)", () => {
@@ -91,6 +98,29 @@ describe("the executor checks the AI Engineer database release before it serves 
 
     release.answer = null;
     await expect(createKnowledgeFromEnv(env)).rejects.toMatchObject({ report: { verdict: "unknown" } });
+  });
+
+  it("starts on a database without the AI Engineer contract and says not_applicable on /health", async () => {
+    release.contract = false;
+    const running = await startExecutorServer({ port: 0, host: "127.0.0.1", env: await environment() });
+    try {
+      expect(running.knowledge?.databaseRelease).toMatchObject({
+        check: "enforce",
+        verdict: "not_applicable",
+        release: null,
+        state: null,
+      });
+      const health = (await (await fetch(`${running.url}/health`)).json()) as {
+        knowledge: { databaseRelease: Record<string, unknown> };
+      };
+      expect(health.knowledge.databaseRelease).toMatchObject({
+        verdict: "not_applicable",
+        range: serviceReleaseRange(),
+      });
+      expect(release.asked).toBe(1);
+    } finally {
+      await running.close();
+    }
   });
 
   it("starts in warn mode on any verdict and does not ask in off mode", async () => {
