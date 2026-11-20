@@ -4,7 +4,7 @@ import { loadExecutorConfig, VerificationExecutor } from "./executor.js";
 import { createHttpServer } from "./http.js";
 import type { ScopedExecutorAccess } from "./access.js";
 import { createCaptureCustodyReader } from "./knowledge-operation/capture-bridge.js";
-import { createKnowledgeServices, loadKnowledgeConfig, type KnowledgeServices } from "./knowledge/context.js";
+import { loadKnowledgeConfig, openKnowledgeServices, type KnowledgeServices } from "./knowledge/context.js";
 import {
   BACKEND as AIENGINEER_POSTGRES_BACKEND,
   createIngestionApplyPort,
@@ -52,12 +52,16 @@ export interface RunningExecutor {
 /**
  * One process: capture/artifact tools always; knowledge (schema/db/ingest/checkpoints/source discovery) when a
  * database URL and workspace are configured; ks.knowledge_operation.v2 when KS_KNOWLEDGE_* is configured.
+ * Each connection to the AI Engineer database (the knowledge pool, a binding's component login) is checked against
+ * the database release before the server listens (VER-S1); a refusal stops startup.
  */
 export async function startExecutorServer(options: ServeOptions): Promise<RunningExecutor> {
   const env = options.env ?? process.env;
   const executor = await VerificationExecutor.create(loadExecutorConfig(env));
   const knowledgeConfig = loadKnowledgeConfig(env);
-  const knowledge = knowledgeConfig ? createKnowledgeServices(knowledgeConfig, { verification: executor }) : undefined;
+  const knowledge = knowledgeConfig
+    ? await openKnowledgeServices(knowledgeConfig, { verification: executor }, env)
+    : undefined;
   let server: Server;
   let knowledgeOperation: KnowledgeOperationSurface | undefined;
   try {
@@ -119,6 +123,8 @@ export function describeRunning(running: RunningExecutor, auth: "bearer" | "none
       ? {
           routes: `${running.url}/knowledge-operation/v2`,
           auth: "K07 issuer credential (KS_KNOWLEDGE_ISSUER / KS_KNOWLEDGE_AUDIENCE / KS_KNOWLEDGE_JWKS_*)",
+          databaseRelease:
+            running.knowledgeOperation.databaseRelease ?? "not asked (no binding on KS_AIENG_DB_COMPONENT_DSN)",
           bindings: running.knowledgeOperation.backends.map((backend) => ({
             application: backend.application,
             binding: backend.binding,
@@ -131,6 +137,7 @@ export function describeRunning(running: RunningExecutor, auth: "bearer" | "none
       ? {
           workspaceDir: running.knowledge.workspace.dir,
           workspaceHead: running.knowledge.workspace.migrationHead,
+          databaseRelease: running.knowledge.databaseRelease ?? null,
           defaultTenantId: running.knowledge.config.defaultTenantId,
           artifactDir: running.knowledge.config.artifactDir,
           storage: running.knowledge.config.storage ? "supabase" : "local",
@@ -149,5 +156,5 @@ export async function createKnowledgeFromEnv(
   const config = loadKnowledgeConfig(env);
   if (!config) return undefined;
   const executor = verification ?? (await VerificationExecutor.create(loadExecutorConfig(env)));
-  return createKnowledgeServices(config, { verification: executor });
+  return openKnowledgeServices(config, { verification: executor }, env);
 }

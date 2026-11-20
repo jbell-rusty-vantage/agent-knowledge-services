@@ -3,7 +3,7 @@
 **What it does.** The verification executor fetches a URL (Firecrawl when `FIRECRAWL_API_KEY` is set, otherwise an
 HTTPS GET) or takes bytes you already hold, and stores the text as an immutable, content-addressed capture.
 `source_prepare_captured` then registers the capture as an evidence capture with quotable units, so a governed
-`record_claim` can anchor to it. On database contract 0.10.0 each registration also writes an operation intent, a
+`record_claim` can anchor to it. Since database contract 0.10.0 each registration also writes an operation intent, a
 receipt and receipt targets (intent type `capture_registration`). Concept: [capture, conversion and
 custody](../knowledge/capture-conversion-and-custody.md#from-source-bytes-to-inspectable-evidence).
 

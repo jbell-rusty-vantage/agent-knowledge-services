@@ -407,6 +407,7 @@
       "entrypoints": [
         "packages/host/src/index.ts",
         "packages/host/src/create-host.ts",
+        "packages/host/src/config/database-release.ts",
         "packages/host/src/server/verification.ts",
         "packages/host/src/local/local-host.ts",
         "packages/host/src/local/capabilities.ts",
@@ -609,14 +610,17 @@
       "summary": "Postgres, storage, operation ledger, verification records, and runtime wiring adapters.",
       "entrypoints": [
         "packages/persistence/src/index.ts",
-        "packages/persistence/src/wiring.ts"
+        "packages/persistence/src/wiring.ts",
+        "packages/persistence/src/database-release.ts"
       ],
       "interface": [
-        "Persistence implementations; schema migrations remain in the database-contract repository. Host composition (packages/host) constructs these adapters; persistence never imports host."
+        "Persistence implementations; schema migrations remain in the database-contract repository. Host composition (packages/host) constructs these adapters; persistence never imports host.",
+        "database-release.ts is the AI Engineer database release check (VER-S1): inRange, releaseVerdict, checkMode and readDatabaseRelease port the contract's scripts/database-release.mjs; serviceReleaseRange() is the version in contract.version.json of the vendored @aiengineer/database-contract; checkDatabaseRelease(read, { mode }) refuses with DatabaseReleaseRefused in enforce mode. PostgresCanonicalRepository.databaseRelease() and TenantPostgres.databaseRelease() ask api.database_release() without a tenant."
       ],
       "tests": [
         "packages/persistence/src/operation-service.test.ts",
-        "packages/persistence/src/role-transaction.test.ts"
+        "packages/persistence/src/role-transaction.test.ts",
+        "packages/persistence/src/database-release.test.ts"
       ],
       "constraints": [],
       "uses": [],

@@ -1,4 +1,5 @@
 import { loadKsDatabaseConfig } from "../config/database.js";
+import { startOnAiEngineerDatabase, type DatabaseReleaseReport } from "../config/database-release.js";
 import {
   apiOwnedOperationKinds,
   type CallbackReplayStore,
@@ -41,12 +42,16 @@ export interface ApiHost {
   };
   readonly knowledge: KnowledgeServices;
   readonly verify: VerificationServices;
+  /** The AI Engineer database release this process started on; absent without persistence or on another plane. */
+  readonly databaseRelease?: DatabaseReleaseReport;
   close(): Promise<void>;
 }
 
 /**
  * Server API composition. Construction order and configuration failures match the
  * previous API bootstrap; any failure releases the database pool before rethrowing.
+ * With persistence on the AIENG plane, the database release is checked last (VER-S1):
+ * a release this service does not work with refuses startup and releases the pool.
  */
 export async function createApiHost(options: ApiHostOptions): Promise<ApiHost> {
   const { environment } = options;
@@ -56,7 +61,7 @@ export async function createApiHost(options: ApiHostOptions): Promise<ApiHost> {
   const connectionString = ksDatabase.runtimeDsn;
   if (production && !connectionString) throw new Error(`${ksDatabase.names.RUNTIME_DSN}_REQUIRED`);
   const publicOrigin = options.resolvePublicOrigin(config);
-  const { value, resources } = await constructWithResources((resources) => {
+  const { value, resources } = await constructWithResources(async (resources) => {
     const database = connectionString ? openCanonicalRepository(resources, connectionString, environment) : undefined;
     // SV-17: the verification drift revalidation queue is retired with its AIDB outbox; refuse its configuration.
     for (const name of [
@@ -69,9 +74,11 @@ export async function createApiHost(options: ApiHostOptions): Promise<ApiHost> {
         throw new Error(`VERIFICATION_RETIRED_CONFIGURATION:${name}`);
     const knowledge = composeKnowledgeServices(database, environment);
     const verify = composeVerificationServices(database, environment, { production });
+    const databaseRelease = database ? await startOnAiEngineerDatabase(database, ksDatabase, environment) : undefined;
     return {
       config,
       publicOrigin,
+      ...(databaseRelease ? { databaseRelease } : {}),
       capabilities: {
         persistence: Boolean(database),
         retrieval: Boolean(knowledge.canonicalRetrievalExecutor),

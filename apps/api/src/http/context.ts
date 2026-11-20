@@ -35,6 +35,7 @@ import {
   RetrievalPlanSchema,
   assertOperationInput,
   UuidSchema,
+  type DatabaseReleaseStatus,
   type EvidencePacket,
   type RetrievalCitationReplay,
   type OperationKind,
@@ -64,6 +65,8 @@ import { problem } from "./problem-map.js";
 import { reconciliationTitles, sendKnowledgeRead, sendVerificationRead } from "./read-map.js";
 
 export interface ServerOptionDependencies {
+  /** The AI Engineer database release the process started on; `/readiness` and `/v1/system` state it. */
+  databaseRelease?: DatabaseReleaseStatus;
   logUnexpectedError?: (record: UnexpectedErrorRecord) => void;
   service?: KnowledgeIntegrationService;
   operationService?: KnowledgeOperationPort;

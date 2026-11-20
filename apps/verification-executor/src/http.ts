@@ -5,6 +5,7 @@ import type { VerificationExecutor } from "./executor.js";
 import type { KnowledgeServices } from "./knowledge/context.js";
 import { handleKnowledgeOperation } from "./knowledge-operation/http.js";
 import { KNOWLEDGE_OPERATION_CREDENTIAL_HEADER } from "./knowledge-operation/mcp-tools.js";
+import { databaseReleaseStatus } from "@aiengineer/knowledge-host/config";
 import type { KnowledgeOperationService } from "@aiengineer/knowledge-host/knowledge-operation";
 import { knowledgeOperations } from "./knowledge/operations.js";
 import { createVerificationMcpServer, errorEnvelope } from "./mcp.js";
@@ -14,7 +15,8 @@ import { z } from "zod";
 
 /**
  * Routes
- *   GET  /health                   store, tenant, and (when configured) workspace/database heads
+ *   GET  /health                   store, tenant, and (when configured) workspace/database heads and the
+ *                                  AI Engineer database release the process started on
  *   POST /mcp                      Streamable HTTP MCP (stateless; one server per request)
  *   POST /artifacts                raw bytes -> handle (headers: content-type, x-artifact-label, x-run-id)
  *   POST /captures                 document bytes -> capture (headers: content-type, x-filename, x-source-uri, x-capture-id, x-run-id)
@@ -78,6 +80,8 @@ async function healthPayload(
       workspaceFingerprint: knowledge.workspace.fingerprint ?? null,
       databaseHead: databaseHead ?? null,
       headMatches: databaseHead === knowledge.workspace.migrationHead,
+      // The AI Engineer database release the process started on (release, state, range, verdict; read at startup).
+      databaseRelease: knowledge.databaseRelease ? databaseReleaseStatus(knowledge.databaseRelease) : null,
       defaultTenantId: knowledge.config.defaultTenantId,
       operations: knowledgeOperations.list().map((operation) => operation.name),
     },

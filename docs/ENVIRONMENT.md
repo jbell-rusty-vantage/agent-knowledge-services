@@ -23,12 +23,18 @@ Each role exists for both planes (`KS_AIENG_DB_*`, `KS_BIOTECH_DB_*`); `KS_APPLI
 | `RUNTIME_DSN` | yes | API (`server/api.ts`), MCP (`server/mcp.ts`), worker, knowledge executor (`context.ts`) | MCP and worker refuse `<name>_REQUIRED`; API refuses in production and runs without persistence otherwise; the executor serves capture/artifact tools only |
 | `ADMIN_DSN` | yes | disposable-database integration tests, `scripts/experiments/sprint-v/run.ts`, the jev course scripts, CI (`.github/workflows/verify.yml`), `turbo.json` env passthrough. No deployed process | those tests/scripts skip or refuse |
 | `COMPONENT_DSN` | yes | binding factories through `bindingConnectionString` (`packages/host/src/knowledge-operation/backends.ts`) and `knowledge-verify grant-reviewer` | a binding that names it refuses `KNOWLEDGE_BINDING_DATABASE_REQUIRED`; `grant-reviewer` refuses `DATABASE_URL_MISSING` |
+| `AIENG_DB_RELEASE_CHECK` (AIENG plane only, no `KS_` prefix: the contract's name) | no | the config module (`releaseCheck` on the resolved plane object); applied by `packages/host/src/config/database-release.ts` | nothing: the mode is `enforce`. See [release check](#release-check) |
 
 A binding in `KS_KNOWLEDGE_BINDINGS_JSON` sets `databaseUrlEnv` to `KS_AIENG_DB_COMPONENT_DSN` or `KS_BIOTECH_DB_COMPONENT_DSN` (no other value validates). `grant-reviewer --database-url-env` takes the same two names.
 
+<a id="release-check"></a>
+## Release check
+
+Every process that opens the AI Engineer database asks it for its release (`api.database_release()`) before it starts and refuses a release it was not built for (VER-S1; rule, processes and reporting: [database release check](../features/database-release-check.md#database-release-check)). `AIENG_DB_RELEASE_CHECK` sets the mode: `enforce` (default) refuses, `warn` starts and logs the verdict, `off` does not ask. Any other word, an empty value included, fails the load with `AIENG_DB_RELEASE_CHECK must be enforce, warn or off`. The range is the version of the vendored `@aiengineer/database-contract`; it is not a variable. The AI Engineer service and Mission Control read the same variable with the same meaning. A process on the `BIOTECH` plane never reads it. A disposable database that holds only the verification component states no release: point a process at it only with `AIENG_DB_RELEASE_CHECK=off`.
+
 ## Cloud deployment
 
-Set exactly these names in the host environment (for AWS, the secret JSON keys in `infra/aws`: `DatabaseSecretArn` -> `KS_AIENG_DB_RUNTIME_DSN`; `WorkerRuntimeSecretArn` -> `KS_AIENG_DB_URL`, `KS_AIENG_DB_SECRET_KEY`). Remove the earlier names from the host; they are ignored. Mission Control's generated executor env must emit `KS_AIENG_DB_COMPONENT_DSN` / `KS_BIOTECH_DB_COMPONENT_DSN` and matching `databaseUrlEnv` values.
+Set exactly these names in the host environment (for AWS, the secret JSON keys in `infra/aws`: `DatabaseSecretArn` -> `KS_AIENG_DB_RUNTIME_DSN`; `WorkerRuntimeSecretArn` -> `KS_AIENG_DB_URL`, `KS_AIENG_DB_SECRET_KEY`). Remove the earlier names from the host; they are ignored. The AWS template does not set `AIENG_DB_RELEASE_CHECK`, so a deployed process enforces the [release check](#release-check). Mission Control's generated executor env must emit `KS_AIENG_DB_COMPONENT_DSN` / `KS_BIOTECH_DB_COMPONENT_DSN` and matching `databaseUrlEnv` values.
 
 ## Test-only variables (unchanged, fake loopback values)
 

@@ -1,11 +1,16 @@
+import {
+  DATABASE_RELEASE_CHECK_VARIABLE,
+  checkMode,
+  type DatabaseReleaseCheckMode,
+} from "@aiengineer/knowledge-persistence";
 import { z } from "zod";
 
 /**
  * Knowledge Services database environment (contract: BellLabs `platform/ENV-DB-CONTRACT-2026-11-07.md`).
  *
- * This module is the ONLY code that reads the `KS_{AIENG,BIOTECH}_DB_*` variables. Callers receive the resolved
- * plane object. There are no aliases and no fallback to earlier names. Values are never logged; the startup
- * selection record carries only the plane, the project ref and the host(s).
+ * This module is the ONLY code that reads the `KS_{AIENG,BIOTECH}_DB_*` variables and `AIENG_DB_RELEASE_CHECK`.
+ * Callers receive the resolved plane object. There are no aliases and no fallback to earlier names. Values are never
+ * logged; the startup selection record carries only the plane, the project ref and the host(s).
  *
  * Local by default (SPEC-03 K3): a process that names no application (`KS_APPLICATION` unset and no explicit
  * argument) may only reach loopback databases and endpoints; any remote URL or DSN is refused with
@@ -39,6 +44,13 @@ export const KS_DB_COMPONENT_DSN_VARIABLES = KS_DB_PLANES.map((plane) => ksDbVar
 
 /** The one variable that names a process's application, and with it the plane it may reach remotely. */
 export const KS_APPLICATION_VARIABLE = "KS_APPLICATION";
+
+/**
+ * How a process checks the release of the AI Engineer database before it starts (VER-S1): `enforce` (default),
+ * `warn` or `off`. The name is the contract's, shared with the AI Engineer service and Mission Control, so it carries
+ * no `KS_` prefix. It applies to the AIENG plane only; the Biotech database has no release check.
+ */
+export const AIENG_DB_RELEASE_CHECK_VARIABLE = DATABASE_RELEASE_CHECK_VARIABLE;
 
 /** `ai-engineer` -> AIENG, `biotech` -> BIOTECH; a process started without an application uses AIENG (loopback only). */
 export function ksDbPlaneForApplication(application?: string): KsDbPlane {
@@ -103,6 +115,8 @@ export interface KsDatabaseConfig {
   readonly runtimeDsn?: string;
   /** Binding component database login. */
   readonly componentDsn?: string;
+  /** The release-check mode (`AIENG_DB_RELEASE_CHECK`); present on the AIENG plane only. */
+  readonly releaseCheck?: DatabaseReleaseCheckMode;
   readonly selection: KsDatabaseSelection;
 }
 
@@ -157,6 +171,7 @@ function defaultLog(environment: KsDatabaseEnvironment, selection: KsDatabaseSel
  * named (`KS_DB_REMOTE_REQUIRES_APPLICATION`), and refuses when `KS_<PLANE>_DB_PROJECT_REF` is set but does not appear
  * in the host or user of a sibling URL/DSN (contract rule 3). With no project ref (a disposable loopback database)
  * the ref check is skipped. Which values a process needs is the caller's decision; absent values are `undefined`.
+ * On the AIENG plane it also reads the release-check mode and refuses a word other than enforce, warn or off.
  */
 export function loadKsDatabaseConfig(
   environment: KsDatabaseEnvironment = process.env,
@@ -203,6 +218,7 @@ export function loadKsDatabaseConfig(
     ...(value.ADMIN_DSN ? { adminDsn: value.ADMIN_DSN } : {}),
     ...(value.RUNTIME_DSN ? { runtimeDsn: value.RUNTIME_DSN } : {}),
     ...(value.COMPONENT_DSN ? { componentDsn: value.COMPONENT_DSN } : {}),
+    ...(plane === "AIENG" ? { releaseCheck: checkMode(environment) } : {}),
     selection,
   };
   if (options.log === undefined) defaultLog(environment, selection);

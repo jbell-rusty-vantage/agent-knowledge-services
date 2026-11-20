@@ -9,7 +9,8 @@ JSON on stdout where a result is data, typed exit codes, and an error names the 
 library only, so ``./dev status`` and ``./dev doctor`` work before ``pnpm install``.
 
   ./dev status                          orient in one call (JSON): branch, ahead/behind, dirty
-                                        files, contract pin, hooks, which local services answer
+                                        files, contract pin and the database release range it
+                                        sets, hooks, which local services answer
   ./dev doctor                          read-only readiness (JSON); each failure prints its fix
   ./dev check [--full]                  the fast gate (each step named below), or --full: what CI
                                         runs (pnpm verify + maintenance tests + the fast gate)
@@ -40,6 +41,7 @@ import shutil
 import socket
 import subprocess
 import sys
+import tarfile
 import time
 from pathlib import Path
 from urllib.parse import urlsplit
@@ -149,12 +151,44 @@ def contract_pin() -> dict[str, object]:
             if spec:
                 pins[manifest.parent.relative_to(ROOT).as_posix()] = spec
     versions = sorted({m.group(1) for s in pins.values() if (m := re.search(r"-(\d+\.\d+\.\d+)\.tgz", s))})
+    consistent = len(versions) == 1 and any(versions[0] in t for t in tarballs)
     return {
         "package": "@aiengineer/database-contract",
         "vendored": tarballs,
         "versions_pinned": versions,
-        "consistent": len(versions) == 1 and any(versions[0] in t for t in tarballs),
+        "consistent": consistent,
         "pinned_by": sorted(pins),
+        "database_release": database_release(versions[0] if consistent else None),
+    }
+
+
+RELEASE_CHECK_VARIABLE = "AIENG_DB_RELEASE_CHECK"
+
+
+def database_release(pinned: str | None) -> dict[str, object]:
+    """The AI Engineer database release every process checks at startup (VER-S1): the range is the
+    `version` in the pinned tarball's contract.version.json, exactly what
+    packages/persistence/src/database-release.ts reads from the installed package. No database is
+    asked here; `./dev db query --plane P --sql "select api.database_release()"` reads a plane."""
+
+    record: dict[str, object] = {}
+    tarball = ROOT / "vendor" / f"aiengineer-database-contract-{pinned}.tgz" if pinned else None
+    if tarball and tarball.is_file():
+        try:
+            with tarfile.open(tarball, "r:gz") as archive:
+                member = archive.extractfile("package/contract.version.json")
+                record = json.loads(member.read().decode("utf-8")) if member else {}
+        except (OSError, KeyError, tarfile.TarError, json.JSONDecodeError):
+            record = {}
+    raw = os.environ.get(RELEASE_CHECK_VARIABLE)
+    mode = "enforce" if raw is None else raw.strip().lower()
+    return {
+        "range": record.get("version"),
+        "migration_head": record.get("migration_head"),
+        "check_variable": RELEASE_CHECK_VARIABLE,
+        "check": mode if mode in {"enforce", "warn", "off"} else f"invalid ({raw!r}): processes refuse to load",
+        "read_a_plane": './dev db query --plane <plane> --sql "select api.database_release()"',
+        "feature": "features/database-release-check.md",
     }
 
 
@@ -191,6 +225,12 @@ def status() -> int:
         hints.append("the commit-msg hook is missing: `node tools/maintenance/cli.mjs install-hooks`")
     if not pin["consistent"]:
         hints.append("the database-contract pin is not one vendored version; see features/README.md")
+    release = pin["database_release"]
+    if isinstance(release, dict) and release.get("check") != "enforce":
+        hints.append(
+            f"{RELEASE_CHECK_VARIABLE} is {release.get('check')} in this shell: processes started here do not "
+            "refuse a database of another release (features/database-release-check.md)"
+        )
     if fetched is None:
         hints.append("no Linear snapshot: `./dev trace linear pull` (LINEAR_API_KEY in the environment)")
     emit(

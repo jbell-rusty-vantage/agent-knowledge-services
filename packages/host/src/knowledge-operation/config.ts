@@ -1,4 +1,9 @@
-import { KS_DB_COMPONENT_DSN_VARIABLES } from "../config/database.js";
+import { KS_DB_COMPONENT_DSN_VARIABLES, resolveComponentDsn } from "../config/database.js";
+import {
+  AIENG_COMPONENT_DSN_VARIABLE,
+  startOnAiEngineerDatabaseAt,
+  type DatabaseReleaseReport,
+} from "../config/database-release.js";
 import type { ExternalCustodyReader } from "@aiengineer/knowledge-research-core";
 import { existsSync, readFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
@@ -66,6 +71,8 @@ type Env = Readonly<Record<string, string | undefined>>;
 export interface KnowledgeOperationSurface {
   readonly service: KnowledgeOperationService;
   readonly backends: readonly KnowledgeOperationBackend[];
+  /** The AI Engineer database release the surface started on; present when a binding names its component login. */
+  readonly databaseRelease?: DatabaseReleaseReport;
   close(): Promise<void>;
 }
 
@@ -79,6 +86,8 @@ export interface KnowledgeOperationInjection {
   readonly apply?: KnowledgeApplyPort;
   /** The executable's native `knowledge.read_intent` port; offered to every registration, served by one declaring it. */
   readonly readIntent?: KnowledgeReadIntentPort;
+  /** The release check of the AI Engineer database behind a component login; default `startOnAiEngineerDatabaseAt`. */
+  readonly checkDatabaseRelease?: (connectionString: string, env: Env) => Promise<DatabaseReleaseReport>;
 }
 
 function catalogDir(name: string): string {
@@ -140,6 +149,16 @@ export async function createKnowledgeOperationSurfaceFromEnv(
     config,
     injection.registry.get(config.binding),
   ]);
+  // VER-S1: a binding whose component login is the AI Engineer plane's works in the AI Engineer database, so the
+  // surface starts only on a release this service works with. Asked once, before any backend opens its store. A
+  // binding on the Biotech plane or without a database is never asked.
+  const aiEngineer = configs.find((config) => config.databaseUrlEnv === AIENG_COMPONENT_DSN_VARIABLE);
+  const aiEngineerDsn = aiEngineer
+    ? resolveComponentDsn(env, AIENG_COMPONENT_DSN_VARIABLE, aiEngineer.application).dsn
+    : undefined;
+  const databaseRelease = aiEngineerDsn
+    ? await (injection.checkDatabaseRelease ?? startOnAiEngineerDatabaseAt)(aiEngineerDsn, env)
+    : undefined;
   const backends: KnowledgeOperationBackend[] = [];
   try {
     for (const [config, registration] of registrations) {
@@ -189,6 +208,7 @@ export async function createKnowledgeOperationSurfaceFromEnv(
   return {
     service,
     backends,
+    ...(databaseRelease ? { databaseRelease } : {}),
     close: async () => {
       await service.settled().catch(() => undefined);
       await Promise.all(backends.map((backend) => backend.close()));

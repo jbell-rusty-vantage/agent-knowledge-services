@@ -23,7 +23,7 @@ const call = (operation: string, input: unknown, extra: Record<string, unknown> 
 });
 
 describe("the nine governed writes are defined once", () => {
-  it("names the functions of contract 0.10.0 in chain order, each with a granted role", () => {
+  it("names the functions of contract 0.12.0 in chain order, each with a granted role", () => {
     expect(CHAIN_OPERATIONS.map((item) => [item.operation, item.function, item.role])).toEqual([
       ["record_claim", "api.record_claim", "pipeline_agent"],
       ["restate_claim", "api.restate_claim", "pipeline_agent"],

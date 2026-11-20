@@ -13,7 +13,8 @@ export const KNOWLEDGE_HELP = `knowledge — schema workspace, bounded database 
 Usage: knowledge <group> <command> [positionals] [--flag value]...
 
 Modes
-  local   (default)                 needs KS_AIENG_DB_RUNTIME_DSN and SCHEMA_WORKSPACE_DIR
+  local   (default)                 needs KS_AIENG_DB_RUNTIME_DSN and SCHEMA_WORKSPACE_DIR; the database must state the
+                                    release this build works with (AIENG_DB_RELEASE_CHECK=enforce|warn|off)
   remote  KNOWLEDGE_EXECUTOR_URL    forward every command to a running executor (\`knowledge serve\` / \`knowledge-verify serve\`)
                                     (or --remote <url>; --token / KNOWLEDGE_EXECUTOR_TOKEN for bearer auth)
 

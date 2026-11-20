@@ -1,4 +1,5 @@
 import { loadKsDatabaseConfig } from "../config/database.js";
+import { startOnAiEngineerDatabase, type DatabaseReleaseReport } from "../config/database-release.js";
 import {
   BoundedManualUploadAdapter,
   ExactHttpAcquisitionAdapter,
@@ -110,6 +111,8 @@ export interface WorkerHost {
   readonly reconciled: number;
   readonly registeredActivities: readonly string[];
   readonly status: Awaited<ReturnType<ReturnType<typeof createKnowledgeApplication>["getStatus"]>>;
+  /** The AI Engineer database release this worker started on; absent in memory mode or on another plane. */
+  readonly databaseRelease?: DatabaseReleaseReport;
   readonly operations: { runOnce(): Promise<unknown> };
   close(): Promise<void>;
 }
@@ -227,7 +230,9 @@ function composePostgresAdapters(
 /**
  * Server worker composition. Validates the development-only memory gate, builds
  * adapters under host ownership and reconciles before the caller schedules work.
- * Any construction or reconciliation failure releases acquired resources.
+ * Any construction or reconciliation failure releases acquired resources. In postgres
+ * mode on the AIENG plane the database release is checked before the execution is built
+ * or anything is reconciled (VER-S1): a worker never writes to a release it does not work with.
  */
 export async function createWorkerHost(options: WorkerHostOptions): Promise<WorkerHost> {
   const { environment } = options;
@@ -246,9 +251,17 @@ export async function createWorkerHost(options: WorkerHostOptions): Promise<Work
       mode === "postgres"
         ? composePostgresAdapters(resources, environment, { owner, leaseMs, scopedOperationId })
         : { mode, environment, owner, leaseMs };
+    const databaseRelease =
+      adapters.mode === "postgres"
+        ? await startOnAiEngineerDatabase(
+            adapters.persistence.database,
+            loadKsDatabaseConfig(environment, undefined, { log: false }),
+            environment,
+          )
+        : undefined;
     const execution = await buildExecution(adapters);
     const reconciled = await execution.reconcile();
-    return { execution, reconciled, status: await application.getStatus() };
+    return { execution, reconciled, status: await application.getStatus(), databaseRelease };
   });
   return {
     profile: "server",
@@ -259,6 +272,7 @@ export async function createWorkerHost(options: WorkerHostOptions): Promise<Work
     reconciled: value.reconciled,
     registeredActivities: value.execution.registeredActivities,
     status: value.status,
+    ...(value.databaseRelease ? { databaseRelease: value.databaseRelease } : {}),
     operations: { runOnce: () => value.execution.runOnce() },
     close: () => resources.close(),
   };

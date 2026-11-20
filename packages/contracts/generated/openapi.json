@@ -18840,6 +18840,61 @@
           "runtime": {
             "type": "string",
             "const": "node"
+          },
+          "databaseRelease": {
+            "type": "object",
+            "properties": {
+              "check": {
+                "type": "string",
+                "enum": [
+                  "enforce",
+                  "warn",
+                  "off"
+                ]
+              },
+              "range": {
+                "type": "string"
+              },
+              "release": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "state": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "verdict": {
+                "type": "string",
+                "enum": [
+                  "ok",
+                  "unknown",
+                  "unstamped",
+                  "incompatible",
+                  "inconsistent",
+                  "not_checked"
+                ]
+              },
+              "warning": {
+                "type": "boolean"
+              },
+              "checkedAt": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "check",
+              "range",
+              "release",
+              "state",
+              "verdict",
+              "warning",
+              "checkedAt"
+            ],
+            "additionalProperties": false
           }
         },
         "required": [

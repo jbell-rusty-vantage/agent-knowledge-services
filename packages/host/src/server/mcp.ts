@@ -1,4 +1,5 @@
 import { loadKsDatabaseConfig } from "../config/database.js";
+import { startOnAiEngineerDatabase, type DatabaseReleaseReport } from "../config/database-release.js";
 import {
   apiOwnedOperationKinds,
   VerificationOperationApplicationService,
@@ -39,10 +40,15 @@ export interface McpHost {
     /** Verification submissions whose accepted links are rooted at the API origin. */
     readonly operations?: VerificationOperationApplicationService;
   };
+  /** The AI Engineer database release this process started on; absent on another plane. */
+  readonly databaseRelease?: DatabaseReleaseReport;
   close(): Promise<void>;
 }
 
-/** Server MCP composition. MCP always requires persistence and a validated API origin. */
+/**
+ * Server MCP composition. MCP always requires persistence and a validated API origin. On the AIENG plane the
+ * database release is checked last (VER-S1): a release this service does not work with refuses startup.
+ */
 export async function createMcpHost(options: McpHostOptions): Promise<McpHost> {
   const { environment } = options;
   const config = loadServerConfig({ ...environment, PORT: environment.PORT ?? "4101" });
@@ -50,7 +56,7 @@ export async function createMcpHost(options: McpHostOptions): Promise<McpHost> {
   const connectionString = ksDatabase.runtimeDsn;
   if (!connectionString) throw new Error(`${ksDatabase.names.RUNTIME_DSN}_REQUIRED`);
   const apiOrigin = options.resolveApiOrigin(config);
-  const { value, resources } = await constructWithResources((resources) => {
+  const { value, resources } = await constructWithResources(async (resources) => {
     const database = openCanonicalRepository(resources, connectionString, environment);
     const operationService = new PostgresKnowledgeOperationService(database);
     const knowledge = composeKnowledgeServices(database, environment);
@@ -58,7 +64,9 @@ export async function createMcpHost(options: McpHostOptions): Promise<McpHost> {
       production: config.NODE_ENV === "production",
     });
     const { runtime } = verify;
+    const databaseRelease = await startOnAiEngineerDatabase(database, ksDatabase, environment);
     return {
+      ...(databaseRelease ? { databaseRelease } : {}),
       operations: {
         service: operationService,
         retrieval: new PostgresKnowledgeOperationService(database, { admittedOperationKinds: apiOwnedOperationKinds }),

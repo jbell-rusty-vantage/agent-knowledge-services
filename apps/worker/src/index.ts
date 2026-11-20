@@ -143,9 +143,9 @@ export async function startWorker(
     environment,
     execution: createWorkerExecution(promotionSelection),
   });
-  const { owner, reconciled, registeredActivities, status } = composed;
+  const { owner, reconciled, registeredActivities, status, databaseRelease } = composed;
   process.stdout.write(
-    `${JSON.stringify({ event: "knowledge.worker.started", mode, owner, reconciled, registeredActivities, ...status })}
+    `${JSON.stringify({ event: "knowledge.worker.started", mode, owner, reconciled, registeredActivities, ...status, ...(databaseRelease ? { databaseRelease } : {}) })}
 `,
   );
   // Host reconciled before this first schedule; stop drains the active run before release.

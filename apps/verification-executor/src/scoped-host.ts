@@ -1,7 +1,7 @@
 import { scopedCustodyOperations, type ScopedOperation } from "./access.js";
 import { scopedKnowledgeOperations } from "./knowledge/scoped-knowledge-operations.js";
 import { loadExecutorConfig, VerificationExecutor } from "./executor.js";
-import { createKnowledgeServices, loadKnowledgeConfig } from "./knowledge/context.js";
+import { loadKnowledgeConfig, openKnowledgeServices } from "./knowledge/context.js";
 import {
   KnowledgeCheckpointHarnessRequestSchema,
   type KnowledgeCheckpointHarnessRequest,
@@ -34,7 +34,7 @@ export async function createScopedCustodyHost(input: {
     throw new Error("SCOPED_HOST_PRODUCER_BINDING");
   }
   const executor = await VerificationExecutor.create(executorConfig);
-  const knowledge = createKnowledgeServices(knowledgeConfig, { verification: executor });
+  const knowledge = await openKnowledgeServices(knowledgeConfig, { verification: executor }, input.env);
   try {
     const attempts = await knowledge.db.transaction(
       { tenantId: executorConfig.tenantId, readOnly: true },

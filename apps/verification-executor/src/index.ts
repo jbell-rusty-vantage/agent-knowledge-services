@@ -89,7 +89,9 @@ Environment
   VERIFY_STORE_DIR (default .verification-store; a non-authoritative capture cache)  VERIFY_TENANT_ID
   FIRECRAWL_API_KEY (capture + document parsing)
   KS_KNOWLEDGE_ISSUER  KS_KNOWLEDGE_AUDIENCE  KS_KNOWLEDGE_JWKS_FILE | KS_KNOWLEDGE_JWKS_URL  KS_KNOWLEDGE_BINDINGS_JSON
-  KS_KNOWLEDGE_AUDITOR_SCRIPT_FILE  KS_KNOWLEDGE_SEAL_KEY_ID  KS_KNOWLEDGE_SEAL_KEY_FILE  (knowledge-operation v2)`;
+  KS_KNOWLEDGE_AUDITOR_SCRIPT_FILE  KS_KNOWLEDGE_SEAL_KEY_ID  KS_KNOWLEDGE_SEAL_KEY_FILE  (knowledge-operation v2)
+  AIENG_DB_RELEASE_CHECK (enforce | warn | off; default enforce)  serve, mcp-stdio and grant-reviewer start only on an
+                         AI Engineer database that states the release this build works with`;
 
 interface Parsed {
   command: string;

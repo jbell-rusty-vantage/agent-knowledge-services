@@ -108,6 +108,75 @@ describe("env composition resolves bindings through the registry", () => {
     ).rejects.toThrow(/KS_KNOWLEDGE_USE_CLASSES_REQUIRED/);
   });
 
+  it("checks the AI Engineer database release once for a binding on its component login, and never for Biotech (VER-S1)", async () => {
+    const dsn = "postgresql://component@127.0.0.1:1/unused";
+    const asked: string[] = [];
+    const report = {
+      check: "enforce" as const,
+      range: "0.12.0",
+      release: "0.12.0",
+      state: "current",
+      verdict: "ok" as const,
+      warning: false,
+      reason: "the database is release 0.12.0",
+      checkedAt: "2026-11-20T00:00:00.000Z",
+    };
+    const checkDatabaseRelease = async (connectionString: string) => {
+      asked.push(connectionString);
+      return report;
+    };
+    const aiEngineer = {
+      application: "ai-engineer",
+      binding: "in-memory",
+      installationId: "i-1",
+      databaseUrlEnv: "KS_AIENG_DB_COMPONENT_DSN",
+    };
+    const surface = await createKnowledgeOperationSurfaceFromEnv(
+      { ...env([aiEngineer]), KS_AIENG_DB_COMPONENT_DSN: dsn },
+      { registry, checkDatabaseRelease },
+    );
+    try {
+      expect(asked).toEqual([dsn]);
+      expect(surface?.databaseRelease).toEqual(report);
+    } finally {
+      await surface?.close();
+    }
+    // A refusal stops startup before any backend opens its store.
+    await expect(
+      createKnowledgeOperationSurfaceFromEnv(
+        { ...env([aiEngineer]), KS_AIENG_DB_COMPONENT_DSN: dsn },
+        {
+          registry,
+          checkDatabaseRelease: async () => {
+            throw new Error("AIENG_DB_RELEASE_REFUSED: test");
+          },
+        },
+      ),
+    ).rejects.toThrow("AIENG_DB_RELEASE_REFUSED");
+    // The Biotech plane, and a binding without a database, are never asked.
+    asked.length = 0;
+    const others = await createKnowledgeOperationSurfaceFromEnv(
+      {
+        ...env([
+          {
+            application: "biotech",
+            binding: "in-memory",
+            installationId: "i-2",
+            databaseUrlEnv: "KS_BIOTECH_DB_COMPONENT_DSN",
+          },
+        ]),
+        KS_BIOTECH_DB_COMPONENT_DSN: dsn,
+      },
+      { registry, checkDatabaseRelease },
+    );
+    try {
+      expect(asked).toEqual([]);
+      expect(others?.databaseRelease).toBeUndefined();
+    } finally {
+      await others?.close();
+    }
+  });
+
   it("refuses a binding no registration exports at startup", async () => {
     await expect(
       createKnowledgeOperationSurfaceFromEnv(

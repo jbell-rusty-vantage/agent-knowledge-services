@@ -1,4 +1,9 @@
-import { KS_DB_COMPONENT_DSN_VARIABLES, resolveComponentDsn } from "@aiengineer/knowledge-host/config";
+import {
+  AIENG_COMPONENT_DSN_VARIABLE,
+  KS_DB_COMPONENT_DSN_VARIABLES,
+  resolveComponentDsn,
+  startOnAiEngineerDatabaseAt,
+} from "@aiengineer/knowledge-host/config";
 import {
   ComponentDatabase,
   type SqlClient,
@@ -17,7 +22,9 @@ import {
  * written. The DSN is read from the environment variable `--database-url-env` names (never a flag value, never
  * printed). Scope lists are comma-separated and every list is required (`{}` qualifies for nothing). Least privilege:
  * the component's `*` wildcard is refused (`SCOPE_WILDCARD_REFUSED`) unless `--allow-wildcard` is passed. `granted_at`
- * is the database's `now()`, never the caller's clock.
+ * is the database's `now()`, never the caller's clock. When the variable is the AI Engineer plane's
+ * (`KS_AIENG_DB_COMPONENT_DSN`) the database release is checked first (VER-S1): in enforce mode nothing is written
+ * to a release this service does not work with. The Biotech plane has no release check.
  *
  * Independence is not this grant's job: at review time KS refuses a reviewer who is the producer (`assertIndependent`
  * in packages/host/src/knowledge-operation/assessment.ts reads the producer from the decision's stored run context:
@@ -137,9 +144,14 @@ export async function provisionReviewerGrant(
   env: Readonly<Record<string, string | undefined>>,
   open: (connectionString: string) => GrantDatabase = (connectionString) =>
     new ComponentDatabase({ connectionString, applicationName: "knowledge-verify-grant-reviewer" }),
+  checkRelease: (connectionString: string, env: Readonly<Record<string, string | undefined>>) => Promise<unknown> = (
+    connectionString,
+    environment,
+  ) => startOnAiEngineerDatabaseAt(connectionString, environment),
 ): Promise<ReviewerGrantResult> {
   const dsn = resolveComponentDsn(env, request.databaseUrlEnv).dsn;
   if (!dsn) throw new ReviewerGrantRefused("DATABASE_URL_MISSING", `${request.databaseUrlEnv} is not set`);
+  if (request.databaseUrlEnv === AIENG_COMPONENT_DSN_VARIABLE) await checkRelease(dsn, env);
   const db = open(dsn);
   try {
     return await db.transaction({ tenantId: request.tenantId, role: REVIEWER_ROLE }, async (client) => {

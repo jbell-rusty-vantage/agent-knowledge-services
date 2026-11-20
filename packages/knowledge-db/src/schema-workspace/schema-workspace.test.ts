@@ -97,10 +97,10 @@ describe("head check", () => {
     expect(assertHeadMatches(workspace, undefined, true).matches).toBe(false);
   });
 
-  it("loads the pinned contract head 20261116150000 and fails closed on a stale database head", () => {
+  it("loads the pinned contract head 20261120120000 and fails closed on a stale database head", () => {
     const pinned = loadWorkspace(resolveWorkspaceDir({ env: {} }));
-    expect(pinned.migrationHead).toBe("20261116150000");
-    expect(assertHeadMatches(pinned, "20261116150000").matches).toBe(true);
+    expect(pinned.migrationHead).toBe("20261120120000");
+    expect(assertHeadMatches(pinned, "20261120120000").matches).toBe(true);
     expect(() => assertHeadMatches(pinned, "20261031010000")).toThrowError(
       expect.objectContaining({ code: "HEAD_MISMATCH", exit: 2 }),
     );

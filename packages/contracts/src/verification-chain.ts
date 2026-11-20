@@ -2,7 +2,7 @@ import { z } from "zod";
 import { inputJsonSchema, type JsonSchema } from "./operations/json-schema.js";
 
 /**
- * The governed writes of the research verification chain (AI Engineer database contract 0.10.0, schema `api`):
+ * The governed writes of the research verification chain (AI Engineer database contract 0.12.0, schema `api`):
  * nine functions through which a bounded database role records a claim with evidence, restates it, registers a
  * probe, records a run, proposes a verdict, triages a candidate, assesses a source, and opens and settles an
  * attention sweep. This module is the one definition of what a caller sends for each: every transport validates
@@ -864,7 +864,7 @@ export const GOVERNED_WRITE_ERRORS = {
   CHAIN_ROLE_NOT_GRANTED: entry(
     "not_allowed",
     "The database does not grant this function to the role Knowledge Services writes it as.",
-    "Report it: the AI Engineer database is not at contract 0.10.0 (migration 20261116150000), or its grants were changed.",
+    "Report it: the AI Engineer database is not at the release Knowledge Services pins (api.database_release() states the release of the database), or its grants were changed.",
   ),
 } as const satisfies Record<string, GovernedWriteErrorEntry>;
 export type GovernedWriteErrorCode = keyof typeof GOVERNED_WRITE_ERRORS;

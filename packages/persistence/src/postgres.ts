@@ -11,6 +11,7 @@ import {
 import { sha256Digest } from "@aiengineer/knowledge-core";
 import { deterministicUuid } from "@aiengineer/knowledge-core";
 import { operationActorIdentity } from "./actor-identity.js";
+import { readDatabaseRelease } from "./database-release.js";
 import {
   RetrievalCitationReplay,
   RetrievalSupportResolver,
@@ -217,6 +218,19 @@ export class PostgresCanonicalRepository
 
   async close(): Promise<void> {
     await this.#pool.end();
+  }
+
+  /**
+   * What the database says about its release (`api.database_release()`), or null when it has no such function.
+   * Needs no tenant and writes nothing; the startup check reads it (`checkDatabaseRelease`).
+   */
+  async databaseRelease(): Promise<unknown> {
+    const client = await this.#pool.connect();
+    try {
+      return await readDatabaseRelease(client);
+    } finally {
+      client.release();
+    }
   }
 
   async transaction<T>(tenantId: string, work: (client: TenantSqlClient) => Promise<T>): Promise<T> {

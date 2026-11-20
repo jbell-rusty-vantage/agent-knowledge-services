@@ -1,4 +1,5 @@
 import { Pool, type PoolConfig } from "pg";
+import { readDatabaseRelease } from "./database-release.js";
 import type { TenantSqlClient } from "./postgres.js";
 
 /**
@@ -108,5 +109,18 @@ export class TenantPostgres {
       "select max(version)::text version from supabase_migrations.schema_migrations",
     );
     return result.rows[0]?.version ?? undefined;
+  }
+
+  /**
+   * Superuser-free probe that needs no tenant: what the database says about its release
+   * (`api.database_release()`), or null when it has no such function. Writes nothing.
+   */
+  async databaseRelease(): Promise<unknown> {
+    const client = await this.#pool.connect();
+    try {
+      return await readDatabaseRelease(client);
+    } finally {
+      client.release();
+    }
   }
 }

@@ -5,11 +5,16 @@ import type { RouteContext } from "../server.js";
 // SV-17 retired the internal verification drift revalidation queue (its AIDB outbox was withdrawn).
 
 export function registerSystem(server: FastifyInstance, context: RouteContext): void {
-  const { application, requireAccess, resolveBearerIdentity, correlationId, problem } = context;
+  const { application, options, requireAccess, resolveBearerIdentity, correlationId, problem } = context;
+  // The service status, with the AI Engineer database release the process started on when it has persistence.
+  const status = async () => ({
+    ...(await application.getStatus()),
+    ...(options.databaseRelease ? { databaseRelease: options.databaseRelease } : {}),
+  });
   server.get("/health", async () => ({ status: "ok" }));
-  server.get("/readiness", async () => application.getStatus());
+  server.get("/readiness", status);
   server.get("/v1/system", async (request, reply) =>
-    (await requireAccess(request, reply, "system.read")) ? application.getStatus() : undefined,
+    (await requireAccess(request, reply, "system.read")) ? status() : undefined,
   );
   // The guidance pages as Markdown text: the start page without a topic, a skill by its name, one of its files by
   // <skill>/<path>. They are the pages the MCP tool knowledge_guide and `ks guide` return, read no tenant data

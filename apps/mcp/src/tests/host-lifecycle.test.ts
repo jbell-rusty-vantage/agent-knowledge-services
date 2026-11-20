@@ -28,6 +28,8 @@ const environment = {
   KS_AIENG_DB_RUNTIME_DSN: "postgres://user:secret@127.0.0.1:54322/knowledge",
   CANONICAL_LOCAL_ONLY: "1",
   KNOWLEDGE_API_URL: "http://127.0.0.1:4100",
+  // No database stands behind this DSN and persistence must stay lazy here, so the startup release check is off.
+  AIENG_DB_RELEASE_CHECK: "off",
 };
 
 beforeEach(() => {
@@ -42,6 +44,27 @@ describe("MCP runtime lifecycle", () => {
     expect(runtime.close()).toBe(first);
     await first;
     expect(events).toEqual(["app.close", "host.close"]);
+  });
+
+  it("states the database release the host started on at /health, without a free-text reason", async () => {
+    const runtime = await createMcpRuntime(environment);
+    try {
+      const health = (await runtime.app.inject({ method: "GET", url: "/health" })).json() as {
+        status: string;
+        databaseRelease: Record<string, unknown>;
+      };
+      expect(health.status).toBe("ok");
+      expect(health.databaseRelease).toMatchObject({
+        check: "off",
+        verdict: "not_checked",
+        release: null,
+        state: null,
+      });
+      expect(String(health.databaseRelease.range)).toMatch(/^\d+\.\d+\.\d+$/);
+      expect(health.databaseRelease).not.toHaveProperty("reason");
+    } finally {
+      await runtime.close();
+    }
   });
 
   it("rejects an invalid API origin before composing persistence", async () => {

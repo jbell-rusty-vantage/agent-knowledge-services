@@ -1,4 +1,4 @@
-import type { ApiHost } from "@aiengineer/knowledge-host";
+import { databaseReleaseStatus, type ApiHost } from "@aiengineer/knowledge-host";
 import type { ServerOptions } from "./server.js";
 
 /** Maps host-composed services onto the HTTP server's existing option names. */
@@ -19,6 +19,7 @@ export function apiServerOptions(host: ApiHost): ServerOptions {
       ? { resolveVerificationBenchmarkCaptureProfile: verify.resolveBenchmarkCaptureProfile }
       : {}),
     ...(host.publicOrigin ? { publicOrigin: host.publicOrigin } : {}),
+    ...(host.databaseRelease ? { databaseRelease: databaseReleaseStatus(host.databaseRelease) } : {}),
     ...(operations
       ? {
           operationService: operations.service,

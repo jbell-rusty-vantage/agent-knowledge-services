@@ -1,6 +1,7 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import {
+  AIENG_DB_RELEASE_CHECK_VARIABLE,
   KS_APPLICATION_VARIABLE,
   KS_DB_COMPONENT_DSN_VARIABLES,
   KS_DB_VARIABLE_NAMES,
@@ -120,6 +121,22 @@ describe("Knowledge Services database config", () => {
     );
   });
 
+  it("reads the release-check mode on the AIENG plane only: enforce by default, any other word refused", () => {
+    expect(AIENG_DB_RELEASE_CHECK_VARIABLE).toBe("AIENG_DB_RELEASE_CHECK");
+    expect(loadKsDatabaseConfig({}, undefined, { log: false }).releaseCheck).toBe("enforce");
+    for (const mode of ["enforce", "warn", "off"] as const)
+      expect(loadKsDatabaseConfig({ AIENG_DB_RELEASE_CHECK: mode }, "ai-engineer", { log: false }).releaseCheck).toBe(
+        mode,
+      );
+    expect(() => loadKsDatabaseConfig({ AIENG_DB_RELEASE_CHECK: "skip" }, undefined, { log: false })).toThrow(
+      "AIENG_DB_RELEASE_CHECK must be enforce, warn or off (got skip)",
+    );
+    // The Biotech database has no release check: the variable is not read for that plane.
+    const biotech = loadKsDatabaseConfig({ AIENG_DB_RELEASE_CHECK: "skip" }, "biotech", { log: false });
+    expect(biotech.plane).toBe("BIOTECH");
+    expect(biotech).not.toHaveProperty("releaseCheck");
+  });
+
   it("classifies loopback hosts", () => {
     for (const host of ["localhost", "127.0.0.1", "127.1.2.3", "::1", "[::1]", "db.localhost", ""])
       expect(isLoopbackHost(host)).toBe(true);
@@ -143,10 +160,14 @@ describe("Knowledge Services database config", () => {
   it("keeps config/env.registry.yaml and .env.example in step with the module's names", () => {
     const registry = readFileSync(new URL("../../../../config/env.registry.yaml", import.meta.url), "utf8");
     const registered = [...registry.matchAll(/^ {2}- name: (\S+)$/gm)].map((match) => match[1]).sort();
-    expect(registered).toEqual([...KS_DB_VARIABLE_NAMES, KS_APPLICATION_VARIABLE].sort());
+    expect(registered).toEqual(
+      [...KS_DB_VARIABLE_NAMES, KS_APPLICATION_VARIABLE, AIENG_DB_RELEASE_CHECK_VARIABLE].sort(),
+    );
     const example = readFileSync(new URL("../../../../.env.example", import.meta.url), "utf8");
     for (const name of KS_DB_VARIABLE_NAMES.filter((candidate) => candidate.startsWith("KS_AIENG_")))
       expect(example).toMatch(new RegExp(`^${name}=`, "m"));
+    // The example states the default mode in full: an empty value is refused at load.
+    expect(example).toMatch(new RegExp(`^${AIENG_DB_RELEASE_CHECK_VARIABLE}=enforce$`, "m"));
     expect(example).not.toMatch(/^(POSTGRES_URL|SUPABASE_URL|SUPABASE_SECRET_KEY)=/m);
   });
 });

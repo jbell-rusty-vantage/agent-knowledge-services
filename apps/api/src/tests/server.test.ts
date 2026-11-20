@@ -1,6 +1,7 @@
 import { afterAll, describe, expect, it, vi } from "vitest";
 import { KnowledgeIntegrationService } from "@aiengineer/knowledge-application";
 import { PostgresKnowledgeOperationService } from "@aiengineer/knowledge-persistence";
+import { ServiceStatusSchema } from "@aiengineer/knowledge-contracts";
 import { buildServer } from "../server.js";
 import type { ApiRole, LocalApiIdentity } from "@aiengineer/knowledge-host/config";
 
@@ -16,6 +17,33 @@ describe("knowledge API", () => {
       service: "knowledge-services",
       status: "ready",
     });
+  });
+  it("states the AI Engineer database release on readiness when the process started on one", async () => {
+    expect((await server.inject({ method: "GET", url: "/readiness" })).json()).not.toHaveProperty("databaseRelease");
+    const databaseRelease = {
+      check: "enforce" as const,
+      range: "0.12.0",
+      release: "0.12.0",
+      state: "current",
+      verdict: "ok" as const,
+      warning: false,
+      checkedAt: "2026-11-20T00:00:00.000Z",
+    };
+    const persistent = buildServer({ databaseRelease });
+    try {
+      const response = await persistent.inject({ method: "GET", url: "/readiness" });
+      expect(response.statusCode).toBe(200);
+      expect(response.json()).toEqual({
+        service: "knowledge-services",
+        status: "ready",
+        contractVersion: "v1",
+        runtime: "node",
+        databaseRelease,
+      });
+      expect(ServiceStatusSchema.parse(response.json()).databaseRelease?.verdict).toBe("ok");
+    } finally {
+      await persistent.close();
+    }
   });
   it("fails closed and returns typed problem details", async () => {
     const response = await server.inject({

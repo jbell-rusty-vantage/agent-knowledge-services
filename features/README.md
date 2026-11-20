@@ -14,6 +14,7 @@ package exports point at `dist`. `./dev test <package> <file>` is the same comma
 | [Platform API, MCP and `ks`](platform-api-mcp-and-ks.md#platform-api-mcp-and-ks) | The platform's catalogued operations over HTTP, MCP and the `ks` CLI, run by the durable worker | `./dev test mcp src/tests/catalog.test.ts` |
 | [Evaluation](evaluation.md#evaluation) | Retrieval evaluation datasets, verification benchmarks, the consumer-surface scorecard | `./dev test evaluation src/index.test.ts` |
 | [Jev decisions](jev.md#jev-decisions) | Closed-choice decision jobs on a local queue with bounded workers | `./dev test apps/jev src/http.test.ts` |
+| [Database release check](database-release-check.md#database-release-check) | Every process checks the AI Engineer database release at startup, refuses another release and reports the one it runs on | `./dev test persistence src/database-release.test.ts` |
 
 How the features fit together is explained in the concept docs ([knowledge index](../knowledge/index.md#find-the-relevant-concept)). Database
 variables and the local-by-default rule are in [ENVIRONMENT](../docs/ENVIRONMENT.md#plane-selection).

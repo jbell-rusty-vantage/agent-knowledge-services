@@ -15,6 +15,8 @@ describe("local knowledge host composition", () => {
     const root = await mkdtemp(join(tmpdir(), "ks-host-composition-"));
     const env = {
       KS_AIENG_DB_RUNTIME_DSN: "postgresql://localhost:1/unused",
+      // No database stands behind this DSN, so the release check that opening the services runs is switched off.
+      AIENG_DB_RELEASE_CHECK: "off",
       SCHEMA_WORKSPACE_DIR: fileURLToPath(
         new URL("../../../../../aiengineer/ai-engineer-db-contract/workspace", import.meta.url),
       ),
@@ -25,6 +27,7 @@ describe("local knowledge host composition", () => {
     try {
       expect(services?.config.defaultTenantId).toBe(loadExecutorConfig(env).tenantId);
       expect(services?.useClasses.registry.id).toBe("use-classes");
+      expect(services?.databaseRelease).toMatchObject({ check: "off", verdict: "not_checked" });
     } finally {
       await services?.close();
     }

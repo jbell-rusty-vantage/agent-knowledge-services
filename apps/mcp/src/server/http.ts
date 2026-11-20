@@ -1,5 +1,6 @@
 import {
   createHost,
+  databaseReleaseStatus,
   createKnowledgeResourceReads,
   createLocalIdentityResolver,
   createVerificationResourceReads,
@@ -29,7 +30,10 @@ export function buildKnowledgeMcpApp(options: KnowledgeMcpAppOptions): FastifyIn
         : 500;
     return reply.status(status).send({ code: status === 500 ? "INTERNAL_ERROR" : "INVALID_REQUEST" });
   });
-  app.get("/health", async () => ({ status: "ok" }));
+  app.get("/health", async () => ({
+    status: "ok",
+    ...(options.databaseRelease ? { databaseRelease: options.databaseRelease } : {}),
+  }));
   app.all("/mcp", async (request, reply) => {
     const token = bearerToken(request);
     const identity = token ? await options.resolveIdentity(token) : undefined;
@@ -91,6 +95,7 @@ export async function createMcpRuntime(environment: Environment = process.env) {
   try {
     const { apiOrigin, knowledge, operations, verify } = host;
     const app = buildKnowledgeMcpApp({
+      ...(host.databaseRelease ? { databaseRelease: databaseReleaseStatus(host.databaseRelease) } : {}),
       operationService: operations.service,
       apiOrigin,
       knowledge: {

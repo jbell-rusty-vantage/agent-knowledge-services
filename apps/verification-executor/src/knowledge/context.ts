@@ -25,7 +25,12 @@ import {
 } from "@aiengineer/knowledge-application";
 import { LocalArtifactStore, SupabaseArtifactStore, type ArtifactStore } from "@aiengineer/knowledge-core";
 import { loadWorkspace, resolveWorkspaceDir, type Workspace } from "@aiengineer/knowledge-db";
-import { loadKsDatabaseConfig } from "@aiengineer/knowledge-host/config";
+import {
+  loadKsDatabaseConfig,
+  startOnAiEngineerDatabase,
+  type DatabaseReleaseCheckMode,
+  type DatabaseReleaseReport,
+} from "@aiengineer/knowledge-host/config";
 import { loadExecutorConfig, type VerificationExecutor } from "../executor.js";
 import type { FilesystemStore } from "../store.js";
 import { createExecutorCustody } from "../store-custody-postgres.js";
@@ -61,6 +66,11 @@ export interface KnowledgeConfig {
   readonly producerAttemptId?: string;
   readonly missionId?: string;
   readonly discoveryProviders?: DiscoveryHostConfig;
+  /**
+   * How `openKnowledgeServices` checks the database release (`AIENG_DB_RELEASE_CHECK`, read by the database config
+   * module). `not_applicable`: the database is not the AI Engineer plane's. Absent (a config built by hand): enforce.
+   */
+  readonly releaseCheck?: DatabaseReleaseCheckMode | "not_applicable";
 }
 
 export interface KnowledgeServices {
@@ -81,6 +91,8 @@ export interface KnowledgeServices {
   /** The co-hosted capture store; `remoteCustody` says whether its bytes are also in durable custody. */
   readonly captureStore: FilesystemStore;
   readonly remoteCustody: boolean;
+  /** The AI Engineer database release these services started on (set by `openKnowledgeServices`). */
+  readonly databaseRelease?: DatabaseReleaseReport;
   close(): Promise<void>;
 }
 
@@ -128,6 +140,7 @@ export function loadKnowledgeConfig(env: Env = process.env): KnowledgeConfig | u
       ...(env.TAVILY_API_KEY?.trim() ? { tavilyApiKey: env.TAVILY_API_KEY.trim() } : {}),
       ...(env.FIRECRAWL_API_KEY?.trim() ? { firecrawlApiKey: env.FIRECRAWL_API_KEY.trim() } : {}),
     },
+    releaseCheck: ksDatabase.plane === "AIENG" ? (ksDatabase.releaseCheck ?? "enforce") : "not_applicable",
   };
 }
 
@@ -149,6 +162,33 @@ export interface KnowledgeServicesOptions {
   /** The co-hosted capture and artifact store; omission rejects before database initialization. */
   readonly verification?: VerificationExecutor;
   readonly sourceDiscoveryHost?: SourceDiscoveryHost;
+}
+
+/**
+ * Opens the knowledge services and checks the release of the AI Engineer database before anything is served or
+ * written (VER-S1): in enforce mode a release this service does not work with closes them again and throws
+ * `DatabaseReleaseRefused`. Every process entry uses this (`knowledge serve`, `knowledge-verify serve` and
+ * `mcp-stdio`, the `knowledge` CLI in local mode, the scoped custody host); `createKnowledgeServices` alone opens
+ * without asking and is for tests and fixtures that own their database.
+ */
+export async function openKnowledgeServices(
+  config: KnowledgeConfig,
+  options: KnowledgeServicesOptions = {},
+  env: Env = {},
+): Promise<KnowledgeServices> {
+  const knowledge = createKnowledgeServices(config, options);
+  if (config.releaseCheck === "not_applicable") return knowledge;
+  try {
+    const databaseRelease = await startOnAiEngineerDatabase(
+      knowledge.db,
+      { plane: "AIENG", releaseCheck: config.releaseCheck ?? "enforce" },
+      env,
+    );
+    return { ...knowledge, ...(databaseRelease ? { databaseRelease } : {}) };
+  } catch (error) {
+    await knowledge.close().catch(() => undefined);
+    throw error;
+  }
 }
 
 /** The verification-chain service over a database port, as the composition below builds it. */

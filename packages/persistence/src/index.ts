@@ -2,6 +2,7 @@ export * from "./types.js";
 export * from "./actor-identity.js";
 export * from "./postgres.js";
 export * from "./role-transaction.js";
+export * from "./database-release.js";
 export * from "./wiring.js";
 export * from "./exploratory-fixture.js";
 export * from "./operation-service.js";

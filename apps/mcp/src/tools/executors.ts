@@ -34,6 +34,7 @@ import {
   UuidSchema,
   VerificationToolContextSchema,
   VerifyExtractionRequestSchema,
+  type DatabaseReleaseStatus,
   type OperationContext,
   type OperationKind,
 } from "@aiengineer/knowledge-contracts";
@@ -303,6 +304,8 @@ export function createBenchmarkReadMcpExecutor(options: KnowledgeMcpServerOption
 }
 
 export interface KnowledgeMcpAppOptions {
+  /** The AI Engineer database release the process started on; `/health` states it. */
+  readonly databaseRelease?: DatabaseReleaseStatus;
   readonly operationService: KnowledgeOperationPort;
   readonly apiOrigin: string;
   readonly resolveIdentity: ResolveApiIdentity;

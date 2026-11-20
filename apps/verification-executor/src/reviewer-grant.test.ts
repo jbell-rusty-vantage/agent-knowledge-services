@@ -56,7 +56,8 @@ describe("grant-reviewer", () => {
       reportKinds: ["evidence_report"],
     });
     const fresh = recording(null);
-    const env = { KS_AIENG_DB_COMPONENT_DSN: "postgresql://login@127.0.0.1:5432/db" };
+    // No database stands behind this DSN, so the release check that precedes the write is switched off here.
+    const env = { KS_AIENG_DB_COMPONENT_DSN: "postgresql://login@127.0.0.1:5432/db", AIENG_DB_RELEASE_CHECK: "off" };
     const granted = await provisionReviewerGrant(request, env, () => fresh.db);
     expect(granted.status).toBe("granted");
     expect(fresh.scopes).toEqual([{ tenantId: TENANT, role: REVIEWER_ROLE }]);
@@ -106,5 +107,48 @@ describe("grant-reviewer", () => {
     }
     const { "report-kinds": _omitted, ...missing } = FLAGS;
     expect(() => parseReviewerGrant(missing)).toThrow(/ARGUMENT_REQUIRED: --report-kinds/);
+  });
+
+  it("checks the AI Engineer database release before it writes, and never asks a Biotech database (VER-S1)", async () => {
+    const dsn = "postgresql://login@127.0.0.1:5432/db";
+    const checked: string[] = [];
+    const check = async (connectionString: string) => void checked.push(connectionString);
+    const aiEngineer = recording(null);
+    await provisionReviewerGrant(
+      parseReviewerGrant(FLAGS),
+      { KS_AIENG_DB_COMPONENT_DSN: dsn },
+      () => aiEngineer.db,
+      check,
+    );
+    expect(checked).toEqual([dsn]);
+    expect(aiEngineer.statements.some((item) => item.text.startsWith("insert"))).toBe(true);
+
+    // A refusal leaves the database unopened: nothing is written to a release this service does not work with.
+    let opened = 0;
+    await expect(
+      provisionReviewerGrant(
+        parseReviewerGrant(FLAGS),
+        { KS_AIENG_DB_COMPONENT_DSN: dsn },
+        () => {
+          opened += 1;
+          return recording(null).db;
+        },
+        async () => {
+          throw new Error("AIENG_DB_RELEASE_REFUSED: test");
+        },
+      ),
+    ).rejects.toThrow("AIENG_DB_RELEASE_REFUSED");
+    expect(opened).toBe(0);
+
+    checked.length = 0;
+    const biotech = recording(null);
+    await provisionReviewerGrant(
+      parseReviewerGrant({ ...FLAGS, "database-url-env": "KS_BIOTECH_DB_COMPONENT_DSN" }),
+      { KS_BIOTECH_DB_COMPONENT_DSN: dsn },
+      () => biotech.db,
+      check,
+    );
+    expect(checked).toEqual([]);
+    expect(biotech.ended()).toBe(true);
   });
 });

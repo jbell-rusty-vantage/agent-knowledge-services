@@ -42,7 +42,9 @@ plane is the application of the binding or operation, or `KS_APPLICATION` for th
 `packages/host/src/config/database.ts` reads these names; there are no aliases or fallbacks to old names. The registry
 `config/env.registry.yaml` and [ENVIRONMENT](../ENVIRONMENT.md#plane-selection) list every name and reader. `.env` is
 owner-managed: never edit or print it. Values live in `BellLabs/.secrets/aieng-db.env` and `biotech-db.env`, with the
-`KS_` prefix.
+`KS_` prefix. The same module reads `AIENG_DB_RELEASE_CHECK` (`enforce`, `warn` or `off`): every process that opens
+the AI Engineer database checks its release at startup and refuses one it was not built for ([database release
+check](../../features/database-release-check.md#database-release-check)).
 
 <a id="planning"></a>
 ## Engineering planning and delivery

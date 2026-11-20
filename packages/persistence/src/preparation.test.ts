@@ -248,7 +248,7 @@ live("PostgresPreparationRepository", () => {
         ],
       };
       if (!committing) {
-        // At contract 0.10.0 no bounded role may insert retrieval.chunking_procedure_version, chunk_set,
+        // At contract 0.12.0 no bounded role may insert retrieval.chunking_procedure_version, chunk_set,
         // retrieval_chunk or chunk_span, so a chunk set cannot be written as executor_service. When the contract
         // grants it, this refusal stops and the assertions below run in the rolled-back mode too.
         await expect(repository.persistChunkSet(tenantId, chunk)).rejects.toThrow(
